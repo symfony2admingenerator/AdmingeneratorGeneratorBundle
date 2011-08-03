@@ -1,0 +1,23 @@
+<?php
+
+namespace {{ namespace_prefix }}\{{ bundle_name }}\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+
+// these import the "@Route" and "@Template" annotations
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
+class ListController extends Controller
+{
+    /**
+     * @Route("/", name="{{ route_name_prefix }}")
+     * @Template()
+     */
+	public function indexAction()
+	{
+		return array();
+	}
+	
+}

@@ -1,3 +1,9 @@
+params:
+  model: Admingenerator\DemoBundle\Entity\Demo
+  route_name_prefix: _admindemo
+  namespace_prefix: Admingenerator
+  bundle_name: DemoBundle
+  base_dir: src/Admingenerator
 builders:
   ListBuilder:
     params:

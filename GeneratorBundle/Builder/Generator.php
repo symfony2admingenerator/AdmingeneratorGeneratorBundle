@@ -74,11 +74,14 @@ class Generator
     {
     	$builder->setGenerator($this);
     	
-    	if($this->getFromYaml(sprintf('builders.%s.params', $builder->getSimpleClassName())))
-    	{
-    		$builder->setVariables($this->getFromYaml('builders.ListBuilder.params', array()));
-    	}
-        $this->builders[]= $builder;
+    	$vars = array_merge(
+    		$this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array()),
+			$this->getFromYaml('params', array())
+    	);
+    	
+    	$builder->setVariables($vars);
+
+    	$this->builders[$builder->getSimpleClassName()] = $builder;
     }
 
     /**
@@ -87,12 +90,10 @@ class Generator
      * @param string $outputDirectory
      * @param array  $variables
      */
-    public function writeClasses($outputDirectory)
+    public function writeOnDisk($outputDirectory)
     {
         foreach ($this->builders as $builder) {
-            /* @var $builder \Propel\Builder\ORM\BaseActiveRecord */
-
-            $builder->writeClass($outputDirectory);
+            $builder->writeOnDisk($outputDirectory);
         }
     }
 

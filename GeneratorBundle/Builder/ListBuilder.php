@@ -8,5 +8,12 @@ namespace Admingenerator\GeneratorBundle\Builder;
  */
 class ListBuilder extends BaseBuilder
 {
-	
+	/**
+	 * (non-PHPdoc)
+	 * @see Builder/Admingenerator\GeneratorBundle\Builder.BaseBuilder::getYamlKey()
+	 */
+	public function getYamlKey()
+	{
+		return 'ListBuilder';
+	}
 }

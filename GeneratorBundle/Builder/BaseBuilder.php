@@ -59,6 +59,7 @@ abstract class BaseBuilder implements BuilderInterface
         $this->templateDirectories = $this->getDefaultTemplateDirs();
         $this->templateName = $this->getDefaultTemplateName();
         $this->variables = new ParameterBag(array());
+        $this->mustOverwriteIfExists = true;
     }
     
 	/**
@@ -272,6 +273,14 @@ abstract class BaseBuilder implements BuilderInterface
             }
             $twig->addFilter($twigFilterName, new \Twig_Filter_Function($twigFilter));
         }
+    }
+    
+    /**
+     * @return string the YamlKey
+     */
+    public function getYamlKey()
+    {
+    	return $this->getSimpleClassName();
     }
     
 }
