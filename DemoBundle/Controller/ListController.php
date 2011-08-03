@@ -2,22 +2,9 @@
 
 namespace Admingenerator\DemoBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
+use Admingenerator\DemoBundle\BaseController\ListController as BaseListController;
 
-// these import the "@Route" and "@Template" annotations
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
-class ListController extends Controller
+class ListController extends BaseListController
 {
-    /**
-     * @Route("/", name="_admindemo")
-     * @Template()
-     */
-	public function indexAction()
-	{
-		return array();
-	}
 	
 }

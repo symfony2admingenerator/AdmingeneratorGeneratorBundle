@@ -1,6 +1,6 @@
 <?php
 
-namespace {{ namespace_prefix }}\{{ bundle_name }}\BaseController;
+namespace Admingenerator\DemoBundle\BaseController;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class ListController extends Controller
 {
     /**
-     * @Route("/", name="{{ route_name_prefix }}")
+     * @Route("/", name="_admindemo")
      * @Template()
      */
 	public function indexAction()
