@@ -256,7 +256,11 @@ abstract class BaseBuilder implements BuilderInterface
         ));
         $this->addTwigFilters($twig);
         $template = $twig->loadTemplate($this->getTemplateName());
-        return $template->render($this->getVariables());
+        
+        $variables = $this->getVariables();
+        $variables['builder'] = $this;
+        
+        return $template->render($variables);
     }
     
     /**
