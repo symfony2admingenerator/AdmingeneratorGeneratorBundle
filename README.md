@@ -17,11 +17,7 @@ In AppKernel.php
    $bundles[] = new Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle(),
    $bundles[] = new Admingenerator\DemoBundle\AdmingeneratorDemoBundle(),
 ```
-And after to regenerate module : 
-
-```Shell
-  php src/Admingenerator/GeneratorBundle/Tests/demo/demo.php
-```
+And after you can edit the DemoBundle/Resources/config/generator.yml file to see changes
 
 In your browser :
 
