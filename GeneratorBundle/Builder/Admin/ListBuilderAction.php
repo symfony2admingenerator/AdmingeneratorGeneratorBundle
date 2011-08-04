@@ -1,6 +1,6 @@
 <?php
 
-namespace Admingenerator\GeneratorBundle\Builder;
+namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
 /**
  * This builder generate php for lists actions

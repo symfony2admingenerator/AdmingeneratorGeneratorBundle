@@ -1,7 +1,31 @@
+
 {% extends "::base.html.twig" %}
 
 {% block body %}<head>
-	<h1>Here is a beautifull title no world ???</h1>
+	<h1>Here is a beautifull title no  ???</h1>
 </head>
-My OutputName is : DemoBundle/Resources/views/List/index.html.twig
+<table>	<thead>
+		<tr class="list_thead">
+							<th class="list_thead_column">
+					id
+				</th>
+							<th class="list_thead_column">
+					title
+				</th>
+					</tr>
+	</thead>
+	<tbody>
+		{% for Movie in Movies %}
+		<tr class="list_trow">			<td>
+			Show value here
+		</td>
+			<td>
+			Show value here
+		</td>
+	</tr>
+		{% endfor %}
+	</tbody>
+</table>
+	
+	
 {% endblock %}

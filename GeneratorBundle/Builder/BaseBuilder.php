@@ -114,7 +114,7 @@ abstract class BaseBuilder implements BuilderInterface
 	public function getDefaultTemplateDirs()
     {
     	
-        return array(realpath(dirname(__FILE__).'/../Resources/templates'));
+        return array(realpath(dirname(__FILE__).'/../Resources/templates/Doctrine'));
     }
 	
     /**
@@ -148,9 +148,14 @@ abstract class BaseBuilder implements BuilderInterface
      * (non-PHPdoc)
      * @see Builder/Admingenerator\GeneratorBundle\Builder.BuilderInterface::getSimpleClassName()
      */
-	public function getSimpleClassName()
+	public function getSimpleClassName($class = null)
     {
-        $classParts = explode('\\', get_class($this));
+    	if(null === $class)
+    	{
+    		$class = get_class($this);
+    	}
+    	
+        $classParts = explode('\\', $class);
         $simpleClassName = array_pop($classParts);
         return $simpleClassName;
     }
@@ -285,6 +290,15 @@ abstract class BaseBuilder implements BuilderInterface
     public function getYamlKey()
     {
     	return $this->getSimpleClassName();
+    }
+    
+    /**
+     * Get model class from model param
+     * @return string
+     */
+    public function getModelClass()
+    {
+    	return $this->getSimpleClassName($this->getVariable('model'));
     }
     
 }

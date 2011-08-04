@@ -69,9 +69,10 @@ interface BuilderInterface
 	public function getDefaultTemplateName();
 	
 	/**
+	 * @param string the class name
 	 * @return string the class name without namespace
 	 */
-	public function getSimpleClassName();
+	public function getSimpleClassName($class = null);
 	
 	/**
 	 * The output filename

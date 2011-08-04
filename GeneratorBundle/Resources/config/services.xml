@@ -5,8 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="admingenerator.generator" class="Admingenerator\GeneratorBundle\Generator\Generator" public="false">
-        </service>
+        <service id="admingenerator.generator" class="Admingenerator\GeneratorBundle\Generator\DoctrineGenerator" public="false"></service>
 
         <service id="admingenerator.generator.listener" class="Admingenerator\GeneratorBundle\ControllerListener">
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" />

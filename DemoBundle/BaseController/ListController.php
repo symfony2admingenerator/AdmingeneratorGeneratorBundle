@@ -2,14 +2,14 @@
 
 namespace Admingenerator\DemoBundle\BaseController;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Admingenerator\GeneratorBundle\Controller\Doctrine\BaseController as BaseDoctrineController;
 use Symfony\Component\HttpFoundation\Response;
 
 // these import the "@Route" and "@Template" annotations
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class ListController extends Controller
+class ListController extends BaseDoctrineController
 {
     /**
      * @Route("/", name="_admindemo")
@@ -17,7 +17,16 @@ class ListController extends Controller
      */
 	public function indexAction()
 	{
-		return array();
+		$Movies = $this
+				->getDoctrine()->getEntityManager()
+				->getRepository('Admingenerator\DemoBundle\Entity\Movie')
+				->findAll();
+			
+		return array(
+			'Movies' => $Movies,
+		);
 	}
+	
+	
 	
 }

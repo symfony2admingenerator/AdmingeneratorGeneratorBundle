@@ -1,0 +1,54 @@
+<?php
+namespace Admingenerator\DemoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="Admingenerator\DemoBundle\Entity\MovieRepository")
+ * @ORM\Table(name="movies")
+ */
+class Movie
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
+    /**
+     * @ORM\Column(length="255", nullable="false")
+     * @ORM\Index
+     */
+    protected $name;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param varchar $name
+     */
+    public function setName(\varchar $name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Get name
+     *
+     * @return varchar 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+}

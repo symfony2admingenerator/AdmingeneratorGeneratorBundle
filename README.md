@@ -9,6 +9,14 @@ This package is inspired from fzaninotto/Propel2
 
 ## Install the bundle in a Symfony2 project src/ dir
 
+## Install the Doctrine2FixtureBundle & create the db
+
+```schell 
+	php app/console doctrine:database:create
+	php app/console doctrine:schema:create
+	php app/console doctrine:fixtures:load	
+```
+
 ## Configure the bundle
 
 In AppKernel.php

@@ -1,8 +1,16 @@
 {% use 'CommonAdmin/title.php.twig' %}
+{% use 'CommonAdmin/list_thead.php.twig' %}
+{% use 'CommonAdmin/list_tbody.php.twig' %}
+
 {{ '{' }}% extends "::base.html.twig" %{{ '}' }}
 
 {{ '{' }}% block body %{{ '}' }}
 	{{- block('title') -}}
 
-	My OutputName is : {{ builder.outputName }}
+	<table>
+		{{- block('list_thead') -}}
+		{{- block('list_tbody') -}}
+	</table>
+	
+	
 {{ '{' }}% endblock %{{ '}' }}

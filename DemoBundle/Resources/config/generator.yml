@@ -1,5 +1,6 @@
+generator: Admingenerator\GeneratorBundle\Generator\DoctrineGenerator
 params:
-  model: Admingenerator\DemoBundle\Entity\Demo
+  model: Admingenerator\DemoBundle\Entity\Movie
   route_name_prefix: _admindemo
   namespace_prefix: Admingenerator
   bundle_name: DemoBundle
@@ -8,3 +9,4 @@ builders:
   ListBuilder:
     params:
       title: Here is a beautifull title no  ???
+      display: [ id, title ]
