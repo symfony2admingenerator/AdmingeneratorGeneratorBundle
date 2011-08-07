@@ -1,6 +1,6 @@
 <?php
 
-namespace Admingenerator\GeneratorBundle;
+namespace Admingenerator\GeneratorBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
