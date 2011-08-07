@@ -6,5 +6,5 @@ namespace Admingenerator\GeneratorBundle\Generator;
 interface GeneratorInterface
 {
 
-	public function setController($controller);
+	function setController($controller);
 }
