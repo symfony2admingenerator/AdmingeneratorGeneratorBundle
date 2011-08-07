@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Admingenerator\GeneratorBundle\Generator;
 
@@ -6,5 +6,5 @@ namespace Admingenerator\GeneratorBundle\Generator;
 interface GeneratorInterface
 {
 
-	function setController($controller);
+    function setController($controller);
 }

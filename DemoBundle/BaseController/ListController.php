@@ -15,18 +15,16 @@ class ListController extends BaseDoctrineController
      * @Route("/", name="_admindemo")
      * @Template()
      */
-	public function indexAction()
-	{
-		$Movies = $this
-				->getDoctrine()->getEntityManager()
-				->getRepository('Admingenerator\DemoBundle\Entity\Movie')
-				->findAll();
-			
-		return array(
-			'Movies' => $Movies,
-		);
-	}
-	
-	
-	
+    public function indexAction()
+    {
+        $Movies = $this
+                ->getDoctrine()->getEntityManager()
+                ->getRepository('Admingenerator\DemoBundle\Entity\Movie')
+                ->findAll();
+            
+        return array(
+            'Movies' => $Movies,
+        );
+    }
+    
 }

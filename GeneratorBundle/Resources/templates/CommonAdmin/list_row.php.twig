@@ -1,7 +1,7 @@
 {% block list_row %}
-	{% for column in builder.columns %}
-		<td>
-			{{ '{{' }} {{ builder.ModelClass }}.{{ column.name }} {{ '}}' }}
-		</td>
-	{% endfor %}
+    {% for column in builder.columns %}
+        <td>
+            {{ '{{' }} {{ builder.ModelClass }}.{{ column.name }} {{ '}}' }}
+        </td>
+    {% endfor %}
 {% endblock %}

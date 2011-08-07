@@ -15,7 +15,7 @@ class Movie
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
      * @ORM\Column(length="255", nullable="false")
      * @ORM\Index
@@ -25,7 +25,7 @@ class Movie
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -45,7 +45,7 @@ class Movie
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {

@@ -8,9 +8,11 @@ namespace Admingenerator\GeneratorBundle\Builder\Admin;
  */
 class ListBuilderTemplate extends ListBuilder
 {
-	public function getOutputName()
-	{
-		return sprintf('%s/Resources/views/List/index.html.twig',
-			 $this->getVariable('bundle_name'));
-	}
+    public function getOutputName()
+    {
+        return sprintf(
+                '%s/Resources/views/List/index.html.twig',
+                $this->getVariable('bundle_name')
+                );
+    }
 }

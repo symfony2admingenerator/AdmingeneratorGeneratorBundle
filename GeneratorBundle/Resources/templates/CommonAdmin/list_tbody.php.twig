@@ -1,11 +1,11 @@
 {% use 'CommonAdmin/list_row.php.twig' %}
 
 {% block list_tbody %}
-	<tbody>
-		{{ '{' }}% for {{ builder.ModelClass }} in {{ builder.ModelClass }}s %{{ '}' }}
-		<tr class="list_trow">
-			{{- block('list_row') -}}
-		</tr>
-		{{ '{' }}% endfor %{{ '}' }}
-	</tbody>
+    <tbody>
+        {{ '{' }}% for {{ builder.ModelClass }} in {{ builder.ModelClass }}s %{{ '}' }}
+        <tr class="list_trow">
+            {{- block('list_row') -}}
+        </tr>
+        {{ '{' }}% endfor %{{ '}' }}
+    </tbody>
 {% endblock %}

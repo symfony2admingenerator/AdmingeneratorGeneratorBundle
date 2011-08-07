@@ -8,8 +8,8 @@ namespace Admingenerator\GeneratorBundle\Builder\Admin;
  */
 class ListBuilderAction extends ListBuilder
 {
-	public function getOutputName()
-	{
-		return sprintf('%s/BaseController/ListController.php', $this->getVariable('bundle_name'));
-	}
+    public function getOutputName()
+    {
+        return sprintf('%s/BaseController/ListController.php', $this->getVariable('bundle_name'));
+    }
 }

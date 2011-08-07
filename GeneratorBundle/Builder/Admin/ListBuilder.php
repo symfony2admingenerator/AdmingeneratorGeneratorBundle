@@ -12,41 +12,40 @@ use Admingenerator\GeneratorBundle\Builder\BaseBuilder;
  */
 class ListBuilder extends BaseBuilder
 {
-	protected $columns;
-	
-	/**
-	 * (non-PHPdoc)
-	 * @see Builder/Admingenerator\GeneratorBundle\Builder.BaseBuilder::getYamlKey()
-	 */
-	public function getYamlKey()
-	{
-		return 'ListBuilder';
-	}
-	
-	/**
-	 * Return a list of columns from ListBuilder.display
-	 * @return array
-	 */
-	public function getColumns()
-	{
-		if(0 === count($this->columns)) {
-			$this->findColumns();
-		}
+    protected $columns;
 
-		return $this->columns;
-	}
-	
-	protected function addColumn(Column $column)
-	{
-		$this->columns[$column->getName()] = $column;
-	}
-	
-	protected function findColumns()
-	{
-		foreach ($this->getVariable('display') as $columnName)
-		{
-			$column = new Column($columnName);
-			$this->addColumn($column);
-		}
-	}
+    /**
+     * (non-PHPdoc)
+     * @see Builder/Admingenerator\GeneratorBundle\Builder.BaseBuilder::getYamlKey()
+     */
+    public function getYamlKey()
+    {
+        return 'ListBuilder';
+    }
+
+    /**
+     * Return a list of columns from ListBuilder.display
+     * @return array
+     */
+    public function getColumns()
+    {
+        if(0 === count($this->columns)) {
+            $this->findColumns();
+        }
+
+        return $this->columns;
+    }
+
+    protected function addColumn(Column $column)
+    {
+        $this->columns[$column->getName()] = $column;
+    }
+
+    protected function findColumns()
+    {
+        foreach ($this->getVariable('display') as $columnName) {
+            $column = new Column($columnName);
+            $this->addColumn($column);
+        }
+    }
 }

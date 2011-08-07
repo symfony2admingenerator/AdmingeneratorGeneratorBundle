@@ -1,11 +1,14 @@
 {% block list_thead %}
-	<thead>
-		<tr class="list_thead">
-			{% for column in builder.columns %}
-				<th class="list_thead_column">
-					{{ column.name }}
-				</th>
-			{% endfor %}
-		</tr>
-	</thead>
+
+    <thead>
+        <tr class="list_thead">
+        
+            {% for column in builder.columns %}
+            
+            <th class="list_thead_column">{{ column.name }}</th>
+            
+            {% endfor %}
+            
+        </tr>
+    </thead>
 {% endblock %}

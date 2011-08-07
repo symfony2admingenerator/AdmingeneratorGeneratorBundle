@@ -15,18 +15,16 @@ class ListController extends BaseDoctrineController
      * @Route("/", name="{{ route_name_prefix }}")
      * @Template()
      */
-	public function indexAction()
-	{
-		${{ builder.ModelClass }}s = $this
-				->getDoctrine()->getEntityManager()
-				->getRepository('{{ model }}')
-				->findAll();
-			
-		return array(
-			'{{ builder.ModelClass }}s' => ${{ builder.ModelClass }}s,
-		);
-	}
-	
-	
-	
+    public function indexAction()
+    {
+        ${{ builder.ModelClass }}s = $this
+                ->getDoctrine()->getEntityManager()
+                ->getRepository('{{ model }}')
+                ->findAll();
+            
+        return array(
+            '{{ builder.ModelClass }}s' => ${{ builder.ModelClass }}s,
+        );
+    }
+    
 }

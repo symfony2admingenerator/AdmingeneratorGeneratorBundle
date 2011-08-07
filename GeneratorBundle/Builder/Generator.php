@@ -9,18 +9,18 @@ use Symfony\Component\Yaml\Yaml;
 
 class Generator
 {
-	const TEMP_DIR_PREFIX = 'Admingenerator';
-	
+    const TEMP_DIR_PREFIX = 'Admingenerator';
+
     /**
-    * @var string the temporary dir
-    */
+     * @var string the temporary dir
+     */
     protected $tempDir;
 
     /**
-     * @var array List of builders 
+     * @var array List of builders
      */
     protected $builders = array();
-    
+
     /**
      * @var file $yaml the yaml
      */
@@ -28,7 +28,7 @@ class Generator
 
     /**
      * Init a new generator and automatically define the base of tempDir
-     * 
+     *
      * @param Filepath $yaml
      */
     public function __construct($yaml)
@@ -55,9 +55,9 @@ class Generator
      */
     public function getTempDir()
     {
-    	return $this->tempDir;	
+        return $this->tempDir;
     }
-    
+
     /**
      * @return array the list of builders
      */
@@ -72,16 +72,16 @@ class Generator
      */
     public function addBuilder(BuilderInterface $builder)
     {
-    	$builder->setGenerator($this);
-    	
-    	$vars = array_merge(
-    		$this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array()),
-			$this->getFromYaml('params', array())
-    	);
-    	
-    	$builder->setVariables($vars);
+        $builder->setGenerator($this);
+         
+        $vars = array_merge(
+        $this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array()),
+        $this->getFromYaml('params', array())
+        );
+         
+        $builder->setVariables($vars);
 
-    	$this->builders[$builder->getSimpleClassName()] = $builder;
+        $this->builders[$builder->getSimpleClassName()] = $builder;
     }
 
     /**
@@ -125,25 +125,23 @@ class Generator
      */
     protected function setYamlConfig(array $yaml)
     {
-    	$this->yaml = $yaml;
+        $this->yaml = $yaml;
     }
-    
+
     /**
      * @param $yaml_path string with point for levels
      */
     public function getFromYaml($yaml_path, $default = null)
     {
-    	$search_in = $this->yaml;
-    	$yaml_path = explode('.',$yaml_path);
-    	foreach($yaml_path as $key)
-    	{
-    		if(!isset($search_in[$key]))
-    		{
-    			return $default;
-    		}
-    		$search_in = $search_in[$key];
-    	}
-    	
-    	return $search_in;
+        $search_in = $this->yaml;
+        $yaml_path = explode('.',$yaml_path);
+        foreach ($yaml_path as $key) {
+            if (!isset($search_in[$key])) {
+                return $default;
+            }
+            $search_in = $search_in[$key];
+        }
+         
+        return $search_in;
     }
 }

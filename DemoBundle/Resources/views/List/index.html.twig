@@ -1,30 +1,34 @@
 
 {% extends "::base.html.twig" %}
 
-{% block body %}<head>
-	<h1>Here is a beautifull title no  ???</h1>
+{% block body %}
+<head>
+    <h1>Here is a beautifull title no  ???</h1>
 </head>
-<table>	<thead>
-		<tr class="list_thead">
-							<th class="list_thead_column">
-					id
-				</th>
-							<th class="list_thead_column">
-					title
-				</th>
-					</tr>
-	</thead>
-	<tbody>
-		{% for Movie in Movies %}
-		<tr class="list_trow">			<td>
-			{{ Movie.id }}
-		</td>
-			<td>
-			{{ Movie.title }}
-		</td>
-	</tr>
-		{% endfor %}
-	</tbody>
+<table>
+    <thead>
+        <tr class="list_thead">
+        
+                        
+            <th class="list_thead_column">id</th>
+            
+                        
+            <th class="list_thead_column">title</th>
+            
+                        
+        </tr>
+    </thead>
+    <tbody>
+        {% for Movie in Movies %}
+        <tr class="list_trow">            <td>
+            {{ Movie.id }}
+        </td>
+            <td>
+            {{ Movie.title }}
+        </td>
+    </tr>
+        {% endfor %}
+    </tbody>
 </table>
 	
 	
