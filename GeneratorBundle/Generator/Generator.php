@@ -14,11 +14,13 @@ class Generator implements GeneratorInterface
 
     const SFY_BASE_DIR = '/../../../../'; //Go to /
 
+    /**
+     * (non-PHPdoc)
+     * @see Generator/Admingenerator\GeneratorBundle\Generator.GeneratorInterface::setController()
+     */
     public function setController($controller)
     {
-        $this->controller = $controller[0];
-        $this->action = $controller[1];
-
+        list($this->controller, $this->action) = explode('::', $controller, 2);
     }
 
     /**
@@ -26,12 +28,16 @@ class Generator implements GeneratorInterface
      */
     protected function getGeneratorYml()
     {
-        list($base, $bundle, $other ) = explode('\\',get_class($this->controller), 3);
+        list($base, $bundle, $other ) = explode('\\',$this->controller, 3);
         return realpath(__DIR__.self::SFY_BASE_DIR).DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.$base.DIRECTORY_SEPARATOR.$bundle.DIRECTORY_SEPARATOR.'Resources/config/generator.yml';
     }
 
     public function build()
     {
+        if(!file_exists($this->getGeneratorYml()))
+        {
+            return; //Stop execution this is not an admingenerated module
+        }
         $generator = new AdminGenerator($this->getGeneratorYml());
 
         $generator->addBuilder(new ListBuilderAction());

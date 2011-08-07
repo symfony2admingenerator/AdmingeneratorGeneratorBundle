@@ -8,11 +8,11 @@
         <service id="admingenerator.generator"
             class="Admingenerator\GeneratorBundle\Generator\DoctrineGenerator"
             public="false"></service>
-
+        
         <service id="admingenerator.generator.listener"
             class="Admingenerator\GeneratorBundle\EventListener\ControllerListener">
-            <tag name="kernel.event_listener" event="kernel.controller"
-                method="onKernelController" />
+            <tag name="kernel.event_listener" event="kernel.request"
+                method="onKernelRequest" />
             <argument type="service" id="admingenerator.generator" />
         </service>
     </services>
