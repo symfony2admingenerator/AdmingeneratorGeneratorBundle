@@ -26,6 +26,14 @@ In AppKernel.php
    $bundles[] = new Admingenerator\DemoBundle\AdmingeneratorDemoBundle();
 ```
 
+Add route :
+
+```yml
+_admindemo:
+     resource: "@AdmingeneratorDemoBundle/Controller"
+     type: annotation
+     prefix: /admin-demo
+```
 And after you can edit the DemoBundle/Resources/config/generator.yml file to see changes
 
 In your browser :
