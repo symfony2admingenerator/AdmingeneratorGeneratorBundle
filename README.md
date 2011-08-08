@@ -22,9 +22,10 @@ This package is inspired from fzaninotto/Propel2
 In AppKernel.php
 
 ```php
-   $bundles[] = new Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle(),
-   $bundles[] = new Admingenerator\DemoBundle\AdmingeneratorDemoBundle(),
+   $bundles[] = new Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle();
+   $bundles[] = new Admingenerator\DemoBundle\AdmingeneratorDemoBundle();
 ```
+
 And after you can edit the DemoBundle/Resources/config/generator.yml file to see changes
 
 In your browser :
