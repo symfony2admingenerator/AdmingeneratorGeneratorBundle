@@ -1,7 +1,9 @@
 {% block list_row %}
+{{ echo_block("list_row") }}
     {% for column in builder.columns %}
         <td>
-            {{ '{{' }} {{ builder.ModelClass }}.{{ column.name }} {{ '}}' }}
+            {{ echo_twig(builder.ModelClass ~ '.' ~ column.name) }}
         </td>
     {% endfor %}
+{{ echo_endblock() }}
 {% endblock %}

@@ -129,7 +129,7 @@ interface BuilderInterface
      * @param \Twig_Environment $twig
      */
     function addTwigFilters(\Twig_Environment $twig);
-
+    
     /**
      * @return string the YamlKey
      */

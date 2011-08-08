@@ -9,6 +9,14 @@ namespace Admingenerator\GeneratorBundle\Builder;
  *
  */
 
+use Symfony\Component\Templating\TemplateNameParser;
+
+use Symfony\Component\Config\FileLocator;
+
+use Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator;
+
+use Symfony\Bundle\TwigBundle\Loader\FilesystemLoader;
+
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 abstract class BaseBuilder implements BuilderInterface
@@ -49,7 +57,14 @@ abstract class BaseBuilder implements BuilderInterface
         '\Doctrine\Common\Util\Inflector::classify',
         'substr',
     );
-
+    
+     /**
+     * @var array
+     */
+    protected $twigExtensions = array(
+        'Admingenerator\GeneratorBundle\Twig\Extension\EchoExtension',
+    );
+    
     /**
      * (non-PHPdoc)
      * @see Builder/Admingenerator\GeneratorBundle\Builder.BuilderInterface::__construct()
@@ -250,13 +265,17 @@ abstract class BaseBuilder implements BuilderInterface
      */
     public function getCode()
     {
-        $loader = new \Twig_Loader_Filesystem($this->getTemplateDirs());
+        $locator = new TemplateLocator(new FileLocator($this->getTemplateDirs()));
+        $templateNameParser = new TemplateNameParser();
+        $loader = new FilesystemLoader($locator, $templateNameParser); 
         $twig = new \Twig_Environment($loader, array(
             'autoescape' => false,
             'strict_variables' => true,
             'debug' => true,
             'cache' => $this->getGenerator()->getTempDir(),
         ));
+        
+        $this->addTwigExtensions($twig, $loader);
         $this->addTwigFilters($twig);
         $template = $twig->loadTemplate($this->getTemplateName());
 
@@ -279,6 +298,18 @@ abstract class BaseBuilder implements BuilderInterface
                 $twigFilterName = $twigFilter;
             }
             $twig->addFilter($twigFilterName, new \Twig_Filter_Function($twigFilter));
+        }
+    }
+    
+    /**
+     * (non-PHPdoc)
+     * @see Builder/Admingenerator\GeneratorBundle\Builder.BuilderInterface::addTwigExtensions()
+     */
+    public function addTwigExtensions(\Twig_Environment $twig, FilesystemLoader $loader)
+    {
+        foreach ($this->twigExtensions as $twigExtensionName) {
+            $twigExtension = new $twigExtensionName($loader);
+            $twig->addExtension($twigExtension);
         }
     }
 
