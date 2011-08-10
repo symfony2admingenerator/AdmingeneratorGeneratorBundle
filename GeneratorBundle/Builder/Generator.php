@@ -5,6 +5,7 @@ namespace Admingenerator\GeneratorBundle\Builder;
 /**
  * @author Cedric LOMBARDOT
  */
+
 use Symfony\Component\Yaml\Yaml;
 
 class Generator

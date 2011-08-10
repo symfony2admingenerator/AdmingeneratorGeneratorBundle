@@ -2,18 +2,25 @@
 
 namespace Admingenerator\GeneratorBundle\Generator;
 
+use Admingenerator\GeneratorBundle\Exception\NotAdminGeneratedException;
+use Symfony\Component\Finder\Finder;
+
 use Admingenerator\GeneratorBundle\Builder\Generator as AdminGenerator;
 use Admingenerator\GeneratorBundle\Builder\ListBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\ListBuilderTemplate;
 
-class Generator implements GeneratorInterface
+use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\Container;
+
+
+class Generator extends ContainerAware implements GeneratorInterface
 {
     private $controller;
 
     private $action;
 
     const SFY_BASE_DIR = '/../../../../'; //Go to /
-
+    
     /**
      * (non-PHPdoc)
      * @see Generator/Admingenerator\GeneratorBundle\Generator.GeneratorInterface::setController()
@@ -24,12 +31,24 @@ class Generator implements GeneratorInterface
     }
 
     /**
-     * @todo use autoload or finder to find the good one
+     * @todo Find objects in vendor dir
      */
     protected function getGeneratorYml()
     {
         list($base, $bundle, $other ) = explode('\\',$this->controller, 3);
-        return realpath(__DIR__.self::SFY_BASE_DIR).DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.$base.DIRECTORY_SEPARATOR.$bundle.DIRECTORY_SEPARATOR.'Resources/config/generator.yml';
+        
+        $finder = new Finder;
+        $finder->files()
+               ->name('generator.yml');
+        if(is_dir(realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$base)))
+        {
+            $finder->in(realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$base));
+            foreach ($finder as $file) {
+                return $file->getRealpath();
+            }
+        }
+        
+        throw new NotAdminGeneratedException;
     }
 
     public function build()
