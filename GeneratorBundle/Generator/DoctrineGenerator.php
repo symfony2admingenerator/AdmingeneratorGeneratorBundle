@@ -8,12 +8,16 @@ use Admingenerator\GeneratorBundle\Builder\Doctrine\ListBuilderTemplate;
 
 class DoctrineGenerator extends Generator
 {
+    /**
+     * (non-PHPdoc)
+     * @see Generator/Admingenerator\GeneratorBundle\Generator.Generator::build()
+     */
     public function build()
     {
         $generator = new AdminGenerator($this->getGeneratorYml());
 
         $generator->addBuilder(new ListBuilderAction());
         $generator->addBuilder(new ListBuilderTemplate());
-        $generator->writeOnDisk(realpath(__DIR__.self::SFY_BASE_DIR).DIRECTORY_SEPARATOR.$generator->getFromYaml('params.base_dir'));
+        $generator->writeOnDisk($this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));
     }
 }

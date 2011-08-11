@@ -31,7 +31,7 @@ Add route :
 ```yml
 _admindemo:
      resource: "@AdmingeneratorDemoBundle/Controller"
-     type: annotation
+     type: admingenerator
      prefix: /admin-demo
 ```
 And after you can edit the DemoBundle/Resources/config/generator.yml file to see changes

@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="admingenerator.class">Admingenerator\GeneratorBundle\Generator\DoctrineGenerator</parameter>
+        <parameter key="routing.loader.admingenerator.class">Admingenerator\GeneratorBundle\Routing\RoutingLoader</parameter>
     </parameters>
     
     <services>
@@ -16,10 +17,9 @@
         
         <service id="admingenerator.generator"
             class="%admingenerator.class%"
-            public="false">
-            <call method="setContainer">
-                <argument type="service" id="service_container" />   
-            </call>
+            public="false" >
+            <argument type="string">%kernel.root_dir%</argument>
+            <argument type="string">%kernel.cache_dir%</argument>
         </service>
         
         <service id="admingenerator.generator.listener"
@@ -27,6 +27,11 @@
             <tag name="kernel.event_listener" event="kernel.request"
                 method="onKernelRequest" />
             <argument type="service" id="admingenerator.generator" />
+        </service>
+        
+        <service id="routing.loader.admingenerator" class="%routing.loader.admingenerator.class%">
+            <tag name="routing.loader" />
+            <argument type="service" id="file_locator" />
         </service>
     </services>
 </container>

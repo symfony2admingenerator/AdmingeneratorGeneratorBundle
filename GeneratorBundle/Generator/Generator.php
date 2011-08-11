@@ -9,17 +9,26 @@ use Admingenerator\GeneratorBundle\Builder\Generator as AdminGenerator;
 use Admingenerator\GeneratorBundle\Builder\ListBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\ListBuilderTemplate;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Component\DependencyInjection\Container;
 
 
-class Generator extends ContainerAware implements GeneratorInterface
+abstract class Generator implements GeneratorInterface
 {
     private $controller;
 
     private $action;
+    
+    protected $root_dir;
+    
+    protected $cache_dir;
 
     const SFY_BASE_DIR = '/../../../../'; //Go to /
+    
+    
+    public function __construct($root_dir, $cache_dir)
+    {
+        $this->root_dir = $root_dir;
+        $this->cache_dir = $cache_dir;
+    }
     
     /**
      * (non-PHPdoc)
@@ -36,13 +45,14 @@ class Generator extends ContainerAware implements GeneratorInterface
     protected function getGeneratorYml()
     {
         list($base, $bundle, $other ) = explode('\\',$this->controller, 3);
-        
+                
         $finder = new Finder;
         $finder->files()
                ->name('generator.yml');
-        if(is_dir(realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$base)))
+               
+        if(is_dir(realpath($this->root_dir.'/../src/'.$base)))
         {
-            $finder->in(realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$base));
+            $finder->in(realpath($this->root_dir.'/../src/'.$base));
             foreach ($finder as $file) {
                 return $file->getRealpath();
             }
@@ -50,18 +60,23 @@ class Generator extends ContainerAware implements GeneratorInterface
         
         throw new NotAdminGeneratedException;
     }
-
+    
+   /**
+    * (non-PHPdoc)
+    * @see Generator/Admingenerator\GeneratorBundle\Generator.GeneratorInterface::getCachePath()
+    */
+    public function getCachePath($namespace, $bundle_name)
+    {
+       return $this->cache_dir.'/Admingenerated/'.$namespace.$bundle_name;
+    }
+    
+    /**
+     * (non-PHPdoc)
+     * @see Generator/Admingenerator\GeneratorBundle\Generator.GeneratorInterface::build()
+     */
     public function build()
     {
-        if(!file_exists($this->getGeneratorYml()))
-        {
-            return; //Stop execution this is not an admingenerated module
-        }
-        $generator = new AdminGenerator($this->getGeneratorYml());
-
-        $generator->addBuilder(new ListBuilderAction());
-        $generator->addBuilder(new ListBuilderTemplate());
-        $generator->writeOnDisk(realpath(__DIR__.self::SFY_BASE_DIR).DIRECTORY_SEPARATOR.$generator->getFromYaml('params.base_dir'));
-
+        throw new \LogicException('Not implemented');
     }
+    
 }

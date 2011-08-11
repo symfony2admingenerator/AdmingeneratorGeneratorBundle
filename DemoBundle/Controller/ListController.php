@@ -2,7 +2,7 @@
 
 namespace Admingenerator\DemoBundle\Controller;
 
-use Admingenerator\DemoBundle\BaseController\ListController as BaseListController;
+use Admingenerated\AdmingeneratorDemoBundle\BaseController\ListController as BaseListController;
 
 class ListController extends BaseListController
 {

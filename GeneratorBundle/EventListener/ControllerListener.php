@@ -23,8 +23,7 @@ class ControllerListener
 
     public function onKernelRequest(GetResponseEvent $event)
     {
-        if (HttpKernelInterface::MASTER_REQUEST === $event->getRequestType()) {
-            
+        if (HttpKernelInterface::MASTER_REQUEST === $event->getRequestType()) { //I don't know why but i 'm on sub request !!
             try {
                 $controller = $event->getRequest()->attributes->get('_controller');
                 $this->generator->setController($controller);
@@ -32,7 +31,6 @@ class ControllerListener
             } catch (NotAdminGeneratedException $e) {
                 //Lets the word running this is not an admin generated module
             }
-            
         }
     }
 
