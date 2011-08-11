@@ -20,7 +20,7 @@ class Generator extends ContainerAware implements GeneratorInterface
     private $action;
 
     const SFY_BASE_DIR = '/../../../../'; //Go to /
-    
+
     /**
      * (non-PHPdoc)
      * @see Generator/Admingenerator\GeneratorBundle\Generator.GeneratorInterface::setController()
@@ -36,29 +36,27 @@ class Generator extends ContainerAware implements GeneratorInterface
     protected function getGeneratorYml()
     {
         list($base, $bundle, $other ) = explode('\\',$this->controller, 3);
-        
+
         $finder = new Finder;
         $finder->files()
                ->name('generator.yml');
-        if(is_dir(realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$base)))
-        {
+        if (is_dir(realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$base))) {
             $finder->in(realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$base));
             foreach ($finder as $file) {
                 return $file->getRealpath();
             }
         }
-        
+
         throw new NotAdminGeneratedException;
     }
 
     public function build()
     {
-        if(!file_exists($this->getGeneratorYml()))
-        {
+        if (!file_exists($this->getGeneratorYml())) {
             return; //Stop execution this is not an admingenerated module
         }
-        $generator = new AdminGenerator($this->getGeneratorYml());
 
+        $generator = new AdminGenerator($this->getGeneratorYml());
         $generator->addBuilder(new ListBuilderAction());
         $generator->addBuilder(new ListBuilderTemplate());
         $generator->writeOnDisk(realpath(__DIR__.self::SFY_BASE_DIR).DIRECTORY_SEPARATOR.$generator->getFromYaml('params.base_dir'));
