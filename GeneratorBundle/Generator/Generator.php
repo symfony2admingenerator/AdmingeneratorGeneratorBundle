@@ -50,8 +50,8 @@ abstract class Generator implements GeneratorInterface
         $finder->files()
                ->name('generator.yml');
                
-        if (is_dir(realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$base))) {
-            $finder->in(realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$base));
+        if (is_dir(realpath($this->root_dir.'/../src/'.$base))) {
+            $finder->in(realpath($this->root_dir.'/../src/'.$base));
 
             foreach ($finder as $file) {
                 return $file->getRealpath();
