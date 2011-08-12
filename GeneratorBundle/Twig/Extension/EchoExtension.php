@@ -31,34 +31,40 @@ class EchoExtension extends \Twig_Extension
             'echo_endblock' => new \Twig_Function_Method($this, 'getEchoEndBlock'),
             'echo_for' => new \Twig_Function_Method($this, 'getEchoFor'),
             'echo_endfor' => new \Twig_Function_Method($this, 'getEchoEndFor'),
+            'echo_extends' => new \Twig_Function_Method($this, 'getEchoExtends'),
         );
     }
-    
+
     public function getEchoTwig($str)
     {
         return sprintf('{{ %s }}', $str);
     }
-    
+
     public function getEchoBlock($name)
     {
         return str_replace('%%name%%', $name, '{% block %%name%% %}');
     }
-    
+
+    public function getEchoExtends($name)
+    {
+        return str_replace('%%name%%', $name, '{% extends "%%name%%" %}');
+    }
+
     public function getEchoEndBlock()
     {
         return '{% endblock %}';
     }
-    
+
     public function getEchoFor($object, $in)
     {
         return strtr('{% for %%object%% in %%in%% %}', array('%%object%%' => $object, '%%in%%' => $in ));
     }
-    
+
     public function getEchoEndFor()
     {
         return '{% endfor %}';
     }
-    
+
     /**
      * Returns the name of the extension.
      *

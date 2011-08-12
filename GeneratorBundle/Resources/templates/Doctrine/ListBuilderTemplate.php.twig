@@ -2,9 +2,9 @@
 {% use 'CommonAdmin/list_thead.php.twig' %}
 {% use 'CommonAdmin/list_tbody.php.twig' %}
 
-{{ '{' }}% extends "::base.html.twig" %{{ '}' }}
+{{ echo_extends("::base.html.twig") }}
 
-{{ '{' }}% block body %{{ '}' }}
+{{ echo_block("body") }} 
     {{- block('title') -}}
 
     <table>
@@ -13,4 +13,4 @@
     </table>
     
     
-{{ '{' }}% endblock %{{ '}' }}
+{{ echo_endblock() }}
