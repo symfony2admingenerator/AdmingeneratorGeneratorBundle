@@ -44,7 +44,7 @@ To run assets you need to install sass & compass
    sudo gem install sass
 ```
 
-Puslish assets
+Publish assets
 
 ```shell
     php app/console assets:install web/
