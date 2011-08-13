@@ -1,0 +1,153 @@
+@import compass/css3
+
+table
+  float: left
+  width: 100%
+  thead
+    background: #2E3A3F
+    th
+      font-size: 1.2em
+      font-weight: bold 
+      color: white
+      padding: 12px
+      margin: 0px
+      background: url(/bundles/admingeneratorgenerator/images/table_background.png) repeat-x
+      &.actions
+        width: 100px
+  tr
+    &:hover
+      background: #f4f4f4
+    td
+      border-bottom: 1px solid #DFDDDC
+      padding: 20px
+      padding-left: 12px
+      padding-right: 12px
+      font-size: 1.2em
+      text-align: left
+      &.actions
+        text-align: right
+// PAGINATION
+ul.pagination
+  float: right
+  margin-top: 20px
+  li
+    float: left
+    padding-left: 15px
+    a
+      color: #5B6F7B
+      font-size: 1.4em
+      text-decoration: none
+      &:hover
+        color: #364347
+      &.number
+        +border-radius(5px)
+        border: 1px solid #DFDDDC
+        padding: 4px
+        padding-left: 6px
+        padding-right: 6px
+        &:hover, &.current
+          background: #364347
+          border: 1px solid #2B3639
+          color: white
+// ACTIONS
+=action_button
+  float: left
+  width: 16px
+  height: 16px
+  padding-right: 16px
+  background: url(/bundles/admingeneratorgenerator/images/icons.png) no-repeat 
+.edit
+  +action_button
+.delete
+  +action_button
+  background-position: -32px 0px
+// FORMS
+=buttons_border
+  +border-radius(5px)
+=input_default
+  clear: both
+  float: left
+  height: 35px
+  border: 1px solid #DFDDDC
+  padding-left: 4px
+  +buttons_border
+=input_focus
+  border: 1px solid #B3DD91
+  +box-shadow(#DDF0CE, -1px, 1px, 1px)
+fieldset.form_block
+  float: left
+  ul 
+    clear: both
+    float: left
+    li
+      float: left
+      clear: both
+      padding-top: 10px
+      padding-bottom: 10px
+      .error
+        clear: both
+        float: left
+        font-size: 1.2em
+        padding: 2px
+        margin-top: 4px
+      label
+        float: left
+        font-size: 1.4em
+        color: #464646
+        padding: 5px 0px 9px 0px
+      .small_text
+        +input_default
+        width: 200px
+        &:focus
+          +input_focus
+      .medium_text
+        +input_default
+        width: 350px
+        &:focus
+          +input_focus
+      .large_text
+        +input_default
+        width: 600px
+        &:focus
+          +input_focus
+      textarea
+        float: left
+        clear: both
+        width: 650px
+        height: 450px
+        border: 1px solid #DFDDDC
+        +border-radius(5px)
+        &:focus
+          +input_focus
+      .submit_button
+        background: url(/bundles/admingeneratorgenerator/images/submit_background.png) repeat-x
+        height: 39px
+        border: 1px solid #D2D2D2
+        color: #2A363B
+        padding-left: 20px
+        padding-right: 20px
+        +buttons_border
+        outline: none
+        &:hover
+          background: url(/bundles/admingeneratorgenerator/images/submit_background_hover.png) repeat-x
+          cursor: pointer
+          cursor: hand
+// MESSAGES
+.notification_box
+  float: left
+  width: 100%
+  margin-top: 10px
+  margin-bottom: 10px
+  p
+    padding: 15px
+    font-size: 1.4em
+    color: #464646
+.message
+  border: 1px solid #F7EAAE
+  background: #FDFAEB
+.success
+  background: #EAF8E0
+  border: 1px solid #C5EBAC
+.error
+  background: #FAEDDF
+  border: 1px solid #F4D8B9 

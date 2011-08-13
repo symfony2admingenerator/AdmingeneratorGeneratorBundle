@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Admin{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets '@AdmingeneratorGeneratorBundle/Resources/public/css/screen.sass'
+                           '@AdmingeneratorGeneratorBundle/Resources/public/css/menu.sass'
+                           filter='sass'
+             %}
+                <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
+            {% endstylesheets %}
+            <!--[if IE]>
+                {% stylesheets '@AdmingeneratorGeneratorBundle/Resources/public/css/ie.sass' filter='sass' %}
+                     <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+                {% endstylesheets %}
+            <![endif]-->
+        {% endblock %}
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div id="header">
+            {% block header %}
+                {% block logo %}
+                <div class="logo">
+                    Admin
+                </div>
+                {% endblock %}
+                {% block profile %}
+                <div class="profile">
+                    <ul>
+                        <li>
+                            <a href="#">Welcome</a>
+                        </li>
+                        <li>
+                            <a class='logout' href="#">Log out will be connect to security</a>
+                        </li>
+                    </ul>
+                </div>
+                {% endblock %}
+                {% block menu %}
+                <ul class="menu" id="main_navigation">
+                    <li>
+                        <a href="#" class="sub main">Will use KnpMenuBundle</a>
+                        <ul>
+                            <li class="topline"><a href="#">Navigation Item 1</a></li>
+                            <li class="spacer"><!-- --></li>
+                            <li><a href="#">Navigation Item 2</a></li>
+                            <li class="spacer"><!-- --></li>
+                            <li><a href="#">Navigation Item 3</a></li>
+                            <li class="spacer"><!-- --></li>
+                            <li><a href="#">Navigation Item 4</a></li>
+                            <li class="spacer"><!-- --></li>
+                            <li><a href="#">Navigation Item 5</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                {% endblock %}
+            {% endblock %}
+        </div>
+        <div id="content">
+            {% block body %}{% endblock %}
+        </div>
+        {% block javascripts %}
+            {% javascripts '@AdmingeneratorGeneratorBundle/Resources/public/javascripts/menu.js'
+             %}
+                <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+            <script type="text/javascript">
+                var menu=new menu.dd("menu");
+                menu.init("main_navigation","mainhover");
+            </script>
+        {% endblock %}
+    </body>
+</html>

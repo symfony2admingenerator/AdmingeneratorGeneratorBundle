@@ -1,0 +1,51 @@
+@import compass/css3
+ul.menu
+  list-style: none
+  margin: 0
+  padding: 0
+  *
+    margin: 0 
+    padding: 0
+  a
+    display: block
+    color: #000
+    text-decoration: none
+  .sub
+    background: white url(../images/arrow.gif) 138px 16px no-repeat
+  li
+    float: left
+    position: relative
+    margin-right: 2px
+    &.spacer
+      float: left
+      position: relative
+      height: 1px
+      background: #E0DEDD
+    ul
+      position: absolute
+      top: 30px
+      left: 0 
+      background: white
+      display: none 
+      opacity: 0 
+      list-style: none
+      border: 1px solid #E0DEDD
+      border-top: none
+
+      ul
+        left: 148px
+        top: -1px
+      li
+        position: relative
+        border-top: none 
+        width: 148px
+        margin: 0
+        a
+          display: block
+          float: left
+          width: 132px
+          padding: 15px 10px 15px 10px
+          background-color: white
+          font-size: 1.2em
+          &:hover
+            background-color: #eee

@@ -26,8 +26,11 @@ class ControllerListener
         if (HttpKernelInterface::MASTER_REQUEST === $event->getRequestType()) { //I don't know why but i 'm on sub request !!
             try {
                 $controller = $event->getRequest()->attributes->get('_controller');
-                $this->generator->setController($controller);
-                $this->generator->build();
+
+                if(strstr($controller, '::')) { //Check if its a "real controller" not assetic for example
+                    $this->generator->setController($controller);
+                    $this->generator->build();
+                }
             } catch (NotAdminGeneratedException $e) {
                 //Lets the word running this is not an admin generated module
             }

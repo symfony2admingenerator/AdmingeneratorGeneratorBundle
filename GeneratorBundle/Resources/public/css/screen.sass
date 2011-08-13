@@ -1,0 +1,83 @@
+@import compass/reset 
+@import compass/css3
+body
+  font-size: 62.5%
+  font-family: Arial, Verdana
+#header
+  float: left
+  width: 98%
+  padding: 0px 1% 24px
+  display: inline
+  height: 142px
+  background: url(/bundles/admingeneratorgenerator/images/header.png) repeat-x
+  .profile
+    float: right
+    width: auto
+    height: 26px
+    margin-top: 10px
+    background: url(/bundles/admingeneratorgenerator/images/profile_header.png) repeat-x
+    border-left: 1px solid #374449
+    border-right: 1px solid #374449
+      display: inline
+    ul
+      float: left
+      margin-top: 1px
+      li
+        float: left
+        padding: 0
+        margin: 0
+        a
+          float: left
+          color: white
+          font-size: 1.2em
+          text-decoration: none
+          padding-right: 8px
+          padding-left: 8px
+          padding-top: 6px
+          padding-bottom: 8px
+          font-weight: bold
+          &.logout
+            color: #EF8192
+            &:hover
+              color: #E6324B
+          &:hover
+            background: #2E3A3F
+  #main_navigation
+    float: right
+    clear: both
+    margin-top: 5px
+    li
+      float: left
+      margin-right: 4px
+      a.main
+        float: left
+        color: white
+        font-size: 1.4em
+        text-decoration: none
+        padding: 10px
+        display: inline
+        background: url(/bundles/admingeneratorgenerator/images/menu_background.png) repeat-x
+        &:hover, &.mainhover
+          background: white
+          color: #334145
+        
+             
+  .logo
+    float: left
+    font-size: 2.4em
+    color: white
+    margin-top: 35px
+  .breadcrumb
+    float: left
+    clear: both
+    margin-top: 10px
+    font-size: 2em
+    a  
+      color: #2A363B
+      text-decoration: none
+#content
+  float: left
+  width: 98%
+  padding: 0 1% 24px                  
+@import content.sass
+@import typography.sass
