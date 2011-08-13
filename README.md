@@ -30,7 +30,7 @@ Add route :
 
 ```yaml
 _admindemo:
-     resource: "@AdmingeneratorDemoBundle/Controller"
+     resource: "@AdmingeneratorDemoBundle/Controller/"
      type: admingenerator
      prefix: /admin-demo
 ```
