@@ -30,6 +30,6 @@ class ExtendsAdmingeneratedExtension extends \Twig_Extension
     
     public function getName()
     {
-        return 'extendsAdmingenerated';
+        return 'extends_admingenerated';
     }
 }
