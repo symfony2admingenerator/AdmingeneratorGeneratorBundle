@@ -21,9 +21,6 @@ abstract class Generator implements GeneratorInterface
     
     protected $cache_dir;
 
-    const SFY_BASE_DIR = '/../../../../'; //Go to /
-    
-    
     public function __construct($root_dir, $cache_dir)
     {
         $this->root_dir = $root_dir;
@@ -44,14 +41,16 @@ abstract class Generator implements GeneratorInterface
      */
     protected function getGeneratorYml()
     {
-        list($base, $bundle, $other ) = explode('\\',$this->controller, 3);
+        list($base, $bundle, $other) = explode('\\',$this->controller, 3);
                 
         $finder = new Finder;
         $finder->files()
                ->name('generator.yml');
                
-        if (is_dir(realpath($this->root_dir.'/../src/'.$base))) {
-            $finder->in(realpath($this->root_dir.'/../src/'.$base));
+        $namespace_directory = realpath($this->root_dir.'/../src/'.$base);
+        
+        if (is_dir($namespace_directory)) {
+            $finder->in($namespace_directory);
 
             foreach ($finder as $file) {
                 return $file->getRealpath();
