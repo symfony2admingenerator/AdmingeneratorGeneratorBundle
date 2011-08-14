@@ -20,7 +20,7 @@ class ExtendsAdmingeneratedTokenParser  extends \Twig_TokenParser
         
         list($bundle, $folder, $file) = explode(':', $this->parser->getCurrentToken()->getValue());
         
-        $path = 'Admingenerated/'.$bundle.DIRECTORY_SEPARATOR.'Resources/views'.DIRECTORY_SEPARATOR.$folder.DIRECTORY_SEPARATOR.$file;
+        $path = "Admingenerated/$bundle/Resources/views/$folder/$file";
         
         $value = $this->parser->getExpressionParser()->parseExpression();
          
