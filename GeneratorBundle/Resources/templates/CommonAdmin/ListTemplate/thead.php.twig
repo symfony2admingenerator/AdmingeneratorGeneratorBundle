@@ -13,7 +13,7 @@
                         <a href="?sort={{ column.sortOn }}&order_by=asc">
                     {{ echo_endif() }}
                 {% endif %}
-                    {{ column.name }}
+                    {{ column.label }}
                 {% if column.isSortable %}
                     </a>
                     {{ echo_if("sortColumn == '" ~ column.sortOn ~ "'") }}

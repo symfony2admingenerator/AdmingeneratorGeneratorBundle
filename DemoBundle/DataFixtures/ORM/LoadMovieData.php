@@ -26,6 +26,7 @@ class LoadMovieData implements FixtureInterface
 
             $myMovie = new Movie();
             $myMovie->setTitle($title);
+            $myMovie->setIsPublished(true);
 
             $manager->persist($myMovie);
             $manager->flush();

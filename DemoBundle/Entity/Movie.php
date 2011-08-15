@@ -21,6 +21,12 @@ class Movie
      * @ORM\Index
      */
     protected $title;
+    
+    
+    /**
+     * @ORM\Column(type="boolean", nullable="true")
+     */
+    protected $is_published;
 
     /**
      * Get id
@@ -50,5 +56,25 @@ class Movie
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Set is_published
+     *
+     * @param boolean $isPublished
+     */
+    public function setIsPublished($isPublished)
+    {
+        $this->is_published = $isPublished;
+    }
+
+    /**
+     * Get is_published
+     *
+     * @return boolean 
+     */
+    public function getIsPublished()
+    {
+        return $this->is_published;
     }
 }

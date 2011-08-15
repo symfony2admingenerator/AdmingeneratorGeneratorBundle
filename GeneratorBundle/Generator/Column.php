@@ -8,6 +8,8 @@ namespace Admingenerator\GeneratorBundle\Generator;
  * @author cedric Lombardot
  *
  */
+use Doctrine\Common\Util\Inflector;
+
 class Column
 {
     protected $name;
@@ -23,7 +25,17 @@ class Column
     {
         return $this->name;
     }
+    
+    public function getGetter()
+    {
+        return Inflector::camelize($this->name);
+    }
 
+    public function getLabel()
+    {
+        return $this->humanize($this->getName());
+    }
+    
     public function isSortable()
     {
         return $this->isReal() || $this->sort_on != "";
@@ -42,6 +54,11 @@ class Column
     public function setSortOn($sort_on)
     {
         return $this->sort_on = $sort_on;
+    }
+    
+    private function humanize($text)
+    {
+        return ucfirst(strtolower(str_replace('_', ' ', $text)));
     }
     
 }

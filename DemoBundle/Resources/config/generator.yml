@@ -7,7 +7,7 @@ builders:
   list:
     params:
       title: Here is a beautifull title no  ???
-      display: [ id, title ]
+      display: [ id, title, is_published ]
       max_per_page: 3
       object_actions:
         edit: ~ 
@@ -15,5 +15,5 @@ builders:
   edit: 
     params:
       title: You're editing the movie "{{ Movie.title }}"
-      display: [ title ]
+      display: [ title, is_published ]
   delete: ~ 
