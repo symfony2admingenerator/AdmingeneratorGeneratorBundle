@@ -10,3 +10,6 @@ builders:
       title: Here is a beautifull title no  ???
       display: [ id, title ]
       max_per_page: 3
+      object_actions:
+        delete: ~ 
+  delete: ~ 

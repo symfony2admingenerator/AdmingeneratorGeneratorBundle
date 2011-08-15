@@ -12,8 +12,13 @@ class RoutingLoader extends FileLoader
     // Assoc beetween a controller and is route path 
     //@todo make an object for this
     protected $actions = array(
-        'list'=> array(
+        'list' => array(
                     'pattern'      => '/',
+                    'defaults'     => array(),
+                    'requirements' => array(),
+                ),
+        'delete' => array(
+                    'pattern'      => '/{id}/delete',
                     'defaults'     => array(),
                     'requirements' => array(),
                 ),
@@ -27,7 +32,7 @@ class RoutingLoader extends FileLoader
         $bundle_name = $this->getBundleNameFromResource($resource);
         
         foreach ($this->actions as $controller => $datas) {
-            $datas['defaults']['_controller'] = $namespace.$bundle_name.':List:index'; 
+            $datas['defaults']['_controller'] = $namespace.$bundle_name.':'.ucfirst($controller).':index'; 
             
             $route = new Route($datas['pattern'],$datas['defaults'], $datas['requirements']);
             $collection->add($bundle_name.'_'.$controller, $route);

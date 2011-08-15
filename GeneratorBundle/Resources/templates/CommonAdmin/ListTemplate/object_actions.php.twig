@@ -1,0 +1,12 @@
+{% block list_object_actions %}
+{{ echo_block("list_object_actions") }}
+    {% if object_actions|length > 0 %}
+     <td class="actions">
+        {% for action in builder.ObjectActions %}
+            <a class="{{ action.name }}" href="{{ echo_path((action.route ? action.route : bundle_name ~ '_' ~ action.name), 
+            "{ 'id': " ~ builder.ModelClass ~ ".id }") }}"> </a>
+        {% endfor %}
+     </td>
+    {% endif %}
+{{ echo_endblock() }}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% block index %}
+    /**
+     */
+    public function indexAction($id)
+    {
+        try {
+            $this->process($id);
+            $this->get('session')->setFlash('success','The record have been successfully deleted');
+        } catch(\InvalidArgumentException $e) {
+            $this->get('session')->setFlash('error',"The record can't be deleted");
+        }
+        
+        return new RedirectResponse($this->generateUrl("{{ bundle_name }}_list"));
+    }
+{% endblock %}

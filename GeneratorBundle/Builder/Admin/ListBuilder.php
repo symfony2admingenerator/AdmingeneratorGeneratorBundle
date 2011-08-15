@@ -2,6 +2,8 @@
 
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
+use Admingenerator\GeneratorBundle\Generator\Action;
+
 use Admingenerator\GeneratorBundle\Generator\Column;
 
 use Admingenerator\GeneratorBundle\Builder\BaseBuilder;
@@ -13,6 +15,8 @@ use Admingenerator\GeneratorBundle\Builder\BaseBuilder;
 class ListBuilder extends BaseBuilder
 {
     protected $columns;
+    
+    protected $object_actions;
 
     /**
      * (non-PHPdoc)
@@ -24,7 +28,7 @@ class ListBuilder extends BaseBuilder
     }
 
     /**
-     * Return a list of columns from ListBuilder.display
+     * Return a list of columns from list.display
      * @return array
      */
     public function getColumns()
@@ -46,6 +50,32 @@ class ListBuilder extends BaseBuilder
         foreach ($this->getVariable('display') as $columnName) {
             $column = new Column($columnName);
             $this->addColumn($column);
+        }
+    }
+    
+    /**
+     * Return a list of action from list.object_actions
+     * @return array
+     */
+    public function getObjectActions()
+    {
+        if(0 === count($this->object_actions)) {
+            $this->findObjectActions();
+        }
+
+        return $this->object_actions;
+    }
+    
+    protected function addObjectAction(Action $action)
+    {
+        $this->object_actions[$action->getName()] = $action;
+    }
+
+    protected function findObjectActions()
+    {
+        foreach ($this->getVariable('object_actions') as $actionName => $actionParams) {
+            $action = new Action($actionName);
+            $this->addObjectAction($action);
         }
     }
 }

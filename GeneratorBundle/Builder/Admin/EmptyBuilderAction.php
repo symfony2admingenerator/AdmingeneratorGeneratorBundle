@@ -9,11 +9,6 @@ use Admingenerator\GeneratorBundle\Builder\BaseBuilder;
  */
 class EmptyBuilderAction extends BaseBuilder
 {
-    public function getOutputName()
-    {
-        return 'BaseController/ListController.php';
-    }
-    
     /**
      * (non-PHPdoc)
      * @see Builder/Admingenerator\GeneratorBundle\Builder.BuilderInterface::getDefaultTemplateDirs()

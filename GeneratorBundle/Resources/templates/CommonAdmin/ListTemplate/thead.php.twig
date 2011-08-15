@@ -30,6 +30,9 @@
             
             {% endfor %}
             
+            {% if object_actions|length > 0 %}
+                <th class="actions">Actions</th>
+            {% endif %}
         </tr>
     </thead>
 {{ echo_endblock() }}   

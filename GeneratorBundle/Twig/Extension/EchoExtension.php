@@ -36,9 +36,25 @@ class EchoExtension extends \Twig_Extension
             'echo_else'       => new \Twig_Function_Method($this, 'getEchoElse'),
             'echo_elseif'     => new \Twig_Function_Method($this, 'getEchoElseIf'),
             'echo_endif'      => new \Twig_Function_Method($this, 'getEchoEndIf'),
+            'echo_path'       => new \Twig_Function_Method($this, 'getEchoPath'),
+            'echo_set'        => new \Twig_Function_Method($this, 'getEchoSet'),
         );
     }
 
+    public function getEchoSet($var, $value)
+    {
+        return strtr('{% set %%var%% = "%%value%%" %}',array('%%var%%' => $var, '%%value%%' => $value));
+    }
+    
+    public function getEchopath($path, $params = null)
+    {
+        if(null === $params) {
+            return strtr('{{ path("%%path%%") }}',array('%%path%%' => $path)); 
+        }
+        
+        return strtr('{{ path("%%path%%", %%params%%) }}',array('%%path%%' => $path, '%%params%%'=>$params)); 
+    }
+    
     public function getEchoIf($condition)
     {
         return str_replace('%%condition%%', $condition, '{% if %%condition%% %}');

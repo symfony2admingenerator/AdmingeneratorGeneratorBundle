@@ -59,6 +59,19 @@
             {% endblock %}
         </div>
         <div id="content">
+            {% block flashes %}
+                {% if app.session.flash('success') %}
+                    <div class="notification_box success">
+                        {{ app.session.flash('success') }}
+                    </div>
+                {% endif %}
+                {% if app.session.flash('error') %}
+                    <div class="notification_box error">
+                        {{ app.session.flash('error') }}
+                    </div>
+                {% endif %}
+            {% endblock %}
+            
             {% block body %}{% endblock %}
         </div>
         {% block javascripts %}
