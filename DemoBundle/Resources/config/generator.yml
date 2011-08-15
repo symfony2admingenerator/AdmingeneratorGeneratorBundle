@@ -1,7 +1,6 @@
 generator: Admingenerator\GeneratorBundle\Generator\DoctrineGenerator
 params:
   model: Admingenerator\DemoBundle\Entity\Movie
-  route_name_prefix: _admindemo
   namespace_prefix: Admingenerator
   bundle_name: DemoBundle
 builders:
