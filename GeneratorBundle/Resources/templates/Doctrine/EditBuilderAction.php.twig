@@ -1,0 +1,26 @@
+{% use 'CommonAdmin/EditAction/index.php.twig' %}
+<?php
+
+namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\BaseController;
+
+use Admingenerator\GeneratorBundle\Controller\Doctrine\BaseController as BaseDoctrineController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+// these import the "@Template" annotations
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
+{{- block('index_use') -}}
+
+class EditController extends BaseDoctrineController
+{
+    {{- block('index') -}}
+    
+    protected function getObject($id)
+    {
+        return $this->getDoctrine()
+                    ->getEntityManager()
+                    ->getRepository('{{ model }}')
+                    ->findOneById($id);
+    }
+
+}

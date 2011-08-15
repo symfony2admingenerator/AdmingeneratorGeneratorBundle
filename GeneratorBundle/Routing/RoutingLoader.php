@@ -22,6 +22,11 @@ class RoutingLoader extends FileLoader
                     'defaults'     => array(),
                     'requirements' => array(),
                 ),
+        'edit' => array(
+                    'pattern'      => '/{id}/edit',
+                    'defaults'     => array(),
+                    'requirements' => array(),
+                ),        
     );
     
     public function load($resource, $type = null)

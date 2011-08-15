@@ -11,5 +11,9 @@ builders:
       display: [ id, title ]
       max_per_page: 3
       object_actions:
-        delete: ~ 
+        edit: ~ 
+        delete: ~
+  edit: 
+    params:
+      title: You're editing the movie "{{ Movie.title }}"
   delete: ~ 

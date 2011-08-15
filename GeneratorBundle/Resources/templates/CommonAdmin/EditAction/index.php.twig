@@ -1,0 +1,19 @@
+{% block index_use %}
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+{% endblock %}
+{% block index %}
+
+    /**
+     * @Template()
+     */
+    public function indexAction($id)
+    {
+        ${{ builder.ModelClass }} = $this->getObject($id);
+        
+        if(!${{ builder.ModelClass }}) {
+            throw new NotFoundHttpException("The {{ model }} with id $id can't be found");
+        }
+        
+        return array("{{ builder.ModelClass }}" => ${{ builder.ModelClass }});
+    }
+{% endblock %}
