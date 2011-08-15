@@ -5,7 +5,7 @@ params:
   namespace_prefix: Admingenerator
   bundle_name: DemoBundle
 builders:
-  ListBuilder:
+  list:
     params:
       title: Here is a beautifull title no  ???
       display: [ id, title ]

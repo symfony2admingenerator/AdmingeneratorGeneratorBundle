@@ -20,7 +20,7 @@ class ListBuilder extends BaseBuilder
      */
     public function getYamlKey()
     {
-        return 'ListBuilder';
+        return 'list';
     }
 
     /**

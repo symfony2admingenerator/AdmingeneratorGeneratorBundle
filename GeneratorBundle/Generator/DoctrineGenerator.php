@@ -16,8 +16,13 @@ class DoctrineGenerator extends Generator
     {
         $generator = new AdminGenerator($this->getGeneratorYml());
 
-        $generator->addBuilder(new ListBuilderAction());
-        $generator->addBuilder(new ListBuilderTemplate());
+        $builders = $generator->getFromYaml('builders',array());
+
+        if(isset($builders['list'])) {
+            $generator->addBuilder(new ListBuilderAction());
+            $generator->addBuilder(new ListBuilderTemplate());
+        }
+
         $generator->writeOnDisk($this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));
     }
 }
