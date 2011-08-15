@@ -11,6 +11,7 @@ use Admingenerator\GeneratorBundle\Builder\Doctrine\DeleteBuilderAction;
 
 use Admingenerator\GeneratorBundle\Builder\Doctrine\EditBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\EditBuilderTemplate;
+use Admingenerator\GeneratorBundle\Builder\Doctrine\EditBuilderType;
 
 class DoctrineGenerator extends Generator
 {
@@ -41,6 +42,7 @@ class DoctrineGenerator extends Generator
         if(array_key_exists('edit', $builders)) { 
             $generator->addBuilder(new EditBuilderAction());
             $generator->addBuilder(new EditBuilderTemplate());
+            $generator->addBuilder(new EditBuilderType());
         }
         
         $generator->writeOnDisk($this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));

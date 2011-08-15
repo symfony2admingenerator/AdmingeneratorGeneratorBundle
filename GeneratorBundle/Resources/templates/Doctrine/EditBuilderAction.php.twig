@@ -1,4 +1,5 @@
 {% use 'CommonAdmin/EditAction/index.php.twig' %}
+{% use 'CommonAdmin/EditAction/update.php.twig' %}
 <?php
 
 namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\BaseController;
@@ -11,9 +12,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 {{- block('index_use') -}}
 
+{{- block('update_use') -}}
+
 class EditController extends BaseDoctrineController
 {
     {{- block('index') -}}
+    
+    {{- block('update') -}}
     
     protected function getObject($id)
     {
@@ -23,4 +28,10 @@ class EditController extends BaseDoctrineController
                     ->findOneById($id);
     }
 
+    protected function saveObject(\{{ model }} ${{ builder.ModelClass }})
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->persist(${{ builder.ModelClass }});
+        $em->flush();
+    }
 }

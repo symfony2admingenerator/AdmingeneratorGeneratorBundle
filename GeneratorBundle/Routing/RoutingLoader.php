@@ -26,7 +26,13 @@ class RoutingLoader extends FileLoader
                     'pattern'      => '/{id}/edit',
                     'defaults'     => array(),
                     'requirements' => array(),
-                ),        
+                ),  
+        'update' => array(
+                    'pattern'      => '/{id}/update',
+                    'defaults'     => array(),
+                    'requirements' => array(),
+                    'controller'   => 'edit',
+                ),
     );
     
     public function load($resource, $type = null)
@@ -37,10 +43,19 @@ class RoutingLoader extends FileLoader
         $bundle_name = $this->getBundleNameFromResource($resource);
         
         foreach ($this->actions as $controller => $datas) {
-            $datas['defaults']['_controller'] = $namespace.$bundle_name.':'.ucfirst($controller).':index'; 
+
+            $action = 'index';
+            $route_name = $bundle_name.'_'.$controller;
+                        
+            if(isset($datas['controller'])) {
+                $action     = $controller;
+                $controller = $datas['controller'];
+            }
+            
+            $datas['defaults']['_controller'] = $namespace.$bundle_name.':'.ucfirst($controller).':'.$action; 
             
             $route = new Route($datas['pattern'],$datas['defaults'], $datas['requirements']);
-            $collection->add($bundle_name.'_'.$controller, $route);
+            $collection->add($route_name, $route);
             $collection->addResource(new FileResource($resource.ucfirst($controller).'Controller.php'));
         }
 

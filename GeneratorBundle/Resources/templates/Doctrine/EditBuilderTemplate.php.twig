@@ -1,12 +1,11 @@
 {% use 'CommonAdmin/title.php.twig' %}
-{% use 'CommonAdmin/ListTemplate/thead.php.twig' %}
-{% use 'CommonAdmin/ListTemplate/tbody.php.twig' %}
-{% use 'CommonAdmin/ListTemplate/paginator.php.twig' %}
+{% use 'CommonAdmin/EditTemplate/form.php.twig' %}
 
 {{ echo_extends("AdmingeneratorGeneratorBundle::base_admin.html.twig") }}
 
 {{ echo_block("body") }} 
     {{- block('title') -}}
 
-    Here i'll implement the form
+    {{- block('form') -}}
+    
 {{ echo_endblock() }}

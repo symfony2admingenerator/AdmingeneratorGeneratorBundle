@@ -16,4 +16,5 @@ builders:
   edit: 
     params:
       title: You're editing the movie "{{ Movie.title }}"
+      display: [ title ]
   delete: ~ 

@@ -1,5 +1,6 @@
 {% block index_use %}
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\EditType;
 {% endblock %}
 {% block index %}
 
@@ -14,6 +15,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
             throw new NotFoundHttpException("The {{ model }} with id $id can't be found");
         }
         
-        return array("{{ builder.ModelClass }}" => ${{ builder.ModelClass }});
+        $form = $this->createForm(new EditType(), ${{ builder.ModelClass }});
+        
+        return array(
+            "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
+            "form" => $form->createView(),
+        );
     }
 {% endblock %}

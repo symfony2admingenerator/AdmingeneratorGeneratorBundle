@@ -1,0 +1,35 @@
+{% block update_use %}
+{% endblock %}
+{% block update %}
+
+    /**
+     * @Template("{{ namespace_prefix }}{{ bundle_name }}:Edit:index.html.twig")
+     */
+    public function updateAction($id)
+    {
+        ${{ builder.ModelClass }} = $this->getObject($id);
+        
+        if(!${{ builder.ModelClass }}) {
+            throw new NotFoundHttpException("The {{ model }} with id $id can't be found");
+        }
+        
+        $form = $this->createForm(new EditType(), ${{ builder.ModelClass }});
+        $form->bindRequest($this->get('request'));
+        
+        if ($form->isValid()) {
+            $this->saveObject(${{ builder.ModelClass }});
+            
+            $this->get('session')->setFlash('success', 'The object was successfully saved');
+            
+            return new RedirectResponse($this->generateUrl("{{ bundle_name }}_edit", array('id' => ${{ builder.ModelClass }}->getId()) ));
+            
+        } else {
+            $this->get('session')->setFlash('error', "The form can't be saved. Check errors and try to resubmit");
+        }
+        
+        return array(
+            "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
+            "form" => $form->createView(),
+        );
+    }
+{% endblock %}
