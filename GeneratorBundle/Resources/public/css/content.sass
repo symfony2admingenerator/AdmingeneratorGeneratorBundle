@@ -1,14 +1,20 @@
 @import compass/css3
-
+@import compass/css3/transform
+    
+=table_thead_string
+  font-size: 1.2em
+  font-weight: bold 
+  color: white
+  text-decoration: none
 table
   float: left
   width: 100%
   thead
     background: #2E3A3F
+    a
+      +table_thead_string
     th
-      font-size: 1.2em
-      font-weight: bold 
-      color: white
+      +table_thead_string
       padding: 12px
       margin: 0px
       background: url(/bundles/admingeneratorgenerator/images/table_background.png) repeat-x
@@ -26,6 +32,21 @@ table
       text-align: left
       &.actions
         text-align: right
+// SORTING
+.list_thead_column 
+  .arrow
+    background: url("/bundles/admingeneratorgenerator/images/arrow.png") no-repeat
+    display: inline-block
+    width: 16px
+    height: 7px
+    &.order_desc
+      @include rotate(180deg)
+  &:hover
+    .arrow
+      @include rotate(180deg)
+      &.order_desc
+        @include rotate(0deg)
+    
 // PAGINATION
 ul.pagination
   float: right

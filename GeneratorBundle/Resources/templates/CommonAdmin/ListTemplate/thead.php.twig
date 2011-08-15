@@ -1,0 +1,36 @@
+{% block list_thead %}
+{{ echo_block("list_thead") }}   
+    <thead>
+        <tr class="list_thead">
+        
+            {% for column in builder.columns %}
+            
+            <th class="list_thead_column">
+                {% if column.isSortable %}
+                    {{ echo_if("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }}
+                        <a href="?sort={{ column.sortOn }}&order_by=desc">
+                    {{ echo_else() }}
+                        <a href="?sort={{ column.sortOn }}&order_by=asc">
+                    {{ echo_endif() }}
+                {% endif %}
+                    {{ column.name }}
+                {% if column.isSortable %}
+                    </a>
+                    {{ echo_if("sortColumn == '" ~ column.sortOn ~ "'") }}
+                        <span class="arrow
+                        {{ echo_if("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }}
+                            order_asc
+                        {{ echo_else() }}
+                            order_desc
+                        {{ echo_endif() }}
+                        "> </span>
+                    {{ echo_endif() }}
+                {% endif %}
+            </th>
+            
+            {% endfor %}
+            
+        </tr>
+    </thead>
+{{ echo_endblock() }}   
+{% endblock %}

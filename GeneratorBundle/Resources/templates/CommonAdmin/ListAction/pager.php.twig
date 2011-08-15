@@ -1,0 +1,29 @@
+{% block pager %}
+    /**
+     * Store in the session service the current page
+     *
+     * @param integer $page The page number
+     */
+    protected function setPage($page)
+    {
+        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\Page', $page);
+    }
+    
+    /**
+     * Return the stored page
+     *
+     * @return integer $page The page number
+     */
+    protected function getPage()
+    {
+        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Page', 1);
+    }
+    
+    protected function getPager()
+    {
+        $paginator = new Pagerfanta(new PagerAdapter($this->getQuery()));
+        $paginator->setMaxPerPage({{ max_per_page is defined ? max_per_page : 10 }});
+        $paginator->setCurrentPage($this->getPage(), false, true);
+        return $paginator;
+    }
+{% endblock %}

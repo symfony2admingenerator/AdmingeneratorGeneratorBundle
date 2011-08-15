@@ -35,7 +35,7 @@ abstract class Generator implements GeneratorInterface
     {
         list($this->controller, $this->action) = explode('::', $controller, 2);
     }
-
+    
     /**
      * @todo Find objects in vendor dir
      */

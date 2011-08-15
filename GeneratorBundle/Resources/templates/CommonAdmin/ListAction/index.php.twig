@@ -1,0 +1,23 @@
+{% block index %}
+    /**
+     * @Template()
+     */
+    public function indexAction()
+    {
+        if ($this->get('request')->query->get('page'))
+        {
+          $this->setPage($this->get('request')->query->get('page'));
+        }
+        
+        if ($this->get('request')->query->get('sort'))
+        {
+          $this->setSort($this->get('request')->query->get('sort'), $this->get('request')->query->get('order_by','ASC'));
+        }
+        
+        return array(
+            '{{ builder.ModelClass }}s' => $this->getPager(),
+            'sortColumn'                => $this->getSortColumn(),
+            'sortOrder'                 => $this->getSortOrder(),
+        );
+    }
+{% endblock %}

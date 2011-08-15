@@ -1,0 +1,39 @@
+{% block sorter %}
+    /**
+     * Store in the session service the current sort
+     *
+     * @param string $column The column
+     * @param string $order_by The order sorting (ASC,DESC)
+     */
+    protected function setSort($column, $order_by)
+    {
+        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\Sort', $column);
+        
+        if($order_by == 'desc') {
+            $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\OrderBy', 'DESC');
+        } else {
+             $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\OrderBy', 'ASC');
+        }
+    }
+    
+    /**
+     * Return the stored sort
+     *
+     * @return string The column to sort
+     */
+    protected function getSortColumn()
+    {
+        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Sort');
+    }
+    
+    /**
+     * Return the stored sort order
+     *
+     * @return string the order mode ASC|DESC
+     */
+    protected function getSortOrder()
+    {
+        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\OrderBy','ASC');
+    }
+    
+{% endblock %}

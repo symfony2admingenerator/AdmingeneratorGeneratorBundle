@@ -34,6 +34,7 @@ class EchoExtension extends \Twig_Extension
             'echo_extends'    => new \Twig_Function_Method($this, 'getEchoExtends'),
             'echo_if'         => new \Twig_Function_Method($this, 'getEchoIf'),
             'echo_else'       => new \Twig_Function_Method($this, 'getEchoElse'),
+            'echo_elseif'     => new \Twig_Function_Method($this, 'getEchoElseIf'),
             'echo_endif'      => new \Twig_Function_Method($this, 'getEchoEndIf'),
         );
     }
@@ -41,6 +42,11 @@ class EchoExtension extends \Twig_Extension
     public function getEchoIf($condition)
     {
         return str_replace('%%condition%%', $condition, '{% if %%condition%% %}');
+    }
+    
+    public function getEchoElseIf($condition)
+    {
+        return str_replace('%%condition%%', $condition, '{% elseif %%condition%% %}');
     }
     
     public function getEchoElse()
