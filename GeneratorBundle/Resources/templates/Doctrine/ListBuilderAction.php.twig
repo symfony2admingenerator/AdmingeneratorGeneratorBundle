@@ -5,6 +5,9 @@ namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\BaseController;
 use Admingenerator\GeneratorBundle\Controller\Doctrine\BaseController as BaseDoctrineController;
 use Symfony\Component\HttpFoundation\Response;
 
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+
 // these import the "@Template" annotations
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
@@ -15,14 +18,52 @@ class ListController extends BaseDoctrineController
      */
     public function indexAction()
     {
-        ${{ builder.ModelClass }}s = $this
-                ->getDoctrine()->getEntityManager()
-                ->getRepository('{{ model }}')
-                ->findAll();
-            
+        if ($this->get('request')->query->get('page'))
+        {
+          $this->setPage($this->get('request')->query->get('page'));
+        }
+        
         return array(
-            '{{ builder.ModelClass }}s' => ${{ builder.ModelClass }}s,
+            '{{ builder.ModelClass }}s' => $this->getPager(),
         );
+    }
+    
+    /**
+     * Store in the session service the current page
+     *
+     * @param integer $page The page number
+     */
+    protected function setPage($page)
+    {
+        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\Page', $page);
+    }
+    
+    /**
+     * Return the stored page
+     *
+     * @return integer $page The page number
+     */
+    protected function getPage()
+    {
+        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Page', 1);
+    }
+    
+    protected function getPager()
+    {
+        $paginator = new Pagerfanta(new DoctrineORMAdapter($this->getQuery()));
+        $paginator->setMaxPerPage({{ max_per_page is defined ? max_per_page : 10 }});
+        $paginator->setCurrentPage($this->getPage(), false, true);
+        return $paginator;
+    }
+    
+    protected function getQuery()
+    {
+        return $this->getDoctrine()
+                    ->getEntityManager()
+                    ->createQueryBuilder()
+                    ->select('q')
+                    ->from('{{ model }}', 'q')
+                    ->getQuery();
     }
     
 }

@@ -40,5 +40,9 @@
             <tag name="routing.loader" />
             <argument type="service" id="file_locator" />
         </service>
+        
+        <service id="pagerfanta.view.admingenerator" class="Admingenerator\GeneratorBundle\Pagerfanta\View\AdmingenratorView">
+            <tag name="pagerfanta.view" alias="admingenerator" />
+        </service>
     </services>
 </container>

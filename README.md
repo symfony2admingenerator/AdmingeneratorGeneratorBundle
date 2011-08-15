@@ -9,6 +9,29 @@ This package is inspired from fzaninotto/Propel2
 
 ## Install the bundle in a Symfony2 project src/ dir
 
+## Install Pagerfanta 
+
+```shell 
+    git submodule add http://github.com/whiteoctober/Pagerfanta.git vendor/pagerfanta
+    git submodule add http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git vendor/bundles/WhiteOctober/PagerfantaBundle
+```
+
+Register autoload
+
+```php
+    // app/autoload.php
+    $loader->registerNamespaces(array(
+        'WhiteOctober\PagerfantaBundle' => __DIR__.'/../vendor/bundles',
+        'Pagerfanta' => __DIR__.'/../vendor/pagerfanta/src',
+    ));
+```
+
+And load in AppKernel 
+
+```php
+   $bundles[] = new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+```   
+
 ## Install the Doctrine2FixtureBundle & create the db
 
 ```shell 

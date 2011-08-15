@@ -3,11 +3,19 @@
 {% block list_tbody %}
 {{ echo_block("list_tbody") }}
     <tbody>
+        {{ echo_if(builder.ModelClass ~ "s|length > 0") }}
+         
         {{ echo_for(builder.ModelClass, builder.ModelClass ~ "s" ) }}
         <tr class="list_trow">
             {{- block('list_row') -}}
         </tr>
         {{ echo_endfor() }}
+        
+        {{ echo_else() }}
+        <tr class="list_trow no_results_row">
+            <td colspan="{{ display|length }}">There is no results</td>
+        </tr>
+        {{ echo_endif() }}
     </tbody>
 {{ echo_endblock() }}   
 {% endblock %}

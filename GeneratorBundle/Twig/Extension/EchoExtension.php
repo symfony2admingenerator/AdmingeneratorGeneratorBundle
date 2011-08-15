@@ -26,15 +26,33 @@ class EchoExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'echo_twig' => new \Twig_Function_Method($this, 'getEchoTwig'),
-            'echo_block' => new \Twig_Function_Method($this, 'getEchoBlock'),
-            'echo_endblock' => new \Twig_Function_Method($this, 'getEchoEndBlock'),
-            'echo_for' => new \Twig_Function_Method($this, 'getEchoFor'),
-            'echo_endfor' => new \Twig_Function_Method($this, 'getEchoEndFor'),
-            'echo_extends' => new \Twig_Function_Method($this, 'getEchoExtends'),
+            'echo_twig'       => new \Twig_Function_Method($this, 'getEchoTwig'),
+            'echo_block'      => new \Twig_Function_Method($this, 'getEchoBlock'),
+            'echo_endblock'   => new \Twig_Function_Method($this, 'getEchoEndBlock'),
+            'echo_for'        => new \Twig_Function_Method($this, 'getEchoFor'),
+            'echo_endfor'     => new \Twig_Function_Method($this, 'getEchoEndFor'),
+            'echo_extends'    => new \Twig_Function_Method($this, 'getEchoExtends'),
+            'echo_if'         => new \Twig_Function_Method($this, 'getEchoIf'),
+            'echo_else'       => new \Twig_Function_Method($this, 'getEchoElse'),
+            'echo_endif'      => new \Twig_Function_Method($this, 'getEchoEndIf'),
         );
     }
 
+    public function getEchoIf($condition)
+    {
+        return str_replace('%%condition%%', $condition, '{% if %%condition%% %}');
+    }
+    
+    public function getEchoElse()
+    {
+        return '{% else %}';
+    }
+    
+    public function getEchoEndIf()
+    {
+        return '{% endif %}';
+    }
+    
     public function getEchoTwig($str)
     {
         return sprintf('{{ %s }}', $str);

@@ -1,6 +1,7 @@
 {% use 'CommonAdmin/title.php.twig' %}
 {% use 'CommonAdmin/list_thead.php.twig' %}
 {% use 'CommonAdmin/list_tbody.php.twig' %}
+{% use 'CommonAdmin/list_paginator.php.twig' %}
 
 {{ echo_extends("AdmingeneratorGeneratorBundle::base_admin.html.twig") }}
 
@@ -12,5 +13,5 @@
         {{- block('list_tbody') -}}
     </table>
     
-    
+    {{- block('list_paginator') -}}
 {{ echo_endblock() }}

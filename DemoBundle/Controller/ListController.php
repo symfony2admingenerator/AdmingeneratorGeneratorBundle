@@ -6,5 +6,4 @@ use Admingenerated\AdmingeneratorDemoBundle\BaseController\ListController as Bas
 
 class ListController extends BaseListController
 {
-
 }
