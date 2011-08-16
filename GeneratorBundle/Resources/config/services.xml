@@ -7,6 +7,8 @@
     <parameters>
         <parameter key="admingenerator.class">Admingenerator\GeneratorBundle\Generator\DoctrineGenerator</parameter>
         <parameter key="routing.loader.admingenerator.class">Admingenerator\GeneratorBundle\Routing\RoutingLoader</parameter>
+        <parameter key="admingenerator.cache_warmer.class">Admingenerator\GeneratorBundle\CacheWarmer\GeneratorCacheWarmer</parameter>
+        <parameter key="admingenerator.finder.class">Admingenerator\GeneratorBundle\CacheWarmer\GeneratorFinder</parameter>
     </parameters>
     
     <services>
@@ -46,6 +48,17 @@
         
         <service id="pagerfanta.view.admingenerator" class="Admingenerator\GeneratorBundle\Pagerfanta\View\AdmingenratorView">
             <tag name="pagerfanta.view" alias="admingenerator" />
+        </service>
+        
+        <!-- Warmup -->
+        <service id="admingenerator.finder" class="%admingenerator.finder.class%" public="false">
+            <argument type="service" id="kernel" />
+        </service>
+        
+        <service id="admingenerztor.cache_warmer" class="%admingenerator.cache_warmer.class%" public="false">
+            <tag name="kernel.cache_warmer" />
+            <argument type="service" id="service_container" />
+            <argument type="service" id="admingenerator.finder" />
         </service>
     </services>
 </container>

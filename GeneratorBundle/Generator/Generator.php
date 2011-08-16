@@ -20,6 +20,8 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
     protected $root_dir;
     
     protected $cache_dir;
+    
+    protected $generator_yaml;
 
     public function __construct($root_dir, $cache_dir)
     {
@@ -36,11 +38,20 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
         list($this->controller, $this->action) = explode('::', $controller, 2);
     }
     
+    public function setGeneratorYml($yaml_file)
+    {
+        $this->generator_yaml = $yaml_file;
+    }
+    
     /**
      * @todo Find objects in vendor dir
      */
     protected function getGeneratorYml()
     {
+        if($this->generator_yaml) {
+            return $this->generator_yaml;
+        }
+        
         list($base, $bundle, $other) = explode('\\',$this->controller, 3);
                 
         $finder = new Finder;
