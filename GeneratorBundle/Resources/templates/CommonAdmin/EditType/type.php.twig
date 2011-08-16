@@ -6,7 +6,7 @@ namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\Form\BaseType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class EditType extends AbstractType
+class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
@@ -20,7 +20,7 @@ class EditType extends AbstractType
 
     public function getName()
     {
-        return 'edit_{{ builder.ModelClass|lower }}';
+        return '{{ builder.YamlKey }}_{{ builder.ModelClass|lower }}';
     }
 }
 {% endblock %}

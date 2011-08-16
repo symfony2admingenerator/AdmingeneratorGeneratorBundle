@@ -1,0 +1,21 @@
+{% block index_use %}
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\NewType;
+{% endblock %}
+{% block index %}
+
+    /**
+     * @Template()
+     */
+    public function indexAction()
+    {
+        ${{ builder.ModelClass }} = $this->getNewObject();
+        
+        $form = $this->createForm(new NewType(), ${{ builder.ModelClass }});
+        
+        return array(
+            "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
+            "form" => $form->createView(),
+        );
+    }
+{% endblock %}

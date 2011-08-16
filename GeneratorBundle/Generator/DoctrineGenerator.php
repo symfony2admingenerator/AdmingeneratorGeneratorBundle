@@ -13,6 +13,10 @@ use Admingenerator\GeneratorBundle\Builder\Doctrine\EditBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\EditBuilderTemplate;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\EditBuilderType;
 
+use Admingenerator\GeneratorBundle\Builder\Doctrine\NewBuilderAction;
+use Admingenerator\GeneratorBundle\Builder\Doctrine\NewBuilderTemplate;
+use Admingenerator\GeneratorBundle\Builder\Doctrine\NewBuilderType;
+
 class DoctrineGenerator extends Generator
 {
     /**
@@ -43,6 +47,12 @@ class DoctrineGenerator extends Generator
             $generator->addBuilder(new EditBuilderAction());
             $generator->addBuilder(new EditBuilderTemplate());
             $generator->addBuilder(new EditBuilderType());
+        }
+        
+        if(array_key_exists('new', $builders)) { 
+            $generator->addBuilder(new NewBuilderAction());
+            $generator->addBuilder(new NewBuilderTemplate());
+            $generator->addBuilder(new NewBuilderType());
         }
         
         $generator->writeOnDisk($this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));

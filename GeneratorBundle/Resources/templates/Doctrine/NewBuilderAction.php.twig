@@ -1,0 +1,34 @@
+{% use 'CommonAdmin/NewAction/index.php.twig' %}
+{% use 'CommonAdmin/NewAction/create.php.twig' %}
+<?php
+
+namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\BaseController;
+
+use Admingenerator\GeneratorBundle\Controller\Doctrine\BaseController as BaseDoctrineController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+// these import the "@Template" annotations
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
+{{- block('index_use') -}}
+
+{{- block('create_use') -}}
+
+class NewController extends BaseDoctrineController
+{
+    {{- block('index') -}}
+    
+    {{- block('create') }}
+    
+    protected function getNewObject()
+    {
+        return new \{{ model }};
+    }
+
+    protected function saveObject(\{{ model }} ${{ builder.ModelClass }})
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->persist(${{ builder.ModelClass }});
+        $em->flush();
+    }
+}

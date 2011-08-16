@@ -17,7 +17,7 @@ class Movie
     protected $id;
 
     /**
-     * @ORM\Column(length="255", nullable="false")
+     * @ORM\Column(length="255")
      * @ORM\Index
      */
     protected $title;

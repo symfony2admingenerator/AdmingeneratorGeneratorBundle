@@ -1,6 +1,12 @@
 {% block form %}
 {{ echo_block('form') }}
-<form action="{{ echo_path(bundle_name ~ "_update", "{ 'id': " ~ builder.ModelClass ~ ".id }" ) }}" method="post" {{ echo_twig("form_enctype(form)") }}>
+<form 
+{{ echo_if(builder.ModelClass ~ ".id") }}
+    action="{{ echo_path(bundle_name ~ "_update", "{ 'id': " ~ builder.ModelClass ~ ".id }" ) }}"
+{{ echo_else() }}
+    action="{{ echo_path(bundle_name ~ "_create" ) }}"
+{{ echo_endif() }}
+ method="post" {{ echo_twig("form_enctype(form)") }}>
     <fieldset class="form_block">
         {{ echo_twig("form_errors(form)") }}
         <ul>

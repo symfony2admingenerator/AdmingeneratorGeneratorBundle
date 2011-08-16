@@ -1,0 +1,31 @@
+{% block create_use %}
+{% endblock %}
+{% block create %}
+
+    /**
+     * @Template("{{ namespace_prefix }}{{ bundle_name }}:New:index.html.twig")
+     */
+    public function createAction()
+    {
+        ${{ builder.ModelClass }} = $this->getNewObject();
+        
+        $form = $this->createForm(new NewType(), ${{ builder.ModelClass }});
+        $form->bindRequest($this->get('request'));
+        
+        if ($form->isValid()) {
+            $this->saveObject(${{ builder.ModelClass }});
+            
+            $this->get('session')->setFlash('success', 'The object was successfully saved');
+            
+            return new RedirectResponse($this->generateUrl("{{ bundle_name }}_edit", array('id' => ${{ builder.ModelClass }}->getId()) ));
+            
+        } else {
+            $this->get('session')->setFlash('error', "The form can't be saved. Check errors and try to resubmit");
+        }
+        
+        return array(
+            "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
+            "form" => $form->createView(),
+        );
+    }
+{% endblock %}
