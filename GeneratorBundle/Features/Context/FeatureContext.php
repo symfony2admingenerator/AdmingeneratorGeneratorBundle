@@ -2,6 +2,8 @@
 
 namespace Admingenerator\GeneratorBundle\Features\Context;
 
+use Symfony\Component\Yaml\Yaml;
+
 use Behat\BehatBundle\Context\BehatContext;
 use Behat\BehatBundle\Context\MinkContext;
 use Behat\Behat\Context\ClosuredContextInterfacen;
@@ -30,5 +32,12 @@ class FeatureContext extends MinkContext //MinkContext if you want to test web
 //        $container->get('some_service')->doSomethingWith($argument);
 //    }
 //
-
+    /**
+     * @Given /^I set the yaml "([^"]*)"$/
+     */
+    public function iSetTheYaml($yamlName)
+    {
+        copy(realpath(__DIR__.'/..').'/Yamls/'.$yamlName, realpath(__DIR__.'/../../../DemoBundle/Resources/config/generator.yml'));
+    }
+    
 }
