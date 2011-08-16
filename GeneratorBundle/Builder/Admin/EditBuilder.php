@@ -16,7 +16,7 @@ class EditBuilder extends BaseBuilder
 {
     /**
      * (non-PHPdoc)
-     * @see Builder/Admingenerator\GeneratorBundle\Builder.BaseBuilder::getYamlKey()
+     * @see Admingenerator\GeneratorBundle\Builder.BaseBuilder::getYamlKey()
      */
     public function getYamlKey()
     {

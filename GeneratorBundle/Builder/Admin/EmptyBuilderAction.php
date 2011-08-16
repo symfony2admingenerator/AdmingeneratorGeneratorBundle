@@ -11,7 +11,7 @@ class EmptyBuilderAction extends BaseBuilder
 {
     /**
      * (non-PHPdoc)
-     * @see Builder/Admingenerator\GeneratorBundle\Builder.BuilderInterface::getDefaultTemplateDirs()
+     * @see Admingenerator\GeneratorBundle\Builder.BuilderInterface::getDefaultTemplateDirs()
      */
     public function getDefaultTemplateDirs()
     {
