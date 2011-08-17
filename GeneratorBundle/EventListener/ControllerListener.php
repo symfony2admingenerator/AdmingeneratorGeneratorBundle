@@ -2,9 +2,9 @@
 
 namespace Admingenerator\GeneratorBundle\EventListener;
 
-use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\Yaml\Yaml;
 
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
@@ -19,7 +19,7 @@ class ControllerListener
     
     protected $router;
 
-    public function __construct(Container $container)
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
@@ -57,7 +57,7 @@ class ControllerListener
     {
         list($base, $bundle, $other) = explode('\\', $controller, 3);
                 
-        $finder = new Finder;
+        $finder = new Finder();
         $finder->files()
                ->name('generator.yml');
                
