@@ -65,10 +65,10 @@ class ControllerListener
         
         if (is_dir($namespace_directory)) {
             $finder->in($namespace_directory);
+            $it = $finder->getIterator();
+            $it->rewind();
 
-            foreach ($finder as $file) {
-                return $file->getRealpath();
-            }
+            return $it->current()->getRealpath();
         }
 
         throw new NotAdminGeneratedException;
