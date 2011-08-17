@@ -68,7 +68,10 @@ class ControllerListener
             $it = $finder->getIterator();
             $it->rewind();
 
-            return $it->current()->getRealpath();
+            if ($it->valid()) {
+               
+                return $it->current()->getRealpath();
+            }
         }
 
         throw new NotAdminGeneratedException;
