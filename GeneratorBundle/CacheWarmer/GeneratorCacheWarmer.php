@@ -61,9 +61,6 @@ class GeneratorCacheWarmer implements CacheWarmerInterface
         $service = $this->yaml_datas['generator'];
         
         $generator = $this->container->get($service);
-        /*$generator = new $class($this->container->getParameter('kernel.root_dir'), $this->container->getParameter('kernel.cache_dir'));
-        $generator->setContainer($this->container);
-        $generator->setFieldGuesser($this->container->get('admingenerator.fieldguesser.doctrine'));*/
         $generator->setGeneratorYml($file);
         $generator->build();        
     }
