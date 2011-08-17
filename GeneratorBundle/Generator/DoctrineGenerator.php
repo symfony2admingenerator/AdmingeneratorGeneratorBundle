@@ -31,6 +31,7 @@ class DoctrineGenerator extends Generator
     public function build()
     {
         $generator = new AdminGenerator($this->getGeneratorYml());
+        $generator->setMustOverwriteIfExists($this->container->getParameter('admingenerator.overwrite_if_exists'));
 
         $builders = $generator->getFromYaml('builders',array());
 

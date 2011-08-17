@@ -9,6 +9,7 @@
         <parameter key="routing.loader.admingenerator.class">Admingenerator\GeneratorBundle\Routing\RoutingLoader</parameter>
         <parameter key="admingenerator.cache_warmer.class">Admingenerator\GeneratorBundle\CacheWarmer\GeneratorCacheWarmer</parameter>
         <parameter key="admingenerator.finder.class">Admingenerator\GeneratorBundle\CacheWarmer\GeneratorFinder</parameter>
+        <parameter key="admingenerator.overwrite_if_exists">false</parameter>
     </parameters>
     
     <services>

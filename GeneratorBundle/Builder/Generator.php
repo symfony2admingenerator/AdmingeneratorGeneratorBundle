@@ -26,6 +26,8 @@ class Generator
      * @var file $yaml the yaml
      */
     protected $yaml;
+    
+    protected $mustOverwriteIfExists = false;
 
     /**
      * Init a new generator and automatically define the base of tempDir
@@ -41,6 +43,11 @@ class Generator
         $this->setYamlConfig(Yaml::parse($yaml));
     }
 
+    public function setMustOverwriteIfExists($status = true)
+    {
+        $this->mustOverwriteIfExists = $status;
+    }
+    
     /**
      * Ensure to remove tempDir
      */
@@ -74,6 +81,7 @@ class Generator
     public function addBuilder(BuilderInterface $builder)
     {
         $builder->setGenerator($this);
+        $builder->setMustOverwriteIfExists($this->mustOverwriteIfExists);
          
         $vars = array_merge(
         $this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array()),

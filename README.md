@@ -82,7 +82,14 @@ Configure assetic :
             bin: /var/lib/gems/1.8/gems/sass-3.1.7/bin/sass
             compass: /var/lib/gems/1.8/gems/compass-0.11.5/bin/compass
 ```
-            
+Configure the dev environment :
+
+
+```yaml
+    admingenerator_generator:
+        overwrite_if_exists: true
+```
+          
 And after you can edit the DemoBundle/Resources/config/generator.yml file to see changes
 
 In your browser :

@@ -46,7 +46,7 @@ abstract class BaseBuilder implements BuilderInterface
     /**
      * @var boolean
      */
-    protected $mustOverwriteIfExists;
+    protected $mustOverwriteIfExists = false;
 
     /**
      * @var array
@@ -74,7 +74,6 @@ abstract class BaseBuilder implements BuilderInterface
         $this->templateDirectories = $this->getDefaultTemplateDirs();
         $this->templateName = $this->getDefaultTemplateName();
         $this->variables = new ParameterBag(array());
-        $this->mustOverwriteIfExists = true;
     }
 
     /**
@@ -199,6 +198,15 @@ abstract class BaseBuilder implements BuilderInterface
     public function mustOverwriteIfExists()
     {
         return $this->mustOverwriteIfExists;
+    }
+    
+    /**
+     * (non-PHPdoc)
+     * @see Admingenerator\GeneratorBundle\Builder.BuilderInterface::setMustOverwriteIfExists()
+     */
+    public function setMustOverwriteIfExists($status = true)
+    {
+        $this->mustOverwriteIfExists = $status;
     }
 
     /**
