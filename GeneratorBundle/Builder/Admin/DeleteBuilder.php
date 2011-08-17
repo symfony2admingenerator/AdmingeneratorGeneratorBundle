@@ -2,7 +2,6 @@
 
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
-use Admingenerator\GeneratorBundle\Builder\BaseBuilder;
 
 /**
  * This builder generate php for delete actions

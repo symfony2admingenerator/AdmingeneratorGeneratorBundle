@@ -44,6 +44,12 @@ class RoutingLoader extends FileLoader
                     'requirements' => array(),
                     'controller'   => 'new',
                 ),
+        'filters' => array(
+                    'pattern'      => '/filter',
+                    'defaults'     => array(),
+                    'requirements' => array(),
+                    'controller'   => 'list',
+                ),
     );
     
     public function load($resource, $type = null)

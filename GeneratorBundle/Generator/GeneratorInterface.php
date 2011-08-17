@@ -7,12 +7,6 @@ interface GeneratorInterface
 {
 
     /**
-     * Set the controller from routing request parameter _controller
-     * @param string $controller
-     */
-    function setController($controller);
-    
-    /**
      * Give the cache path to save the files 
      * 
      * @param string $namespace The namespace of the bundle

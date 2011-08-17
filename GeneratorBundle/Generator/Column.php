@@ -15,6 +15,12 @@ class Column
     protected $name;
     
     protected $sort_on;
+    
+    protected $dbType;
+    
+    protected $formType;
+    
+    protected $formOptions = array();
 
     public function __construct($name)
     {
@@ -59,6 +65,36 @@ class Column
     private function humanize($text)
     {
         return ucfirst(strtolower(str_replace('_', ' ', $text)));
+    }
+    
+    public function setDbType($dbType)
+    {
+        $this->dbType = $dbType;
+    }
+    
+    public function getDbType()
+    {
+        return $this->dbType;
+    }
+    
+    public function setFormType($formType)
+    {
+        $this->formType = $formType;
+    }
+    
+    public function getFormType()
+    {
+        return $this->formType;
+    }
+    
+    public function setFormOptions($formOptions)
+    {
+        $this->formOptions = $formOptions;
+    }
+    
+    public function getFormOptions()
+    {
+        return $this->formOptions;
     }
     
 }

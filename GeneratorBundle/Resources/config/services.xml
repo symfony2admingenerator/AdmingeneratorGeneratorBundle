@@ -5,10 +5,11 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="admingenerator.class">Admingenerator\GeneratorBundle\Generator\DoctrineGenerator</parameter>
+        <parameter key="admingenerator.doctrine.class">Admingenerator\GeneratorBundle\Generator\DoctrineGenerator</parameter>
         <parameter key="routing.loader.admingenerator.class">Admingenerator\GeneratorBundle\Routing\RoutingLoader</parameter>
         <parameter key="admingenerator.cache_warmer.class">Admingenerator\GeneratorBundle\CacheWarmer\GeneratorCacheWarmer</parameter>
         <parameter key="admingenerator.finder.class">Admingenerator\GeneratorBundle\CacheWarmer\GeneratorFinder</parameter>
+        <parameter key="admingenerator.fieldguesser.doctrine.class">Admingenerator\GeneratorBundle\Guesser\DoctrineORMFieldGuesser</parameter>
         <parameter key="admingenerator.overwrite_if_exists">false</parameter>
     </parameters>
     
@@ -25,13 +26,20 @@
             </call>
         </service>
         
-        <service id="admingenerator.generator"
-            class="%admingenerator.class%"
-            public="false" >
+        <service id="admingenerator.fieldguesser.doctrine" class="%admingenerator.fieldguesser.doctrine.class%"
+            public="false">
+            <argument type="service" id="doctrine.orm.entity_manager"></argument>
+        </service>
+        
+        <service id="admingenerator.generator.doctrine"
+            class="%admingenerator.doctrine.class%">
             <argument type="string">%kernel.root_dir%</argument>
             <argument type="string">%kernel.cache_dir%</argument>
             <call method="setContainer">
                 <argument type="service" id="service_container" />
+            </call>
+            <call method="setFieldGuesser">
+                <argument type="service" id="admingenerator.fieldguesser.doctrine" />
             </call>
         </service>
         
@@ -39,7 +47,7 @@
             class="Admingenerator\GeneratorBundle\EventListener\ControllerListener">
             <tag name="kernel.event_listener" event="kernel.request"
                 method="onKernelRequest" />
-            <argument type="service" id="admingenerator.generator" />
+            <argument type="service" id="service_container" />
         </service>
         
         <service id="routing.loader.admingenerator" class="%routing.loader.admingenerator.class%">
@@ -56,7 +64,7 @@
             <argument type="service" id="kernel" />
         </service>
         
-        <service id="admingenerztor.cache_warmer" class="%admingenerator.cache_warmer.class%" public="false">
+        <service id="admingeneretor.cache_warmer" class="%admingenerator.cache_warmer.class%" public="false">
             <tag name="kernel.cache_warmer" />
             <argument type="service" id="service_container" />
             <argument type="service" id="admingenerator.finder" />

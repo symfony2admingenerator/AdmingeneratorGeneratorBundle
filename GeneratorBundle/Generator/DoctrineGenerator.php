@@ -6,6 +6,7 @@ use Admingenerator\GeneratorBundle\Builder\Generator as AdminGenerator;
 
 use Admingenerator\GeneratorBundle\Builder\Doctrine\ListBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\ListBuilderTemplate;
+use Admingenerator\GeneratorBundle\Builder\Doctrine\FiltersBuilderType;
 
 use Admingenerator\GeneratorBundle\Builder\Doctrine\DeleteBuilderAction;
 
@@ -31,6 +32,7 @@ class DoctrineGenerator extends Generator
     public function build()
     {
         $generator = new AdminGenerator($this->getGeneratorYml());
+        $generator->setFieldGuesser($this->getFieldGuesser());
         $generator->setMustOverwriteIfExists($this->container->getParameter('admingenerator.overwrite_if_exists'));
 
         $builders = $generator->getFromYaml('builders',array());
@@ -38,6 +40,7 @@ class DoctrineGenerator extends Generator
         if(array_key_exists('list',$builders)) {
             $generator->addBuilder(new ListBuilderAction());
             $generator->addBuilder(new ListBuilderTemplate());
+            $generator->addBuilder(new FiltersBuilderType());
         }
         
         if(array_key_exists('delete', $builders)) { 

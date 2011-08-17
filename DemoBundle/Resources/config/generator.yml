@@ -1,4 +1,4 @@
-generator: Admingenerator\GeneratorBundle\Generator\DoctrineGenerator
+generator: admingenerator.generator.doctrine
 params:
   model: Admingenerator\DemoBundle\Entity\Movie
   namespace_prefix: Admingenerator
@@ -14,6 +14,9 @@ builders:
       object_actions:
         edit: ~ 
         delete: ~
+  filters: 
+    params:
+      display: [ title ]
   new: 
     params:
       title: You're creating a new movie

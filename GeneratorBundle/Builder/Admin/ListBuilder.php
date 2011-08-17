@@ -4,9 +4,6 @@ namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
 use Admingenerator\GeneratorBundle\Generator\Action;
 
-use Admingenerator\GeneratorBundle\Generator\Column;
-
-use Admingenerator\GeneratorBundle\Builder\BaseBuilder;
 
 /**
  * This builder generate php for lists actions
@@ -14,7 +11,6 @@ use Admingenerator\GeneratorBundle\Builder\BaseBuilder;
  */
 class ListBuilder extends BaseBuilder
 {
-    protected $columns;
     
     protected $object_actions;
     
@@ -30,30 +26,13 @@ class ListBuilder extends BaseBuilder
     }
 
     /**
-     * Return a list of columns from list.display
-     * @return array
+     * Find filters parameters informations
      */
-    public function getColumns()
+    public function getFilters()
     {
-        if(0 === count($this->columns)) {
-            $this->findColumns();
-        }
-
-        return $this->columns;
+        return $this->getGenerator()->getFromYaml('builders.filters.params');
     }
-
-    protected function addColumn(Column $column)
-    {
-        $this->columns[$column->getName()] = $column;
-    }
-
-    protected function findColumns()
-    {
-        foreach ($this->getVariable('display') as $columnName) {
-            $column = new Column($columnName);
-            $this->addColumn($column);
-        }
-    }
+    
     
     /**
      * Return a list of action from list.object_actions

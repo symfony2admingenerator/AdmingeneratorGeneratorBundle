@@ -1,3 +1,6 @@
+{% block index_use %}
+use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\FiltersType;
+{% endblock %}
 {% block index %}
     /**
      * @Template()
@@ -14,8 +17,11 @@
           $this->setSort($this->get('request')->query->get('sort'), $this->get('request')->query->get('order_by','ASC'));
         }
         
+        $form = $this->getFilterForm();
+
         return array(
             '{{ builder.ModelClass }}s' => $this->getPager(),
+            'form'                      => $form->createView(),
             'sortColumn'                => $this->getSortColumn(),
             'sortOrder'                 => $this->getSortOrder(),
         );

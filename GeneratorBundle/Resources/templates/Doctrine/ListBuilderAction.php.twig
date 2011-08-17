@@ -1,12 +1,16 @@
 {% use 'CommonAdmin/ListAction/index.php.twig' %}
 {% use 'CommonAdmin/ListAction/pager.php.twig' %}
 {% use 'CommonAdmin/ListAction/sorter.php.twig' %}
+{% use 'CommonAdmin/ListAction/filters.php.twig' %}
 <?php
 
 namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\BaseController;
 
+{{ block('index_use') }}
+
 use Admingenerator\GeneratorBundle\Controller\Doctrine\BaseController as BaseDoctrineController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter as PagerAdapter;
@@ -22,6 +26,7 @@ class ListController extends BaseDoctrineController
     
     {{- block('sorter') -}}
     
+    {{- block('filters') -}}
     
     protected function getQuery()
     {
@@ -31,11 +36,30 @@ class ListController extends BaseDoctrineController
                     ->select('q')
                     ->from('{{ model }}', 'q');
         
-        if($this->getSortColumn()) { //@todo implement join method to sort on undirect columns
-            $query->orderBy('q.'.$this->getSortColumn(), $this->getSortOrder());
-        }
-                    
+        $this->processSort($query); 
+        $this->processFilters($query); 
+
         return $query->getQuery();
     }
     
+    protected function processSort($query)
+    {
+        if($this->getSortColumn()) { //@todo implement join method to sort on undirect columns
+            $query->orderBy('q.'.$this->getSortColumn(), $this->getSortOrder());
+        }
+    }
+    
+    protected function processFilters($query)
+    {
+        $filterObject = $this->getFilters();
+
+        {% for filter in builder.filters.display %}
+        
+        if($filterObject->get{{ filter|classify }}()) {
+            $query->where("q.{{ filter }} LIKE :{{ filter }}");
+            $query->setParameter("{{ filter }}", "%".$filterObject->get{{ filter|classify }}()."%"); //@todo Find a solution to optimize this !
+        }
+        {% endfor %}
+        
+    }
 }

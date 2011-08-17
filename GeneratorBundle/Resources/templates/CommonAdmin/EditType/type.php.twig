@@ -11,9 +11,9 @@ class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
          $builder
-        {%- for field in display %}
+        {%- for column in builder.columns %}
 
-            ->add('{{ field }}')
+            ->add('{{ column.name }}', '{{ column.formType }}', {{ column.formOptions|var_export }})
 
         {%- endfor %};
     }

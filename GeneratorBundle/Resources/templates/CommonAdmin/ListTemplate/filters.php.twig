@@ -1,0 +1,22 @@
+{% block list_filters %}
+{{ echo_block('list_filters') }}
+<form action="{{ echo_path(bundle_name ~ "_filters" ) }}" method="post" {{ echo_twig("form_enctype(form)") }}>
+    <fieldset class="form_block">
+        {{ echo_twig("form_errors(form)") }}
+        <ul>
+        {% for field in builder.filters.display %}
+            <li>
+                {{ echo_twig("form_label(form['" ~ field ~ "'])") }}
+                {{ echo_twig("form_widget(form['" ~ field ~ "'])") }}
+                {{ echo_twig("form_errors(form['" ~ field ~ "'])") }}
+            </li>
+        {% endfor %}
+            <li>
+                 {{ echo_twig("form_rest(form)") }}
+                 <input type="submit" class="submit_button" value="Filter" />
+            </li>
+        </ul>
+    </fieldset>
+</form>
+{{ echo_endblock() }}
+{% endblock %}

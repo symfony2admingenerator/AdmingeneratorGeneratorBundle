@@ -3,18 +3,37 @@
 {% use 'CommonAdmin/ListTemplate/tbody.php.twig' %}
 {% use 'CommonAdmin/ListTemplate/paginator.php.twig' %}
 {% use 'CommonAdmin/ListTemplate/actions.php.twig' %}
+{% use 'CommonAdmin/ListTemplate/filters.php.twig' %}
 
 {{ echo_extends("AdmingeneratorGeneratorBundle::base_admin.html.twig") }}
 
 {{ echo_block("body") }} 
     {{- block('title') -}}
 
-    <table>
-        {{- block('list_thead') -}}
-        {{- block('list_tbody') -}}
-    </table>
-    
-    {{- block('list_paginator') -}}
-    
-    {{- block('list_actions') -}}
+    <div class="main_content">
+        <table>
+            {{- block('list_thead') -}}
+            {{- block('list_tbody') -}}
+        </table>
+        
+        {{- block('list_paginator') -}}
+        
+        {{- block('list_actions') -}}
+    </div>
+    <div class="filters">
+        <table>
+            <thead>
+                <tr>
+                    <th>Filters</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        {{- block('list_filters') -}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
 {{ echo_endblock() }}

@@ -1,0 +1,36 @@
+{% block filters %}
+    /**
+     * @Template()
+     */
+    public function filtersAction()
+    {
+        $form = $this->getFilterForm();
+        $form->bindRequest($this->get('request'));
+        
+        if($form->isValid()) {
+            $this->setFilters($form->getClientData());
+        }
+        
+        return new RedirectResponse($this->generateUrl("{{ bundle_name }}_list"));
+    }
+    
+    /**
+     * Store in the session service the current filters
+     *
+     * @param array the filters
+     */
+    protected function setFilters($filters)
+    {
+        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\Filters', $filters);
+    }
+    
+    protected function getFilters()
+    {
+        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Filters', new \{{ model }});
+    }
+    
+    protected function getFilterForm()
+    {
+        return $this->createForm(new FiltersType(), $this->getFilters());
+    }
+{% endblock %}

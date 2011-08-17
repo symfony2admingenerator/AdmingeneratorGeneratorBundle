@@ -6,6 +6,7 @@ namespace Admingenerator\GeneratorBundle\Builder;
  * @author Cedric LOMBARDOT
  */
 
+
 use Symfony\Component\Yaml\Yaml;
 
 class Generator
@@ -152,5 +153,15 @@ class Generator
         }
          
         return $search_in;
+    }
+    
+    public function setFieldGuesser($fieldGuesser)
+    {
+        return $this->fieldGuesser = $fieldGuesser;
+    }
+    
+    public function getFieldGuesser()
+    {
+        return $this->fieldGuesser;
     }
 }
