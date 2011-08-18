@@ -6,7 +6,7 @@ This package is inspired from fzaninotto/Propel2
 
 # In a picture
 
-![Preview of list](https://github.com/cedriclombardot/Admingenerator/raw/master/GeneratorBundle/Resources/doc/list-preview.png)
+![Preview of list](https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/list-preview.png)
 
 # Want to run a test ?
 
