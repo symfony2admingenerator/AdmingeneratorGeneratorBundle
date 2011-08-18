@@ -55,8 +55,8 @@ class ListController extends BaseDoctrineController
 
         {% for filter in builder.filters.display %}
         
-        if($filterObject->get{{ filter|classify }}()) {
-            $query->where("q.{{ filter }} LIKE :{{ filter }}");
+        if(null !== $filterObject->get{{ filter|classify }}()) {
+            $query->andWhere("q.{{ filter }} LIKE :{{ filter }}");
             $query->setParameter("{{ filter }}", "%".$filterObject->get{{ filter|classify }}()."%"); //@todo Find a solution to optimize this !
         }
         {% endfor %}
