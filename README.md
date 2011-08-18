@@ -8,7 +8,9 @@ This package is inspired from fzaninotto/Propel2
 
 ![Preview of list](https://github.com/cedriclombardot/Admingenerator/raw/master/GeneratorBundle/Resources/doc/list-preview.png)
 
-# Run a test
+# Want to run a test ?
+
+use https://github.com/cedriclombardot/AdmingeneratorIpsum
 
 ## Install the bundle in a Symfony2 project src/ dir
 
@@ -92,12 +94,6 @@ Configure the dev environment :
     admingenerator_generator:
         overwrite_if_exists: true
 ```
-          
-And after you can edit the DemoBundle/Resources/config/generator.yml file to see changes
-
-In your browser :
-
-http://admingen.local/app_dev.php/admin-demo/
 
 --------------
 
