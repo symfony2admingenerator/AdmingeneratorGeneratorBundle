@@ -2,6 +2,8 @@
 
 namespace Admingenerator\GeneratorBundle\Guesser;
 
+use Symfony\Component\Form\Extension\Core\ChoiceList\ArrayChoiceList;
+
 use Doctrine\ORM\EntityManager;
 
 class DoctrineORMFieldGuesser
@@ -73,6 +75,9 @@ class DoctrineORMFieldGuesser
              case 'text':
                 return 'text';
                 break;
+             case 'boolean':
+                return 'choice';
+                break;
          }
          
          return $this->getFormType($dbType);
@@ -90,7 +95,20 @@ class DoctrineORMFieldGuesser
     
     public function getFilterOptions($dbType)
     {
-        return array('required' => false);
+        $options = array('required' => false);
+        
+        if('boolean' == $dbType)
+        {
+            $choices = new ArrayChoiceList(array(
+                    0 => 'No',
+                    1 => 'Yes'
+                    ));
+                    
+           $options['choice_list'] = $choices;
+           $options['empty_value'] = 'Yes or No';
+        }
+        
+        return $options;
     }
 
 }

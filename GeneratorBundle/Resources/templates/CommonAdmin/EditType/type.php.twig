@@ -13,7 +13,7 @@ class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
          $builder
         {%- for column in builder.columns %}
 
-            ->add('{{ column.name }}', '{{ column.formType }}', {{ column.formOptions|var_export }})
+            ->add('{{ column.name }}', '{{ column.formType }}', {{ column.formOptions|as_php }})
 
         {%- endfor %};
     }

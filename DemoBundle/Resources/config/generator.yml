@@ -16,7 +16,7 @@ builders:
         delete: ~
   filters: 
     params:
-      display: [ title ]
+      display: [ title, is_published ]
   new: 
     params:
       title: You're creating a new movie
