@@ -4,6 +4,9 @@ This package is a symfony2 admin generator based on YAML conf and twig template
 
 This package is inspired from fzaninotto/Propel2
 
+# In a picture
+
+![Preview of list](https://github.com/cedriclombardot/Admingenerator/raw/master/GeneratorBundle/Resources/doc/list-preview.png)
 
 # Run a test
 
