@@ -39,7 +39,7 @@ interface BuilderInterface
      * set a list of $templateDir elements
      * @param array $templateDirs
      */
-    function setTemplateDirs($templateDirs);
+    function setTemplateDirs(array $templateDirs);
 
     /**
      * @return array $templateDirs
@@ -122,7 +122,7 @@ interface BuilderInterface
 
     /**
      * Write the file on the disk
-     * @param string $$outputDirectory the $outputDirectory
+     * @param string $outputDirectory the $outputDirectory
      */
     function writeOnDisk($outputDirectory);
 

@@ -107,7 +107,7 @@ abstract class BaseBuilder implements BuilderInterface
      * (non-PHPdoc)
      * @see Builder/Admingenerator\GeneratorBundle\Builder.BuilderInterface::setTemplateDirs()
      */
-    public function setTemplateDirs($templateDirs)
+    public function setTemplateDirs(array $templateDirs)
     {
         $this->templateDirectories = $templateDirs;
     }
