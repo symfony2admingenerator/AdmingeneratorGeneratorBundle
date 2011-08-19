@@ -41,7 +41,7 @@ class BaseBuilder extends GenericBaseBuilder
         }
     }
     
-    protected function getFieldGuesser()
+    public function getFieldGuesser()
     {
         return $this->getGenerator()->getFieldGuesser();
     }

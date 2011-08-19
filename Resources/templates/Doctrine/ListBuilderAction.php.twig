@@ -52,12 +52,14 @@ class ListController extends BaseDoctrineController
     protected function processFilters($query)
     {
         $filterObject = $this->getFilters();
+        
+        $queryFilter = $this->get('admingenerator.queryfilter.doctrine');
+        $queryFilter->setQuery($query);
 
         {% for filter in builder.filters.display %}
         
         if(null !== $filterObject->get{{ filter|classify }}()) {
-            $query->andWhere("q.{{ filter }} LIKE :{{ filter }}");
-            $query->setParameter("{{ filter }}", "%".$filterObject->get{{ filter|classify }}()."%"); //@todo Find a solution to optimize this !
+            $queryFilter->add{{ builder.getFieldGuesser().getDbType(model, filter)|classify }}Filter("{{ filter }}", $filterObject->get{{ filter|classify }}());
         }
         {% endfor %}
         

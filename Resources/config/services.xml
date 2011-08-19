@@ -10,6 +10,7 @@
         <parameter key="admingenerator.cache_warmer.class">Admingenerator\GeneratorBundle\CacheWarmer\GeneratorCacheWarmer</parameter>
         <parameter key="admingenerator.finder.class">Admingenerator\GeneratorBundle\CacheWarmer\GeneratorFinder</parameter>
         <parameter key="admingenerator.fieldguesser.doctrine.class">Admingenerator\GeneratorBundle\Guesser\DoctrineORMFieldGuesser</parameter>
+        <parameter key="admingenerator.queryfilter.doctrine.class">Admingenerator\GeneratorBundle\QueryFilter\DoctrineQueryFilter</parameter>
         <parameter key="admingenerator.overwrite_if_exists">false</parameter>
     </parameters>
     
@@ -41,6 +42,10 @@
             <call method="setFieldGuesser">
                 <argument type="service" id="admingenerator.fieldguesser.doctrine" />
             </call>
+        </service>
+        
+        <service id="admingenerator.queryfilter.doctrine"
+            class="%admingenerator.queryfilter.doctrine.class%">
         </service>
         
         <service id="admingenerator.generator.listener"
