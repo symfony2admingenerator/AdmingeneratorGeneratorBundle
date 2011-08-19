@@ -55,7 +55,7 @@ class RoutingLoader extends FileLoader
     public function load($resource, $type = null)
     {
         $collection = new RouteCollection();
-        
+        $resource = str_replace('\\', '/', $resource);
         $namespace = $this->getNamespaceFromResource($resource);
         $bundle_name = $this->getBundleNameFromResource($resource);
         
