@@ -3,11 +3,13 @@
 {{ echo_block("list_row") }}
     {% for column in builder.columns %}
         <td>
+            {{ echo_block('list_td_column_' ~ column.name) }}
             {% if column.dbType == "boolean" %}
                 {{- block('column_boolean') -}}
             {% else %}
                 {{ echo_twig(builder.ModelClass ~ '.' ~ column.getter) }}
             {% endif %}
+            {{ echo_endblock() }}
         </td>
     {% endfor %}
 {{ echo_endblock() }}

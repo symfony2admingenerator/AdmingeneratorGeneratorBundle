@@ -12,9 +12,11 @@
         <ul>
         {% for field in display %}
             <li>
-                {{ echo_twig("form_label(form['" ~ field ~ "'])") }}
-                {{ echo_twig("form_widget(form['" ~ field ~ "'])") }}
-                {{ echo_twig("form_errors(form['" ~ field ~ "'])") }}
+                {{ echo_block("form_" ~ column.name) }}
+                    {{ echo_twig("form_label(form['" ~ field ~ "'])") }}
+                    {{ echo_twig("form_widget(form['" ~ field ~ "'])") }}
+                    {{ echo_twig("form_errors(form['" ~ field ~ "'])") }}
+                {{ echo_endblock() }}
             </li>
         {% endfor %}
             <li>
