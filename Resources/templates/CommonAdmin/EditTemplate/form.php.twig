@@ -12,7 +12,7 @@
         <ul>
         {% for field in display %}
             <li>
-                {{ echo_block("form_" ~ column.name) }}
+                {{ echo_block("form_" ~ field) }}
                     {{ echo_twig("form_label(form['" ~ field ~ "'])") }}
                     {{ echo_twig("form_widget(form['" ~ field ~ "'])") }}
                     {{ echo_twig("form_errors(form['" ~ field ~ "'])") }}
