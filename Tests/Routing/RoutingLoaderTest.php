@@ -3,6 +3,8 @@
 
 namespace Admingenerator\GeneratorBundle\Tests\Routing;
 
+use Symfony\Component\Routing\RouteCollection;
+
 use Admingenerator\GeneratorBundle\Tests\TestCase;
 
 use Symfony\Component\Config\FileLocator;
@@ -17,8 +19,10 @@ class RoutingLoaderTest extends TestCase
         
         $routing = new RoutingLoader(new FileLocator(array()));
         $routes = $routing->load('/host/admingen/src/Admingenerator/DemoBundle/Controller/', 'admingenerated');
+        $this->assertTrue($routes instanceof RouteCollection);
 
         $routing = new RoutingLoader(new FileLocator(array()));
         $routes = $routing->load('c:\admingen\src\Admingenerator\DemoBundle\Controller\\', 'admingenerated');
+        $this->assertTrue($routes instanceof RouteCollection);
     }
 }
