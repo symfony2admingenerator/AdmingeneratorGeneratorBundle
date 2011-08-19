@@ -19,10 +19,10 @@ class RoutingLoaderTest extends TestCase
         
         $routing = new RoutingLoader(new FileLocator(array()));
         $routes = $routing->load('/host/admingen/src/Admingenerator/DemoBundle/Controller/', 'admingenerated');
-        $this->assertTrue($routes instanceof RouteCollection);
+        $this->assertInstanceOf('Symfony\Component\Routing\RouteCollection', $routes);
 
         $routing = new RoutingLoader(new FileLocator(array()));
         $routes = $routing->load('c:\admingen\src\Admingenerator\DemoBundle\Controller\\', 'admingenerated');
-        $this->assertTrue($routes instanceof RouteCollection);
+        $this->assertInstanceOf('Symfony\Component\Routing\RouteCollection', $routes);
     }
 }
