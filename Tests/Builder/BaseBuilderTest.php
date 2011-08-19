@@ -90,6 +90,12 @@ class BaseBuilderTest extends TestCase
         $this->assertEquals('Hello cedric !', file_get_contents(sys_get_temp_dir() . '/test.php'), 'If i change variables on a non existant files code is generated');
     }
     
+    public function testGetModelClass()
+    {
+        $builder = new BaseBuilder();
+        $builder->setVariables(array('model' => 'Admingenerator\DemoBundle\Entity\Movie'));
+        $this->assertEquals('Movie', $builder->getModelClass());
+    }
     
     protected function initBuilder()
     {
@@ -107,4 +113,5 @@ class BaseBuilderTest extends TestCase
         
         return $builder;
     }
+    
 }
