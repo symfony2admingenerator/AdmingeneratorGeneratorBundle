@@ -1,3 +1,4 @@
+{% use "../CommonAdmin/EditTemplate/actions.php.twig" %}
 {% block form %}
 {{ echo_block('form') }}
 <form 
@@ -25,6 +26,9 @@
             </li>
         </ul>
     </fieldset>
+    
+    {{ block("form_actions") }}
+            
 </form>
 {{ echo_endblock() }}
 {% endblock %}

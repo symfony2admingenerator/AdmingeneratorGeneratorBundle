@@ -1,7 +1,7 @@
-{% block list_actions %}
-{{ echo_block("list_actions") }}
+{% block form_actions %}
+{{ echo_block("form_actions") }}
     {% if builder.Actions|length > 0 %}
-     <ul class="actions">
+     <ul class="form_actions actions">
         {% for action in builder.Actions %}
             <li><a class="{{ action.name }}" href="{{ echo_path((action.route ? action.route : bundle_name ~ '_' ~ action.name)) }}">{{ action.label }}</a></li>
         {% endfor %}

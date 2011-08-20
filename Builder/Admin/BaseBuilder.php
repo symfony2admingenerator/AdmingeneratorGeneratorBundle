@@ -6,10 +6,14 @@ use Admingenerator\GeneratorBundle\Builder\BaseBuilder as GenericBaseBuilder;
 
 use Admingenerator\GeneratorBundle\Generator\Column;
 
+use Admingenerator\GeneratorBundle\Generator\Action;
+
 class BaseBuilder extends GenericBaseBuilder
 {
     
     protected $columns;
+    
+    protected $actions;
     
     /**
      * Return a list of columns from list.display
@@ -44,5 +48,31 @@ class BaseBuilder extends GenericBaseBuilder
     public function getFieldGuesser()
     {
         return $this->getGenerator()->getFieldGuesser();
+    }
+    
+    /**
+     * Return a list of action from list.actions
+     * @return array
+     */
+    public function getActions()
+    {
+        if(0 === count($this->actions)) {
+            $this->findActions();
+        }
+
+        return $this->actions;
+    }
+    
+    protected function addAction(Action $action)
+    {
+        $this->actions[$action->getName()] = $action;
+    }
+
+    protected function findActions()
+    {
+        foreach ($this->getVariable('actions', array()) as $actionName => $actionParams) {
+            $action = new Action($actionName);
+            $this->addAction($action);
+        }
     }
 }
