@@ -1,0 +1,7 @@
+safe:        true
+auto:        true
+pygments:    true
+lsi:         true
+markdown:    rdiscount
+paginate:    3
+
