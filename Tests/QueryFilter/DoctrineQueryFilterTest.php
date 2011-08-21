@@ -8,46 +8,36 @@ use Admingenerator\GeneratorBundle\QueryFilter\DoctrineQueryFilter;
 
 class QueryFilterTest extends TestCase
 {
-    protected $_container;
+    protected $queryFilter;
     
     public function setUp()
     {
         parent::setUp();
-        $kernel = new \AppKernel("test", true);
-        $kernel->boot();
-        $this->_container = $kernel->getContainer();
-    }
-    
-    protected function getContainer()
-    {
-        return $this->_container;
+        $this->queryFilter = $this->initQueryFilter();
     }
     
     public function testAddStringFilter()
     {
-        $queryFilter = $this->initQueryFilter();
-        $queryFilter->addStringFilter('title', 'test');
+        $this->queryFilter->addStringFilter('title', 'test');
         
-        $this->assertEquals('SELECT q FROM Admingenerator\GeneratorBundle\Tests\QueryFilter\Entity\Movie q WHERE q.title LIKE :title', $queryFilter->getQuery()->getDql());       
+        $this->assertEquals('SELECT q FROM Admingenerator\GeneratorBundle\Tests\QueryFilter\Entity\Movie q WHERE q.title LIKE :title', $this->queryFilter->getQuery()->getDql());       
     }
     
     public function testAddDefaultFilter()
     {
-        $queryFilter = $this->initQueryFilter();
-        $queryFilter->addDefaultFilter('title', 'test');
+        $this->queryFilter->addDefaultFilter('title', 'test');
         
-        $this->assertEquals('SELECT q FROM Admingenerator\GeneratorBundle\Tests\QueryFilter\Entity\Movie q WHERE q.title = :title', $queryFilter->getQuery()->getDql());       
+        $this->assertEquals('SELECT q FROM Admingenerator\GeneratorBundle\Tests\QueryFilter\Entity\Movie q WHERE q.title = :title', $this->queryFilter->getQuery()->getDql());       
     }
     
     public function testCall()
     {
-        $queryFilter = $this->initQueryFilter();
-        $queryFilter->addFooFilter('title', 'test');
+        $this->queryFilter->addFooFilter('title', 'test');
         
-        $this->assertEquals('SELECT q FROM Admingenerator\GeneratorBundle\Tests\QueryFilter\Entity\Movie q WHERE q.title = :title', $queryFilter->getQuery()->getDql()); 
+        $this->assertEquals('SELECT q FROM Admingenerator\GeneratorBundle\Tests\QueryFilter\Entity\Movie q WHERE q.title = :title', $this->queryFilter->getQuery()->getDql()); 
     }
     
-    public function initQueryFilter()
+    protected function initQueryFilter()
     {
         $query = $this->getContainer()
                     ->get('doctrine')
