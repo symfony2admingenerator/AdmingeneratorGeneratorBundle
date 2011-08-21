@@ -2,6 +2,8 @@
 
 namespace Admingenerator\GeneratorBundle\Guesser;
 
+use Symfony\Component\Locale\Exception\NotImplementedException;
+
 use Symfony\Component\Form\Extension\Core\ChoiceList\ArrayChoiceList;
 
 use Doctrine\ORM\EntityManager;
@@ -10,29 +12,38 @@ class DoctrineORMFieldGuesser
 {
     private $entityManager;
     
-    private $metadata = array();
+    private $metadata;
 
     public function __construct(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
     }
     
-    protected function getMetadatas($class)
+    protected function getMetadatas($class = null)
     {
-        if(isset($this->metadata[$class])) {
-            return $this->metadata[$class];
+        if(isset($this->metadata) || !$class) {
+            return $this->metadata;
         }
         
         if (!$this->entityManager->getConfiguration()->getMetadataDriverImpl()->isTransient($class)) {
-            $this->metadata[$class] = $this->entityManager->getClassMetadata($class);
+            $this->metadata = $this->entityManager->getClassMetadata($class);
         }
         
-        return $this->metadata[$class];
+        return $this->metadata;
     }
     
     public function getDbType($class, $fieldName)
     {
         $metadata = $this->getMetadatas($class);
+        
+        if ($metadata->hasAssociation($fieldName)) {
+            if ($metadata->isSingleValuedAssociation($fieldName)) {
+                return 'entity';
+            } else {
+                return 'collection';
+            }
+        }
+        
         return $metadata->getTypeOfField($fieldName);
     }
     
@@ -66,6 +77,12 @@ class DoctrineORMFieldGuesser
             case 'time':
                 return 'time';
                 break;
+            case 'entity':
+                return 'entity';
+                break;
+            default:
+                throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented');
+                break;
         }
     }
     
@@ -83,17 +100,22 @@ class DoctrineORMFieldGuesser
          return $this->getFormType($dbType);
     }
     
-    public function getFormOptions($dbType)
+    public function getFormOptions($dbType, $columnName)
     {
-        if('boolean' == $dbType)
-        {
+        if ('boolean' == $dbType) {
             return array('required' => false);
+        }
+        
+        if ('entity' == $dbType) {
+            $mapping = $this->getMetadatas()->getAssociationMapping($columnName);
+            
+            return array('em' => 'default', 'class' => $mapping['targetEntity'], 'multiple' => false);
         }
         
         return array();
     }
     
-    public function getFilterOptions($dbType)
+    public function getFilterOptions($dbType, $ColumnName)
     {
         $options = array('required' => false);
         
@@ -107,6 +129,10 @@ class DoctrineORMFieldGuesser
            $options['choice_list'] = $choices;
            $options['empty_value'] = 'Yes or No';
         }
+        
+         if ('entity' == $dbType) {
+             return array_merge($this->getFormOptions($dbType, $ColumnName), $options);
+         }
         
         return $options;
     }

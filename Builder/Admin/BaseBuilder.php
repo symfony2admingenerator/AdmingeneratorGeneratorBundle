@@ -39,7 +39,7 @@ class BaseBuilder extends GenericBaseBuilder
             $column = new Column($columnName);
             $column->setDbType($this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName));
             $column->setFormType($this->getFieldGuesser()->getFormType($column->getDbType()));
-            $column->setFormOptions($this->getFieldGuesser()->getFormOptions($column->getDbType()));
+            $column->setFormOptions($this->getFieldGuesser()->getFormOptions($column->getDbType(), $columnName));
             
             //Set the user parameters
             $this->setUserColumnConfiguration($column);

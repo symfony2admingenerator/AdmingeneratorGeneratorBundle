@@ -11,6 +11,14 @@ class DoctrineQueryFilter extends BaseQueryFilter
         $this->query->setParameter($field, $value);
     }
     
+    public function addBooleanFilter($field, $value)
+    {
+        if ("" !== $value) {
+            $this->query->andWhere(sprintf('q.%s = :%s',$field, $field));
+            $this->query->setParameter($field, $value);
+        }
+    }
+    
     public function addStringFilter($field, $value)
     {
         $this->query->andWhere(sprintf('q.%s LIKE :%s',$field, $field));
