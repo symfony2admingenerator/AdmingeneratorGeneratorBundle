@@ -14,13 +14,17 @@ class Column
 {
     protected $name;
     
-    protected $sort_on;
+    protected $sortOn;
     
     protected $dbType;
     
     protected $formType;
     
     protected $formOptions = array();
+    
+    protected $getter;
+    
+    protected $label;
 
     public function __construct($name)
     {
@@ -34,17 +38,27 @@ class Column
     
     public function getGetter()
     {
-        return Inflector::camelize($this->name);
+        return $this->getter ? $this->getter : Inflector::camelize($this->name);
+    }
+    
+    public function setGetter($getter)
+    {
+        $this->getter = $getter;
     }
 
     public function getLabel()
     {
-        return $this->humanize($this->getName());
+        return $this->label ? $this->label : $this->humanize($this->getName());
+    }
+    
+    public function setLabel($label)
+    {
+        return $this->label = $label;
     }
     
     public function isSortable()
     {
-        return $this->isReal() || $this->sort_on != "";
+        return $this->isReal() || $this->sortOn != "";
     }
     
     public function isReal()
@@ -54,12 +68,12 @@ class Column
     
     public function getSortOn()
     {
-        return $this->sort_on != "" ? $this->sort_on : $this->name;
+        return $this->sortOn != "" ? $this->sortOn : $this->name;
     }
     
     public function setSortOn($sort_on)
     {
-        return $this->sort_on = $sort_on;
+        return $this->sortOn = $sort_on;
     }
     
     private function humanize($text)
@@ -95,6 +109,12 @@ class Column
     public function getFormOptions()
     {
         return $this->formOptions;
+    }
+    
+    public function setOption($option, $value)
+    {
+        $option = Inflector::classify($option);
+        call_user_func_array(array($this, 'set'.$option), array($value));
     }
     
 }

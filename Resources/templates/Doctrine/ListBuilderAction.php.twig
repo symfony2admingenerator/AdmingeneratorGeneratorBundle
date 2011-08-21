@@ -44,9 +44,20 @@ class ListController extends BaseDoctrineController
     
     protected function processSort($query)
     {
-        if($this->getSortColumn()) { //@todo implement join method to sort on undirect columns
-            $query->orderBy('q.'.$this->getSortColumn(), $this->getSortOrder());
+        if($this->getSortColumn()) { 
+            if (!strstr($this->getSortColumn(), '.')) { //direct column
+                $query->orderBy('q.'.$this->getSortColumn(), $this->getSortOrder());
+            } else {
+                list($table, $column) = explode('.', $this->getSortColumn(), 2);
+                $this->addJoinFor($table, $query);
+                $query->orderBy($this->getSortColumn(), $this->getSortOrder());
+            }
         }
+    }
+    
+    protected function addJoinFor($table, $query)
+    {
+        $query->leftJoin('q.'.$table, $table);
     }
     
     protected function processFilters($query)

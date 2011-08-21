@@ -3,6 +3,8 @@
 
 namespace Admingenerator\GeneratorBundle\Tests\Generator;
 
+use Doctrine\Common\Util\Inflector;
+
 use Admingenerator\GeneratorBundle\Tests\TestCase;
 
 use Admingenerator\GeneratorBundle\Generator\Column;
@@ -38,6 +40,31 @@ class ColumnTest extends TestCase
         );
         
         $this->checkColumn($from_to_array, 'getLabel');
+    }
+    
+    public function testSetOption()
+    {
+        $from_to_array = array(
+            'name' => 'Name',
+            'underscored_name' => 'Underscored name',
+        );
+        
+        $options = array(
+            'label' => 'my label',
+            'getter' => 'getFoo',
+            'sort_on' => 'foo',
+            'sortOn' => 'foo',
+            'dbType' => 'text',
+            'formType' => 'choices',
+            'formOptions' => array('foo' => 'bar'),
+        );
+        
+        $column = new Column($from_to_array);
+        
+        foreach($options as $option => $value) {
+            $column->setOption($option, $value);
+            $this->assertEquals($value, call_user_func_array(array($column, 'get'.Inflector::classify($option)), array()));
+        }
     }
     
     protected function checkColumn($from_to_array, $method)

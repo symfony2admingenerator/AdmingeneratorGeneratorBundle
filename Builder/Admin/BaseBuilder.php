@@ -41,7 +41,19 @@ class BaseBuilder extends GenericBaseBuilder
             $column->setFormType($this->getFieldGuesser()->getFormType($column->getDbType()));
             $column->setFormOptions($this->getFieldGuesser()->getFormOptions($column->getDbType()));
             
+            //Set the user parameters
+            $this->setUserColumnConfiguration($column);
+            
             $this->addColumn($column);
+        }
+    }
+    
+    protected function setUserColumnConfiguration(Column $column)
+    {
+        $options = $this->getVariable(sprintf('fields[%s]', $column->getName()),array(), true);
+        
+        foreach ($options as $option => $value) {
+            $column->setOption($option, $value);
         }
     }
     
