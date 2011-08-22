@@ -23,11 +23,6 @@
     
     protected function getFilters()
     {
-        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Filters', new \{{ model }});
-    }
-    
-    protected function getFilterForm()
-    {
-        return $this->createForm(new FiltersType(), $this->getFilters());
+        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Filters', array());
     }
 {% endblock %}

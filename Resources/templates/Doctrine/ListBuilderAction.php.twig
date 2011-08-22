@@ -55,6 +55,23 @@ class ListController extends BaseDoctrineController
         }
     }
     
+    protected function getFilterForm()
+    {
+        $filters = $this->getFilters();
+        
+        {% for filter in builder.filters.display %}
+            {% if 'entity' == builder.getFieldGuesser().getDbType(model, filter) %}
+        
+        if ($filters['{{ filter }}']) {
+             $this->getDoctrine()->getEntityManager()->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array($filters['{{ filter }}']->getId()), array());
+        }
+        
+            {% endif %}
+        {% endfor %}
+        
+        return $this->createForm(new FiltersType(), $this->getFilters());
+    }
+    
     protected function addJoinFor($table, $query)
     {
         $query->leftJoin('q.'.$table, $table);
@@ -69,8 +86,8 @@ class ListController extends BaseDoctrineController
 
         {% for filter in builder.filters.display %}
         
-        if(null !== $filterObject->get{{ filter|classify }}()) {
-            $queryFilter->add{{ builder.getFieldGuesser().getDbType(model, filter)|classify }}Filter("{{ filter }}", $filterObject->get{{ filter|classify }}());
+        if(isset($filterObject['{{ filter }}']) && null !== $filterObject['{{ filter }}']) {
+            $queryFilter->add{{ builder.getFieldGuesser().getDbType(model, filter)|classify }}Filter("{{ filter }}", $filterObject['{{ filter }}']);
         }
         {% endfor %}
         

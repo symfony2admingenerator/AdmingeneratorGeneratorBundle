@@ -112,7 +112,12 @@ class DoctrineORMFieldGuesser
             return array('em' => 'default', 'class' => $mapping['targetEntity'], 'multiple' => false);
         }
         
-        return array();
+        return array('required' => $this->isRequired($columnName));
+    }
+    
+    protected function isRequired($columnName)
+    {
+        return $this->metadata->isNullable($columnName);
     }
     
     public function getFilterOptions($dbType, $ColumnName)
