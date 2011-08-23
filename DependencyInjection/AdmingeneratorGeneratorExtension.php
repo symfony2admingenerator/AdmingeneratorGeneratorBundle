@@ -21,6 +21,10 @@ class AdmingeneratorGeneratorExtension extends Extension
         $config = $processor->processConfiguration($configuration, $configs);
         
         $container->setParameter('admingenerator.overwrite_if_exists', $config['overwrite_if_exists']);
+        
+         $resources = $container->getParameter('twig.form.resources');
+         $resources[] = 'AdmingeneratorGeneratorBundle:Form:fields.html.twig';
+         $container->setParameter('twig.form.resources', $resources);
     }
 
     public function getAlias()

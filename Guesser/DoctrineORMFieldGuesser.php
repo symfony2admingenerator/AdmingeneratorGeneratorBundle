@@ -80,6 +80,9 @@ class DoctrineORMFieldGuesser
             case 'entity':
                 return 'entity';
                 break;
+             case 'collection':
+                return 'doctrine_double_list';
+                break;
             default:
                 throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented');
                 break;
@@ -112,12 +115,22 @@ class DoctrineORMFieldGuesser
             return array('em' => 'default', 'class' => $mapping['targetEntity'], 'multiple' => false);
         }
         
+        if ('collection' == $dbType) {
+            $mapping = $this->getMetadatas()->getAssociationMapping($columnName);
+            
+            return array('em' => 'default', 'class' => $mapping['targetEntity']);
+        }
+        
         return array('required' => $this->isRequired($columnName));
     }
     
-    protected function isRequired($columnName)
+    protected function isRequired($fieldName)
     {
-        return $this->metadata->isNullable($columnName);
+        if(!$this->metadata->hasAssociation($fieldName) || $this->metadata->isSingleValuedAssociation($fieldName)) {
+            return $this->metadata->isNullable($fieldName);
+        }
+        
+        return false;
     }
     
     public function getFilterOptions($dbType, $ColumnName)
