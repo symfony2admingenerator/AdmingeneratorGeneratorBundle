@@ -11,7 +11,8 @@
         <parameter key="admingenerator.finder.class">Admingenerator\GeneratorBundle\CacheWarmer\GeneratorFinder</parameter>
         <parameter key="admingenerator.fieldguesser.doctrine.class">Admingenerator\GeneratorBundle\Guesser\DoctrineORMFieldGuesser</parameter>
         <parameter key="admingenerator.queryfilter.doctrine.class">Admingenerator\GeneratorBundle\QueryFilter\DoctrineQueryFilter</parameter>
-        <parameter key="admingenerator.overwrite_if_exists">false</parameter>
+        <parameter key="form.type_guesser.admingenerator.class">Admingenerator\GeneratorBundle\Validator\ValidatorTypeGuesser</parameter>
+		<parameter key="admingenerator.overwrite_if_exists">false</parameter>
     </parameters>
     
     <services>
@@ -69,6 +70,12 @@
             <tag name="form.type" alias="doctrine_double_list" />
             <argument type="service" id="doctrine" />
         </service>
+		
+		<service id="form.type_guesser.validator.admingenerator" class="%form.type_guesser.admingenerator.class%">
+            <tag name="form.type_guesser" />
+			<argument type="service" id="validator.mapping.class_metadata_factory" />
+        </service>
+
         
         <!-- Warmup -->
         <service id="admingenerator.finder" class="%admingenerator.finder.class%" public="false">
