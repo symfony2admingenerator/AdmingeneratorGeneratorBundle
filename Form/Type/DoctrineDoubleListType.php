@@ -3,6 +3,8 @@
 namespace Admingenerator\GeneratorBundle\Form\Type;
 
 
+use Symfony\Component\Validator\Constraints\ChoiceValidator;
+
 use Symfony\Component\Form\Extension\Core\DataTransformer\ArrayToChoicesTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
@@ -37,23 +39,14 @@ class DoctrineDoubleListType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
          $builder
-                ->addEventSubscriber(new MergeCollectionListener())
-                ->prependClientTransformer(new ArrayToChoicesTransformer($options['choice_list']))
-                ->prependClientTransformer(new EntitiesToArrayTransformer($options['choice_list']))
-                ;  
-            
+               ->prependClientTransformer(new ArrayToChoicesTransformer($options['choice_list']))
+               ->prependClientTransformer(new EntitiesToArrayTransformer($options['choice_list']))
+               ;  
+         
         $this->choices = $options['choice_list']->getChoices();
         
-        $builder->add('selected', 'choice', array(
-            'multiple' => true,
-            'choices' => $this->choices,
-        ));
+        unset($options['choices']);
         
-        $builder->add('unselected', 'choice', array(
-            'multiple' => true,
-            'choices' => $this->choices,
-        ));
-       
     }
     
     
@@ -63,14 +56,12 @@ class DoctrineDoubleListType extends AbstractType
     public function buildView(FormView $view, FormInterface $form)
     {
         $values = $view->get('value');
-        unset($values['selected'], $values['unselected']);
         
         $selecteds = array_flip($values);
         $choices_selected = $choices_unselected = array();
         
         //Rebuilds choices
         foreach($this->choices as $key => $choice) {
-            //var_dump($this->choices );die;
             if (isset($selecteds[$key])) {
                 $choices_selected[$key] = $choice;
             } else {

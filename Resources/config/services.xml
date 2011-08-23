@@ -70,11 +70,6 @@
             <tag name="form.type" alias="doctrine_double_list" />
             <argument type="service" id="doctrine" />
         </service>
-		
-		<service id="form.type_guesser.validator.admingenerator" class="%form.type_guesser.admingenerator.class%">
-            <tag name="form.type_guesser" />
-			<argument type="service" id="validator.mapping.class_metadata_factory" />
-        </service>
 
         
         <!-- Warmup -->
