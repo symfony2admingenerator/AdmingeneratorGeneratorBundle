@@ -4,6 +4,7 @@ namespace Admingenerator\GeneratorBundle\Form\Type;
 
 
 use Symfony\Component\Form\Extension\Core\DataTransformer\ArrayToChoicesTransformer;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityChoiceList;
 
@@ -35,16 +36,11 @@ class DoctrineDoubleListType extends AbstractType
      */
     public function buildForm(FormBuilder $builder, array $options)
     {
-         //$builder->appendClientTransformer(new ArrayToChoicesTransformer());
-        
-       //var_dump($options['choice_list']); 
-     //   die;
-            
          $builder
                 ->addEventSubscriber(new MergeCollectionListener())
                 ->prependClientTransformer(new ArrayToChoicesTransformer($options['choice_list']))
                 ->prependClientTransformer(new EntitiesToArrayTransformer($options['choice_list']))
-                ;   
+                ;  
             
         $this->choices = $options['choice_list']->getChoices();
         
@@ -66,11 +62,15 @@ class DoctrineDoubleListType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form)
     {
-        $selecteds = array_flip($view->get('value'));
+        $values = $view->get('value');
+        unset($values['selected'], $values['unselected']);
+        
+        $selecteds = array_flip($values);
         $choices_selected = $choices_unselected = array();
         
         //Rebuilds choices
         foreach($this->choices as $key => $choice) {
+            //var_dump($this->choices );die;
             if (isset($selecteds[$key])) {
                 $choices_selected[$key] = $choice;
             } else {
