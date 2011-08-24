@@ -35,7 +35,7 @@ class BaseBuilder extends GenericBaseBuilder
 
     protected function findColumns()
     {
-        foreach ($this->getVariable('display') as $columnName) {
+        foreach ($this->getDisplayAsColumns() as $columnName) {
             $column = new Column($columnName);
             $column->setDbType($this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName));
             $column->setFormType($this->getFieldGuesser()->getFormType($column->getDbType()));
@@ -60,6 +60,40 @@ class BaseBuilder extends GenericBaseBuilder
     public function getFieldGuesser()
     {
         return $this->getGenerator()->getFieldGuesser();
+    }
+    
+    /**
+     * Extract from the displays arrays of fieldset to keep only columns
+     * 
+     * @return array
+     */
+    protected function getDisplayAsColumns()
+    {
+        $display = $this->getVariable('display');
+        
+        if (isset($display[0])) {
+            return $display;
+        }
+        
+        //there is fieldsets
+        $return = array();
+            
+        foreach ($display as $fieldset => $fields) {
+           $return = array_merge($return, $fields);
+        }
+
+        return $return;
+    }
+    
+    public function getFieldsets()
+    {
+        $display = $this->getVariable('display');
+        
+        if (isset($display[0])) {
+            $display = array('NONE' => $display);
+        }
+        
+        return $display;
     }
     
     /**

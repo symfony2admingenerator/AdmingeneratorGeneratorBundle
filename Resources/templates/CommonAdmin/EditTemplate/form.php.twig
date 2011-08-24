@@ -1,4 +1,5 @@
 {% use "../CommonAdmin/EditTemplate/actions.php.twig" %}
+{% use "../CommonAdmin/EditTemplate/fieldset.php.twig" %}
 {% block form %}
 {{ echo_block('form') }}
 <form 
@@ -8,25 +9,18 @@
     action="{{ echo_path(bundle_name ~ "_create" ) }}"
 {{ echo_endif() }}
  method="post" {{ echo_twig("form_enctype(form)") }}>
-    <fieldset class="form_block">
-        {{ echo_twig("form_errors(form)") }}
-        <ul>
-        {% for field in display %}
-            <li>
-                {{ echo_block("form_" ~ field) }}
-                    {{ echo_twig("form_label(form['" ~ field ~ "'])") }}
-                    {{ echo_twig("form_widget(form['" ~ field ~ "'])") }}
-                    {{ echo_twig("form_errors(form['" ~ field ~ "'])") }}
-                {{ echo_endblock() }}
-            </li>
-        {% endfor %}
-            <li>
-                 {{ echo_twig("form_rest(form)") }}
-                 <input type="submit" class="submit_button" value="Save" />
-            </li>
-        </ul>
-    </fieldset>
+ 
+    {{ echo_twig("form_errors(form)") }}
     
+    {% for fieldset in builder.fieldsets|keys %}
+        {{- block('form_fieldset') -}}
+    {% endfor %}
+    <ul class="actions">
+        <li>
+             {{ echo_twig("form_rest(form)") }}
+             <input type="submit" class="submit_button" value="Save" />
+        </li>
+    </ul>
     {{ block("form_actions") }}
             
 </form>

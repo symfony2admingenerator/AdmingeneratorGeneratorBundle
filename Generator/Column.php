@@ -27,6 +27,8 @@ class Column
     protected $getter;
     
     protected $label;
+    
+    protected $help;
 
     public function __construct($name)
     {
@@ -56,6 +58,16 @@ class Column
     public function setLabel($label)
     {
         return $this->label = $label;
+    }
+    
+    public function getHelp()
+    {
+        return $this->help;
+    }
+    
+    public function setHelp($help)
+    {
+        return $this->help = $help;
     }
     
     public function isSortable()
