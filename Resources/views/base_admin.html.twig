@@ -39,22 +39,7 @@
                 </div>
                 {% endblock %}
                 {% block menu %}
-                <ul class="menu" id="main_navigation">
-                    <li>
-                        <a href="#" class="sub main">Will use KnpMenuBundle</a>
-                        <ul>
-                            <li class="topline"><a href="#">Navigation Item 1</a></li>
-                            <li class="spacer"><!-- --></li>
-                            <li><a href="#">Navigation Item 2</a></li>
-                            <li class="spacer"><!-- --></li>
-                            <li><a href="#">Navigation Item 3</a></li>
-                            <li class="spacer"><!-- --></li>
-                            <li><a href="#">Navigation Item 4</a></li>
-                            <li class="spacer"><!-- --></li>
-                            <li><a href="#">Navigation Item 5</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                     {{ knp_menu('admin') }}
                 {% endblock %}
             {% endblock %}
         </div>

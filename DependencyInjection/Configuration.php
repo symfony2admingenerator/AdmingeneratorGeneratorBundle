@@ -27,6 +27,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode->children()
                     ->booleanNode('overwrite_if_exists')->defaultFalse()->end()
+                    ->scalarNode('knp_menu_class')->defaultValue("Admingenerator\GeneratorBundle\Menu\DefaultMenu")->end()
                 ->end();
 
         return $treeBuilder;

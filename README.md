@@ -22,7 +22,6 @@ use https://github.com/cedriclombardot/AdmingeneratorIpsum
     git submodule add http://github.com/whiteoctober/Pagerfanta.git vendor/pagerfanta
     git submodule add http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git vendor/bundles/WhiteOctober/PagerfantaBundle
 ```
-
 Register autoload
 
 ```php
@@ -38,6 +37,34 @@ And load in AppKernel
 ```php
    $bundles[] = new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
 ```   
+
+## Install KnpMenuBundle 
+
+```schell
+    git submodule add https://github.com/knplabs/KnpMenuBundle.git vendor/bundles/Knp/Bundle/MenuBundle
+```
+
+Register autoload
+
+```php
+    // app/autoload.php
+    $loader->registerNamespaces(array(
+        'Knp'                       => __DIR__.'/../vendor/bundles'
+    ));
+```
+
+And load in AppKernel 
+
+```php
+   $bundles[] = new Knp\Bundle\MenuBundle\KnpMenuBundle();
+```   
+
+Configure to use twig in config.yml
+
+```yml
+knp_menu:
+    twig: true
+``` 
 
 ## Install the Doctrine2FixtureBundle & create the db
 

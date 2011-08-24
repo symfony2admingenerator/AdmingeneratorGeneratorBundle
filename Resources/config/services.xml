@@ -13,6 +13,7 @@
         <parameter key="admingenerator.queryfilter.doctrine.class">Admingenerator\GeneratorBundle\QueryFilter\DoctrineQueryFilter</parameter>
         <parameter key="form.type_guesser.admingenerator.class">Admingenerator\GeneratorBundle\Validator\ValidatorTypeGuesser</parameter>
 		<parameter key="admingenerator.overwrite_if_exists">false</parameter>
+        <parameter key="knp_menu.admin.class">Admingenerator\GeneratorBundle\Menu\DefaultMenu</parameter>
     </parameters>
     
     <services>
@@ -81,6 +82,13 @@
             <tag name="kernel.cache_warmer" />
             <argument type="service" id="service_container" />
             <argument type="service" id="admingenerator.finder" />
+        </service>
+        
+        <!-- Menu -->
+        <service id="menu.admin" class="%knp_menu.admin.class%" scope="request">
+            <tag name="knp_menu.menu" alias="admin" />
+            <argument type="service" id="request" />
+            <argument type="service" id="router" />
         </service>
     </services>
 </container>
