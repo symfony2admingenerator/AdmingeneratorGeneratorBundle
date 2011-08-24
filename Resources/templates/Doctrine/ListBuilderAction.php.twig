@@ -60,13 +60,15 @@ class ListController extends BaseDoctrineController
         $filters = $this->getFilters();
         
         {% for filter in builder.filters.display %}
-            {% if 'entity' == builder.getFieldGuesser().getDbType(model, filter) %}
+            {% if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) %}
         
         if (isset($filters['{{ filter }}'])) {
              $this->getDoctrine()->getEntityManager()->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array($filters['{{ filter }}']->getId()), array());
         }
         
             {% endif %}
+            
+            
         {% endfor %}
         
         return $this->createForm(new FiltersType(), $this->getFilters());
@@ -84,10 +86,10 @@ class ListController extends BaseDoctrineController
         $queryFilter = $this->get('admingenerator.queryfilter.doctrine');
         $queryFilter->setQuery($query);
 
-        {% for filter in builder.filters.display %}
+        {% for filter in builder.filterColumns %}
         
-        if(isset($filterObject['{{ filter }}']) && null !== $filterObject['{{ filter }}']) {
-            $queryFilter->add{{ builder.getFieldGuesser().getDbType(model, filter)|classify }}Filter("{{ filter }}", $filterObject['{{ filter }}']);
+        if(isset($filterObject['{{ filter.name }}']) && null !== $filterObject['{{ filter.name }}']) {
+            $queryFilter->add{{ filter.dbType|classify }}Filter("{{ filter.filterOn }}", $filterObject['{{ filter.name }}']);
         }
         {% endfor %}
         

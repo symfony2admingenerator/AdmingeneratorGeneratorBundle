@@ -2,6 +2,8 @@
 
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
+use Admingenerator\GeneratorBundle\Generator\Column;
+
 use Admingenerator\GeneratorBundle\Generator\Action;
 
 
@@ -13,6 +15,8 @@ class ListBuilder extends BaseBuilder
 {
     
     protected $object_actions;
+    
+    protected $filter_columns;
     
 
     /**
@@ -32,6 +36,39 @@ class ListBuilder extends BaseBuilder
         return $this->getGenerator()->getFromYaml('builders.filters.params');
     }
     
+    /**
+     * Return a list of action from builders.filters.params
+     * @return array
+     */
+    public function getFilterColumns()
+    {
+        if(0 === count($this->filter_columns)) {
+            $this->findFilterColumns();
+        }
+
+        return $this->filter_columns;
+    }
+    
+    protected function addFilterColumn(Column $column)
+    {
+        $this->filter_columns[$column->getName()] = $column;
+    }
+
+    protected function findFilterColumns()
+    {
+        $filters = $this->getFilters();
+        
+        foreach ($filters['display'] as $columnName) {
+            $column = new Column($columnName);
+            $column->setDbType($this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName));
+            $column->setFormType($this->getFieldGuesser()->getFilterType($column->getDbType()));
+            $column->setFormOptions($this->getFieldGuesser()->getFilterOptions($column->getDbType(), $columnName));
+            
+            //Set the user parameters
+            $this->setUserColumnConfiguration($column);
+            $this->addFilterColumn($column);
+        }
+    }
     
     /**
      * Return a list of action from list.object_actions

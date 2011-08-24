@@ -16,6 +16,8 @@ class Column
     
     protected $sortOn;
     
+    protected $filterOn;
+    
     protected $dbType;
     
     protected $formType;
@@ -74,6 +76,16 @@ class Column
     public function setSortOn($sort_on)
     {
         return $this->sortOn = $sort_on;
+    }
+    
+    public function getFilterOn()
+    {
+        return $this->filterOn != "" ? $this->filterOn : $this->name;
+    }
+    
+    public function setFilterOn($filter_on)
+    {
+        return $this->filterOn = $filter_on;
     }
     
     private function humanize($text)

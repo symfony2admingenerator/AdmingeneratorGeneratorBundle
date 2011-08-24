@@ -98,6 +98,9 @@ class DoctrineORMFieldGuesser
              case 'boolean':
                 return 'choice';
                 break;
+             case 'collection':
+                return 'entity';
+                break; 
          }
          
          return $this->getFormType($dbType);
@@ -150,6 +153,10 @@ class DoctrineORMFieldGuesser
         
          if ('entity' == $dbType) {
              return array_merge($this->getFormOptions($dbType, $ColumnName), $options);
+         }
+         
+        if ('collection' == $dbType) {
+             return array_merge($this->getFormOptions($dbType, $ColumnName), $options, array('multiple'=>false));
          }
         
         return $options;
