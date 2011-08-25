@@ -1,6 +1,7 @@
 {% block index_use %}
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\EditType;
+
 {% endblock %}
 {% block index %}
 
@@ -11,7 +12,7 @@ use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\EditType;
     {
         ${{ builder.ModelClass }} = $this->getObject($id);
         
-        if(!${{ builder.ModelClass }}) {
+        if (!${{ builder.ModelClass }}) {
             throw new NotFoundHttpException("The {{ model }} with id $id can't be found");
         }
         

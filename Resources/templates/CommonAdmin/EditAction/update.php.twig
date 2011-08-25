@@ -9,7 +9,7 @@
     {
         ${{ builder.ModelClass }} = $this->getObject($id);
         
-        if(!${{ builder.ModelClass }}) {
+        if (!${{ builder.ModelClass }}) {
             throw new NotFoundHttpException("The {{ model }} with id $id can't be found");
         }
         

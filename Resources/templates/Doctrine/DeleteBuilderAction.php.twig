@@ -8,7 +8,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class DeleteController extends BaseDoctrineController
 {
-    {{- block('index') -}}
+
+    {{- block('index') }}
     
     protected function process($id)
     {
@@ -18,7 +19,7 @@ class DeleteController extends BaseDoctrineController
              ->getRepository('{{ model }}')
              ->findOneById($id);
         
-        if(!${{ builder.ModelClass }}) {
+        if (!${{ builder.ModelClass }}) {
             throw new \InvalidArgumentException("No {{ model }} found on id : $id");
         }
         
