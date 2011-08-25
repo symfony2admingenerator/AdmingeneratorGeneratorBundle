@@ -3,14 +3,13 @@
 namespace Admingenerator\GeneratorBundle\Twig\Extension;
 
 use Symfony\Component\HttpKernel\KernelInterface;
-use Symfony\Bundle\TwigBundle\Loader\FilesystemLoader;
 
 class EchoExtension extends \Twig_Extension
 {
     protected $loader;
     protected $controller;
 
-    public function __construct(FilesystemLoader $loader)
+    public function __construct(\Twig_LoaderInterface $loader)
     {
         $this->loader = $loader;
     }

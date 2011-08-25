@@ -121,4 +121,24 @@ class BaseBuilder extends GenericBaseBuilder
             $this->addAction($action);
         }
     }
+    
+    /**
+     * Parse a little template with twig for yaml options
+     */
+    public function parseStringWithTwig($template, $options = array())
+    {
+        $loader = new \Twig_Loader_String();
+        $twig = new \Twig_Environment($loader, array(
+            'autoescape' => false,
+            'strict_variables' => true,
+            'debug' => true,
+            'cache' => $this->getGenerator()->getTempDir(),
+        ));
+        $this->addTwigExtensions($twig, $loader);
+        $this->addTwigFilters($twig);
+        
+        $template = $twig->loadTemplate($template);
+        
+        return $template->render($options);
+    }
 }

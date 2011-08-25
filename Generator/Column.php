@@ -144,6 +144,14 @@ class Column
     public function setAddformOptions(array $complementary_options = array())
     {
         foreach ($complementary_options as $option => $value) {
+            if (is_array($value)) {
+                foreach ($value as $k=>$v) { 
+                    if(preg_match('/\.(.+)/i', $k, $matches)) { //enable to call php function to build your form options
+                        $value = call_user_func_array($matches[1], $v);
+                    }
+                }
+            }
+
             $this->formOptions[$option] = $value;
         }
     }

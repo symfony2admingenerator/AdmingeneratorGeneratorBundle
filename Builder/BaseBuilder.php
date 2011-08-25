@@ -292,7 +292,7 @@ abstract class BaseBuilder implements BuilderInterface
 
         return $template->render($variables);
     }
-
+    
     /**
      * (non-PHPdoc)
      * @see Builder/Admingenerator\GeneratorBundle\Builder.BuilderInterface::addTwigFilters()
@@ -313,7 +313,7 @@ abstract class BaseBuilder implements BuilderInterface
      * (non-PHPdoc)
      * @see Builder/Admingenerator\GeneratorBundle\Builder.BuilderInterface::addTwigExtensions()
      */
-    public function addTwigExtensions(\Twig_Environment $twig, FilesystemLoader $loader)
+    public function addTwigExtensions(\Twig_Environment $twig, \Twig_LoaderInterface $loader)
     {
         foreach ($this->twigExtensions as $twigExtensionName) {
             $twigExtension = new $twigExtensionName($loader);
