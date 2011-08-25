@@ -26,7 +26,7 @@ class ListController extends BaseDoctrineController
     
     {{- block('sorter') -}}
     
-    {{- block('filters') -}}
+    {{- block('filters') }}
     
     protected function getQuery()
     {
@@ -59,17 +59,16 @@ class ListController extends BaseDoctrineController
     {
         $filters = $this->getFilters();
         
-        {% for filter in builder.filters.display %}
-            {% if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) %}
+        {%- for filter in builder.filters.display -%}
+            {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
         
         if (isset($filters['{{ filter }}'])) {
              $this->getDoctrine()->getEntityManager()->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array($filters['{{ filter }}']->getId()), array());
         }
         
-            {% endif %}
+            {%- endif %}
             
-            
-        {% endfor %}
+        {% endfor -%}
         
         return $this->createForm(new FiltersType(), $this->getFilters());
     }
@@ -88,7 +87,7 @@ class ListController extends BaseDoctrineController
 
         {% for filter in builder.filterColumns %}
         
-        if(isset($filterObject['{{ filter.name }}']) && null !== $filterObject['{{ filter.name }}']) {
+        if (isset($filterObject['{{ filter.name }}']) && null !== $filterObject['{{ filter.name }}']) {
             $queryFilter->add{{ filter.dbType|classify }}Filter("{{ filter.filterOn }}", $filterObject['{{ filter.name }}']);
         }
         {% endfor %}
