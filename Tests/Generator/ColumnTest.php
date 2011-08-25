@@ -67,6 +67,22 @@ class ColumnTest extends TestCase
         }
     }
     
+    public function testSetAddFormOptionsPhpFunction()
+    {
+        $from_to_array = array(
+            'name' => 'Date',
+            'underscored_name' => 'Underscored name',
+        );
+        $column = new Column($from_to_array);
+        
+        $column->setAddFormOptions(array('years' => array('.range' => array('from' => 1900, 'to' => 1915, 'step'=> 5 ))));
+        
+        $options = $column->getFormOptions();
+        
+        $this->assertEquals(array(1900, 1905, 1910, 1915), $options['years']);
+    }
+    
+    
     protected function checkColumn($from_to_array, $method)
     {
         foreach ($from_to_array as $from => $to) {
