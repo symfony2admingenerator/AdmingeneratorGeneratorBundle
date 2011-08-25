@@ -141,7 +141,7 @@ class Column
         call_user_func_array(array($this, 'set'.$option), array($value));
     }
     
-    public function setAddformOptions(array $complementary_options = array())
+    public function setAddFormOptions(array $complementary_options = array())
     {
         foreach ($complementary_options as $option => $value) {
             if (is_array($value)) {
