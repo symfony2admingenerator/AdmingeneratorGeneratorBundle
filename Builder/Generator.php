@@ -84,9 +84,9 @@ class Generator
         $builder->setGenerator($this);
         $builder->setMustOverwriteIfExists($this->mustOverwriteIfExists);
          
-        $vars = array_merge(
-        $this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array()),
-        $this->getFromYaml('params', array())
+        $vars = array_replace_recursive(
+            $this->getFromYaml('params', array()),
+            $this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array())
         );
          
         $builder->setVariables($vars);

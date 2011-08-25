@@ -31,7 +31,7 @@ class DoctrineQueryFilter extends BaseQueryFilter
             $value = array($value->getId());
         }
         
-        if(strstr($field, '.')) {
+        if (strstr($field, '.')) {
             list($table, $field) = explode('.', $field);
         } else {
             $table = $field;
@@ -43,5 +43,19 @@ class DoctrineQueryFilter extends BaseQueryFilter
         $this->query->andWhere(sprintf('%s.%s IN (:%s)',$table, $field, $table.'_'.$field));
         $this->query->setParameter($table.'_'.$field, $value);
         
+    }
+    
+    public function addDateFilter($field, $value)
+    {
+        if (is_array($value)) {
+            $this->query->andWhere(sprintf('q.%s >= :%s_from',$field, $field ));
+            $this->query->setParameter($field.'_from' , $value['from']->format('Y-m-d'));
+        
+            $this->query->andWhere(sprintf('q.%s <= :%s_to',$field, $field ));
+            $this->query->setParameter($field.'_to' , $value['to']->format('Y-m-d'));
+        } else {
+            $this->query->andWhere(sprintf('q.%s = :%s',$field, $field ));
+            $this->query->setParameter($field, $value->format('Y-m-d'));
+        }
     }
 }

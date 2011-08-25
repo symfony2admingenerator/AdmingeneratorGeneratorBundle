@@ -72,6 +72,9 @@
             <argument type="service" id="doctrine" />
         </service>
 
+        <service id="form.type.date_range" class="Admingenerator\GeneratorBundle\Form\Type\DateRangeType">
+            <tag name="form.type" alias="date_range" />
+        </service>
         
         <!-- Warmup -->
         <service id="admingenerator.finder" class="%admingenerator.finder.class%" public="false">

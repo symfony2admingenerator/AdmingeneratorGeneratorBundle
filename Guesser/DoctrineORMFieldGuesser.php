@@ -98,9 +98,15 @@ class DoctrineORMFieldGuesser
              case 'boolean':
                 return 'choice';
                 break;
+             case 'datetime':
+             case 'vardatetime':
+             case 'datetimetz':
+             case 'date':
+                return 'date_range';
+                break;
              case 'collection':
                 return 'entity';
-                break; 
+                break;        
          }
          
          return $this->getFormType($dbType);
