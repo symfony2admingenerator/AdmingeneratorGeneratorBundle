@@ -20,6 +20,9 @@ class DateRangeType extends AbstractType
     {
          unset($options['years']);
          
+         $options['from']['required'] = $options['required'];
+         $options['to']['required'] = $options['required'];
+         
          $builder
                ->add('from', new DateType(), $options['from'])
                ->add('to', new DateType(), $options['to']);
