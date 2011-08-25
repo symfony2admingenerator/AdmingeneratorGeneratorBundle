@@ -1,10 +1,16 @@
 {% block filters %}
     public function filtersAction()
     {
+        if ($this->get('request')->get('reset')) {
+            $this->setFilters(array());
+            
+            return new RedirectResponse($this->generateUrl("{{ bundle_name }}_list"));
+        }
+
         $form = $this->getFilterForm();
         $form->bindRequest($this->get('request'));
         
-        if($form->isValid()) {
+        if ($form->isValid()) {
             $this->setFilters($form->getClientData());
         }
         
