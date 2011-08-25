@@ -1,10 +1,9 @@
 {% use '../CommonAdmin/title.php.twig' %}
 {% use '../CommonAdmin/EditTemplate/form.php.twig' %}
-
 {{ echo_extends("AdmingeneratorGeneratorBundle::base_admin.html.twig") }}
 
 {{ echo_block("body") }} 
-    {{- block('title') -}}
+    {{- block('title') }}
 
     {{- block('form') -}}
     

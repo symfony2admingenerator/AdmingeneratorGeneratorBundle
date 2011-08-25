@@ -1,28 +1,29 @@
 {% use "../CommonAdmin/EditTemplate/actions.php.twig" %}
 {% use "../CommonAdmin/EditTemplate/fieldset.php.twig" %}
 {% block form %}
-{{ echo_block('form') }}
-<form 
-{{ echo_if(builder.ModelClass ~ ".id") }}
-    action="{{ echo_path(bundle_name ~ "_update", "{ 'id': " ~ builder.ModelClass ~ ".id }" ) }}"
-{{ echo_else() }}
-    action="{{ echo_path(bundle_name ~ "_create" ) }}"
-{{ echo_endif() }}
- method="post" {{ echo_twig("form_enctype(form)") }}>
- 
-    {{ echo_twig("form_errors(form)") }}
-    
-    {% for fieldset in builder.fieldsets|keys %}
-        {{- block('form_fieldset') -}}
-    {% endfor %}
-    <ul class="actions">
-        <li>
-             {{ echo_twig("form_rest(form)") }}
-             <input type="submit" class="submit_button" value="Save" />
-        </li>
-    </ul>
-    {{ block("form_actions") }}
-            
-</form>
-{{ echo_endblock() }}
+
+    {{ echo_block('form') }}
+    <form 
+        {{ echo_if(builder.ModelClass ~ ".id") }}
+            action="{{ echo_path(bundle_name ~ "_update", "{ 'id': " ~ builder.ModelClass ~ ".id }" ) }}"
+        {{ echo_else() }}
+            action="{{ echo_path(bundle_name ~ "_create" ) }}"
+        {{ echo_endif() }}
+        method="post" {{ echo_twig("form_enctype(form)") }}>
+     
+        {{ echo_twig("form_errors(form)") }}
+        
+        {% for fieldset in builder.fieldsets|keys %}
+            {{- block('form_fieldset') }}
+        {% endfor -%}
+        <ul class="actions">
+            <li>
+                 {{ echo_twig("form_rest(form)") }}
+                 <input type="submit" class="submit_button" value="Save" />
+            </li>
+        </ul>
+        
+        {{ block("form_actions") }}
+    </form>
+    {{ echo_endblock() }}
 {% endblock %}

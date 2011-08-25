@@ -1,25 +1,27 @@
 {% block form_fieldset %}
 {{ echo_block("form_fieldset_" ~ fieldset|classify) }}
-<fieldset class="form_block form_fieldset_{{ fieldset|classify }}">
-    {% if "NONE" != fieldset %}
-    <h2>{{ fieldset }}</h2>
-    {% endif %}
-    {% for field in builder.fieldsets[fieldset] %}
+        <fieldset class="form_block form_fieldset_{{ fieldset|classify }}">
+        {% if "NONE" != fieldset %}
+        <h2>{{ fieldset }}</h2>
+        {% endif -%}
+        {% for field in builder.fieldsets[fieldset] %}
     <div class="form_row">
-        <div class="form_field">
-            {{ echo_block("form_" ~ field) }}
-                {{ echo_twig("form_label(form['" ~ field ~ "'])") }}
-                {{ echo_twig("form_widget(form['" ~ field ~ "'])") }}
-                {% if builder.columns[field].help %}
-                <span class="help">
-                    {{ builder.columns[field].help }}
-                </span>
-                {% endif %}
-                {{ echo_twig("form_errors(form['" ~ field ~ "'])") }}
-            {{ echo_endblock() }}
-        </div>
-    </div>
-    {% endfor %}
-</fieldset>
-{{ echo_endblock() }}
+                <div class="form_field">
+                    {{ echo_block("form_" ~ field) }}
+                        {{ echo_twig("form_label(form['" ~ field ~ "'])") }}
+                        {{ echo_twig("form_widget(form['" ~ field ~ "'])") -}}
+                        {% if builder.columns[field].help %}
+                        
+                        <span class="help">
+                            {{ builder.columns[field].help }}
+                        </span>
+                        {% endif -%}
+                        
+                        {{ echo_twig("form_errors(form['" ~ field ~ "'])") }}
+                    {{ echo_endblock() }}
+                </div>
+            </div>
+        {% endfor -%}
+    </fieldset>
+        {{ echo_endblock() }}
 {% endblock %}
