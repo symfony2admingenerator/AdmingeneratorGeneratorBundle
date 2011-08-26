@@ -9,7 +9,8 @@
         {{ echo_for(builder.ModelClass, builder.ModelClass ~ "s" ) }}
         <tr class="list_trow">
             {{- block('list_row') -}}
-            {{- block('list_object_actions') -}}
+            
+            {{- block('list_object_actions') }}
         </tr>
         {{ echo_endfor() }}
         

@@ -12,13 +12,13 @@
 
     <div class="main_content">
         <table>
-            {{- block('list_thead') -}}
-            {{- block('list_tbody') -}}
+            {{ block('list_thead') -}}
+            {{- block('list_tbody') }}
         </table>
         
-        {{- block('list_paginator') -}}
+        {{ block('list_paginator') -}}
         
-        {{- block('list_actions') -}}
+        {{- block('list_actions') }}
     </div>
     <div class="filters">
         <table>
