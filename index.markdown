@@ -79,3 +79,10 @@ builders:
 
 
 We can configure the form classes, the controllers, and generate a specific template, of course linked to your model and your ORM or ODM.
+
+
+###  In pictures ### 
+
+![Preview of list](https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/list-preview.png)
+
+![Preview of edit](https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/edit-preview.png)
