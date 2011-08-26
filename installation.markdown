@@ -39,6 +39,8 @@ git submodule add https://github.com/knplabs/KnpMenuBundle.git vendor/bundles/Kn
 In app/autoload.php
 
 {% highlight php %}
+<?php
+...
 $loader->registerNamespaces(array(
     //Pager
     'WhiteOctober\PagerfantaBundle' => __DIR__.'/../vendor/bundles',
@@ -59,6 +61,7 @@ $loader->registerNamespaces(array(
 In app/AppKernel.php
 
 {% highlight php %}
+<?php
 public function registerBundles()
     {
         $bundles = array(
