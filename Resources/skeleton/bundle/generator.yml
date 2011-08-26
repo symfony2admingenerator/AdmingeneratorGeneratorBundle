@@ -1,0 +1,33 @@
+generator: {{ generator }}
+params:
+  model: {{ namespace }}\Entity\YourModel
+  namespace_prefix: {{ namespace_prefix }}
+  bundle_name: {{ bundle_name }}
+  fields: ~ 
+
+builders:
+  list:
+    params:
+      title: List for {{ bundle_name }}
+      display: [  ]
+      max_per_page: 3
+      actions:
+        new: ~
+      object_actions:
+        edit: ~
+        delete: ~
+  filters:
+      display: [ ]
+  new:
+    params:
+      title: New object for {{ bundle_name }}
+      display: [ ]
+      actions:
+        list: ~
+  edit:
+    params:
+      title: You're editing the object "{% raw %}{{ YourModel.title }}{% endraw %}"
+      display: [ title, release_date ]
+      actions:
+        list: ~
+  delete: ~
