@@ -14,10 +14,10 @@ The [AdmingeneratorIpsum](https://github.com/cedriclombardot/AdmingeneratorIpsum
 This is the installation recommanded if you want to try the bundle in 2 minutes 
 
 {% highlight shell %}
-git clone git://github.com/cedriclombardot/AdmingeneratorIpsum.git
-cd AdmingeneratorIpsum
-./bin/vendors install
-./rebuild.sh
+> git clone git://github.com/cedriclombardot/AdmingeneratorIpsum.git
+> cd AdmingeneratorIpsum
+> ./bin/vendors install
+> ./rebuild.sh
 {% endhighlight %}
 
 ## On a symfony2 project ##
