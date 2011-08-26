@@ -13,7 +13,7 @@ The [AdmingeneratorIpsum](https://github.com/cedriclombardot/AdmingeneratorIpsum
 
 This is the installation recommanded if you want to try the bundle in 2 minutes 
 
-{% highlight shell %}
+{% highlight bash %}
 > git clone git://github.com/cedriclombardot/AdmingeneratorIpsum.git
 > cd AdmingeneratorIpsum
 > ./bin/vendors install
@@ -22,7 +22,7 @@ This is the installation recommanded if you want to try the bundle in 2 minutes
 
 ## On a symfony2 project ##
 
-{% highlight shell %}
+{% highlight bash %}
 git submodule add git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git vendor/bundles/AdmingeneratorGeneratorBundle
 {% endhighlight %}
 
