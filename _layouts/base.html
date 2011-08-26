@@ -10,23 +10,24 @@
     <link rel="stylesheet" type="text/css" media="all" href="css/base_syntax.css" />
     <link rel="stylesheet" type="text/css" media="all" href="css/syntax.css" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <base href="http://cedriclombardot.github.com/AdmingeneratorGeneratorBundle/" />
+    <!--  <base href="http://cedriclombardot.github.com/AdmingeneratorGeneratorBundle/" /> -->
+    <base href="http://localhost:4000/" />
   </head>
   <body>
     <div id="fond">
       <div class="layout">
         <ul class="topmenu">
           <li class="first element">
-            <a class="link" href="about">About</a>
+            <a class="link" href="about.html">About</a>
           </li>
           <li class="element">
-            <a class="link" href="installation">Installation</a>
+            <a class="link" href="installation.html">Installation</a>
           </li>
           <li class="element">
-            <a class="link" href="documentation">Documentation</a>
+            <a class="link" href="documentation.html">Documentation</a>
           </li>
           <li class="last element">
-            <a class="link" href="contribute">Contribute</a>
+            <a class="link" href="contribute.html">Contribute</a>
           </li>
         </ul>
         <div id="banner">
@@ -42,7 +43,7 @@
         <div class="ribbon">
           <a href="https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle" rel="me">Fork me on GitHub</a>
         </div>
-        <div class="content">
+        <div class="content markdown">
           {{ content }}
         </div>
       </div>
