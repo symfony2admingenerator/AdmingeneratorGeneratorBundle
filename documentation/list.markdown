@@ -33,3 +33,15 @@ The display parameter accept the name of the columns from your model.
 
 You can also add columns from one to many relations, for example the producer of the movie.
 In this case, we try to call `__toString` method else if you [parameter the field getter](documentation/fields.html#getter)
+
+## Paginate
+
+You can define the number of elements you want to display per page, the default value is 10.
+
+{% highlight yaml %}
+builders:
+  list:
+    params:
+      max_per_page: 5
+{% endhighlight %}
+
