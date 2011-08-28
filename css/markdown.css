@@ -82,9 +82,9 @@
 .markdown blockquote strong {
   margin: -10px -10px;
   display: block;
-  padding: 10px 0 10px 36px;
-  background: #ddddee url(../images/info.gif) top left no-repeat;
-  background-position: 6px 6px;
+  padding: 10px 0 10px 50px;
+  background: #ddddee url(../images/info.png) top left no-repeat;
+  background-position: 5px 2px;
   letter-spacing: 1px;
 }
 

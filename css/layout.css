@@ -384,3 +384,35 @@ h4 {
     position: relative;
     top: -20px;
     }
+
+.toc {
+float: right;
+width: 200px;
+text-align: left;
+background: #eee;
+border: solid 1px #ccc;
+margin: 30px 0 10px 15px;
+padding: 10px 10px 10px 20px;
+}
+
+.toc li {
+font-size: 11px;
+text-align: left;
+list-style-type: none;
+}
+
+.toc > li:first-child {
+    display: none;
+}
+
+.toc li ul li {
+    margin-left: 10px;
+}
+
+.toc li ul li ul li {
+    margin-left: 20px;
+}
+
+.markdown ul.toc li{ 
+    margin-bottom:0;
+}
