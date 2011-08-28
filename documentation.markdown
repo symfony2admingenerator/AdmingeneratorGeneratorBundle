@@ -13,3 +13,4 @@ title: Documentation
 
 * [Title](documentation/list.html#title)
 * [Display columns](documentation/list.html#display)
+* [Paginate](documentation/list.html#paginate)

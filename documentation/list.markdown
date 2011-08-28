@@ -9,6 +9,13 @@ title: How to configure the list controller ?
 
 This parameter allow you to configure the title displayed on the page. 
 
+{% highlight yaml %}
+builders:
+  list:
+    params:
+      title: List of all movies
+{% endhighlight %}
+
 >**Tip**<br />This field will be parsed by twig so you could use all the power of filters...
 
 ## Display
