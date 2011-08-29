@@ -109,6 +109,17 @@ class BaseBuilder extends GenericBaseBuilder
         return $this->actions;
     }
     
+    protected function setUserActionConfiguration(Action $action)
+    {
+        $options = $this->getVariable(sprintf('actions[%s]', $action->getName()),array(), true);
+        
+        if (null !== $options) {
+            foreach ($options as $option => $value) {
+                $action->setOption($option, $value);
+            }
+        }
+    }
+    
     protected function addAction(Action $action)
     {
         $this->actions[$action->getName()] = $action;
@@ -118,6 +129,9 @@ class BaseBuilder extends GenericBaseBuilder
     {
         foreach ($this->getVariable('actions', array()) as $actionName => $actionParams) {
             $action = new Action($actionName);
+            
+            $this->setUserActionConfiguration($action);
+            
             $this->addAction($action);
         }
     }

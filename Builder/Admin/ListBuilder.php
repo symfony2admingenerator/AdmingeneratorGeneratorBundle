@@ -83,6 +83,17 @@ class ListBuilder extends BaseBuilder
         return $this->object_actions;
     }
     
+    protected function setUserObjectActionConfiguration(Action $action)
+    {
+        $options = $this->getVariable(sprintf('object_actions[%s]', $action->getName()),array(), true);
+
+        if (null !== $options) {
+            foreach ($options as $option => $value) {
+                $action->setOption($option, $value);
+            }
+        }
+    }
+    
     protected function addObjectAction(Action $action)
     {
         $this->object_actions[$action->getName()] = $action;
@@ -92,6 +103,7 @@ class ListBuilder extends BaseBuilder
     {
         foreach ($this->getVariable('object_actions') as $actionName => $actionParams) {
             $action = new Action($actionName);
+            $this->setUserObjectActionConfiguration($action);
             $this->addObjectAction($action);
         }
     }
