@@ -4,8 +4,9 @@
         {% if "NONE" != fieldset %}
         <h2>{{ fieldset }}</h2>
         {% endif -%}
-        {% for field in builder.fieldsets[fieldset] %}
+        {% for rows in builder.fieldsets[fieldset] %}
     <div class="form_row">
+                {% for field in rows %}
                 <div class="form_field">
                     {{ echo_block("form_" ~ field) }}
                         {{ echo_twig("form_label(form['" ~ field ~ "'])") }}
@@ -20,6 +21,7 @@
                         {{ echo_twig("form_errors(form['" ~ field ~ "'])") }}
                     {{ echo_endblock() }}
                 </div>
+                {% endfor -%}
             </div>
         {% endfor -%}
     </fieldset>

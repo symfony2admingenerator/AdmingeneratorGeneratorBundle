@@ -26,8 +26,11 @@ fieldset.form_block
     font-weight: bold
   .form_row
     padding: 7px
-    clear: both
+    clear: left
     .form_field
+      float: left
+      div
+        float: left
       .help 
         color: #777777
       .error
@@ -99,7 +102,11 @@ fieldset.form_block
         width: 5em
         font-size: 1em
       .form_field
+        float: left
         div
+          div
+            float: none
+            clear: left
           label
             font-size: 0.8em
             width: 3em

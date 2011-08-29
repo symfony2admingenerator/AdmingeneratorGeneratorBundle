@@ -78,24 +78,55 @@ class BaseBuilder extends GenericBaseBuilder
         //there is fieldsets
         $return = array();
             
-        foreach ($display as $fieldset => $fields) {
-           $return = array_merge($return, $fields);
+        foreach ($display as $fieldset => $rows_or_fields) {
+           if (!is_array($rows_or_fields[0])) {
+                $return = array_merge($return, $rows_or_fields);
+           } else {
+               foreach ($rows_or_fields as $fields) {
+                   $return = array_merge($return, $fields);
+               }               
+           }
         }
 
         return $return;
     }
     
+    /**
+     * @return array(
+     * 
+     * )
+     * 
+     */
     public function getFieldsets()
     {
         $display = $this->getVariable('display');
-        
+
         if (isset($display[0])) {
             $display = array('NONE' => $display);
+        }
+        
+        foreach ($display as $fieldset => $rows_or_fields) {
+            $display[$fieldset] = $this->getRowsFromFieldset($rows_or_fields);
         }
         
         return $display;
     }
     
+    protected function getRowsFromFieldset(array $rows_or_fields)
+    {
+        if (is_array($rows_or_fields[0])) { //The rows are defined in yaml
+            return $rows_or_fields;
+        }
+        
+        $rows = array();
+        
+        foreach ($rows_or_fields as $field) {
+            $rows[][$field] = $field;
+        }
+        
+        return $rows;
+    }
+
     /**
      * Return a list of action from list.actions
      * @return array
