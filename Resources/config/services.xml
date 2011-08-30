@@ -17,6 +17,7 @@
     </parameters>
     
     <services>
+        <!-- Twig -->
         <service id="twig.extension.admingenerator.echo" class="Admingenerator\GeneratorBundle\Twig\Extension\EchoExtension" public="false">
             <tag name="twig.extension" />
             <argument type="service" id="twig.loader" />
@@ -29,6 +30,7 @@
             </call>
         </service>
         
+        <!-- Doctine -->
         <service id="admingenerator.fieldguesser.doctrine" class="%admingenerator.fieldguesser.doctrine.class%"
             public="false">
             <argument type="service" id="doctrine.orm.entity_manager"></argument>
@@ -50,6 +52,7 @@
             class="%admingenerator.queryfilter.doctrine.class%">
         </service>
         
+        <!-- General -->
         <service id="admingenerator.generator.listener"
             class="Admingenerator\GeneratorBundle\EventListener\ControllerListener">
             <tag name="kernel.event_listener" event="kernel.request"
