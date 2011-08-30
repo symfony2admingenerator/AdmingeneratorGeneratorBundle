@@ -127,8 +127,7 @@ abstract class BaseBuilder implements BuilderInterface
      */
     public function getDefaultTemplateDirs()
     {
-         
-        return array(realpath(dirname(__FILE__).'/../Resources/templates/Doctrine'));
+        return array();
     }
 
     /**

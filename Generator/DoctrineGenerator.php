@@ -34,6 +34,7 @@ class DoctrineGenerator extends Generator
         $generator = new AdminGenerator($this->getGeneratorYml());
         $generator->setFieldGuesser($this->getFieldGuesser());
         $generator->setMustOverwriteIfExists($this->container->getParameter('admingenerator.overwrite_if_exists'));
+        $generator->setTemplateDirs(array(__DIR__.'/../Resources/templates/Doctrine'));
 
         $builders = $generator->getFromYaml('builders',array());
 

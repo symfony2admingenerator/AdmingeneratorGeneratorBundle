@@ -29,6 +29,9 @@ class Generator
     protected $yaml;
     
     protected $mustOverwriteIfExists = false;
+    
+    protected $templateDirectories = array();
+    
 
     /**
      * Init a new generator and automatically define the base of tempDir
@@ -48,6 +51,16 @@ class Generator
     {
         $this->mustOverwriteIfExists = $status;
     }
+    
+    /**
+     * (non-PHPdoc)
+     * @see Builder/Admingenerator\GeneratorBundle\Builder.BuilderInterface::setTemplateDirs()
+     */
+    public function setTemplateDirs(array $templateDirs)
+    {
+        $this->templateDirectories = $templateDirs;
+    }
+    
     
     /**
      * Ensure to remove tempDir
@@ -82,6 +95,7 @@ class Generator
     public function addBuilder(BuilderInterface $builder)
     {
         $builder->setGenerator($this);
+        $builder->setTemplateDirs($this->templateDirectories);
         $builder->setMustOverwriteIfExists($this->mustOverwriteIfExists);
          
         $vars = array_replace_recursive(
