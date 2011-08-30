@@ -1,33 +1,5 @@
-{% use '../CommonAdmin/ListAction/index.php.twig' %}
-{% use '../CommonAdmin/ListAction/pager.php.twig' %}
-{% use '../CommonAdmin/ListAction/sorter.php.twig' %}
-{% use '../CommonAdmin/ListAction/filters.php.twig' %}
-<?php
-
-namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\BaseController;
-
-{{ block('index_use') }}
-
-use Admingenerator\GeneratorBundle\Controller\Doctrine\BaseController as BaseDoctrineController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-
-use Pagerfanta\Pagerfanta;
-use Pagerfanta\Adapter\DoctrineORMAdapter as PagerAdapter;
-
-// these import the "@Template" annotations
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
-class ListController extends BaseDoctrineController
-{
-    {{- block('index') -}}
-    
-    {{- block('pager') -}}
-    
-    {{- block('sorter') -}}
-    
-    {{- block('filters') }}
-    
+{% extends '../CommonAdmin/ListAction/ListBuilderAction.php.twig' %}
+{% block getQuery -%}
     protected function getQuery()
     {
         $query = $this->getDoctrine()
@@ -41,7 +13,9 @@ class ListController extends BaseDoctrineController
 
         return $query->getQuery();
     }
-    
+{% endblock %}
+
+{% block processSort -%}
     protected function processSort($query)
     {
         if($this->getSortColumn()) { 
@@ -54,7 +28,9 @@ class ListController extends BaseDoctrineController
             }
         }
     }
-    
+{% endblock %}
+
+{% block getFilterForm -%}
     protected function getFilterForm()
     {
         $filters = $this->getFilters();
@@ -72,12 +48,16 @@ class ListController extends BaseDoctrineController
         
         return $this->createForm(new FiltersType(), $this->getFilters());
     }
-    
+{% endblock %}
+
+{% block addJoinFor -%}
     protected function addJoinFor($table, $query)
     {
         $query->leftJoin('q.'.$table, $table);
     }
-    
+{% endblock %}
+
+{% block processFilters -%}
     protected function processFilters($query)
     {
         $filterObject = $this->getFilters();
@@ -93,4 +73,4 @@ class ListController extends BaseDoctrineController
         {% endfor %}
         
     }
-}
+{% endblock %}
