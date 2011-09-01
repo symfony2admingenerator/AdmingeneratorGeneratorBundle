@@ -18,7 +18,7 @@ class DoctrineODMQueryFilter extends BaseQueryFilter
     public function addBooleanFilter($field, $value)
     {
         if ("" !== $value) {
-            $this->query->field($field)->equals($value);
+            $this->query->field($field)->equals((boolean) $value);
         }
     }
     
