@@ -26,19 +26,19 @@ class DoctrineODMQueryFilter extends BaseQueryFilter
     {
         if (is_array($value)) {
             if ($value['from'] && !$value['to']) {
-                $this->query->field($field)->lte($value['from']->format('Y-m-d'));
+                $this->query->field($field)->lte($value['from']);
             }
 
             if ($value['to'] && !$value['from']) {
-                $this->query->field($field)->gte($value['to']->format('Y-m-d'));
+                $this->query->field($field)->gte($value['to']);
             }
 
             if ($value['to'] && $value['from']) {
-                $this->query->field($field)->range($value['from']->format('Y-m-d'), $value['to']->format('Y-m-d'));
+                $this->query->field($field)->range($value['from'], $value['to']);
             }
              
         } elseif($value instanceof \DateTime) {
-            $this->query->field($field)->equals($value->format('Y-m-d'));
+            $this->query->field($field)->equals($value);
         }
     }
 
