@@ -2,7 +2,7 @@
 {% block process -%}
     protected function process($id)
     {
-        $dm = $this->getDoctrine()->getDocumentManager();
+        $dm = $this->getDocumentManager();
         
         ${{ builder.ModelClass }} = $dm
              ->getRepository('{{ model }}')
