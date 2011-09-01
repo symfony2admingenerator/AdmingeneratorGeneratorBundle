@@ -4,21 +4,21 @@ namespace Admingenerator\GeneratorBundle\Generator;
 
 use Admingenerator\GeneratorBundle\Builder\Generator as AdminGenerator;
 
-use Admingenerator\GeneratorBundle\Builder\Doctrine\ListBuilderAction;
-use Admingenerator\GeneratorBundle\Builder\Doctrine\ListBuilderTemplate;
-use Admingenerator\GeneratorBundle\Builder\Doctrine\FiltersBuilderType;
+use Admingenerator\GeneratorBundle\Builder\DoctrineODM\ListBuilderAction;
+use Admingenerator\GeneratorBundle\Builder\DoctrineODM\ListBuilderTemplate;
+use Admingenerator\GeneratorBundle\Builder\DoctrineODM\FiltersBuilderType;
 
-use Admingenerator\GeneratorBundle\Builder\Doctrine\DeleteBuilderAction;
+use Admingenerator\GeneratorBundle\Builder\DoctrineODM\DeleteBuilderAction;
 
-use Admingenerator\GeneratorBundle\Builder\Doctrine\EditBuilderAction;
-use Admingenerator\GeneratorBundle\Builder\Doctrine\EditBuilderTemplate;
-use Admingenerator\GeneratorBundle\Builder\Doctrine\EditBuilderType;
+use Admingenerator\GeneratorBundle\Builder\DoctrineODM\EditBuilderAction;
+use Admingenerator\GeneratorBundle\Builder\DoctrineODM\EditBuilderTemplate;
+use Admingenerator\GeneratorBundle\Builder\DoctrineODM\EditBuilderType;
 
-use Admingenerator\GeneratorBundle\Builder\Doctrine\NewBuilderAction;
-use Admingenerator\GeneratorBundle\Builder\Doctrine\NewBuilderTemplate;
-use Admingenerator\GeneratorBundle\Builder\Doctrine\NewBuilderType;
+use Admingenerator\GeneratorBundle\Builder\DoctrineODM\NewBuilderAction;
+use Admingenerator\GeneratorBundle\Builder\DoctrineODM\NewBuilderTemplate;
+use Admingenerator\GeneratorBundle\Builder\DoctrineODM\NewBuilderType;
 
-class DoctrineGenerator extends Generator
+class DoctrineODMGenerator extends Generator
 {
     /**
      * (non-PHPdoc)
@@ -34,9 +34,9 @@ class DoctrineGenerator extends Generator
         $generator = new AdminGenerator($this->getGeneratorYml());
         $generator->setFieldGuesser($this->getFieldGuesser());
         $generator->setMustOverwriteIfExists($this->container->getParameter('admingenerator.overwrite_if_exists'));
-        $generator->setTemplateDirs(array(__DIR__.'/../Resources/templates/Doctrine'));
-        $generator->setBaseController('Admingenerator\GeneratorBundle\Controller\Doctrine\BaseController');
-
+        $generator->setTemplateDirs(array(__DIR__.'/../Resources/templates/DoctrineODM'));
+        $generator->setBaseController('Admingenerator\GeneratorBundle\Controller\DoctrineODM\BaseController');
+        
         $builders = $generator->getFromYaml('builders',array());
 
         if(array_key_exists('list',$builders)) {

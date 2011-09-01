@@ -1,0 +1,78 @@
+{% extends '../CommonAdmin/ListAction/ListBuilderAction.php.twig' %}
+{% block pager_adapter -%}
+use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
+{% endblock %}
+{% block getQuery -%}
+    protected function getQuery()
+    {
+        $query = $this->getDocumentManager()
+                      ->createQueryBuilder('{{ model }}');
+
+        
+        $this->processSort($query); 
+        $this->processFilters($query); 
+
+        return $query;
+    }
+{% endblock %}
+
+{% block processSort -%}
+    protected function processSort($query)
+    {
+        if($this->getSortColumn()) { 
+            if (!strstr($this->getSortColumn(), '.')) { //direct column
+                $query->sort($this->getSortColumn(), $this->getSortOrder());
+            } else {
+                /* TODO FOR MONGO
+                list($table, $column) = explode('.', $this->getSortColumn(), 2);
+                $this->addJoinFor($table, $query);
+                $query->sort($this->getSortColumn(), $this->getSortOrder());*/
+            }
+        }
+    }
+{% endblock %}
+
+{% block getFilterForm -%}
+    protected function getFilterForm()
+    {
+        $filters = $this->getFilters();
+        
+        {%- for filter in builder.filters.display -%}
+            {%- if 'document' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
+        
+        if (isset($filters['{{ filter }}'])) {
+             $this->getDoctrine()->getEntityManager()->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array($filters['{{ filter }}']->getId()), array());
+        }
+        
+            {%- endif %}
+            
+        {% endfor -%}
+        
+        return $this->createForm(new FiltersType(), $this->getFilters());
+    }
+{% endblock %}
+
+{% block addJoinFor -%}
+    protected function addJoinFor($table, $query)
+    {
+        $query->leftJoin('q.'.$table, $table);
+    }
+{% endblock %}
+
+{% block processFilters -%}
+    protected function processFilters($query)
+    {
+        $filterObject = $this->getFilters();
+        
+        $queryFilter = $this->get('admingenerator.queryfilter.doctrine_odm');
+        $queryFilter->setQuery($query);
+
+        {% for filter in builder.filterColumns %}
+        
+        if (isset($filterObject['{{ filter.name }}']) && null !== $filterObject['{{ filter.name }}']) {
+            $queryFilter->add{{ filter.dbType|classify }}Filter("{{ filter.filterOn }}", $filterObject['{{ filter.name }}']);
+        }
+        {% endfor %}
+        
+    }
+{% endblock %}

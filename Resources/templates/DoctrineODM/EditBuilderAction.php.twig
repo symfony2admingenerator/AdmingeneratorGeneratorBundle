@@ -1,0 +1,18 @@
+{% extends '../CommonAdmin/EditAction/EditBuilderAction.php.twig' %}
+{% block getObject -%}
+    protected function getObject($id)
+    {
+        return $this->getDocumentManager()
+                    ->getRepository('{{ model }}')
+                    ->findOneById($id);
+    }
+{% endblock %}
+
+{% block saveObject -%}
+    protected function saveObject(\{{ model }} ${{ builder.ModelClass }})
+    {
+        $dm = $this->getDocumentManager();
+        $dm->persist(${{ builder.ModelClass }});
+        $dm->flush();
+    }
+{% endblock %}

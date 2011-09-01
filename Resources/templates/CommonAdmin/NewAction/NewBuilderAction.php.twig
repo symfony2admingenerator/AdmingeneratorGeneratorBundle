@@ -4,7 +4,7 @@
 
 namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\BaseController;
 
-use Admingenerator\GeneratorBundle\Controller\Doctrine\BaseController as BaseDoctrineController;
+use {{ builder.generator.baseController }} as BaseController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 // these import the "@Template" annotations
@@ -14,7 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 {{- block('create_use') -}}
 
-class NewController extends BaseDoctrineController
+class NewController extends BaseController
 {
     {{- block('index') -}}
     

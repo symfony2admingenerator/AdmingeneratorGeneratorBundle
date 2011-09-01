@@ -1,0 +1,16 @@
+{% extends '../CommonAdmin/NewAction/NewBuilderAction.php.twig' %}
+{% block getNewObject -%}
+    protected function getNewObject()
+    {
+        return new \{{ model }};
+    }
+{% endblock %}
+
+{% block saveObject -%}
+    protected function saveObject(\{{ model }} ${{ builder.ModelClass }})
+    {
+        $em = $this->getDocumentManager();
+        $em->persist(${{ builder.ModelClass }});
+        $em->flush();
+    }
+{% endblock %}

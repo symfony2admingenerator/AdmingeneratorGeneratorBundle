@@ -8,17 +8,19 @@ namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\BaseController;
 
 {{ block('index_use') }}
 
-use Admingenerator\GeneratorBundle\Controller\Doctrine\BaseController as BaseDoctrineController;
+use {{ builder.generator.baseController }} as BaseController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Pagerfanta\Pagerfanta;
+{% block pager_adapter -%}
 use Pagerfanta\Adapter\DoctrineORMAdapter as PagerAdapter;
+{% endblock %}
 
 // these import the "@Template" annotations
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class ListController extends BaseDoctrineController
+class ListController extends BaseController
 {
     {{- block('index') -}}
     

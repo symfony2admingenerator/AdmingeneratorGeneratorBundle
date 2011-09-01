@@ -12,7 +12,7 @@ class EmptyBuilderAction extends BaseBuilder
      * (non-PHPdoc)
      * @see Admingenerator\GeneratorBundle\Builder.BuilderInterface::getDefaultTemplateDirs()
      */
-    public function getDefaultTemplateDirs()
+    public function getTemplateDirs()
     {
         return array(realpath(dirname(__FILE__).'/../../Resources/templates'));
     }

@@ -14,6 +14,10 @@
         <parameter key="form.type_guesser.admingenerator.class">Admingenerator\GeneratorBundle\Validator\ValidatorTypeGuesser</parameter>
 		<parameter key="admingenerator.overwrite_if_exists">false</parameter>
         <parameter key="knp_menu.admin.class">Admingenerator\GeneratorBundle\Menu\DefaultMenu</parameter>
+        
+        <parameter key="admingenerator.doctrine_odm.class">Admingenerator\GeneratorBundle\Generator\DoctrineODMGenerator</parameter>
+        <parameter key="admingenerator.fieldguesser.doctrine_odm.class">Admingenerator\GeneratorBundle\Guesser\DoctrineODMFieldGuesser</parameter>
+        <parameter key="admingenerator.queryfilter.doctrine_odm.class">Admingenerator\GeneratorBundle\QueryFilter\DoctrineODMQueryFilter</parameter>
     </parameters>
     
     <services>
@@ -52,6 +56,28 @@
             class="%admingenerator.queryfilter.doctrine.class%">
         </service>
         
+        <!-- Doctine MongoDB -->
+        <service id="admingenerator.fieldguesser.doctrine_odm" class="%admingenerator.fieldguesser.doctrine_odm.class%"
+            public="false">
+            <argument type="service" id="doctrine.odm.mongodb.document_manager"></argument>
+        </service>
+        
+        <service id="admingenerator.generator.doctrine_odm"
+            class="%admingenerator.doctrine_odm.class%">
+            <argument type="string">%kernel.root_dir%</argument>
+            <argument type="string">%kernel.cache_dir%</argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <call method="setFieldGuesser">
+                <argument type="service" id="admingenerator.fieldguesser.doctrine_odm" />
+            </call>
+        </service>
+        
+        <service id="admingenerator.queryfilter.doctrine_odm"
+            class="%admingenerator.queryfilter.doctrine_odm.class%">
+        </service>
+        
         <!-- General -->
         <service id="admingenerator.generator.listener"
             class="Admingenerator\GeneratorBundle\EventListener\ControllerListener">
@@ -73,6 +99,11 @@
         <service id="form.type.doctrine_double_list" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineDoubleListType">
             <tag name="form.type" alias="doctrine_double_list" />
             <argument type="service" id="doctrine" />
+        </service>
+        
+        <service id="form.type.doctrine_odm_double_list" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineODMDoubleListType">
+            <tag name="form.type" alias="doctrine_odm_double_list" />
+            <argument type="service" id="doctrine.odm.mongodb.document_manager" />
         </service>
 
         <service id="form.type.date_range" class="Admingenerator\GeneratorBundle\Form\Type\DateRangeType">

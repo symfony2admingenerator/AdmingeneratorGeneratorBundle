@@ -63,7 +63,7 @@ class RoutingLoader extends FileLoader
 
             $action = 'index';
             $route_name = $bundle_name.'_'.$controller;
-                        
+                       
             if(isset($datas['controller'])) {
                 $action     = $controller;
                 $controller = $datas['controller'];

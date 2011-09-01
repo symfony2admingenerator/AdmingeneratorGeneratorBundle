@@ -3,10 +3,10 @@
 
 namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\BaseController;
 
-use Admingenerator\GeneratorBundle\Controller\Doctrine\BaseController as BaseDoctrineController;
+use {{ builder.generator.baseController }} as BaseController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class DeleteController extends BaseDoctrineController
+class DeleteController extends BaseController
 {
 
     {{- block('index') }}

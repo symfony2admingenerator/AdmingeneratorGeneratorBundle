@@ -32,6 +32,7 @@ class Generator
     
     protected $templateDirectories = array();
     
+    protected $baseController;
 
     /**
      * Init a new generator and automatically define the base of tempDir
@@ -177,5 +178,15 @@ class Generator
     public function getFieldGuesser()
     {
         return $this->fieldGuesser;
+    }
+    
+    public function setBaseController($baseController)
+    {
+        $this->baseController = $baseController;
+    }
+    
+    public function getBaseController()
+    {
+        return $this->baseController;
     }
 }
