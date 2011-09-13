@@ -13,7 +13,7 @@
         <parameter key="admingenerator.queryfilter.doctrine.class">Admingenerator\GeneratorBundle\QueryFilter\DoctrineQueryFilter</parameter>
         <parameter key="form.type_guesser.admingenerator.class">Admingenerator\GeneratorBundle\Validator\ValidatorTypeGuesser</parameter>
 		<parameter key="admingenerator.overwrite_if_exists">false</parameter>
-        <parameter key="knp_menu.admin.class">Admingenerator\GeneratorBundle\Menu\DefaultMenu</parameter>
+        <parameter key="admingeneretor.menu_builder.class">Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder</parameter>
         
         <parameter key="admingenerator.doctrine_odm.class">Admingenerator\GeneratorBundle\Generator\DoctrineODMGenerator</parameter>
         <parameter key="admingenerator.fieldguesser.doctrine_odm.class">Admingenerator\GeneratorBundle\Guesser\DoctrineODMFieldGuesser</parameter>
@@ -122,10 +122,17 @@
         </service>
         
         <!-- Menu -->
-        <service id="menu.admin" class="%knp_menu.admin.class%" scope="request">
+        <service id="admingeneretor.menu_builder" class="%admingeneretor.menu_builder.class%">
+            <tag name="knp_menu.menu" alias="admin" />
+            <argument type="service" id="knp_menu.factory" />
+        </service>
+        
+        <service id="admingeneretor.menu.admin" class="%admingeneretor.menu_builder.class%"
+             factory-service="admingeneretor.menu_builder"
+             factory-method="createAdminMenu"
+             scope="request">
             <tag name="knp_menu.menu" alias="admin" />
             <argument type="service" id="request" />
-            <argument type="service" id="router" />
         </service>
     </services>
 </container>

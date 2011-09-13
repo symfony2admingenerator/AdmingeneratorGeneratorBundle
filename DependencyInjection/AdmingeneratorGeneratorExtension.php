@@ -21,7 +21,7 @@ class AdmingeneratorGeneratorExtension extends Extension
         $config = $processor->processConfiguration($configuration, $configs);
         
         $container->setParameter('admingenerator.overwrite_if_exists', $config['overwrite_if_exists']);
-        $container->setParameter('knp_menu.admin.class', $config['knp_menu_class']);
+        $container->setParameter('admingeneretor.menu_builder.class', $config['knp_menu_class']);
         
         $resources = $container->getParameter('twig.form.resources');
         $resources[] = 'AdmingeneratorGeneratorBundle:Form:fields.html.twig';
