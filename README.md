@@ -42,6 +42,7 @@ And load in AppKernel
 
 ```schell
     git submodule add https://github.com/knplabs/KnpMenuBundle.git vendor/bundles/Knp/Bundle/MenuBundle
+    git submodule add https://github.com/knplabs/KnpMenu.git vendor/KnpMenu
 ```
 
 Register autoload
@@ -49,7 +50,8 @@ Register autoload
 ```php
     // app/autoload.php
     $loader->registerNamespaces(array(
-        'Knp'                       => __DIR__.'/../vendor/bundles'
+        'Knp'                       => __DIR__.'/../vendor/bundles',
+        'Knp\Menu'                  => __DIR__.'/../vendor/KnpMenu/src'
     ));
 ```
 
