@@ -52,7 +52,7 @@ class GeneratorCacheWarmer implements CacheWarmerInterface
      */
     public function isOptional()
     {
-        return false;
+        return true;
     }
     
     protected function buildFromYaml($file)

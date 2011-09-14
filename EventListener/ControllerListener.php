@@ -36,10 +36,11 @@ class ControllerListener
                     $generator = $this->getGenerator($generatorYaml);
                     $generator->setGeneratorYml($generatorYaml);
                     $generator->build();
+                    
                 }
             } catch (NotAdminGeneratedException $e) {
                 //Lets the word running this is not an admin generated module
-            }
+            } 
         }
     }
     
@@ -61,7 +62,7 @@ class ControllerListener
         $finder->files()
                ->name('generator.yml');
                
-        $namespace_directory = realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$base);
+        $namespace_directory = realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$base.'/'.$bundle);
         
         if (is_dir($namespace_directory)) {
             $finder->in($namespace_directory);
