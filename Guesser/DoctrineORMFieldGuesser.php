@@ -13,6 +13,8 @@ class DoctrineORMFieldGuesser
     private $entityManager;
     
     private $metadata;
+    
+    private static $current_class;
 
     public function __construct(EntityManager $entityManager)
     {
@@ -21,15 +23,19 @@ class DoctrineORMFieldGuesser
     
     protected function getMetadatas($class = null)
     {
-        if(isset($this->metadata) || !$class) {
-            return $this->metadata;
+        if($class) {
+            self::$current_class = $class;
+        }
+
+        if(isset($this->metadata[self::$current_class]) || !$class) {
+            return $this->metadata[self::$current_class];
         }
         
         if (!$this->entityManager->getConfiguration()->getMetadataDriverImpl()->isTransient($class)) {
-            $this->metadata = $this->entityManager->getClassMetadata($class);
+            $this->metadata[self::$current_class] = $this->entityManager->getClassMetadata($class);
         }
         
-        return $this->metadata;
+        return $this->metadata[self::$current_class];
     }
     
     public function getDbType($class, $fieldName)
@@ -135,8 +141,8 @@ class DoctrineORMFieldGuesser
     
     protected function isRequired($fieldName)
     {
-        if(!$this->metadata->hasAssociation($fieldName) || $this->metadata->isSingleValuedAssociation($fieldName)) {
-            return $this->metadata->isNullable($fieldName);
+        if(!$this->getMetadatas()->hasAssociation($fieldName) || $this->getMetadatas()->isSingleValuedAssociation($fieldName)) {
+            return $this->getMetadatas()->isNullable($fieldName);
         }
         
         return false;
