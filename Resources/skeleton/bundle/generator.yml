@@ -17,6 +17,7 @@ builders:
         edit: ~
         delete: ~
   filters:
+    params:
       display: [ ]
   new:
     params:
