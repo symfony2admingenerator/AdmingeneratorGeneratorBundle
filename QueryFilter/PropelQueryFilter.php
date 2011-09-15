@@ -22,6 +22,12 @@ class PropelQueryFilter extends BaseQueryFilter
         $this->query->filterBy($field, '%'.$value.'%', \Criteria::LIKE);
     }
 
+    public function addModelFilter($field, $value)
+    {
+        $method = 'filterBy'.$field;
+        call_user_func_array(array($this->query, $method), array($value));
+    }
+    
     /*
      * @todo convert for propel
      * public function addCollectionFilter($field, $value)

@@ -2,11 +2,12 @@
 
 namespace Admingenerator\GeneratorBundle\Guesser;
 
+use Doctrine\Common\Util\Inflector;
+
 use Symfony\Component\Locale\Exception\NotImplementedException;
 
 use Symfony\Component\Form\Extension\Core\ChoiceList\ArrayChoiceList;
 
-use Doctrine\ORM\EntityManager;
 
 class PropelORMFieldGuesser
 {
@@ -29,17 +30,26 @@ class PropelORMFieldGuesser
     
     public function getDbType($class, $fieldName)
     {
+        if ( $relation = $this->getRelation($fieldName, $class)) {
+            return \RelationMap::MANY_TO_ONE === $relation->getType() ? 'model' : 'collection';
+        }
+        
+        return $this->getColumn($class, $fieldName)  ? $this->getColumn($class, $fieldName)->getType() : 'model';
+    }
+    
+    protected function getRelation($fieldName, $class = null)
+    {
         $table = $this->getMetadatas($class);
         
         foreach ($table->getRelations() as $relation) {
             if (in_array($relation->getType(), array(\RelationMap::MANY_TO_ONE, \RelationMap::ONE_TO_MANY))) {
-                if ($fieldName == $relation->getForeignTable()->getName()) {
-                    return \RelationMap::MANY_TO_ONE === $relation->getType() ? 'model' : 'collection';
+                if (Inflector::classify($fieldName) == $relation->getName()) {
+                    return $relation;
                 }
             }
         }
         
-        return $this->getColumn($class, $fieldName)  ? $this->getColumn($class, $fieldName)->getType() : 'model';
+        return false;
     }
     
     public function getPhpName($class, $fieldName)
@@ -120,13 +130,13 @@ class PropelORMFieldGuesser
         if (\PropelColumnTypes::BOOLEAN == $dbType || \PropelColumnTypes::BOOLEAN_EMU == $dbType) {
             return array('required' => false);
         }
-        /*
-        if ('model' == $dbType) {
-            $mapping = $this->getMetadatas()->getAssociationMapping($columnName);
-            
-            return array('em' => 'default', 'class' => $mapping['targetEntity'], 'multiple' => false);
-        }
         
+        if ('model' == $dbType) {
+            if ($relation = $this->getRelation($columnName)) {
+                return array('class' => $relation->getForeignTable()->getClassname(), 'multiple' => false);
+            } 
+        }
+        /*
         if ('collection' == $dbType) {
             $mapping = $this->getMetadatas()->getAssociationMapping($columnName);
             
