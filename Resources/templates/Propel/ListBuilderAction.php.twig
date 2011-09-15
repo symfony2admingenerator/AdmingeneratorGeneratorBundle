@@ -5,7 +5,7 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
 {% block getQuery -%}
     protected function getQuery()
     {
-        $query = \{{ model }}Query::create('q');
+        $query = \{{ model }}Query::create();
         
         $this->processSort($query); 
         $this->processFilters($query); 
@@ -19,7 +19,7 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
     {
         if($this->getSortColumn()) { 
             if (!strstr($this->getSortColumn(), '.')) { //direct column
-                $query->orderBy('q.'.$this->getSortColumn(), $this->getSortOrder());
+                $query->orderBy($this->getSortColumn(), $this->getSortOrder());
             } else {
                 list($table, $column) = explode('.', $this->getSortColumn(), 2);
                 $this->addJoinFor($table, $query);
@@ -41,7 +41,7 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
 {% block addJoinFor -%}
     protected function addJoinFor($table, $query)
     {
-        $query->leftJoin('q.'.$table, $table);
+        $query->leftJoin($table);
     }
 {% endblock %}
 
