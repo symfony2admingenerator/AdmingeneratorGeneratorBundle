@@ -6,7 +6,7 @@
         {% for field in builder.filters.display %}
          <div class="form_row">
              <div class="form_field">
-                {{ echo_twig("form_label(form['" ~ field ~ "'])") }}
+                {{ echo_twig("form_label(form['" ~ field ~ "'], '" ~ builder.FilterColumns[field].label ~ "' )") }}
                 {{ echo_twig("form_widget(form['" ~ field ~ "'])") }}
                 {{ echo_twig("form_errors(form['" ~ field ~ "'])") }}
             </div>
