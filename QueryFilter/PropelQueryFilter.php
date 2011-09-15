@@ -28,9 +28,7 @@ class PropelQueryFilter extends BaseQueryFilter
         call_user_func_array(array($this->query, $method), array($value));
     }
     
-    /*
-     * @todo convert for propel
-     * public function addCollectionFilter($field, $value)
+    public function addCollectionFilter($field, $value)
     {
         if (!is_array($value)) {
             $value = array($value->getId());
@@ -40,15 +38,14 @@ class PropelQueryFilter extends BaseQueryFilter
             list($table, $field) = explode('.', $field);
         } else {
             $table = $field;
-            $field = $id;
+            $field = 'id';
         }
 
-        $this->query->leftJoin('q.'.$table, $table);
-        $this->query->groupBy('q.id');
-        $this->query->andWhere(sprintf('%s.%s IN (:%s)',$table, $field, $table.'_'.$field));
-        $this->query->setParameter($table.'_'.$field, $value);
-
-    }*/
+        $subquery = call_user_func_array(array($this->query, 'use'.$table.'Query'), array($table, \Criteria::INNER_JOIN));
+        $subquery->filterBy($field, $value, \Criteria::IN)
+                 ->endUse()
+                 ->groupById();
+    }
 
     public function addDateFilter($field, $value)
     {

@@ -136,12 +136,12 @@ class PropelORMFieldGuesser
                 return array('class' => $relation->getForeignTable()->getClassname(), 'multiple' => false);
             } 
         }
-        /*
+        
         if ('collection' == $dbType) {
-            $mapping = $this->getMetadatas()->getAssociationMapping($columnName);
-            
-            return array('em' => 'default', 'class' => $mapping['targetEntity']);
-        }*/
+            if ($relation = $this->getRelation($columnName)) {
+                return array('class' => $relation->getForeignTable()->getClassname(), 'multiple' => true);
+            } 
+        }
         
         return array('required' => $this->isRequired($columnName));
     }
