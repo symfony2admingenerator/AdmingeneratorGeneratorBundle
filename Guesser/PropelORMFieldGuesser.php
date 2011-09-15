@@ -42,6 +42,16 @@ class PropelORMFieldGuesser
         return $this->getColumn($class, $fieldName)  ? $this->getColumn($class, $fieldName)->getType() : 'model';
     }
     
+    public function getPhpName($class, $fieldName)
+    {
+        $column = $this->getColumn($class, $fieldName);
+        
+        if ($column) {
+            
+            return $column->getPhpName();
+        }
+    }
+    
     public function getFormType($dbType)
     {
         switch($dbType) {
@@ -139,7 +149,7 @@ class PropelORMFieldGuesser
     {
         $options = array('required' => false);
         
-        if('boolean' == $dbType)
+        if(\PropelColumnTypes::BOOLEAN == $dbType || \PropelColumnTypes::BOOLEAN_EMU == $dbType)
         {
             $choices = new ArrayChoiceList(array(
                     0 => 'No',

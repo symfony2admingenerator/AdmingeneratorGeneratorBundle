@@ -7,25 +7,24 @@ class PropelQueryFilter extends BaseQueryFilter
 
     public function addDefaultFilter($field, $value)
     {
-        $this->query->andWhere(sprintf('q.%s = :%s',$field, $field));
-        $this->query->setParameter($field, $value);
+        $this->query->filterBy($field, $value);
     }
 
     public function addBooleanFilter($field, $value)
     {
         if ("" !== $value) {
-            $this->query->andWhere(sprintf('q.%s = :%s',$field, $field));
-            $this->query->setParameter($field, $value);
+            $this->query->filterBy($field, $value);
         }
     }
 
-    public function addStringFilter($field, $value)
+    public function addVarcharFilter($field, $value)
     {
-        $this->query->andWhere(sprintf('q.%s LIKE :%s',$field, $field));
-        $this->query->setParameter($field, '%'.$value.'%');
+        $this->query->filterBy($field, '%'.$value.'%', \Criteria::LIKE);
     }
 
-    public function addCollectionFilter($field, $value)
+    /*
+     * @todo convert for propel
+     * public function addCollectionFilter($field, $value)
     {
         if (!is_array($value)) {
             $value = array($value->getId());
@@ -43,24 +42,28 @@ class PropelQueryFilter extends BaseQueryFilter
         $this->query->andWhere(sprintf('%s.%s IN (:%s)',$table, $field, $table.'_'.$field));
         $this->query->setParameter($table.'_'.$field, $value);
 
-    }
+    }*/
 
     public function addDateFilter($field, $value)
     {
         if (is_array($value)) {
+            $filters = array();
+            
             if ($value['from']) {
-                $this->query->andWhere(sprintf('q.%s >= :%s_from',$field, $field ));
-                $this->query->setParameter($field.'_from' , $value['from']->format('Y-m-d'));
+                $filters['min'] = $value['from']->format('Y-m-d');
             }
 
             if ($value['to']) {
-                $this->query->andWhere(sprintf('q.%s <= :%s_to',$field, $field ));
-                $this->query->setParameter($field.'_to' , $value['to']->format('Y-m-d'));
+                $filters['to'] = $value['to']->format('Y-m-d');
             }
 
+            if (count($filters) > 0) {
+                $method = 'filterBy'.$field;
+                call_user_func_array(array($this->query, $method), array($filters));
+            }  
+            
         } elseif($value instanceof \DateTime) {
-            $this->query->andWhere(sprintf('q.%s = :%s',$field, $field ));
-            $this->query->setParameter($field, $value->format('Y-m-d'));
+            $this->query->filterBy($field, $value->format('Y-m-d'));
         }
     }
 }

@@ -56,7 +56,7 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
         {% for filter in builder.filterColumns %}
         
         if (isset($filterObject['{{ filter.name }}']) && null !== $filterObject['{{ filter.name }}']) {
-            $queryFilter->add{{ filter.dbType|classify }}Filter("{{ filter.filterOn }}", $filterObject['{{ filter.name }}']);
+            $queryFilter->add{{ filter.dbType|lower|classify }}Filter("{{ filter.filterOn }}", $filterObject['{{ filter.name }}']);
         }
         {% endfor %}
         
