@@ -5,9 +5,9 @@
     {% for column in builder.columns %}
             <td>
                     {{ echo_block('list_td_column_' ~ column.name) -}}
-                    {%- if column.dbType == "boolean" -%}
+                    {%- if column.dbType|lower == "boolean" -%}
                         {{- block('column_boolean') -}}
-                    {%- elseif column.dbType == "date" -%}
+                    {%- elseif column.dbType|lower == "date" -%}
                         {{- block('column_date') -}}
                     {%- else -%}
                         {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter) -}}
