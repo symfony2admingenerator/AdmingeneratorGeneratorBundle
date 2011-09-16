@@ -34,7 +34,7 @@ class PropelORMFieldGuesser
             return \RelationMap::MANY_TO_ONE === $relation->getType() ? 'model' : 'collection';
         }
         
-        return $this->getColumn($class, $fieldName)  ? $this->getColumn($class, $fieldName)->getType() : 'model';
+        return $this->getColumn($class, $fieldName)  ? $this->getColumn($class, $fieldName)->getType() : 'VARCHAR';
     }
     
     protected function getRelation($fieldName, $class = null)
@@ -42,10 +42,8 @@ class PropelORMFieldGuesser
         $table = $this->getMetadatas($class);
         
         foreach ($table->getRelations() as $relation) {
-            if (in_array($relation->getType(), array(\RelationMap::MANY_TO_ONE, \RelationMap::ONE_TO_MANY))) {
-                if (Inflector::classify($fieldName) == $relation->getName()) {
-                    return $relation;
-                }
+            if (Inflector::classify($fieldName) == $relation->getName()) {
+                return $relation;
             }
         }
         
@@ -98,7 +96,7 @@ class PropelORMFieldGuesser
             case 'model':
                 return 'model';
             case 'collection':
-                return 'doctrine_double_list';
+                return 'propel_double_list';
             default:
                 throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented');
         }
@@ -132,15 +130,25 @@ class PropelORMFieldGuesser
         }
         
         if ('model' == $dbType) {
-            if ($relation = $this->getRelation($columnName)) {
-                return array('class' => $relation->getForeignTable()->getClassname(), 'multiple' => false);
-            } 
+            $relation = $this->getRelation($columnName);
+            if ($relation) {
+                if (\RelationMap::MANY_TO_ONE === $relation->getType()) {
+                    return array('class' => $relation->getForeignTable()->getClassname(), 'multiple' => false);
+                } else { // Many to many
+                    return array('class' => $relation->getLocalTable()->getClassname(), 'multiple' => false);
+                }
+            }
         }
         
         if ('collection' == $dbType) {
-            if ($relation = $this->getRelation($columnName)) {
-                return array('class' => $relation->getForeignTable()->getClassname(), 'multiple' => true);
-            } 
+            $relation = $this->getRelation($columnName);
+            if ($relation) {
+                if (\RelationMap::MANY_TO_ONE === $relation->getType()) {
+                    return array('class' => $relation->getForeignTable()->getClassname());
+                } else { // Many to many
+                    return array('class' => $relation->getLocalTable()->getClassname());
+                }
+            }
         }
         
         return array('required' => $this->isRequired($columnName));

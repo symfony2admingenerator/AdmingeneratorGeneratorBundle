@@ -8,31 +8,22 @@ use Symfony\Component\Validator\Constraints\ChoiceValidator;
 use Symfony\Component\Form\Extension\Core\DataTransformer\ArrayToChoicesTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityChoiceList;
-
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Propel\PropelBundle\Form\ChoiceList\ModelChoiceList;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 
-use Symfony\Bridge\Doctrine\Form\EventListener\MergeCollectionListener;
-use Symfony\Bridge\Doctrine\Form\DataTransformer\EntitiesToArrayTransformer;
-use Symfony\Bridge\Doctrine\Form\DataTransformer\EntityToIdTransformer;
+use Propel\PropelBundle\Form\EventListener\MergeCollectionListener;
+use Propel\PropelBundle\Form\DataTransformer\ModelsToArrayTransformer;
+use Propel\PropelBundle\Form\DataTransformer\ModelToIdTransformer;
 
 class PropelDoubleListType extends AbstractType
 {
 
-    protected $registry;
-    
     protected $choices;
 
-    public function __construct(RegistryInterface $registry)
-    {
-        $this->registry = $registry;
-    }
-    
     /**
      * {@inheritdoc}
      */
@@ -40,7 +31,7 @@ class PropelDoubleListType extends AbstractType
     {
          $builder
                ->prependClientTransformer(new ArrayToChoicesTransformer($options['choice_list']))
-               ->prependClientTransformer(new EntitiesToArrayTransformer($options['choice_list']))
+               ->prependClientTransformer(new ModelsToArrayTransformer($options['choice_list']))
                ;  
          
         $this->choices = $options['choice_list']->getChoices();
@@ -56,7 +47,7 @@ class PropelDoubleListType extends AbstractType
     public function buildView(FormView $view, FormInterface $form)
     {
         $values = $view->get('value');
-        
+
         $selecteds = array_flip($values);
         $choices_selected = $choices_unselected = array();
         
@@ -81,22 +72,20 @@ class PropelDoubleListType extends AbstractType
     public function getDefaultOptions(array $options)
     {
         $defaultOptions = array(
-            'em'                => null,
             'class'             => null,
             'property'          => null,
-            'query_builder'     => null,
             'choices'           => array(),
+            'query_object'      => null,
         );
 
         $options = array_replace($defaultOptions, $options);
 
         if (!isset($options['choice_list'])) {
-            $defaultOptions['choice_list'] = new EntityChoiceList(
-                $this->registry->getEntityManager($options['em']),
+            $defaultOptions['choice_list'] = new ModelChoiceList(
                 $options['class'],
                 $options['property'],
-                $options['query_builder'],
-                $options['choices']
+                $options['choices'],
+                $options['query_object']
             );
         }
 
@@ -105,6 +94,6 @@ class PropelDoubleListType extends AbstractType
     
     public function getName()
     {
-        return 'doctrine_double_list';
+        return 'propel_double_list';
     }
 }
