@@ -4,6 +4,23 @@ This package is a symfony2 admin generator based on YAML conf and twig template
 
 This package is inspired from fzaninotto/Propel2
 
+It actually support :
+
+* Doctrine ORM
+* Doctine ODM
+* Propel
+
+With allways almost same features : 
+
+* A yaml to configure create/edit/delete/list
+* Manage of releation one to one, one to many, many to one and **many to many**
+* Easy edit of form changing properties of fields in the yaml. 
+* Configure fieldset
+* Configure more that one field per line
+* Change the database column you want to sortOn or filterOn for a field in list
+* A complete admin design
+* ...
+
 # In pictures
 
 ![Preview of list](https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/list-preview.png)
