@@ -62,7 +62,7 @@ class RoutingLoader extends FileLoader
         foreach ($this->actions as $controller => $datas) {
 
             $action = 'index';
-            $route_name = $bundle_name.'_'.$controller;
+            $route_name = str_replace('/','_',$namespace).'_'.$bundle_name.'_'.$controller;
                        
             if(isset($datas['controller'])) {
                 $action     = $controller;

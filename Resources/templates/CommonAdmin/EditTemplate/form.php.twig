@@ -5,9 +5,9 @@
     {{ echo_block('form') }}
     <form 
         {{ echo_if(builder.ModelClass ~ ".id") }}
-            action="{{ echo_path(bundle_name ~ "_update", "{ 'id': " ~ builder.ModelClass ~ ".id }" ) }}"
+            action="{{ echo_path(namespace_prefix ~ '_' ~ bundle_name ~ "_update", "{ 'id': " ~ builder.ModelClass ~ ".id }" ) }}"
         {{ echo_else() }}
-            action="{{ echo_path(bundle_name ~ "_create" ) }}"
+            action="{{ echo_path(namespace_prefix ~ '_' ~ bundle_name ~ "_create" ) }}"
         {{ echo_endif() }}
         method="post" {{ echo_twig("form_enctype(form)") }}>
      
