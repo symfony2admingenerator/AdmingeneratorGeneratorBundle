@@ -37,15 +37,22 @@ class BaseBuilder extends GenericBaseBuilder
     {
         foreach ($this->getDisplayAsColumns() as $columnName) {
             $column = new Column($columnName);
-            $column->setDbType($this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName));
-            $column->setFormType($this->getFieldGuesser()->getFormType($column->getDbType()));
-            $column->setFormOptions($this->getFieldGuesser()->getFormOptions($column->getDbType(), $columnName));
+            $column->setDbType($this->getFieldOption($column, 'dbType', $this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName)));
+            $column->setFormType($this->getFieldOption($column, 'formType', $this->getFieldGuesser()->getFormType($column->getDbType())));
+            $column->setFormOptions($this->getFieldOption($column, 'formOptions', $this->getFieldGuesser()->getFormOptions($column->getDbType(), $columnName)));
             
             //Set the user parameters
             $this->setUserColumnConfiguration($column);
             
             $this->addColumn($column);
         }
+    }
+    
+    protected function getFieldOption(Column $column, $optionName, $default = null)
+    {
+        $options = $this->getVariable(sprintf('fields[%s]', $column->getName()),array(), true);
+        
+        return isset($options[$optionName]) ? $options[$optionName] : $default;
     }
     
     protected function setUserColumnConfiguration(Column $column)

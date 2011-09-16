@@ -30,12 +30,12 @@ class DoctrineQueryFilter extends BaseQueryFilter
         if (!is_array($value)) {
             $value = array($value->getId());
         }
-
+        
         if (strstr($field, '.')) {
             list($table, $field) = explode('.', $field);
         } else {
             $table = $field;
-            $field = $id;
+            $field = 'id';
         }
 
         $this->query->leftJoin('q.'.$table, $table);
