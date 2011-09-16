@@ -36,6 +36,7 @@ class PropelGenerator extends Generator
         $generator->setMustOverwriteIfExists($this->container->getParameter('admingenerator.overwrite_if_exists'));
         $generator->setTemplateDirs(array(__DIR__.'/../Resources/templates/Propel'));
         $generator->setBaseController('Admingenerator\GeneratorBundle\Controller\Propel\BaseController');
+        $generator->setColumnClass('Admingenerator\GeneratorBundle\Generator\PropelColumn');
 
         $builders = $generator->getFromYaml('builders',array());
 

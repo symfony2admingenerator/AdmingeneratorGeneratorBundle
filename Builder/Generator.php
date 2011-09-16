@@ -33,6 +33,8 @@ class Generator
     protected $templateDirectories = array();
     
     protected $baseController;
+    
+    protected $columnClass = 'Admingenerator\GeneratorBundle\Generator\Column';
 
     /**
      * Init a new generator and automatically define the base of tempDir
@@ -98,6 +100,7 @@ class Generator
         $builder->setGenerator($this);
         $builder->setTemplateDirs($this->templateDirectories);
         $builder->setMustOverwriteIfExists($this->mustOverwriteIfExists);
+        $builder->setColumnClass($this->getColumnClass());
          
         $vars = array_replace_recursive(
             $this->getFromYaml('params', array()),
@@ -109,6 +112,16 @@ class Generator
         $this->builders[$builder->getSimpleClassName()] = $builder;
     }
 
+    protected function getColumnClass()
+    {
+        return $this->columnClass;
+    }
+    
+    public function setColumnClass($columnClass)
+    {
+        return $this->columnClass = $columnClass;
+    }
+    
     /**
      * Generated and write classes to disk
      *
