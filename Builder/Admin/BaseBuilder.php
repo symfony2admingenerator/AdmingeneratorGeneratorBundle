@@ -15,6 +15,8 @@ class BaseBuilder extends GenericBaseBuilder
     
     protected $actions;
     
+    protected $columnClass = 'Column';
+    
     /**
      * Return a list of columns from list.display
      * @return array
@@ -36,7 +38,7 @@ class BaseBuilder extends GenericBaseBuilder
     protected function findColumns()
     {
         foreach ($this->getDisplayAsColumns() as $columnName) {
-            $column = new Column($columnName);
+            $column = new $this->columnClass($columnName);
             $column->setDbType($this->getFieldOption($column, 'dbType', $this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName)));
             $column->setFormType($this->getFieldOption($column, 'formType', $this->getFieldGuesser()->getFormType($column->getDbType())));
             $column->setFormOptions($this->getFieldOption($column, 'formOptions', $this->getFieldGuesser()->getFormOptions($column->getDbType(), $columnName)));
@@ -46,6 +48,16 @@ class BaseBuilder extends GenericBaseBuilder
             
             $this->addColumn($column);
         }
+    }
+    
+    protected function getColumnClass()
+    {
+        return $this->columnClass;
+    }
+    
+    public function setColumnClass($columnClass)
+    {
+        return $this->columnClass = $columnClass;
     }
     
     protected function getFieldOption(Column $column, $optionName, $default = null)
