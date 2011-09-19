@@ -1,146 +1,176 @@
-# Symfony2 Bundle
+# Symfony2 Admin Generator: The Real Missing Admin Generator for Symfony2 !
 
-This package is a symfony2 admin generator based on YAML conf and twig template
+This package is a Symfony2 Admin Generator based on YAML configuration and Twig templating.
+It's inspired by [fzaninotto/Propel2](https://github.com/fzaninotto/Propel2).
 
-This package is inspired from fzaninotto/Propel2
-
-It actually support :
+It actually supports:
 
 * Doctrine ORM
 * Doctine ODM
-* Propel
+* [Propel](http://github.com/propelorm/Propel)
 
-With allways almost same features : 
+With almost the same features: 
 
-* A yaml to configure create/edit/delete/list
-* Manage of releation one to one, one to many, many to one and **many to many**
-* Easy edit of form changing properties of fields in the yaml. 
-* Configure fieldset
+* A YAML to configure create/edit/delete/list actions
+* Manage relations one to one, one to many, many to one and **many to many**
+* Easy edit of forms by changing properties of fields in YAML. 
+* Configure fieldsets
 * Configure more that one field per line
 * Change the database column you want to sortOn or filterOn for a field in list
 * A complete admin design
 * ...
 
-# In pictures
+## This bundle in pictures
 
 ![Preview of list](https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/list-preview.png)
 
 ![Preview of edit](https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/edit-preview.png)
 
-# Want to run a test ?
+## Want to run a test ?
 
-use https://github.com/cedriclombardot/AdmingeneratorIpsum
+The fastest way to try it is to setup the AdmingeneratorIpsum project: https://github.com/cedriclombardot/AdmingeneratorIpsum.
+This is a complete Symfony2 application with this bundle well configured.
 
-## Install the bundle in a Symfony2 project src/ dir
+## Installation
 
-## Install Pagerfanta 
+### Install this bundle
 
-```shell 
-    git submodule add http://github.com/whiteoctober/Pagerfanta.git vendor/pagerfanta
-    git submodule add http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git vendor/bundles/WhiteOctober/PagerfantaBundle
-```
-Register autoload
-
-```php
-    // app/autoload.php
-    $loader->registerNamespaces(array(
-        'WhiteOctober\PagerfantaBundle' => __DIR__.'/../vendor/bundles',
-        'Pagerfanta' => __DIR__.'/../vendor/pagerfanta/src',
-    ));
+``` bash
+git clone git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git vendor/bundles/Admingenerator/GeneratorBundle
 ```
 
-And load in AppKernel 
+Register it in the `autoload.php` file:
 
-```php
-   $bundles[] = new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+``` php
+<?php
+// app/autoload.php
+
+$loader->registerNamespaces(array(
+	'Admingenerator'    => array(__DIR__.'/../src', __DIR__.'/../vendor/bundles'),
+));
+```
+
+Add it to the `AppKernel` class:
+
+``` php
+<?php
+// app/AppKernel.php
+
+public function registerBundles()
+{
+	$bundles = array(
+		// ...
+		
+		// Admin Generator
+		new Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle(),
+	);
+	
+	// ...
+}
+```
+
+### Install Pagerfanta 
+
+``` bash 
+git submodule add http://github.com/whiteoctober/Pagerfanta.git vendor/pagerfanta
+git submodule add http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git vendor/bundles/WhiteOctober/PagerfantaBundle
+```
+
+Register it in the `autoload.php` file:
+
+``` php
+<?php
+// app/autoload.php
+
+$loader->registerNamespaces(array(
+    'WhiteOctober\PagerfantaBundle' => __DIR__.'/../vendor/bundles',
+    'Pagerfanta' 					=> __DIR__.'/../vendor/pagerfanta/src',
+));
+```
+
+Add it to the `AppKernel` class:
+
+``` php
+$bundles[] = new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
 ```   
 
-## Install KnpMenuBundle 
+### Install KnpMenuBundle 
 
-```schell
-    git submodule add https://github.com/knplabs/KnpMenuBundle.git vendor/bundles/Knp/Bundle/MenuBundle
-    git submodule add https://github.com/knplabs/KnpMenu.git vendor/KnpMenu
+``` bash
+git submodule add https://github.com/knplabs/KnpMenuBundle.git vendor/bundles/Knp/Bundle/MenuBundle
+git submodule add https://github.com/knplabs/KnpMenu.git vendor/KnpMenu
 ```
 
-Register autoload
+Register it in the `autoload.php` file:
 
-```php
-    // app/autoload.php
-    $loader->registerNamespaces(array(
-        'Knp'                       => __DIR__.'/../vendor/bundles',
-        'Knp\Menu'                  => __DIR__.'/../vendor/KnpMenu/src'
-    ));
+``` php
+<?php
+// app/autoload.php
+
+$loader->registerNamespaces(array(
+    'Knp'		=> __DIR__.'/../vendor/bundles',
+    'Knp\Menu' 	=> __DIR__.'/../vendor/KnpMenu/src'
+));
 ```
 
-And load in AppKernel 
+Add it to the `AppKernel` class:
 
-```php
-   $bundles[] = new Knp\Bundle\MenuBundle\KnpMenuBundle();
+``` php
+$bundles[] = new Knp\Bundle\MenuBundle\KnpMenuBundle();
 ```   
 
-Configure to use twig in config.yml
+Don't forget to configure it to use twig in `config.yml`:
 
-```yml
+``` yml
 knp_menu:
     twig: true
 ``` 
 
-## Install the Doctrine2FixtureBundle & create the db
+### Setup the Model Manager you want
 
-```shell 
-	php app/console doctrine:database:create
-	php app/console doctrine:schema:create
-	php app/console doctrine:fixtures:load	
+At this step, you'll have to install the Model Manager you want (Doctrine ORM, Doctrine ODM and/or Propel).
+E.g. with Doctrine, you'll have to setup the Doctrine2FixtureBundle bundle.
+
+#### Install Doctrine2FixtureBundle & Create the database
+
+``` bash 
+php app/console doctrine:database:create
+php app/console doctrine:schema:create
+php app/console doctrine:fixtures:load	
 ```
 
-## Configure the bundle
+### Install assets
 
-In AppKernel.php
+To run assets you need to install sass & compass:
 
-```php
-   $bundles[] = new Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle();
-   $bundles[] = new Admingenerator\DemoBundle\AdmingeneratorDemoBundle();
+``` bash
+sudo gem install compass # https://github.com/chriseppstein/compass
+sudo gem install sass
 ```
 
-Add route :
+Publish assets:
 
-```yaml
-_admindemo:
-     resource: "@AdmingeneratorDemoBundle/Controller/"
-     type: admingenerator
-     prefix: /admin-demo
+``` bash
+php app/console assets:install web/
 ```
 
-Install assets :
+Configure Assetic:
 
-To run assets you need to install sass & compass
-
-```shell
-   sudo gem install compass # https://github.com/chriseppstein/compass
-   sudo gem install sass
+``` yaml
+filters:
+    cssrewrite: ~
+    sass: 
+        bin: /var/lib/gems/1.8/gems/sass-3.1.7/bin/sass
+        compass: /var/lib/gems/1.8/gems/compass-0.11.5/bin/compass
 ```
 
-Publish assets
+### Last step
 
-```shell
-    php app/console assets:install web/
-```
+Configure the dev environment:
 
-Configure assetic :
-
-```yaml
-    filters:
-        cssrewrite: ~
-        sass: 
-            bin: /var/lib/gems/1.8/gems/sass-3.1.7/bin/sass
-            compass: /var/lib/gems/1.8/gems/compass-0.11.5/bin/compass
-```
-Configure the dev environment :
-
-
-```yaml
-    admingenerator_generator:
-        overwrite_if_exists: true
+``` yaml
+admingenerator_generator:
+    overwrite_if_exists: true
 ```
 
 --------------
