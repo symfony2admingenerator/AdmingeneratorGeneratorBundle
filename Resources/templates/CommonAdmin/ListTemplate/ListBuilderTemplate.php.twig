@@ -5,7 +5,7 @@
 {% use '../CommonAdmin/ListTemplate/actions.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/filters.php.twig' %}
 
-{{ echo_extends("AdmingeneratorGeneratorBundle::base_admin.html.twig") }}
+{{ echo_extends( builder.getBaseAdminTemplate ) }}
 
 {{ echo_block("body") }} 
     {{- block('title') -}}

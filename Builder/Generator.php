@@ -35,6 +35,8 @@ class Generator
     protected $baseController;
     
     protected $columnClass = 'Admingenerator\GeneratorBundle\Generator\Column';
+    
+    protected $base_admin_template = 'AdmingeneratorGeneratorBundle::base_admin.html.twig';
 
     /**
      * Init a new generator and automatically define the base of tempDir
@@ -53,6 +55,16 @@ class Generator
     public function setMustOverwriteIfExists($status = true)
     {
         $this->mustOverwriteIfExists = $status;
+    }
+    
+    public function getBaseAdminTemplate()
+    {
+        return $this->base_admin_template;
+    }
+    
+    public function setBaseAdminTemplate($base_admin_template)
+    {
+        return $this->base_admin_template;
     }
     
     /**

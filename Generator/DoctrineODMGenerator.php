@@ -32,6 +32,7 @@ class DoctrineODMGenerator extends Generator
     public function build()
     {
         $generator = new AdminGenerator($this->getGeneratorYml());
+        $generator->setBaseAdminTemplate($this->container->getParameter('admingenerator.base_admin_template'));
         $generator->setFieldGuesser($this->getFieldGuesser());
         $generator->setMustOverwriteIfExists($this->container->getParameter('admingenerator.overwrite_if_exists'));
         $generator->setTemplateDirs(array(__DIR__.'/../Resources/templates/DoctrineODM'));

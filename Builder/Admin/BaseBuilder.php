@@ -17,6 +17,11 @@ class BaseBuilder extends GenericBaseBuilder
     
     protected $columnClass = 'Column';
     
+    public function getBaseAdminTemplate()
+    {
+        return $this->getGenerator()->getBaseAdminTemplate();
+    }
+    
     /**
      * Return a list of columns from list.display
      * @return array
