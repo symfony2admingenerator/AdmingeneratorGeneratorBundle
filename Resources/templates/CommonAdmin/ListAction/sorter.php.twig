@@ -23,7 +23,11 @@
      */
     protected function getSortColumn()
     {
-        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Sort');
+        {% if sort is defined and sort[0] != '' -%}
+            return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Sort', '{{ sort[0] }}');
+        {% else -%}
+            return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Sort');
+        {% endif -%}
     }
     
     /**
@@ -33,7 +37,11 @@
      */
     protected function getSortOrder()
     {
-        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\OrderBy','ASC');
+        {% if sort is defined and sort[1] != '' -%}
+            return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\OrderBy', '{{ sort[1] }}');
+        {% else -%}
+            return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\OrderBy', 'ASC');
+        {% endif -%}
     }
     
 {% endblock %}
