@@ -7,30 +7,32 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
-* This class contains the configuration information for the bundle
-*
-* @author clombardot
-*/
+ * This class contains the configuration information for the bundle
+ *
+ * @author clombardot
+ */
 class Configuration implements ConfigurationInterface
 {
-
     /**
-    * Generates the configuration tree builder.
-    *
-    *
-    * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder The tree builder
-    */
+     * Generates the configuration tree builder.
+     *
+     *
+     * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder The tree builder
+     */
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('admingenerator_generator');
+        $rootNode    = $treeBuilder->root('admingenerator_generator');
 
-        $rootNode->children()
-                    ->booleanNode('overwrite_if_exists')->defaultFalse()->end()
-                    ->scalarNode('knp_menu_class')->defaultValue("Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder")->end()
-                ->end();
+        $rootNode
+            ->children()
+            ->booleanNode('use_doctrine_orm')->defaultTrue()->end()
+            ->booleanNode('use_doctrine_odm')->defaultFalse()->end()
+            ->booleanNode('use_propel')->defaultFalse()->end()
+            ->booleanNode('overwrite_if_exists')->defaultFalse()->end()
+            ->scalarNode('knp_menu_class')->defaultValue("Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder")->end()
+            ->end();
 
         return $treeBuilder;
     }
-
 }

@@ -12,24 +12,8 @@
         <parameter key="form.type_guesser.admingenerator.class">Admingenerator\GeneratorBundle\Validator\ValidatorTypeGuesser</parameter>
         <parameter key="admingeneretor.menu_builder.class">Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder</parameter>
         <parameter key="admingenerator.overwrite_if_exists">false</parameter>
-        
-        <!--  Doctrine -->
-        <parameter key="admingenerator.doctrine.class">Admingenerator\GeneratorBundle\Generator\DoctrineGenerator</parameter>
-        <parameter key="admingenerator.fieldguesser.doctrine.class">Admingenerator\GeneratorBundle\Guesser\DoctrineORMFieldGuesser</parameter>
-        <parameter key="admingenerator.queryfilter.doctrine.class">Admingenerator\GeneratorBundle\QueryFilter\DoctrineQueryFilter</parameter>
-        
-        <!-- Doctrine ODM -->
-        <parameter key="admingenerator.doctrine_odm.class">Admingenerator\GeneratorBundle\Generator\DoctrineODMGenerator</parameter>
-        <parameter key="admingenerator.fieldguesser.doctrine_odm.class">Admingenerator\GeneratorBundle\Guesser\DoctrineODMFieldGuesser</parameter>
-        <parameter key="admingenerator.queryfilter.doctrine_odm.class">Admingenerator\GeneratorBundle\QueryFilter\DoctrineODMQueryFilter</parameter>
-        
-        <!-- Propel -->
-        <parameter key="admingenerator.propel.class">Admingenerator\GeneratorBundle\Generator\PropelGenerator</parameter>
-        <parameter key="admingenerator.fieldguesser.propel.class">Admingenerator\GeneratorBundle\Guesser\PropelORMFieldGuesser</parameter>
-        <parameter key="admingenerator.queryfilter.propel.class">Admingenerator\GeneratorBundle\QueryFilter\PropelQueryFilter</parameter>
-       
     </parameters>
-    
+
     <services>
         <!-- Twig -->
         <service id="twig.extension.admingenerator.echo" class="Admingenerator\GeneratorBundle\Twig\Extension\EchoExtension" public="false">
@@ -43,72 +27,7 @@
                 <argument type="service" id="service_container" />
             </call>
         </service>
-        
-        <!-- Doctine -->
-        <service id="admingenerator.fieldguesser.doctrine" class="%admingenerator.fieldguesser.doctrine.class%"
-            public="false">
-            <argument type="service" id="doctrine.orm.entity_manager"></argument>
-        </service>
-        
-        <service id="admingenerator.generator.doctrine"
-            class="%admingenerator.doctrine.class%">
-            <argument type="string">%kernel.root_dir%</argument>
-            <argument type="string">%kernel.cache_dir%</argument>
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-            <call method="setFieldGuesser">
-                <argument type="service" id="admingenerator.fieldguesser.doctrine" />
-            </call>
-        </service>
-        
-        <service id="admingenerator.queryfilter.doctrine"
-            class="%admingenerator.queryfilter.doctrine.class%">
-        </service>
-        
-        <!-- Doctine MongoDB -->
-        <service id="admingenerator.fieldguesser.doctrine_odm" class="%admingenerator.fieldguesser.doctrine_odm.class%"
-            public="false">
-            <argument type="service" id="doctrine.odm.mongodb.document_manager"></argument>
-        </service>
-        
-        <service id="admingenerator.generator.doctrine_odm"
-            class="%admingenerator.doctrine_odm.class%">
-            <argument type="string">%kernel.root_dir%</argument>
-            <argument type="string">%kernel.cache_dir%</argument>
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-            <call method="setFieldGuesser">
-                <argument type="service" id="admingenerator.fieldguesser.doctrine_odm" />
-            </call>
-        </service>
-        
-        <service id="admingenerator.queryfilter.doctrine_odm"
-            class="%admingenerator.queryfilter.doctrine_odm.class%">
-        </service>
-        
-        <!-- Propel -->
-        <service id="admingenerator.fieldguesser.propel" class="%admingenerator.fieldguesser.propel.class%"
-            public="false">
-        </service>
-        
-        <service id="admingenerator.generator.propel"
-            class="%admingenerator.propel.class%">
-            <argument type="string">%kernel.root_dir%</argument>
-            <argument type="string">%kernel.cache_dir%</argument>
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-            <call method="setFieldGuesser">
-                <argument type="service" id="admingenerator.fieldguesser.propel" />
-            </call>
-        </service>
-        
-        <service id="admingenerator.queryfilter.propel"
-            class="%admingenerator.queryfilter.propel.class%">
-        </service>
-        
+
         <!-- General -->
         <service id="admingenerator.generator.listener"
             class="Admingenerator\GeneratorBundle\EventListener\ControllerListener">
@@ -116,52 +35,37 @@
                 method="onKernelRequest" />
             <argument type="service" id="service_container" />
         </service>
-        
+
         <service id="routing.loader.admingenerator" class="%routing.loader.admingenerator.class%">
             <tag name="routing.loader" />
             <argument type="service" id="file_locator" />
         </service>
-        
+
         <service id="pagerfanta.view.admingenerator" class="Admingenerator\GeneratorBundle\Pagerfanta\View\AdmingenratorView">
             <tag name="pagerfanta.view" alias="admingenerator" />
-        </service>
-        
-        <!-- Form -->
-        <service id="form.type.doctrine_double_list" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineDoubleListType">
-            <tag name="form.type" alias="doctrine_double_list" />
-            <argument type="service" id="doctrine" />
-        </service>
-        
-        <service id="form.type.doctrine_odm_double_list" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineODMDoubleListType">
-            <tag name="form.type" alias="doctrine_odm_double_list" />
-            <argument type="service" id="doctrine.odm.mongodb.document_manager" />
-        </service>
-        
-        <service id="form.type.propel_double_list" class="Admingenerator\GeneratorBundle\Form\Type\PropelDoubleListType">
-            <tag name="form.type" alias="propel_double_list" />
         </service>
 
         <service id="form.type.date_range" class="Admingenerator\GeneratorBundle\Form\Type\DateRangeType">
             <tag name="form.type" alias="date_range" />
         </service>
-        
+
         <!-- Warmup -->
         <service id="admingenerator.finder" class="%admingenerator.finder.class%" public="false">
             <argument type="service" id="kernel" />
         </service>
-        
+
         <service id="admingeneretor.cache_warmer" class="%admingenerator.cache_warmer.class%" public="false">
             <tag name="kernel.cache_warmer" />
             <argument type="service" id="service_container" />
             <argument type="service" id="admingenerator.finder" />
         </service>
-        
+
         <!-- Menu -->
         <service id="admingeneretor.menu_builder" class="%admingeneretor.menu_builder.class%">
             <tag name="knp_menu.menu" alias="admin" />
             <argument type="service" id="knp_menu.factory" />
         </service>
-        
+
         <service id="admingeneretor.menu.admin" class="%admingeneretor.menu_builder.class%"
              factory-service="admingeneretor.menu_builder"
              factory-method="createAdminMenu"
