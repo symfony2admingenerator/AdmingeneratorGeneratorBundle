@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <!--  Doctrine -->
+        <parameter key="admingenerator.doctrine.class">Admingenerator\GeneratorBundle\Generator\DoctrineGenerator</parameter>
+        <parameter key="admingenerator.fieldguesser.doctrine.class">Admingenerator\GeneratorBundle\Guesser\DoctrineORMFieldGuesser</parameter>
+        <parameter key="admingenerator.queryfilter.doctrine.class">Admingenerator\GeneratorBundle\QueryFilter\DoctrineQueryFilter</parameter>
+    </parameters>
+    <services>
+        <!-- Doctine -->
+        <service id="admingenerator.fieldguesser.doctrine" class="%admingenerator.fieldguesser.doctrine.class%"
+            public="false">
+            <argument type="service" id="doctrine.orm.entity_manager"></argument>
+        </service>
+
+        <service id="admingenerator.generator.doctrine"
+            class="%admingenerator.doctrine.class%">
+            <argument type="string">%kernel.root_dir%</argument>
+            <argument type="string">%kernel.cache_dir%</argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <call method="setFieldGuesser">
+                <argument type="service" id="admingenerator.fieldguesser.doctrine" />
+            </call>
+        </service>
+
+        <service id="admingenerator.queryfilter.doctrine"
+            class="%admingenerator.queryfilter.doctrine.class%">
+        </service>
+
+        <!-- Form -->
+        <service id="form.type.doctrine_double_list" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineDoubleListType">
+            <tag name="form.type" alias="doctrine_double_list" />
+            <argument type="service" id="doctrine" />
+        </service>
+    </services>
+</container>
