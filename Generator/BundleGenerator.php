@@ -18,6 +18,8 @@ class BundleGenerator extends BaseBundleGenerator
     private $filesystem;
     private $skeletonDir;
     
+    protected $generator; 
+    
     protected $actions = array('New', 'List', 'Edit', 'Delete');
     
     protected $forms = array('New', 'Filters', 'Edit');
@@ -28,6 +30,11 @@ class BundleGenerator extends BaseBundleGenerator
         $this->skeletonDir = $skeletonDir;
     }
 
+    public function setGenerator($generator)
+    {
+        $this->generator = $generator;
+    }
+    
     public function generate($namespace, $bundle, $dir, $format, $structure)
     {
         $dir .= '/'.strtr($namespace, '\\', '/');
@@ -39,7 +46,7 @@ class BundleGenerator extends BaseBundleGenerator
         $parameters = array(
             'namespace'        => $namespace,
             'bundle'           => $bundle,
-            'generator'        => 'admingenerator.generator.doctrine', //@todo make it dynamic when propel come
+            'generator'        => 'admingenerator.generator.'.$this->generator,
             'namespace_prefix' => $namespace_prefix,
             'bundle_name'      => $bundle_name,
         );

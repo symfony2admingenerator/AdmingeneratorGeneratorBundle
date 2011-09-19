@@ -14,6 +14,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Sensio\Bundle\GeneratorBundle\Command\Validators;
 
 class GenerateAdminCommand extends GenerateBundleCommand
 {
@@ -28,6 +29,8 @@ class GenerateAdminCommand extends GenerateBundleCommand
                 new InputOption('bundle-name', '', InputOption::VALUE_REQUIRED, 'The optional bundle name'),
                 new InputOption('structure', '', InputOption::VALUE_NONE, 'Whether to generate the whole directory structure'),
                 new InputOption('format', '', InputOption::VALUE_REQUIRED, 'Do nothing but mandatory for extend', 'annotation'),
+                new InputOption('generator', '', InputOption::VALUE_REQUIRED, 'The generator service (propel, doctrine, doctrine_odm)', 'doctrine'),
+                
             ))
             ->setHelp(<<<EOT
 The <info>admin:generate-bundle</info> command helps you generates new admin bundles.
@@ -56,9 +59,72 @@ EOT
         $dialog = $this->getDialogHelper();
         $dialog->writeSection($output, 'Welcome to the Symfony2 admin generator');
         $output->writeln('<comment>Create an admingenrator bundle with generate:bundle</comment>');
-          
+        
+        $generator = $dialog->askAndValidate($output, $dialog->getQuestion('Generator to use (doctrine, doctrine_odm, propel)', $input->getOption('generator')),  function ($generator) { if(!in_array($generator, array('doctrine','doctrine_odm','propel'))) { throw new \RuntimeException('Generator to use have to be doctrine, doctrine_odm or propel'); } return $generator; } , false, $input->getOption('generator'));
+        $input->setOption('generator', $generator);
+        
         parent::interact($input, $output);
         
+    }
+    
+     /**
+     * @see Command
+     *
+     * @throws \InvalidArgumentException When namespace doesn't end with Bundle
+     * @throws \RuntimeException         When bundle can't be executed
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $dialog = $this->getDialogHelper();
+
+        if ($input->isInteractive()) {
+            if (!$dialog->askConfirmation($output, $dialog->getQuestion('Do you confirm generation', 'yes', '?'), true)) {
+                $output->writeln('<error>Command aborted</error>');
+
+                return 1;
+            }
+        }
+
+        foreach (array('namespace', 'dir') as $option) {
+            if (null === $input->getOption($option)) {
+                throw new \RuntimeException(sprintf('The "%s" option must be provided.', $option));
+            }
+        }
+
+        $namespace = Validators::validateBundleNamespace($input->getOption('namespace'));
+        if (!$bundle = $input->getOption('bundle-name')) {
+            $bundle = strtr($namespace, array('\\' => ''));
+        }
+        $bundle = Validators::validateBundleName($bundle);
+        $dir = Validators::validateTargetDir($input->getOption('dir'), $bundle, $namespace);
+        $format = Validators::validateFormat($input->getOption('format'));
+        $structure = $input->getOption('structure');
+
+        $dialog->writeSection($output, 'Bundle generation');
+
+        if (!$this->getContainer()->get('filesystem')->isAbsolutePath($dir)) {
+            $dir = getcwd().'/'.$dir;
+        }
+
+        $generator = $this->getGenerator();
+        $generator->setGenerator($input->getOption('generator'));
+        $generator->generate($namespace, $bundle, $dir, $format, $structure);
+
+        $output->writeln('Generating the bundle code: <info>OK</info>');
+
+        $errors = array();
+        $runner = $dialog->getRunner($output, $errors);
+
+        // check that the namespace is already autoloaded
+        $runner($this->checkAutoloader($output, $namespace, $bundle, $dir));
+
+        // register the bundle in the Kernel class
+        $runner($this->updateKernel($dialog, $input, $output, $this->getContainer()->get('kernel'), $namespace, $bundle));
+
+        // routing
+        $runner($this->updateRouting($dialog, $input, $output, $bundle, $format));
+
+        $dialog->writeGeneratorSummary($output, $errors);
     }
     
     protected function getGenerator()
