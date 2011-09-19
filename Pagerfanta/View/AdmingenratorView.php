@@ -4,9 +4,18 @@ namespace Admingenerator\GeneratorBundle\Pagerfanta\View;
 
 use Pagerfanta\PagerfantaInterface;
 use Pagerfanta\View\ViewInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class AdmingenratorView implements ViewInterface
 {
+    
+    protected $translator;
+    
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+    
     /**
      * {@inheritdoc}
      */
@@ -14,8 +23,8 @@ class AdmingenratorView implements ViewInterface
     {
         $options = array_merge(array(
             'proximity'          => 2,
-            'previous_message'   => 'Previous',
-            'next_message'       => 'Next',
+            'previous_message'   => $this->translator->trans('pagerfanta.previous', array(), 'Admingenerator'),
+            'next_message'       => $this->translator->trans('pagerfanta.next', array(), 'Admingenerator'),
             'css_disabled_class' => 'disabled',
             'css_dots_class'     => 'dots',
             'css_current_class'  => 'current',

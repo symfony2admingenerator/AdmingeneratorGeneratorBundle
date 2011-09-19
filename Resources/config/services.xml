@@ -44,6 +44,7 @@
 
         <service id="pagerfanta.view.admingenerator" class="Admingenerator\GeneratorBundle\Pagerfanta\View\AdmingenratorView">
             <tag name="pagerfanta.view" alias="admingenerator" />
+            <argument type="service" id="translator" />
         </service>
 
         <service id="form.type.date_range" class="Admingenerator\GeneratorBundle\Form\Type\DateRangeType">

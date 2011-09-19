@@ -16,7 +16,7 @@
         
         {{ echo_else() }}
         <tr class="list_trow no_results_row">
-            <td colspan="{{ (object_actions|length > 0) ? (display|length + 1) : display|length }}">There is no results</td>
+            <td colspan="{{ (object_actions|length > 0) ? (display|length + 1) : display|length }}">{{ echo_trans('list.no_results') }}</td>
         </tr>
         {{ echo_endif() }}
     </tbody>

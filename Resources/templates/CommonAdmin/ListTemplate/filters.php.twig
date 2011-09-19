@@ -15,8 +15,8 @@
         <ul class="actions">
             <li>
                  {{ echo_twig("form_rest(form)") }}
-                 <input type="submit" class="submit_button" value="Filter" />
-                 <input type="submit" class="reset_button" name="reset" value="Reset" />
+                 <input type="submit" class="submit_button" value="{{ echo_trans('list.filter.btn_filter') }}" />
+                 <input type="submit" class="reset_button" name="reset" value="{{ echo_trans('list.filter.btn_reset') }}" />
             </li>
         </ul>
     </fieldset>

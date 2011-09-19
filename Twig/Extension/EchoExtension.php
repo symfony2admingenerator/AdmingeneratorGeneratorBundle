@@ -37,6 +37,7 @@ class EchoExtension extends \Twig_Extension
             'echo_endif'      => new \Twig_Function_Method($this, 'getEchoEndIf'),
             'echo_path'       => new \Twig_Function_Method($this, 'getEchoPath'),
             'echo_set'        => new \Twig_Function_Method($this, 'getEchoSet'),
+            'echo_trans'      => new \Twig_Function_Method($this, 'getEchoTrans'),
         );
     }
     
@@ -81,6 +82,11 @@ class EchoExtension extends \Twig_Extension
     public function export($variable)
     {
         return str_replace(array("\n", 'array (', '     '), array('', 'array(', ''), var_export($variable, true));
+    }
+    
+    public function getEchoTrans($str)
+    {
+        return '{% trans from "Admingenerator" %}'.$str.'{% endtrans %}';
     }
     
     public function getEchoSet($var, $value)

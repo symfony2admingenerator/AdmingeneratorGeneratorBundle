@@ -1,0 +1,20 @@
+# Double list form
+double_list.selected: Sélectionné
+double_list.unselected: Non-sélectionné
+
+# Pager
+pagerfanta.previous: Précédent
+pagerfanta.next: Suivant
+
+# List
+list.no_results: Il n'y a pas de résultats
+list.filters: Filtres
+list.filter.btn_filter: Filrer
+list.filter.btn_reset: Réinitialiser
+
+# Form
+form.btn_save: Enregistrer
+
+# Actions
+List: Retour à la liste
+New: Nouveau

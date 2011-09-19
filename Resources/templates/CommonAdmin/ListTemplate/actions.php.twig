@@ -4,7 +4,7 @@
      <ul class="actions">
         {% for action in builder.Actions %}
             <li><a class="{{ action.name }}" href="{{ echo_path((action.route ? action.route : namespace_prefix ~ '_' ~ bundle_name ~ '_' ~ action.name)) }}" 
-            {%- if action.confirm %}onclick='return confirm("{{ action.confirm }}")'{% endif %}>{{ action.label }}</a></li>
+            {%- if action.confirm %}onclick='return confirm("{{ action.confirm }}")'{% endif %}>{{ echo_trans(action.label) }}</a></li>
         {% endfor %}
      </ul>
     {% endif %}
