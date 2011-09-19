@@ -126,6 +126,29 @@ knp_menu:
     twig: true
 ``` 
 
+### Install SensioGeneratorBundle
+
+``` bash
+git submodule add git://github.com/sensio/SensioGeneratorBundle.git vendor/bundles/Sensio/Bundle/GeneratorBundle
+```
+
+Register it in the `autoload.php` file:
+
+``` php
+<?php
+// app/autoload.php
+
+$loader->registerNamespaces(array(
+	'Sensio\Bundle'     => __DIR__.'/../vendor/bundles',
+));
+```
+
+Add it to the `AppKernel` class:
+
+``` php
+$bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
+```
+
 ### Setup the Model Manager you want
 
 At this step, you'll have to install the Model Manager you want (Doctrine ORM, Doctrine ODM and/or Propel).
