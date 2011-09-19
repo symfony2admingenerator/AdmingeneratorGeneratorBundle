@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <!-- Propel -->
+        <parameter key="admingenerator.propel.class">Admingenerator\GeneratorBundle\Generator\PropelGenerator</parameter>
+        <parameter key="admingenerator.fieldguesser.propel.class">Admingenerator\GeneratorBundle\Guesser\PropelORMFieldGuesser</parameter>
+        <parameter key="admingenerator.queryfilter.propel.class">Admingenerator\GeneratorBundle\QueryFilter\PropelQueryFilter</parameter>
+    </parameters>
+    <services>
+        <!-- Propel -->
+        <service id="admingenerator.fieldguesser.propel" class="%admingenerator.fieldguesser.propel.class%"
+            public="false">
+        </service>
+
+        <service id="admingenerator.generator.propel"
+            class="%admingenerator.propel.class%">
+            <argument type="string">%kernel.root_dir%</argument>
+            <argument type="string">%kernel.cache_dir%</argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <call method="setFieldGuesser">
+                <argument type="service" id="admingenerator.fieldguesser.propel" />
+            </call>
+        </service>
+
+        <service id="admingenerator.queryfilter.propel"
+            class="%admingenerator.queryfilter.propel.class%">
+        </service>
+
+        <!-- Form -->
+        <service id="form.type.propel_double_list" class="Admingenerator\GeneratorBundle\Form\Type\PropelDoubleListType">
+            <tag name="form.type" alias="propel_double_list" />
+        </service>
+    </services>
+</container>
