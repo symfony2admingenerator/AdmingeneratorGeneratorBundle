@@ -4,18 +4,15 @@ use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\NewType;
 {% endblock %}
 {% block index %}
 
-    /**
-     * @Template()
-     */
     public function indexAction()
     {
         ${{ builder.ModelClass }} = $this->getNewObject();
         
         $form = $this->createForm(new NewType(), ${{ builder.ModelClass }});
         
-        return array(
+        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:New:index.html.twig', array(
             "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
             "form" => $form->createView(),
-        );
+        ));
     }
 {% endblock %}

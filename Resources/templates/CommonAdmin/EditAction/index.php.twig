@@ -5,9 +5,6 @@ use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\EditType;
 {% endblock %}
 {% block index %}
 
-    /**
-     * @Template()
-     */
     public function indexAction($id)
     {
         ${{ builder.ModelClass }} = $this->getObject($id);
@@ -18,9 +15,9 @@ use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\EditType;
         
         $form = $this->createForm(new EditType(), ${{ builder.ModelClass }});
         
-        return array(
+        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:Edit:index.html.twig', array(
             "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
             "form" => $form->createView(),
-        );
+        ));
     }
 {% endblock %}

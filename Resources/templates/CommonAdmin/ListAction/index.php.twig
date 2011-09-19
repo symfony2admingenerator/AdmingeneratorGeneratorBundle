@@ -2,9 +2,7 @@
 use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\FiltersType;
 {% endblock %}
 {% block index %}
-    /**
-     * @Template()
-     */
+ 
     public function indexAction()
     {
         if ($this->get('request')->query->get('page'))
@@ -19,11 +17,11 @@ use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\FiltersType;
         
         $form = $this->getFilterForm();
 
-        return array(
+        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:List:index.html.twig', array(
             '{{ builder.ModelClass }}s' => $this->getPager(),
             'form'                      => $form->createView(),
             'sortColumn'                => $this->getSortColumn(),
             'sortOrder'                 => $this->getSortOrder(),
-        );
+        ));
     }
 {% endblock %}

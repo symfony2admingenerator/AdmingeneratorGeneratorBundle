@@ -2,9 +2,6 @@
 {% endblock %}
 {% block create %}
 
-    /**
-     * @Template("{{ namespace_prefix }}{{ bundle_name }}:New:index.html.twig")
-     */
     public function createAction()
     {
         ${{ builder.ModelClass }} = $this->getNewObject();
@@ -23,9 +20,9 @@
             $this->get('session')->setFlash('error', "The form can't be saved. Check errors and try to resubmit");
         }
         
-        return array(
+        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:New:index.html.twig', array(
             "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
             "form" => $form->createView(),
-        );
+        ));
     }
 {% endblock %}
