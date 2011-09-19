@@ -18,6 +18,7 @@ With almost the same features:
 * Configure more that one field per line
 * Change the database column you want to sortOn or filterOn for a field in list
 * A complete admin design
+* Translated into EN, FR (you can easily contribute to add your own)
 * ...
 
 ## This bundle in pictures
