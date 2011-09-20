@@ -9,7 +9,7 @@ pagerfanta.next: Suivant
 # List
 list.no_results: Il n'y a pas de résultats
 list.filters: Filtres
-list.filter.btn_filter: Filrer
+list.filter.btn_filter: Filtrer
 list.filter.btn_reset: Réinitialiser
 
 # Form
