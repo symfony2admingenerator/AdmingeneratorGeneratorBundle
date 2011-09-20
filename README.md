@@ -163,7 +163,7 @@ php app/console doctrine:schema:create
 php app/console doctrine:fixtures:load	
 ```
 
-### Install Assetic
+### Install Assetic (Optionnal see without assetic part)
 
 ``` bash
 git submodule add git://github.com/symfony/AsseticBundle.git vendor/bundles/Symfony/Bundle/AsseticBundle
@@ -192,8 +192,8 @@ Configure the routing in `app/config/routing.yml`:
 
 ``` yaml
 _assetic:
-	resource: .
-	type: assetic
+    resource: .
+    type: assetic
 ```
 
 To run assets you also need to install `sass` & `compass`:
@@ -203,21 +203,33 @@ sudo gem install compass # https://github.com/chriseppstein/compass
 sudo gem install sass
 ```
 
-Publish assets:
-
-``` bash
-php app/console assets:install web/
-```
-
 Configure Assetic:
 
 ``` yaml
 assetic:
-	filters:
-	    cssrewrite: ~
-	    sass: 
-	        bin: /var/lib/gems/1.8/gems/sass-3.1.7/bin/sass
-	        compass: /var/lib/gems/1.8/gems/compass-0.11.5/bin/compass
+    filters:
+        cssrewrite: ~
+        sass: 
+            bin: /var/lib/gems/1.8/gems/sass-3.1.7/bin/sass
+            compass: /var/lib/gems/1.8/gems/compass-0.11.5/bin/compass
+```
+
+
+### Without Assetic
+
+Configure your config.yml to use the assetic less template
+
+``` yaml
+admingenerator_generator:
+    base_admin_template: AdmingeneratorGeneratorBundle::base_admin_assetic_less.html.twig
+```
+
+### With or without assetic 
+
+Publish assets:
+
+``` bash
+php app/console assets:install web/
 ```
 
 ### Last step
