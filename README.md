@@ -188,6 +188,14 @@ Add it to the `AppKernel` class:
 $bundles[] = new Symfony\Bundle\AsseticBundle\AsseticBundle(),
 ```
 
+Configure the routing in `app/config/routing.yml`:
+
+``` yaml
+_assetic:
+	resource: .
+	type: assetic
+```
+
 To run assets you also need to install `sass` & `compass`:
 
 ``` bash
