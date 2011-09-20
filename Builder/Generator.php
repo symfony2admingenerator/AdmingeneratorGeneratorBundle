@@ -64,7 +64,7 @@ class Generator
     
     public function setBaseAdminTemplate($base_admin_template)
     {
-        return $this->base_admin_template;
+        return $this->base_admin_template = $base_admin_template;
     }
     
     /**

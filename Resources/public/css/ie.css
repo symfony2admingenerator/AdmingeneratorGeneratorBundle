@@ -1,0 +1,12 @@
+table {
+  border-collapse: collapse; }
+  table thead td {
+    padding: 12px; }
+
+#header #main_navigation {
+  margin-top: 28px; }
+#header .breadcrumb {
+  margin-top: 50px; }
+
+input {
+  padding-top: 5px; }

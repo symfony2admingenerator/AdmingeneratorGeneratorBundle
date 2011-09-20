@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Admin{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('/bundles/admingeneratorgenerator/css/all.css') }}" type="text/css" media="all" />
+            <!--[if IE]>
+                <link href="{{ asset('/bundles/admingeneratorgenerator/css/ie.css') }}" rel="stylesheet" type="text/css" />
+            <![endif]-->
+        {% endblock %}
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div id="header">
+            {% block header %}
+                {% block logo %}
+                <div class="logo">
+                    Admin
+                </div>
+                {% endblock %}
+                {% block profile %}
+                <div class="profile">
+                    <ul>
+                        <li>
+                            <a href="#">Welcome</a>
+                        </li>
+                        <li>
+                            <a class='logout' href="#">Log out will be connect to security</a>
+                        </li>
+                    </ul>
+                </div>
+                {% endblock %}
+                {% block menu %}
+                     {{ knp_menu_render('admin') }}
+                {% endblock %}
+            {% endblock %}
+        </div>
+        <div id="content">
+            {% block flashes %}
+                {% if app.session.flash('success') %}
+                    <div class="notification_box success">
+                        {{ app.session.flash('success') }}
+                    </div>
+                {% endif %}
+                {% if app.session.flash('error') %}
+                    <div class="notification_box error">
+                        {{ app.session.flash('error') }}
+                    </div>
+                {% endif %}
+            {% endblock %}
+            
+            {% block body %}{% endblock %}
+        </div>
+        {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('/bundles/admingeneratorgenerator/javascripts/menu.js') }}"></script>
+            <script type="text/javascript">
+                var menu=new menu.dd("menu");
+                menu.init("main_navigation","mainhover");
+            </script>
+        {% endblock %}
+    </body>
+</html>
