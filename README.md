@@ -163,9 +163,32 @@ php app/console doctrine:schema:create
 php app/console doctrine:fixtures:load	
 ```
 
-### Install assets
+### Install Assetic
 
-To run assets you need to install sass & compass:
+``` bash
+git submodule add git://github.com/symfony/AsseticBundle.git vendor/bundles/Symfony/Bundle/AsseticBundle
+git submodule add git://github.com/kriswallsmith/assetic.git vendor/assetic
+
+```
+
+Register it in the `autoload.php` file:
+
+``` php
+<?php
+// app/autoload.php
+
+$loader->registerNamespaces(array(
+	'Assetic'           => __DIR__.'/../vendor/assetic/src',
+));
+```
+
+Add it to the `AppKernel` class:
+
+``` php
+$bundles[] = new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+```
+
+To run assets you also need to install `sass` & `compass`:
 
 ``` bash
 sudo gem install compass # https://github.com/chriseppstein/compass
@@ -181,11 +204,12 @@ php app/console assets:install web/
 Configure Assetic:
 
 ``` yaml
-filters:
-    cssrewrite: ~
-    sass: 
-        bin: /var/lib/gems/1.8/gems/sass-3.1.7/bin/sass
-        compass: /var/lib/gems/1.8/gems/compass-0.11.5/bin/compass
+assetic:
+	filters:
+	    cssrewrite: ~
+	    sass: 
+	        bin: /var/lib/gems/1.8/gems/sass-3.1.7/bin/sass
+	        compass: /var/lib/gems/1.8/gems/compass-0.11.5/bin/compass
 ```
 
 ### Last step
