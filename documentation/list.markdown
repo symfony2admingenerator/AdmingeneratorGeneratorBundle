@@ -155,7 +155,10 @@ And of course, you can translate it using the same translation catalog.
 Because the generated class is extended by a class in your bundle, thanks to generation mecanisme, you can easy open the query in cache and see wich method to overwrite.
 And if you want to add a filter on your query the good method is `getQuery`
 
-Eg for propel :
+Eg :
+
+<div class="tabber">
+    <div class="tabbertab" title="Propel">
 
 The default method is :
 
@@ -187,6 +190,91 @@ protected function getQuery()
     return $query;
 }
 {% endhighlight %}
+
+    </div>
+    
+    <div class="tabbertab" title="Doctrine ORM">
+
+The default method is :
+
+{% highlight php %}
+<?php
+protected function getQuery()
+{
+    $query = $this->getDoctrine()
+                ->getEntityManager()
+                ->createQueryBuilder()
+                ->select('q')
+                ->from('Namespace\\Movie', 'q');
+    
+    $this->processSort($query);
+    $this->processFilters($query);
+
+    return $query->getQuery();
+}
+{% endhighlight %}
+
+and you can edit to set :
+
+{% highlight php %}
+<?php
+protected function getQuery()
+{
+    $query = $this->getDoctrine()
+                ->getEntityManager()
+                ->createQueryBuilder()
+                ->select('q')
+                ->from('Namespace\\Movie', 'q')
+                ->addWhere('q.is_published = :is_published')
+                ->setParameter(':is_published', true);
+    
+    $this->processSort($query);
+    $this->processFilters($query);
+
+    return $query->getQuery();
+}
+{% endhighlight %}
+
+    </div>
+    
+    <div class="tabbertab" title="Doctrine ODM">
+
+The default method is :
+
+{% highlight php %}
+<?php
+protected function getQuery()
+{
+    $query = $this->getDocumentManager()
+                  ->createQueryBuilder('Namespace\\Movie');
+    
+    $this->processSort($query);
+    $this->processFilters($query);
+
+    return $query->getQuery();
+}
+{% endhighlight %}
+
+and you can edit to set :
+
+{% highlight php %}
+<?php
+protected function getQuery()
+{
+    $query = $this->getDocumentManager()
+                  ->createQueryBuilder('Namespace\\Movie')
+                  ->field('is_published')
+                  ->equals(true);
+                  
+    $this->processSort($query);
+    $this->processFilters($query);
+
+    return $query->getQuery();
+}
+{% endhighlight %}
+
+    </div>
+</div>
 
 If you want to have by default all the movies published only. 
 
