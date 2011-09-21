@@ -52,9 +52,9 @@ Edit the file : YourBundle/Resources/views/List/index.html
 And for the column title overwrite the Twig Block named list_td_column_**title**
 
 {% highlight django %}
-{% extends_admingenerated "NamespaceYourBundle:List:index.html.twig" %}
-{% block list_td_column_title %}
+{\% extends_admingenerated "NamespaceYourBundle:List:index.html.twig" %}
+{\% block list_td_column_title %}
     <span style="font-weight:bold">{{ Movie.title }}</span>
-{% endblock %}
+{\% endblock %}
 {% endhighlight %}
 
