@@ -150,5 +150,42 @@ builders:
 
 And of course, you can translate it using the same translation catalog.
 
+## Edit query
+
+Because the generated class is extended by a class in your bundle, thanks to generation mecanisme, you can easy open the query in cache and see wich method to overwrite.
+And if you want to add a filter on your query the good method is `getQuery`
+
+Eg for propel :
+
+The default method is :
+
+{% highlight php %}
+protected function getQuery()
+{
+    $query = MovieQuery::create();
+    
+    $this->processSort($query);
+    $this->processFilters($query);
+
+    return $query;
+}
+{% endhighlight %}
+
+and you can edit to set :
+
+{% highlight php %}
+protected function getQuery()
+{
+    $query = MovieQuery::create()
+                ->filterByPublished(true);
+    
+    $this->processSort($query);
+    $this->processFilters($query);
+
+    return $query;
+}
+{% endhighlight %}
+
+If you want to have by default all the movies published only. 
 
 

@@ -18,3 +18,4 @@ title: Documentation
 * [Default sort](documentation/list.html#default-sort)
 * [Object actions](documentation/list.html#object-actions)
 * [Actions](documentation/list.html#actions)
+* [Edit query](documentation/list.html#edit-query)
