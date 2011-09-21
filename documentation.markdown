@@ -19,3 +19,9 @@ title: Documentation
 * [Object actions](documentation/list.html#object-actions)
 * [Actions](documentation/list.html#actions)
 * [Edit query](documentation/list.html#edit-query)
+
+#### Fields configuration for list
+
+* [Label](documentation/fields-for-list.html#label)
+* [Sort](documentation/fields-for-list.html#sort)
+* [Getter](documentation/fields-for-list.html#getter)

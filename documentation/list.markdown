@@ -161,7 +161,6 @@ The default method is :
 
 {% highlight php %}
 <?php
-
 protected function getQuery()
 {
     $query = MovieQuery::create();
@@ -177,7 +176,6 @@ and you can edit to set :
 
 {% highlight php %}
 <?php
-
 protected function getQuery()
 {
     $query = MovieQuery::create()
