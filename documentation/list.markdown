@@ -54,7 +54,7 @@ And for the column title overwrite the Twig Block named list_td_column_**title**
 {% highlight django %}
 {\% extends_admingenerated "NamespaceYourBundle:List:index.html.twig %}
 {\% block list_td_column_title %}
-    <span style="font-weight:bold">{{ "{{" }} Movie.title {{ "}}" }}</span>
+    <span style="font-weight:bold">{{ "{{" }} Movie.title }} }}</span>
 {\% endblock %}
 {% endhighlight %}
 
