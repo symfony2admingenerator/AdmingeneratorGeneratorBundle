@@ -160,6 +160,8 @@ Eg for propel :
 The default method is :
 
 {% highlight php %}
+<?php
+
 protected function getQuery()
 {
     $query = MovieQuery::create();
@@ -174,6 +176,8 @@ protected function getQuery()
 and you can edit to set :
 
 {% highlight php %}
+<?php
+
 protected function getQuery()
 {
     $query = MovieQuery::create()
