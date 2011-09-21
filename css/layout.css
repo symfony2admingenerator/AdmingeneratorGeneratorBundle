@@ -416,3 +416,13 @@ list-style-type: none;
 .markdown ul.toc li{ 
     margin-bottom:0;
 }
+
+.fork_and_edit {
+    text-align: center;
+    font-style: italic;
+    background: transparent url(../images/github.gif) no-repeat 0 0;
+    height: 30px;
+    margin: 0 auto;
+    padding-top: 5px;
+    width: 670px;
+}
