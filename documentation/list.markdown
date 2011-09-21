@@ -52,9 +52,61 @@ Edit the file : YourBundle/Resources/views/List/index.html
 And for the column title overwrite the Twig Block named list_td_column_**title**
 
 {% highlight django %}
-{\% extends_admingenerated "NamespaceYourBundle:List:index.html.twig" %}
-{\% block list_td_column_title %}
+{{ "{% extends_admingenerated "NamespaceYourBundle:List:index.html.twig" %}
+{% block list_td_column_title %}
     <span style="font-weight:bold">{{ Movie.title }}</span>
-{\% endblock %}
+{% endblock %}" }}
 {% endhighlight %}
+
+## Default sort
+
+You can define the default sort options with the key sort :
+
+{% highlight yaml %}
+builders:
+  list:
+    params:
+      sort: [ producer.name, DESC ]
+{% endhighlight %}
+
+With the first argument, the column to sort and the second one optionnal the sorting order ASC or DESC (default: ASC)
+
+## Object actions
+
+You can set actions for rows. This action will call the defined controller, giving the id of the rows
+
+{% highlight yaml %}
+builders:
+  list:
+    params:
+      object_actions: 
+        edit: ~
+{% endhighlight %}
+
+Will go to the edit link.
+
+{% highlight yaml %}
+builders:
+  list:
+    params:
+      object_actions: 
+        delete: 
+          confirm: Are you sure to delete {{ Movie.title }} ?
+{% endhighlight %}
+
+Will go to edit if you click ok on the confirm box message, and like you can see in this sample you can use twig power in your confirm message
+
+The default route for an object action is  **namespace_prefix**_**bundle_name**_**action_name**
+
+You can change it passing the option route to your action :
+
+{% highlight yaml %}
+builders:
+  list:
+    params:
+      object_actions: 
+        delete: 
+          route: my_custom_route
+{% endhighlight %}
+
 
