@@ -17,3 +17,4 @@ title: Documentation
 * [Overwrite the rendering of a field](documentation/list.html#overwrite-the-rendering-of-a-field)
 * [Default sort](documentation/list.html#default-sort)
 * [Object actions](documentation/list.html#object-actions)
+* [Actions](documentation/list.html#actions)

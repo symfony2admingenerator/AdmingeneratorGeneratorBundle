@@ -96,7 +96,7 @@ builders:
 
 Will go to edit if you click ok on the confirm box message, and like you can see in this sample you can use twig power in your confirm message
 
-The default route for an object action is  **namespace_prefix**_**bundle_name**_**action_name**
+The default route for an object action is  **namespace_prefix** _ **bundle_name** _ **action_name**
 
 You can change it passing the option route to your action :
 
@@ -108,5 +108,47 @@ builders:
         delete: 
           route: my_custom_route
 {% endhighlight %}
+
+## Actions
+
+You can set action on the List page. The action will not take params.
+
+
+{% highlight yaml %}
+builders:
+  list:
+    params:
+      actions:
+        new: ~
+{% endhighlight %}
+
+The default route for an object action is  **namespace_prefix** _ **bundle_name** _ **action_name**
+
+{% highlight yaml %}
+builders:
+  list:
+    params:
+      actions: 
+        new: 
+          route: my_custom_route
+{% endhighlight %}
+
+You can add a confirm message like of the [Object actions](documentation/list.html#object-actions)
+
+The default label is the name of the action, [translated in your language](https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/tree/master/Resources/translations) by the catalog Admingenerator
+
+You can edit it with the `label` option
+
+{% highlight yaml %}
+builders:
+  list:
+    params:
+      actions: 
+        new: 
+          label: Create a movie
+{% endhighlight %}
+
+And of course, you can translate it using the same translation catalog.
+
 
 
