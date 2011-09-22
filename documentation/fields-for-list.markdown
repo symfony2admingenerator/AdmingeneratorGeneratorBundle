@@ -48,3 +48,13 @@ params:
 {% endhighlight %}
 
 Will make call `$movie->getMyOwn()` to render your `producer` column
+
+And of course you can chain getter to make `$movie->getMyOwn()->getLabel()`
+
+{% highlight yaml %}
+params:
+  fields:
+    params:
+      producer:
+        getter: MyOwn.Label
+{% endhighlight %}
