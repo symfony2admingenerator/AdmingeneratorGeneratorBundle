@@ -30,7 +30,7 @@ class GenerateAdminCommand extends GenerateBundleCommand
                 new InputOption('structure', '', InputOption::VALUE_NONE, 'Whether to generate the whole directory structure'),
                 new InputOption('format', '', InputOption::VALUE_REQUIRED, 'Do nothing but mandatory for extend', 'annotation'),
                 new InputOption('generator', '', InputOption::VALUE_REQUIRED, 'The generator service (propel, doctrine, doctrine_odm)', 'doctrine'),
-                
+
             ))
             ->setHelp(<<<EOT
 The <info>admin:generate-bundle</info> command helps you generates new admin bundles.
@@ -59,14 +59,14 @@ EOT
         $dialog = $this->getDialogHelper();
         $dialog->writeSection($output, 'Welcome to the Symfony2 admin generator');
         $output->writeln('<comment>Create an admingenrator bundle with generate:bundle</comment>');
-        
-        $generator = $dialog->askAndValidate($output, $dialog->getQuestion('Generator to use (doctrine, doctrine_odm, propel)', $input->getOption('generator')),  function ($generator) { if(!in_array($generator, array('doctrine','doctrine_odm','propel'))) { throw new \RuntimeException('Generator to use have to be doctrine, doctrine_odm or propel'); } return $generator; } , false, $input->getOption('generator'));
+
+        $generator = $dialog->askAndValidate($output, $dialog->getQuestion('Generator to use (doctrine, doctrine_odm, propel)', $input->getOption('generator')),  function ($generator) { if (!in_array($generator, array('doctrine','doctrine_odm','propel'))) { throw new \RuntimeException('Generator to use have to be doctrine, doctrine_odm or propel'); } return $generator; } , false, $input->getOption('generator'));
         $input->setOption('generator', $generator);
-        
+
         parent::interact($input, $output);
-        
+
     }
-    
+
      /**
      * @see Command
      *
@@ -126,12 +126,12 @@ EOT
 
         $dialog->writeGeneratorSummary($output, $errors);
     }
-    
+
     protected function getGenerator()
     {
         return new BundleGenerator($this->getContainer()->get('filesystem'), __DIR__.'/../Resources/skeleton/bundle');
     }
-    
+
     protected function updateRouting($dialog, InputInterface $input, OutputInterface $output, $bundle, $format)
     {
         $auto = true;

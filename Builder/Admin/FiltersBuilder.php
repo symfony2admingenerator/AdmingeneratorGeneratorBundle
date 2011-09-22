@@ -13,9 +13,9 @@ use Admingenerator\GeneratorBundle\Generator\Column;
  */
 class FiltersBuilder extends BaseBuilder
 {
-    
+
     protected $object_actions;
-    
+
     protected $actions;
 
     /**
@@ -26,7 +26,7 @@ class FiltersBuilder extends BaseBuilder
     {
         return 'filters';
     }
-    
+
     protected function findColumns()
     {
         foreach ($this->getVariable('display') as $columnName) {
@@ -34,10 +34,10 @@ class FiltersBuilder extends BaseBuilder
             $column->setDbType($this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName));
             $column->setFormType($this->getFieldGuesser()->getFilterType($column->getDbType()));
             $column->setFormOptions($this->getFieldGuesser()->getFilterOptions($column->getDbType(), $columnName));
-            
+
             //Set the user parameters
             $this->setUserColumnConfiguration($column);
-            
+
             $this->addColumn($column);
         }
     }

@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Route;
 
 class RoutingLoader extends FileLoader
 {
-    // Assoc beetween a controller and is route path 
+    // Assoc beetween a controller and is route path
     //@todo make an object for this
     protected $actions = array(
         'list' => array(
@@ -26,7 +26,7 @@ class RoutingLoader extends FileLoader
                     'pattern'      => '/{id}/edit',
                     'defaults'     => array(),
                     'requirements' => array(),
-                ),  
+                ),
         'update' => array(
                     'pattern'      => '/{id}/update',
                     'defaults'     => array(),
@@ -37,7 +37,7 @@ class RoutingLoader extends FileLoader
                     'pattern'      => '/new',
                     'defaults'     => array(),
                     'requirements' => array(),
-                ),  
+                ),
         'create' => array(
                     'pattern'      => '/create',
                     'defaults'     => array(),
@@ -51,26 +51,26 @@ class RoutingLoader extends FileLoader
                     'controller'   => 'list',
                 ),
     );
-    
+
     public function load($resource, $type = null)
     {
         $collection = new RouteCollection();
         $resource = str_replace('\\', '/', $resource);
         $namespace = $this->getNamespaceFromResource($resource);
         $bundle_name = $this->getBundleNameFromResource($resource);
-        
+
         foreach ($this->actions as $controller => $datas) {
 
             $action = 'index';
             $route_name = str_replace('/','_',$namespace).'_'.$bundle_name.'_'.$controller;
-                       
-            if(isset($datas['controller'])) {
+
+            if (isset($datas['controller'])) {
                 $action     = $controller;
                 $controller = $datas['controller'];
             }
-            
-            $datas['defaults']['_controller'] = $namespace.$bundle_name.':'.ucfirst($controller).':'.$action; 
-            
+
+            $datas['defaults']['_controller'] = $namespace.$bundle_name.':'.ucfirst($controller).':'.$action;
+
             $route = new Route($datas['pattern'],$datas['defaults'], $datas['requirements']);
             $collection->add($route_name, $route);
             $collection->addResource(new FileResource($resource.ucfirst($controller).'Controller.php'));
@@ -78,19 +78,19 @@ class RoutingLoader extends FileLoader
 
         return $collection;
     }
-    
+
     public function supports($resource, $type = null)
     {
         return 'admingenerator' == $type;
     }
-    
+
     protected function getBundleNameFromResource($resource)
     {
         preg_match('#.+/(.+Bundle)/Controller?/$#', $resource, $matches);
-        
+
         return $matches[1];
     }
-    
+
     protected function getNamespaceFromResource($resource)
     {
         preg_match('#.+/(.+)/(.+Bundle)/Controller?/$#', $resource, $matches);

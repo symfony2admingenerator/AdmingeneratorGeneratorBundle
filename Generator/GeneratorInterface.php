@@ -7,18 +7,18 @@ interface GeneratorInterface
 {
 
     /**
-     * Give the cache path to save the files 
-     * 
+     * Give the cache path to save the files
+     *
      * @param string $namespace The namespace of the bundle
      * @param string $bundle_name the bundle name
-     * 
+     *
      * @return string
      */
     function getCachePath($namespace, $bundle_name);
-    
+
     /**
      * Run builders & create files in cache
      */
     function build();
-    
+
 }

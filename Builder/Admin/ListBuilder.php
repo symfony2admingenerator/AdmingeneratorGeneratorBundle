@@ -13,11 +13,11 @@ use Admingenerator\GeneratorBundle\Generator\Action;
  */
 class ListBuilder extends BaseBuilder
 {
-    
+
     protected $object_actions;
-    
+
     protected $filter_columns;
-    
+
 
     /**
      * (non-PHPdoc)
@@ -35,20 +35,20 @@ class ListBuilder extends BaseBuilder
     {
         return $this->getGenerator()->getFromYaml('builders.filters.params');
     }
-    
+
     /**
      * Return a list of action from builders.filters.params
      * @return array
      */
     public function getFilterColumns()
     {
-        if(0 === count($this->filter_columns)) {
+        if (0 === count($this->filter_columns)) {
             $this->findFilterColumns();
         }
 
         return $this->filter_columns;
     }
-    
+
     protected function addFilterColumn(Column $column)
     {
         $this->filter_columns[$column->getName()] = $column;
@@ -57,32 +57,32 @@ class ListBuilder extends BaseBuilder
     protected function findFilterColumns()
     {
         $filters = $this->getFilters();
-        
+
         foreach ($filters['display'] as $columnName) {
             $column = new Column($columnName);
             $column->setDbType($this->getFieldOption($column, 'dbType', $this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName)));
             $column->setFormType($this->getFieldOption($column, 'filterType', $this->getFieldGuesser()->getFilterType($column->getDbType())));
             $column->setFormOptions($this->getFieldOption($column, 'filterOptions', $this->getFieldGuesser()->getFilterOptions($column->getDbType(), $columnName)));
-            
+
             //Set the user parameters
             $this->setUserColumnConfiguration($column);
             $this->addFilterColumn($column);
         }
     }
-    
+
     /**
      * Return a list of action from list.object_actions
      * @return array
      */
     public function getObjectActions()
     {
-        if(0 === count($this->object_actions)) {
+        if (0 === count($this->object_actions)) {
             $this->findObjectActions();
         }
 
         return $this->object_actions;
     }
-    
+
     protected function setUserObjectActionConfiguration(Action $action)
     {
         $options = $this->getVariable(sprintf('object_actions[%s]', $action->getName()),array(), true);
@@ -93,7 +93,7 @@ class ListBuilder extends BaseBuilder
             }
         }
     }
-    
+
     protected function addObjectAction(Action $action)
     {
         $this->object_actions[$action->getName()] = $action;
@@ -107,5 +107,5 @@ class ListBuilder extends BaseBuilder
             $this->addObjectAction($action);
         }
     }
-   
+
 }

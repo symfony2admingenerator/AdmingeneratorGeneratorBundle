@@ -9,19 +9,19 @@ class DoctrineODMQueryFilter extends BaseQueryFilter
     {
         $this->query->field($field)->equals($value);
     }
-    
+
     public function addStringFilter($field, $value)
     {
         $this->query->field($field)->equals(new \MongoRegex("/.*$value.*/i"));
     }
-    
+
     public function addBooleanFilter($field, $value)
     {
         if ("" !== $value) {
             $this->query->field($field)->equals((boolean) $value);
         }
     }
-    
+
     public function addDateFilter($field, $value)
     {
         if (is_array($value)) {
@@ -36,8 +36,8 @@ class DoctrineODMQueryFilter extends BaseQueryFilter
             if ($value['to'] && $value['from']) {
                 $this->query->field($field)->range($value['from'], $value['to']);
             }
-             
-        } elseif($value instanceof \DateTime) {
+
+        } elseif ($value instanceof \DateTime) {
             $this->query->field($field)->equals($value);
         }
     }
@@ -46,7 +46,7 @@ class DoctrineODMQueryFilter extends BaseQueryFilter
     {
          $this->query->field($field.'.$id')->equals(new \MongoId($value->getId()));
     }
-    
+
     public function addCollectionFilter($field, $value)
     {
          $this->query->field($field.'.$id')->equals(new \MongoId($value->getId()));

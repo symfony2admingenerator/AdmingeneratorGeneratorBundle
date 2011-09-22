@@ -9,11 +9,11 @@ It actually supports:
 * Doctine ODM
 * [Propel](http://github.com/propelorm/Propel)
 
-With almost the same features: 
+With almost the same features:
 
 * A YAML to configure create/edit/delete/list actions
 * Manage relations one to one, one to many, many to one and **many to many**
-* Easy edit of forms by changing properties of fields in YAML. 
+* Easy edit of forms by changing properties of fields in YAML.
 * Configure fieldsets
 * Configure more that one field per line
 * Change the database column you want to sortOn or filterOn for a field in list
@@ -47,7 +47,7 @@ Register it in the `autoload.php` file:
 // app/autoload.php
 
 $loader->registerNamespaces(array(
-	'Admingenerator'    => array(__DIR__.'/../src', __DIR__.'/../vendor/bundles'),
+    'Admingenerator'    => array(__DIR__.'/../src', __DIR__.'/../vendor/bundles'),
 ));
 ```
 
@@ -59,20 +59,20 @@ Add it to the `AppKernel` class:
 
 public function registerBundles()
 {
-	$bundles = array(
-		// ...
-		
-		// Admin Generator
-		new Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle(),
-	);
-	
-	// ...
+    $bundles = array(
+        // ...
+
+        // Admin Generator
+        new Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle(),
+    );
+
+    // ...
 }
 ```
 
-### Install Pagerfanta 
+### Install Pagerfanta
 
-``` bash 
+``` bash
 git submodule add http://github.com/whiteoctober/Pagerfanta.git vendor/pagerfanta
 git submodule add http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git vendor/bundles/WhiteOctober/PagerfantaBundle
 ```
@@ -93,9 +93,9 @@ Add it to the `AppKernel` class:
 
 ``` php
 $bundles[] = new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
-```   
+```
 
-### Install KnpMenuBundle 
+### Install KnpMenuBundle
 
 ``` bash
 git submodule add https://github.com/knplabs/KnpMenuBundle.git vendor/bundles/Knp/Bundle/MenuBundle
@@ -118,14 +118,14 @@ Add it to the `AppKernel` class:
 
 ``` php
 $bundles[] = new Knp\Bundle\MenuBundle\KnpMenuBundle();
-```   
+```
 
 Don't forget to configure it to use twig in `config.yml`:
 
 ``` yml
 knp_menu:
     twig: true
-``` 
+```
 
 ### Install SensioGeneratorBundle
 
@@ -140,7 +140,7 @@ Register it in the `autoload.php` file:
 // app/autoload.php
 
 $loader->registerNamespaces(array(
-	'Sensio\Bundle'     => __DIR__.'/../vendor/bundles',
+    'Sensio\Bundle'     => __DIR__.'/../vendor/bundles',
 ));
 ```
 
@@ -157,10 +157,10 @@ E.g. with Doctrine, you'll have to setup the Doctrine2FixtureBundle bundle.
 
 #### Install Doctrine2FixtureBundle & Create the database
 
-``` bash 
+``` bash
 php app/console doctrine:database:create
 php app/console doctrine:schema:create
-php app/console doctrine:fixtures:load	
+php app/console doctrine:fixtures:load
 ```
 
 ### Install Assetic (Optionnal see without assetic part)
@@ -178,7 +178,7 @@ Register it in the `autoload.php` file:
 // app/autoload.php
 
 $loader->registerNamespaces(array(
-	'Assetic'           => __DIR__.'/../vendor/assetic/src',
+    'Assetic'           => __DIR__.'/../vendor/assetic/src',
 ));
 ```
 
@@ -209,7 +209,7 @@ Configure Assetic:
 assetic:
     filters:
         cssrewrite: ~
-        sass: 
+        sass:
             bin: /var/lib/gems/1.8/gems/sass-3.1.7/bin/sass
             compass: /var/lib/gems/1.8/gems/compass-0.11.5/bin/compass
 ```
@@ -224,7 +224,7 @@ admingenerator_generator:
     base_admin_template: AdmingeneratorGeneratorBundle::base_admin_assetic_less.html.twig
 ```
 
-### With or without assetic 
+### With or without assetic
 
 Publish assets:
 

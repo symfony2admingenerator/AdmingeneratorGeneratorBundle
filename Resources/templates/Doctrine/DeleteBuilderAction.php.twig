@@ -3,17 +3,17 @@
     protected function process($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
-        
+
         ${{ builder.ModelClass }} = $em
              ->getRepository('{{ model }}')
              ->findOneById($id);
-        
+
         if (!${{ builder.ModelClass }}) {
             throw new \InvalidArgumentException("No {{ model }} found on id : $id");
         }
-        
+
         $em->remove(${{ builder.ModelClass }});
         $em->flush();
         $em->clear();
     }
-{% endblock %} 
+{% endblock %}

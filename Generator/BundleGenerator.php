@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 namespace Admingenerator\GeneratorBundle\Generator;
@@ -17,11 +17,11 @@ class BundleGenerator extends BaseBundleGenerator
 {
     private $filesystem;
     private $skeletonDir;
-    
-    protected $generator; 
-    
+
+    protected $generator;
+
     protected $actions = array('New', 'List', 'Edit', 'Delete');
-    
+
     protected $forms = array('New', 'Filters', 'Edit');
 
     public function __construct(Filesystem $filesystem, $skeletonDir)
@@ -34,7 +34,7 @@ class BundleGenerator extends BaseBundleGenerator
     {
         $this->generator = $generator;
     }
-    
+
     public function generate($namespace, $bundle, $dir, $format, $structure)
     {
         $dir .= '/'.strtr($namespace, '\\', '/');
@@ -52,21 +52,21 @@ class BundleGenerator extends BaseBundleGenerator
         );
 
         $this->renderFile($this->skeletonDir, 'Bundle.php', $dir.'/'.$bundle.'.php', $parameters);
-        
+
         foreach ($this->actions as $action) {
             $parameters['action'] = $action;
             $this->renderFile($this->skeletonDir, 'DefaultController.php', $dir.'/Controller/'.$action.'Controller.php', $parameters);
-            
+
             if ('Delete' !== $action) {
                 $this->renderFile($this->skeletonDir, 'index.html.twig', $dir.'/Resources/views/'.$action.'/index.html.twig', $parameters);
             }
         }
-        
+
         foreach ($this->forms as $form) {
             $parameters['form'] = $form;
             $this->renderFile($this->skeletonDir, 'DefaultType.php', $dir.'/Form/Type/'.$form.'Type.php', $parameters);
         }
-        
+
         $this->renderFile($this->skeletonDir, 'generator.yml', $dir.'/Resources/config/generator.yml', $parameters);
     }
 }

@@ -12,7 +12,7 @@ class NewBuilderType extends NewBuilder
     {
         return 'Form/BaseType/NewType.php';
     }
-    
+
     public function getTemplateName()
     {
         return 'EditBuilderType' . self::TWIG_EXTENSION;

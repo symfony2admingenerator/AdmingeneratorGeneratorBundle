@@ -40,7 +40,7 @@ class EchoExtension extends \Twig_Extension
             'echo_trans'      => new \Twig_Function_Method($this, 'getEchoTrans'),
         );
     }
-    
+
     public function getFilters()
     {
         return array(
@@ -50,79 +50,79 @@ class EchoExtension extends \Twig_Extension
 
     public function asPhp($variable)
     {
-       if(!is_array($variable)) {
+       if (!is_array($variable)) {
            return $this->export($variable);
        }
-       
+
        $str = $this->export($variable);
-       
+
        preg_match_all('/[^> ]+::__set_state\(array\((.+),\'loaded/i', $str, $matches);
-       
-       if(isset($matches[1][0])) {
+
+       if (isset($matches[1][0])) {
            $params = 'return array('.$matches[1][0].')';
            $params = eval($params. '?>');
-           
+
            $str_param = '';
-           foreach($params as $p) {
-               if('' !== $str_param ) {
+           foreach ($params as $p) {
+               if ('' !== $str_param ) {
                    $str_param .= ', ';
                }
                $str_param .= $this->export($p);
            }
-           
+
            $str = preg_replace("/([^> ]+)::__set_state\(/i", ' new \\\$0', $str);
            $str = str_replace('::__set_state', '', $str);
            $str = str_replace('array('.$matches[1][0].',\'loaded\' => false,  )', $str_param, $str);
        }
-       
+
        return $str;
 
     }
-    
+
     public function export($variable)
     {
         return str_replace(array("\n", 'array (', '     '), array('', 'array(', ''), var_export($variable, true));
     }
-    
+
     public function getEchoTrans($str)
     {
         return '{% trans from "Admingenerator" %}'.$str.'{% endtrans %}';
     }
-    
+
     public function getEchoSet($var, $value)
     {
         return strtr('{% set %%var%% = "%%value%%" %}',array('%%var%%' => $var, '%%value%%' => $value));
     }
-    
+
     public function getEchopath($path, $params = null)
     {
-        if(null === $params) {
-            return strtr('{{ path("%%path%%") }}',array('%%path%%' => $path)); 
+        if (null === $params) {
+            return strtr('{{ path("%%path%%") }}',array('%%path%%' => $path));
         }
-        
-        return strtr('{{ path("%%path%%", %%params%%) }}',array('%%path%%' => $path, '%%params%%'=>$params)); 
+
+        return strtr('{{ path("%%path%%", %%params%%) }}',array('%%path%%' => $path, '%%params%%'=>$params));
     }
-    
+
     public function getEchoIf($condition)
     {
         return str_replace('%%condition%%', $condition, '{% if %%condition%% %}');
     }
-    
+
     public function getEchoElseIf($condition)
     {
         return str_replace('%%condition%%', $condition, '{% elseif %%condition%% %}');
     }
-    
+
     public function getEchoElse()
     {
         return '{% else %}';
     }
-    
+
     public function getEchoEndIf()
     {
         return '{% endif %}';
     }
-    
+
     public function getEchoTwig($str)
     {
         return sprintf('{{ %s }}', $str);

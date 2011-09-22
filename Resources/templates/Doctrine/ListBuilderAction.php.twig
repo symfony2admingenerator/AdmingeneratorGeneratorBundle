@@ -7,9 +7,9 @@
                     ->createQueryBuilder()
                     ->select('q')
                     ->from('{{ model }}', 'q');
-        
-        $this->processSort($query); 
-        $this->processFilters($query); 
+
+        $this->processSort($query);
+        $this->processFilters($query);
 
         return $query->getQuery();
     }
@@ -18,7 +18,7 @@
 {% block processSort -%}
     protected function processSort($query)
     {
-        if($this->getSortColumn()) { 
+        if ($this->getSortColumn()) {
             if (!strstr($this->getSortColumn(), '.')) { //direct column
                 $query->orderBy('q.'.$this->getSortColumn(), $this->getSortOrder());
             } else {
@@ -34,18 +34,18 @@
     protected function getFilterForm()
     {
         $filters = $this->getFilters();
-        
+
         {%- for filter in builder.filters.display -%}
             {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
-        
+
         if (isset($filters['{{ filter }}'])) {
              $this->getDoctrine()->getEntityManager()->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array($filters['{{ filter }}']->getId()), array());
         }
-        
+
             {%- endif %}
-            
+
         {% endfor -%}
-        
+
         return $this->createForm(new FiltersType(), $this->getFilters());
     }
 {% endblock %}
@@ -61,16 +61,16 @@
     protected function processFilters($query)
     {
         $filterObject = $this->getFilters();
-        
+
         $queryFilter = $this->get('admingenerator.queryfilter.doctrine');
         $queryFilter->setQuery($query);
 
         {% for filter in builder.filterColumns %}
-        
+
         if (isset($filterObject['{{ filter.name }}']) && null !== $filterObject['{{ filter.name }}']) {
             $queryFilter->add{{ filter.dbType|classify }}Filter("{{ filter.filterOn }}", $filterObject['{{ filter.name }}']);
         }
         {% endfor %}
-        
+
     }
 {% endblock %}

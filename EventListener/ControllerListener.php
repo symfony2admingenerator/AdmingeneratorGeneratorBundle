@@ -16,7 +16,7 @@ use Symfony\Component\Finder\Finder;
 class ControllerListener
 {
     protected $container;
-    
+
     protected $router;
 
     public function __construct(ContainerInterface $container)
@@ -30,47 +30,47 @@ class ControllerListener
             try {
                 $controller = $event->getRequest()->attributes->get('_controller');
 
-                if(strstr($controller, '::')) { //Check if its a "real controller" not assetic for example
+                if (strstr($controller, '::')) { //Check if its a "real controller" not assetic for example
                     $generatorYaml = $this->getGeneratorYml($controller);
-                    
+
                     $generator = $this->getGenerator($generatorYaml);
                     $generator->setGeneratorYml($generatorYaml);
                     $generator->build();
-                    
+
                 }
             } catch (NotAdminGeneratedException $e) {
                 //Lets the word running this is not an admin generated module
-            } 
+            }
         }
     }
-    
+
     protected function getGenerator($generatorYaml)
     {
         $yaml = Yaml::parse($generatorYaml);
-        
+
         return $this->container->get($yaml['generator']);
     }
-    
+
     /**
      * @todo Find objects in vendor dir
      */
     protected function getGeneratorYml($controller)
     {
         list($base, $bundle, $other) = explode('\\', $controller, 3);
-                
+
         $finder = new Finder();
         $finder->files()
                ->name('generator.yml');
-               
+
         $namespace_directory = realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$base.'/'.$bundle);
-        
+
         if (is_dir($namespace_directory)) {
             $finder->in($namespace_directory);
             $it = $finder->getIterator();
             $it->rewind();
 
             if ($it->valid()) {
-               
+
                 return $it->current()->getRealpath();
             }
         }

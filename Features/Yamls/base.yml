@@ -10,19 +10,19 @@ builders:
       display: [ id, title, is_published ]
       max_per_page: 3
       actions:
-        new: ~ 
+        new: ~
       object_actions:
-        edit: ~ 
+        edit: ~
         delete: ~
-  filters: 
+  filters:
     params:
       display: [ title, is_published ]
-  new: 
+  new:
     params:
       title: You're creating a new movie
       display: [ title, is_published ]
-  edit: 
+  edit:
     params:
       title: You're editing the movie "{{ Movie.title }}"
       display: [ title, is_published ]
-  delete: ~ 
+  delete: ~

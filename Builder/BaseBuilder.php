@@ -52,19 +52,19 @@ abstract class BaseBuilder implements BuilderInterface
      * @var array
      */
     protected $twigFilters = array(
-		'var_export',
+        'var_export',
         'ucfirst',
         '\Doctrine\Common\Util\Inflector::classify',
         'substr',
     );
-    
+
      /**
      * @var array
      */
     protected $twigExtensions = array(
         'Admingenerator\GeneratorBundle\Twig\Extension\EchoExtension',
     );
-    
+
     /**
      * (non-PHPdoc)
      * @see Builder/Admingenerator\GeneratorBundle\Builder.BuilderInterface::__construct()
@@ -166,9 +166,10 @@ abstract class BaseBuilder implements BuilderInterface
         if (null === $class) {
             $class = get_class($this);
         }
-         
+
         $classParts = explode('\\', $class);
         $simpleClassName = array_pop($classParts);
+
         return $simpleClassName;
     }
 
@@ -198,7 +199,7 @@ abstract class BaseBuilder implements BuilderInterface
     {
         return $this->mustOverwriteIfExists;
     }
-    
+
     /**
      * (non-PHPdoc)
      * @see Admingenerator\GeneratorBundle\Builder.BuilderInterface::setMustOverwriteIfExists()
@@ -217,7 +218,7 @@ abstract class BaseBuilder implements BuilderInterface
         if (is_array($variables)) {
             $variables = new ParameterBag($variables);
         }
-         
+
         $this->variables = $variables;
     }
 
@@ -274,14 +275,14 @@ abstract class BaseBuilder implements BuilderInterface
     {
         $locator = new TemplateLocator(new FileLocator($this->getTemplateDirs()));
         $templateNameParser = new TemplateNameParser();
-        $loader = new FilesystemLoader($locator, $templateNameParser); 
+        $loader = new FilesystemLoader($locator, $templateNameParser);
         $twig = new \Twig_Environment($loader, array(
             'autoescape' => false,
             'strict_variables' => true,
             'debug' => true,
             'cache' => $this->getGenerator()->getTempDir(),
         ));
-        
+
         $this->addTwigExtensions($twig, $loader);
         $this->addTwigFilters($twig);
         $template = $twig->loadTemplate($this->getTemplateName());
@@ -291,7 +292,7 @@ abstract class BaseBuilder implements BuilderInterface
 
         return $template->render($variables);
     }
-    
+
     /**
      * (non-PHPdoc)
      * @see Builder/Admingenerator\GeneratorBundle\Builder.BuilderInterface::addTwigFilters()
@@ -307,7 +308,7 @@ abstract class BaseBuilder implements BuilderInterface
             $twig->addFilter($twigFilterName, new \Twig_Filter_Function($twigFilter));
         }
     }
-    
+
     /**
      * (non-PHPdoc)
      * @see Builder/Admingenerator\GeneratorBundle\Builder.BuilderInterface::addTwigExtensions()

@@ -13,13 +13,13 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
     private $controller;
 
     private $action;
-    
+
     protected $root_dir;
-    
+
     protected $cache_dir;
-    
+
     protected $generator_yaml;
-    
+
     protected $fieldGuesser;
 
     public function __construct($root_dir, $cache_dir)
@@ -27,17 +27,17 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
         $this->root_dir = $root_dir;
         $this->cache_dir = $cache_dir;
     }
-    
+
     public function setGeneratorYml($yaml_file)
     {
         $this->generator_yaml = $yaml_file;
     }
-    
+
     protected function getGeneratorYml()
     {
         return $this->generator_yaml;
     }
-    
+
    /**
     * (non-PHPdoc)
     * @see Generator/Admingenerator\GeneratorBundle\Generator.GeneratorInterface::getCachePath()
@@ -46,7 +46,7 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
     {
        return $this->cache_dir.'/Admingenerated/'.$namespace.$bundle_name;
     }
-    
+
     /**
      * (non-PHPdoc)
      * @see Generator/Admingenerator\GeneratorBundle\Generator.GeneratorInterface::build()
@@ -55,13 +55,13 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
     {
         throw new \LogicException('Not implemented');
     }
-    
-    
+
+
     public function setFieldGuesser($fieldGuesser)
     {
         return $this->fieldGuesser = $fieldGuesser;
     }
-    
+
     public function getFieldGuesser()
     {
         return $this->fieldGuesser;

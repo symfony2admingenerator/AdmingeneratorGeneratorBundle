@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Admingenerator\GeneratorBundle\CacheWarmer;
 
@@ -9,18 +9,18 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Generate all admingenerated bundle on warmup
- * 
+ *
  * @author Cedric LOMBARDOT
  */
 class GeneratorCacheWarmer implements CacheWarmerInterface
 {
 
     protected $container;
-    
+
     protected $finder;
-    
+
     protected $yaml_datas = array();
-    
+
     /**
      * Constructor.
      *
@@ -39,12 +39,12 @@ class GeneratorCacheWarmer implements CacheWarmerInterface
      */
     public function warmUp($cacheDir)
     {
-        foreach($this->finder->findAllGeneratorYamls() as $yaml)
+        foreach ($this->finder->findAllGeneratorYamls() as $yaml)
         {
             $this->buildFromYaml($yaml);
         }
     }
-    
+
     /**
      * Checks whether this warmer is optional or not.
      *
@@ -54,20 +54,20 @@ class GeneratorCacheWarmer implements CacheWarmerInterface
     {
         return true;
     }
-    
+
     protected function buildFromYaml($file)
     {
         $this->parseYaml($file);
         $service = $this->yaml_datas['generator'];
-        
+
         $generator = $this->container->get($service);
         $generator->setGeneratorYml($file);
-        $generator->build();        
+        $generator->build();
     }
-    
+
     protected function parseYaml($file)
     {
        $this->yaml_datas = Yaml::parse($file);
     }
-    
+
 }

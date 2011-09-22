@@ -11,37 +11,37 @@ use Doctrine\ORM\EntityManager;
 class DoctrineORMFieldGuesser
 {
     private $entityManager;
-    
+
     private $metadata;
-    
+
     private static $current_class;
 
     public function __construct(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
     }
-    
+
     protected function getMetadatas($class = null)
     {
-        if($class) {
+        if ($class) {
             self::$current_class = $class;
         }
 
-        if(isset($this->metadata[self::$current_class]) || !$class) {
+        if (isset($this->metadata[self::$current_class]) || !$class) {
             return $this->metadata[self::$current_class];
         }
-        
+
         if (!$this->entityManager->getConfiguration()->getMetadataDriverImpl()->isTransient($class)) {
             $this->metadata[self::$current_class] = $this->entityManager->getClassMetadata($class);
         }
-        
+
         return $this->metadata[self::$current_class];
     }
-    
+
     public function getDbType($class, $fieldName)
     {
         $metadata = $this->getMetadatas($class);
-        
+
         if ($metadata->hasAssociation($fieldName)) {
             if ($metadata->isSingleValuedAssociation($fieldName)) {
                 return 'entity';
@@ -49,10 +49,10 @@ class DoctrineORMFieldGuesser
                 return 'collection';
             }
         }
-        
+
         return $metadata->getTypeOfField($fieldName);
     }
-    
+
     public function getFormType($dbType)
     {
         switch($dbType) {
@@ -94,7 +94,7 @@ class DoctrineORMFieldGuesser
                 break;
         }
     }
-    
+
     public function getFilterType($dbType)
     {
          switch($dbType) {
@@ -112,65 +112,65 @@ class DoctrineORMFieldGuesser
                 break;
              case 'collection':
                 return 'entity';
-                break;        
+                break;
          }
-         
+
          return $this->getFormType($dbType);
     }
-    
+
     public function getFormOptions($dbType, $columnName)
     {
         if ('boolean' == $dbType) {
             return array('required' => false);
         }
-        
+
         if ('entity' == $dbType) {
             $mapping = $this->getMetadatas()->getAssociationMapping($columnName);
-            
+
             return array('em' => 'default', 'class' => $mapping['targetEntity'], 'multiple' => false);
         }
-        
+
         if ('collection' == $dbType) {
             $mapping = $this->getMetadatas()->getAssociationMapping($columnName);
-            
+
             return array('em' => 'default', 'class' => $mapping['targetEntity']);
         }
-        
+
         return array('required' => $this->isRequired($columnName));
     }
-    
+
     protected function isRequired($fieldName)
     {
-        if(!$this->getMetadatas()->hasAssociation($fieldName) || $this->getMetadatas()->isSingleValuedAssociation($fieldName)) {
+        if (!$this->getMetadatas()->hasAssociation($fieldName) || $this->getMetadatas()->isSingleValuedAssociation($fieldName)) {
             return $this->getMetadatas()->isNullable($fieldName);
         }
-        
+
         return false;
     }
-    
+
     public function getFilterOptions($dbType, $ColumnName)
     {
         $options = array('required' => false);
-        
-        if('boolean' == $dbType)
+
+        if ('boolean' == $dbType)
         {
             $choices = new ArrayChoiceList(array(
                     0 => 'No',
                     1 => 'Yes'
                     ));
-                    
+
            $options['choice_list'] = $choices;
            $options['empty_value'] = 'Yes or No';
         }
-        
+
          if ('entity' == $dbType) {
              return array_merge($this->getFormOptions($dbType, $ColumnName), $options);
          }
-         
+
         if ('collection' == $dbType) {
              return array_merge($this->getFormOptions($dbType, $ColumnName), $options, array('multiple'=>false));
          }
-        
+
         return $options;
     }
 

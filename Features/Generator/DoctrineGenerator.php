@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 namespace Admingenerator\GeneratorBundle\Features\Generator;
@@ -11,7 +11,7 @@ class DoctrineGenerator extends BaseDoctrineGenerator
     {
         $this->yaml_path = $yaml_path;
     }
-    
+
     protected function getGeneratorYml()
     {
         return $this->yaml_path;

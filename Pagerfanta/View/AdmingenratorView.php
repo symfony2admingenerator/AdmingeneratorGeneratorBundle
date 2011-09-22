@@ -8,14 +8,14 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 class AdmingenratorView implements ViewInterface
 {
-    
+
     protected $translator;
-    
+
     public function __construct(TranslatorInterface $translator)
     {
         $this->translator = $translator;
     }
-    
+
     /**
      * {@inheritdoc}
      */

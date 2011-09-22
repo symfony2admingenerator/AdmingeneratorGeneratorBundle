@@ -12,12 +12,12 @@
                         {{ echo_twig("form_label(form['" ~ field ~ "'], '" ~ builder.Columns[field].label ~ "')") }}
                         {{ echo_twig("form_widget(form['" ~ field ~ "'])") -}}
                         {% if builder.columns[field].help %}
-                        
+
                         <span class="help">
                             {{ builder.columns[field].help }}
                         </span>
                         {% endif -%}
-                        
+
                         {{ echo_twig("form_errors(form['" ~ field ~ "'])") }}
                     {{ echo_endblock() }}
                 </div>

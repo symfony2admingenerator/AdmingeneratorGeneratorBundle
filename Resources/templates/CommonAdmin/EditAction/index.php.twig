@@ -8,13 +8,13 @@ use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\EditType;
     public function indexAction($id)
     {
         ${{ builder.ModelClass }} = $this->getObject($id);
-        
+
         if (!${{ builder.ModelClass }}) {
             throw new NotFoundHttpException("The {{ model }} with id $id can't be found");
         }
-        
+
         $form = $this->createForm(new EditType(), ${{ builder.ModelClass }});
-        
+
         return $this->render('{{ namespace_prefix }}{{ bundle_name }}:Edit:index.html.twig', array(
             "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
             "form" => $form->createView(),

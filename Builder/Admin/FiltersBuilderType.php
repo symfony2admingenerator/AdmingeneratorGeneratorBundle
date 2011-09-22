@@ -3,7 +3,7 @@
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
 /**
- * This builder generate form for Filters 
+ * This builder generate form for Filters
  * @author cedric Lombardot
  */
 class FiltersBuilderType extends FiltersBuilder
@@ -12,7 +12,7 @@ class FiltersBuilderType extends FiltersBuilder
     {
         return 'Form/BaseType/FiltersType.php';
     }
-    
+
     public function getTemplateName()
     {
         return 'EditBuilderType' . self::TWIG_EXTENSION;

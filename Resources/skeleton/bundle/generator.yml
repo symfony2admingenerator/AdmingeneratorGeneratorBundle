@@ -3,7 +3,7 @@ params:
   model: {{ namespace }}\Entity\YourModel
   namespace_prefix: {{ namespace_prefix }}
   bundle_name: {{ bundle_name }}
-  fields: ~ 
+  fields: ~
 
 builders:
   list:

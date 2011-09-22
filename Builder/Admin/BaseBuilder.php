@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
@@ -10,25 +10,25 @@ use Admingenerator\GeneratorBundle\Generator\Action;
 
 class BaseBuilder extends GenericBaseBuilder
 {
-    
+
     protected $columns;
-    
+
     protected $actions;
-    
+
     protected $columnClass = 'Column';
-    
+
     public function getBaseAdminTemplate()
     {
         return $this->getGenerator()->getBaseAdminTemplate();
     }
-    
+
     /**
      * Return a list of columns from list.display
      * @return array
      */
     public function getColumns()
     {
-        if(0 === count($this->columns)) {
+        if (0 === count($this->columns)) {
             $this->findColumns();
         }
 
@@ -47,79 +47,79 @@ class BaseBuilder extends GenericBaseBuilder
             $column->setDbType($this->getFieldOption($column, 'dbType', $this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName)));
             $column->setFormType($this->getFieldOption($column, 'formType', $this->getFieldGuesser()->getFormType($column->getDbType())));
             $column->setFormOptions($this->getFieldOption($column, 'formOptions', $this->getFieldGuesser()->getFormOptions($column->getDbType(), $columnName)));
-            
+
             //Set the user parameters
             $this->setUserColumnConfiguration($column);
-            
+
             $this->addColumn($column);
         }
     }
-    
+
     protected function getColumnClass()
     {
         return $this->columnClass;
     }
-    
+
     public function setColumnClass($columnClass)
     {
         return $this->columnClass = $columnClass;
     }
-    
+
     protected function getFieldOption(Column $column, $optionName, $default = null)
     {
         $options = $this->getVariable(sprintf('fields[%s]', $column->getName()),array(), true);
-        
+
         return isset($options[$optionName]) ? $options[$optionName] : $default;
     }
-    
+
     protected function setUserColumnConfiguration(Column $column)
     {
         $options = $this->getVariable(sprintf('fields[%s]', $column->getName()),array(), true);
-        
+
         foreach ($options as $option => $value) {
             $column->setOption($option, $value);
         }
     }
-    
+
     public function getFieldGuesser()
     {
         return $this->getGenerator()->getFieldGuesser();
     }
-    
+
     /**
      * Extract from the displays arrays of fieldset to keep only columns
-     * 
+     *
      * @return array
      */
     protected function getDisplayAsColumns()
     {
         $display = $this->getVariable('display');
-        
+
         if (isset($display[0])) {
             return $display;
         }
-        
+
         //there is fieldsets
         $return = array();
-            
+
         foreach ($display as $fieldset => $rows_or_fields) {
            if (!is_array($rows_or_fields[0])) {
                 $return = array_merge($return, $rows_or_fields);
            } else {
                foreach ($rows_or_fields as $fields) {
                    $return = array_merge($return, $fields);
-               }               
+               }
            }
         }
 
         return $return;
     }
-    
+
     /**
      * @return array(
-     * 
+     *
      * )
-     * 
+     *
      */
     public function getFieldsets()
     {
@@ -128,26 +128,27 @@ class BaseBuilder extends GenericBaseBuilder
         if (isset($display[0])) {
             $display = array('NONE' => $display);
         }
-        
+
         foreach ($display as $fieldset => $rows_or_fields) {
             $display[$fieldset] = $this->getRowsFromFieldset($rows_or_fields);
         }
-        
+
         return $display;
     }
-    
+
     protected function getRowsFromFieldset(array $rows_or_fields)
     {
         if (is_array($rows_or_fields[0])) { //The rows are defined in yaml
+
             return $rows_or_fields;
         }
-        
+
         $rows = array();
-        
+
         foreach ($rows_or_fields as $field) {
             $rows[][$field] = $field;
         }
-        
+
         return $rows;
     }
 
@@ -157,24 +158,24 @@ class BaseBuilder extends GenericBaseBuilder
      */
     public function getActions()
     {
-        if(0 === count($this->actions)) {
+        if (0 === count($this->actions)) {
             $this->findActions();
         }
 
         return $this->actions;
     }
-    
+
     protected function setUserActionConfiguration(Action $action)
     {
         $options = $this->getVariable(sprintf('actions[%s]', $action->getName()),array(), true);
-        
+
         if (null !== $options) {
             foreach ($options as $option => $value) {
                 $action->setOption($option, $value);
             }
         }
     }
-    
+
     protected function addAction(Action $action)
     {
         $this->actions[$action->getName()] = $action;
@@ -184,13 +185,13 @@ class BaseBuilder extends GenericBaseBuilder
     {
         foreach ($this->getVariable('actions', array()) as $actionName => $actionParams) {
             $action = new Action($actionName);
-            
+
             $this->setUserActionConfiguration($action);
-            
+
             $this->addAction($action);
         }
     }
-    
+
     /**
      * Parse a little template with twig for yaml options
      */
@@ -205,9 +206,9 @@ class BaseBuilder extends GenericBaseBuilder
         ));
         $this->addTwigExtensions($twig, $loader);
         $this->addTwigFilters($twig);
-        
+
         $template = $twig->loadTemplate($template);
-        
+
         return $template->render($options);
     }
 }

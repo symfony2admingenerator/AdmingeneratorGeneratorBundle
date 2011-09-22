@@ -27,7 +27,7 @@ class PropelQueryFilter extends BaseQueryFilter
         $method = 'filterBy'.$field;
         call_user_func_array(array($this->query, $method), array($value));
     }
-    
+
     public function addCollectionFilter($field, $value)
     {
         if (!is_array($value)) {
@@ -51,7 +51,7 @@ class PropelQueryFilter extends BaseQueryFilter
     {
         if (is_array($value)) {
             $filters = array();
-            
+
             if ($value['from']) {
                 $filters['min'] = $value['from']->format('Y-m-d');
             }
@@ -63,9 +63,9 @@ class PropelQueryFilter extends BaseQueryFilter
             if (count($filters) > 0) {
                 $method = 'filterBy'.$field;
                 call_user_func_array(array($this->query, $method), array($filters));
-            }  
-            
-        } elseif($value instanceof \DateTime) {
+            }
+
+        } elseif ($value instanceof \DateTime) {
             $this->query->filterBy($field, $value->format('Y-m-d'));
         }
     }

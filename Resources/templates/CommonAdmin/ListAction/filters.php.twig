@@ -3,20 +3,20 @@
     {
         if ($this->get('request')->get('reset')) {
             $this->setFilters(array());
-            
+
             return new RedirectResponse($this->generateUrl("{{ namespace_prefix }}_{{ bundle_name }}_list"));
         }
 
         $form = $this->getFilterForm();
         $form->bindRequest($this->get('request'));
-        
+
         if ($form->isValid()) {
             $this->setFilters($form->getClientData());
         }
-        
+
         return new RedirectResponse($this->generateUrl("{{ namespace_prefix }}_{{ bundle_name }}_list"));
     }
-    
+
     /**
      * Store in the session service the current filters
      *
@@ -26,7 +26,7 @@
     {
         $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\Filters', $filters);
     }
-    
+
     protected function getFilters()
     {
         return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Filters', array());

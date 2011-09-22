@@ -27,15 +27,15 @@ class Generator
      * @var file $yaml the yaml
      */
     protected $yaml;
-    
+
     protected $mustOverwriteIfExists = false;
-    
+
     protected $templateDirectories = array();
-    
+
     protected $baseController;
-    
+
     protected $columnClass = 'Admingenerator\GeneratorBundle\Generator\Column';
-    
+
     protected $base_admin_template = 'AdmingeneratorGeneratorBundle::base_admin.html.twig';
 
     /**
@@ -56,17 +56,17 @@ class Generator
     {
         $this->mustOverwriteIfExists = $status;
     }
-    
+
     public function getBaseAdminTemplate()
     {
         return $this->base_admin_template;
     }
-    
+
     public function setBaseAdminTemplate($base_admin_template)
     {
         return $this->base_admin_template = $base_admin_template;
     }
-    
+
     /**
      * (non-PHPdoc)
      * @see Builder/Admingenerator\GeneratorBundle\Builder.BuilderInterface::setTemplateDirs()
@@ -75,8 +75,8 @@ class Generator
     {
         $this->templateDirectories = $templateDirs;
     }
-    
-    
+
+
     /**
      * Ensure to remove tempDir
      */
@@ -113,12 +113,12 @@ class Generator
         $builder->setTemplateDirs($this->templateDirectories);
         $builder->setMustOverwriteIfExists($this->mustOverwriteIfExists);
         $builder->setColumnClass($this->getColumnClass());
-         
+
         $vars = array_replace_recursive(
             $this->getFromYaml('params', array()),
             $this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array())
         );
-         
+
         $builder->setVariables($vars);
 
         $this->builders[$builder->getSimpleClassName()] = $builder;
@@ -128,12 +128,12 @@ class Generator
     {
         return $this->columnClass;
     }
-    
+
     public function setColumnClass($columnClass)
     {
         return $this->columnClass = $columnClass;
     }
-    
+
     /**
      * Generated and write classes to disk
      *
@@ -191,25 +191,25 @@ class Generator
             }
             $search_in = $search_in[$key];
         }
-         
+
         return $search_in;
     }
-    
+
     public function setFieldGuesser($fieldGuesser)
     {
         return $this->fieldGuesser = $fieldGuesser;
     }
-    
+
     public function getFieldGuesser()
     {
         return $this->fieldGuesser;
     }
-    
+
     public function setBaseController($baseController)
     {
         $this->baseController = $baseController;
     }
-    
+
     public function getBaseController()
     {
         return $this->baseController;

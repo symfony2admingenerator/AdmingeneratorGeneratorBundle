@@ -20,41 +20,41 @@ use Pagerfanta\Adapter\DoctrineORMAdapter as PagerAdapter;
 class ListController extends BaseController
 {
     {{- block('index') -}}
-    
+
     {{- block('pager') -}}
-    
+
     {{- block('sorter') -}}
-    
+
     {{- block('filters') }}
-    
+
     {% block getQuery -%}
     protected function getQuery()
     {
         // ORM JOB
     }
     {% endblock %}
-    
+
     {% block processSort -%}
     protected function processSort($query)
     {
        // ORM JOB
     }
     {% endblock %}
-    
+
     {% block getFilterForm -%}
     protected function getFilterForm()
     {
         // ORM JOB
     }
     {% endblock %}
-    
+
     {% block addJoinFor -%}
     protected function addJoinFor($table, $query)
     {
         // ORM JOB
     }
     {% endblock %}
-    
+
     {% block processFilters -%}
     protected function processFilters($query)
     {

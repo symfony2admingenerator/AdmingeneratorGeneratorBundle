@@ -41,7 +41,7 @@ class GeneratorFinder
         $yamls = array();
 
         foreach ($this->kernel->getBundles() as $name => $bundle) {
-            if($yaml = $this->findGeneratorYamlInBundle($bundle)) {
+            if ($yaml = $this->findGeneratorYamlInBundle($bundle)) {
                 $yamls[] = $yaml;
             }
         }
@@ -60,11 +60,11 @@ class GeneratorFinder
     private function findGeneratorYamlInBundle(BundleInterface $bundle)
     {
         $file = $bundle->getPath().'/Resources/config/generator.yml';
-        
-        if(file_exists($file)) {
+
+        if (file_exists($file)) {
             return $file;
         }
-        
+
         return false;
     }
 }

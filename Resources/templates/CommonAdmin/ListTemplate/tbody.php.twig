@@ -4,21 +4,21 @@
 {% block list_tbody %}
 {{ echo_block("list_tbody") }}
     <tbody>
-        {{ echo_if(builder.ModelClass ~ "s|length > 0") }}
-         
+        {{ echo_if (builder.ModelClass ~ "s|length > 0") }}
+
         {{ echo_for(builder.ModelClass, builder.ModelClass ~ "s" ) }}
         <tr class="list_trow">
             {{- block('list_row') -}}
-            
+
             {{- block('list_object_actions') }}
         </tr>
         {{ echo_endfor() }}
-        
+
         {{ echo_else() }}
         <tr class="list_trow no_results_row">
             <td colspan="{{ (object_actions|length > 0) ? (display|length + 1) : display|length }}">{{ echo_trans('list.no_results') }}</td>
         </tr>
-        {{ echo_endif() }}
+        {{ echo_endif () }}
     </tbody>
-{{ echo_endblock() }}   
+{{ echo_endblock() }}
 {% endblock %}

@@ -26,14 +26,14 @@ class DoctrineODMDoubleListType extends AbstractType
 {
 
     protected $documentManager;
-    
+
     protected $choices;
 
     public function __construct(DocumentManager $documentManager)
     {
         $this->documentManager = $documentManager;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -42,43 +42,43 @@ class DoctrineODMDoubleListType extends AbstractType
          $builder
                ->prependClientTransformer(new ArrayToChoicesTransformer($options['choice_list']))
                ->prependClientTransformer(new DocumentsToArrayTransformer($options['choice_list']))
-               ;  
-         
+               ;
+
         $this->choices = $options['choice_list']->getChoices();
-        
+
         unset($options['choices']);
-        
+
     }
-    
-    
+
+
     /**
      * {@inheritdoc}
      */
     public function buildView(FormView $view, FormInterface $form)
     {
         $values = $view->get('value');
-        
+
         $selecteds = array_flip($values);
         $choices_selected = $choices_unselected = array();
-        
+
         //Rebuilds choices
-        foreach($this->choices as $key => $choice) {
+        foreach ($this->choices as $key => $choice) {
             if (isset($selecteds[$key])) {
                 $choices_selected[$key] = $choice;
             } else {
                 $choices_unselected[$key] = $choice;
             }
         }
-        
+
         $view->set('choices_selected', $choices_selected);
         $view->set('choices_unselected', $choices_unselected);
     }
-    
+
     public function getParent(array $options)
     {
         return 'field';
     }
-    
+
     public function getDefaultOptions(array $options)
     {
         $defaultOptions = array(
@@ -103,7 +103,7 @@ class DoctrineODMDoubleListType extends AbstractType
 
         return $defaultOptions;
     }
-    
+
     public function getName()
     {
         return 'doctrine_odm_double_list';

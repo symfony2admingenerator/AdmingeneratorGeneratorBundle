@@ -8,7 +8,7 @@
     {
         $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\Page', $page);
     }
-    
+
     /**
      * Return the stored page
      *
@@ -18,7 +18,7 @@
     {
         return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Page', 1);
     }
-    
+
     protected function getPager()
     {
         $paginator = new Pagerfanta(new PagerAdapter($this->getQuery()));

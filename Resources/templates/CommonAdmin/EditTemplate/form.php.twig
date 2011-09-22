@@ -3,16 +3,16 @@
 {% block form %}
 
     {{ echo_block('form') }}
-    <form 
-        {{ echo_if(builder.ModelClass ~ ".id") }}
+    <form
+        {{ echo_if (builder.ModelClass ~ ".id") }}
             action="{{ echo_path(namespace_prefix ~ '_' ~ bundle_name ~ "_update", "{ 'id': " ~ builder.ModelClass ~ ".id }" ) }}"
         {{ echo_else() }}
             action="{{ echo_path(namespace_prefix ~ '_' ~ bundle_name ~ "_create" ) }}"
-        {{ echo_endif() }}
+        {{ echo_endif () }}
         method="post" {{ echo_twig("form_enctype(form)") }}>
-     
+
         {{ echo_twig("form_errors(form)") }}
-        
+
         {% for fieldset in builder.fieldsets|keys %}
             {{- block('form_fieldset') }}
         {% endfor -%}
@@ -22,7 +22,7 @@
                  <input type="submit" class="submit_button" value="{{ echo_trans('form.btn_save') }}" />
             </li>
         </ul>
-        
+
         {{ block("form_actions") }}
     </form>
     {{ echo_endblock() }}

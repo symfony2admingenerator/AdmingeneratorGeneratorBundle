@@ -5,21 +5,21 @@
     public function createAction()
     {
         ${{ builder.ModelClass }} = $this->getNewObject();
-        
+
         $form = $this->createForm(new NewType(), ${{ builder.ModelClass }});
         $form->bindRequest($this->get('request'));
-        
+
         if ($form->isValid()) {
             $this->saveObject(${{ builder.ModelClass }});
-            
+
             $this->get('session')->setFlash('success', 'The object was successfully saved');
-            
+
             return new RedirectResponse($this->generateUrl("{{ namespace_prefix }}_{{ bundle_name }}_edit", array('id' => ${{ builder.ModelClass }}->getId()) ));
-            
+
         } else {
             $this->get('session')->setFlash('error', "The form can't be saved. Check errors and try to resubmit");
         }
-        
+
         return $this->render('{{ namespace_prefix }}{{ bundle_name }}:New:index.html.twig', array(
             "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
             "form" => $form->createView(),

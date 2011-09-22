@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 namespace Admingenerator\GeneratorBundle\Tests\Routing;
@@ -13,10 +13,10 @@ use Admingenerator\GeneratorBundle\Routing\RoutingLoader;
 
 class RoutingLoaderTest extends TestCase
 {
-    
+
     public function testLoad()
     {
-        
+
         $routing = new RoutingLoader(new FileLocator(array()));
         $routes = $routing->load('/host/admingen/src/Admingenerator/DemoBundle/Controller/', 'admingenerated');
         $this->assertInstanceOf('Symfony\Component\Routing\RouteCollection', $routes);

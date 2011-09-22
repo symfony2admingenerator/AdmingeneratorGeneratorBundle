@@ -7,7 +7,7 @@
 
 {{ echo_extends( builder.getBaseAdminTemplate ) }}
 
-{{ echo_block("body") }} 
+{{ echo_block("body") }}
     {{- block('title') -}}
 
     <div class="main_content">
@@ -15,9 +15,9 @@
             {{ block('list_thead') -}}
             {{- block('list_tbody') }}
         </table>
-        
+
         {{ block('list_paginator') -}}
-        
+
         {{- block('list_actions') }}
     </div>
     <div class="filters">
@@ -35,5 +35,5 @@
                 </tr>
             </tbody>
         </table>
-    </div>    
+    </div>
 {{ echo_endblock() }}

@@ -8,14 +8,14 @@
     protected function setSort($column, $order_by)
     {
         $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\Sort', $column);
-        
-        if($order_by == 'desc') {
+
+        if ($order_by == 'desc') {
             $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\OrderBy', 'DESC');
         } else {
              $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\OrderBy', 'ASC');
         }
     }
-    
+
     /**
      * Return the stored sort
      *
@@ -24,12 +24,14 @@
     protected function getSortColumn()
     {
         {% if sort is defined and sort[0] != '' -%}
+
             return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Sort', '{{ sort[0] }}');
         {% else -%}
+
             return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Sort');
         {% endif -%}
     }
-    
+
     /**
      * Return the stored sort order
      *
@@ -38,10 +40,12 @@
     protected function getSortOrder()
     {
         {% if sort is defined and sort[1] != '' -%}
+
             return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\OrderBy', '{{ sort[1] }}');
         {% else -%}
+
             return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\OrderBy', 'ASC');
         {% endif -%}
     }
-    
+
 {% endblock %}

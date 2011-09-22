@@ -32,15 +32,15 @@ class PropelDoubleListType extends AbstractType
          $builder
                ->prependClientTransformer(new ArrayToChoicesTransformer($options['choice_list']))
                ->prependClientTransformer(new ModelsToArrayTransformer($options['choice_list']))
-               ;  
-         
+               ;
+
         $this->choices = $options['choice_list']->getChoices();
-        
+
         unset($options['choices']);
-        
+
     }
-    
-    
+
+
     /**
      * {@inheritdoc}
      */
@@ -50,25 +50,25 @@ class PropelDoubleListType extends AbstractType
 
         $selecteds = array_flip($values);
         $choices_selected = $choices_unselected = array();
-        
+
         //Rebuilds choices
-        foreach($this->choices as $key => $choice) {
+        foreach ($this->choices as $key => $choice) {
             if (isset($selecteds[$key])) {
                 $choices_selected[$key] = $choice;
             } else {
                 $choices_unselected[$key] = $choice;
             }
         }
-        
+
         $view->set('choices_selected', $choices_selected);
         $view->set('choices_unselected', $choices_unselected);
     }
-    
+
     public function getParent(array $options)
     {
         return 'field';
     }
-    
+
     public function getDefaultOptions(array $options)
     {
         $defaultOptions = array(
@@ -91,7 +91,7 @@ class PropelDoubleListType extends AbstractType
 
         return $defaultOptions;
     }
-    
+
     public function getName()
     {
         return 'propel_double_list';

@@ -6,9 +6,9 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
     protected function getQuery()
     {
         $query = \{{ model }}Query::create();
-        
-        $this->processSort($query); 
-        $this->processFilters($query); 
+
+        $this->processSort($query);
+        $this->processFilters($query);
 
         return $query;
     }
@@ -17,7 +17,7 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
 {% block processSort -%}
     protected function processSort($query)
     {
-        if($this->getSortColumn()) { 
+        if ($this->getSortColumn()) {
             if (!strstr($this->getSortColumn(), '.')) { //direct column
                 $query->orderBy($this->getSortColumn(), $this->getSortOrder());
             } else {
@@ -33,7 +33,7 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
     protected function getFilterForm()
     {
         $filters = $this->getFilters();
-        
+
         return $this->createForm(new FiltersType(), $this->getFilters());
     }
 {% endblock %}
@@ -49,16 +49,16 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
     protected function processFilters($query)
     {
         $filterObject = $this->getFilters();
-        
+
         $queryFilter = $this->get('admingenerator.queryfilter.propel');
         $queryFilter->setQuery($query);
 
         {% for filter in builder.filterColumns %}
-        
+
         if (isset($filterObject['{{ filter.name }}']) && null !== $filterObject['{{ filter.name }}']) {
             $queryFilter->add{{ filter.dbType|lower|classify }}Filter("{{ filter.filterOn }}", $filterObject['{{ filter.name }}']);
         }
         {% endfor %}
-        
+
     }
 {% endblock %}

@@ -39,5 +39,5 @@ class FeatureContext extends MinkContext //MinkContext if you want to test web
     {
         copy(realpath(__DIR__.'/..').'/Yamls/'.$yamlName, $this->getContainer()->getParameter('kernel.root_dir').'/../src/Admingenerator/DemoBundle/Resources/config/generator.yml');
     }
-    
+
 }

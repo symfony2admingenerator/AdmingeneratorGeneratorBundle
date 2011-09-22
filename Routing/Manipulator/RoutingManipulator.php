@@ -54,7 +54,7 @@ class RoutingManipulator extends Manipulator
         if (null === $prefix) {
             $prefix = '/admin/'.Container::underscore($bundle);
         }
-        
+
         $code = sprintf("%s:\n", $bundle.('/' !== $prefix ? '_'.str_replace('/', '_', substr($prefix, 1)) : ''));
         if ('admingenerator' == $format) {
             $code .= sprintf("    resource: \"@%s/Controller/\"\n    type:     admingenerator\n", $bundle);

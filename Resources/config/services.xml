@@ -12,7 +12,7 @@
         <parameter key="form.type_guesser.admingenerator.class">Admingenerator\GeneratorBundle\Validator\ValidatorTypeGuesser</parameter>
         <parameter key="admingeneretor.menu_builder.class">Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder</parameter>
         <parameter key="admingenerator.base_admin_template">AdmingeneratorGeneratorBundle::base_admin.html.twig</parameter>
-		<parameter key="admingenerator.overwrite_if_exists">false</parameter>
+        <parameter key="admingenerator.overwrite_if_exists">false</parameter>
     </parameters>
 
     <services>

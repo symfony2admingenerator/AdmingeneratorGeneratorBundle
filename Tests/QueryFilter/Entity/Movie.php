@@ -21,8 +21,8 @@ class Movie
      * @ORM\Index
      */
     protected $title;
-    
-    
+
+
     /**
      * @ORM\Column(type="boolean", nullable="true")
      */
@@ -71,7 +71,7 @@ class Movie
     /**
      * Get is_published
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsPublished()
     {

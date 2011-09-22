@@ -12,7 +12,7 @@ class NewBuilderTemplate extends NewBuilder
     {
         return 'Resources/views/New/index.html.twig';
     }
-    
+
     public function getTemplateName()
     {
         return 'EditBuilderTemplate' . self::TWIG_EXTENSION;

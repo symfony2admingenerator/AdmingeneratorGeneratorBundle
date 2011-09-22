@@ -41,28 +41,28 @@ class PropelGenerator extends Generator
 
         $builders = $generator->getFromYaml('builders',array());
 
-        if(array_key_exists('list',$builders)) {
+        if (array_key_exists('list',$builders)) {
             $generator->addBuilder(new ListBuilderAction());
             $generator->addBuilder(new ListBuilderTemplate());
             $generator->addBuilder(new FiltersBuilderType());
         }
-        
-        if(array_key_exists('delete', $builders)) { 
+
+        if (array_key_exists('delete', $builders)) {
             $generator->addBuilder(new DeleteBuilderAction());
         }
 
-        if(array_key_exists('edit', $builders)) { 
+        if (array_key_exists('edit', $builders)) {
             $generator->addBuilder(new EditBuilderAction());
             $generator->addBuilder(new EditBuilderTemplate());
             $generator->addBuilder(new EditBuilderType());
         }
-        
-        if(array_key_exists('new', $builders)) { 
+
+        if (array_key_exists('new', $builders)) {
             $generator->addBuilder(new NewBuilderAction());
             $generator->addBuilder(new NewBuilderTemplate());
             $generator->addBuilder(new NewBuilderType());
         }
-        
+
         $generator->writeOnDisk($this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));
     }
 }

@@ -33,7 +33,7 @@ In your autoload.php
     'Behat\\Gherkin'        => __DIR__.'/../vendor/Behat/Gherkin/src',
 ```
 
-Run tests 
+Run tests
 
 ```shell
     php app/console -e=test behat

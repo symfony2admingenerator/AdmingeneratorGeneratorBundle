@@ -11,55 +11,55 @@ use Symfony\Component\Form\Extension\Core\ChoiceList\ArrayChoiceList;
 
 class PropelORMFieldGuesser
 {
-    
+
     private $cache = array();
-        
+
     private $metadata = array();
-    
+
     private static $current_class;
 
-    
+
     protected function getMetadatas($class = null)
     {
         if ($class) {
             self::$current_class = $class;
         }
-        
+
         return $this->getTable(self::$current_class);
     }
-    
+
     public function getDbType($class, $fieldName)
     {
         if ( $relation = $this->getRelation($fieldName, $class)) {
             return \RelationMap::MANY_TO_ONE === $relation->getType() ? 'model' : 'collection';
         }
-        
+
         return $this->getColumn($class, $fieldName)  ? $this->getColumn($class, $fieldName)->getType() : 'VARCHAR';
     }
-    
+
     protected function getRelation($fieldName, $class = null)
     {
         $table = $this->getMetadatas($class);
-        
+
         foreach ($table->getRelations() as $relation) {
             if (Inflector::classify($fieldName) == $relation->getName()) {
                 return $relation;
             }
         }
-        
+
         return false;
     }
-    
+
     public function getPhpName($class, $fieldName)
     {
         $column = $this->getColumn($class, $fieldName);
-        
+
         if ($column) {
-            
+
             return $column->getPhpName();
         }
     }
-    
+
     public function getFormType($dbType)
     {
         switch($dbType) {
@@ -101,7 +101,7 @@ class PropelORMFieldGuesser
                 throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented');
         }
     }
-    
+
     public function getFilterType($dbType)
     {
          switch($dbType) {
@@ -117,79 +117,81 @@ class PropelORMFieldGuesser
                 break;
              case 'collection':
                 return 'model';
-                break;        
+                break;
          }
-         
+
          return $this->getFormType($dbType);
     }
-    
+
     public function getFormOptions($dbType, $columnName)
     {
         if (\PropelColumnTypes::BOOLEAN == $dbType || \PropelColumnTypes::BOOLEAN_EMU == $dbType) {
             return array('required' => false);
         }
-        
+
         if ('model' == $dbType) {
             $relation = $this->getRelation($columnName);
             if ($relation) {
                 if (\RelationMap::MANY_TO_ONE === $relation->getType()) {
                     return array('class' => $relation->getForeignTable()->getClassname(), 'multiple' => false);
                 } else { // Many to many
+
                     return array('class' => $relation->getLocalTable()->getClassname(), 'multiple' => false);
                 }
             }
         }
-        
+
         if ('collection' == $dbType) {
             $relation = $this->getRelation($columnName);
             if ($relation) {
                 if (\RelationMap::MANY_TO_ONE === $relation->getType()) {
                     return array('class' => $relation->getForeignTable()->getClassname());
                 } else { // Many to many
+
                     return array('class' => $relation->getLocalTable()->getClassname());
                 }
             }
         }
-        
+
         return array('required' => $this->isRequired($columnName));
     }
-    
+
     protected function isRequired($fieldName)
     {
         if ($column = $this->getColumn(self::$current_class, $fieldName)) {
             return $column->isNotNull();
         }
-        
+
         return false;
     }
-    
+
     public function getFilterOptions($dbType, $ColumnName)
     {
         $options = array('required' => false);
-        
-        if(\PropelColumnTypes::BOOLEAN == $dbType || \PropelColumnTypes::BOOLEAN_EMU == $dbType)
+
+        if (\PropelColumnTypes::BOOLEAN == $dbType || \PropelColumnTypes::BOOLEAN_EMU == $dbType)
         {
             $choices = new ArrayChoiceList(array(
                     0 => 'No',
                     1 => 'Yes'
                     ));
-                    
+
            $options['choice_list'] = $choices;
            $options['empty_value'] = 'Yes or No';
         }
-        
+
          if ('model' == $dbType) {
              return array_merge($this->getFormOptions($dbType, $ColumnName), $options);
          }
-         
+
         if ('collection' == $dbType) {
              return array_merge($this->getFormOptions($dbType, $ColumnName), $options, array('multiple'=>false));
          }
-        
+
         return $options;
     }
-    
-    
+
+
     protected function getTable($class)
     {
         if (isset($this->cache[$class])) {
@@ -201,7 +203,7 @@ class PropelORMFieldGuesser
 
             return $this->cache[$class] = $query->getTableMap();
         }
-        
+
         throw new \LogicException('Can\'t find query class '.$queryClass);
     }
 

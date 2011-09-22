@@ -3,17 +3,17 @@
     protected function process($id)
     {
         $dm = $this->getDocumentManager();
-        
+
         ${{ builder.ModelClass }} = $dm
              ->getRepository('{{ model }}')
              ->findOneById($id);
-        
+
         if (!${{ builder.ModelClass }}) {
             throw new \InvalidArgumentException("No {{ model }} found on id : $id");
         }
-        
+
         $dm->remove(${{ builder.ModelClass }});
         $dm->flush();
         $dm->clear();
     }
-{% endblock %} 
+{% endblock %}

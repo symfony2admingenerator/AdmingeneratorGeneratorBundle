@@ -23,11 +23,11 @@ class DoctrineODMFieldGuesser
 
     protected function getMetadatas($class = null)
     {
-        if($class) {
+        if ($class) {
             self::$current_class = $class;
         }
 
-        if(isset($this->metadata[self::$current_class]) || !$class) {
+        if (isset($this->metadata[self::$current_class]) || !$class) {
             return $this->metadata[self::$current_class];
         }
 
@@ -146,7 +146,7 @@ class DoctrineODMFieldGuesser
 
     protected function isRequired($fieldName)
     {
-        if(!$this->getMetadatas()->hasAssociation($fieldName) || $this->getMetadatas()->isSingleValuedAssociation($fieldName)) {
+        if (!$this->getMetadatas()->hasAssociation($fieldName) || $this->getMetadatas()->isSingleValuedAssociation($fieldName)) {
             return $this->getMetadatas()->isNullable($fieldName);
         }
 
@@ -157,7 +157,7 @@ class DoctrineODMFieldGuesser
     {
         $options = array('required' => false);
 
-        if('boolean' == $dbType)
+        if ('boolean' == $dbType)
         {
             $choices = new ArrayChoiceList(array(
                     0 => 'No',

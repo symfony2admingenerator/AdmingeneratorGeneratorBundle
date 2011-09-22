@@ -3,11 +3,11 @@
     protected function process($id)
     {
         ${{ builder.ModelClass }} = \{{ model }}Query::create()->findOneById($id);
-        
+
         if (!${{ builder.ModelClass }}) {
             throw new \InvalidArgumentException("No {{ model }} found on id : $id");
         }
-        
+
         ${{ builder.ModelClass }}->delete();
     }
-{% endblock %} 
+{% endblock %}

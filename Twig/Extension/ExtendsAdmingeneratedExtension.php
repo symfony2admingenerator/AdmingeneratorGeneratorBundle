@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace  Admingenerator\GeneratorBundle\Twig\Extension;
 
@@ -9,25 +9,25 @@ use Admingenerator\GeneratorBundle\Twig\TokenParser\ExtendsAdmingeneratedTokenPa
 class ExtendsAdmingeneratedExtension extends \Twig_Extension
 {
     protected $loader;
-    
+
     public function __construct(\Twig_Loader_Filesystem $loader)
     {
         $this->loader = $loader;
     }
-    
+
     public function addCachePath(ContainerInterface $container)
     {
         $this->loader->addPath($container->getParameter('kernel.cache_dir'));
     }
- 
-    public function getTokenParsers() 
+
+    public function getTokenParsers()
     {
         return array(
             //{% extends_admingenerated "AdmingeneratorDemoBundle:List:index.html.twig" %}
             new ExtendsAdmingeneratedTokenParser(),
         );
     }
-    
+
     public function getName()
     {
         return 'extends_admingenerated';

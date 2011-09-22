@@ -1,12 +1,12 @@
-<?php 
+<?php
 
-namespace Admingenerator\GeneratorBundle\QueryFilter; 
+namespace Admingenerator\GeneratorBundle\QueryFilter;
 
 
 abstract class BaseQueryFilter implements QueryFilterInterface
 {
     protected $query;
-    
+
     /**
      * (non-PHPdoc)
      * @see GeneratorBundle\QueryFilter.QueryFilterInterface::setQuery()
@@ -15,7 +15,7 @@ abstract class BaseQueryFilter implements QueryFilterInterface
     {
         $this->query = $query;
     }
-    
+
     /**
      * (non-PHPdoc)
      * @see GeneratorBundle\QueryFilter.QueryFilterInterface::getQuery()
@@ -24,7 +24,7 @@ abstract class BaseQueryFilter implements QueryFilterInterface
     {
         return $this->query;
     }
-    
+
     /**
      * (non-PHPdoc)
      * @see \GeneratorBundle\QueryFilter.QueryFilterInterface::addDefaultFilter()
@@ -33,11 +33,11 @@ abstract class BaseQueryFilter implements QueryFilterInterface
     {
         throw new \LogicException('No method defined to execute this type of filters');
     }
-    
+
     /**
-     * 
+     *
      * By default we call addDefaultFilter
-     * 
+     *
      * @param $name
      * @param $values
      */
