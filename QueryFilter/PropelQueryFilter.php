@@ -7,25 +7,20 @@ class PropelQueryFilter extends BaseQueryFilter
 
     public function addDefaultFilter($field, $value)
     {
-        $this->query->filterBy($field, $value);
+        $method = 'filterBy'.$field;
+        $this->query->$method($value);
     }
 
     public function addBooleanFilter($field, $value)
     {
         if ("" !== $value) {
-            $this->query->filterBy($field, $value);
+            $this->addDefaultFilter($field, $value);
         }
     }
 
     public function addVarcharFilter($field, $value)
     {
-        $this->query->filterBy($field, '%'.$value.'%', \Criteria::LIKE);
-    }
-
-    public function addModelFilter($field, $value)
-    {
-        $method = 'filterBy'.$field;
-        call_user_func_array(array($this->query, $method), array($value));
+        $this->addDefaultFilter($field, '%'.$value.'%');
     }
 
     public function addCollectionFilter($field, $value)
@@ -62,7 +57,7 @@ class PropelQueryFilter extends BaseQueryFilter
 
             if (count($filters) > 0) {
                 $method = 'filterBy'.$field;
-                call_user_func_array(array($this->query, $method), array($filters));
+                $this->query->$method($filters);
             }
 
         } elseif ($value instanceof \DateTime) {
