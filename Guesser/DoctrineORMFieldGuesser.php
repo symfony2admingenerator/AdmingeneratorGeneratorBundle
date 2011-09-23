@@ -118,19 +118,20 @@ class DoctrineORMFieldGuesser
          return $this->getFormType($dbType);
     }
 
-    public function getFormOptions($dbType, $columnName)
+    public function getFormOptions($formType, $dbType, $columnName)
     {
         if ('boolean' == $dbType) {
             return array('required' => false);
         }
 
-        if ('entity' == $dbType) {
+        if ('entity' == $formType) {
+
             $mapping = $this->getMetadatas()->getAssociationMapping($columnName);
 
             return array('em' => 'default', 'class' => $mapping['targetEntity'], 'multiple' => false);
         }
 
-        if ('collection' == $dbType) {
+        if ('doctrine_double_list' == $formType) {
             $mapping = $this->getMetadatas()->getAssociationMapping($columnName);
 
             return array('em' => 'default', 'class' => $mapping['targetEntity']);
@@ -148,7 +149,7 @@ class DoctrineORMFieldGuesser
         return false;
     }
 
-    public function getFilterOptions($dbType, $ColumnName)
+    public function getFilterOptions($formType, $dbType, $ColumnName)
     {
         $options = array('required' => false);
 
@@ -164,11 +165,11 @@ class DoctrineORMFieldGuesser
         }
 
          if ('entity' == $dbType) {
-             return array_merge($this->getFormOptions($dbType, $ColumnName), $options);
+             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
          }
 
         if ('collection' == $dbType) {
-             return array_merge($this->getFormOptions($dbType, $ColumnName), $options, array('multiple'=>false));
+             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
          }
 
         return $options;

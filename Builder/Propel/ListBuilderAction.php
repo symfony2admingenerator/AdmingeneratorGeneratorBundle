@@ -20,7 +20,7 @@ class ListBuilderAction extends AdminListBuilderAction
             $column = new Column($columnName);
             $column->setDbType($this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName));
             $column->setFormType($this->getFieldGuesser()->getFilterType($column->getDbType()));
-            $column->setFormOptions($this->getFieldGuesser()->getFilterOptions($column->getDbType(), $columnName));
+            $column->setFormOptions($this->getFieldGuesser()->getFilterOptions($column->getFormType(), $column->getDbType(), $columnName));
             $column->setFilterOn($this->getFieldGuesser()->getPhpName($this->getVariable('model'), $columnName));
 
             //Set the user parameters

@@ -123,7 +123,7 @@ class DoctrineODMFieldGuesser
          return $this->getFormType($dbType);
     }
 
-    public function getFormOptions($dbType, $columnName)
+    public function getFormOptions($formType, $dbType, $columnName)
     {
         if ('boolean' == $dbType) {
             return array('required' => false);
@@ -153,7 +153,7 @@ class DoctrineODMFieldGuesser
         return false;
     }
 
-    public function getFilterOptions($dbType, $ColumnName)
+    public function getFilterOptions($formType, $dbType, $ColumnName)
     {
         $options = array('required' => false);
 
@@ -169,11 +169,11 @@ class DoctrineODMFieldGuesser
         }
 
          if ('document' == $dbType) {
-             return array_merge($this->getFormOptions($dbType, $ColumnName), $options);
+             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
          }
 
         if ('collection' == $dbType) {
-             return array_merge($this->getFormOptions($dbType, $ColumnName), $options, array('multiple'=>false));
+             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
          }
 
         return $options;

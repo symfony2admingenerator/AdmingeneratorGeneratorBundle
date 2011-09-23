@@ -123,13 +123,13 @@ class PropelORMFieldGuesser
          return $this->getFormType($dbType);
     }
 
-    public function getFormOptions($dbType, $columnName)
+    public function getFormOptions($formType, $dbType, $columnName)
     {
         if (\PropelColumnTypes::BOOLEAN == $dbType || \PropelColumnTypes::BOOLEAN_EMU == $dbType) {
             return array('required' => false);
         }
 
-        if ('model' == $dbType) {
+        if ('model' == $formType) {
             $relation = $this->getRelation($columnName);
             if ($relation) {
                 if (\RelationMap::MANY_TO_ONE === $relation->getType()) {
@@ -141,7 +141,7 @@ class PropelORMFieldGuesser
             }
         }
 
-        if ('collection' == $dbType) {
+        if ('propel_double_list' == $formType) {
             $relation = $this->getRelation($columnName);
             if ($relation) {
                 if (\RelationMap::MANY_TO_ONE === $relation->getType()) {
@@ -165,7 +165,7 @@ class PropelORMFieldGuesser
         return false;
     }
 
-    public function getFilterOptions($dbType, $ColumnName)
+    public function getFilterOptions($formType, $dbType, $ColumnName)
     {
         $options = array('required' => false);
 
@@ -181,11 +181,11 @@ class PropelORMFieldGuesser
         }
 
          if ('model' == $dbType) {
-             return array_merge($this->getFormOptions($dbType, $ColumnName), $options);
+             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
          }
 
         if ('collection' == $dbType) {
-             return array_merge($this->getFormOptions($dbType, $ColumnName), $options, array('multiple'=>false));
+             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
          }
 
         return $options;

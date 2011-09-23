@@ -62,7 +62,7 @@ class ListBuilder extends BaseBuilder
             $column = new Column($columnName);
             $column->setDbType($this->getFieldOption($column, 'dbType', $this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName)));
             $column->setFormType($this->getFieldOption($column, 'filterType', $this->getFieldGuesser()->getFilterType($column->getDbType())));
-            $column->setFormOptions($this->getFieldOption($column, 'filterOptions', $this->getFieldGuesser()->getFilterOptions($column->getDbType(), $columnName)));
+            $column->setFormOptions($this->getFieldOption($column, 'filterOptions', $this->getFieldGuesser()->getFilterOptions($column->getFormType(), $column->getDbType(), $columnName)));
 
             //Set the user parameters
             $this->setUserColumnConfiguration($column);
