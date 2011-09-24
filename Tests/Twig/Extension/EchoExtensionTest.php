@@ -73,6 +73,7 @@ class EchoExtensionTest extends TestCase
             'variable_value' => '{{ echo_set( "foo", name ) }}',
             'array_key' => '{{ echo_set( arr.obj , "bar" ) }}',
             'array_value' => '{{ echo_set( "foo" , arr.obj ) }}',
+            'not_value_as_string' => '{{ echo_set( "foo" , "bar", false ) }}'
         );
 
         $returns = array(
@@ -81,6 +82,7 @@ class EchoExtensionTest extends TestCase
              'variable_value' => array('{% set foo = "cedric" %}', 'Set return a good set tag with variable as value'),
              'array_key' => array('{% set val = "bar" %}', 'Set return a good set tag with array element as key'),
              'array_value' => array('{% set foo = "val" %}', 'Set return a good set tag with array element as value'),
+             'not_value_as_string' => array('{% set foo = bar %}', 'Set return a good set tag with false for option value_as_string'),
         );
 
        $this->runTwigTests($tpls, $returns);

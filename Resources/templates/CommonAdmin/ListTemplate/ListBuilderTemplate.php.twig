@@ -1,4 +1,5 @@
 {% use '../CommonAdmin/title.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/nbresults.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/thead.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/tbody.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/paginator.php.twig' %}
@@ -11,6 +12,9 @@
     {{- block('title') -}}
 
     <div class="main_content">
+
+        {{ block('list_nbresults') }}
+
         <table>
             {{ block('list_thead') -}}
             {{- block('list_tbody') }}

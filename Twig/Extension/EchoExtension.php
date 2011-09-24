@@ -89,9 +89,13 @@ class EchoExtension extends \Twig_Extension
         return '{% trans from "Admingenerator" %}'.$str.'{% endtrans %}';
     }
 
-    public function getEchoSet($var, $value)
+    public function getEchoSet($var, $value, $value_as_string = true)
     {
-        return strtr('{% set %%var%% = "%%value%%" %}',array('%%var%%' => $var, '%%value%%' => $value));
+        if ($value_as_string) {
+            return strtr('{% set %%var%% = "%%value%%" %}',array('%%var%%' => $var, '%%value%%' => $value));
+        } else {
+            return strtr('{% set %%var%% = %%value%% %}',array('%%var%%' => $var, '%%value%%' => $value));
+        }
     }
 
     public function getEchopath($path, $params = null)

@@ -185,6 +185,12 @@ table tr td {
     -ms-transform: rotate(0deg);
     transform: rotate(0deg); }
 
+.list_nbresults {
+  float: right;
+  padding-bottom: 5px; }
+  .list_nbresults b {
+    font-weight: bold; }
+    
 ul.pagination {
   float: right;
   margin-top: 20px; }
