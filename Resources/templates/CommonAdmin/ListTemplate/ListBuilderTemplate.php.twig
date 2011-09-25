@@ -27,6 +27,7 @@
 
         {{- block('list_actions') }}
     </div>
+    {% if builder.filters.display|length > 0 %}
     <div class="filters">
         <table>
             <thead>
@@ -43,4 +44,5 @@
             </tbody>
         </table>
     </div>
+    {% endif %}
 {{ echo_endblock() }}
