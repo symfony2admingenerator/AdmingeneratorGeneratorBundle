@@ -103,6 +103,9 @@ class DoctrineODMFieldGuesser
              case 'collection':
                 return 'doctrine_odm_double_list';
                 break;
+            case 'virtual':
+                return '';
+                break;
             default:
                 throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented');
                 break;
@@ -138,13 +141,13 @@ class DoctrineODMFieldGuesser
             return array('required' => false);
         }
 
-        if ('document' == $dbType && $this->getMetadatas()->hasField($columnName)) {
+        if ('document' == $dbType) {
             $mapping = $this->getMetadatas()->getFieldMapping($columnName);
 
             return array( 'class' => $mapping['targetDocument'], 'multiple' => false);
         }
 
-        if ('collection' == $dbType && $this->getMetadatas()->hasField($columnName)) {
+        if ('collection' == $dbType) {
             $mapping = $this->getMetadatas()->getFieldMapping($columnName);
 
             return array('class' => $mapping['targetDocument']);
