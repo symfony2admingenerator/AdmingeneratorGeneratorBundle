@@ -45,9 +45,11 @@ class BaseBuilder extends GenericBaseBuilder
         foreach ($this->getDisplayAsColumns() as $columnName) {
             $column = new $this->columnClass($columnName);
             $column->setDbType($this->getFieldOption($column, 'dbType', $this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName)));
-            $column->setFormType($this->getFieldOption($column, 'formType', $this->getFieldGuesser()->getFormType($column->getDbType())));
-            $column->setFormOptions($this->getFieldOption($column, 'formOptions', $this->getFieldGuesser()->getFormOptions($column->getFormType(), $column->getDbType(), $columnName)));
 
+            if ($this->getYamlKey() != 'list') {
+              $column->setFormType($this->getFieldOption($column, 'formType', $this->getFieldGuesser()->getFormType($column->getDbType())));
+              $column->setFormOptions($this->getFieldOption($column, 'formOptions', $this->getFieldGuesser()->getFormOptions($column->getFormType(), $column->getDbType(), $columnName)));
+            }
             //Set the user parameters
             $this->setUserColumnConfiguration($column);
 
