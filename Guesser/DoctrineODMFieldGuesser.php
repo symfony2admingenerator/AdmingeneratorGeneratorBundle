@@ -104,7 +104,7 @@ class DoctrineODMFieldGuesser
                 return 'doctrine_odm_double_list';
                 break;
             case 'virtual':
-                return 'text';
+                throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented');
                 break;
             default:
                 throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented');
