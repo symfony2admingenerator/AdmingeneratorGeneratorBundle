@@ -77,6 +77,10 @@ class Column
 
     public function isReal()
     {
+        if ($this->dbType == 'virtual') {
+            return false;
+        }
+
         return true;
     }
 
