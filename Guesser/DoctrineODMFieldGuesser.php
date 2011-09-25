@@ -50,9 +50,13 @@ class DoctrineODMFieldGuesser
             }
         }
 
-        $mapping = $metadata->getFieldMapping($fieldName);
+        if ($metadata->hasField($fieldName)) {
+          $mapping = $metadata->getFieldMapping($fieldName);
+           
+          return $mapping['type'];
+        }
 
-        return $mapping['type'];
+        return 'virtual';
 
         //return $metadata->getTypeOfField($fieldName);//Not Yet implemented by doctrine
     }
@@ -129,13 +133,13 @@ class DoctrineODMFieldGuesser
             return array('required' => false);
         }
 
-        if ('document' == $dbType) {
+        if ('document' == $dbType && $this->getMetadatas()->hasField($columnName)) {
             $mapping = $this->getMetadatas()->getFieldMapping($columnName);
 
             return array( 'class' => $mapping['targetDocument'], 'multiple' => false);
         }
 
-        if ('collection' == $dbType) {
+        if ('collection' == $dbType && $this->getMetadatas()->hasField($columnName)) {
             $mapping = $this->getMetadatas()->getFieldMapping($columnName);
 
             return array('class' => $mapping['targetDocument']);
@@ -146,7 +150,8 @@ class DoctrineODMFieldGuesser
 
     protected function isRequired($fieldName)
     {
-        if (!$this->getMetadatas()->hasAssociation($fieldName) || $this->getMetadatas()->isSingleValuedAssociation($fieldName)) {
+        if ($this->getMetadatas()->hasField($fieldName) && 
+            (!$this->getMetadatas()->hasAssociation($fieldName) || $this->getMetadatas()->isSingleValuedAssociation($fieldName))) {
             return $this->getMetadatas()->isNullable($fieldName);
         }
 
