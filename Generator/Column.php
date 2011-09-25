@@ -77,11 +77,7 @@ class Column
 
     public function isReal()
     {
-        if ($this->dbType == 'virtual') {
-            return false;
-        }
-
-        return true;
+        return $this->dbType != 'virtual';
     }
 
     public function getSortOn()
