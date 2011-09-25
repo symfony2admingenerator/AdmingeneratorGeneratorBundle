@@ -9,8 +9,7 @@ builders:
   list:
     params:
       title: List for {{ bundle_name }}
-      display: [  ]
-      max_per_page: 3
+      display: ~
       actions:
         new: ~
       object_actions:
@@ -18,17 +17,17 @@ builders:
         delete: ~
   filters:
     params:
-      display: [ ]
+      display: ~
   new:
     params:
       title: New object for {{ bundle_name }}
-      display: [ ]
+      display: ~
       actions:
         list: ~
   edit:
     params:
       title: You're editing the object "{% raw %}{{ YourModel.title }}{% endraw %}"
-      display: [ title, release_date ]
+      display: ~
       actions:
         list: ~
   delete: ~

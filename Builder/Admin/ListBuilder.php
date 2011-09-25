@@ -58,6 +58,10 @@ class ListBuilder extends BaseBuilder
     {
         $filters = $this->getFilters();
 
+        if (!is_array($filters['display'])) {
+            $filters['display'] = $this->getAllColumns();
+        }
+
         foreach ($filters['display'] as $columnName) {
             $column = new Column($columnName);
             $column->setDbType($this->getFieldOption($column, 'dbType', $this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName)));

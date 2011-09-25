@@ -29,7 +29,13 @@ class FiltersBuilder extends BaseBuilder
 
     protected function findColumns()
     {
-        foreach ($this->getVariable('display') as $columnName) {
+        $display = $this->getVariable('display');
+
+        if (null == $display) {
+           $display = $this->getAllColumns();
+        }
+
+        foreach ($display as $columnName) {
             $column = new Column($columnName);
             $column->setDbType($this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName));
             $column->setFormType($this->getFieldGuesser()->getFilterType($column->getDbType()));

@@ -38,6 +38,11 @@ class DoctrineORMFieldGuesser
         return $this->metadata[self::$current_class];
     }
 
+    public function getAllColumns($class)
+    {
+        return $this->getMetadatas($class)->getColumnNames();
+    }
+
     public function getDbType($class, $fieldName)
     {
         $metadata = $this->getMetadatas($class);

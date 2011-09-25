@@ -93,7 +93,12 @@ class BaseBuilder extends GenericBaseBuilder
      */
     protected function getDisplayAsColumns()
     {
+
         $display = $this->getVariable('display');
+
+        if (null == $display || 0 == sizeof($display)) {
+           return $this->getAllColumns();
+        }
 
         if (isset($display[0])) {
             return $display;
@@ -116,6 +121,16 @@ class BaseBuilder extends GenericBaseBuilder
     }
 
     /**
+     * Retrieve all columns
+     *
+     * @return array
+     */
+    protected function getAllColumns()
+    {
+        return $this->getFieldGuesser()->getAllColumns($this->getVariable('model'));
+    }
+
+    /**
      * @return array(
      *
      * )
@@ -124,6 +139,10 @@ class BaseBuilder extends GenericBaseBuilder
     public function getFieldsets()
     {
         $display = $this->getVariable('display');
+
+        if (null == $display || 0 == sizeof($display)) {
+           $display = $this->getAllColumns();
+        }
 
         if (isset($display[0])) {
             $display = array('NONE' => $display);

@@ -28,6 +28,17 @@ class PropelORMFieldGuesser
         return $this->getTable(self::$current_class);
     }
 
+    public function getAllColumns($class)
+    {
+        $return = array();
+
+        foreach ($this->getMetadatas($class)->getColumns() as $column) {
+            $return[] = $column->getName();
+        }
+
+        return $return;
+    }
+
     public function getDbType($class, $fieldName)
     {
         if ( $relation = $this->getRelation($fieldName, $class)) {
