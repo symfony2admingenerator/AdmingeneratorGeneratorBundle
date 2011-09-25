@@ -50,7 +50,11 @@ class DoctrineORMFieldGuesser
             }
         }
 
-        return $metadata->getTypeOfField($fieldName);
+        if ($metadata->hasField($fieldName)) {
+            return $metadata->getTypeOfField($fieldName);
+        }
+
+        return 'virtual';
     }
 
     public function getFormType($dbType)
@@ -88,6 +92,9 @@ class DoctrineORMFieldGuesser
                 break;
              case 'collection':
                 return 'doctrine_double_list';
+                break;
+            case 'virtual':
+                return '';
                 break;
             default:
                 throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented');
@@ -142,7 +149,8 @@ class DoctrineORMFieldGuesser
 
     protected function isRequired($fieldName)
     {
-        if (!$this->getMetadatas()->hasAssociation($fieldName) || $this->getMetadatas()->isSingleValuedAssociation($fieldName)) {
+        if ($this->getMetadatas()->hasField($fieldName) && 
+            (!$this->getMetadatas()->hasAssociation($fieldName) || $this->getMetadatas()->isSingleValuedAssociation($fieldName))) {
             return $this->getMetadatas()->isNullable($fieldName);
         }
 
