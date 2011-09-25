@@ -190,7 +190,7 @@ table tr td {
   padding-bottom: 5px; }
   .list_nbresults b {
     font-weight: bold; }
-    
+
 ul.pagination {
   float: right;
   margin-top: 20px; }
@@ -275,6 +275,35 @@ ul.actions li a {
   background: #ffdddd;
   border: 1px solid red;
   color: red; }
+
+.list_scope_group {
+  float: left;
+  padding: 10px; }
+
+.list_scope_group a {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  outline: none;
+  height: 20px;
+  border: 1px solid #d2d2d2;
+  color: #2a363b;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 2px;
+  text-decoration: none; }
+  .list_scope_group a.inactive {
+    background: url(/bundles/admingeneratorgenerator/images/submit_background.png) repeat-x; }
+  .list_scope_group a.active {
+    background: #d2d2d2; }
+  .list_scope_group a:hover {
+    background: url(/bundles/admingeneratorgenerator/images/submit_background_hover.png) repeat-x;
+    cursor: pointer;
+    cursor: hand; }
 
 h1 {
   float: left;
@@ -452,53 +481,3 @@ fieldset.form_block {
       width: 3em; }
 .filters table tr:hover {
   background-color: white; }
-
-ul.menu {
-  list-style: none;
-  margin: 0;
-  padding: 0; }
-  ul.menu * {
-    margin: 0;
-    padding: 0; }
-  ul.menu a {
-    display: block;
-    color: black;
-    text-decoration: none; }
-  ul.menu .sub {
-    background: white url(../images/arrow.gif) 138px 16px no-repeat; }
-  ul.menu li {
-    float: left;
-    position: relative;
-    margin-right: 2px; }
-    ul.menu li.spacer {
-      float: left;
-      position: relative;
-      height: 1px;
-      background: #e0dedd; }
-    ul.menu li ul {
-      position: absolute;
-      top: 30px;
-      left: 0;
-      background: white;
-      display: none;
-      opacity: 0;
-      list-style: none;
-      border: 1px solid #e0dedd;
-      border-top: none; }
-      ul.menu li ul ul {
-        left: 148px;
-        top: -1px; }
-      ul.menu li ul li {
-        position: relative;
-        border-top: none;
-        width: 148px;
-        margin: 0; }
-        ul.menu li ul li a {
-          display: block;
-          float: left;
-          width: 132px;
-          padding: 15px 10px 15px 10px;
-          background-color: white;
-          font-size: 1.2em; }
-          ul.menu li ul li a:hover {
-            background-color: #eeeeee; }

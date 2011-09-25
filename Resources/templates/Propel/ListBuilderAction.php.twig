@@ -9,6 +9,9 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
 
         $this->processSort($query);
         $this->processFilters($query);
+        {% if scopes is defined %}
+        $this->processScopes($query);
+        {% endif %}
 
         return $query;
     }
@@ -61,4 +64,32 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
         {% endfor %}
 
     }
+{% endblock %}
+
+{% block processScopes -%}
+    {% if scopes is defined %}
+    protected function processScopes($query)
+    {
+        $scopes = $this->getScopes();
+
+        {% for groupName, group in scopes -%}
+            {%- for scopeName, params in group %}
+
+        if (isset($scopes['{{ groupName }}']) && $scopes['{{ groupName }}'] == '{{ scopeName }}') {
+            {% if params["filters"] is defined -%}
+                {%- for filter, filterParams in params["filters"] -%}
+                {%- if filter|is_numeric -%}
+                $query->{{ filterParams }}();
+                {%- else -%}
+                $query->{{ filter }}({{ filterParams|as_php }});
+                {%- endif -%}
+                {%- endfor -%}
+            {%- endif %}
+
+        }
+            {% endfor -%}
+        {%- endfor %}
+
+    }
+    {% endif %}
 {% endblock %}

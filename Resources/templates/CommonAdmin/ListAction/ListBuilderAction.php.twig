@@ -2,6 +2,7 @@
 {% use '../CommonAdmin/ListAction/pager.php.twig' %}
 {% use '../CommonAdmin/ListAction/sorter.php.twig' %}
 {% use '../CommonAdmin/ListAction/filters.php.twig' %}
+{% use '../CommonAdmin/ListAction/scopes.php.twig' %}
 <?php
 
 namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\BaseController;
@@ -25,7 +26,9 @@ class ListController extends BaseController
 
     {{- block('sorter') -}}
 
-    {{- block('filters') }}
+    {{- block('filters') -}}
+
+    {{- block('scopes') }}
 
     {% block getQuery -%}
     protected function getQuery()
@@ -57,6 +60,13 @@ class ListController extends BaseController
 
     {% block processFilters -%}
     protected function processFilters($query)
+    {
+        // ORM JOB
+    }
+    {% endblock %}
+
+    {% block processScopes -%}
+    protected function processScopes($query)
     {
         // ORM JOB
     }

@@ -10,6 +10,9 @@
 
         $this->processSort($query);
         $this->processFilters($query);
+        {% if scopes is defined %}
+        $this->processScopes($query);
+        {% endif %}
 
         return $query->getQuery();
     }
@@ -73,4 +76,55 @@
         {% endfor %}
 
     }
+{% endblock %}
+
+{% block processScopes -%}
+    {% if scopes is defined %}
+    protected function processScopes($query)
+    {
+        $scopes = $this->getScopes();
+
+        $queryFilter = $this->get('admingenerator.queryfilter.doctrine');
+        $queryFilter->setQuery($query);
+
+
+        {% for groupName, group in scopes -%}
+            {%- for scopeName, params in group %}
+
+        if (isset($scopes['{{ groupName }}']) && $scopes['{{ groupName }}'] == '{{ scopeName }}') {
+            {% if params["filters"] is defined -%}
+                {%- for filter, filterParams in params["filters"] -%}
+                {%- if filter|is_numeric -%}
+                $this->scope{{ filterParams|classify }}($queryFilter);
+                {%- else -%}
+                $queryFilter->addDefaultFilter("{{ filter }}", {{ filterParams|as_php }});
+                {%- endif -%}
+                {%- endfor -%}
+            {%- endif %}
+
+        }
+            {% endfor -%}
+        {%- endfor %}
+    }
+
+    {% for groupName, group in scopes -%}
+        {%- for scopeName, params in group %}
+            {% if params["filters"] is defined -%}
+            {%- for filter, filterParams in params["filters"] -%}
+                {%- if filter|is_numeric -%}
+    /**
+    * Add the filters to the query for {{ groupName }} => {{ scopeName }}
+    *
+    * @param queryFilter the queryFilter
+    */
+    protected function scope{{ filterParams|classify }}($query)
+    {
+    }
+
+                {%- endif -%}
+            {%- endfor -%}
+            {%- endif -%}
+        {% endfor -%}
+    {%- endfor -%}
+    {%- endif %}
 {% endblock %}

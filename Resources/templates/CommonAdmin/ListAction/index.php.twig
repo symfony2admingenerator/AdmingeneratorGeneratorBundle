@@ -22,6 +22,7 @@ use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\FiltersType;
             'form'                      => $form->createView(),
             'sortColumn'                => $this->getSortColumn(),
             'sortOrder'                 => $this->getSortOrder(),
+            'scopes'                    => $this->getScopes(),
         ));
     }
 {% endblock %}

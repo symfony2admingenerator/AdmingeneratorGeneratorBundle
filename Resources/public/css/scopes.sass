@@ -1,0 +1,24 @@
+=buttons_border
+  +border-radius(5px)
+.list_scope_group
+  float: left
+  padding: 10px
+.list_scope_group a
+  +buttons_border
+  outline: none
+  height: 20px 
+  border: 1px solid #D2D2D2
+  color: #2A363B
+  padding: 5px
+  padding-left: 20px
+  padding-right: 20px
+  margin: 2px
+  text-decoration: none
+  &.inactive
+    background: url(/bundles/admingeneratorgenerator/images/submit_background.png) repeat-x
+  &.active
+    background: #D2D2D2
+  &:hover
+    background: url(/bundles/admingeneratorgenerator/images/submit_background_hover.png) repeat-x
+    cursor: pointer
+    cursor: hand

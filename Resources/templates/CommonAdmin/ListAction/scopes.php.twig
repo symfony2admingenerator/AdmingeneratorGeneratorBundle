@@ -1,0 +1,71 @@
+{% block scopes %}
+    public function scopesAction()
+    {
+        if ($this->get('request')->get('reset')) {
+            $this->setScopes(array());
+
+            return new RedirectResponse($this->generateUrl("{{ namespace_prefix }}_{{ bundle_name }}_list"));
+        }
+
+        $this->setScope($this->get('request')->get('group'), $this->get('request')->get('scope'));
+
+        return new RedirectResponse($this->generateUrl("{{ namespace_prefix }}_{{ bundle_name }}_list"));
+    }
+
+    /**
+     * Store in the session service the current scopes
+     *
+     * @param array the scopes
+     */
+    protected function setScopes($scopes)
+    {
+        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\Scopes', $scopes);
+    }
+
+    /**
+    * Change the value of one Scope
+    *
+    * @param string the group name
+    * @param string the scope name
+    */
+    protected function setScope($groupName, $scopeName)
+    {
+        $scopes = $this->getScopes();
+        $scopes[$groupName] = $scopeName;
+        $this->setScopes($scopes);
+    }
+
+    protected function getScopes()
+    {
+        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Scopes', $this->getDefaultScopes());
+    }
+
+    protected function getDefaultScopes()
+    {
+        $scopes = array();
+
+        {% if scopes is defined -%}
+        {%- for groupName, group in scopes %}
+        $scopes['{{ groupName }}'] = '';
+
+        {% for scopeName, params in group -%}
+            {%- if params["default"] is defined %}
+            $scopes['{{ groupName }}'] = '{{ scopeName }}';
+            {% endif -%}
+        {%- endfor -%}
+        {%- endfor -%}
+        {%- endif %}
+
+        return $scopes;
+    }
+
+    /*
+    * @return string|null the scope setted for the current group
+    */
+    protected function getScope($groupName)
+    {
+        $scopes = $this->getScopes();
+
+        return isset($scopes[$groupName]) ? $scopes[$groupName] : null ;
+    }
+{% endblock %}

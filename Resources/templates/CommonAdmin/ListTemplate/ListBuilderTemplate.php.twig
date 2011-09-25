@@ -5,6 +5,7 @@
 {% use '../CommonAdmin/ListTemplate/paginator.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/actions.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/filters.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/scopes.php.twig' %}
 
 {{ echo_extends( builder.getBaseAdminTemplate ) }}
 
@@ -13,7 +14,9 @@
 
     <div class="main_content">
 
-        {{ block('list_nbresults') }}
+        {{ block('list_scopes') -}}
+
+        {{- block('list_nbresults') }}
 
         <table>
             {{ block('list_thead') -}}

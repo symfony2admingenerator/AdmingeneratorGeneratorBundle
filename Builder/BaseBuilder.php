@@ -53,6 +53,7 @@ abstract class BaseBuilder implements BuilderInterface
      */
     protected $twigFilters = array(
         'var_export',
+        'is_numeric',
         'ucfirst',
         '\Doctrine\Common\Util\Inflector::classify',
         'substr',

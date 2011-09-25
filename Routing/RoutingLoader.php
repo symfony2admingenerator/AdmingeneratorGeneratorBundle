@@ -50,6 +50,12 @@ class RoutingLoader extends FileLoader
                     'requirements' => array(),
                     'controller'   => 'list',
                 ),
+        'scopes' => array(
+                    'pattern'      => '/scope/{group}/{scope}',
+                    'defaults'     => array(),
+                    'requirements' => array(),
+                    'controller'   => 'list',
+                ),
     );
 
     public function load($resource, $type = null)
