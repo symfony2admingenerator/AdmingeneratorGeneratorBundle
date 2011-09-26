@@ -4,7 +4,7 @@ namespace Admingenerator\GeneratorBundle\Guesser;
 
 use Doctrine\Common\Util\Inflector;
 
-use Symfony\Component\Locale\Exception\NotImplementedException;
+use Admingenerator\GeneratorBundle\Exception\NotImplementedException;
 
 use Symfony\Component\Form\Extension\Core\ChoiceList\ArrayChoiceList;
 
