@@ -12,20 +12,4 @@ use Admingenerator\GeneratorBundle\Generator\Column;
  */
 class ListBuilderAction extends AdminListBuilderAction
 {
-    protected function findFilterColumns()
-    {
-        $filters = $this->getFilters();
-
-        foreach ($filters['display'] as $columnName) {
-            $column = new Column($columnName);
-            $column->setDbType($this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName));
-            $column->setFormType($this->getFieldGuesser()->getFilterType($column->getDbType()));
-            $column->setFormOptions($this->getFieldGuesser()->getFilterOptions($column->getFormType(), $column->getDbType(), $columnName));
-            $column->setFilterOn($this->getFieldGuesser()->getPhpName($this->getVariable('model'), $columnName));
-
-            //Set the user parameters
-            $this->setUserColumnConfiguration($column);
-            $this->addFilterColumn($column);
-        }
-    }
 }
