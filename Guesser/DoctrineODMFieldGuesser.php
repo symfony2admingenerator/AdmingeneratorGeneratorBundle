@@ -55,9 +55,13 @@ class DoctrineODMFieldGuesser
             }
         }
 
-        $mapping = $metadata->getFieldMapping($fieldName);
+        if ($metadata->hasField($fieldName)) {
+          $mapping = $metadata->getFieldMapping($fieldName);
+           
+          return $mapping['type'];
+        }
 
-        return $mapping['type'];
+        return 'virtual';
 
         //return $metadata->getTypeOfField($fieldName);//Not Yet implemented by doctrine
     }
@@ -98,6 +102,9 @@ class DoctrineODMFieldGuesser
                 break;
              case 'collection':
                 return 'doctrine_odm_double_list';
+                break;
+            case 'virtual':
+                throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented');
                 break;
             default:
                 throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented');
@@ -151,7 +158,8 @@ class DoctrineODMFieldGuesser
 
     protected function isRequired($fieldName)
     {
-        if (!$this->getMetadatas()->hasAssociation($fieldName) || $this->getMetadatas()->isSingleValuedAssociation($fieldName)) {
+        if ($this->getMetadatas()->hasField($fieldName) && 
+            (!$this->getMetadatas()->hasAssociation($fieldName) || $this->getMetadatas()->isSingleValuedAssociation($fieldName))) {
             return $this->getMetadatas()->isNullable($fieldName);
         }
 
