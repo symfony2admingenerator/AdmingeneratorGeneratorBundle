@@ -11,7 +11,7 @@
                 <div class="form_field">
                     {{ echo_block("form_" ~ field) }}
                         {{ echo_twig("form_label(form['" ~ field ~ "'], '" ~ builder.Columns[field].label|addslashes ~ "')") }}
-                        
+
                         {% if builder.Columns[field].formType == "collection" -%}
                             {{- block('type_collection') -}}
                         {%- else -%}
