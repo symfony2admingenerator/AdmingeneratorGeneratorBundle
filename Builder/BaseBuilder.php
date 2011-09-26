@@ -52,6 +52,7 @@ abstract class BaseBuilder implements BuilderInterface
      * @var array
      */
     protected $twigFilters = array(
+        'addslashes',
         'var_export',
         'is_numeric',
         'ucfirst',

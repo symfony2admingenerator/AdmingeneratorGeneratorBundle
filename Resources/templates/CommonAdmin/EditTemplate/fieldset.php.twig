@@ -9,7 +9,7 @@
                 {% for field in rows %}
                 <div class="form_field">
                     {{ echo_block("form_" ~ field) }}
-                        {{ echo_twig("form_label(form['" ~ field ~ "'], '" ~ builder.Columns[field].label ~ "')") }}
+                        {{ echo_twig("form_label(form['" ~ field ~ "'], '" ~ builder.Columns[field].label|addslashes ~ "')") }}
                         {{ echo_twig("form_widget(form['" ~ field ~ "'])") -}}
                         {% if builder.columns[field].help %}
 
