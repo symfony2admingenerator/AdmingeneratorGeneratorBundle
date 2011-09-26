@@ -21,7 +21,7 @@
         
         $('#type_collection_{{ field }} .new').click(function() {
            var prototype = $('#{{ builder.YamlKey }}_{{ builder.ModelClass|lower }}_{{ field }}').attr('data-prototype');
-           prototype = prototype.replace(/\$\$name\$\$/g, "0");
+           prototype = prototype.replace(/\$\$name\$\$/g, type_collection_{{ field }}_nextId);
            type_collection_{{ field }}_nextId++;
            $('#{{ builder.YamlKey }}_{{ builder.ModelClass|lower }}_{{ field }}').append(prototype);
            
