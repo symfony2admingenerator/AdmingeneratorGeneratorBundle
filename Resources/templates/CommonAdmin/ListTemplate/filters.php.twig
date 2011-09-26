@@ -3,12 +3,12 @@
 <form action="{{ echo_path(namespace_prefix ~ '_' ~ bundle_name ~ "_filters" ) }}" method="post" {{ echo_twig("form_enctype(form)") }}>
     <fieldset class="form_block form_fieldset_NONE">
         {{ echo_twig("form_errors(form)") }}
-        {% for field in builder.filters.display %}
+        {% for field in builder.filterColumns %}
          <div class="form_row">
              <div class="form_field">
-                {{ echo_twig("form_label(form['" ~ field ~ "'], '" ~ builder.FilterColumns[field].label ~ "' )") }}
-                {{ echo_twig("form_widget(form['" ~ field ~ "'])") }}
-                {{ echo_twig("form_errors(form['" ~ field ~ "'])") }}
+                {{ echo_twig("form_label(form['" ~ field.name ~ "'], '" ~ builder.FilterColumns[field.name].label ~ "' )") }}
+                {{ echo_twig("form_widget(form['" ~ field.name ~ "'])") }}
+                {{ echo_twig("form_errors(form['" ~ field.name ~ "'])") }}
             </div>
         </div>
         {% endfor %}
