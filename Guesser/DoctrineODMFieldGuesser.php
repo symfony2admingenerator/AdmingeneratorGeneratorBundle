@@ -181,13 +181,18 @@ class DoctrineODMFieldGuesser
            $options['empty_value'] = 'Yes or No';
         }
 
-         if ('document' == $dbType) {
+        if ('document' == $dbType) {
              return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
-         }
+        }
+
+        if ('collection' == $formType) {
+            return array('allow_add' => true, 'allow_delete' => true, 'by_reference' => true);
+        }
 
         if ('collection' == $dbType) {
              return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
-         }
+        }
+
 
         return $options;
     }

@@ -1,3 +1,4 @@
+{% use '../CommonAdmin/EditTemplate/Type/collection.php.twig' %}
 {% block form_fieldset %}
 {{ echo_block("form_fieldset_" ~ fieldset|classify) }}
         <fieldset class="form_block form_fieldset_{{ fieldset|classify }}">
@@ -10,8 +11,13 @@
                 <div class="form_field">
                     {{ echo_block("form_" ~ field) }}
                         {{ echo_twig("form_label(form['" ~ field ~ "'], '" ~ builder.Columns[field].label|addslashes ~ "')") }}
-                        {{ echo_twig("form_widget(form['" ~ field ~ "'])") -}}
-                        {% if builder.columns[field].help %}
+                        
+                        {% if builder.Columns[field].formType == "collection" -%}
+                            {{- block('type_collection') -}}
+                        {%- else -%}
+                            {{- echo_twig("form_widget(form['" ~ field ~ "'])") -}}
+                        {%- endif -%}
+                        {%- if builder.columns[field].help %}
 
                         <span class="help">
                             {{ builder.columns[field].help }}

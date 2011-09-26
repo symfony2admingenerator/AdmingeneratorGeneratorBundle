@@ -164,6 +164,10 @@ class PropelORMFieldGuesser
             }
         }
 
+        if ('collection' == $formType) {
+            return array('allow_add' => true, 'allow_delete' => true, 'by_reference' => false);
+        }
+
         return array('required' => $this->isRequired($columnName));
     }
 

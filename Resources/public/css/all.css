@@ -481,3 +481,6 @@ fieldset.form_block {
       width: 3em; }
 .filters table tr:hover {
   background-color: white; }
+
+.type_collection div div, .actions {
+  clear: left; }

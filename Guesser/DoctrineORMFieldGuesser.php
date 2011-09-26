@@ -149,6 +149,10 @@ class DoctrineORMFieldGuesser
             return array('em' => 'default', 'class' => $mapping['targetEntity']);
         }
 
+        if ('collection' == $formType) {
+            return array('allow_add' => true, 'allow_delete' => true, 'by_reference' => true);
+        }
+
         return array('required' => $this->isRequired($columnName));
     }
 

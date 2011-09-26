@@ -45,7 +45,31 @@ class EchoExtension extends \Twig_Extension
     {
         return array(
             'as_php'          => new \Twig_Filter_Method($this, 'asPhp'),
+            'convert_as_form' => new \Twig_Filter_Method($this, 'convertAsForm'),
         );
+    }
+
+    /**
+     * Try to convert options of form given as string from yaml to a good object
+     *
+     * eg type option for collection type
+     *
+     * @param string $options the string as php
+     * @param string $formType the form type
+     *
+     * @return string the new options
+     */
+    public function convertAsForm($options, $formType)
+    {
+        if ('collection' == $formType) {
+            preg_match("/'type' => '(.+?)'/i", $options, $matches);
+
+            if (count($matches) > 0) {
+                $options = str_replace("'type' => '".$matches[1]."'", '\'type\' =>  new '.stripslashes($matches[1]).'()', $options);
+            }
+        }
+
+        return $options;
     }
 
     public function asPhp($variable)

@@ -32,7 +32,22 @@ class EchoExtensionTest extends TestCase
             'obj'  => $object,
             'arr'  => array('obj' => 'val'),
             'arr_obj' => array('obj' => $object),
+            'options_form_collection' => "array( 'allow_add' => true, 'allow_delete' => true, 'by_reference' => false, 'type' => '\\\Admingenerator\\\PropelDemoBundle\\\Form\\\Type\\\ActorType',)"
         );
+    }
+
+    public function testConvertAsForm()
+    {
+
+        $tpls = array(
+            'options_form_collection' => '{{ options_form_collection|convert_as_form("collection") }}',
+        );
+
+        $returns = array(
+            'options_form_collection' => array("array( 'allow_add' => true, 'allow_delete' => true, 'by_reference' => false, 'type' =>  new \Admingenerator\PropelDemoBundle\Form\Type\ActorType(),)", 'convert as form can convert the type option for the collection type'),
+        );
+
+       $this->runTwigTests($tpls, $returns);
     }
 
     public function testAsPhp()

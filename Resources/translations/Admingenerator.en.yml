@@ -16,6 +16,7 @@ list.filter.btn_reset: Reset
 
 # Form
 form.btn_save: Save
+form.type_collection.add: Add
 
 # Actions
 List: List
