@@ -45,7 +45,7 @@ class PropelORMFieldGuesser
             return \RelationMap::MANY_TO_ONE === $relation->getType() ? 'model' : 'collection';
         }
 
-        return $this->getColumn($class, $fieldName)  ? $this->getColumn($class, $fieldName)->getType() : 'VARCHAR';
+        return $this->getColumn($class, $fieldName)  ? $this->getColumn($class, $fieldName)->getType() : 'virtual';
     }
 
     protected function getRelation($fieldName, $class = null)
