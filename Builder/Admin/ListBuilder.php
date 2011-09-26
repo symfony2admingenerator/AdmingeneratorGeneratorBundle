@@ -58,7 +58,7 @@ class ListBuilder extends BaseBuilder
     {
         $filters = $this->getFilters();
 
-        if (!is_array($filters['display'])) {
+        if (!isset($filters['display']) || is_null($filters['display'])) {
             $filters['display'] = $this->getAllColumns();
         }
 
@@ -72,6 +72,7 @@ class ListBuilder extends BaseBuilder
             $this->setUserColumnConfiguration($column);
             $this->addFilterColumn($column);
         }
+        
     }
 
     /**

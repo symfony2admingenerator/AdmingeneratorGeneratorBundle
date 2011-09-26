@@ -27,7 +27,7 @@
 
         {{- block('list_actions') }}
     </div>
-    {% if builder.filters.display|length > 0 or not builder.filters.display %}
+    {% if builder.filterColumns|length > 0 %}
     <div class="filters">
         <table>
             <thead>
