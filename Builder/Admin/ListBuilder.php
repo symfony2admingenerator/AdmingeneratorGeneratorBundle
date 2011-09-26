@@ -72,7 +72,7 @@ class ListBuilder extends BaseBuilder
             $this->setUserColumnConfiguration($column);
             $this->addFilterColumn($column);
         }
-        
+
     }
 
     /**
