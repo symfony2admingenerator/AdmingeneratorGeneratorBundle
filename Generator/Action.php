@@ -14,6 +14,8 @@ class Action
 {
     protected $name;
 
+    protected $route;
+
     protected $confirm_message;
 
 
@@ -32,12 +34,9 @@ class Action
         return $this->humanize($this->getName());
     }
 
-    /**
-     * @todo implement optionnal parameters
-     */
     public function getRoute()
     {
-        return false;
+        return $this->route;
     }
 
     private function humanize($text)
@@ -59,5 +58,10 @@ class Action
     {
         $option = Inflector::classify($option);
         call_user_func_array(array($this, 'set'.$option), array($value));
+    }
+
+    public function setRoute($route)
+    {
+        $this->route = $route;
     }
 }
