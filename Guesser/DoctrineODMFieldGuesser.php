@@ -57,7 +57,7 @@ class DoctrineODMFieldGuesser
 
         if ($metadata->hasField($fieldName)) {
           $mapping = $metadata->getFieldMapping($fieldName);
-           
+
           return $mapping['type'];
         }
 
@@ -158,7 +158,7 @@ class DoctrineODMFieldGuesser
 
     protected function isRequired($fieldName)
     {
-        if ($this->getMetadatas()->hasField($fieldName) && 
+        if ($this->getMetadatas()->hasField($fieldName) &&
             (!$this->getMetadatas()->hasAssociation($fieldName) || $this->getMetadatas()->isSingleValuedAssociation($fieldName))) {
             return $this->getMetadatas()->isNullable($fieldName);
         }
