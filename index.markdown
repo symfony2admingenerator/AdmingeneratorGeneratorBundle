@@ -7,13 +7,13 @@ title: "Documentation for AdmigeneratorGeneratorBundle"
 
 ### What? ###
 
-The AdmingeneratorGeneratorBundle is an opensource admin-generator for the famous php framework [Symfony2](http://www.symfony.com/). 
+The AdmingeneratorGeneratorBundle is an opensource admin-generator for the famous [Symfony2](http://www.symfony.com/) php framework. 
 
-I have said "generator" so the code will be really generated in your cache directory, so you'll can easy read it understand how is work and overwrite it.
+The term "generator" is used on purpose: the bundle actually generates PHP code in the cache directory, so you can easily read it, understand how it works, and overwrite it.
 
-### How it works? ###
+### How does it work? ###
 
-The concept is simple parsing a generator config file like this one :
+The bundle generates an entire administration based on a simple YAML configuration file. Here is an example generator configuration:
 
 {% highlight yaml %}
 generator: admingenerator.generator.doctrine
@@ -78,8 +78,7 @@ builders:
 {% endhighlight %}
 
 
-We can configure the form classes, the controllers, and generate a specific template, of course linked to your model and your ORM or ODM.
-
+The YAML configuration allows to customize the form classes, the controllers, and to generate a specific template, of course linked to your model and your ORM or ODM.
 
 ### In pictures
 
