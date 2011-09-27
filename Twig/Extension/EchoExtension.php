@@ -69,6 +69,14 @@ class EchoExtension extends \Twig_Extension
             }
         }
 
+        if ('choice' == $formType) {
+            preg_match("/'choices' => '(.+?)',/i", $options, $matches);
+
+            if (count($matches) > 0) {
+                $options = str_replace("'choices' => '".$matches[1]."'", '\'choices\' => '.stripslashes($matches[1]), $options);
+            }
+        }
+
         return $options;
     }
 
