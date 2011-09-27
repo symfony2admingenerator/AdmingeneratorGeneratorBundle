@@ -27,22 +27,24 @@
 
         {{- block('list_actions') }}
     </div>
-    {% if builder.filterColumns|length > 0 %}
-    <div class="filters">
-        <table>
-            <thead>
-                <tr>
-                    <th>{{ echo_trans('list.filters') }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        {{- block('list_filters') -}}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    {% endif %}
+    {{ echo_block("filters") }}
+        {% if builder.filterColumns|length > 0 %}
+        <div class="filters">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{{ echo_trans('list.filters') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            {{- block('list_filters') -}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    {{ echo_endblock() }}
 {{ echo_endblock() }}
