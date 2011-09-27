@@ -32,7 +32,9 @@ class EchoExtensionTest extends TestCase
             'obj'  => $object,
             'arr'  => array('obj' => 'val'),
             'arr_obj' => array('obj' => $object),
-            'options_form_collection' => "array( 'allow_add' => true, 'allow_delete' => true, 'by_reference' => false, 'type' => '\\\Admingenerator\\\PropelDemoBundle\\\Form\\\Type\\\ActorType',)"
+            'options_form_collection' => "array( 'allow_add' => true, 'allow_delete' => true, 'by_reference' => false, 'type' => '\\\Admingenerator\\\PropelDemoBundle\\\Form\\\Type\\\ActorType',)",
+            'options_form_model' => "array( 'query' => '\\\Admingenerator\\\PropelDemoBundle\\\Model\\\ActorQuery::create()->orderById()',)"
+
         );
     }
 
@@ -41,10 +43,12 @@ class EchoExtensionTest extends TestCase
 
         $tpls = array(
             'options_form_collection' => '{{ options_form_collection|convert_as_form("collection") }}',
+            'options_form_model' => '{{ options_form_model|convert_as_form("model") }}',
         );
 
         $returns = array(
             'options_form_collection' => array("array( 'allow_add' => true, 'allow_delete' => true, 'by_reference' => false, 'type' =>  new \Admingenerator\PropelDemoBundle\Form\Type\ActorType(),)", 'convert as form can convert the type option for the collection type'),
+            'options_form_model' => array("array( 'query' => \Admingenerator\PropelDemoBundle\Model\ActorQuery::create()->orderById(),)", 'convert as form can convert the query option for the model type'),
         );
 
        $this->runTwigTests($tpls, $returns);
