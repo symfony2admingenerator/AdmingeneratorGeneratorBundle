@@ -23,7 +23,7 @@ This is the installation recommanded if you want to try the bundle in 2 minutes
 ## On a symfony2 project ##
 
 {% highlight bash %}
-git submodule add git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git vendor/bundles/AdmingeneratorGeneratorBundle
+git submodule add git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git vendor/bundles/Admingenerator/GeneratorBundle
 {% endhighlight %}
 
 Register it in the `autoload.php` file:
