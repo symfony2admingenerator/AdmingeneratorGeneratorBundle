@@ -24,11 +24,11 @@
      */
     protected function setFilters($filters)
     {
-        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\Filters', $filters);
+        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Filters', $filters);
     }
 
     protected function getFilters()
     {
-        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Filters', array());
+        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Filters', array());
     }
 {% endblock %}

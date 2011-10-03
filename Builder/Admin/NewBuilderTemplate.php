@@ -10,7 +10,7 @@ class NewBuilderTemplate extends NewBuilder
 {
     public function getOutputName()
     {
-        return 'Resources/views/'.($this->getBaseGeneratorName() ? $this->getBaseGeneratorName().'/' : '').'New/index.html.twig';
+        return 'Resources/views/'.$this->getBaseGeneratorName().'New/index.html.twig';
     }
 
     public function getTemplateName()

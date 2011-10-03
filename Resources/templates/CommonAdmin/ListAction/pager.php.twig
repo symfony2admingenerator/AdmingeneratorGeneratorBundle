@@ -6,7 +6,7 @@
      */
     protected function setPage($page)
     {
-        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\Page', $page);
+        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Page', $page);
     }
 
     /**
@@ -16,7 +16,7 @@
      */
     protected function getPage()
     {
-        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Page', 1);
+        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Page', 1);
     }
 
     protected function getPager()
