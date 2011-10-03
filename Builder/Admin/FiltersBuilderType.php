@@ -10,7 +10,7 @@ class FiltersBuilderType extends FiltersBuilder
 {
     public function getOutputName()
     {
-        return 'Form/BaseType/FiltersType.php';
+        return 'Form/Base'.$this->getBaseGeneratorName().'Type/FiltersType.php';
     }
 
     public function getTemplateName()

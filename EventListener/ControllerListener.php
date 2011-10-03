@@ -35,7 +35,7 @@ class ControllerListener
 
                     $generator = $this->getGenerator($generatorYaml);
                     $generator->setGeneratorYml($generatorYaml);
-                    $generator->setGeneratedControllerFolder('Base'.$this->getBaseGeneratorName($controller).'Controller');
+                    $generator->setBaseGeneratorName($this->getBaseGeneratorName($controller));
                     $generator->build();
 
                 }

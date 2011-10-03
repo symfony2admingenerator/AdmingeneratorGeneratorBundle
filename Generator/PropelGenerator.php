@@ -38,7 +38,7 @@ class PropelGenerator extends Generator
         $generator->setTemplateDirs(array(__DIR__.'/../Resources/templates/Propel'));
         $generator->setBaseController('Admingenerator\GeneratorBundle\Controller\Propel\BaseController');
         $generator->setColumnClass('Admingenerator\GeneratorBundle\Generator\PropelColumn');
-        $generator->setGeneratedControllerFolder($this->getGeneratedControllerFolder());
+        $generator->setBaseGeneratorName($this->getBaseGeneratorName());
 
         $builders = $generator->getFromYaml('builders',array());
 

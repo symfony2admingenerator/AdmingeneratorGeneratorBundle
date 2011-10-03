@@ -10,6 +10,6 @@ class ListBuilderTemplate extends ListBuilder
 {
     public function getOutputName()
     {
-        return 'Resources/views/List/index.html.twig';
+        return 'Resources/views/'.($this->getBaseGeneratorName() ? $this->getBaseGeneratorName().'/' : '').'List/index.html.twig';
     }
 }

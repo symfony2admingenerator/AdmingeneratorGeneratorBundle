@@ -22,7 +22,7 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
 
     protected $fieldGuesser;
 
-    protected $generated_controller_folder = 'BaseController';
+    protected $base_generator_name;
 
     public function __construct($root_dir, $cache_dir)
     {
@@ -40,14 +40,14 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
         return $this->generator_yaml;
     }
 
-    public function setGeneratedControllerFolder($generated_controller_folder)
+    public function setBaseGeneratorName($base_generator_name)
     {
-        $this->generated_controller_folder = $generated_controller_folder;
+        $this->base_generator_name = $base_generator_name;
     }
 
-    protected function getGeneratedControllerFolder()
+    protected function getBaseGeneratorName()
     {
-        return $this->generated_controller_folder;
+        return $this->base_generator_name;
     }
 
    /**

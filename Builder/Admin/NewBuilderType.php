@@ -10,7 +10,7 @@ class NewBuilderType extends NewBuilder
 {
     public function getOutputName()
     {
-        return 'Form/BaseType/NewType.php';
+        return 'Form/Base'.$this->getBaseGeneratorName().'Type/NewType.php';
     }
 
     public function getTemplateName()
