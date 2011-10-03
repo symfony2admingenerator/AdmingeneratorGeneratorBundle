@@ -10,6 +10,6 @@ class EditBuilderType extends EditBuilder
 {
     public function getOutputName()
     {
-        return 'Form/BaseType/EditType.php';
+        return 'Form/Base'.$this->getBaseGeneratorName().'Type/EditType.php';
     }
 }

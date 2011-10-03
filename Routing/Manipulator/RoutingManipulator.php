@@ -15,6 +15,8 @@ class RoutingManipulator extends Manipulator
 {
     private $file;
 
+    protected $yaml_prefix;
+
     /**
      * Constructor.
      *
@@ -23,6 +25,11 @@ class RoutingManipulator extends Manipulator
     public function __construct($file)
     {
         $this->file = $file;
+    }
+
+    public function setYamlPrefix($yaml_prefix)
+    {
+        $this->yaml_prefix = $yaml_prefix;
     }
 
     /**
@@ -52,12 +59,12 @@ class RoutingManipulator extends Manipulator
         }
 
         if (null === $prefix) {
-            $prefix = '/admin/'.Container::underscore($bundle);
+            $prefix = '/admin/'.Container::underscore($bundle). ($this->yaml_prefix ? '/'.$this->yaml_prefix : '');
         }
 
         $code = sprintf("%s:\n", $bundle.('/' !== $prefix ? '_'.str_replace('/', '_', substr($prefix, 1)) : ''));
         if ('admingenerator' == $format) {
-            $code .= sprintf("    resource: \"@%s/Controller/\"\n    type:     admingenerator\n", $bundle);
+            $code .= sprintf("    resource: \"@%s/Controller/%s\"\n    type:     admingenerator\n", $bundle, $this->yaml_prefix ? ucfirst($this->yaml_prefix).'/' : '');
         } else {
             $code .= sprintf("    resource: \"@%s/Resources/config/%s.%s\"\n", $bundle, $path, $format);
         }

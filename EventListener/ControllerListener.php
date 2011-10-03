@@ -26,7 +26,7 @@ class ControllerListener
 
     public function onKernelRequest(GetResponseEvent $event)
     {
-        if (HttpKernelInterface::MASTER_REQUEST === $event->getRequestType()) { //I don't know why but i 'm on sub request !!
+        if (HttpKernelInterface::MASTER_REQUEST === $event->getRequestType()) {
             try {
                 $controller = $event->getRequest()->attributes->get('_controller');
 
@@ -35,6 +35,7 @@ class ControllerListener
 
                     $generator = $this->getGenerator($generatorYaml);
                     $generator->setGeneratorYml($generatorYaml);
+                    $generator->setBaseGeneratorName($this->getBaseGeneratorName($controller));
                     $generator->build();
 
                 }
@@ -51,16 +52,33 @@ class ControllerListener
         return $this->container->get($yaml['generator']);
     }
 
+    protected function getBaseGeneratorName($controller)
+    {
+        list($base, $bundle, $controllerFolder, $other) = explode('\\', $controller, 4);
+
+        //Find if its a name-generator or generator.yml
+        if (strstr($other, '\\')) {
+            list($generatorName, $controllerName) = explode('\\', $other, 2);
+
+            return $generatorName;
+        }
+
+        return '';
+    }
+
     /**
      * @todo Find objects in vendor dir
      */
     protected function getGeneratorYml($controller)
     {
-        list($base, $bundle, $other) = explode('\\', $controller, 3);
+        list($base, $bundle, $controllerFolder, $other) = explode('\\', $controller, 4);
+
+        $generatorName  = $this->getBaseGeneratorName($controller) ? strtolower($this->getBaseGeneratorName($controller)).'-' : '';
+        $generatorName .= 'generator.yml';
 
         $finder = new Finder();
         $finder->files()
-               ->name('generator.yml');
+               ->name($generatorName);
 
         $namespace_directory = realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$base.'/'.$bundle);
 

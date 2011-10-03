@@ -232,4 +232,9 @@ class BaseBuilder extends GenericBaseBuilder
 
         return $template->render($options);
     }
+
+    public function getBaseGeneratorName()
+    {
+        return $this->getGenerator()->getBaseGeneratorName();
+    }
 }

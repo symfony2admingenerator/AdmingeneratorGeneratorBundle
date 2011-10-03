@@ -4,7 +4,7 @@
         if ($this->get('request')->get('reset')) {
             $this->setFilters(array());
 
-            return new RedirectResponse($this->generateUrl("{{ namespace_prefix }}_{{ bundle_name }}_list"));
+            return new RedirectResponse($this->generateUrl("{{ namespace_prefix }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
         }
 
         $form = $this->getFilterForm();
@@ -14,7 +14,7 @@
             $this->setFilters($form->getClientData());
         }
 
-        return new RedirectResponse($this->generateUrl("{{ namespace_prefix }}_{{ bundle_name }}_list"));
+        return new RedirectResponse($this->generateUrl("{{ namespace_prefix }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
     }
 
     /**
@@ -24,11 +24,11 @@
      */
     protected function setFilters($filters)
     {
-        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\Filters', $filters);
+        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Filters', $filters);
     }
 
     protected function getFilters()
     {
-        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Filters', array());
+        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Filters', array());
     }
 {% endblock %}

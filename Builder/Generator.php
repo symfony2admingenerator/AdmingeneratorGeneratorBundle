@@ -38,6 +38,8 @@ class Generator
 
     protected $base_admin_template = 'AdmingeneratorGeneratorBundle::base_admin.html.twig';
 
+    protected $base_generator_name;
+
     /**
      * Init a new generator and automatically define the base of tempDir
      *
@@ -214,4 +216,20 @@ class Generator
     {
         return $this->baseController;
     }
+
+    public function setBaseGeneratorName($base_generator_name)
+    {
+        $this->base_generator_name = $base_generator_name;
+    }
+
+    public function getBaseGeneratorName()
+    {
+        return $this->base_generator_name;
+    }
+
+    public function getGeneratedControllerFolder()
+    {
+        return 'Base'.$this->base_generator_name.'Controller';
+    }
+
 }
