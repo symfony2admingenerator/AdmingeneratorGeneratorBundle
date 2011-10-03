@@ -56,11 +56,19 @@ class ControllerListener
      */
     protected function getGeneratorYml($controller)
     {
-        list($base, $bundle, $other) = explode('\\', $controller, 3);
+        list($base, $bundle, $controllerFolder, $other) = explode('\\', $controller, 4);
+
+        //Find if its a name-generator or generator.yml
+        if (strstr($other, '\\')) {
+            list($generatorName, $controllerName) = explode('\\', $other, 2);
+            $generatorName = strtolower($generatorName).'-generator.yml';
+        } else {
+            $generatorName = 'generator.yml';
+        }
 
         $finder = new Finder();
         $finder->files()
-               ->name('generator.yml');
+               ->name($generatorName);
 
         $namespace_directory = realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$base.'/'.$bundle);
 
