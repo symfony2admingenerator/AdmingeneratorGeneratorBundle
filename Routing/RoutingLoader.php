@@ -68,14 +68,23 @@ class RoutingLoader extends FileLoader
         foreach ($this->actions as $controller => $datas) {
 
             $action = 'index';
-            $route_name = str_replace('/','_',$namespace).'_'.$bundle_name.'_'.$controller;
-
+            
+            if ($controller_folder = $this->getControllerFolder($resource)) {
+                $route_name = str_replace('/','_',$namespace).'_'.$bundle_name.'_'.$controller_folder.'_'.$controller;
+            } else {
+                $route_name = str_replace('/','_',$namespace).'_'.$bundle_name.'_'.$controller;
+            }
+            
             if (isset($datas['controller'])) {
                 $action     = $controller;
                 $controller = $datas['controller'];
             }
 
-            $datas['defaults']['_controller'] = $namespace.$bundle_name.':'.ucfirst($controller).':'.$action;
+            if ($controller_folder) {
+                $datas['defaults']['_controller'] = $namespace.'\\'.$bundle_name.'Controller\\'.$controller_folder.'\\'.ucfirst($controller).'Controller::'.$action;
+            } else {
+                $datas['defaults']['_controller'] = $namespace.$bundle_name.':'.ucfirst($controller).':'.$action;
+            }
 
             $route = new Route($datas['pattern'],$datas['defaults'], $datas['requirements']);
             $collection->add($route_name, $route);
@@ -89,17 +98,24 @@ class RoutingLoader extends FileLoader
     {
         return 'admingenerator' == $type;
     }
+    
+    protected function getControllerFolder($resource)
+    {
+        preg_match('#.+/.+Bundle/Controller?/(.*?)/?$#', $resource, $matches);
+
+        return $matches[1];
+    }
 
     protected function getBundleNameFromResource($resource)
     {
-        preg_match('#.+/(.+Bundle)/Controller?/$#', $resource, $matches);
+        preg_match('#.+/(.+Bundle)/Controller?/(.*?)/?$#', $resource, $matches);
 
         return $matches[1];
     }
 
     protected function getNamespaceFromResource($resource)
     {
-        preg_match('#.+/(.+)/(.+Bundle)/Controller?/$#', $resource, $matches);
+        preg_match('#.+/(.+)/(.+Bundle)/Controller?/(.*?)/?$#', $resource, $matches);
 
         return $matches[1];
     }
