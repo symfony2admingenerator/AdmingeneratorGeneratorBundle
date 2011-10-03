@@ -5,6 +5,7 @@ namespace Admingenerator\GeneratorBundle\CacheWarmer;
 
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
+use Symfony\Component\Finder\Finder;
 
 /**
  * Finds all the generator.yml.
@@ -41,8 +42,10 @@ class GeneratorFinder
         $yamls = array();
 
         foreach ($this->kernel->getBundles() as $name => $bundle) {
-            if ($yaml = $this->findGeneratorYamlInBundle($bundle)) {
-                $yamls[] = $yaml;
+            if ($yamlIterator = $this->findGeneratorYamlInBundle($bundle)) {
+                do {
+                    $yamls[] = $yamlIterator->current()->getRealPath();
+                } while($yamlIterator->next());
             }
         }
 
@@ -55,14 +58,26 @@ class GeneratorFinder
      *
      * @param BundleInterface $bundle The bundle where to look for templates
      *
-     * @return string|false The generator.yml if exists
+     * @return Iterator|false The generator.yml if exists
      */
     private function findGeneratorYamlInBundle(BundleInterface $bundle)
     {
-        $file = $bundle->getPath().'/Resources/config/generator.yml';
+        if (!file_exists($bundle->getPath().'/Resources/config')) {
+            return false;
+        }
+        
+        $finder = new Finder();
+        $finder->files()
+               ->name('generator.yml')
+               ->name('*-generator.yml')
+               ->in($bundle->getPath().'/Resources/config');
+               
+        $it = $finder->getIterator();
+        $it->rewind();
 
-        if (file_exists($file)) {
-            return $file;
+        if ($it->valid()) {
+
+            return $it;
         }
 
         return false;
