@@ -26,7 +26,7 @@ class ControllerListener
 
     public function onKernelRequest(GetResponseEvent $event)
     {
-        if (HttpKernelInterface::MASTER_REQUEST === $event->getRequestType()) { //I don't know why but i 'm on sub request !!
+        if (HttpKernelInterface::MASTER_REQUEST === $event->getRequestType()) {
             try {
                 $controller = $event->getRequest()->attributes->get('_controller');
 
@@ -35,6 +35,7 @@ class ControllerListener
 
                     $generator = $this->getGenerator($generatorYaml);
                     $generator->setGeneratorYml($generatorYaml);
+                    $generator->setGeneratedControllerFolder('Base'.$this->getBaseGeneratorName($controller).'Controller');
                     $generator->build();
 
                 }
@@ -51,6 +52,20 @@ class ControllerListener
         return $this->container->get($yaml['generator']);
     }
 
+    protected function getBaseGeneratorName($controller)
+    {
+        list($base, $bundle, $controllerFolder, $other) = explode('\\', $controller, 4);
+
+        //Find if its a name-generator or generator.yml
+        if (strstr($other, '\\')) {
+            list($generatorName, $controllerName) = explode('\\', $other, 2);
+
+            return $generatorName;
+        }
+
+        return '';
+    }
+
     /**
      * @todo Find objects in vendor dir
      */
@@ -58,13 +73,8 @@ class ControllerListener
     {
         list($base, $bundle, $controllerFolder, $other) = explode('\\', $controller, 4);
 
-        //Find if its a name-generator or generator.yml
-        if (strstr($other, '\\')) {
-            list($generatorName, $controllerName) = explode('\\', $other, 2);
-            $generatorName = strtolower($generatorName).'-generator.yml';
-        } else {
-            $generatorName = 'generator.yml';
-        }
+        $generatorName  = $this->getBaseGeneratorName($controller) ? strtolower($this->getBaseGeneratorName($controller)).'-' : '';
+        $generatorName .= 'generator.yml';
 
         $finder = new Finder();
         $finder->files()

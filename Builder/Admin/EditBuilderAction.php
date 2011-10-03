@@ -10,6 +10,6 @@ class EditBuilderAction extends EditBuilder
 {
     public function getOutputName()
     {
-        return 'BaseController/EditController.php';
+        return $this->getGenerator()->getGeneratedControllerFolder().'/EditController.php';
     }
 }
