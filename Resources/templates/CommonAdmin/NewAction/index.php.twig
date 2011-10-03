@@ -1,6 +1,6 @@
 {% block index_use %}
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\NewType;
+use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\{{ builder.BaseGeneratorName ? builder.BaseGeneratorName ~ "\\" : "" }}NewType;
 {% endblock %}
 {% block index %}
 
@@ -10,7 +10,7 @@ use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\NewType;
 
         $form = $this->createForm(new NewType(), ${{ builder.ModelClass }});
 
-        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:New:index.html.twig', array(
+        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}New:index.html.twig', array(
             "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
             "form" => $form->createView(),
         ));

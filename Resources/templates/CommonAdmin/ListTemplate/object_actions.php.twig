@@ -3,7 +3,7 @@
         {% if object_actions|length > 0 %}
          <td class="actions">
             {% for action in builder.ObjectActions %}
-                <a class="{{ action.name }}" href="{{ echo_path((action.route ? action.route : namespace_prefix ~ '_' ~ bundle_name ~ '_' ~ action.name),
+                <a class="{{ action.name }}" href="{{ echo_path((action.route ? action.route : namespace_prefix ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_' ~ action.name),
                 "{ 'id': " ~ builder.ModelClass ~ ".id }") }}" {% if action.confirm %}onclick='return confirm("{{ action.confirm }}")'{% endif %}> </a>
             {% endfor %}
          </td>

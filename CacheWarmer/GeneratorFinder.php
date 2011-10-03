@@ -65,13 +65,13 @@ class GeneratorFinder
         if (!file_exists($bundle->getPath().'/Resources/config')) {
             return false;
         }
-        
+
         $finder = new Finder();
         $finder->files()
                ->name('generator.yml')
                ->name('*-generator.yml')
                ->in($bundle->getPath().'/Resources/config');
-               
+
         $it = $finder->getIterator();
         $it->rewind();
 
