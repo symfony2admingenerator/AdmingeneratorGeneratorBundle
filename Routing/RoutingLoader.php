@@ -81,7 +81,7 @@ class RoutingLoader extends FileLoader
             }
 
             if ($controller_folder) {
-                $datas['defaults']['_controller'] = $namespace.'\\'.$bundle_name.'Controller\\'.$controller_folder.'\\'.ucfirst($controller).'Controller::'.$action;
+                $datas['defaults']['_controller'] = $namespace.'\\'.$bundle_name.'\\Controller\\'.$controller_folder.'\\'.ucfirst($controller).'Controller::'.$action;
             } else {
                 $datas['defaults']['_controller'] = $namespace.$bundle_name.':'.ucfirst($controller).':'.$action;
             }
