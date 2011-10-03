@@ -52,9 +52,9 @@ class AdmingeneratedClassLoader
     protected function generateEmptyContorller($class)
     {
         $generator = new EmptyGenerator();
-        
+
         list($admingenerated, $bundle, $baseController, $controllerName) = explode('\\',$class);
-        
+
         $builder = new EmptyBuilderAction();
         $generator->addBuilder($builder);
         $builder->setOutputName($baseController.'/'.$controllerName.'.php');

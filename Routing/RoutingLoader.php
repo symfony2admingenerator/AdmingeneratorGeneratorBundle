@@ -68,13 +68,13 @@ class RoutingLoader extends FileLoader
         foreach ($this->actions as $controller => $datas) {
 
             $action = 'index';
-            
+
             if ($controller_folder = $this->getControllerFolder($resource)) {
                 $route_name = str_replace('/','_',$namespace).'_'.$bundle_name.'_'.$controller_folder.'_'.$controller;
             } else {
                 $route_name = str_replace('/','_',$namespace).'_'.$bundle_name.'_'.$controller;
             }
-            
+
             if (isset($datas['controller'])) {
                 $action     = $controller;
                 $controller = $datas['controller'];
@@ -98,7 +98,7 @@ class RoutingLoader extends FileLoader
     {
         return 'admingenerator' == $type;
     }
-    
+
     protected function getControllerFolder($resource)
     {
         preg_match('#.+/.+Bundle/Controller?/(.*?)/?$#', $resource, $matches);
