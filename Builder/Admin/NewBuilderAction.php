@@ -10,6 +10,6 @@ class NewBuilderAction extends NewBuilder
 {
     public function getOutputName()
     {
-        return 'BaseController/NewController.php';
+        return $this->getGenerator()->getGeneratedControllerFolder().'/NewController.php';
     }
 }

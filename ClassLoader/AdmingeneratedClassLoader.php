@@ -52,14 +52,16 @@ class AdmingeneratedClassLoader
     protected function generateEmptyContorller($class)
     {
         $generator = new EmptyGenerator();
+
         list($admingenerated, $bundle, $baseController, $controllerName) = explode('\\',$class);
 
         $builder = new EmptyBuilderAction();
         $generator->addBuilder($builder);
-        $builder->setOutputName('BaseController/'.$controllerName.'.php');
+        $builder->setOutputName($baseController.'/'.$controllerName.'.php');
         $builder->setVariables(array(
             'controllerName' => $controllerName,
             'bundle'         => $bundle,
+            'base_controller' => $baseController,
         ));
 
         $generator->writeOnDisk($this->base_path."/$admingenerated/$bundle");

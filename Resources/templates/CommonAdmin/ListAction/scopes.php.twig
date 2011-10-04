@@ -4,12 +4,12 @@
         if ($this->get('request')->get('reset')) {
             $this->setScopes(array());
 
-            return new RedirectResponse($this->generateUrl("{{ namespace_prefix }}_{{ bundle_name }}_list"));
+            return new RedirectResponse($this->generateUrl("{{ namespace_prefix }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
         }
 
         $this->setScope($this->get('request')->get('group'), $this->get('request')->get('scope'));
 
-        return new RedirectResponse($this->generateUrl("{{ namespace_prefix }}_{{ bundle_name }}_list"));
+        return new RedirectResponse($this->generateUrl("{{ namespace_prefix }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
     }
 
     /**
@@ -19,7 +19,7 @@
      */
     protected function setScopes($scopes)
     {
-        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\Scopes', $scopes);
+        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Scopes', $scopes);
     }
 
     /**
@@ -37,7 +37,7 @@
 
     protected function getScopes()
     {
-        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Scopes', $this->getDefaultScopes());
+        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Scopes', $this->getDefaultScopes());
     }
 
     protected function getDefaultScopes()

@@ -10,6 +10,6 @@ class EditBuilderTemplate extends EditBuilder
 {
     public function getOutputName()
     {
-        return 'Resources/views/Edit/index.html.twig';
+        return 'Resources/views/'.$this->getBaseGeneratorName().'Edit/index.html.twig';
     }
 }

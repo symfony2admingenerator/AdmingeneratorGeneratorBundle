@@ -7,12 +7,12 @@
      */
     protected function setSort($column, $order_by)
     {
-        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\Sort', $column);
+        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Sort', $column);
 
         if ($order_by == 'desc') {
-            $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\OrderBy', 'DESC');
+            $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\OrderBy', 'DESC');
         } else {
-             $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\List\OrderBy', 'ASC');
+             $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\OrderBy', 'ASC');
         }
     }
 
@@ -25,10 +25,10 @@
     {
         {% if sort is defined and sort[0] != '' -%}
 
-            return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Sort', '{{ sort[0] }}');
+            return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Sort', '{{ sort[0] }}');
         {% else -%}
 
-            return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\Sort');
+            return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Sort');
         {% endif -%}
     }
 
@@ -41,10 +41,10 @@
     {
         {% if sort is defined and sort[1] != '' -%}
 
-            return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\OrderBy', '{{ sort[1] }}');
+            return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\OrderBy', '{{ sort[1] }}');
         {% else -%}
 
-            return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\List\OrderBy', 'ASC');
+            return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\OrderBy', 'ASC');
         {% endif -%}
     }
 

@@ -10,6 +10,6 @@ class ListBuilderAction extends ListBuilder
 {
     public function getOutputName()
     {
-        return 'BaseController/ListController.php';
+        return $this->getGenerator()->getGeneratedControllerFolder().'/ListController.php';
     }
 }

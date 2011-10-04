@@ -37,6 +37,7 @@ class DoctrineODMGenerator extends Generator
         $generator->setMustOverwriteIfExists($this->container->getParameter('admingenerator.overwrite_if_exists'));
         $generator->setTemplateDirs(array(__DIR__.'/../Resources/templates/DoctrineODM'));
         $generator->setBaseController('Admingenerator\GeneratorBundle\Controller\DoctrineODM\BaseController');
+        $generator->setBaseGeneratorName($this->getBaseGeneratorName());
 
         $builders = $generator->getFromYaml('builders',array());
 

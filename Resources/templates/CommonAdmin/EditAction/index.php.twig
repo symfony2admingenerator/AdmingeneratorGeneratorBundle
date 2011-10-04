@@ -1,6 +1,6 @@
 {% block index_use %}
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\EditType;
+use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\{{ builder.BaseGeneratorName ? builder.BaseGeneratorName ~ "\\" : "" }}EditType;
 
 {% endblock %}
 {% block index %}
@@ -15,7 +15,7 @@ use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\EditType;
 
         $form = $this->createForm(new EditType(), ${{ builder.ModelClass }});
 
-        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:Edit:index.html.twig', array(
+        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Edit:index.html.twig', array(
             "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
             "form" => $form->createView(),
         ));

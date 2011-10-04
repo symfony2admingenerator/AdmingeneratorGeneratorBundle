@@ -10,6 +10,6 @@ class DeleteBuilderAction extends DeleteBuilder
 {
     public function getOutputName()
     {
-        return 'BaseController/DeleteController.php';
+        return $this->getGenerator()->getGeneratedControllerFolder().'/DeleteController.php';
     }
 }

@@ -1,5 +1,5 @@
 {% block index_use %}
-use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\FiltersType;
+use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\{{ builder.BaseGeneratorName ? builder.BaseGeneratorName ~ "\\" : "" }}FiltersType;
 {% endblock %}
 {% block index %}
 
@@ -17,7 +17,7 @@ use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\FiltersType;
 
         $form = $this->getFilterForm();
 
-        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:List:index.html.twig', array(
+        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}List:index.html.twig', array(
             '{{ builder.ModelClass }}s' => $this->getPager(),
             'form'                      => $form->createView(),
             'sortColumn'                => $this->getSortColumn(),
