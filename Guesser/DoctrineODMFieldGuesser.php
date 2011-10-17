@@ -90,12 +90,14 @@ class DoctrineODMFieldGuesser
             case 'float':
                 return 'number';
                 break;
+            case 'int':
             case 'integer':
             case 'bigint':
             case 'smallint':
                 return 'integer';
                 break;
             case 'id':
+            case 'custom_id':
             case 'string':
                 return 'text';
                 break;
