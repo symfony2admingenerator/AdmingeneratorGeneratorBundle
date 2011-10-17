@@ -16,6 +16,6 @@
         }
     ],
     "require": {
-        "symfony/symfony": ">=2.0.0",
+        "symfony/symfony": ">=2.0.0"
     }
 }
