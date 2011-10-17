@@ -1,11 +1,6 @@
 {
     "name": "Admin/GeneratorBundle",
     "version": "1.0.0-BETA",
-    "repositories": {
-        "GitHub": {
-            "git": "git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git"
-        }
-    },
     "description": "Admingenerator for Symfony2 based on YAML configuration and Twig templating",
     "keywords": ["admin", "generator", "yaml"],
     "homepage": "http://symfony2admingenerator.org/",
