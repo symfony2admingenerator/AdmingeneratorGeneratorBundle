@@ -118,7 +118,6 @@ EOT
         if (!$this->getContainer()->get('filesystem')->isAbsolutePath($dir)) {
             $dir = getcwd().'/'.$dir;
         }
-$routing->setYamlPrefix($input->getOption('prefix'));
         $generator = $this->getGenerator();
         $generator->setGenerator($input->getOption('generator'));
         $generator->setPrefix($input->getOption('prefix'));
