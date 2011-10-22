@@ -5,7 +5,7 @@
 
                 {% for column in builder.columns -%}
 
-                <th class="list_thead_column">
+                <th class="list_thead_column{{ echo_if (column.isSortable) }} sortable{{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }} sorted-asc{{ echo_elseif("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'DESC'") }} sorted-desc{{ echo_endif () }}{{ echo_endif () }}">
                     {% if column.isSortable -%}
                         {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }}
                             <a href="?sort={{ column.sortOn }}&order_by=desc">
