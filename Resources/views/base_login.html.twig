@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Admin{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets '@AdmingeneratorGeneratorBundle/Resources/public/css/screen.sass'
+                           '@AdmingeneratorGeneratorBundle/Resources/public/css/content.sass'
+                           '@AdmingeneratorGeneratorBundle/Resources/public/css/login.sass'
+                           filter='sass'
+             %}
+                <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
+            {% endstylesheets %}
+        {% endblock %}
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+       <div id="wrapper">
+			<div class="login_form">
+	            {% block body %}{% endblock %}
+        	</div>
+       </div>
+        {% block javascripts %}
+        {% endblock %}
+    </body>
+</html>

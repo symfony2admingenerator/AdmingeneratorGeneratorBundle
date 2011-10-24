@@ -4,27 +4,55 @@ body
   #wrapper
     width: 450px
     margin: 0 auto
-  .login_form
+  form
+    padding: 20px
     width: 450px
     margin-top: 50px
     min-height: 302px
     float: left
     background: #f4f4f4
     +border-radius(6px)
-    ul
-      list-style: none
-      float: left
-      margin: 40px 0px 0px 25px
-      padding: 0px
-      li
-        float: left
-        margin-bottom: 15px
-        clear: both
-        width: 400px
-        input[type=text], input[type=password]
-          width: 400px
-         
-        &.right
-          input
-            float: right
+
+=buttons_border
+  +border-radius(5px)
+=input_default
+  display: block
+  height: 35px
+  border: 1px solid #DFDDDC
+  padding-left: 4px
+  margin-bottom: 30px
+  margin-top: 10px
+  +buttons_border
+=input_focus
+  border: 1px solid #B3DD91
+  +box-shadow(#DDF0CE, -1px, 1px, 1px)          
+
+label
+  font-size: 1.4em
+  color: #464646
+  padding: 5px 0px 9px 0px
+input
+  +input_default
+  width: 435px
+  &:focus
+    +input_focus
+
+#_submit
+  width: 100px
+  float: right
+  background: url(/bundles/admingeneratorgenerator/images/submit_background.png) repeat-x
+  height: 39px
+  border: 1px solid #D2D2D2
+  color: #2A363B
+  padding-left: 20px
+  padding-right: 20px
+  +buttons_border
+  outline: none
+  margin-top: 50px
+  &:hover
+    background: url(../images/submit_background_hover.png) repeat-x
+    cursor: pointer
+    cursor: hand
      
+#remember_me
+  display: inline
