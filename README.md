@@ -223,6 +223,8 @@ Configure your config.yml to use the assetic less template
 ``` yaml
 admingenerator_generator:
     base_admin_template: AdmingeneratorGeneratorBundle::base_admin_assetic_less.html.twig
+admingenerator_user:
+    login_template: AdmingeneratorGeneratorBundle::base_login_assetic_less.html.twig
 ```
 
 ### With or without assetic
