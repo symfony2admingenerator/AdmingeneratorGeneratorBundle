@@ -329,13 +329,14 @@ fieldset.form_block {
   margin-top: 10px; }
   fieldset.form_block.form_fieldset_NONE {
     border: 0; }
-  fieldset.form_block h2 {
+  fieldset.form_block legend {
     color: white;
     background: url(/bundles/admingeneratorgenerator/images/table_background.png) repeat-x;
     margin-bottom: 10px;
     padding: 5px;
     font-size: 1.5em;
-    font-weight: bold; }
+    font-weight: bold;
+    width: 100%; }
   fieldset.form_block .form_row {
     padding: 7px;
     clear: left; }

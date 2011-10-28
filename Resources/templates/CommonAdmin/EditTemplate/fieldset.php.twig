@@ -3,7 +3,7 @@
 {{ echo_block("form_fieldset_" ~ fieldset|classify) }}
         <fieldset class="form_block form_fieldset_{{ fieldset|classify }}">
         {% if "NONE" != fieldset %}
-        <h2>{{ fieldset }}</h2>
+        <legend>{{ fieldset }}</legend>
         {% endif -%}
         {% for rows in builder.fieldsets[fieldset] %}
     <div class="form_row">
