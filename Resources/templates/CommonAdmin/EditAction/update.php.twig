@@ -15,6 +15,7 @@
 
         if ($form->isValid()) {
             $this->saveObject(${{ builder.ModelClass }});
+            $this->postSave($form, ${{ builder.ModelClass }});
 
             $this->get('session')->setFlash('success', 'The object was successfully saved');
 
@@ -28,5 +29,9 @@
             "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
             "form" => $form->createView(),
         ));
+    }
+
+    public function postSave(\Symfony\Component\Form\Form $form, \{{ model }} ${{ builder.ModelClass }})
+    {
     }
 {% endblock %}
