@@ -1,3 +1,4 @@
+{% use '../CommonAdmin/security_action.php.twig' %}
 {% block index_use %}
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\{{ builder.BaseGeneratorName ? builder.BaseGeneratorName ~ "\\" : "" }}NewType;
@@ -6,6 +7,8 @@ use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\{{ builder.BaseGeneratorN
 
     public function indexAction()
     {
+        {{ block('security_action') }}
+
         ${{ builder.ModelClass }} = $this->getNewObject();
 
         $form = $this->createForm(new NewType(), ${{ builder.ModelClass }});

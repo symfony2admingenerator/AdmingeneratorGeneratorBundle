@@ -1,3 +1,4 @@
+{% use '../CommonAdmin/security_action.php.twig' %}
 {% block index_use %}
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\{{ builder.BaseGeneratorName ? builder.BaseGeneratorName ~ "\\" : "" }}EditType;
@@ -7,6 +8,8 @@ use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\{{ builder.BaseGeneratorN
 
     public function indexAction($id)
     {
+        {{ block('security_action') }}
+
         ${{ builder.ModelClass }} = $this->getObject($id);
 
         if (!${{ builder.ModelClass }}) {

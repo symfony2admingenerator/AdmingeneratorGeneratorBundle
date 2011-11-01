@@ -1,7 +1,10 @@
+{% use '../CommonAdmin/security_action.php.twig' %}
 {% block index %}
 
     public function indexAction($id)
     {
+        {{ block('security_action') }}
+
         try {
             $this->process($id);
             $this->get('session')->setFlash('success','The record have been successfully deleted');

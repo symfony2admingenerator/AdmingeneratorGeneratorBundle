@@ -1,9 +1,12 @@
+{% use '../CommonAdmin/security_action.php.twig' %}
 {% block create_use %}
 {% endblock %}
 {% block create %}
 
     public function createAction()
     {
+        {{ block('security_action') }}
+
         ${{ builder.ModelClass }} = $this->getNewObject();
 
         $form = $this->createForm(new NewType(), ${{ builder.ModelClass }});

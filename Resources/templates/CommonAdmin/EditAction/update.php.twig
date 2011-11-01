@@ -1,9 +1,12 @@
+{% use '../CommonAdmin/security_action.php.twig' %}
 {% block update_use %}
 {% endblock %}
 {% block update %}
 
     public function updateAction($id)
     {
+        {{ block('security_action') }}
+
         ${{ builder.ModelClass }} = $this->getObject($id);
 
         if (!${{ builder.ModelClass }}) {
