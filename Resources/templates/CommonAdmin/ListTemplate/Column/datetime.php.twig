@@ -1,0 +1,4 @@
+{% block column_datetime %}
+{# Need to implement a config for date formats #}
+{{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|date("Y-m-d H:i:s")') -}}
+{% endblock %}
