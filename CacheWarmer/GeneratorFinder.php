@@ -42,13 +42,10 @@ class GeneratorFinder
         $yamls = array();
 
         foreach ($this->kernel->getBundles() as $name => $bundle) {
-            if ($yamlIterator = $this->findGeneratorYamlInBundle($bundle)) {
-                do {
-                    $yamls[] = $yamlIterator->current()->getRealPath();
-                } while($yamlIterator->next());
+            foreach ($this->findGeneratorYamlInBundle($bundle) as $yaml) {
+                $yamls[$yaml] = $yaml;
             }
         }
-
 
         return $this->yamls = $yamls;
     }
@@ -58,12 +55,14 @@ class GeneratorFinder
      *
      * @param BundleInterface $bundle The bundle where to look for templates
      *
-     * @return Iterator|false The generator.yml if exists
+     * @return array of yaml paths
      */
     private function findGeneratorYamlInBundle(BundleInterface $bundle)
     {
+        $yamls =  array();
+
         if (!file_exists($bundle->getPath().'/Resources/config')) {
-            return false;
+            return $yamls;
         }
 
         $finder = new Finder();
@@ -72,14 +71,10 @@ class GeneratorFinder
                ->name('*-generator.yml')
                ->in($bundle->getPath().'/Resources/config');
 
-        $it = $finder->getIterator();
-        $it->rewind();
-
-        if ($it->valid()) {
-
-            return $it;
+        foreach ($finder as $file) {
+            $yamls[$file->getRealPath()] = $file->getRealPath();
         }
 
-        return false;
+        return $yamls;
     }
 }
