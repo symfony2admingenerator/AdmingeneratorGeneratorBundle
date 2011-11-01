@@ -244,6 +244,12 @@ admingenerator_generator:
     overwrite_if_exists: true
 ```
 
+And of course for prod :
+
+```
+php app/console -env prod cache:warmup
+```
+
 --------------
 
 Note : The admin theme is from https://github.com/martinrusev/admin-theme
