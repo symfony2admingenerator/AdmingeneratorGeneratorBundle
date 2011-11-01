@@ -13,6 +13,7 @@ list.filter.btn_filter: Filtrer
 list.filter.btn_reset: Réinitialiser
 "Display all <b>%count%</b> results": Affiche les <b>%count%</b> résultats
 "Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Résultats <b>%start%</b> à <b>%end%</b> sur <b>%count%</b>
+list.actions: Actions
 
 # Form
 form.btn_save: Enregistrer
