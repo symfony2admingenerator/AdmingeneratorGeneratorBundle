@@ -13,6 +13,7 @@ list.filter.btn_filter: Filter
 list.filter.btn_reset: Reset
 "Display all <b>%count%</b> results": Display all <b>%count%</b> results
 "Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results
+list.actions: Actions
 
 # Form
 form.btn_save: Save
