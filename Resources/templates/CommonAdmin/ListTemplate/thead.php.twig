@@ -32,7 +32,7 @@
                 {% endfor -%}
 
                 {%- if object_actions|length > 0 -%}
-                    <th class="actions">Actions</th>
+                    <th class="actions">{{ echo_trans('list.actions') }}</th>
                 {% endif -%}
             </tr>
         </thead>
