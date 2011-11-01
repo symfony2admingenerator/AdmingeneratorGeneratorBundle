@@ -18,6 +18,7 @@ class Action
 
     protected $confirm_message;
 
+    protected $crendentials;
 
     public function __construct($name)
     {
@@ -52,6 +53,16 @@ class Action
     public function getConfirm()
     {
         return $this->confirm_message;
+    }
+
+    public function setCredentials($crendentials)
+    {
+        $this->crendentials = $crendentials;
+    }
+
+    public function getCredentials()
+    {
+        return $this->crendentials;
     }
 
     public function setOption($option, $value)

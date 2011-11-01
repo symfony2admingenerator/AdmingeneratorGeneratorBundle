@@ -32,6 +32,7 @@ class EchoExtension extends \Twig_Extension
             'echo_endfor'     => new \Twig_Function_Method($this, 'getEchoEndFor'),
             'echo_extends'    => new \Twig_Function_Method($this, 'getEchoExtends'),
             'echo_if'         => new \Twig_Function_Method($this, 'getEchoIf'),
+            'echo_if_granted' => new \Twig_Function_Method($this, 'getEchoIfGranted'),
             'echo_else'       => new \Twig_Function_Method($this, 'getEchoElse'),
             'echo_elseif'     => new \Twig_Function_Method($this, 'getEchoElseIf'),
             'echo_endif'      => new \Twig_Function_Method($this, 'getEchoEndIf'),
@@ -145,6 +146,30 @@ class EchoExtension extends \Twig_Extension
         }
 
         return strtr('{{ path("%%path%%", %%params%%) }}',array('%%path%%' => $path, '%%params%%'=>$params));
+    }
+
+    public function getEchoIfGranted($credentials)
+    {
+        preg_match_all('/(\(*)([a-z\_]+)(\)*)/i', $credentials, $matches);
+
+        if (count($matches[0]) == 1) {
+            return $this->getEchoIf('is_granted(\''.$credentials.'\')');
+        }
+
+        $out = array();
+
+        foreach ($matches[2] as $index => $matche) {
+            if ( $matche == 'or' || $matche == 'and' ) {
+                $out[$index] = $matche;
+            } else {
+                $out[$index] = 'is_granted(\''.$matche.'\')';
+            }
+
+            // Replace parenthesis
+            $out[$index] = $matches[1][$index].$out[$index].$matches[3][$index];
+        }
+
+        return $this->getEchoIf(implode(' ', $out));
     }
 
     public function getEchoIf($condition)
