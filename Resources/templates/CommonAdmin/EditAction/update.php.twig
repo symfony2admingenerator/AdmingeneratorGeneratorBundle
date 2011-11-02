@@ -13,7 +13,9 @@
             throw new NotFoundHttpException("The {{ model }} with id $id can't be found");
         }
 
-        $form = $this->createForm(new EditType(), ${{ builder.ModelClass }});
+        $type = new EditType();
+        $type->setSecurityContext($this->get('security.context'));
+        $form = $this->createForm($type, ${{ builder.ModelClass }});
         $form->bindRequest($this->get('request'));
 
         if ($form->isValid()) {

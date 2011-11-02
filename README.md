@@ -20,6 +20,7 @@ With almost the same features:
 * A complete admin design
 * Translated into EN, FR (you can easily contribute to add your own)
 * Filters by form & by scopes combinable
+* Credentials for actions, columns, and form fields
 * ...
 
 ## This bundle in pictures

@@ -244,9 +244,9 @@ class BaseBuilder extends GenericBaseBuilder
      * eg of expression : "A or (B and C)"
      * will return $securityContext->isGranted('A') || ($securityContext->isGranted('B') && $securityContext->isGranted('C'))
      */
-    public function getCredentialsTestExpression()
+    public function getCredentialsTestExpression($expression = null, $var ='$securityContext' )
     {
-        $credentials = $this->getVariable('credentials');
+        $credentials = (null !== $expression) ? $expression : $this->getVariable('credentials');
 
         if (null == $credentials) {
             return '';
@@ -255,7 +255,7 @@ class BaseBuilder extends GenericBaseBuilder
         preg_match_all('/(\(*)([a-z\_]+)(\)*)/i', $credentials, $matches);
 
         if (count($matches[0]) == 1) {
-            return '$securityContext->isGranted(\''.$credentials.'\')';
+            return $var.'->isGranted(\''.$credentials.'\')';
         }
 
         $out = array();
@@ -266,7 +266,7 @@ class BaseBuilder extends GenericBaseBuilder
             } elseif ( $matche == 'and' ) {
                 $out[$index] = '&&';
             } else {
-                $out[$index] = '$securityContext->isGranted(\''.$matche.'\')';
+                $out[$index] = $var.'->isGranted(\''.$matche.'\')';
             }
 
             // Replace parenthesis

@@ -16,7 +16,9 @@ use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\{{ builder.BaseGeneratorN
             throw new NotFoundHttpException("The {{ model }} with id $id can't be found");
         }
 
-        $form = $this->createForm(new EditType(), ${{ builder.ModelClass }});
+        $type = new EditType();
+        $type->setSecurityContext($this->get('security.context'));
+        $form = $this->createForm($type, ${{ builder.ModelClass }});
 
         return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Edit:index.html.twig', array(
             "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},

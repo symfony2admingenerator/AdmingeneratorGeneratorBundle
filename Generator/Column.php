@@ -30,6 +30,8 @@ class Column
 
     protected $help;
 
+    protected $crendentials;
+
     public function __construct($name)
     {
         $this->name = $name;
@@ -139,6 +141,16 @@ class Column
     {
         $option = Inflector::classify($option);
         call_user_func_array(array($this, 'set'.$option), array($value));
+    }
+
+    public function setCredentials($crendentials)
+    {
+        $this->crendentials = $crendentials;
+    }
+
+    public function getCredentials()
+    {
+        return $this->crendentials;
     }
 
     public function setAddFormOptions(array $complementary_options = array())

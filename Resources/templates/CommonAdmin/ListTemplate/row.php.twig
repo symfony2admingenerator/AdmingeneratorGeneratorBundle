@@ -4,6 +4,9 @@
 {% block list_row %}
 {{ echo_block("list_row") }}
     {% for column in builder.columns %}
+    {% if column.credentials %}
+          {{ echo_if_granted(column.credentials) }}
+    {% endif %}
             <td>
                     {{ echo_block('list_td_column_' ~ column.name) -}}
                     {%- if column.dbType|lower == "boolean" -%}
@@ -17,6 +20,9 @@
                     {%- endif -%}
                     {{- echo_endblock() }}
                 </td>
+    {% if column.credentials %}
+        {{ echo_endif () }}
+    {% endif %}
     {% endfor %}
 {{ echo_endblock() }}
 {% endblock %}
