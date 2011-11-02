@@ -29,6 +29,13 @@ With almost the same features:
 
 ![Preview of edit](https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/edit-preview.png)
 
+### Want another skin ?
+
+Just install [ActiveAdminTheme](https://github.com/cedriclombardot/AdmingeneratorActiveAdminThemeBundle)
+
+![Preview of ActiveAdminTheme] (https://github.com/cedriclombardot/AdmingeneratorActiveAdminThemeBundle/raw/master/Resources/doc/list-preview.png)
+
+
 ## Want to run a test ?
 
 The fastest way to try it is to setup the AdmingeneratorIpsum project: https://github.com/cedriclombardot/AdmingeneratorIpsum.
