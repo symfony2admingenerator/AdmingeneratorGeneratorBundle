@@ -1,6 +1,6 @@
 <?php
 
-namespace {{ namespace }}{{ prefix ? "\\" ~ prefix : "" }}\Controller;
+namespace {{ namespace }}Controller{{ prefix ? "\\" ~ prefix : "" }};
 
 use Admingenerated\{{ bundle }}\Base{{ prefix }}Controller\{{ action }}Controller as Base{{ action }}Controller;
 
