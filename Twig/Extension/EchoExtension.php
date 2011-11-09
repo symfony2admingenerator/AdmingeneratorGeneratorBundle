@@ -150,26 +150,7 @@ class EchoExtension extends \Twig_Extension
 
     public function getEchoIfGranted($credentials)
     {
-        preg_match_all('/(\(*)([a-z\_]+)(\)*)/i', $credentials, $matches);
-
-        if (count($matches[0]) == 1) {
-            return $this->getEchoIf('is_granted(\''.$credentials.'\')');
-        }
-
-        $out = array();
-
-        foreach ($matches[2] as $index => $matche) {
-            if ( $matche == 'or' || $matche == 'and' ) {
-                $out[$index] = $matche;
-            } else {
-                $out[$index] = 'is_granted(\''.$matche.'\')';
-            }
-
-            // Replace parenthesis
-            $out[$index] = $matches[1][$index].$out[$index].$matches[3][$index];
-        }
-
-        return $this->getEchoIf(implode(' ', $out));
+       return $this->getEchoIf('is_expr_granted(\''.$credentials.'\')');
     }
 
     public function getEchoIf($condition)

@@ -5,6 +5,7 @@ namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\Form\Base{{ bui
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
+use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 
 class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
 {
@@ -14,7 +15,7 @@ class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
     {
         {% for column in builder.columns %}
         {%- if column.credentials -%}
-        if (false !== ({{ builder.getCredentialsTestExpression(column.credentials, "$this->securityContext") }})) {
+        if (false !== $this->securityContext->isGranted(array(new Expression('{{ column.credentials }}')))) {
         {%- endif %}
 
            $builder->add('{{ column.name }}', '{{ column.formType }}', {{ column.formOptions|as_php|convert_as_form(column.formType) }});

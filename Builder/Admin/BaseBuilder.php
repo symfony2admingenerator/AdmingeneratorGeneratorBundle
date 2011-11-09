@@ -237,42 +237,4 @@ class BaseBuilder extends GenericBaseBuilder
     {
         return $this->getGenerator()->getBaseGeneratorName();
     }
-
-    /**
-     * The action.credentials is a string this method return the test to include into the if
-     *
-     * eg of expression : "A or (B and C)"
-     * will return $securityContext->isGranted('A') || ($securityContext->isGranted('B') && $securityContext->isGranted('C'))
-     */
-    public function getCredentialsTestExpression($expression = null, $var ='$securityContext' )
-    {
-        $credentials = (null !== $expression) ? $expression : $this->getVariable('credentials');
-
-        if (null == $credentials) {
-            return '';
-        }
-
-        preg_match_all('/(\(*)([a-z\_]+)(\)*)/i', $credentials, $matches);
-
-        if (count($matches[0]) == 1) {
-            return $var.'->isGranted(\''.$credentials.'\')';
-        }
-
-        $out = array();
-
-        foreach ($matches[2] as $index => $matche) {
-            if ( $matche == 'or' ) {
-                $out[$index] = '||';
-            } elseif ( $matche == 'and' ) {
-                $out[$index] = '&&';
-            } else {
-                $out[$index] = $var.'->isGranted(\''.$matche.'\')';
-            }
-
-            // Replace parenthesis
-            $out[$index] = $matches[1][$index].$out[$index].$matches[3][$index];
-        }
-
-        return implode(' ', $out);
-    }
 }

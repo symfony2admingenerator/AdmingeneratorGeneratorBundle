@@ -1,6 +1,7 @@
 {% block security_use %}
 {% if credentials is defined %}
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 {% endif %}
 {% endblock %}
 
@@ -15,7 +16,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
     {
         $securityContext = $this->get('security.context');
 
-        if (false === ({{ builder.getCredentialsTestExpression }})) {
+        if (false === $securityContext->isGranted(array(new Expression('{{ credentials }}')))) {
             throw new AccessDeniedException();
         }
     }

@@ -97,20 +97,6 @@ class BaseBuilderTest extends TestCase
         $this->assertEquals('Movie', $builder->getModelClass());
     }
 
-    public function testGetCredentialsTestExpression()
-    {
-        $builder = new BaseBuilder();
-        $builder->setVariables(array('credentials' => ''));
-        $this->assertEquals('', $builder->getCredentialsTestExpression());
-
-        $builder->setVariables(array('credentials' => 'A'));
-        $this->assertEquals('$securityContext->isGranted(\'A\')', $builder->getCredentialsTestExpression());
-
-        $builder->setVariables(array('credentials' => 'A or (B and C)'));
-        $this->assertEquals('$securityContext->isGranted(\'A\') || ($securityContext->isGranted(\'B\') && $securityContext->isGranted(\'C\'))', $builder->getCredentialsTestExpression());
-    }
-
-
     protected function initBuilder()
     {
         $builder = new BaseBuilder();
