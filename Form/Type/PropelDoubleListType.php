@@ -30,7 +30,6 @@ class PropelDoubleListType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
          $builder
-               ->prependClientTransformer(new ArrayToChoicesTransformer($options['choice_list']))
                ->prependClientTransformer(new ModelsToArrayTransformer($options['choice_list']))
                ;
 
