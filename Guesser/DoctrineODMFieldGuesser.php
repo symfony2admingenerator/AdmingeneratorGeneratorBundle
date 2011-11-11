@@ -128,6 +128,7 @@ class DoctrineODMFieldGuesser
     public function getFilterType($dbType)
     {
          switch($dbType) {
+             case 'hash':
              case 'text':
                 return 'text';
                 break;
