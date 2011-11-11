@@ -56,6 +56,9 @@ class BundleGenerator extends BaseBundleGenerator
             'prefix'           => ucfirst($this->prefix),
         );
 
+        if (!file_exists($dir.'/'.$bundle.'.php')) {
+            $this->renderFile($this->skeletonDir, 'Bundle.php', $dir.'/'.$bundle.'.php', $parameters);
+        }
 
         foreach ($this->actions as $action) {
             $parameters['action'] = $action;
