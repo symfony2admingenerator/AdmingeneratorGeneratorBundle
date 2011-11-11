@@ -1,5 +1,5 @@
 {
-    "name": "cedriclombardot/AdmingeneratorGeneratorBundle",
+    "name": "cedriclombardot/admingenerator-generator-bundle",
     "version": "1.0.0-BETA",
     "description": "Admingenerator for Symfony2 based on YAML configuration and Twig templating",
     "keywords": ["admin", "generator", "yaml"],
