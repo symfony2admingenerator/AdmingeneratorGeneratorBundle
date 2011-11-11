@@ -113,6 +113,9 @@ class DoctrineODMFieldGuesser
              case 'collection':
                 return 'doctrine_odm_double_list';
                 break;
+            case 'hash':
+                return 'collection';
+                break;
             case 'virtual':
                 throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented');
                 break;
@@ -161,6 +164,10 @@ class DoctrineODMFieldGuesser
             $mapping = $this->getMetadatas()->getFieldMapping($columnName);
 
             return array('class' => $mapping['targetDocument']);
+        }
+
+        if ('collection' == $formType) {
+            return array('allow_add' => true, 'allow_delete' => true);
         }
 
         return array('required' => $this->isRequired($columnName));
