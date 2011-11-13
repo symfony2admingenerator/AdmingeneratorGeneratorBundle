@@ -102,7 +102,7 @@ Add it to the `AppKernel` class:
 $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
 ```
 
-### Now to way to continue the setup :
+### Now two way to continue the setup :
 
 Manually, follow the end of readme, or automatically,
 
