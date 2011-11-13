@@ -24,6 +24,9 @@ class SetupOrUpgradeCommand extends ContainerAwareCommand
             new InputOption('gitOrDeps', '', InputOption::VALUE_REQUIRED, 'The checkout mode', 'deps'),
             new InputOption('usePropel', '', InputOption::VALUE_REQUIRED, 'Use the propel Orm', 'yes'),
             new InputOption('useDoctrineORM', '', InputOption::VALUE_REQUIRED, 'Use the Doctrine Orm', 'yes'),
+            new InputOption('useDoctrineODM', '', InputOption::VALUE_REQUIRED, 'Use the Doctrine Odm', 'yes'),
+            new InputOption('skin', '', InputOption::VALUE_REQUIRED, 'The skin you want to use', 'default'),
+            new InputOption('useAssetic', '', InputOption::VALUE_REQUIRED, 'Wan\'t you to use assetic theme', 'yes'),
         ))
         ->setDescription('Help you to install, update and configure your AdminGeneratorGeneratorBundle')
         ->setHelp(<<<EOT
@@ -48,27 +51,97 @@ EOT
         $dialog->writeSection($output, 'The ORM/ODM you want');
 
         $usePropel = $dialog->askAndValidate($output, $dialog->getQuestion('Wan\'t you to use Propel ORM ?', $input->getOption('usePropel')),  function ($usePropel) { if (!in_array($usePropel, array('yes', 'no'))) { throw new \RuntimeException('You have to choice beetwen yes or no'); } return $usePropel; } , false, $input->getOption('usePropel'));
+        $input->setOption('usePropel', $usePropel);
         if ('yes' == $usePropel) {
             $this->setupDeps($this->getPropelDeps(), $input, $output);
         }
+        $output->writeln('');
 
-        $useDoctrineORM = $dialog->askAndValidate($output, $dialog->getQuestion('Wan\'t you to use Doctrine ORM ?', $input->getOption('useDoctrineORM')),  function ($useDoctrineORM) { if (!in_array($useDoctrineORM, array('yes', 'no'))) { throw new \RuntimeException('You have to choice beetwen yes or no'); } return $usePropel; } , false, $input->getOption('useDoctrineORM'));
+        $useDoctrineORM = $dialog->askAndValidate($output, $dialog->getQuestion('Wan\'t you to use Doctrine ORM ?', $input->getOption('useDoctrineORM')),  function ($useDoctrineORM) { if (!in_array($useDoctrineORM, array('yes', 'no'))) { throw new \RuntimeException('You have to choice beetwen yes or no'); } return $useDoctrineORM; } , false, $input->getOption('useDoctrineORM'));
+        $input->setOption('useDoctrineORM', $useDoctrineORM);
         if ('yes' == $useDoctrineORM) {
             $this->setupDeps($this->getDoctrineOrmDeps(), $input, $output);
         }
+        $output->writeln('');
+
+        $useDoctrineODM = $dialog->askAndValidate($output, $dialog->getQuestion('Wan\'t you to use Doctrine ODM MondoDB ?', $input->getOption('useDoctrineODM')),  function ($useDoctrineODM) { if (!in_array($useDoctrineODM, array('yes', 'no'))) { throw new \RuntimeException('You have to choice beetwen yes or no'); } return $useDoctrineODM; } , false, $input->getOption('useDoctrineODM'));
+        $input->setOption('useDoctrineODM', $useDoctrineODM);
+        if ('yes' == $useDoctrineODM) {
+            $this->setupDeps($this->getDoctrineOdmDeps(), $input, $output);
+        }
+        $output->writeln('');
+
+        $dialog->writeSection($output, 'The skin you want to use');
+        $skin = $dialog->askAndValidate($output, $dialog->getQuestion('Wich skin you want (default, active_admin, own) ?', $input->getOption('skin')),  function ($skin) { if (!in_array($skin, array('default', 'active_admin', 'own'))) { throw new \RuntimeException('You have to choice beetwen default, active_admin, own'); } return $skin; } , false, $input->getOption('skin'));
+
+        $help = '';
+        if ('own' == $skin) {
+            $help ='YourThemeBundle::base_admin.html.twig' ;
+        } else {
+            $help = 'AdmingeneratorGeneratorBundle';
+
+            if ('active_admin' == $skin) {
+                $this->setupDeps($this->getActiveAdminDeps(), $input, $output);
+
+                $help = 'AdmingeneratorActiveAdminThemeBundle';
+            }
+
+            $useAssetic = $dialog->askAndValidate($output, $dialog->getQuestion('Wan\'t you to use assetic theme (require gem sass and compass) ?', $input->getOption('useAssetic')),  function ($useAssetic) { if (!in_array($useAssetic, array('yes', 'no'))) { throw new \RuntimeException('You have to choice beetwen yes or no'); } return $useAssetic; } , false, $input->getOption('useAssetic'));
+            $input->setOption('useAssetic', $useAssetic);
+            if ('yes' == $useAssetic) {
+                $this->setupDeps($this->getAsseticDeps(), $input, $output);
+                $help .= '::base_admin.html.twig';
+            } else {
+                $help .= '::base_admin_assetic_less.html.twig';
+            }
+
+        }
+
+        $dialog->writeSection($output, 'Now you have to work ;)');
+        $output->writeln(array(
+            '',
+            'Edit config.yml and configure the section <comment>admingenerator_generator</comment> like that :',
+            '<comment>admingenerator_generator</comment>:',
+            '<comment>    base_admin_template</comment>: <info>'.$help.'</info>',
+            '<comment>    use_propel</comment>: <info>'.$usePropel.'</info>',
+            '<comment>    use_doctrine_orm</comment>: <info>'.$useDoctrineORM.'</info>',
+            '<comment>    use_doctrine_odm</comment>: <info>'.$useDoctrineODM.'</info>',
+            '',
+            'In section <comment>knp_menu</comment> :',
+            '<comment>knp_menu</comment>:',
+            '<comment>    twig</comment>: <info>true</info>',
+            '',
+            'In JMS security :',
+            '<comment>jms_security_extra</comment>:',
+            '<comment>    expressions</comment>: <info>true</info>',
+        ));
+
+         if ('yes' == $useAssetic) {
+              $output->writeln(array(
+                '',
+                'Check your <comment>assetic</comment> configuration ',
+                '<comment>assetic</comment>:',
+                '<comment>    filters</comment>:',
+                '<comment>        compass</comment>: <info>~</info>',
+                '<comment>        sass</comment>: <info>~</info>',
+              ));
+         }
     }
 
     protected function setupDeps($dependencies, InputInterface $input, OutputInterface $output)
     {
         foreach ($dependencies as $deps => $params) {
-            $isCloned = file_exists($this->getContainer()->getParameter('kernel.root_dir').'/../vendor/'.$params['path']);
-            $output->writeln(sprintf("<info>%s</info> is cloned ? [%s]", $deps,
-                $isCloned ? '<comment>OK</comment>' : '<error>KO</error>'));
-            if (!$isCloned) {
-                if ($input->getOption('gitOrDeps') == 'deps') {
-                    $this->addDeps($output, $deps, $params);
-                } else {
-                    $this->addSubmodule($output, $deps, $params);
+
+            if (isset($params['path'])) {
+                $isCloned = file_exists($this->getContainer()->getParameter('kernel.root_dir').'/../vendor/'.$params['path']);
+                $output->writeln(sprintf("<info>%s</info> is cloned ? [%s]", $deps,
+                    $isCloned ? '<comment>OK</comment>' : '<error>KO</error>'));
+                if (!$isCloned) {
+                    if ($input->getOption('gitOrDeps') == 'deps') {
+                        $this->addDeps($output, $deps, $params);
+                    } else {
+                        $this->addSubmodule($output, $deps, $params);
+                    }
                 }
             }
 
@@ -134,6 +207,7 @@ EOD;
 
     protected function addToAutoload(OutputInterface $output, $autoloadKey, $autoloadPath)
     {
+        $autoloadKey = addslashes($autoloadKey);
         $output->writeln('Add into autoload '.$autoloadKey);
 
         $autoloadFile = $this->getContainer()->getParameter('kernel.root_dir').'/autoload.php';
@@ -149,7 +223,7 @@ EOD;
     {
         $autoload  = file_get_contents($this->getContainer()->getParameter('kernel.root_dir').'/autoload.php');
 
-        return preg_match('/\''.addslashes($autoloadKey).'\'/m',$autoload);
+        return strstr($autoload, $autoloadKey) || strstr($autoload, addslashes($autoloadKey));
     }
 
     protected function isInKernel($bundleName)
@@ -162,6 +236,15 @@ EOD;
     protected function getRequiredDeps()
     {
         return array(
+            'twig'       => array(
+                     'git'                => 'git://github.com/fabpot/Twig.git',
+                     'path'               => '/twig',
+                     'version'            => 'v1.2.0',
+        ),
+            'twig-extensions'       => array(
+                     'git'                => 'git://github.com/fabpot/Twig-extensions.git',
+                     'path'               => '/twig-extensions',
+        ),
             'PagerFanta' => array(
                      'git'                => 'git://github.com/whiteoctober/Pagerfanta.git',
                      'path'               => '/pagerfanta',
@@ -218,11 +301,108 @@ EOD;
 
     protected function getDoctrineOrmDeps()
     {
+        return array_merge( $this->getCommonDoctrineDeps(), array(
+            'DoctrineMongoDBBundle' => array(
+                     'git'                => 'git://github.com/symfony/DoctrineMongoDBBundle.git',
+                     'path'               => '/bundles/Symfony/Bundle/DoctrineMongoDBBundle',
+                     'autoloadKey'        => 'Doctrine\MongoDB',
+                     'autoloadPath'       => '/../vendor/doctrine-mongodb/lib',
+                     'namespace'          => 'Symfony\Bundle\DoctrineMongoDBBundle\DoctrineMongoDBBundle',
+                     'isBundle'           => true,
+            ),
+            'doctrine-mongodb' => array(
+                    'git'                => 'git://github.com/doctrine/mongodb.git',
+                    'path'               => '/doctrine-mongodb',
+                    'autoloadKey'        => 'Doctrine\MongoDB',
+                    'autoloadPath'       => '/../vendor/doctrine-mongodb/lib',
+            ),
+            'doctrine-mongodb-odm' => array(
+                    'git'                => 'git://github.com/doctrine/mongodb-odm.git',
+                    'path'               => '/doctrine-mongodb-odm',
+                    'autoloadKey'        => 'Doctrine\ODM',
+                    'autoloadPath'       => '/../vendor/doctrine-mongodb-odm/lib',
+            ),
+        ));
+    }
+
+    protected function getDoctrineOdmDeps()
+    {
+        return array_merge( $this->getCommonDoctrineDeps(), array(
+            'DoctrineBundle' => array(
+                     'namespace'          => 'Symfony\Bundle\DoctrineBundle\DoctrineBundle',
+                     'isBundle'           => true,
+            ),
+        ));
+    }
+
+    protected function getCommonDoctrineDeps()
+    {
         return array(
+            'doctrine-common' => array(
+                    'git'                => 'git://github.com/doctrine/common.git',
+                    'path'               => '/doctrine-common',
+                    'autoloadKey'        => 'Doctrine\Common',
+                    'autoloadPath'       => '/../vendor/doctrine-common/lib',
+        ),
+            'doctrine-dbal' => array(
+                    'git'                => 'git://github.com/doctrine/dbal.git',
+                    'path'               => '/doctrine-dbal',
+                    'autoloadKey'        => 'Doctrine\DBAL',
+                    'autoloadPath'       => '/../vendor/doctrine-dbal/lib',
+        ),
+
+            'doctrine-fixtures' => array(
+                    'git'                => 'git://github.com/doctrine/data-fixtures.git',
+                    'path'               => '/doctrine-fixtures',
+                    'autoloadKey'        => 'Doctrine\Common\DataFixtures',
+                    'autoloadPath'       => '/../vendor/doctrine-fixtures/lib',
+        ),
+            'DoctrineFixturesBundle' => array(
+                     'git'                => 'git://github.com/symfony/DoctrineFixturesBundle.git',
+                     'path'               => '/bundles/Symfony/Bundle/DoctrineFixturesBundle',
+                     'namespace'          => 'Symfony\Bundle\DoctrineFixturesBundle\DoctrineFixturesBundle',
+                     'isBundle'           => true,
+        ),
+            'doctrine' => array(
+                    'git'                => 'git://github.com/doctrine/doctrine2.git',
+                    'path'               => '/doctrine',
+                    'autoloadKey'        => 'Doctrine',
+                    'autoloadPath'       => '/../vendor/doctrine/lib',
+        ),
 
         );
     }
 
+    protected function getActiveAdminDeps()
+    {
+        return array(
+            'AdmingeneratorActiveAdminThemeBundle' => array(
+                     'git'                => 'git://github.com/cedriclombardot/AdmingeneratorActiveAdminThemeBundle.git',
+                     'path'               => '/bundles/Admingenerator/ActiveAdminThemeBundle',
+                     'namespace'          => 'Admingenerator\ActiveAdminThemeBundle\AdmingeneratorActiveAdminThemeBundle',
+                     'isBundle'           => true,
+        ),
+        );
+    }
+
+    protected function getAsseticDeps()
+    {
+        return array(
+            'AsseticBundle' => array(
+                     'git'                => 'git://github.com/symfony/AsseticBundle.git',
+                     'path'               => '/bundles/Symfony/Bundle/AsseticBundle',
+                     'namespace'          => 'Symfony\Bundle\AsseticBundle\AsseticBundle',
+                     'isBundle'           => true,
+        ),
+            'Assetic' => array(
+                     'git'                => 'git://github.com/symfony/AsseticBundle.git',
+                     'path'               => '/assetic',
+                     'autoloadKey'        => 'Assetic',
+                     'autoloadPath'       => '/../vendor/assetic/src',
+                     'version'            => 'v1.0.2',
+        ),
+        );
+    }
 
     /**
      * @see Command
