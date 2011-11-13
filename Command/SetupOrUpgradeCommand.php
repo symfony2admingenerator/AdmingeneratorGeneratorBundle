@@ -236,6 +236,12 @@ EOD;
     protected function getRequiredDeps()
     {
         return array(
+            'TwigGenerator' => array(
+                    'git'                 => 'git://github.com/cedriclombardot/TwigGenerator.git',
+                    'path'               => '/twig-generator',
+                    'autoloadKey'        => 'TwigGenerator',
+                    'autoloadPath'       => '/../vendor/twig-generator/src',
+        ),
             'twig'       => array(
                      'git'                => 'git://github.com/fabpot/Twig.git',
                      'path'               => '/twig',
