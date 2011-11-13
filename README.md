@@ -79,6 +79,37 @@ public function registerBundles()
 }
 ```
 
+### Install SensioGeneratorBundle
+
+``` bash
+git submodule add git://github.com/sensio/SensioGeneratorBundle.git vendor/bundles/Sensio/Bundle/GeneratorBundle
+```
+
+Register it in the `autoload.php` file:
+
+``` php
+<?php
+// app/autoload.php
+
+$loader->registerNamespaces(array(
+    'Sensio\Bundle'     => __DIR__.'/../vendor/bundles',
+));
+```
+
+Add it to the `AppKernel` class:
+
+``` php
+$bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
+```
+
+### Now to way to continue the setup :
+
+Manually, follow the end of readme, or automatically,
+
+``` bash
+php app/console admin:setup
+```
+
 ### Install Pagerfanta
 
 ``` bash
@@ -134,29 +165,6 @@ Don't forget to configure it to use twig in `config.yml`:
 ``` yml
 knp_menu:
     twig: true
-```
-
-### Install SensioGeneratorBundle
-
-``` bash
-git submodule add git://github.com/sensio/SensioGeneratorBundle.git vendor/bundles/Sensio/Bundle/GeneratorBundle
-```
-
-Register it in the `autoload.php` file:
-
-``` php
-<?php
-// app/autoload.php
-
-$loader->registerNamespaces(array(
-    'Sensio\Bundle'     => __DIR__.'/../vendor/bundles',
-));
-```
-
-Add it to the `AppKernel` class:
-
-``` php
-$bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
 ```
 
 ### Configure JMS
