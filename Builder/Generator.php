@@ -5,32 +5,19 @@ namespace Admingenerator\GeneratorBundle\Builder;
 /**
  * @author Cedric LOMBARDOT
  */
-
-
 use Symfony\Component\Yaml\Yaml;
 
-class Generator
+use TwigGenerator\Builder\Generator as TwigGeneratorGenerator;
+use TwigGenerator\Builder\BuilderInterface;
+
+class Generator extends TwigGeneratorGenerator
 {
     const TEMP_DIR_PREFIX = 'Admingenerator';
-
-    /**
-     * @var string the temporary dir
-     */
-    protected $tempDir;
-
-    /**
-     * @var array List of builders
-     */
-    protected $builders = array();
 
     /**
      * @var file $yaml the yaml
      */
     protected $yaml;
-
-    protected $mustOverwriteIfExists = false;
-
-    protected $templateDirectories = array();
 
     protected $baseController;
 
@@ -47,16 +34,8 @@ class Generator
      */
     public function __construct($yaml)
     {
-        $this->tempDir = realpath(sys_get_temp_dir()).DIRECTORY_SEPARATOR.self::TEMP_DIR_PREFIX;
-        if (!is_dir($this->tempDir)) {
-            mkdir($this->tempDir, 0777, true);
-        }
+        parent::__construct();
         $this->setYamlConfig(Yaml::parse($yaml));
-    }
-
-    public function setMustOverwriteIfExists($status = true)
-    {
-        $this->mustOverwriteIfExists = $status;
     }
 
     public function getBaseAdminTemplate()
@@ -70,60 +49,18 @@ class Generator
     }
 
     /**
-     * (non-PHPdoc)
-     * @see Builder/Admingenerator\GeneratorBundle\Builder.BuilderInterface::setTemplateDirs()
-     */
-    public function setTemplateDirs(array $templateDirs)
-    {
-        $this->templateDirectories = $templateDirs;
-    }
-
-
-    /**
-     * Ensure to remove tempDir
-     */
-    public function __destruct()
-    {
-        if ($this->tempDir && is_dir($this->tempDir)) {
-            $this->removeDir($this->tempDir);
-        }
-    }
-
-    /**
-     * @return string the $tempDir
-     */
-    public function getTempDir()
-    {
-        return $this->tempDir;
-    }
-
-    /**
-     * @return array the list of builders
-     */
-    public function getBuilders()
-    {
-        return $this->builders;
-    }
-
-    /**
      * Add a builder
      * @param BuilderInterface $builder
      */
     public function addBuilder(BuilderInterface $builder)
     {
-        $builder->setGenerator($this);
-        $builder->setTemplateDirs($this->templateDirectories);
-        $builder->setMustOverwriteIfExists($this->mustOverwriteIfExists);
-        $builder->setColumnClass($this->getColumnClass());
-
+        parent::addBuilder($builder);
         $vars = array_replace_recursive(
             $this->getFromYaml('params', array()),
             $this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array())
         );
-
         $builder->setVariables($vars);
-
-        $this->builders[$builder->getSimpleClassName()] = $builder;
+        $builder->setColumnClass($this->getColumnClass());
     }
 
     protected function getColumnClass()
@@ -134,41 +71,6 @@ class Generator
     public function setColumnClass($columnClass)
     {
         return $this->columnClass = $columnClass;
-    }
-
-    /**
-     * Generated and write classes to disk
-     *
-     * @param string $outputDirectory
-     * @param array  $variables
-     */
-    public function writeOnDisk($outputDirectory)
-    {
-        foreach ($this->builders as $builder) {
-            $builder->writeOnDisk($outputDirectory);
-        }
-    }
-
-    /**
-     * Remove a directory
-     * @param string $target
-     */
-    private function removeDir($target)
-    {
-        $fp = opendir($target);
-        while (false !== $file = readdir($fp)) {
-            if (in_array($file, array('.', '..'))) {
-                continue;
-            }
-
-            if (is_dir($target.'/'.$file)) {
-                self::removeDir($target.'/'.$file);
-            } else {
-                unlink($target.'/'.$file);
-            }
-        }
-        closedir($fp);
-        rmdir($target);
     }
 
     /**
