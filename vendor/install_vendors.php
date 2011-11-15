@@ -16,6 +16,8 @@ $deps = array(
     array('twig', 'http://github.com/fabpot/Twig.git', 'origin/master'),
     array('twig-extensions', 'http://github.com/fabpot/Twig-extensions.git', 'origin/master'),
     array('doctrine-common', 'http://github.com/doctrine/common.git', 'origin/master'),
+    array('doctrine', 'http://github.com/doctrine/doctrine2.git', 'origin/master'),
+    array('doctrine-dbal', 'http://github.com/doctrine/dbal.git', 'origin/master'),
 );
 
 foreach ($deps as $dep) {

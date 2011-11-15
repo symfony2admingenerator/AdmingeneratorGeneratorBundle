@@ -14,7 +14,7 @@ class QueryFilterTest extends TestCase
     {
         parent::setUp();
 
-        if (!$this->getContainer()->has('doctrine')) {
+        if (!class_exists('\Doctrine\Tests\Mocks\DriverMock')) {
             $this->markTestSkipped('The "doctrine" service is not found.');
         }
 
@@ -44,15 +44,53 @@ class QueryFilterTest extends TestCase
 
     protected function initQueryFilter()
     {
-        $query = $this->getContainer()
-                    ->get('doctrine')
-                    ->getEntityManager()
-                    ->createQueryBuilder()
-                    ->select('q')
+        $em =  $this->_getTestEntityManager();
+        $qb = new \Doctrine\ORM\QueryBuilder($em);
+
+        $query = $qb->select('q')
                     ->from('Admingenerator\GeneratorBundle\Tests\QueryFilter\Entity\Movie', 'q');
         $queryFilter = new DoctrineQueryFilter();
         $queryFilter->setQuery($query);
 
         return $queryFilter;
+    }
+
+
+	/**
+     * Creates an EntityManager for testing purposes.
+     *
+     * NOTE: The created EntityManager will have its dependant DBAL parts completely
+     * mocked out using a DriverMock, ConnectionMock, etc. These mocks can then
+     * be configured in the tests to simulate the DBAL behavior that is desired
+     * for a particular test,
+     *
+     * @return Doctrine\ORM\EntityManager
+     */
+    protected function _getTestEntityManager($conn = null, $conf = null, $eventManager = null)
+    {
+        $metadataCache = new \Doctrine\Common\Cache\ArrayCache;
+
+        $config = new \Doctrine\ORM\Configuration();
+
+        $config->setMetadataCacheImpl($metadataCache);
+        $config->setMetadataDriverImpl($config->newDefaultAnnotationDriver());
+        $config->setQueryCacheImpl(new \Doctrine\Common\Cache\ArrayCache);
+        $config->setProxyDir(__DIR__ . '/Proxies');
+        $config->setProxyNamespace('Doctrine\Tests\Proxies');
+
+        if ($conn === null) {
+            $conn = array(
+                'driverClass'  => '\Doctrine\Tests\Mocks\DriverMock',
+                'wrapperClass' => '\Doctrine\Tests\Mocks\ConnectionMock',
+                'user'         => 'john',
+                'password'     => 'wayne'
+            );
+        }
+
+        if (is_array($conn)) {
+            $conn = \Doctrine\DBAL\DriverManager::getConnection($conn, $config, $eventManager);
+        }
+
+        return \Doctrine\Tests\Mocks\EntityManagerMock::create($conn, $config, $eventManager);
     }
 }

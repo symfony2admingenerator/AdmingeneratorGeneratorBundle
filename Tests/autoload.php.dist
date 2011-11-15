@@ -16,6 +16,9 @@ $loader->registerNamespaces(array(
     'Assetic'           => $vendorDir.'/src',
     'TwigGenerator'     => $vendorDir.'/twig-generator/src',
     'Doctrine\Common'   => $vendorDir.'/doctrine-common/lib',
+    'Doctrine\DBAL'     => $vendorDir.'/../vendor/doctrine-dbal/lib',
+    'Doctrine\Tests'    => $vendorDir.'/doctrine/tests',
+    'Doctrine'          => $vendorDir.'/doctrine/lib',
 ));
 $loader->registerPrefixes(array(
     'Twig_'             => array($vendorDir.'/twig/lib', $vendorDir.'/twig-extensions/lib'),
