@@ -23,6 +23,7 @@ With almost the same features:
 * Credentials for actions, columns, and form fields
 * ...
 
+
 ## This bundle in pictures
 
 ![Preview of list](https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/list-preview.png)
