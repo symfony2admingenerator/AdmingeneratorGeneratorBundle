@@ -8,4 +8,6 @@ env:
     - SYMFONY_VERSION=2.0.5
     - SYMFONY_VERSION=origin/master
 
-before_script: php vendor/install_vendors.php
+before_script: 
+    - php vendor/install_vendors.php 0
+    - php vendor/install_vendors.php 1
