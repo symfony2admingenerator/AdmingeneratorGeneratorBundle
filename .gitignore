@@ -1,0 +1,10 @@
+vendor/Knp/
+vendor/KnpMenu/
+vendor/WhiteOctober/
+vendor/assetic/
+vendor/doctrine-common/
+vendor/pagerfanta/
+vendor/symfony/
+vendor/twig-extensions/
+vendor/twig-generator/
+vendor/twig/
