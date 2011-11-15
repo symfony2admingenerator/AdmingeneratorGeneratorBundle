@@ -13,6 +13,11 @@ class QueryFilterTest extends TestCase
     public function setUp()
     {
         parent::setUp();
+
+        if (!$this->getContainer()->has('doctrine')) {
+            $this->markTestSkipped('The "doctrine" service is not found.');
+        }
+
         $this->queryFilter = $this->initQueryFilter();
     }
 
