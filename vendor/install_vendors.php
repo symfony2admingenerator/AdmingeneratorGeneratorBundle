@@ -10,7 +10,7 @@ $deps = array(
     array('WhiteOctober/PagerfantaBundle', 'http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git', 'origin/master'),
     array('KnpMenu', 'http://github.com/knplabs/KnpMenu.git', 'origin/master'),
     array('Knp/Bundle/MenuBundle', 'http://github.com/knplabs/KnpMenuBundle.git', 'origin/master'),
-    array('Symfony/Bundle/AsseticBundle', 'http://github.com/symfony/AsseticBundle.git', 'origin/master'),
+    array('symfony/Bundle/AsseticBundle', 'http://github.com/symfony/AsseticBundle.git', 'origin/master'),
     array('assetic', 'http://github.com/kriswallsmith/assetic.git', 'origin/master'),
     array('twig-generator', 'http://github.com/cedriclombardot/TwigGenerator.git', 'origin/master'),
     array('twig', 'http://github.com/fabpot/Twig.git', 'origin/master'),

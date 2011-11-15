@@ -1,4 +1,4 @@
-# Symfony2 Admin Generator: The Real Missing Admin Generator for Symfony2 ! ![project status](http://stillmaintained.com/cedriclombardot/AdmingeneratorGeneratorBundle.png)#
+# Symfony2 Admin Generator: The Real Missing Admin Generator for Symfony2 ! ![project status](http://stillmaintained.com/cedriclombardot/AdmingeneratorGeneratorBundle.png)# ![build status](https://secure.travis-ci.org/cedriclombardot/AdmingeneratorGeneratorBundle.png)#
 
 This package is a Symfony2 Admin Generator based on YAML configuration and Twig templating.
 It's inspired by [fzaninotto/Doctrine2ActiveRecord](https://github.com/fzaninotto/Doctrine2ActiveRecord).
