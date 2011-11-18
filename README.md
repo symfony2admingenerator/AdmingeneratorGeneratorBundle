@@ -276,6 +276,10 @@ And of course for prod :
 php app/console -env prod cache:warmup
 ```
 
+## Need support ?
+
+https://groups.google.com/group/symfony2admingenerator
+
 --------------
 
 Note : The admin theme is from https://github.com/martinrusev/admin-theme
