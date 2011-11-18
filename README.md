@@ -111,6 +111,23 @@ Manually, follow the end of readme, or automatically,
 php app/console admin:setup
 ```
 
+### Install TwigGenerator
+
+``` bash
+git submodule add http://github.com/cedriclombardot/TwigGenerator.git vendor/twig-generator
+```
+
+Register it in the `autoload.php` file:
+
+``` php
+<?php
+// app/autoload.php
+
+$loader->registerNamespaces(array(
+    'TwigGenerator'         => __DIR__.'/../vendor/twig-generator/src',
+));
+```
+
 ### Install Pagerfanta
 
 ``` bash
