@@ -56,7 +56,7 @@ class QueryFilterTest extends TestCase
     }
 
 
-	/**
+    /**
      * Creates an EntityManager for testing purposes.
      *
      * NOTE: The created EntityManager will have its dependant DBAL parts completely

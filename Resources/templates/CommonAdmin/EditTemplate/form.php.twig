@@ -5,9 +5,9 @@
     {{ echo_block('form') }}
     <form
         {{ echo_if (builder.ModelClass ~ ".id") }}
-            action="{{ echo_path(namespace_prefix ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_update", "{ 'id': " ~ builder.ModelClass ~ ".id }" ) }}"
+            action="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_update", "{ 'id': " ~ builder.ModelClass ~ ".id }" ) }}"
         {{ echo_else() }}
-            action="{{ echo_path(namespace_prefix ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_create" ) }}"
+            action="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_create" ) }}"
         {{ echo_endif () }}
         method="post" {{ echo_twig("form_enctype(form)") }}>
 

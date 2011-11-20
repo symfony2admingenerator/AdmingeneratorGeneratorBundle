@@ -1,6 +1,6 @@
 {% block list_filters %}
 {{ echo_block('list_filters') }}
-<form action="{{ echo_path(namespace_prefix ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_filters" ) }}" method="post" {{ echo_twig("form_enctype(form)") }}>
+<form action="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_filters" ) }}" method="post" {{ echo_twig("form_enctype(form)") }}>
     <fieldset class="form_block form_fieldset_NONE">
         {{ echo_twig("form_errors(form)") }}
         {% for field in builder.filterColumns %}

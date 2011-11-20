@@ -12,6 +12,6 @@
             $this->get('session')->setFlash('error',"The record can't be deleted");
         }
 
-        return new RedirectResponse($this->generateUrl("{{ namespace_prefix }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
+        return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
     }
 {% endblock %}
