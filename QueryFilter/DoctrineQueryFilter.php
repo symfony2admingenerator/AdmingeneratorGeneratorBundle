@@ -45,22 +45,27 @@ class DoctrineQueryFilter extends BaseQueryFilter
 
     }
 
-    public function addDateFilter($field, $value)
+    public function addDateFilter($field, $value, $format = 'Y-m-d')
     {
         if (is_array($value)) {
             if ($value['from']) {
                 $this->query->andWhere(sprintf('q.%s >= :%s_from',$field, $field ));
-                $this->query->setParameter($field.'_from' , $value['from']->format('Y-m-d'));
+                $this->query->setParameter($field.'_from' , $value['from']->format($format));
             }
 
             if ($value['to']) {
                 $this->query->andWhere(sprintf('q.%s <= :%s_to',$field, $field ));
-                $this->query->setParameter($field.'_to' , $value['to']->format('Y-m-d'));
+                $this->query->setParameter($field.'_to' , $value['to']->format($format));
             }
 
         } elseif ($value instanceof \DateTime) {
             $this->query->andWhere(sprintf('q.%s = :%s',$field, $field ));
-            $this->query->setParameter($field, $value->format('Y-m-d'));
+            $this->query->setParameter($field, $value->format($format));
         }
+    }
+
+    public function addDatetimeFilter($field, $value)
+    {
+        $this->addDateFilter($field, $value, 'Y-m-d H:i:s');
     }
 }
