@@ -212,7 +212,7 @@ EOD;
 
         $autoloadFile = $this->getContainer()->getParameter('kernel.root_dir').'/autoload.php';
         $autoload  = file_get_contents($autoloadFile);
-        $autoload = str_replace('$loader->registerNamespaces(array(', '$loader->registerNamespaces(array('."\n    '{$autoloadKey}' => __DIR__.'{$autoloadPath}'," , $autoload);
+        $autoload = str_replace('$loader->registerNamespaces(array(', '$loader->register gerfantaBundleNamespaces(array('."\n    '{$autoloadKey}' => __DIR__.'{$autoloadPath}'," , $autoload);
 
         $fp = fopen($autoloadFile, 'w');
         fputs($fp, $autoload);
@@ -262,7 +262,7 @@ EOD;
                      'path'               => '/bundles/WhiteOctober/PagerfantaBundle',
                      'autoloadKey'        => 'WhiteOctober\PagerfantaBundle',
                      'autoloadPath'       => '/../vendor/bundles',
-                     'namespace'          => 'WhiteOctober\WhiteOctoberPagerfantaBundle',
+                     'namespace'          => 'WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle',
                      'isBundle'           => true,
         ),
             'KnpMenuBundle' => array(
@@ -270,7 +270,7 @@ EOD;
                      'path'              => '/bundles/Knp/Bundle/MenuBundle',
                      'autoloadKey'       => 'Knp',
                      'autoloadPath'      => '/../vendor/bundles',
-                     'namespace'          => 'Knp\Bundle\KnpMenuBundle',
+                     'namespace'         => 'Knp\Bundle\MenuBundle\KnpMenuBundle',
                      'isBundle'          => true,
         ),
             'KnpMenu' => array(
