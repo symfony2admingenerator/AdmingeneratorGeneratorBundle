@@ -161,7 +161,7 @@ EOT
                 $this->isInKernel($deps) ? '<comment>OK</comment>' : '<error>KO</error>'));
 
                 if (!$this->isInKernel($deps)) {
-                    $this->updateKernel($dialog, $input, $output, $this->getContainer()->get('kernel'), $params['namespace'], $deps);
+                    $this->updateKernel($this->getDialogHelper(), $input, $output, $this->getContainer()->get('kernel'), $params['namespace'], $deps);
                 }
             }
         }
