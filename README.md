@@ -112,6 +112,38 @@ Add it to the `AppKernel` class:
 $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
 ```
 
+### Install KnpMenuBundle
+
+``` bash
+git submodule add https://github.com/knplabs/KnpMenuBundle.git vendor/bundles/Knp/Bundle/MenuBundle
+git submodule add https://github.com/knplabs/KnpMenu.git vendor/KnpMenu
+```
+
+Register it in the `autoload.php` file:
+
+``` php
+<?php
+// app/autoload.php
+
+$loader->registerNamespaces(array(
+    'Knp'    	=> __DIR__.'/../vendor/bundles',
+    'Knp\Menu' 	=> __DIR__.'/../vendor/KnpMenu/src'
+));
+```
+
+Add it to the `AppKernel` class:
+
+``` php
+$bundles[] = new Knp\Bundle\MenuBundle\KnpMenuBundle();
+```
+
+Don't forget to configure it to use twig in `config.yml`:
+
+``` yml
+knp_menu:
+    twig: true
+```
+
 ### Now two ways to continue the setup :
 
 Manually, follow the end of readme, or automatically,
@@ -160,38 +192,6 @@ Add it to the `AppKernel` class:
 
 ``` php
 $bundles[] = new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
-```
-
-### Install KnpMenuBundle
-
-``` bash
-git submodule add https://github.com/knplabs/KnpMenuBundle.git vendor/bundles/Knp/Bundle/MenuBundle
-git submodule add https://github.com/knplabs/KnpMenu.git vendor/KnpMenu
-```
-
-Register it in the `autoload.php` file:
-
-``` php
-<?php
-// app/autoload.php
-
-$loader->registerNamespaces(array(
-    'Knp'		=> __DIR__.'/../vendor/bundles',
-    'Knp\Menu' 	=> __DIR__.'/../vendor/KnpMenu/src'
-));
-```
-
-Add it to the `AppKernel` class:
-
-``` php
-$bundles[] = new Knp\Bundle\MenuBundle\KnpMenuBundle();
-```
-
-Don't forget to configure it to use twig in `config.yml`:
-
-``` yml
-knp_menu:
-    twig: true
 ```
 
 ### Configure JMS
