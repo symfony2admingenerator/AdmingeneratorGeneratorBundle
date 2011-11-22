@@ -212,7 +212,7 @@ EOD;
 
         $autoloadFile = $this->getContainer()->getParameter('kernel.root_dir').'/autoload.php';
         $autoload  = file_get_contents($autoloadFile);
-        $autoload = str_replace('$loader->registerNamespaces(array(', '$loader->register gerfantaBundleNamespaces(array('."\n    '{$autoloadKey}' => __DIR__.'{$autoloadPath}'," , $autoload);
+        $autoload = str_replace('$loader->registerNamespaces(array(', '$loader->registerNamespaces(array('."\n    '{$autoloadKey}' => __DIR__.'{$autoloadPath}'," , $autoload);
 
         $fp = fopen($autoloadFile, 'w');
         fputs($fp, $autoload);
