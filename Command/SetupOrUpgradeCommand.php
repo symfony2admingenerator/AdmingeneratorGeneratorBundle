@@ -262,7 +262,7 @@ EOD;
                      'path'               => '/bundles/WhiteOctober/PagerfantaBundle',
                      'autoloadKey'        => 'WhiteOctober\PagerfantaBundle',
                      'autoloadPath'       => '/../vendor/bundles',
-                     'namespace'          => 'WhiteOctober\PagerfantaBundle',
+                     'namespace'          => 'WhiteOctober\WhiteOctoberPagerfantaBundle',
                      'isBundle'           => true,
         ),
             'KnpMenuBundle' => array(
@@ -270,7 +270,7 @@ EOD;
                      'path'              => '/bundles/Knp/Bundle/MenuBundle',
                      'autoloadKey'       => 'Knp',
                      'autoloadPath'      => '/../vendor/bundles',
-                     'namespace'          => 'Knp\Bundle\MenuBundle',
+                     'namespace'          => 'Knp\Bundle\KnpMenuBundle',
                      'isBundle'          => true,
         ),
             'KnpMenu' => array(
