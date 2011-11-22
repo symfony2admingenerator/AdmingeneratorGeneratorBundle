@@ -50,6 +50,15 @@ This is a complete Symfony2 application with this bundle well configured.
 git clone git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git vendor/bundles/Admingenerator/GeneratorBundle
 ```
 
+Or using deps file
+
+``` 
+[AdmindeneratorGeneratorBundle]                                                                                      
+    git=git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git
+    target=/bundles/Admingenerator/GeneratorBundle
+    version=origin/master
+```
+
 Register it in the `autoload.php` file:
 
 ``` php
