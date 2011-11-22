@@ -119,6 +119,18 @@ git submodule add https://github.com/knplabs/KnpMenuBundle.git vendor/bundles/Kn
 git submodule add https://github.com/knplabs/KnpMenu.git vendor/KnpMenu
 ```
 
+or using deps file
+
+```
+[MenuBundle]
+    git=git://github.com/knplabs/KnpMenuBundle.git                                                                                                                                                                                           
+    target=/bundles/Knp/Bundle/MenuBundle
+
+[KnpMenu]
+    git=git://github.com/knplabs/KnpMenu.git
+    target=/KnpMenu
+```
+
 Register it in the `autoload.php` file:
 
 ``` php
