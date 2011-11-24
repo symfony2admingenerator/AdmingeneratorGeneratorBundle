@@ -52,8 +52,8 @@ git clone git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git ven
 
 Or using deps file
 
-``` 
-[AdmindeneratorGeneratorBundle]                                                                                      
+```
+[AdmindeneratorGeneratorBundle]
     git=git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git
     target=/bundles/Admingenerator/GeneratorBundle
     version=origin/master
@@ -123,7 +123,7 @@ or using deps file
 
 ```
 [MenuBundle]
-    git=git://github.com/knplabs/KnpMenuBundle.git                                                                                                                                                                                           
+    git=git://github.com/knplabs/KnpMenuBundle.git
     target=/bundles/Knp/Bundle/MenuBundle
 
 [KnpMenu]
