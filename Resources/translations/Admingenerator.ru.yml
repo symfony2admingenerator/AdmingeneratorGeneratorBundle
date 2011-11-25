@@ -1,0 +1,28 @@
+# Double list form
+double_list.selected: Выбранные
+double_list.unselected: Доступные
+
+# Pager
+pagerfanta.previous: Пред.
+pagerfanta.next: След.
+
+# List
+list.no_results: Нет записей
+list.filters: Фильтры
+list.filter.btn_filter: Фильтровать
+list.filter.btn_reset: Сбросить
+"Display all <b>%count%</b> results": Показаны все <b>%count%</b> записи(ей)
+"Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Показаны <b>%start%</b> - <b>%end%</b> из <b>%count%</b> записи(ей)
+list.actions: Действия
+
+#Object
+object.saved.success: Материал успешно сохранен
+object.saved.error: Форма не сохранена. Исправьте ошибки и попробуйте еще раз
+
+# Form
+form.btn_save: Сохранить
+form.type_collection.add: Добавить
+
+# Actions
+List: Список
+New: Новое
