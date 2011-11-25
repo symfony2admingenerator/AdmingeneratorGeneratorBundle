@@ -1,4 +1,4 @@
-# Symfony2 Admin Generator: The Real Missing Admin Generator for Symfony2 ! ![project status](http://stillmaintained.com/cedriclombardot/AdmingeneratorGeneratorBundle.png)#
+# Symfony2 Admin Generator: The Real Missing Admin Generator for Symfony2 ! ![project status](http://stillmaintained.com/cedriclombardot/AdmingeneratorGeneratorBundle.png)# ![build status](https://secure.travis-ci.org/cedriclombardot/AdmingeneratorGeneratorBundle.png)#
 
 This package is a Symfony2 Admin Generator based on YAML configuration and Twig templating.
 It's inspired by [fzaninotto/Doctrine2ActiveRecord](https://github.com/fzaninotto/Doctrine2ActiveRecord).
@@ -20,13 +20,22 @@ With almost the same features:
 * A complete admin design
 * Translated into EN, FR (you can easily contribute to add your own)
 * Filters by form & by scopes combinable
+* Credentials for actions, columns, and form fields
 * ...
+
 
 ## This bundle in pictures
 
 ![Preview of list](https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/list-preview.png)
 
 ![Preview of edit](https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/edit-preview.png)
+
+### Want another skin ?
+
+Just install [ActiveAdminTheme](https://github.com/cedriclombardot/AdmingeneratorActiveAdminThemeBundle)
+
+![Preview of ActiveAdminTheme] (https://github.com/cedriclombardot/AdmingeneratorActiveAdminThemeBundle/raw/master/Resources/doc/list-preview.png)
+
 
 ## Want to run a test ?
 
@@ -39,6 +48,15 @@ This is a complete Symfony2 application with this bundle well configured.
 
 ``` bash
 git clone git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git vendor/bundles/Admingenerator/GeneratorBundle
+```
+
+Or using deps file
+
+```
+[AdmindeneratorGeneratorBundle]
+    git=git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git
+    target=/bundles/Admingenerator/GeneratorBundle
+    version=origin/master
 ```
 
 Register it in the `autoload.php` file:
@@ -71,6 +89,98 @@ public function registerBundles()
 }
 ```
 
+### Install SensioGeneratorBundle
+
+``` bash
+git submodule add git://github.com/sensio/SensioGeneratorBundle.git vendor/bundles/Sensio/Bundle/GeneratorBundle
+```
+
+Register it in the `autoload.php` file:
+
+``` php
+<?php
+// app/autoload.php
+
+$loader->registerNamespaces(array(
+    'Sensio\Bundle'     => __DIR__.'/../vendor/bundles',
+));
+```
+
+Add it to the `AppKernel` class:
+
+``` php
+$bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
+```
+
+### Install KnpMenuBundle
+
+``` bash
+git submodule add https://github.com/knplabs/KnpMenuBundle.git vendor/bundles/Knp/Bundle/MenuBundle
+git submodule add https://github.com/knplabs/KnpMenu.git vendor/KnpMenu
+```
+
+or using deps file
+
+```
+[MenuBundle]
+    git=git://github.com/knplabs/KnpMenuBundle.git
+    target=/bundles/Knp/Bundle/MenuBundle
+
+[KnpMenu]
+    git=git://github.com/knplabs/KnpMenu.git
+    target=/KnpMenu
+```
+
+Register it in the `autoload.php` file:
+
+``` php
+<?php
+// app/autoload.php
+
+$loader->registerNamespaces(array(
+    'Knp'    	=> __DIR__.'/../vendor/bundles',
+    'Knp\Menu' 	=> __DIR__.'/../vendor/KnpMenu/src'
+));
+```
+
+Add it to the `AppKernel` class:
+
+``` php
+$bundles[] = new Knp\Bundle\MenuBundle\KnpMenuBundle();
+```
+
+Don't forget to configure it to use twig in `config.yml`:
+
+``` yml
+knp_menu:
+    twig: true
+```
+
+### Now two ways to continue the setup :
+
+Manually, follow the end of readme, or automatically,
+
+``` bash
+php app/console admin:setup
+```
+
+### Install TwigGenerator
+
+``` bash
+git submodule add http://github.com/cedriclombardot/TwigGenerator.git vendor/twig-generator
+```
+
+Register it in the `autoload.php` file:
+
+``` php
+<?php
+// app/autoload.php
+
+$loader->registerNamespaces(array(
+    'TwigGenerator'         => __DIR__.'/../vendor/twig-generator/src',
+));
+```
+
 ### Install Pagerfanta
 
 ``` bash
@@ -96,59 +206,13 @@ Add it to the `AppKernel` class:
 $bundles[] = new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
 ```
 
-### Install KnpMenuBundle
+### Configure JMS
 
-``` bash
-git submodule add https://github.com/knplabs/KnpMenuBundle.git vendor/bundles/Knp/Bundle/MenuBundle
-git submodule add https://github.com/knplabs/KnpMenu.git vendor/KnpMenu
-```
+In config.yml
 
-Register it in the `autoload.php` file:
-
-``` php
-<?php
-// app/autoload.php
-
-$loader->registerNamespaces(array(
-    'Knp'		=> __DIR__.'/../vendor/bundles',
-    'Knp\Menu' 	=> __DIR__.'/../vendor/KnpMenu/src'
-));
-```
-
-Add it to the `AppKernel` class:
-
-``` php
-$bundles[] = new Knp\Bundle\MenuBundle\KnpMenuBundle();
-```
-
-Don't forget to configure it to use twig in `config.yml`:
-
-``` yml
-knp_menu:
-    twig: true
-```
-
-### Install SensioGeneratorBundle
-
-``` bash
-git submodule add git://github.com/sensio/SensioGeneratorBundle.git vendor/bundles/Sensio/Bundle/GeneratorBundle
-```
-
-Register it in the `autoload.php` file:
-
-``` php
-<?php
-// app/autoload.php
-
-$loader->registerNamespaces(array(
-    'Sensio\Bundle'     => __DIR__.'/../vendor/bundles',
-));
-```
-
-Add it to the `AppKernel` class:
-
-``` php
-$bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
+``` yaml
+jms_security_extra:
+     expressions: true
 ```
 
 ### Setup the Model Manager you want
@@ -249,6 +313,10 @@ And of course for prod :
 ```
 php app/console -env prod cache:warmup
 ```
+
+## Need support ?
+
+https://groups.google.com/group/symfony2admingenerator
 
 --------------
 

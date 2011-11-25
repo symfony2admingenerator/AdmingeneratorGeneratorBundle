@@ -110,7 +110,7 @@ EOT
         }
         $bundle = Validators::validateBundleName($bundle);
         $format = Validators::validateFormat($input->getOption('format'));
-        $dir = $input->getOption('dir').'/'.str_replace('\\','/',$namespace);
+        $dir = $input->getOption('dir').'/';
         $structure = $input->getOption('structure');
 
         $dialog->writeSection($output, 'Bundle generation');
@@ -118,6 +118,7 @@ EOT
         if (!$this->getContainer()->get('filesystem')->isAbsolutePath($dir)) {
             $dir = getcwd().'/'.$dir;
         }
+
         $generator = $this->getGenerator();
         $generator->setGenerator($input->getOption('generator'));
         $generator->setPrefix($input->getOption('prefix'));

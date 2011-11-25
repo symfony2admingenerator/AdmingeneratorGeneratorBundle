@@ -147,6 +147,21 @@ class EchoExtensionTest extends TestCase
        $this->runTwigTests($tpls, $returns);
     }
 
+    public function testGetEchoIfGranted()
+    {
+        $tpls = array(
+            'simple'  => '{{ echo_if_granted ( "hasRole(\'ROLE_A\')" ) }}',
+            'complex' => '{{ echo_if_granted ( "hasRole(\'ROLE_A\')\') or (hasRole(\'ROLE_B\') and hasRole(\'ROLE_C\')" ) }}',
+        );
+
+        $returns = array(
+            'simple'  => array('{% if is_expr_granted(\'hasRole(\'ROLE_A\')\') %}', 'If granted work with a simple role'),
+            'complex' => array('{% if is_expr_granted(\'hasRole(\'ROLE_A\')\') or (hasRole(\'ROLE_B\') and hasRole(\'ROLE_C\')\') %}', 'If granted work with a complex role expression'),
+        );
+
+        $this->runTwigTests($tpls, $returns);
+    }
+
     public function testGetEchoElseIf()
     {
         $tpls = array(

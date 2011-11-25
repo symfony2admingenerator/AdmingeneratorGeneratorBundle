@@ -40,7 +40,6 @@ class DoctrineODMDoubleListType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
          $builder
-               ->prependClientTransformer(new ArrayToChoicesTransformer($options['choice_list']))
                ->prependClientTransformer(new DocumentsToArrayTransformer($options['choice_list']))
                ;
 

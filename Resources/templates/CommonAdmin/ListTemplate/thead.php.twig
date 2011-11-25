@@ -4,7 +4,9 @@
             <tr class="list_thead">
 
                 {% for column in builder.columns -%}
-
+                {% if column.credentials %}
+                      {{ echo_if_granted(column.credentials) }}
+                {% endif %}
                 <th class="list_thead_column{{ echo_if (column.isSortable) }} sortable{{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }} sorted-asc{{ echo_elseif ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'DESC'") }} sorted-desc{{ echo_endif () }}{{ echo_endif () }}">
                     {% if column.isSortable -%}
                         {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }}
@@ -28,7 +30,9 @@
                         {{ echo_endif () }}
                     {% endif -%}
               </th>
-
+                {% if column.credentials %}
+                    {{ echo_endif () }}
+                {% endif %}
                 {% endfor -%}
 
                 {%- if object_actions|length > 0 -%}

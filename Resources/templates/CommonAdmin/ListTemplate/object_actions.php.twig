@@ -3,8 +3,16 @@
         {% if object_actions|length > 0 %}
          <td class="actions">
             {% for action in builder.ObjectActions %}
-                <a class="{{ action.name }}" href="{{ echo_path((action.route ? action.route : namespace_prefix ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_' ~ action.name),
+                {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
+                    {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') ) }}
+                {% endif %}
+
+                <a class="{{ action.name }}" href="{{ echo_path((action.route ? action.route : builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_' ~ action.name),
                 "{ 'id': " ~ builder.ModelClass ~ ".id }") }}" {% if action.confirm %}onclick='return confirm("{{ action.confirm }}")'{% endif %}> </a>
+
+                {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
+                    {{ echo_endif () }}
+                {% endif %}
             {% endfor %}
          </td>
         {% endif -%}

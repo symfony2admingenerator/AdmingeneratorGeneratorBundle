@@ -55,13 +55,13 @@ body {
   padding: 0px 1% 24px;
   display: inline;
   height: 142px;
-  background: url(/bundles/admingeneratorgenerator/images/header.png) repeat-x; }
+  background: url(../images/header.png) repeat-x; }
   #header .profile {
     float: right;
     width: auto;
     height: 26px;
     margin-top: 10px;
-    background: url(/bundles/admingeneratorgenerator/images/profile_header.png) repeat-x;
+    background: url(../images/profile_header.png) repeat-x;
     border-left: 1px solid #374449;
     border-right: 1px solid #374449;
       border-right-display: inline; }
@@ -102,7 +102,7 @@ body {
         text-decoration: none;
         padding: 10px;
         display: inline;
-        background: url(/bundles/admingeneratorgenerator/images/menu_background.png) repeat-x; }
+        background: url(../images/menu_background.png) repeat-x; }
         #header #main_navigation li a.main:hover, #header #main_navigation li a.main.mainhover {
           background: white;
           color: #334145; }
@@ -148,7 +148,7 @@ table thead {
     text-decoration: none;
     padding: 12px;
     margin: 0px;
-    background: url(/bundles/admingeneratorgenerator/images/table_background.png) repeat-x; }
+    background: url(../images/table_background.png) repeat-x; }
     table thead th.actions {
       width: 100px; }
 table tr:hover {
@@ -162,7 +162,7 @@ table tr td {
     text-align: right; }
 
 .list_thead_column .arrow {
-  background: url("/bundles/admingeneratorgenerator/images/arrow.png") no-repeat;
+  background: url("../images/arrow.png") no-repeat;
   display: inline-block;
   width: 16px;
   height: 7px; }
@@ -227,14 +227,14 @@ ul.pagination {
   width: 16px;
   height: 16px;
   padding-right: 16px;
-  background: url(/bundles/admingeneratorgenerator/images/icons.png) no-repeat; }
+  background: url(../images/icons.png) no-repeat; }
 
 .delete {
   float: left;
   width: 16px;
   height: 16px;
   padding-right: 16px;
-  background: url(/bundles/admingeneratorgenerator/images/icons.png) no-repeat;
+  background: url(../images/icons.png) no-repeat;
   background-position: -32px 0px; }
 
 .new {
@@ -242,7 +242,7 @@ ul.pagination {
   width: 16px;
   height: 16px;
   padding-right: 16px;
-  background: url(/bundles/admingeneratorgenerator/images/icons.png) no-repeat;
+  background: url(../images/icons.png) no-repeat;
   background-position: -64px 0px; }
 
 ul.actions {
@@ -297,11 +297,11 @@ ul.actions li a {
   margin: 2px;
   text-decoration: none; }
   .list_scope_group a.inactive {
-    background: url(/bundles/admingeneratorgenerator/images/submit_background.png) repeat-x; }
+    background: url(../images/submit_background.png) repeat-x; }
   .list_scope_group a.active {
     background: #d2d2d2; }
   .list_scope_group a:hover {
-    background: url(/bundles/admingeneratorgenerator/images/submit_background_hover.png) repeat-x;
+    background: url(../images/submit_background_hover.png) repeat-x;
     cursor: pointer;
     cursor: hand; }
 
@@ -331,7 +331,7 @@ fieldset.form_block {
     border: 0; }
   fieldset.form_block legend {
     color: white;
-    background: url(/bundles/admingeneratorgenerator/images/table_background.png) repeat-x;
+    background: url(../images/table_background.png) repeat-x;
     margin-bottom: 10px;
     padding: 5px;
     font-size: 1.5em;
@@ -449,7 +449,7 @@ fieldset.form_block {
     border: 1px solid #d2d2d2;
     color: #2a363b; }
   fieldset.form_block .submit_button {
-    background: url(/bundles/admingeneratorgenerator/images/submit_background.png) repeat-x;
+    background: url(../images/submit_background.png) repeat-x;
     height: 20px;
     border: 1px solid #d2d2d2;
     color: #2a363b;
@@ -463,7 +463,7 @@ fieldset.form_block {
     border-radius: 5px;
     outline: none; }
     fieldset.form_block .submit_button:hover {
-      background: url(/bundles/admingeneratorgenerator/images/submit_background_hover.png) repeat-x;
+      background: url(../images/submit_background_hover.png) repeat-x;
       cursor: pointer;
       cursor: hand; }
 
@@ -485,3 +485,53 @@ fieldset.form_block {
 
 .type_collection div div, .actions {
   clear: left; }
+ul.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  ul.menu * {
+    margin: 0;
+    padding: 0; }
+  ul.menu a {
+    display: block;
+    color: black;
+    text-decoration: none; }
+  ul.menu .sub {
+    background: white url(../images/arrow.gif) 138px 16px no-repeat; }
+  ul.menu li {
+    float: left;
+    position: relative;
+    margin-right: 2px; }
+    ul.menu li.spacer {
+      float: left;
+      position: relative;
+      height: 1px;
+      background: #e0dedd; }
+    ul.menu li ul {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      background: white;
+      display: none;
+      opacity: 0;
+      list-style: none;
+      border: 1px solid #e0dedd;
+      border-top: none; }
+      ul.menu li ul ul {
+        left: 148px;
+        top: -1px; }
+      ul.menu li ul li {
+        position: relative;
+        border-top: none;
+        width: 148px;
+        margin: 0; }
+        ul.menu li ul li a {
+          display: block;
+          float: left;
+          width: 132px;
+          padding: 15px 10px 15px 10px;
+          background-color: white;
+          font-size: 1.2em; }
+          ul.menu li ul li a:hover {
+            background-color: #eeeeee; }
+  

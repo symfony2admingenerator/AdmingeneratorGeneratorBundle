@@ -1,9 +1,12 @@
 {% block list_filters %}
 {{ echo_block('list_filters') }}
-<form action="{{ echo_path(namespace_prefix ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_filters" ) }}" method="post" {{ echo_twig("form_enctype(form)") }}>
+<form action="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_filters" ) }}" method="post" {{ echo_twig("form_enctype(form)") }}>
     <fieldset class="form_block form_fieldset_NONE">
         {{ echo_twig("form_errors(form)") }}
         {% for field in builder.filterColumns %}
+        {% if builder.filterColumns[field.name].credentials %}
+              {{ echo_if_granted(builder.filterColumns[field.name].credentials) }}
+        {% endif %}
          <div class="form_row">
              <div class="form_field">
                 {{ echo_twig("form_label(form['" ~ field.name ~ "'], '" ~ builder.FilterColumns[field.name].label|addslashes ~ "' )") }}
@@ -11,6 +14,9 @@
                 {{ echo_twig("form_errors(form['" ~ field.name ~ "'])") }}
             </div>
         </div>
+        {% if builder.filterColumns[field.name].credentials %}
+            {{ echo_endif () }}
+        {% endif %}
         {% endfor %}
         <ul class="actions">
             <li>

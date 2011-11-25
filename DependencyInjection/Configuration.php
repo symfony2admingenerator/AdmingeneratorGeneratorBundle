@@ -26,7 +26,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-            ->booleanNode('use_doctrine_orm')->defaultTrue()->end()
+            ->booleanNode('use_doctrine_orm')->defaultFalse()->end()
             ->booleanNode('use_doctrine_odm')->defaultFalse()->end()
             ->booleanNode('use_propel')->defaultFalse()->end()
             ->booleanNode('overwrite_if_exists')->defaultFalse()->end()

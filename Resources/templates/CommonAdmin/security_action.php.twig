@@ -1,0 +1,30 @@
+{% block security_use %}
+{% if credentials is defined %}
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
+{% endif %}
+{% endblock %}
+
+{% block security_check %}
+{% if credentials is defined %}
+    /**
+     * Check user credentials {{ credentials }}
+     *
+     * @throw AccessDeniedException if is not allowed
+     */
+    protected function checkCredentials()
+    {
+        $securityContext = $this->get('security.context');
+
+        if (false === $securityContext->isGranted(array(new Expression('{{ credentials }}')))) {
+            throw new AccessDeniedException();
+        }
+    }
+{% endif %}
+{% endblock %}
+
+{% block security_action %}
+{% if credentials is defined %}
+$this->checkCredentials();
+{% endif %}
+{% endblock %}

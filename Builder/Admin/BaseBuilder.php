@@ -237,4 +237,14 @@ class BaseBuilder extends GenericBaseBuilder
     {
         return $this->getGenerator()->getBaseGeneratorName();
     }
+
+    public function getNamespacePrefixWithSubfolder()
+    {
+        return $this->getVariable('namespace_prefix') . ($this->hasVariable('subfolder') ? '\\' . $this->getVariable('subfolder') : '');
+    }
+
+    public function getRoutePrefixWithSubfolder()
+    {
+        return $this->getVariable('namespace_prefix') . ($this->hasVariable('subfolder') ? '_' . $this->getVariable('subfolder') : '');
+    }
 }

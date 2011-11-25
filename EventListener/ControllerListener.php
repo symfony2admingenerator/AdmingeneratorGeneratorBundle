@@ -43,6 +43,7 @@ class ControllerListener
                 //Lets the word running this is not an admin generated module
             }
         }
+
     }
 
     protected function getGenerator($generatorYaml)
@@ -54,11 +55,16 @@ class ControllerListener
 
     protected function getBaseGeneratorName($controller)
     {
-        list($base, $bundle, $controllerFolder, $other) = explode('\\', $controller, 4);
+        preg_match('/(.+)Controller(.+)::.+/', $controller, $matches);
 
         //Find if its a name-generator or generator.yml
-        if (strstr($other, '\\')) {
-            list($generatorName, $controllerName) = explode('\\', $other, 2);
+        if (isset($matches[2]) && strstr($matches[2], '\\')) {
+            if (3 != count(explode('\\', $matches[2]))) {
+
+                return '';
+            }
+
+            list($firstSlash, $generatorName) = explode('\\', $matches[2], 3);
 
             return $generatorName;
         }
@@ -71,7 +77,8 @@ class ControllerListener
      */
     protected function getGeneratorYml($controller)
     {
-        list($base, $bundle, $controllerFolder, $other) = explode('\\', $controller, 4);
+        preg_match('/(.+)?Controller.+::.+/', $controller, $matches);
+        $dir = str_replace('\\', DIRECTORY_SEPARATOR, $matches[1]);
 
         $generatorName  = $this->getBaseGeneratorName($controller) ? strtolower($this->getBaseGeneratorName($controller)).'-' : '';
         $generatorName .= 'generator.yml';
@@ -80,7 +87,7 @@ class ControllerListener
         $finder->files()
                ->name($generatorName);
 
-        $namespace_directory = realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$base.'/'.$bundle);
+        $namespace_directory = realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$dir.'/Resources/config');
 
         if (is_dir($namespace_directory)) {
             $finder->in($namespace_directory);

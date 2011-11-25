@@ -1,5 +1,6 @@
 {% use '../CommonAdmin/NewAction/index.php.twig' %}
 {% use '../CommonAdmin/NewAction/create.php.twig' %}
+{% use '../CommonAdmin/security_action.php.twig' %}
 <?php
 
 namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.generator.GeneratedControllerFolder }};
@@ -11,11 +12,15 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 {{- block('create_use') -}}
 
+{{- block('security_use') }}
+
 class NewController extends BaseController
 {
     {{- block('index') -}}
 
-    {{- block('create') }}
+    {{- block('create') -}}
+
+    {{- block('security_check') }}
 
     {% block getNewObject -%}
     protected function getNewObject()

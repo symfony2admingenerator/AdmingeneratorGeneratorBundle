@@ -1,8 +1,9 @@
 {
-    "name": "admin/generator-bundle",
+    "name": "cedriclombardot/admingenerator-generator-bundle",
     "version": "1.0.0-BETA",
     "description": "Admingenerator for Symfony2 based on YAML configuration and Twig templating",
     "keywords": ["admin", "generator", "yaml"],
+    "type": "symfony-bundle",
     "homepage": "http://symfony2admingenerator.org/",
     "license": "MIT",
     "authors": [
@@ -17,5 +18,9 @@
     ],
     "require": {
         "symfony/symfony": ">=2.0.0"
+    },
+    "target-dir": "Admingenerator/GeneratorBundle",
+    "autoload": {
+        "psr-0": { "Admingenerator\\GeneratorBundle": "" }
     }
 }

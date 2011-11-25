@@ -8,6 +8,9 @@
         {% for rows in builder.fieldsets[fieldset] %}
     <div class="form_row">
                 {% for field in rows %}
+                {% if builder.Columns[field].credentials %}
+                      {{ echo_if_granted(builder.Columns[field].credentials) }}
+                {% endif %}
                 <div class="form_field">
                     {{ echo_block("form_" ~ field) }}
                         {{ echo_twig("form_label(form['" ~ field ~ "'], '" ~ builder.Columns[field].label|addslashes ~ "')") }}
@@ -27,6 +30,9 @@
                         {{ echo_twig("form_errors(form['" ~ field ~ "'])") }}
                     {{ echo_endblock() }}
                 </div>
+                {% if builder.Columns[field].credentials %}
+                    {{ echo_endif () }}
+                {% endif %}
                 {% endfor -%}
             </div>
         {% endfor -%}

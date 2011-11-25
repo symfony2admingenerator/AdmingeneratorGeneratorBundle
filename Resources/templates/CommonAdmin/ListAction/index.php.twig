@@ -1,10 +1,13 @@
+{% use '../CommonAdmin/security_action.php.twig' %}
 {% block index_use %}
-use {{ namespace_prefix }}\{{ bundle_name }}\Form\Type\{{ builder.BaseGeneratorName ? builder.BaseGeneratorName ~ "\\" : "" }}FiltersType;
+use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ builder.BaseGeneratorName ? builder.BaseGeneratorName ~ "\\" : "" }}FiltersType;
 {% endblock %}
 {% block index %}
 
     public function indexAction()
     {
+        {{ block('security_action') }}
+
         if ($this->get('request')->query->get('page'))
         {
           $this->setPage($this->get('request')->query->get('page'));

@@ -1,23 +1,28 @@
+{% use '../CommonAdmin/security_action.php.twig' %}
 {% block create_use %}
 {% endblock %}
 {% block create %}
 
     public function createAction()
     {
+        {{ block('security_action') }}
+
         ${{ builder.ModelClass }} = $this->getNewObject();
 
-        $form = $this->createForm(new NewType(), ${{ builder.ModelClass }});
+        $type = new NewType();
+        $type->setSecurityContext($this->get('security.context'));
+        $form = $this->createForm($type, ${{ builder.ModelClass }});
         $form->bindRequest($this->get('request'));
 
         if ($form->isValid()) {
             $this->saveObject(${{ builder.ModelClass }});
 
-            $this->get('session')->setFlash('success', 'The object was successfully saved');
+            $this->get('session')->setFlash('success', "{{ messages.success is defined ? messages.success : 'The object was successfully saved' }}");
 
-            return new RedirectResponse($this->generateUrl("{{ namespace_prefix }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_edit", array('id' => ${{ builder.ModelClass }}->getId()) ));
+            return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_edit", array('id' => ${{ builder.ModelClass }}->getId()) ));
 
         } else {
-            $this->get('session')->setFlash('error', "The form can't be saved. Check errors and try to resubmit");
+            $this->get('session')->setFlash('error', "{{ messages.error is defined ? messages.error : "The form can't be saved. Check errors and try to resubmit" }}");
         }
 
         return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}New:index.html.twig', array(

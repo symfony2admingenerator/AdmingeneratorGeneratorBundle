@@ -32,6 +32,7 @@ class EchoExtension extends \Twig_Extension
             'echo_endfor'     => new \Twig_Function_Method($this, 'getEchoEndFor'),
             'echo_extends'    => new \Twig_Function_Method($this, 'getEchoExtends'),
             'echo_if'         => new \Twig_Function_Method($this, 'getEchoIf'),
+            'echo_if_granted' => new \Twig_Function_Method($this, 'getEchoIfGranted'),
             'echo_else'       => new \Twig_Function_Method($this, 'getEchoElse'),
             'echo_elseif'     => new \Twig_Function_Method($this, 'getEchoElseIf'),
             'echo_endif'      => new \Twig_Function_Method($this, 'getEchoEndIf'),
@@ -145,6 +146,11 @@ class EchoExtension extends \Twig_Extension
         }
 
         return strtr('{{ path("%%path%%", %%params%%) }}',array('%%path%%' => $path, '%%params%%'=>$params));
+    }
+
+    public function getEchoIfGranted($credentials)
+    {
+       return $this->getEchoIf('is_expr_granted(\''.$credentials.'\')');
     }
 
     public function getEchoIf($condition)

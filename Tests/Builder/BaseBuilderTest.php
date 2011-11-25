@@ -29,9 +29,6 @@ class BaseBuilderTest extends TestCase
         $builder = new BaseBuilder();
         $builder->setVariables(array('foo' => 'bar'));
         $this->assertEquals(array('foo' => 'bar'), $builder->getVariables(), 'setVariables accept an array');
-
-        $builder->setVariables(new ParameterBag(array('foo' => 'bar')));
-        $this->assertEquals(array('foo' => 'bar'), $builder->getVariables(), 'setVariables accept a ParameterBag');
     }
 
     public function testGetVariable()

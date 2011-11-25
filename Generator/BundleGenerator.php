@@ -45,9 +45,6 @@ class BundleGenerator extends BaseBundleGenerator
     public function generate($namespace, $bundle, $dir, $format, $structure)
     {
         $dir .= '/'.strtr($namespace, '\\', '/');
-        if (file_exists($dir)) {
-            throw new \RuntimeException(sprintf('Unable to generate the bundle as the target directory "%s" is not empty.', realpath($dir)));
-        }
 
         list( $namespace_prefix, $bundle_name) = explode('\\', $namespace, 2);
         $parameters = array(
@@ -59,6 +56,9 @@ class BundleGenerator extends BaseBundleGenerator
             'prefix'           => ucfirst($this->prefix),
         );
 
+        if (!file_exists($dir.'/'.$bundle.'.php')) {
+            $this->renderFile($this->skeletonDir, 'Bundle.php', $dir.'/'.$bundle.'.php', $parameters);
+        }
 
         foreach ($this->actions as $action) {
             $parameters['action'] = $action;

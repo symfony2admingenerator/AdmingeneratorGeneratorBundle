@@ -1,14 +1,17 @@
+{% use '../CommonAdmin/security_action.php.twig' %}
 {% block index %}
 
     public function indexAction($id)
     {
+        {{ block('security_action') }}
+
         try {
             $this->process($id);
-            $this->get('session')->setFlash('success','The record have been successfully deleted');
+            $this->get('session')->setFlash('success', "{{ messages.success is defined ? messages.success : 'The record have been successfully deleted' }}");
         } catch (\InvalidArgumentException $e) {
-            $this->get('session')->setFlash('error',"The record can't be deleted");
+            $this->get('session')->setFlash('error', "{{ messages.error is defined ? messages.error : "The record can't be deleted" }}");
         }
 
-        return new RedirectResponse($this->generateUrl("{{ namespace_prefix }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
+        return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
     }
 {% endblock %}

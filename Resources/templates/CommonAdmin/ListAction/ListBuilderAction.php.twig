@@ -3,11 +3,14 @@
 {% use '../CommonAdmin/ListAction/sorter.php.twig' %}
 {% use '../CommonAdmin/ListAction/filters.php.twig' %}
 {% use '../CommonAdmin/ListAction/scopes.php.twig' %}
+{% use '../CommonAdmin/security_action.php.twig' %}
 <?php
 
 namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.generator.GeneratedControllerFolder }};
 
-{{ block('index_use') }}
+{{ block('index_use') -}}
+
+{{- block('security_use') }}
 
 use {{ builder.generator.baseController }} as BaseController;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +31,9 @@ class ListController extends BaseController
 
     {{- block('filters') -}}
 
-    {{- block('scopes') }}
+    {{- block('scopes') -}}
+
+    {{- block('security_check') }}
 
     {% block getQuery -%}
     protected function getQuery()
