@@ -15,6 +15,10 @@ list.filter.btn_reset: Réinitialiser
 "Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Résultats <b>%start%</b> à <b>%end%</b> sur <b>%count%</b>
 list.actions: Actions
 
+#Object
+object.saved.success: The object was successfully saved
+object.saved.error: The form can't be saved. Check errors and try to resubmit
+
 # Form
 form.btn_save: Enregistrer
 form.type_collection.add: Ajouter

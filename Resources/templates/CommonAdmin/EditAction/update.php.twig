@@ -23,12 +23,12 @@
             $this->saveObject(${{ builder.ModelClass }});
             $this->postSave($form, ${{ builder.ModelClass }});
 
-            $this->get('session')->setFlash('success', "{{ messages.success is defined ? messages.success : 'The object was successfully saved' }}");
+            $this->get('session')->setFlash('success', {% if messages.success is defined %} "{{ messages.success }}" {% else %} $this->get('translator')->trans('object.saved.success', array(), 'Admingenerator') {% endif %} );
 
             return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_edit", array('id' => ${{ builder.ModelClass }}->getId()) ));
 
         } else {
-            $this->get('session')->setFlash('error',  "{{ messages.error is defined ? messages.error : "The form can't be saved. Check errors and try to resubmit" }}");
+            $this->get('session')->setFlash('error',  {% if messages.error is defined %} "{{ messages.error }}" {% else %} $this->get('translator')->trans('object.saved.error', array(), 'Admingenerator') {% endif %} );
         }
 
         return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Edit:index.html.twig', array(
