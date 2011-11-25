@@ -1,4 +1,4 @@
-# Symfony2 Admin Generator: The Real Missing Admin Generator for Symfony2 ! ![project status](http://stillmaintained.com/cedriclombardot/AdmingeneratorGeneratorBundle.png)# ![build status](https://secure.travis-ci.org/cedriclombardot/AdmingeneratorGeneratorBundle.png)#
+# Symfony2 Admin Generator: The Real Missing Admin Generator for Symfony2! ![project status](http://stillmaintained.com/cedriclombardot/AdmingeneratorGeneratorBundle.png)# ![build status](https://secure.travis-ci.org/cedriclombardot/AdmingeneratorGeneratorBundle.png)#
 
 This package is a Symfony2 Admin Generator based on YAML configuration and Twig templating.
 It's inspired by [fzaninotto/Doctrine2ActiveRecord](https://github.com/fzaninotto/Doctrine2ActiveRecord).
@@ -30,14 +30,14 @@ With almost the same features:
 
 ![Preview of edit](https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/edit-preview.png)
 
-### Want another skin ?
+### Want another skin?
 
 Just install [ActiveAdminTheme](https://github.com/cedriclombardot/AdmingeneratorActiveAdminThemeBundle)
 
 ![Preview of ActiveAdminTheme] (https://github.com/cedriclombardot/AdmingeneratorActiveAdminThemeBundle/raw/master/Resources/doc/list-preview.png)
 
 
-## Want to run a test ?
+## Want to run a test?
 
 The fastest way to try it is to setup the AdmingeneratorIpsum project: https://github.com/cedriclombardot/AdmingeneratorIpsum.
 This is a complete Symfony2 application with this bundle well configured.
@@ -156,7 +156,7 @@ knp_menu:
     twig: true
 ```
 
-### Now two ways to continue the setup :
+### Now two ways to continue the setup:
 
 Manually, follow the end of readme, or automatically,
 
@@ -308,17 +308,17 @@ admingenerator_generator:
     overwrite_if_exists: true
 ```
 
-And of course for prod :
+And of course for prod:
 
 ```
 php app/console -env prod cache:warmup
 ```
 
-## Need support ?
+## Need support?
 
 https://groups.google.com/group/symfony2admingenerator
 
 --------------
 
-Note : The admin theme is from https://github.com/martinrusev/admin-theme
+Note: The admin theme is from https://github.com/martinrusev/admin-theme
 
