@@ -26,7 +26,7 @@ class SetupOrUpgradeCommand extends ContainerAwareCommand
             new InputOption('useDoctrineORM', '', InputOption::VALUE_REQUIRED, 'Use the Doctrine Orm', 'yes'),
             new InputOption('useDoctrineODM', '', InputOption::VALUE_REQUIRED, 'Use the Doctrine Odm', 'yes'),
             new InputOption('skin', '', InputOption::VALUE_REQUIRED, 'The skin you want to use', 'default'),
-            new InputOption('useAssetic', '', InputOption::VALUE_REQUIRED, 'Wan\'t you to use assetic theme', 'yes'),
+            new InputOption('useAssetic', '', InputOption::VALUE_REQUIRED, 'Do you want to use the assetic theme', 'yes'),
         ))
         ->setDescription('Help you to install, update and configure your AdminGeneratorGeneratorBundle')
         ->setHelp(<<<EOT
@@ -50,21 +50,21 @@ EOT
 
         $dialog->writeSection($output, 'The ORM/ODM you want');
 
-        $usePropel = $dialog->askAndValidate($output, $dialog->getQuestion('Wan\'t you to use Propel ORM ?', $input->getOption('usePropel')),  function ($usePropel) { if (!in_array($usePropel, array('yes', 'no'))) { throw new \RuntimeException('You have to choice beetwen yes or no'); } return $usePropel; } , false, $input->getOption('usePropel'));
+        $usePropel = $dialog->askAndValidate($output, $dialog->getQuestion('Do you want to use the Propel ORM?', $input->getOption('usePropel')),  function ($usePropel) { if (!in_array($usePropel, array('yes', 'no'))) { throw new \RuntimeException('You have to choose between yes and no'); } return $usePropel; } , false, $input->getOption('usePropel'));
         $input->setOption('usePropel', $usePropel);
         if ('yes' == $usePropel) {
             $this->setupDeps($this->getPropelDeps(), $input, $output);
         }
         $output->writeln('');
 
-        $useDoctrineORM = $dialog->askAndValidate($output, $dialog->getQuestion('Wan\'t you to use Doctrine ORM ?', $input->getOption('useDoctrineORM')),  function ($useDoctrineORM) { if (!in_array($useDoctrineORM, array('yes', 'no'))) { throw new \RuntimeException('You have to choice beetwen yes or no'); } return $useDoctrineORM; } , false, $input->getOption('useDoctrineORM'));
+        $useDoctrineORM = $dialog->askAndValidate($output, $dialog->getQuestion('Do you want to use the Doctrine ORM?', $input->getOption('useDoctrineORM')),  function ($useDoctrineORM) { if (!in_array($useDoctrineORM, array('yes', 'no'))) { throw new \RuntimeException('You have to choose between yes and no'); } return $useDoctrineORM; } , false, $input->getOption('useDoctrineORM'));
         $input->setOption('useDoctrineORM', $useDoctrineORM);
         if ('yes' == $useDoctrineORM) {
             $this->setupDeps($this->getDoctrineOrmDeps(), $input, $output);
         }
         $output->writeln('');
 
-        $useDoctrineODM = $dialog->askAndValidate($output, $dialog->getQuestion('Wan\'t you to use Doctrine ODM MondoDB ?', $input->getOption('useDoctrineODM')),  function ($useDoctrineODM) { if (!in_array($useDoctrineODM, array('yes', 'no'))) { throw new \RuntimeException('You have to choice beetwen yes or no'); } return $useDoctrineODM; } , false, $input->getOption('useDoctrineODM'));
+        $useDoctrineODM = $dialog->askAndValidate($output, $dialog->getQuestion('Do you want to use the Doctrine ODM for MondoDB?', $input->getOption('useDoctrineODM')),  function ($useDoctrineODM) { if (!in_array($useDoctrineODM, array('yes', 'no'))) { throw new \RuntimeException('You have to choose between yes and no'); } return $useDoctrineODM; } , false, $input->getOption('useDoctrineODM'));
         $input->setOption('useDoctrineODM', $useDoctrineODM);
         if ('yes' == $useDoctrineODM) {
             $this->setupDeps($this->getDoctrineOdmDeps(), $input, $output);
@@ -72,7 +72,8 @@ EOT
         $output->writeln('');
 
         $dialog->writeSection($output, 'The skin you want to use');
-        $skin = $dialog->askAndValidate($output, $dialog->getQuestion('Wich skin you want (default, active_admin, own) ?', $input->getOption('skin')),  function ($skin) { if (!in_array($skin, array('default', 'active_admin', 'own'))) { throw new \RuntimeException('You have to choice beetwen default, active_admin, own'); } return $skin; } , false, $input->getOption('skin'));
+        $skin = $dialog->askAndValidate($output, $dialog->getQuestion('Which skin you want (default, active_admin, own)?', $input->getOption('skin')),  function ($skin) { if (!in_array($skin, array('default', 'active_admin', 'own'))) { throw new \RuntimeException('You have to choose between default, active_admin, own'); } return $skin; } , false, $input->getOption('skin'));
+
 
         $help = '';
         if ('own' == $skin) {
@@ -86,7 +87,7 @@ EOT
                 $help = 'AdmingeneratorActiveAdminThemeBundle';
             }
 
-            $useAssetic = $dialog->askAndValidate($output, $dialog->getQuestion('Wan\'t you to use assetic theme (require gem sass and compass) ?', $input->getOption('useAssetic')),  function ($useAssetic) { if (!in_array($useAssetic, array('yes', 'no'))) { throw new \RuntimeException('You have to choice beetwen yes or no'); } return $useAssetic; } , false, $input->getOption('useAssetic'));
+            $useAssetic = $dialog->askAndValidate($output, $dialog->getQuestion('Do you want to use the assetic theme (requires the sass and compass gems)?', $input->getOption('useAssetic')),  function ($useAssetic) { if (!in_array($useAssetic, array('yes', 'no'))) { throw new \RuntimeException('You have to choose between yes and no'); } return $useAssetic; } , false, $input->getOption('useAssetic'));
             $input->setOption('useAssetic', $useAssetic);
             if ('yes' == $useAssetic) {
                 $this->setupDeps($this->getAsseticDeps(), $input, $output);
@@ -100,7 +101,7 @@ EOT
         $dialog->writeSection($output, 'Now you have to work ;)');
         $output->writeln(array(
             '',
-            'Edit config.yml and configure the section <comment>admingenerator_generator</comment> like that :',
+            'Edit config.yml and configure the section <comment>admingenerator_generator</comment> like that:',
             '<comment>admingenerator_generator</comment>:',
             '<comment>    base_admin_template</comment>: <info>'.$help.'</info>',
             '<comment>    use_propel</comment>: <info>'.(('yes' === $usePropel) ? 'true' : 'false' ).'</info>',
@@ -134,7 +135,7 @@ EOT
 
             if (isset($params['path'])) {
                 $isCloned = file_exists($this->getContainer()->getParameter('kernel.root_dir').'/../vendor/'.$params['path']);
-                $output->writeln(sprintf("<info>%s</info> is cloned ? [%s]", $deps,
+                $output->writeln(sprintf("<info>%s</info> is cloned? [%s]", $deps,
                     $isCloned ? '<comment>OK</comment>' : '<error>KO</error>'));
                 if (!$isCloned) {
                     if ($input->getOption('gitOrDeps') == 'deps') {
@@ -147,7 +148,7 @@ EOT
 
             // Autoload
             if (isset($params['autoloadKey'])) {
-                $output->writeln(sprintf("<info>%s</info> is autoloaded ? [%s]", $deps,
+                $output->writeln(sprintf("<info>%s</info> is autoloaded? [%s]", $deps,
                     $this->isAutoloaded($params['autoloadKey']) ? '<comment>OK</comment>' : '<error>KO</error>'));
 
                 if (!$this->isAutoloaded($params['autoloadKey'])) {
@@ -157,7 +158,7 @@ EOT
 
             // Kernel
             if (isset($params['isBundle']) && $params['isBundle']) {
-                $output->writeln(sprintf("<info>%s</info> is loaded in kernel ? [%s]", $deps,
+                $output->writeln(sprintf("<info>%s</info> is loaded in kernel? [%s]", $deps,
                 $this->isInKernel($deps) ? '<comment>OK</comment>' : '<error>KO</error>'));
 
                 if (!$this->isInKernel($deps)) {
