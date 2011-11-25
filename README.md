@@ -53,7 +53,7 @@ git clone git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git ven
 Or using deps file
 
 ```
-[AdmindeneratorGeneratorBundle]
+[AdmingeneratorGeneratorBundle]
     git=git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git
     target=/bundles/Admingenerator/GeneratorBundle
     version=origin/master
