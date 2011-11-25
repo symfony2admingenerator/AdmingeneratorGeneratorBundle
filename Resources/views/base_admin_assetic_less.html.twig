@@ -44,12 +44,12 @@
             {% block flashes %}
                 {% if app.session.flash('success') %}
                     <div class="notification_box success">
-                        {{ app.session.flash('success') }}
+                        {{ app.session.flash('success')|raw }}
                     </div>
                 {% endif %}
                 {% if app.session.flash('error') %}
                     <div class="notification_box error">
-                        {{ app.session.flash('error') }}
+                        {{ app.session.flash('error')|raw }}
                     </div>
                 {% endif %}
             {% endblock %}
