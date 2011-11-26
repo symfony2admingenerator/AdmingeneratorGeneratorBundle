@@ -129,6 +129,9 @@ body {
   width: 80%;
   float: left; }
 
+.full_size {
+  width: 95%; }
+
 .filters {
   float: right; }
 
@@ -534,4 +537,4 @@ ul.menu {
           font-size: 1.2em; }
           ul.menu li ul li a:hover {
             background-color: #eeeeee; }
-  
+

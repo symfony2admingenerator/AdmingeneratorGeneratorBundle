@@ -12,7 +12,7 @@
 {{ echo_block("body") }}
     {{- block('title') -}}
 
-    <div class="main_content">
+    <div class="main_content{% if builder.filterColumns|length == 0 %} full_size{% endif %}">
 
         {{ block('list_scopes') -}}
 
