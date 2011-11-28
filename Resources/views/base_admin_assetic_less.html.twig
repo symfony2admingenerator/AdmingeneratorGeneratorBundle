@@ -9,8 +9,10 @@
                 <link href="{{ asset('bundles/admingeneratorgenerator/css/ie.css') }}" rel="stylesheet" type="text/css" />
             <![endif]-->
         {% endblock %}
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="{{ asset("bundles/admingeneratorgenerator/javascripts/jquery-1.6.4.min.js") }}">\x3C/script>')</script>
+        {% block javascript_head %}
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+            <script>window.jQuery || document.write('<script src="{{ asset("bundles/admingeneratorgenerator/javascripts/jquery-1.6.4.min.js") }}">\x3C/script>')</script>
+        {% endblock %}
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
@@ -42,12 +44,12 @@
             {% block flashes %}
                 {% if app.session.flash('success') %}
                     <div class="notification_box success">
-                        {{ app.session.flash('success') }}
+                        {{ app.session.flash('success')|raw }}
                     </div>
                 {% endif %}
                 {% if app.session.flash('error') %}
                     <div class="notification_box error">
-                        {{ app.session.flash('error') }}
+                        {{ app.session.flash('error')|raw }}
                     </div>
                 {% endif %}
             {% endblock %}

@@ -1,4 +1,4 @@
-# Symfony2 Admin Generator: The Real Missing Admin Generator for Symfony2 ! ![project status](http://stillmaintained.com/cedriclombardot/AdmingeneratorGeneratorBundle.png)# ![build status](https://secure.travis-ci.org/cedriclombardot/AdmingeneratorGeneratorBundle.png)#
+# Symfony2 Admin Generator: The Real Missing Admin Generator for Symfony2! ![project status](http://stillmaintained.com/cedriclombardot/AdmingeneratorGeneratorBundle.png)# ![build status](https://secure.travis-ci.org/cedriclombardot/AdmingeneratorGeneratorBundle.png)#
 
 This package is a Symfony2 Admin Generator based on YAML configuration and Twig templating.
 It's inspired by [fzaninotto/Doctrine2ActiveRecord](https://github.com/fzaninotto/Doctrine2ActiveRecord).
@@ -30,14 +30,14 @@ With almost the same features:
 
 ![Preview of edit](https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/edit-preview.png)
 
-### Want another skin ?
+### Want another skin?
 
 Just install [ActiveAdminTheme](https://github.com/cedriclombardot/AdmingeneratorActiveAdminThemeBundle)
 
 ![Preview of ActiveAdminTheme] (https://github.com/cedriclombardot/AdmingeneratorActiveAdminThemeBundle/raw/master/Resources/doc/list-preview.png)
 
 
-## Want to run a test ?
+## Want to run a test?
 
 The fastest way to try it is to setup the AdmingeneratorIpsum project: https://github.com/cedriclombardot/AdmingeneratorIpsum.
 This is a complete Symfony2 application with this bundle well configured.
@@ -48,6 +48,15 @@ This is a complete Symfony2 application with this bundle well configured.
 
 ``` bash
 git clone git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git vendor/bundles/Admingenerator/GeneratorBundle
+```
+
+Or using deps file
+
+```
+[AdmingeneratorGeneratorBundle]
+    git=git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git
+    target=/bundles/Admingenerator/GeneratorBundle
+    version=origin/master
 ```
 
 Register it in the `autoload.php` file:
@@ -103,7 +112,51 @@ Add it to the `AppKernel` class:
 $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
 ```
 
-### Now two ways to continue the setup :
+### Install KnpMenuBundle
+
+``` bash
+git submodule add https://github.com/knplabs/KnpMenuBundle.git vendor/bundles/Knp/Bundle/MenuBundle
+git submodule add https://github.com/knplabs/KnpMenu.git vendor/KnpMenu
+```
+
+or using deps file
+
+```
+[MenuBundle]
+    git=git://github.com/knplabs/KnpMenuBundle.git
+    target=/bundles/Knp/Bundle/MenuBundle
+
+[KnpMenu]
+    git=git://github.com/knplabs/KnpMenu.git
+    target=/KnpMenu
+```
+
+Register it in the `autoload.php` file:
+
+``` php
+<?php
+// app/autoload.php
+
+$loader->registerNamespaces(array(
+    'Knp'    	=> __DIR__.'/../vendor/bundles',
+    'Knp\Menu' 	=> __DIR__.'/../vendor/KnpMenu/src'
+));
+```
+
+Add it to the `AppKernel` class:
+
+``` php
+$bundles[] = new Knp\Bundle\MenuBundle\KnpMenuBundle();
+```
+
+Don't forget to configure it to use twig in `config.yml`:
+
+``` yml
+knp_menu:
+    twig: true
+```
+
+### Now two ways to continue the setup:
 
 Manually, follow the end of readme, or automatically,
 
@@ -151,38 +204,6 @@ Add it to the `AppKernel` class:
 
 ``` php
 $bundles[] = new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
-```
-
-### Install KnpMenuBundle
-
-``` bash
-git submodule add https://github.com/knplabs/KnpMenuBundle.git vendor/bundles/Knp/Bundle/MenuBundle
-git submodule add https://github.com/knplabs/KnpMenu.git vendor/KnpMenu
-```
-
-Register it in the `autoload.php` file:
-
-``` php
-<?php
-// app/autoload.php
-
-$loader->registerNamespaces(array(
-    'Knp'		=> __DIR__.'/../vendor/bundles',
-    'Knp\Menu' 	=> __DIR__.'/../vendor/KnpMenu/src'
-));
-```
-
-Add it to the `AppKernel` class:
-
-``` php
-$bundles[] = new Knp\Bundle\MenuBundle\KnpMenuBundle();
-```
-
-Don't forget to configure it to use twig in `config.yml`:
-
-``` yml
-knp_menu:
-    twig: true
 ```
 
 ### Configure JMS
@@ -287,17 +308,17 @@ admingenerator_generator:
     overwrite_if_exists: true
 ```
 
-And of course for prod :
+And of course for prod:
 
 ```
 php app/console -env prod cache:warmup
 ```
 
-## Need support ?
+## Need support?
 
 https://groups.google.com/group/symfony2admingenerator
 
 --------------
 
-Note : The admin theme is from https://github.com/martinrusev/admin-theme
+Note: The admin theme is from https://github.com/martinrusev/admin-theme
 
