@@ -17,12 +17,12 @@
         if ($form->isValid()) {
             $this->saveObject(${{ builder.ModelClass }});
 
-            $this->get('session')->setFlash('success', {% if messages.success is defined %} "{{ messages.success }}" {% else %} $this->get('translator')->trans('object.saved.success', array(), 'Admingenerator') {% endif %} );
+            $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ messages.success is defined ? messages.success : "object.saved.success" }}", array(), 'Admingenerator') );
 
             return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_edit", array('id' => ${{ builder.ModelClass }}->getId()) ));
 
         } else {
-            $this->get('session')->setFlash('error', {% if messages.error is defined %} "{{ messages.error }}" {% else %} $this->get('translator')->trans('object.saved.error', array(), 'Admingenerator') {% endif %} );
+            $this->get('session')->setFlash('error', $this->get('translator')->trans("{{ messages.error is defined ? messages.error : "object.saved.error" }}", array(), 'Admingenerator') );
         }
 
         return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}New:index.html.twig', array(

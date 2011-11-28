@@ -25,6 +25,29 @@
         $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Filters', $filters);
     }
 {% endblock %}
+    
+{% block getFilters -%}
+    /**
+     * Get filters from session
+     */
+    protected function getFilters()
+    {
+        $filters = $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Filters', array());
+        
+        {%- for filter in builder.filters.display -%}
+            {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
+
+        if (isset($filters['{{ filter }}'])) {
+                $filters['{{ filter }}'] = $this->getDoctrine()->getRepository($filters['{{ filter }}']['entityName'])->find($filters['{{ filter }}']['id']);
+        }
+
+            {%- endif %}
+
+        {% endfor -%}    
+        
+        return $filters;
+    }
+{% endblock %}
 
 {% block getQuery -%}
     protected function getQuery()
@@ -69,9 +92,7 @@
             {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
 
         if (isset($filters['{{ filter }}'])) {
-            $entity = $this->getDoctrine()->getRepository($filters['{{ filter }}']['entityName'])->find($filters['{{ filter }}']['id']);
-            $this->getDoctrine()->getEntityManager()->getUnitOfWork()->registerManaged($entity, array($filters['{{ filter }}']['id']), array());
-            $filters['{{ filter }}'] = $entity;
+            $this->getDoctrine()->getEntityManager()->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array($filters['{{ filter }}']->getId()), array());
         }
 
             {%- endif %}
@@ -101,16 +122,9 @@
         $queryFilter->setQuery($query);
 
         {% for filter in builder.filterColumns %}
-            {%- if 'entity' == filter.dbType or 'collection' == filter.dbType -%}
-                if (isset($filterObject['{{ filter.name }}']) && null !== $filterObject['{{ filter.name }}']) {
-                    $entity = $this->getDoctrine()->getRepository($filterObject['{{ filter.filterOn }}']['entityName'])->find($filterObject['{{ filter.filterOn }}']['id']);
-                    $queryFilter->add{{ filter.dbType|classify }}Filter("{{ filter.filterOn }}", $entity);
-                }
-            {% else %}
-                if (isset($filterObject['{{ filter.name }}']) && null !== $filterObject['{{ filter.name }}']) {
-                    $queryFilter->add{{ filter.dbType|classify }}Filter("{{ filter.filterOn }}", $filterObject['{{ filter.name }}']);
-                }            
-            {% endif %}
+            if (isset($filterObject['{{ filter.name }}']) && null !== $filterObject['{{ filter.name }}']) {
+                $queryFilter->add{{ filter.dbType|classify }}Filter("{{ filter.filterOn }}", $filterObject['{{ filter.name }}']);
+            }
         {% endfor %}
 
     }
