@@ -31,13 +31,6 @@ class ListController extends BaseController
 
     {{- block('filters') -}}
 
-    {% block setFilters -%}
-    protected function setFilters($filters)
-    {
-        // ORM JOB
-    }
-    {% endblock %}
-
     {{- block('scopes') -}}
 
     {{- block('security_check') }}
