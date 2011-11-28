@@ -110,13 +110,13 @@ class BaseBuilder extends GenericBaseBuilder
         $return = array();
 
         foreach ($display as $fieldset => $rows_or_fields) {
-           if (!is_array($rows_or_fields[0])) {
-                $return = array_merge($return, $rows_or_fields);
-           } else {
-               foreach ($rows_or_fields as $fields) {
-                   $return = array_merge($return, $fields);
-               }
-           }
+            foreach ($rows_or_fields as $fields) {
+                if (is_array($fields)) { //It s a row
+                    $return = array_merge($return, $fields);
+                } else {
+                    $return[$fields] = $fields;
+                }
+            }
         }
 
         return $return;
@@ -159,15 +159,14 @@ class BaseBuilder extends GenericBaseBuilder
 
     protected function getRowsFromFieldset(array $rows_or_fields)
     {
-        if (is_array($rows_or_fields[0])) { //The rows are defined in yaml
-
-            return $rows_or_fields;
-        }
-
         $rows = array();
 
         foreach ($rows_or_fields as $field) {
-            $rows[][$field] = $field;
+            if (is_array($field)) { //The row is defined in yaml
+                $rows[] = array_combine($field, $field);
+            } else {
+                $rows[][$field] = $field;
+            }
         }
 
         return $rows;

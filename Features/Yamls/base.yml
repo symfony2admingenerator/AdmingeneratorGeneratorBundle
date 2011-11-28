@@ -6,7 +6,7 @@ params:
 builders:
   list:
     params:
-      title: Here is a beautifull title no  ???
+      title: Here is a beautiful title no?
       display: [ id, title, is_published ]
       max_per_page: 3
       actions:
