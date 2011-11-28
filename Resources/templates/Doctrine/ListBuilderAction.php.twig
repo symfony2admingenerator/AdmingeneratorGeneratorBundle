@@ -1,4 +1,54 @@
 {% extends '../CommonAdmin/ListAction/ListBuilderAction.php.twig' %}
+{% block setFilters -%}
+    /**
+     * Store in the session service the current filters
+     *
+     * @param array the filters
+     */
+    protected function setFilters($filters)
+    {
+    
+        {%- for filter in builder.filters.display -%}
+            {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
+
+        if (isset($filters['{{ filter }}'])) {
+                $filters['{{ filter }}'] = array (
+                    'id' => $filters['{{ filter }}']->getId(),
+                    'entityName' => get_class($filters['{{ filter }}'])
+                );
+        }
+
+            {%- endif %}
+
+        {% endfor -%}    
+    
+        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Filters', $filters);
+    }
+{% endblock %}
+    
+{% block getFilters -%}
+    /**
+     * Get filters from session
+     */
+    protected function getFilters()
+    {
+        $filters = $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Filters', array());
+        
+        {%- for filter in builder.filters.display -%}
+            {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
+
+        if (isset($filters['{{ filter }}'])) {
+                $filters['{{ filter }}'] = $this->getDoctrine()->getRepository($filters['{{ filter }}']['entityName'])->find($filters['{{ filter }}']['id']);
+        }
+
+            {%- endif %}
+
+        {% endfor -%}    
+        
+        return $filters;
+    }
+{% endblock %}
+
 {% block getQuery -%}
     protected function getQuery()
     {
@@ -42,7 +92,7 @@
             {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
 
         if (isset($filters['{{ filter }}'])) {
-             $this->getDoctrine()->getEntityManager()->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array($filters['{{ filter }}']->getId()), array());
+            $this->getDoctrine()->getEntityManager()->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array($filters['{{ filter }}']->getId()), array());
         }
 
             {%- endif %}
@@ -52,7 +102,7 @@
         $type = new FiltersType();
         $type->setSecurityContext($this->get('security.context'));
 
-        return $this->createForm($type, $this->getFilters());
+        return $this->createForm($type, $filters);
     }
 {% endblock %}
 
@@ -72,10 +122,9 @@
         $queryFilter->setQuery($query);
 
         {% for filter in builder.filterColumns %}
-
-        if (isset($filterObject['{{ filter.name }}']) && null !== $filterObject['{{ filter.name }}']) {
-            $queryFilter->add{{ filter.dbType|classify }}Filter("{{ filter.filterOn }}", $filterObject['{{ filter.name }}']);
-        }
+            if (isset($filterObject['{{ filter.name }}']) && null !== $filterObject['{{ filter.name }}']) {
+                $queryFilter->add{{ filter.dbType|classify }}Filter("{{ filter.filterOn }}", $filterObject['{{ filter.name }}']);
+            }
         {% endfor %}
 
     }
