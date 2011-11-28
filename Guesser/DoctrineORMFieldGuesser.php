@@ -40,7 +40,12 @@ class DoctrineORMFieldGuesser
 
     public function getAllColumns($class)
     {
-        return $this->getMetadatas($class)->getColumnNames();
+        $fieldNames = array();
+        $metadata = $this->getMetadatas($class);
+        foreach ($metadata->getColumnNames() as $columnName) {
+            $fieldNames[] = $metadata->getFieldName($columnName);
+        }
+        return $fieldNames;
     }
 
     public function getDbType($class, $fieldName)
