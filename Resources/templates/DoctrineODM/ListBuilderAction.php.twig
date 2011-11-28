@@ -2,6 +2,55 @@
 {% block pager_adapter -%}
 use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
 {% endblock %}
+{% block setFilters -%}
+    /**
+     * Store in the session service the current filters
+     *
+     * @param array the filters
+     */
+    protected function setFilters($filters)
+    {
+
+        {%- for filter in builder.filters.display -%}
+            {%- if 'document' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
+
+        if (isset($filters['{{ filter }}'])) {
+                $filters['{{ filter }}'] = array (
+                    'id' => $filters['{{ filter }}']->getId(),
+                    'documentName' => get_class($filters['{{ filter }}'])
+                );
+        }
+
+            {%- endif %}
+
+        {% endfor -%}
+
+        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Filters', $filters);
+    }
+{% endblock %}
+
+{% block getFilters -%}
+    /**
+     * Get filters from session
+     */
+    protected function getFilters()
+    {
+        $filters = $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Filters', array());
+
+        {%- for filter in builder.filters.display -%}
+            {%- if 'document' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
+
+        if (isset($filters['{{ filter }}'])) {
+                $filters['{{ filter }}'] = $this->getDoctrine()->getRepository($filters['{{ filter }}']['documentName'])->find($filters['{{ filter }}']['id']);
+        }
+
+            {%- endif %}
+
+        {% endfor -%}
+
+        return $filters;
+    }
+{% endblock %}
 {% block getQuery -%}
     protected function getQuery()
     {
