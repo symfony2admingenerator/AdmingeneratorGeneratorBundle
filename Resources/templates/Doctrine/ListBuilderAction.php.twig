@@ -7,7 +7,7 @@
      */
     protected function setFilters($filters)
     {
-    
+
         {%- for filter in builder.filters.display -%}
             {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
 
@@ -20,12 +20,12 @@
 
             {%- endif %}
 
-        {% endfor -%}    
-    
+        {% endfor -%}
+
         $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Filters', $filters);
     }
 {% endblock %}
-    
+
 {% block getFilters -%}
     /**
      * Get filters from session
@@ -33,7 +33,7 @@
     protected function getFilters()
     {
         $filters = $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Filters', array());
-        
+
         {%- for filter in builder.filters.display -%}
             {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
 
@@ -43,8 +43,8 @@
 
             {%- endif %}
 
-        {% endfor -%}    
-        
+        {% endfor -%}
+
         return $filters;
     }
 {% endblock %}
