@@ -28,7 +28,7 @@ class PropelORMFieldGuesser
         return $this->getTable(self::$current_class);
     }
 
-    public function getAllColumns($class)
+    public function getAllFields($class)
     {
         $return = array();
 

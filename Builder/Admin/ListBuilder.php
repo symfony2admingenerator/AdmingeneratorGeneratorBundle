@@ -59,7 +59,7 @@ class ListBuilder extends BaseBuilder
         $filters = $this->getFilters();
 
         if (!isset($filters['display']) || is_null($filters['display'])) {
-            $filters['display'] = $this->getAllColumns();
+            $filters['display'] = $this->getAllFields();
         }
 
         foreach ($filters['display'] as $columnName) {

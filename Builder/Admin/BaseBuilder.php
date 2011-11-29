@@ -99,7 +99,7 @@ class BaseBuilder extends GenericBaseBuilder
         $display = $this->getVariable('display');
 
         if (null == $display || 0 == sizeof($display)) {
-           return $this->getAllColumns();
+           return $this->getAllFields();
         }
 
         if (isset($display[0])) {
@@ -127,9 +127,9 @@ class BaseBuilder extends GenericBaseBuilder
      *
      * @return array
      */
-    protected function getAllColumns()
+    protected function getAllFields()
     {
-        return $this->getFieldGuesser()->getAllColumns($this->getVariable('model'));
+        return $this->getFieldGuesser()->getAllFields($this->getVariable('model'));
     }
 
     /**
@@ -143,7 +143,7 @@ class BaseBuilder extends GenericBaseBuilder
         $display = $this->getVariable('display');
 
         if (null == $display || 0 == sizeof($display)) {
-           $display = $this->getAllColumns();
+           $display = $this->getAllFields();
         }
 
         if (isset($display[0])) {
