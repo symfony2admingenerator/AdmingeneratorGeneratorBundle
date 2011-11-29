@@ -125,9 +125,9 @@ class EchoExtension extends \Twig_Extension
         return str_replace(array("\n", 'array (', '     '), array('', 'array(', ''), var_export($variable, true));
     }
 
-    public function getEchoTrans($str)
+    public function getEchoTrans($str, $catalog = 'Admingenerator')
     {
-        return '{% trans from "Admingenerator" %}'.$str.'{% endtrans %}';
+        return '{% trans from "'.$catalog.'" %}'.$str.'{% endtrans %}';
     }
 
     public function getEchoSet($var, $value, $value_as_string = true)
