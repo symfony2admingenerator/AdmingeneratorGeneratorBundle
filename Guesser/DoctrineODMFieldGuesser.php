@@ -38,7 +38,7 @@ class DoctrineODMFieldGuesser
         return $this->metadata[$class];
     }
 
-    public function getAllColumns($class)
+    public function getAllFields($class)
     {
         $fields = array();
 
