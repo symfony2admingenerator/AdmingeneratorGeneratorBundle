@@ -74,7 +74,7 @@ class DoctrineODMFieldGuesser
         //return $metadata->getTypeOfField($fieldName);//Not Yet implemented by doctrine
     }
 
-    public function getFormType($dbType)
+    public function getFormType($dbType, $columnName)
     {
         switch($dbType) {
             case 'boolean':
@@ -117,15 +117,15 @@ class DoctrineODMFieldGuesser
                 return 'collection';
                 break;
             case 'virtual':
-                throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented');
+                throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented (column "'.$columnName.'") ');
                 break;
             default:
-                throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented');
+                throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'")');
                 break;
         }
     }
 
-    public function getFilterType($dbType)
+    public function getFilterType($dbType, $columnName)
     {
          switch($dbType) {
              case 'hash':
@@ -146,7 +146,7 @@ class DoctrineODMFieldGuesser
                 break;
          }
 
-         return $this->getFormType($dbType);
+         return $this->getFormType($dbType, $columnName);
     }
 
     public function getFormOptions($formType, $dbType, $columnName)

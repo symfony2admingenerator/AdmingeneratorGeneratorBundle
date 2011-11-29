@@ -71,7 +71,7 @@ class PropelORMFieldGuesser
         }
     }
 
-    public function getFormType($dbType)
+    public function getFormType($dbType, $columnName)
     {
         switch($dbType) {
             case \PropelColumnTypes::BOOLEAN:
@@ -109,11 +109,11 @@ class PropelORMFieldGuesser
             case 'collection':
                 return 'propel_double_list';
             default:
-                throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented');
+                throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'")');
         }
     }
 
-    public function getFilterType($dbType)
+    public function getFilterType($dbType, $columnName)
     {
          switch($dbType) {
              case \PropelColumnTypes::BOOLEAN:
@@ -131,7 +131,7 @@ class PropelORMFieldGuesser
                 break;
          }
 
-         return $this->getFormType($dbType);
+         return $this->getFormType($dbType, $columnName);
     }
 
     public function getFormOptions($formType, $dbType, $columnName)
