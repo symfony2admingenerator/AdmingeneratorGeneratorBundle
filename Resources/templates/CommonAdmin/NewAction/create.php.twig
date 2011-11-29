@@ -15,7 +15,9 @@
         $form->bindRequest($this->get('request'));
 
         if ($form->isValid()) {
+            $this->preSave($form, ${{ builder.ModelClass }});        
             $this->saveObject(${{ builder.ModelClass }});
+            $this->postSave($form, ${{ builder.ModelClass }});
 
             $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ messages.success is defined ? messages.success : "object.saved.success" }}", array(), 'Admingenerator') );
 
@@ -30,4 +32,24 @@
             "form" => $form->createView(),
         ));
     }
+
+    /**
+    * This method is here to make your life better, so overwrite  it
+    *
+    * @param \Symfony\Component\Form\Form $form the valid form
+    * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
+    */
+    public function preSave(\Symfony\Component\Form\Form $form, \{{ model }} ${{ builder.ModelClass }})
+    {
+    }
+
+    /**
+    * This method is here to make your life better, so overwrite  it
+    *
+    * @param \Symfony\Component\Form\Form $form the valid form
+    * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
+    */
+    public function postSave(\Symfony\Component\Form\Form $form, \{{ model }} ${{ builder.ModelClass }})
+    {
+    }    
 {% endblock %}

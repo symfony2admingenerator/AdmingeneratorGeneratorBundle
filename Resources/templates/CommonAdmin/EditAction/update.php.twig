@@ -12,7 +12,7 @@
         if (!${{ builder.ModelClass }}) {
             throw new NotFoundHttpException("The {{ model }} with id $id can't be found");
         }
-
+        $this->preBindRequest(${{ builder.ModelClass }});
         $type = new EditType();
         $type->setSecurityContext($this->get('security.context'));
         $form = $this->createForm($type, ${{ builder.ModelClass }});
@@ -37,6 +37,15 @@
         ));
     }
 
+    /**
+    * This method is here to make your life better, so overwrite  it
+    *
+    * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
+    */
+    public function preBindRequest(\{{ model }} ${{ builder.ModelClass }})
+    {
+    }
+    
     /**
     * This method is here to make your life better, so overwrite  it
     *

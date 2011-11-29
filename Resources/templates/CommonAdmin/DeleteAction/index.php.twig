@@ -7,9 +7,9 @@
 
         try {
             $this->process($id);
-            $this->get('session')->setFlash('success', "{{ messages.success is defined ? messages.success : 'The record have been successfully deleted' }}");
+            $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ messages.success is defined ? messages.success : "object.deleted.success" }}", array(), 'Admingenerator') );
         } catch (\InvalidArgumentException $e) {
-            $this->get('session')->setFlash('error', "{{ messages.error is defined ? messages.error : "The record can't be deleted" }}");
+            $this->get('session')->setFlash('error', $this->get('translator')->trans("{{ messages.error is defined ? messages.error : "object.deleted.error" }}", array(), 'Admingenerator') );
         }
 
         return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));

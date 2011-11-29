@@ -1,9 +1,15 @@
 {% use '../CommonAdmin/EditTemplate/Type/collection.php.twig' %}
 {% block form_fieldset %}
-{{ echo_block("form_fieldset_" ~ fieldset|classify) }}
-        <fieldset class="form_block form_fieldset_{{ fieldset|classify }}">
-        {% if "NONE" != fieldset %}
-        <legend>{{ fieldset }}</legend>
+{{ echo_block("form_fieldset_" ~ fieldset|classify|lower) }}
+        <fieldset class="form_block form_fieldset_{{ fieldset|classify|lower }}">
+        {% if "NONE" != fieldset%}
+        <legend>
+            {% if fieldset in builder.DisplayLegends|keys %}
+                {{ builder.DisplayLegends[fieldset] }}
+            {% else %}
+                {{ fieldset|classify }}
+            {% endif %}
+        </legend>
         {% endif -%}
         {% for rows in builder.fieldsets[fieldset] %}
     <div class="form_row">

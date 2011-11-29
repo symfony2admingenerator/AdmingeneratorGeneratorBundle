@@ -121,7 +121,15 @@ class BaseBuilder extends GenericBaseBuilder
 
         return $return;
     }
-
+    
+    /**
+     * Extract displays legends
+     */
+    public function getDisplayLegends()
+    {
+        return (array)$this->getVariable('displayLegends');
+    }
+    
     /**
      * Retrieve all columns
      *
