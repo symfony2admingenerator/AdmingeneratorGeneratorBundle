@@ -32,7 +32,7 @@ class FiltersBuilder extends BaseBuilder
         $display = $this->getVariable('display');
 
         if (null == $display) {
-           $display = $this->getAllColumns();
+           $display = $this->getAllFields();
         }
 
         foreach ($display as $columnName) {
