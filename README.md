@@ -318,6 +318,10 @@ php app/console -env prod cache:warmup
 
 https://groups.google.com/group/symfony2admingenerator
 
+## Sensio Connect
+
+https://connect.sensiolabs.com/club/symfony2admingenerator
+
 --------------
 
 Note: The admin theme is from https://github.com/martinrusev/admin-theme
