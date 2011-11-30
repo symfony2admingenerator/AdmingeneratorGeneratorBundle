@@ -18,6 +18,8 @@ list.actions: Acciones
 #Object
 object.saved.success: El objeto fue guardado satisfactoriamente
 object.saved.error: El formulario no pudo ser guardado. Chequea los errores y vuelve a intentarlo
+object.deleted.success: The record have been successfully deleted
+object.deleted.error: The record can't be deleted
 
 # Form
 form.btn_save: Guardar
