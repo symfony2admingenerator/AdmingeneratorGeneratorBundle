@@ -47,7 +47,7 @@ class BaseBuilder extends GenericBaseBuilder
             $column->setDbType($this->getFieldOption($column, 'dbType', $this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName)));
 
             if ($this->getYamlKey() != 'list') {
-              $column->setFormType($this->getFieldOption($column, 'formType', $this->getFieldGuesser()->getFormType($column->getDbType())));
+              $column->setFormType($this->getFieldOption($column, 'formType', $this->getFieldGuesser()->getFormType($column->getDbType(), $columnName)));
               $column->setFormOptions($this->getFieldOption($column, 'formOptions', $this->getFieldGuesser()->getFormOptions($column->getFormType(), $column->getDbType(), $columnName)));
             }
             //Set the user parameters
@@ -99,7 +99,7 @@ class BaseBuilder extends GenericBaseBuilder
         $display = $this->getVariable('display');
 
         if (null == $display || 0 == sizeof($display)) {
-           return $this->getAllColumns();
+           return $this->getAllFields();
         }
 
         if (isset($display[0])) {
@@ -127,9 +127,9 @@ class BaseBuilder extends GenericBaseBuilder
      *
      * @return array
      */
-    protected function getAllColumns()
+    protected function getAllFields()
     {
-        return $this->getFieldGuesser()->getAllColumns($this->getVariable('model'));
+        return $this->getFieldGuesser()->getAllFields($this->getVariable('model'));
     }
 
     /**
@@ -143,7 +143,7 @@ class BaseBuilder extends GenericBaseBuilder
         $display = $this->getVariable('display');
 
         if (null == $display || 0 == sizeof($display)) {
-           $display = $this->getAllColumns();
+           $display = $this->getAllFields();
         }
 
         if (isset($display[0])) {

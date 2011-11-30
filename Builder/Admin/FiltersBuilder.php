@@ -32,13 +32,13 @@ class FiltersBuilder extends BaseBuilder
         $display = $this->getVariable('display');
 
         if (null == $display) {
-           $display = $this->getAllColumns();
+           $display = $this->getAllFields();
         }
 
         foreach ($display as $columnName) {
             $column = new Column($columnName);
             $column->setDbType($this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName));
-            $column->setFormType($this->getFieldGuesser()->getFilterType($column->getDbType()));
+            $column->setFormType($this->getFieldGuesser()->getFilterType($column->getDbType(), $columnName));
             $column->setFormOptions($this->getFieldGuesser()->getFilterOptions($column->getFormType(), $column->getDbType(), $columnName));
 
             //Set the user parameters

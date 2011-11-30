@@ -2,12 +2,14 @@
 
 namespace Admingenerator\GeneratorBundle\QueryFilter;
 
+use  Doctrine\Common\Util\Inflector;
+
 class PropelQueryFilter extends BaseQueryFilter
 {
 
     public function addDefaultFilter($field, $value)
     {
-        $method = 'filterBy'.$field;
+        $method = 'filterBy'.Inflector::classify($field);
         $this->query->$method($value);
     }
 
@@ -56,7 +58,7 @@ class PropelQueryFilter extends BaseQueryFilter
             }
 
             if (count($filters) > 0) {
-                $method = 'filterBy'.$field;
+                $method = 'filterBy'.Inflector::classify($field);
                 $this->query->$method($filters);
             }
 

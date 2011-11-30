@@ -1,0 +1,28 @@
+# Double list form
+double_list.selected: Selecionado
+double_list.unselected: Não selecionado
+
+# Pager
+pagerfanta.previous: Anterior
+pagerfanta.next: Próximo
+
+# List
+list.no_results: Não há resultados
+list.filters: Filtros
+list.filter.btn_filter: Filtro
+list.filter.btn_reset: Redefinir
+"Display all <b>%count%</b> results": Mostrando todos os <b>%count%</b> resultados
+"Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Mostrando <b>%start%</b> - <b>%end%</b> de <b>%count%</b> resultados
+list.actions: Ações
+
+#Object
+object.saved.success: O objeto foi salvo com sucesso
+object.saved.error: O formulário não pode ser salvo. Verifique os erros e tente novamente
+
+# Form
+form.btn_save: Salvar
+form.type_collection.add: Adicionar
+
+# Actions
+List: Listar
+New: Novo

@@ -38,9 +38,9 @@ class DoctrineORMFieldGuesser
         return $this->metadata[self::$current_class];
     }
 
-    public function getAllColumns($class)
+    public function getAllFields($class)
     {
-        return $this->getMetadatas($class)->getColumnNames();
+        return $this->getMetadatas($class)->getFieldNames();
     }
 
     public function getDbType($class, $fieldName)
@@ -62,7 +62,7 @@ class DoctrineORMFieldGuesser
         return 'virtual';
     }
 
-    public function getFormType($dbType)
+    public function getFormType($dbType, $columnName)
     {
         switch($dbType) {
             case 'boolean':
@@ -95,19 +95,20 @@ class DoctrineORMFieldGuesser
             case 'entity':
                 return 'entity';
                 break;
+             case 'array':
              case 'collection':
                 return 'doctrine_double_list';
                 break;
             case 'virtual':
-                throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented');
+                throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented (column "'.$columnName.'")');
                 break;
             default:
-                throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented');
+                throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'")');
                 break;
         }
     }
 
-    public function getFilterType($dbType)
+    public function getFilterType($dbType, $columnName)
     {
          switch($dbType) {
              case 'text':
@@ -127,7 +128,7 @@ class DoctrineORMFieldGuesser
                 break;
          }
 
-         return $this->getFormType($dbType);
+         return $this->getFormType($dbType, $columnName);
     }
 
     public function getFormOptions($formType, $dbType, $columnName)
