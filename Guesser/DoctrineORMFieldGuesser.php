@@ -96,6 +96,8 @@ class DoctrineORMFieldGuesser
                 return 'entity';
                 break;
              case 'array':
+                return 'collection';
+                break;
              case 'collection':
                 return 'doctrine_double_list';
                 break;
