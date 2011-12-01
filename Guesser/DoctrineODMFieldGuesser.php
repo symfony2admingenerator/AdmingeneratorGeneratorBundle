@@ -178,7 +178,7 @@ class DoctrineODMFieldGuesser
     {
         if ($this->getMetadatas()->hasField($fieldName) &&
             (!$this->getMetadatas()->hasAssociation($fieldName) || $this->getMetadatas()->isSingleValuedAssociation($fieldName))) {
-            return $this->getMetadatas()->isNullable($fieldName);
+            return !$this->getMetadatas()->isNullable($fieldName);
         }
 
         return false;
