@@ -16,8 +16,10 @@ list.filter.btn_reset: Réinitialiser
 list.actions: Actions
 
 #Object
-object.saved.success: The object was successfully saved
-object.saved.error: The form can't be saved. Check errors and try to resubmit
+object.saved.success: L'enregistrement a été effectué avec succès
+object.saved.error: Le formulaire n'a pas pu être sauvegardé. Vérifiez les erreurs et essayez de soumettre à nouveau
+object.deleted.success: L'enregistrement a été supprimé avec succès
+object.deleted.error: L'enregistrement n'a pas pu être supprimé
 
 # Form
 form.btn_save: Enregistrer

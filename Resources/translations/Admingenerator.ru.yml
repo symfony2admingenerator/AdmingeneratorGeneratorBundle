@@ -18,6 +18,8 @@ list.actions: Действия
 #Object
 object.saved.success: Материал успешно сохранен
 object.saved.error: Форма не сохранена. Исправьте ошибки и попробуйте еще раз
+object.deleted.success: Материал успешно удален
+object.deleted.error: Материал не может быть удален
 
 # Form
 form.btn_save: Сохранить
