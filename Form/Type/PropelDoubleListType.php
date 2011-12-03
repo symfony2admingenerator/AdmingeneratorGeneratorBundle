@@ -8,16 +8,16 @@ use Symfony\Component\Validator\Constraints\ChoiceValidator;
 use Symfony\Component\Form\Extension\Core\DataTransformer\ArrayToChoicesTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-use Propel\PropelBundle\Form\ChoiceList\ModelChoiceList;
+use Symfony\Bridge\Propel1\Form\ChoiceList\ModelChoiceList;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 
-use Propel\PropelBundle\Form\EventListener\MergeCollectionListener;
-use Propel\PropelBundle\Form\DataTransformer\ModelsToArrayTransformer;
-use Propel\PropelBundle\Form\DataTransformer\ModelToIdTransformer;
+use Symfony\Bridge\Propel1\Form\EventListener\MergeCollectionListener;
+use Symfony\Bridge\Propel1\Form\DataTransformer\ModelsToArrayTransformer;
+use Symfony\Bridge\Propel1\Form\DataTransformer\ModelToIdTransformer;
 
 class PropelDoubleListType extends AbstractType
 {
