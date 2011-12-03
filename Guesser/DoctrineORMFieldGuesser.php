@@ -143,7 +143,7 @@ class DoctrineORMFieldGuesser
 
             $mapping = $this->getMetadatas()->getAssociationMapping($columnName);
 
-            return array('em' => 'default', 'class' => $mapping['targetEntity'], 'multiple' => false);
+            return array('em' => 'default', 'class' => $mapping['targetEntity'], 'multiple' => false, 'required' => $this->isRequired($columnName));
         }
 
         if ('doctrine_double_list' == $formType) {
