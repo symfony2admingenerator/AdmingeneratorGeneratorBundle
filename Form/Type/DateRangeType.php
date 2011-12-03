@@ -46,16 +46,17 @@ class DateRangeType extends AbstractType
             'years'             => range(date('Y'), date('Y') - 120),
             'to'                => null,
             'from'              => null,
+            'widget'            => 'choice',
         );
 
         $options = array_replace($defaultOptions, $options);
 
         if (is_null($defaultOptions['to'])) {
-            $defaultOptions['to'] = array('years' => $defaultOptions['years']);
+            $defaultOptions['to'] = array('years' => $defaultOptions['years'], 'widget' => $defaultOptions['widget']);
         }
 
         if (is_null($defaultOptions['from'])) {
-            $defaultOptions['from'] = array('years' => $defaultOptions['years']);
+            $defaultOptions['from'] = array('years' => $defaultOptions['years'], 'widget' => $defaultOptions['widget']);
         }
 
         return $defaultOptions;
