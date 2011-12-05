@@ -15,7 +15,7 @@
         $form->bindRequest($this->get('request'));
 
         if ($form->isValid()) {
-            $this->preSave($form, ${{ builder.ModelClass }});        
+            $this->preSave($form, ${{ builder.ModelClass }});
             $this->saveObject(${{ builder.ModelClass }});
             $this->postSave($form, ${{ builder.ModelClass }});
 
@@ -51,5 +51,5 @@
     */
     public function postSave(\Symfony\Component\Form\Form $form, \{{ model }} ${{ builder.ModelClass }})
     {
-    }    
+    }
 {% endblock %}

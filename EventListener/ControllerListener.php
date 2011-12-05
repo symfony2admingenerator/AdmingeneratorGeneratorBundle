@@ -80,7 +80,7 @@ class ControllerListener
         preg_match('/(.+)?Controller.+::.+/', $controller, $matches);
         $dir = str_replace('\\', DIRECTORY_SEPARATOR, $matches[1]);
 
-        $generatorName  = $this->getBaseGeneratorName($controller) ? strtolower($this->getBaseGeneratorName($controller)).'-' : '';
+        $generatorName  = $this->getBaseGeneratorName($controller) ? $this->getBaseGeneratorName($controller).'-' : '';
         $generatorName .= 'generator.yml';
 
         $finder = new Finder();

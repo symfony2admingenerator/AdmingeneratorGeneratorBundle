@@ -74,6 +74,6 @@ class BundleGenerator extends BaseBundleGenerator
             $this->renderFile($this->skeletonDir, 'DefaultType.php', $dir.'/Form/Type/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$form.'Type.php', $parameters);
         }
 
-        $this->renderFile($this->skeletonDir, 'generator.yml', $dir.'/Resources/config/'.($this->prefix ? $this->prefix.'-' : '').'generator.yml', $parameters);
+        $this->renderFile($this->skeletonDir, 'generator.yml', $dir.'/Resources/config/'.($this->prefix ? ucfirst($this->prefix).'-' : '').'generator.yml', $parameters);
     }
 }

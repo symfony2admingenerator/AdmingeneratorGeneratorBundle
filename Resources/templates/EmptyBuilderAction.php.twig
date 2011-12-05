@@ -9,10 +9,10 @@ class {{ controllerName }} extends Controller
 {
     public function indexAction()
     {
-    	if ($this->get('request')->get('stop_loop')) {
-    		throw new CantGenerateException('Opps an error occurred in your configuration. If you\'re in prod try cache:warmup');
-    	}
-    	
+        if ($this->get('request')->get('stop_loop')) {
+            throw new CantGenerateException('Opps an error occurred in your configuration. If you\'re in prod try cache:warmup');
+        }
+
         return $this->redirect($this->get('request')->getRequestUri()."?stop_loop=true");
     }
 }
