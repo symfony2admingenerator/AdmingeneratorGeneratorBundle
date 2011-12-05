@@ -3,11 +3,16 @@
 namespace Admingenerated\{{ bundle }}\{{ base_controller }};
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Admingenerator\GeneratorBundle\Exception\CantGenerateException;
 
 class {{ controllerName }} extends Controller
 {
     public function indexAction()
     {
-        return $this->redirect($this->get('request')->getRequestUri());
+    	if ($this->get('request')->get('stop_loop')) {
+    		throw new CantGenerateException('Opps an error occurred in your configuration. If you\'re in prod try cache:warmup');
+    	}
+    	
+        return $this->redirect($this->get('request')->getRequestUri()."?stop_loop=true");
     }
 }
