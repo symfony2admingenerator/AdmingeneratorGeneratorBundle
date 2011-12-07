@@ -40,7 +40,7 @@ class AdmingeneratedClassLoader
             $file_path = $this->base_path.DIRECTORY_SEPARATOR.str_replace('\\', DIRECTORY_SEPARATOR, $class).'.php';
 
             if (!file_exists($file_path)) {
-                $this->generateEmptyContorller($class);
+                $this->generateEmptyController($class);
             }
 
             if (file_exists($file_path)) {
@@ -49,7 +49,7 @@ class AdmingeneratedClassLoader
         }
     }
 
-    protected function generateEmptyContorller($class)
+    protected function generateEmptyController($class)
     {
         $generator = new EmptyGenerator();
 
