@@ -306,7 +306,7 @@ EOD;
         );
     }
 
-    protected function getDoctrineOrmDeps()
+    protected function getDoctrineOdmDeps()
     {
         return array_merge( $this->getCommonDoctrineDeps(), array(
             'DoctrineMongoDBBundle' => array(
@@ -332,7 +332,7 @@ EOD;
         ));
     }
 
-    protected function getDoctrineOdmDeps()
+    protected function getDoctrineOrmDeps()
     {
         return array_merge( $this->getCommonDoctrineDeps(), array(
             'DoctrineBundle' => array(
