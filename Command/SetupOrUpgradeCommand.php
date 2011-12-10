@@ -267,7 +267,7 @@ EOD;
                      'isBundle'           => true,
         ),
             'KnpMenuBundle' => array(
-                     'git'               => 'git://github.com/knplabs/KnpMenuBundle.git',
+                     'git'               => 'git://github.com/KnpLabs/KnpMenuBundle.git',
                      'path'              => '/bundles/Knp/Bundle/MenuBundle',
                      'autoloadKey'       => 'Knp',
                      'autoloadPath'      => '/../vendor/bundles',
@@ -275,7 +275,7 @@ EOD;
                      'isBundle'          => true,
         ),
             'KnpMenu' => array(
-                     'git'               => 'git://github.com/knplabs/KnpMenu.git',
+                     'git'               => 'git://github.com/KnpLabs/KnpMenu.git',
                      'path'              => '/KnpMenu',
                      'autoloadKey'       => 'Knp\Menu',
                      'autoloadPath'      => '/../vendor/KnpMenu/src',
