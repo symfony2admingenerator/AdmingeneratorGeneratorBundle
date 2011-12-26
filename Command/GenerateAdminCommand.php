@@ -74,6 +74,18 @@ EOT
 
         $input->setOption('generator', $generator);
 
+        // Model name
+        $modelName = $dialog->askAndValidate($output,
+          $dialog->getQuestion('Model name', $input->getOption('model-name')),
+          function($generator) {
+            if(empty($generator) || preg_match('#[^a-zA-Z0-9]#', $generator)) {
+              throw new \RuntimeException('Model name should not contain any special characters nor spaces.');
+            }
+            return $generator;
+          }, false, $input->getOption('model-name')
+        );
+        $input->setOption('model-name', $modelName);
+
         // prefix
         $prefix = $dialog->askAndValidate($output,
           $dialog->getQuestion('Prefix of yaml', $input->getOption('prefix')),
