@@ -42,7 +42,7 @@ class BundleGenerator extends BaseBundleGenerator
         $this->prefix = $prefix;
     }
 
-    public function generate($namespace, $bundle, $dir, $format, $structure)
+    public function generate($namespace, $bundle, $dir, $format, $structure, $generator, $modelName)
     {
         $dir .= '/'.strtr($namespace, '\\', '/');
 
@@ -53,6 +53,8 @@ class BundleGenerator extends BaseBundleGenerator
             'generator'        => 'admingenerator.generator.'.$this->generator,
             'namespace_prefix' => $namespace_prefix,
             'bundle_name'      => $bundle_name,
+            'model_folder'     => ($generator == 'propel') ? 'Model' : 'Entity',
+            'model_name'       => $modelName,
             'prefix'           => ucfirst($this->prefix),
         );
 

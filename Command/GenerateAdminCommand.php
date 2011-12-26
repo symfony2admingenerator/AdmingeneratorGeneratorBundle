@@ -30,6 +30,7 @@ class GenerateAdminCommand extends GenerateBundleCommand
                 new InputOption('structure', '', InputOption::VALUE_NONE, 'Whether to generate the whole directory structure'),
                 new InputOption('format', '', InputOption::VALUE_REQUIRED, 'Do nothing but mandatory for extend', 'annotation'),
                 new InputOption('generator', '', InputOption::VALUE_REQUIRED, 'The generator service (propel, doctrine, doctrine_odm)', 'doctrine'),
+                new InputOption('model-name', '', InputOption::VALUE_REQUIRED, 'Base model name for admin module', 'YourModel'),
                 new InputOption('prefix', '', InputOption::VALUE_REQUIRED, 'The generator prefix ([prefix]-generator.yml)'),
 
             ))
@@ -61,11 +62,29 @@ EOT
         $dialog->writeSection($output, 'Welcome to the Symfony2 admin generator');
         $output->writeln('<comment>Create an admingenrator bundle with generate:bundle</comment>');
 
-        $generator = $dialog->askAndValidate($output, $dialog->getQuestion('Generator to use (doctrine, doctrine_odm, propel)', $input->getOption('generator')),  function ($generator) { if (!in_array($generator, array('doctrine','doctrine_odm','propel'))) { throw new \RuntimeException('Generator to use have to be doctrine, doctrine_odm or propel'); } return $generator; } , false, $input->getOption('generator'));
+        $generator = $dialog->askAndValidate($output,
+          $dialog->getQuestion('Generator to use (doctrine, doctrine_odm, propel)', $input->getOption('generator')),
+          function ($generator) {
+            if (!in_array($generator, array('doctrine','doctrine_odm','propel'))) {
+              throw new \RuntimeException('Generator to use have to be doctrine, doctrine_odm or propel');
+            }
+            return $generator;
+          }, false, $input->getOption('generator')
+        );
+
         $input->setOption('generator', $generator);
 
         // prefix
-        $prefix = $dialog->askAndValidate($output, $dialog->getQuestion('Prefix of yaml', $input->getOption('prefix')),  function ($prefix) { if (!preg_match('/([a-z]+)/i', $prefix)) { throw new \RuntimeException('Prefix have to be a simple word'); } return $prefix; } , false, $input->getOption('prefix'));
+        $prefix = $dialog->askAndValidate($output,
+          $dialog->getQuestion('Prefix of yaml', $input->getOption('prefix')),
+          function ($prefix) {
+            if (!preg_match('/([a-z]+)/i', $prefix)) {
+              throw new \RuntimeException('Prefix have to be a simple word');
+            }
+            return $prefix;
+          }, false, $input->getOption('prefix')
+        );
+
         $input->setOption('prefix', $prefix);
 
         parent::interact($input, $output);
@@ -111,10 +130,13 @@ EOT
             $dir = getcwd().'/'.$dir;
         }
 
+        $generatorName = $input->getOption('generator');
+        $modelName = $input->getOption('model-name');
+
         $generator = $this->getGenerator();
-        $generator->setGenerator($input->getOption('generator'));
+        $generator->setGenerator($generatorName);
         $generator->setPrefix($input->getOption('prefix'));
-        $generator->generate($namespace, $bundle, $dir, $format, $structure);
+        $generator->generate($namespace, $bundle, $dir, $format, $structure, $generatorName, $modelName);
 
         $output->writeln('Generating the bundle code: <info>OK</info>');
 
