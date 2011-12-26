@@ -77,11 +77,11 @@ EOT
         // Model name
         $modelName = $dialog->askAndValidate($output,
           $dialog->getQuestion('Model name', $input->getOption('model-name')),
-          function($generator) {
-            if(empty($generator) || preg_match('#[^a-zA-Z0-9]#', $generator)) {
+          function($modelName) {
+            if(empty($modelName) || preg_match('#[^a-zA-Z0-9]#', $modelName)) {
               throw new \RuntimeException('Model name should not contain any special characters nor spaces.');
             }
-            return $generator;
+            return $modelName;
           }, false, $input->getOption('model-name')
         );
         $input->setOption('model-name', $modelName);
