@@ -1,0 +1,30 @@
+# Double list form
+double_list.selected: Izbrano
+double_list.unselected: Neizbrano
+
+# Pager
+pagerfanta.previous: Nazaj
+pagerfanta.next: Naprej
+
+# List
+list.no_results: Ni rezultatov
+list.filters: Filtri
+list.filter.btn_filter: Filter
+list.filter.btn_reset: Počisti
+"Display all <b>%count%</b> results": Prikazani vsi rezultati <b>(%count%)</b>
+"Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Prikazani rezultati <b>%start%</b> - <b>%end%</b> od <b>%count%</b>
+list.actions: Akcije
+
+#Object
+object.saved.success: Predmet je bil uspešno shranjen.
+object.saved.error: Predmet ni bil shranjen. Preverite napake in poskusite ponovno.
+object.deleted.success: Predmet je bil uspešno izbrisan.
+object.deleted.error: Predmet ni bil izbrisan.
+
+# Form
+form.btn_save: Shrani
+form.type_collection.add: Dodaj
+
+# Actions
+List: Seznam
+New: Novo
