@@ -1,0 +1,30 @@
+# Double list form
+double_list.selected: ausgewählt
+double_list.unselected: nicht gewählt
+
+# Pager
+pagerfanta.previous: Zurück
+pagerfanta.next: Vor
+
+# List
+list.no_results: Keine Einträge vorhanden
+list.filters: Filter
+list.filter.btn_filter: Filtern
+list.filter.btn_reset: Zurücksetzen
+"Display all <b>%count%</b> results": Zeige alle <b>%count%</b> Datensätze
+"Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Zeige <b>%start%</b> - <b>%end%</b> von <b>%count%</b> Datensätzen
+list.actions: Aktionen
+
+#Object
+object.saved.success: Das Objekt wurde erfolgreich gespeichert
+object.saved.error: Das Formular konnte nicht gespeichert werden. Bitte Fehler prüfen und erneut versuchen.
+object.deleted.success: Der Eintrag wurde erfolgreich gelöscht
+object.deleted.error: Der Eintrag kann nicht gelöscht werden
+
+# Form
+form.btn_save: Speichern
+form.type_collection.add: Hinzufügen
+
+# Actions
+List: Übersicht
+New: Neu
