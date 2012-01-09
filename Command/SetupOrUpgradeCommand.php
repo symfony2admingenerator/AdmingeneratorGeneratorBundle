@@ -311,10 +311,8 @@ EOD;
         return array_merge( $this->getCommonDoctrineDeps(), array(
             'DoctrineMongoDBBundle' => array(
                      'git'                => 'git://github.com/symfony/DoctrineMongoDBBundle.git',
-                     'path'               => '/bundles/Symfony/Bundle/DoctrineMongoDBBundle',
-                     'autoloadKey'        => 'Doctrine\MongoDB',
-                     'autoloadPath'       => '/../vendor/doctrine-mongodb/lib',
-                     'namespace'          => 'Symfony\Bundle\DoctrineMongoDBBundle\DoctrineMongoDBBundle',
+                     'path'               => '/bundles/Doctrine/Bundle/MongoDBBundle',
+                     'namespace'          => 'Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle',
                      'isBundle'           => true,
             ),
             'doctrine-mongodb' => array(
