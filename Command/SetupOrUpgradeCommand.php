@@ -335,8 +335,12 @@ EOD;
     protected function getDoctrineOrmDeps()
     {
         return array_merge( $this->getCommonDoctrineDeps(), array(
-            'DoctrineBundle' => array(
-                     'namespace'          => 'Symfony\Bundle\DoctrineBundle\DoctrineBundle',
+            'DoctrineBundle'        => array(
+                     'git'                => 'git://github.com/doctrine/DoctrineBundle.git',
+                     'path'               => '/bundles/Doctrine/Bundle/DoctrineBundle',
+                     'autoloadKey'        => 'Doctrine\Bundle',
+                     'autoloadPath'       => '/../vendor/bundles',
+                     'namespace'          => 'Doctrine\Bundle\DoctrineBundle\DoctrineBundle',
                      'isBundle'           => true,
             ),
         ));
