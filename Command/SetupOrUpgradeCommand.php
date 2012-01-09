@@ -369,9 +369,9 @@ EOD;
                     'autoloadPath'       => '/../vendor/doctrine-fixtures/lib',
         ),
             'DoctrineFixturesBundle' => array(
-                     'git'                => 'git://github.com/symfony/DoctrineFixturesBundle.git',
-                     'path'               => '/bundles/Symfony/Bundle/DoctrineFixturesBundle',
-                     'namespace'          => 'Symfony\Bundle\DoctrineFixturesBundle\DoctrineFixturesBundle',
+                     'git'                => 'git://github.com/doctrine/DoctrineFixturesBundle.git',
+                     'path'               => '/bundles/Doctrine/Bundle/FixturesBundle',
+                     'namespace'          => 'Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle',
                      'isBundle'           => true,
         ),
             'doctrine' => array(
