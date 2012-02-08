@@ -2,103 +2,58 @@
 
 namespace Admingenerator\GeneratorBundle\Form\Type;
 
-
-use Symfony\Component\Validator\Constraints\ChoiceValidator;
-
-use Symfony\Component\Form\Extension\Core\DataTransformer\ArrayToChoicesTransformer;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-
-use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityChoiceList;
-
-use Symfony\Bridge\Doctrine\RegistryInterface;
-
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 
-use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
-
-class DoctrineDoubleListType extends AbstractType
+class DoctrineDoubleListType extends EntityType
 {
-
-    protected $registry;
-
-    protected $choices;
-
-    public function __construct(RegistryInterface $registry)
-    {
-        $this->registry = $registry;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilder $builder, array $options)
-    {
-         $builder
-               ->prependClientTransformer(new CollectionToArrayTransformer($options['choice_list']))
-               ;
-
-        $this->choices = $options['choice_list']->getChoices();
-
-        unset($options['choices']);
-
-    }
-
-
     /**
      * {@inheritdoc}
      */
     public function buildView(FormView $view, FormInterface $form)
     {
-        $values = $view->get('value');
+        $choiceList = $form->getAttribute('choice_list');
+
+        $choices = $choiceList->getChoices();
+        $indices =  $choiceList->getValuesForChoices($choices);
+        $selectedChoices = $choiceList->getChoicesForValues($view->get('value'));
+        $selectedIndices =  $choiceList->getValuesForChoices($selectedChoices);
 
         $choices_selected = $choices_unselected = array();
 
-        //Rebuilds choices
-        foreach ($this->choices as $key => $choice) {
-            if (isset($values[$key])) {
-                $choices_selected[$key] = $choice;
+        foreach ($indices as $k => $indice) {
+            if (in_array($indice, $selectedIndices)) {
+                $choices_selected[] = array(
+                    'value' => $indice,
+                    'label' => $choices[$indice]
+                );
             } else {
-                $choices_unselected[$key] = $choice;
+                $choices_unselected[] = array(
+                    'value' => $indice,
+                    'label' => $choices[$indice]
+                );
             }
         }
 
-        $view->set('choices_selected', $choices_selected);
+        $view->set('choices_selected',  $choices_selected);
         $view->set('choices_unselected', $choices_unselected);
     }
 
-    public function getParent(array $options)
-    {
-        return 'field';
-    }
-
+    /**
+     * {@inheritdoc}
+     */
     public function getDefaultOptions(array $options)
     {
-        $defaultOptions = array(
-            'em'                => null,
-            'class'             => null,
-            'property'          => null,
-            'query_builder'     => null,
-            'choices'           => null,
-        );
+        $options = parent::getDefaultOptions($options);
+        $options['multiple'] = true;
 
-        $options = array_replace($defaultOptions, $options);
-
-        if (!isset($options['choice_list'])) {
-            $defaultOptions['choice_list'] = new EntityChoiceList(
-                $this->registry->getEntityManager($options['em']),
-                $options['class'],
-                $options['property'],
-                $options['query_builder'],
-                $options['choices']
-            );
-        }
-
-        return $defaultOptions;
+        return $options;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'doctrine_double_list';
