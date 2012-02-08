@@ -4,8 +4,6 @@ namespace Admingenerator\GeneratorBundle\Guesser;
 
 use Admingenerator\GeneratorBundle\Exception\NotImplementedException;
 
-use Symfony\Component\Form\Extension\Core\ChoiceList\ArrayChoiceList;
-
 use Doctrine\ODM\MongoDB\DocumentManager;
 
 class DoctrineODMFieldGuesser
@@ -190,12 +188,10 @@ class DoctrineODMFieldGuesser
 
         if ('boolean' == $dbType)
         {
-            $choices = new ArrayChoiceList(array(
+           $options['choices'] = array(
                     0 => 'No',
                     1 => 'Yes'
-                    ));
-
-           $options['choice_list'] = $choices;
+                    );
            $options['empty_value'] = 'Yes or No';
         }
 

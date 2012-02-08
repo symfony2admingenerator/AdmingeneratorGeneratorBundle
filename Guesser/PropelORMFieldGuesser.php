@@ -6,9 +6,6 @@ use Doctrine\Common\Util\Inflector;
 
 use Admingenerator\GeneratorBundle\Exception\NotImplementedException;
 
-use Symfony\Component\Form\Extension\Core\ChoiceList\ArrayChoiceList;
-
-
 class PropelORMFieldGuesser
 {
 
@@ -186,12 +183,10 @@ class PropelORMFieldGuesser
 
         if (\PropelColumnTypes::BOOLEAN == $dbType || \PropelColumnTypes::BOOLEAN_EMU == $dbType)
         {
-            $choices = new ArrayChoiceList(array(
+           $options['choices'] = array(
                     0 => 'No',
                     1 => 'Yes'
-                    ));
-
-           $options['choice_list'] = $choices;
+                    );
            $options['empty_value'] = 'Yes or No';
         }
 
