@@ -17,9 +17,7 @@ use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 
-use Symfony\Bridge\Doctrine\Form\EventListener\MergeCollectionListener;
-use Symfony\Bridge\Doctrine\Form\DataTransformer\EntitiesToArrayTransformer;
-use Symfony\Bridge\Doctrine\Form\DataTransformer\EntityToIdTransformer;
+use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
 
 class DoctrineDoubleListType extends AbstractType
 {
@@ -39,7 +37,7 @@ class DoctrineDoubleListType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
          $builder
-               ->prependClientTransformer(new EntitiesToArrayTransformer($options['choice_list']))
+               ->prependClientTransformer(new CollectionToArrayTransformer($options['choice_list']))
                ;
 
         $this->choices = $options['choice_list']->getChoices();
@@ -56,12 +54,11 @@ class DoctrineDoubleListType extends AbstractType
     {
         $values = $view->get('value');
 
-        $selecteds = array_flip($values);
         $choices_selected = $choices_unselected = array();
 
         //Rebuilds choices
         foreach ($this->choices as $key => $choice) {
-            if (isset($selecteds[$key])) {
+            if (isset($values[$key])) {
                 $choices_selected[$key] = $choice;
             } else {
                 $choices_unselected[$key] = $choice;
@@ -84,7 +81,7 @@ class DoctrineDoubleListType extends AbstractType
             'class'             => null,
             'property'          => null,
             'query_builder'     => null,
-            'choices'           => array(),
+            'choices'           => null,
         );
 
         $options = array_replace($defaultOptions, $options);
