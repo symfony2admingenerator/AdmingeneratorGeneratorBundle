@@ -87,7 +87,12 @@ class ControllerListener
         $finder->files()
                ->name($generatorName);
 
-        $namespace_directory = realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$dir.'/Resources/config');
+
+        if (is_dir($src = realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$dir.'/Resources/config'))) {
+            $namespace_directory = $src;
+        } else {
+            $namespace_directory = realpath($this->container->getParameter('kernel.root_dir').'/../vendor/bundles/'.$dir.'/Resources/config');
+        }
 
         if (is_dir($namespace_directory)) {
             $finder->in($namespace_directory);
