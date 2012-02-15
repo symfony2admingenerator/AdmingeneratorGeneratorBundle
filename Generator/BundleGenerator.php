@@ -5,7 +5,7 @@ namespace Admingenerator\GeneratorBundle\Generator;
 
 use Sensio\Bundle\GeneratorBundle\Generator\Generator as BaseBundleGenerator;
 
-use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpKernel\Util\Filesystem;
 use Symfony\Component\DependencyInjection\Container;
 
 /**
