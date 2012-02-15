@@ -27,6 +27,13 @@ class QueryFilterTest extends TestCase
 
         $this->assertEquals('SELECT q FROM Admingenerator\GeneratorBundle\Tests\QueryFilter\Entity\Movie q WHERE q.title LIKE :title', $this->queryFilter->getQuery()->getDql());
     }
+    
+    public function testAddTextFilter()
+    {
+        $this->queryFilter->addTextFilter('desc', 'test');
+
+        $this->assertEquals('SELECT q FROM Admingenerator\GeneratorBundle\Tests\QueryFilter\Entity\Movie q WHERE q.desc LIKE :desc', $this->queryFilter->getQuery()->getDql());
+    }
 
     public function testAddDefaultFilter()
     {
