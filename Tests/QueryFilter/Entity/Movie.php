@@ -21,7 +21,12 @@ class Movie
      * @ORM\Index
      */
     protected $title;
-
+    
+    /**
+     * @ORM\Column(type="text", nullable="true")
+     * @ORM\Index
+     */
+    protected $desc;
 
     /**
      * @ORM\Column(type="boolean", nullable="true")
@@ -56,6 +61,26 @@ class Movie
     public function getTitle()
     {
         return $this->title;
+    }
+    
+    /**
+     * Set desc
+     *
+     * @param string $desc
+     */
+    public function setDesc($desc)
+    {
+        $this->desc = $desc;
+    }
+
+    /**
+     * Get desc
+     *
+     * @return string
+     */
+    public function getDesc()
+    {
+        return $this->desc;
     }
 
     /**
