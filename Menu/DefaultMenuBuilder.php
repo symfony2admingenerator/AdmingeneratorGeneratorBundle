@@ -24,11 +24,9 @@ class DefaultMenuBuilder
      */
     public function createAdminMenu(Request $request)
     {
-        $menu = $this->factory->createItem('root');
+        $menu = $this->factory->createItem('root', array('childrenAttributes' => array('id' => 'main_navigation', 'class'=>'menu') ) );
 
         $menu->setCurrentUri($request->getRequestUri());
-
-        $menu->setAttributes(array('id' => 'main_navigation', 'class'=>'menu'));
 
         $help = $menu->addChild('Overwrite this menu', array('uri' => '#'));
         $help->setLinkAttributes(array('class'=>'sub main'));
