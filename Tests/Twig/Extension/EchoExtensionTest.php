@@ -136,12 +136,16 @@ class EchoExtensionTest extends TestCase
             'string' => '{{ echo_if ( "a = b" ) }}',
             'variable' => '{{ echo_if ( name ~ " = \'cedric\'" ) }}',
             'array' => '{{ echo_if ( arr.obj ) }}',
+            'boolean_true' => '{{ echo_if ( true ) }}',
+            'boolean_false' => '{{ echo_if ( false ) }}',
         );
 
         $returns = array(
              'string' => array('{% if a = b %}', 'If return a good If tag with string elements'),
              'variable' => array('{% if cedric = \'cedric\' %}', 'If return a good If tag with variable'),
              'array' => array('{% if val %}', 'If return a good If tag with array element'),
+             'boolean_true' => array('{% if 1 %}', 'If return a good If tag with boolean true variable'),
+             'boolean_false' => array('{% if 0 %}', 'If return a good If tag with boolean false variable'),
         );
 
        $this->runTwigTests($tpls, $returns);
@@ -168,12 +172,16 @@ class EchoExtensionTest extends TestCase
             'string' => '{{ echo_elseif ( "a = b" ) }}',
             'variable' => '{{ echo_elseif ( name ~ " = \'cedric\'" ) }}',
             'array' => '{{ echo_elseif ( arr.obj ) }}',
+            'boolean_true' => '{{ echo_elseif ( true ) }}',
+            'boolean_false' => '{{ echo_elseif ( false ) }}',
         );
 
         $returns = array(
              'string' => array('{% elseif a = b %}', 'Else If return a good Else If tag with string elements'),
              'variable' => array('{% elseif cedric = \'cedric\' %}', 'Else If return a good Else If tag with variable'),
              'array' => array('{% elseif val %}', 'Else If return a good Else If tag with array element'),
+             'boolean_true' => array('{% elseif 1 %}', 'Else If return a good Else If tag with boolean true variable'),
+             'boolean_false' => array('{% elseif 0 %}', 'Else If return a good Else If tag with boolean false variable'),
         );
 
        $this->runTwigTests($tpls, $returns);
