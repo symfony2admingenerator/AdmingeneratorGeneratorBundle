@@ -155,11 +155,17 @@ class EchoExtension extends \Twig_Extension
 
     public function getEchoIf($condition)
     {
+        if( is_bool( $condition ) ) {
+            $condition = intval( $condition );
+        }
         return str_replace('%%condition%%', $condition, '{% if %%condition%% %}');
     }
 
     public function getEchoElseIf($condition)
     {
+        if( is_bool( $condition ) ) {
+            $condition = intval( $condition );
+        }
         return str_replace('%%condition%%', $condition, '{% elseif %%condition%% %}');
     }
 
