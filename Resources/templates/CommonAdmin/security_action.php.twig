@@ -5,6 +5,25 @@ use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 {% endif %}
 {% endblock %}
 
+{% block security_check_with_object %}
+{% if credentials is defined %}
+    /**
+     * Check user credentials {{ credentials }}
+     *
+     * @param \{{ model }} ${{ builder.ModelClass }}
+     * @throw AccessDeniedException if is not allowed
+     */
+    protected function checkCredentials(\{{ model }} ${{ builder.ModelClass }})
+    {
+        $securityContext = $this->get('security.context');
+
+        if (false === $securityContext->isGranted(array(new Expression('{{ credentials }}', ${{ builder.ModelClass }})))) {
+            throw new AccessDeniedException();
+        }
+    }
+{% endif %}
+{% endblock %}
+
 {% block security_check %}
 {% if credentials is defined %}
     /**
@@ -26,5 +45,11 @@ use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 {% block security_action %}
 {% if credentials is defined %}
 $this->checkCredentials();
+{% endif %}
+{% endblock %}
+
+{% block security_action_with_object %}
+{% if credentials is defined %}
+$this->checkCredentials(${{ builder.ModelClass }});
 {% endif %}
 {% endblock %}
