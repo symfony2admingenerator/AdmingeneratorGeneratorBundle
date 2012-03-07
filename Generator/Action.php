@@ -30,6 +30,11 @@ class Action
         return $this->name;
     }
 
+    public function setLabel($name)
+    {
+        $this->name = $name;
+    }
+
     public function getLabel()
     {
         return $this->humanize($this->getName());
