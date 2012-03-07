@@ -14,6 +14,8 @@ class Action
 {
     protected $name;
 
+    protected $label;
+
     protected $route;
 
     protected $confirm_message;
@@ -30,8 +32,16 @@ class Action
         return $this->name;
     }
 
+    public function setLabel($label)
+    {
+        $this->label = $label;
+    }
+
     public function getLabel()
     {
+        if ( isset ($this->label) ) {
+            return $this->label;
+        }
         return $this->humanize($this->getName());
     }
 
