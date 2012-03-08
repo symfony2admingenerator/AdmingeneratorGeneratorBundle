@@ -148,24 +148,30 @@ class EchoExtension extends \Twig_Extension
         return strtr('{{ path("%%path%%", %%params%%) }}',array('%%path%%' => $path, '%%params%%'=>$params));
     }
 
-    public function getEchoIfGranted($credentials)
+    public function getEchoIfGranted($credentials, $modelName = null)
     {
-       return $this->getEchoIf('is_expr_granted(\''.$credentials.'\')');
+       if (null === $modelName) {
+            return $this->getEchoIf('is_expr_granted(\''.$credentials.'\')');
+       }
+
+       return $this->getEchoIf('is_expr_granted(\''.$credentials.'\', '.$modelName.')');
     }
 
     public function getEchoIf($condition)
     {
-        if( is_bool( $condition ) ) {
+        if ( is_bool( $condition ) ) {
             $condition = intval( $condition );
         }
+
         return str_replace('%%condition%%', $condition, '{% if %%condition%% %}');
     }
 
     public function getEchoElseIf($condition)
     {
-        if( is_bool( $condition ) ) {
+        if ( is_bool( $condition ) ) {
             $condition = intval( $condition );
         }
+
         return str_replace('%%condition%%', $condition, '{% elseif %%condition%% %}');
     }
 

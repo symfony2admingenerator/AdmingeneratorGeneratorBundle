@@ -21,7 +21,7 @@ class Movie
      * @ORM\Index
      */
     protected $title;
-    
+
     /**
      * @ORM\Column(type="text", nullable="true")
      * @ORM\Index
@@ -62,7 +62,7 @@ class Movie
     {
         return $this->title;
     }
-    
+
     /**
      * Set desc
      *

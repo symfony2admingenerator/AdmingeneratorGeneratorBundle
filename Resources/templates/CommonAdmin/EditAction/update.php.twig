@@ -5,9 +5,9 @@
 
     public function updateAction($id)
     {
-        {{ block('security_action') }}
-
         ${{ builder.ModelClass }} = $this->getObject($id);
+
+        {{ block('security_action_with_object') }}
 
         if (!${{ builder.ModelClass }}) {
             throw new NotFoundHttpException("The {{ model }} with id $id can't be found");
