@@ -6,7 +6,7 @@
         try {
             ${{ builder.ModelClass }} = $this->getObject($id);
 
-            {{ block('security_action_with_object') }}
+            {{ block('security_action_with_object') -}}
 
             $this->process(${{ builder.ModelClass }});
             $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ messages.success is defined ? messages.success : "object.deleted.success" }}", array(), 'Admingenerator') );
