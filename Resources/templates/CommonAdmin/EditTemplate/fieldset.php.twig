@@ -9,7 +9,7 @@
     <div class="form_row">
                 {% for field in rows %}
                 {% if builder.Columns[field].credentials %}
-                      {{ echo_if_granted(builder.Columns[field].credentials) }}
+                      {{ echo_if_granted(builder.Columns[field].credentials, builder.ModelClass) }}
                 {% endif %}
                 <div class="form_field">
                     {{ echo_block("form_" ~ field) }}
