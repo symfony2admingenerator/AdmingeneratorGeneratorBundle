@@ -16,7 +16,7 @@
 
     protected function process(\{{ model }} ${{ builder.ModelClass }})
     {
-        $em = $this->getDoctrine()->getEntityManager()
+        $em = $this->getDoctrine()->getEntityManager();
         $em->remove(${{ builder.ModelClass }});
         $em->flush();
         $em->clear();
