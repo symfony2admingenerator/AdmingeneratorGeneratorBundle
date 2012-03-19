@@ -18,7 +18,7 @@ With almost the same features:
 * Configure more that one field per line
 * Change the database column you want to sortOn or filterOn for a field in list
 * A complete admin design
-* Translated into EN, FR, RU, PT, ES, SL, DE , PL (you can easily contribute to add your own)
+* Translated into EN, FR, RU, PT, ES, SL, DE , PL, UK(you can easily contribute to add your own)
 * Filters by form & by scopes combinable
 * Credentials for actions, columns, and form fields
 * ...
