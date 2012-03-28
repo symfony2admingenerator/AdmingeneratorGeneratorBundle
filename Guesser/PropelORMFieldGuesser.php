@@ -201,6 +201,19 @@ class PropelORMFieldGuesser
         return $options;
     }
 
+    /**
+     * Find the pk name
+     */
+    public function getModelPrimaryKeyName()
+    {
+        $pks = $this->getMetadatas()->getPrimaryKeyColumns();
+
+        if (count($pks) == 1) {
+            return $pks[0]->getName();
+        }
+
+        throw new \LogicException('No valid primary keys found');
+    }
 
     protected function getTable($class)
     {
