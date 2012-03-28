@@ -1,11 +1,11 @@
 {% extends '../CommonAdmin/DeleteAction/DeleteBuilderAction.php.twig' %}
 {% block process -%}
-    protected function getObject($id)
+    protected function getObject($pk})
     {
-        ${{ builder.ModelClass }} = \{{ model }}Query::create()->findOneById($id);
+        ${{ builder.ModelClass }} = \{{ model }}Query::create()->findPk($pk);
 
         if (!${{ builder.ModelClass }}) {
-            throw new \InvalidArgumentException("No {{ model }} found on id : $id");
+            throw new \InvalidArgumentException("No {{ model }} found on {{ builder.ModelPrimaryKeyName }} : $pk");
         }
 
         return ${{ builder.ModelClass }};

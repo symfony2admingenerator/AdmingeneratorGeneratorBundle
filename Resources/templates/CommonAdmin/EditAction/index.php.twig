@@ -6,14 +6,14 @@ use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ bu
 {% endblock %}
 {% block index %}
 
-    public function indexAction($id)
+    public function indexAction($pk)
     {
-        ${{ builder.ModelClass }} = $this->getObject($id);
+        ${{ builder.ModelClass }} = $this->getObject($pk);
 
         {{ block('security_action_with_object') }}
 
         if (!${{ builder.ModelClass }}) {
-            throw new NotFoundHttpException("The {{ model }} with id $id can't be found");
+            throw new NotFoundHttpException("The {{ model }} with {{ builder.ModelPrimaryKeyName }} $pk can't be found");
         }
 
         $type = new EditType();
