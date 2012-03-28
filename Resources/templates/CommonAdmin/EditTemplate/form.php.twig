@@ -16,12 +16,16 @@
         {% for fieldset in builder.fieldsets|keys %}
             {{- block('form_fieldset') }}
         {% endfor -%}
+
+        {{ echo_twig("form_rest(form)") }}
+
+        {{ echo_block("form_buttons") }}
         <ul class="actions">
             <li>
-                 {{ echo_twig("form_rest(form)") }}
                  <input type="submit" class="submit_button" value="{{ echo_trans('form.btn_save') }}" />
             </li>
         </ul>
+        {{ echo_endblock() }}
 
         {{ block("form_actions") }}
     </form>
