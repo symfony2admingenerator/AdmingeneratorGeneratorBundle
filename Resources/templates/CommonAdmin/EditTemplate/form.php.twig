@@ -4,8 +4,8 @@
 
     {{ echo_block('form') }}
     <form
-        {{ echo_if (builder.ModelClass ~ ".id") }}
-            action="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_update", "{ 'id': " ~ builder.ModelClass ~ ".id }" ) }}"
+        {{ echo_if (builder.ModelClass ~ "." ~ builder.ModelPrimaryKeyName ) }}
+            action="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_update", "{ 'pk': " ~ builder.ModelClass ~ "."~ builder.ModelPrimaryKeyName ~ " }" ) }}"
         {{ echo_else() }}
             action="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_create" ) }}"
         {{ echo_endif () }}
