@@ -1,7 +1,7 @@
 {% use '../CommonAdmin/security_action.php.twig' %}
 {% block index %}
 
-    public function indexAction($pk})
+    public function indexAction($pk)
     {
         try {
             ${{ builder.ModelClass }} = $this->getObject($pk);
