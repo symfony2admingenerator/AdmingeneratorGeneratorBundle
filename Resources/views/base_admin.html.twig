@@ -49,12 +49,12 @@
         </div>
         <div id="content">
             {% block flashes %}
-                {% if app.session.flash('success') %}
+                {% if app.session.hasFlash('success') %}
                     <div class="notification_box success">
                         {{ app.session.flash('success')|raw }}
                     </div>
                 {% endif %}
-                {% if app.session.flash('error') %}
+                {% if app.session.hasFlash('error') %}
                     <div class="notification_box error">
                         {{ app.session.flash('error')|raw }}
                     </div>
