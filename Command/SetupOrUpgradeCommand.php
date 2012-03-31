@@ -117,7 +117,7 @@ EOT
             '<comment>    expressions</comment>: <info>true</info>',
         ));
 
-         if ('yes' == $useAssetic) {
+         if (isset($useAssetic) && 'yes' == $useAssetic) {
               $output->writeln(array(
                 '',
                 'Check your <comment>assetic</comment> configuration ',
