@@ -1,4 +1,3 @@
 {% block column_decimal %}
-{# Need to implement a config for date formats #}
 {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|number_format') -}}
 {% endblock %}
