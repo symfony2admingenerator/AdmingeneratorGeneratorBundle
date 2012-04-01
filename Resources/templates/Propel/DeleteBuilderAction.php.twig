@@ -1,6 +1,6 @@
 {% extends '../CommonAdmin/DeleteAction/DeleteBuilderAction.php.twig' %}
 {% block process -%}
-    protected function getObject($pk})
+    protected function getObject($pk)
     {
         ${{ builder.ModelClass }} = \{{ model }}Query::create()->findPk($pk);
 
