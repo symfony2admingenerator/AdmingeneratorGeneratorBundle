@@ -17,7 +17,7 @@
                     {%- elseif (column.dbType|lower == "datetime") or (column.dbType|lower == "vardatetime") or (column.dbType|lower == "datetimetz") -%}
                         {{- block('column_datetime') -}}
                     {%- elseif column.dbType|lower == "decimal" -%}
-                        {{- block('column_decimal') -}}                    
+                        {{- block('column_decimal') -}}
                     {%- else -%}
                         {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter) -}}
                     {%- endif -%}
