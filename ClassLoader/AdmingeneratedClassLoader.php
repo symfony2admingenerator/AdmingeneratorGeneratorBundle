@@ -51,7 +51,7 @@ class AdmingeneratedClassLoader
 
     protected function generateEmptyController($class)
     {
-        $generator = new EmptyGenerator();
+        $generator = new EmptyGenerator($this->base_path);
 
         list($admingenerated, $bundle, $baseController, $controllerName) = explode('\\',$class);
 
