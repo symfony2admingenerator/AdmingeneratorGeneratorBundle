@@ -30,11 +30,12 @@ class Generator extends TwigGeneratorGenerator
     /**
      * Init a new generator and automatically define the base of tempDir
      *
+     * @param Filepath $cacheDir
      * @param Filepath $yaml
      */
-    public function __construct($yaml)
+    public function __construct($cacheDir, $yaml)
     {
-        parent::__construct();
+        parent::__construct($cacheDir);
         $this->setYamlConfig(Yaml::parse($yaml));
     }
 
