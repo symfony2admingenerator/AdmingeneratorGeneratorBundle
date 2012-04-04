@@ -22,7 +22,7 @@ class EmptyGenerator extends Generator
         if (null === $baseTempDir) {
             $baseTempDir = realpath(sys_get_temp_dir());
         }
-        
+
         $this->tempDir = $baseTempDir.DIRECTORY_SEPARATOR.self::TEMP_DIR_PREFIX;
 
         if (!is_dir($this->tempDir)) {
