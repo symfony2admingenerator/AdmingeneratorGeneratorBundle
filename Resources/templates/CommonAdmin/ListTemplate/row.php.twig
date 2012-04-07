@@ -8,7 +8,7 @@
     {% if column.credentials %}
           {{ echo_if_granted(column.credentials) }}
     {% endif %}
-            <td>
+            <td class="td_{{ column.dbType }} td_{{ column.name }}">
                     {{ echo_block('list_td_column_' ~ column.name) -}}
                     {%- if column.dbType|lower == "boolean" -%}
                         {{- block('column_boolean') -}}
