@@ -44,6 +44,9 @@ class ControllerListener
             }
         }
 
+        $twig_params = $this->container->getParameter('admingenerator.twig');
+        $this->container->get('twig')->getExtension('core')->setDateFormat($twig_params['date_format'], '%d days');
+        $this->container->get('twig')->getExtension('core')->setNumberFormat($twig_params['number'], $twig_params['decimal_point'], $twig_params['thousands_separator']);
     }
 
     protected function getGenerator($generatorYaml)
