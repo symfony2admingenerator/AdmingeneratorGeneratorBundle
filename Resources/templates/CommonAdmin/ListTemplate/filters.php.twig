@@ -8,7 +8,7 @@
               {{ echo_if_granted(builder.filterColumns[field.name].credentials) }}
         {% endif %}
          <div class="form_row">
-             <div class="form_field">
+             <div class="form_field field_{{ field.formType }} field_{{ field.name }}">
                 {{ echo_twig("form_label(form['" ~ field.name ~ "'], '" ~ builder.FilterColumns[field.name].label|addslashes ~ "' )") }}
                 {{ echo_twig("form_widget(form['" ~ field.name ~ "'])") }}
                 {{ echo_twig("form_errors(form['" ~ field.name ~ "'])") }}

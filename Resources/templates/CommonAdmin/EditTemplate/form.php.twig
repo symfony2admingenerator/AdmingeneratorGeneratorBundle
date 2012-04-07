@@ -19,6 +19,8 @@
 
         {{ echo_twig("form_rest(form)") }}
 
+        {{ block("form_actions") }}
+
         {{ echo_block("form_buttons") }}
         <ul class="actions">
             <li>
@@ -26,8 +28,6 @@
             </li>
         </ul>
         {{ echo_endblock() }}
-
-        {{ block("form_actions") }}
     </form>
     {{ echo_endblock() }}
 {% endblock %}
