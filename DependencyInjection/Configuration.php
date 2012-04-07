@@ -26,12 +26,20 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-            ->booleanNode('use_doctrine_orm')->defaultFalse()->end()
-            ->booleanNode('use_doctrine_odm')->defaultFalse()->end()
-            ->booleanNode('use_propel')->defaultFalse()->end()
-            ->booleanNode('overwrite_if_exists')->defaultFalse()->end()
-            ->scalarNode('base_admin_template')->defaultValue("AdmingeneratorGeneratorBundle::base_admin.html.twig")->end()
-            ->scalarNode('knp_menu_class')->defaultValue("Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder")->end()
+                ->booleanNode('use_doctrine_orm')->defaultFalse()->end()
+                ->booleanNode('use_doctrine_odm')->defaultFalse()->end()
+                ->booleanNode('use_propel')->defaultFalse()->end()
+                ->booleanNode('overwrite_if_exists')->defaultFalse()->end()
+                ->scalarNode('base_admin_template')->defaultValue("AdmingeneratorGeneratorBundle::base_admin.html.twig")->end()
+                ->scalarNode('knp_menu_class')->defaultValue("Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder")->end()
+                ->arrayNode('twig')
+                    ->children()
+                        ->scalarNode('date_format')->defaultValue('Y-m-d')->end()
+                        ->scalarNode('number')->defaultValue(0)->end()
+                        ->scalarNode('decimal_point')->defaultValue('.')->end()
+                        ->scalarNode('thousands_separator')->defaultValue(',')->end()
+                    ->end()
+                ->end()   
             ->end();
 
         return $treeBuilder;
