@@ -41,7 +41,9 @@ class AdmingeneratorGeneratorExtension extends Extension
         $resources[] = 'AdmingeneratorGeneratorBundle:Form:fields.html.twig';
         $container->setParameter('twig.form.resources', $resources);
         
-        $container->setParameter('admingenerator.twig', $config['twig']);
+        if (isset($config['twig'])) {
+            $container->setParameter('admingenerator.twig', $config['twig']);
+        }
     }
 
     public function getAlias()
