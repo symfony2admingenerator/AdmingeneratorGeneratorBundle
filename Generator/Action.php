@@ -22,6 +22,8 @@ class Action
 
     protected $crendentials;
 
+    protected $params;
+
     public function __construct($name)
     {
         $this->name = $name;
@@ -79,6 +81,16 @@ class Action
     {
         $option = Inflector::classify($option);
         call_user_func_array(array($this, 'set'.$option), array($value));
+    }
+
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function setParams(array $params)
+    {
+        $this->params = $params;
     }
 
     public function setRoute($route)

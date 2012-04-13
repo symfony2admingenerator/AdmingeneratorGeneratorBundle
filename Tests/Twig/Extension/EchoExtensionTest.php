@@ -311,6 +311,27 @@ class EchoExtensionTest extends TestCase
        $this->runTwigTests($tpls, $returns);
     }
 
+    public function testGetTwigAssoc()
+    {
+        $tpls = array(
+            'single_value' => "{{ echo_twig_assoc({a: '1'}) }}",
+            'several_values' => "{{ echo_twig_assoc({alpha: 'abcde', beta: '12345'}) }}",
+            'incomplete_variables' => "{{ echo_twig_assoc({a:'{{ Item.id '}) }}",
+            'complete_valiables' => "{{ echo_twig_assoc({a:'{{ Item.id }}'}) }}",
+            'mixed_values' => "{{ echo_twig_assoc({a:'{{ Item.id }}', b:'Item.id }}', c: 'abcde'}) }}",
+        );
+
+        $returns = array(
+            'single_value' => array("{ a: '1' }", 'Append a single hardcoded value to the route'),
+            'several_values' => array("{ alpha: 'abcde', beta: '12345' }", 'Several values are appended correctly'),
+            'incomplete_variables' => array("{ a: '{{ Item.id ' }", 'Variables with unclosed {{ }} are quoted'),
+            'complete_valiables' => array("{ a: Item.id }", 'Variables are passed w/o surrounding {{ }}'),
+            'mixed_values' => array("{ a: Item.id, b: 'Item.id }}', c: 'abcde' }", 'Several values in the same expression'),
+        );
+
+        $this->runTwigTests($tpls, $returns);
+    }
+
     protected function runTwigTests($tpls, $returns)
     {
         $twig = $this->getEnvironment(false, array(), $tpls);
