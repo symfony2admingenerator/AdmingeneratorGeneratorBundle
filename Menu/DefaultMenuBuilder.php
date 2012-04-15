@@ -24,7 +24,7 @@ class DefaultMenuBuilder
      */
     public function createAdminMenu(Request $request)
     {
-        $menu = $this->factory->createItem('root', array('childrenAttributes' => array('id' => 'main_navigation', 'class'=>'menu') ) );
+        $menu = $this->factory->createItem('root', array('attributes' => array('id' => 'main_navigation', 'class'=>'menu') ) );
 
         $menu->setCurrentUri($request->getRequestUri());
 
