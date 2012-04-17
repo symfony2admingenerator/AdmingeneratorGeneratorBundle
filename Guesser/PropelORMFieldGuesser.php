@@ -30,7 +30,7 @@ class PropelORMFieldGuesser
         $return = array();
 
         foreach ($this->getMetadatas($class)->getColumns() as $column) {
-            $return[] = $column->getName();
+            $return[] = strtolower($column->getName());
         }
 
         return $return;
