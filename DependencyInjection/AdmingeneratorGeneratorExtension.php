@@ -35,10 +35,15 @@ class AdmingeneratorGeneratorExtension extends Extension
         $container->setParameter('admingenerator.overwrite_if_exists', $config['overwrite_if_exists']);
         $container->setParameter('admingenerator.base_admin_template', $config['base_admin_template']);
         $container->setParameter('admingeneretor.menu_builder.class', $config['knp_menu_class']);
+        $container->setParameter('session.flashbag.class', 'Symfony\Component\HttpFoundation\Session\Flash\FlashBag');
 
         $resources = $container->getParameter('twig.form.resources');
         $resources[] = 'AdmingeneratorGeneratorBundle:Form:fields.html.twig';
         $container->setParameter('twig.form.resources', $resources);
+        
+        if (isset($config['twig'])) {
+            $container->setParameter('admingenerator.twig', $config['twig']);
+        }
     }
 
     public function getAlias()

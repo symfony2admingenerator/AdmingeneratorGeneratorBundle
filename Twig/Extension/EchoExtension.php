@@ -39,6 +39,7 @@ class EchoExtension extends \Twig_Extension
             'echo_path'       => new \Twig_Function_Method($this, 'getEchoPath'),
             'echo_set'        => new \Twig_Function_Method($this, 'getEchoSet'),
             'echo_trans'      => new \Twig_Function_Method($this, 'getEchoTrans'),
+            'echo_twig_assoc' => new \Twig_Function_Method($this, 'getEchoTwigAssoc'),
         );
     }
 
@@ -148,24 +149,30 @@ class EchoExtension extends \Twig_Extension
         return strtr('{{ path("%%path%%", %%params%%) }}',array('%%path%%' => $path, '%%params%%'=>$params));
     }
 
-    public function getEchoIfGranted($credentials)
+    public function getEchoIfGranted($credentials, $modelName = null)
     {
-       return $this->getEchoIf('is_expr_granted(\''.$credentials.'\')');
+       if (null === $modelName) {
+            return $this->getEchoIf('is_expr_granted(\''.$credentials.'\')');
+       }
+
+       return $this->getEchoIf('is_expr_granted(\''.$credentials.'\', '.$modelName.')');
     }
 
     public function getEchoIf($condition)
     {
-        if( is_bool( $condition ) ) {
+        if ( is_bool( $condition ) ) {
             $condition = intval( $condition );
         }
+
         return str_replace('%%condition%%', $condition, '{% if %%condition%% %}');
     }
 
     public function getEchoElseIf($condition)
     {
-        if( is_bool( $condition ) ) {
+        if ( is_bool( $condition ) ) {
             $condition = intval( $condition );
         }
+
         return str_replace('%%condition%%', $condition, '{% elseif %%condition%% %}');
     }
 
@@ -207,6 +214,44 @@ class EchoExtension extends \Twig_Extension
     public function getEchoEndFor()
     {
         return '{% endfor %}';
+    }
+
+    /**
+     * Converts an assoc array to a twig array expression (string).
+     * Only in case a value contains '{{' and '}}' the value won't be
+     * wrapped in quotes.
+     *
+     * An array like:
+     * <code>
+     * $array = array('a' => 'b', 'c' => 'd');
+     * </code>
+     *
+     * Will be converted to:
+     * <code>
+     * "{ a: 'b', c: 'd' }"
+     * </code>
+     *
+     * @return string The parameters to be used in a URL
+     */
+    public function getEchoTwigAssoc(array $arr)
+    {
+        $contents = array();
+        foreach ($arr as $key => $value)
+        {
+            if (!strstr($value, '{{')
+                || !strstr($value, '}}'))
+            {
+                $value = "'$value'";
+            }
+            else
+            {
+                $value = trim(str_replace(array('{{', '}}'), '', $value));
+            }
+
+            $contents[] = "$key: $value";
+        }
+
+        return '{ ' . implode(', ', $contents) . ' }';
     }
 
     /**

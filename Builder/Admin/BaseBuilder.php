@@ -246,4 +246,14 @@ class BaseBuilder extends GenericBaseBuilder
     {
         return $this->getVariable('namespace_prefix') . ($this->hasVariable('subfolder') ? '_' . $this->getVariable('subfolder') : '');
     }
+
+    /**
+     * Get the PK column name
+     *
+     * @return string parameter
+     */
+    public function getModelPrimaryKeyName()
+    {
+        return $this->getGenerator()->getFieldGuesser()->getModelPrimaryKeyName();
+    }
 }

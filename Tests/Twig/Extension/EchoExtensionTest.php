@@ -156,11 +156,13 @@ class EchoExtensionTest extends TestCase
         $tpls = array(
             'simple'  => '{{ echo_if_granted ( "hasRole(\'ROLE_A\')" ) }}',
             'complex' => '{{ echo_if_granted ( "hasRole(\'ROLE_A\')\') or (hasRole(\'ROLE_B\') and hasRole(\'ROLE_C\')" ) }}',
+            'with_object' => '{{ echo_if_granted ( "hasRole(\'ROLE_A\')", \'modelName\' ) }}',
         );
 
         $returns = array(
             'simple'  => array('{% if is_expr_granted(\'hasRole(\'ROLE_A\')\') %}', 'If granted work with a simple role'),
             'complex' => array('{% if is_expr_granted(\'hasRole(\'ROLE_A\')\') or (hasRole(\'ROLE_B\') and hasRole(\'ROLE_C\')\') %}', 'If granted work with a complex role expression'),
+            'with_object' => array('{% if is_expr_granted(\'hasRole(\'ROLE_A\')\', modelName) %}', 'If granted work with an object'),
         );
 
         $this->runTwigTests($tpls, $returns);
@@ -309,6 +311,27 @@ class EchoExtensionTest extends TestCase
         );
 
        $this->runTwigTests($tpls, $returns);
+    }
+
+    public function testGetTwigAssoc()
+    {
+        $tpls = array(
+            'single_value' => "{{ echo_twig_assoc({a: '1'}) }}",
+            'several_values' => "{{ echo_twig_assoc({alpha: 'abcde', beta: '12345'}) }}",
+            'incomplete_variables' => "{{ echo_twig_assoc({a:'{{ Item.id '}) }}",
+            'complete_valiables' => "{{ echo_twig_assoc({a:'{{ Item.id }}'}) }}",
+            'mixed_values' => "{{ echo_twig_assoc({a:'{{ Item.id }}', b:'Item.id }}', c: 'abcde'}) }}",
+        );
+
+        $returns = array(
+            'single_value' => array("{ a: '1' }", 'Append a single hardcoded value to the route'),
+            'several_values' => array("{ alpha: 'abcde', beta: '12345' }", 'Several values are appended correctly'),
+            'incomplete_variables' => array("{ a: '{{ Item.id ' }", 'Variables with unclosed {{ }} are quoted'),
+            'complete_valiables' => array("{ a: Item.id }", 'Variables are passed w/o surrounding {{ }}'),
+            'mixed_values' => array("{ a: Item.id, b: 'Item.id }}', c: 'abcde' }", 'Several values in the same expression'),
+        );
+
+        $this->runTwigTests($tpls, $returns);
     }
 
     protected function runTwigTests($tpls, $returns)

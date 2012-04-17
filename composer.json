@@ -17,8 +17,10 @@
         }
     ],
     "require": {
-        "symfony/symfony": ">=2.0.0",
-        "cedriclombardot/twig-generator": "dev-master"
+        "symfony/symfony": "2.1.*",
+        "cedriclombardot/twig-generator": "dev-master",
+        "knplabs/knp-menu-bundle": "dev-master",
+        "white-october/pagerfanta-bundle": "dev-master"
     },
     "target-dir": "Admingenerator/GeneratorBundle",
     "autoload": {

@@ -205,4 +205,11 @@ class DoctrineODMFieldGuesser
         return $options;
     }
 
+    /**
+     * Find the pk name
+     */
+    public function getModelPrimaryKeyName()
+    {
+        return $this->getMetadatas()->getIdentifier();
+    }
 }
