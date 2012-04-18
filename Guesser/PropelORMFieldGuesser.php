@@ -71,6 +71,8 @@ class PropelORMFieldGuesser
     public function getFormType($dbType, $columnName)
     {
         switch($dbType) {
+            case \PropelColumnTypes::ENUM:
+                return 'choice';
             case \PropelColumnTypes::BOOLEAN:
             case \PropelColumnTypes::BOOLEAN_EMU:
                 return 'checkbox';
@@ -163,6 +165,15 @@ class PropelORMFieldGuesser
 
         if ('collection' == $formType) {
             return array('allow_add' => true, 'allow_delete' => true, 'by_reference' => false);
+        }
+
+        if (\PropelColumnTypes::ENUM == $dbType) {
+            return array(
+                'required' => $this->isRequired($columnName),
+                'choices'  => $this->getMetadatas()
+                                   ->getColumn($columnName)
+                                   ->getValueSet(),
+            );
         }
 
         return array('required' => $this->isRequired($columnName));
