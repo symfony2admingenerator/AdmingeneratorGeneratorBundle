@@ -45,17 +45,17 @@ class DateRangeType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getDefaultOptions(array $options)
+    public function getDefaultOptions()
     {
         $years = range(date('Y'), date('Y') - 120);
 
-        return array_merge($options, array(
+        return array(
             'format'            => null,
             'years'             => $years,
             'to'                => array('years' => $years, 'widget' => 'choice'),
             'from'              => array('years' => $years, 'widget' => 'choice'),
             'widget'            => 'choice',
-        ));
+        );
     }
 
     /**
