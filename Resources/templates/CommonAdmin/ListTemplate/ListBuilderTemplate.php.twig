@@ -1,4 +1,5 @@
 {% use '../CommonAdmin/title.php.twig' %}
+{% use '../CommonAdmin/stylesheets.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/nbresults.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/thead.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/tbody.php.twig' %}
@@ -8,6 +9,10 @@
 {% use '../CommonAdmin/ListTemplate/scopes.php.twig' %}
 
 {{ echo_extends( builder.getBaseAdminTemplate ) }}
+
+{{ echo_block("stylesheets") }}
+    {{- block('complementary_stylesheets') -}}
+{{ echo_endblock() }}
 
 {{ echo_block("body") }}
     {{- block('title') -}}

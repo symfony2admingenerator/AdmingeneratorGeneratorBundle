@@ -1,6 +1,11 @@
 {% use '../CommonAdmin/title.php.twig' %}
+{% use '../CommonAdmin/stylesheets.php.twig' %}
 {% use '../CommonAdmin/EditTemplate/form.php.twig' %}
 {{ echo_extends( builder.getBaseAdminTemplate ) }}
+
+{{ echo_block("stylesheets") }}
+    {{- block('complementary_stylesheets') -}}
+{{ echo_endblock() }}
 
 {{ echo_block("body") }}
     {{- block('title') }}

@@ -256,4 +256,42 @@ class BaseBuilder extends GenericBaseBuilder
     {
         return $this->getGenerator()->getFieldGuesser()->getModelPrimaryKeyName();
     }
+
+    /**
+     * Allow to add complementary strylesheets
+     *
+     *
+     * param:
+     *   stylesheets:
+     *     - path/css.css
+     *     - { path: path/css.css, media: all }
+     *
+     * @return array
+     */
+    public function getStylesheets()
+    {
+        $parse_stylesheets = function($params, $stylesheets) {
+            foreach($params as $css) {
+                if (is_string($css)) {
+                    $css = array(
+                        'path'  => $css,
+                        'media' => 'all',
+                    );
+                }
+
+                $stylesheets[] = $css;
+            }
+
+            return $stylesheets;
+        };
+
+        // From config.yml
+        $stylesheets = $parse_stylesheets($this->getGenerator()->getContainer()->getParameter('admingenerator.stylesheets', array()), array());
+
+        // From generator.yml
+        $stylesheets = $parse_stylesheets($this->getVariable('stylesheets', array()), $stylesheets);
+
+        return $stylesheets;
+    }
+
 }
