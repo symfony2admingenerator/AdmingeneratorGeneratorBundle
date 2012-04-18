@@ -43,9 +43,9 @@ class DoctrineODMDoubleListType extends DocumentType
     /**
      * {@inheritdoc}
      */
-    public function getDefaultOptions()
+    public function getDefaultOptions(array $options)
     {
-        return array_merge(parent::getDefaultOptions(), array(
+        return array_merge($options, array(
             'multiple'  => true,
         ));
     }
