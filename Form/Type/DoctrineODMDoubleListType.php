@@ -2,7 +2,7 @@
 
 namespace Admingenerator\GeneratorBundle\Form\Type;
 
-use Doctrine\Bundle\MongoDBBundle\Form\Type\DocumentType;
+use Symfony\Bundle\DoctrineMongoDBBundle\Form\Type\DocumentType;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 

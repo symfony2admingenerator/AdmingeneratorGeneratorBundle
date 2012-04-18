@@ -43,11 +43,12 @@ class PropelDoubleListType extends ModelType
     /**
      * {@inheritdoc}
      */
-    public function getDefaultOptions()
+    public function getDefaultOptions(array $options)
     {
-        return array_merge(parent::getDefaultOptions(), array(
-            'multiple'  => true,
-        ));
+        $options = parent::getDefaultOptions($options);
+        $options['multiple'] = true;
+
+        return $options;
     }
 
     /**
