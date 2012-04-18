@@ -9,13 +9,13 @@ if (!isset($argv[1])) {
 
 $vendorDir = __DIR__;
 $deps_0 = array(
-    array('symfony', 'git://github.com/symfony/symfony.git', isset($_SERVER['SYMFONY_VERSION']) ? $_SERVER['SYMFONY_VERSION'] : 'origin/master'),
+    array('symfony', 'git://github.com/symfony/symfony.git', isset($_SERVER['SYMFONY_VERSION']) ? $_SERVER['SYMFONY_VERSION'] : 'origin/2.0'),
     array('pagerfanta', 'git://github.com/whiteoctober/Pagerfanta.git', 'origin/master'),
     array('WhiteOctober/PagerfantaBundle', 'git://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git', 'origin/master'),
     array('KnpMenu', 'git://github.com/KnpLabs/KnpMenu.git', 'origin/master'),
     array('Knp/Bundle/MenuBundle', 'git://github.com/KnpLabs/KnpMenuBundle.git', 'origin/master'),
-    array('symfony/Bundle/AsseticBundle', 'git://github.com/symfony/AsseticBundle.git', 'origin/master'),
-    array('assetic', 'git://github.com/kriswallsmith/assetic.git', 'origin/master'),
+    array('symfony/Bundle/AsseticBundle', 'git://github.com/symfony/AsseticBundle.git', 'origin/2.0'),
+    array('assetic', 'git://github.com/kriswallsmith/assetic.git', 'origin/1.0.x'),
     array('twig-generator', 'git://github.com/cedriclombardot/TwigGenerator.git', 'origin/master'),
 );
 
