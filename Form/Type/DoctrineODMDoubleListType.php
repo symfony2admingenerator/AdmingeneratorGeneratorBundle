@@ -2,7 +2,7 @@
 
 namespace Admingenerator\GeneratorBundle\Form\Type;
 
-use Doctrine\Bundle\MongoDBBundle\Form\Type\DocumentType;
+use Symfony\Bundle\DoctrineMongoDBBundle\Form\Type\DocumentType;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 
@@ -45,9 +45,10 @@ class DoctrineODMDoubleListType extends DocumentType
      */
     public function getDefaultOptions(array $options)
     {
-        return array_merge($options, array(
-            'multiple'  => true,
-        ));
+        $options = parent::getDefaultOptions($options);
+        $options['multiple'] = true;
+
+        return $options;
     }
 
     /**
