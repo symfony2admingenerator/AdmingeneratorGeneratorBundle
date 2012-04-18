@@ -159,13 +159,7 @@ class DoctrineODMFieldGuesser
             return array( 'class' => $mapping['targetDocument'], 'multiple' => false);
         }
 
-        if ('collection' == $dbType) {
-            $mapping = $this->getMetadatas()->getFieldMapping($columnName);
-
-            return array('class' => $mapping['targetDocument']);
-        }
-
-        if ('collection' == $formType) {
+        if ('collection' == $formType || 'collection' == $dbType) {
             return array('allow_add' => true, 'allow_delete' => true);
         }
 
