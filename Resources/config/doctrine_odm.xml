@@ -12,7 +12,7 @@
         <!-- Doctine MongoDB -->
         <service id="admingenerator.fieldguesser.doctrine_odm" class="%admingenerator.fieldguesser.doctrine_odm.class%"
             public="false">
-            <argument type="service" id="doctrine.odm.mongodb.document_manager"></argument>
+            <argument type="service" id="doctrine.odm.mongodb"></argument>
         </service>
 
         <service id="admingenerator.generator.doctrine_odm"
