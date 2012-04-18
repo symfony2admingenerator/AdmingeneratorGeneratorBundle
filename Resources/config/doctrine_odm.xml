@@ -12,7 +12,7 @@
         <!-- Doctine MongoDB -->
         <service id="admingenerator.fieldguesser.doctrine_odm" class="%admingenerator.fieldguesser.doctrine_odm.class%"
             public="false">
-            <argument type="service" id="doctrine.odm.mongodb"></argument>
+            <argument type="service" id="doctrine.odm.mongodb.document_manager"></argument>
         </service>
 
         <service id="admingenerator.generator.doctrine_odm"
@@ -34,7 +34,7 @@
         <!-- Form -->
         <service id="form.type.doctrine_odm_double_list" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineODMDoubleListType">
             <tag name="form.type" alias="doctrine_odm_double_list" />
-            <argument type="service" id="doctrine.odm.mongodb.document_manager" />
+            <argument type="service" id="doctrine.odm.mongodb" />
         </service>
     </services>
 </container>
