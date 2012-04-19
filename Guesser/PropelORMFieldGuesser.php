@@ -103,6 +103,9 @@ class PropelORMFieldGuesser
                 return 'textarea';
             case 'model':
                 return 'model';
+            case \PropelColumnTypes::PHP_ARRAY:
+                return 'collection';
+                break;
             case 'collection':
                 return 'propel_double_list';
             default:
