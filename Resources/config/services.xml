@@ -7,6 +7,7 @@
     <parameters>
         <!--  Base -->
         <parameter key="routing.loader.admingenerator.class">Admingenerator\GeneratorBundle\Routing\RoutingLoader</parameter>
+        <parameter key="routing.loader.admingenerator_nested.class">Admingenerator\GeneratorBundle\Routing\NestedRoutingLoader</parameter>
         <parameter key="admingenerator.cache_warmer.class">Admingenerator\GeneratorBundle\CacheWarmer\GeneratorCacheWarmer</parameter>
         <parameter key="admingenerator.finder.class">Admingenerator\GeneratorBundle\CacheWarmer\GeneratorFinder</parameter>
         <parameter key="form.type_guesser.admingenerator.class">Admingenerator\GeneratorBundle\Validator\ValidatorTypeGuesser</parameter>
@@ -38,6 +39,11 @@
         </service>
 
         <service id="routing.loader.admingenerator" class="%routing.loader.admingenerator.class%">
+            <tag name="routing.loader" />
+            <argument type="service" id="file_locator" />
+        </service>
+
+        <service id="routing.loader.admingenerator_nested" class="%routing.loader.admingenerator_nested.class%">
             <tag name="routing.loader" />
             <argument type="service" id="file_locator" />
         </service>
