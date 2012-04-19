@@ -278,7 +278,7 @@ class BaseBuilder extends GenericBaseBuilder
     public function getStylesheets()
     {
         $parse_stylesheets = function($params, $stylesheets) {
-            foreach($params as $css) {
+            foreach ($params as $css) {
                 if (is_string($css)) {
                     $css = array(
                         'path'  => $css,
