@@ -1,0 +1,8 @@
+{% block column_collection %}
+<ul class="array_list">
+{{ echo_for('object', builder.ModelClass ~ '.' ~ column.getter ) }}
+    <li>{{ echo_twig('object') }}</li>
+{{ echo_endfor() }}
+</ul>
+{% endblock %}
+
