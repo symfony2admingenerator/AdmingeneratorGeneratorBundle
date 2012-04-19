@@ -3,7 +3,6 @@
 {% use '../CommonAdmin/ListTemplate/Column/datetime.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/Column/collection.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/Column/decimal.php.twig' %}
-
 {% block list_row %}
 {{ echo_block("list_row") }}
     {% for column in builder.columns %}
