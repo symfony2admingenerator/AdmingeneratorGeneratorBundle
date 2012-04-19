@@ -14,10 +14,10 @@ class DeleteController extends BaseController
 
     {{- block('index') -}}
 
-    {{- block('security_check') }}
+    {{- block('security_check_with_object') }}
 
     {% block process -%}
-    protected function process($id)
+    protected function process($pk)
     {
         //The orm replace this method
     }

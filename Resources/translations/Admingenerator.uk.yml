@@ -1,0 +1,30 @@
+# Double list form
+double_list.selected: Обрані
+double_list.unselected: Доступні
+
+# Pager
+pagerfanta.previous: Поп.
+pagerfanta.next: Наст.
+
+# List
+list.no_results: Немає записів
+list.filters: Фільтри
+list.filter.btn_filter: Фільтрувати
+list.filter.btn_reset: Очистити
+"Display all <b>%count%</b> results": Відображені всі <b>%count%</b> записи(ів)
+"Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Відображені <b>%start%</b> - <b>%end%</b> з <b>%count%</b> записи(ів)
+list.actions: Дії
+
+#Object
+object.saved.success: Об'єкт був успішно збережений
+object.saved.error: Неможливо зберегти об'єкт. Форма не збережена. Виправте помилки і спробуйте ще раз
+object.deleted.success: Запис було успішно видалено
+object.deleted.error: Запис не може бути видалений
+
+# Form
+form.btn_save: Зберегти
+form.type_collection.add: Додати
+
+# Actions
+List: Список
+New: Додати

@@ -5,6 +5,8 @@ namespace Admingenerator\GeneratorBundle\Builder;
 /**
  * @author Cedric LOMBARDOT
  */
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 use Symfony\Component\Yaml\Yaml;
 
 use TwigGenerator\Builder\Generator as TwigGeneratorGenerator;
@@ -27,14 +29,17 @@ class Generator extends TwigGeneratorGenerator
 
     protected $base_generator_name;
 
+    protected $container;
+
     /**
      * Init a new generator and automatically define the base of tempDir
      *
+     * @param Filepath $cacheDir
      * @param Filepath $yaml
      */
-    public function __construct($yaml)
+    public function __construct($cacheDir, $yaml)
     {
-        parent::__construct();
+        parent::__construct($cacheDir);
         $this->setYamlConfig(Yaml::parse($yaml));
     }
 
@@ -132,6 +137,16 @@ class Generator extends TwigGeneratorGenerator
     public function getGeneratedControllerFolder()
     {
         return 'Base'.$this->base_generator_name.'Controller';
+    }
+
+    public function setContainer(ContainerInterface $container)
+    {
+        return $this->container = $container;
+    }
+
+    public function getContainer()
+    {
+        return $this->container;
     }
 
 }

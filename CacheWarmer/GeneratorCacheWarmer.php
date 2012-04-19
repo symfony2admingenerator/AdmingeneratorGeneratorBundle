@@ -63,10 +63,11 @@ class GeneratorCacheWarmer implements CacheWarmerInterface
         $generator = $this->container->get($service);
         $generator->setGeneratorYml($file);
 
-        if (preg_match('/\/([^\/]+?)-generator.yml$/', $file, $matches)) {
+        // windows support too
+        if (preg_match('/(?:\/|\\\\)([^\/\\\\]+?)-generator.yml$/', $file, $matches)) {
             $generator->setBaseGeneratorName(ucfirst($matches[1]));
         } else {
-            $generator->setBaseGeneratorName("");
+            $generator->setBaseGeneratorName('');
         }
 
         $generator->build();

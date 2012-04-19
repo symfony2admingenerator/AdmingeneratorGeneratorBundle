@@ -24,14 +24,35 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode    = $treeBuilder->root('admingenerator_generator');
 
+
         $rootNode
             ->children()
-            ->booleanNode('use_doctrine_orm')->defaultFalse()->end()
-            ->booleanNode('use_doctrine_odm')->defaultFalse()->end()
-            ->booleanNode('use_propel')->defaultFalse()->end()
-            ->booleanNode('overwrite_if_exists')->defaultFalse()->end()
-            ->scalarNode('base_admin_template')->defaultValue("AdmingeneratorGeneratorBundle::base_admin.html.twig")->end()
-            ->scalarNode('knp_menu_class')->defaultValue("Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder")->end()
+                ->booleanNode('use_doctrine_orm')->defaultFalse()->end()
+                ->booleanNode('use_doctrine_odm')->defaultFalse()->end()
+                ->booleanNode('use_propel')->defaultFalse()->end()
+                ->booleanNode('overwrite_if_exists')->defaultFalse()->end()
+                ->scalarNode('base_admin_template')->defaultValue("AdmingeneratorGeneratorBundle::base_admin.html.twig")->end()
+                ->scalarNode('knp_menu_class')->defaultValue("Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder")->end()
+                ->arrayNode('twig')
+                    ->children()
+                        ->scalarNode('date_format')->defaultValue('Y-m-d')->end()
+                        ->arrayNode('number_format')
+                            ->children()
+                                ->scalarNode('decimal')->defaultValue(0)->end()
+                                ->scalarNode('decimal_point')->defaultValue('.')->end()
+                                ->scalarNode('thousand_separator')->defaultValue(',')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+                ->arrayNode('stylesheets')
+                ->prototype('array')
+                ->fixXmlConfig('stylesheets')
+                    ->children()
+                        ->scalarNode('path')->end()
+                        ->scalarNode('media')->defaultValue('all')->end()
+                    ->end()
+                ->end()
             ->end();
 
         return $treeBuilder;

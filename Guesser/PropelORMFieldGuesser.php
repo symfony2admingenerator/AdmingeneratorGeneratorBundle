@@ -30,7 +30,7 @@ class PropelORMFieldGuesser
         $return = array();
 
         foreach ($this->getMetadatas($class)->getColumns() as $column) {
-            $return[] = $column->getName();
+            $return[] = strtolower($column->getName());
         }
 
         return $return;
@@ -71,6 +71,8 @@ class PropelORMFieldGuesser
     public function getFormType($dbType, $columnName)
     {
         switch($dbType) {
+            case \PropelColumnTypes::ENUM:
+                return 'choice';
             case \PropelColumnTypes::BOOLEAN:
             case \PropelColumnTypes::BOOLEAN_EMU:
                 return 'checkbox';
@@ -168,6 +170,15 @@ class PropelORMFieldGuesser
             return array('allow_add' => true, 'allow_delete' => true, 'by_reference' => false);
         }
 
+        if (\PropelColumnTypes::ENUM == $dbType) {
+            return array(
+                'required' => $this->isRequired($columnName),
+                'choices'  => $this->getMetadatas()
+                                   ->getColumn($columnName)
+                                   ->getValueSet(),
+            );
+        }
+
         return array('required' => $this->isRequired($columnName));
     }
 
@@ -204,6 +215,19 @@ class PropelORMFieldGuesser
         return $options;
     }
 
+    /**
+     * Find the pk name
+     */
+    public function getModelPrimaryKeyName()
+    {
+        $pks = $this->getMetadatas()->getPrimaryKeyColumns();
+
+        if (count($pks) == 1) {
+            return $pks[0]->getName();
+        }
+
+        throw new \LogicException('No valid primary keys found');
+    }
 
     protected function getTable($class)
     {
