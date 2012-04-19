@@ -1,8 +1,9 @@
 {% use '../CommonAdmin/ListTemplate/Column/boolean.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/Column/date.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/Column/datetime.php.twig' %}
-{% use '../CommonAdmin/ListTemplate/Column/collection.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/Column/decimal.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/Column/collection.php.twig' %}
+
 {% block list_row %}
 {{ echo_block("list_row") }}
     {% if batch_actions is defined and batch_actions|length > 0 %}
@@ -22,10 +23,10 @@
                         {{- block('column_date') -}}
                     {%- elseif (column.dbType|lower == "datetime") or (column.dbType|lower == "timestamp") or (column.dbType|lower == "vardatetime") or (column.dbType|lower == "datetimetz") -%}
                         {{- block('column_datetime') -}}
-                    {%- elseif (column.dbType|lower == "array") or (column.dbType|lower == "collection")  -%}
-                        {{- block('column_collection') -}}
                     {%- elseif column.dbType|lower == "decimal" -%}
                         {{- block('column_decimal') -}}
+                    {%- elseif (column.dbType|lower == "array") or (column.dbType|lower == "collection")  -%}
+                        {{- block('column_collection') -}}
                     {%- else -%}
                         {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter) -}}
                     {%- endif -%}
