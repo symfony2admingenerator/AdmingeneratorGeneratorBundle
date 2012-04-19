@@ -2,6 +2,7 @@
 {% use '../CommonAdmin/ListTemplate/Column/date.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/Column/datetime.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/Column/decimal.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/Column/collection.php.twig' %}
 {% block list_row %}
 {{ echo_block("list_row") }}
     {% for column in builder.columns %}
@@ -18,6 +19,8 @@
                         {{- block('column_datetime') -}}
                     {%- elseif column.dbType|lower == "decimal" -%}
                         {{- block('column_decimal') -}}
+                    {%- elseif (column.dbType|lower == "array") or (column.dbType|lower == "collection")  -%}
+                        {{- block('column_collection') -}}
                     {%- else -%}
                         {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter) -}}
                     {%- endif -%}
