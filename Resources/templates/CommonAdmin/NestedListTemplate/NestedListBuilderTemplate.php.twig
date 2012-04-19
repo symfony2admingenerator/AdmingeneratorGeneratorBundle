@@ -1,0 +1,67 @@
+{% use '../CommonAdmin/title.php.twig' %}
+{% use '../CommonAdmin/stylesheets.php.twig' %}
+{% use '../CommonAdmin/NestedListTemplate/nbresults.php.twig' %}
+{% use '../CommonAdmin/NestedListTemplate/thead.php.twig' %}
+{% use '../CommonAdmin/NestedListTemplate/tbody.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/actions.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/filters.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/scopes.php.twig' %}
+
+{{ echo_extends( builder.getBaseAdminTemplate ) }}
+
+{{ echo_block("javascripts") }}
+    {{ echo_twig('parent()') }}
+    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/javascripts/jquery-ui-1.8.16.custom.min.js")') }}" ></script>
+    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/javascripts/jquery.treeTable.js")') }}" ></script>
+    <script type="text/javascript">
+    {% set admingeneratorNestedRoute=builder.routePrefixWithSubfolder ~ "_" ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_nested_append" %}
+    var admingeneratorNestedUrl = '{{ echo_path( admingeneratorNestedRoute, "{ 'source': '|source|', 'to': '|to|' }") }}';
+    </script>
+    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/javascripts/nestedset.js")') }}"></script>
+{{ echo_endblock() }}
+
+{{ echo_block("stylesheets") }}
+    {{- block('complementary_stylesheets') -}}
+    <link href="{{ echo_twig('asset("bundles/admingeneratorgenerator/css/jquery.treeTable.css")') }}" rel="stylesheet" />
+{{ echo_endblock() }}
+
+{{ echo_block("body") }}
+    {{- block('title') -}}
+
+    <div class="admin_list main_content{% if builder.filterColumns|length == 0 %} full_size{% endif %}">
+
+        {{ block('list_scopes') -}}
+
+        {{- block('list_nbresults') }}
+
+        <table id="tree-table">
+            {{ block('list_thead') -}}
+            {{- block('list_tbody') }}
+        </table>
+
+        {{- block('list_actions') }}
+    </div>
+    <div class="nested_loading_box">
+        <span>{{ echo_trans('Loading in progress') }}</span>
+    </div>
+    {{ echo_block("filters") }}
+        {% if builder.filterColumns|length > 0 %}
+        <div class="filters">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{{ echo_trans('list.filters') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            {{- block('list_filters') -}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    {{ echo_endblock() }}
+{{ echo_endblock() }}

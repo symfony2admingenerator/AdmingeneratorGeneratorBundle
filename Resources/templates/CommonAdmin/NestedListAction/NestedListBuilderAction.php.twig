@@ -1,0 +1,75 @@
+{% use '../CommonAdmin/NestedListAction/index.php.twig' %}
+{% use '../CommonAdmin/ListAction/filters.php.twig' %}
+{% use '../CommonAdmin/ListAction/scopes.php.twig' %}
+{% use '../CommonAdmin/security_action.php.twig' %}
+<?php
+
+namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.generator.GeneratedControllerFolder }};
+
+{{ block('index_use') -}}
+
+{{- block('security_use') }}
+
+use {{ builder.generator.baseController }} as BaseController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+use Pagerfanta\Pagerfanta;
+{% block pager_adapter -%}
+use Pagerfanta\Adapter\DoctrineORMAdapter as PagerAdapter;
+{% endblock %}
+
+class ListController extends BaseController
+{
+    {{- block('index') -}}
+
+    {{- block('filters') -}}
+
+    {{- block('scopes') -}}
+
+    {{- block('security_check') }}
+
+    {% block getQuery -%}
+    protected function getQuery()
+    {
+        // ORM JOB
+    }
+    {% endblock %}
+
+    {% block getFilterForm -%}
+    protected function getFilterForm()
+    {
+        // ORM JOB
+    }
+    {% endblock %}
+
+    {% block addJoinFor -%}
+    protected function addJoinFor($table, $query)
+    {
+        // ORM JOB
+    }
+    {% endblock %}
+
+    {% block processFilters -%}
+    protected function processFilters($query)
+    {
+        // ORM JOB
+    }
+    {% endblock %}
+
+    {% block processScopes -%}
+    protected function processScopes($query)
+    {
+        // ORM JOB
+    }
+    {% endblock %}
+
+    {% block nested_appendAction %}
+    public function nested_appendAction($source, $to)
+    {
+        // ORM JOB
+    }
+    {% endblock %}
+}
