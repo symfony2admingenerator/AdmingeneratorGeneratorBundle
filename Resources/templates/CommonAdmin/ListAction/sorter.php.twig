@@ -39,7 +39,7 @@
      */
     protected function getSortOrder()
     {
-        {% if sort is defined and sort[1] != '' -%}
+        {% if sort is defined and sort[1] is defined -%}
 
             return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\OrderBy', '{{ sort[1] }}');
         {% else -%}
