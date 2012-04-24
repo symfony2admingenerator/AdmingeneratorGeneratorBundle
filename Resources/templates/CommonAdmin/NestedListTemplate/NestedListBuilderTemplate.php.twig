@@ -25,6 +25,8 @@
     <link href="{{ echo_twig('asset("bundles/admingeneratorgenerator/css/jquery.treeTable.css")') }}" rel="stylesheet" />
 {{ echo_endblock() }}
 
+{{- block('site_title') -}}
+
 {{ echo_block("body") }}
     {{- block('title') -}}
 
