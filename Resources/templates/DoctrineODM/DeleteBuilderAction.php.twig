@@ -1,17 +1,21 @@
 {% extends '../CommonAdmin/DeleteAction/DeleteBuilderAction.php.twig' %}
 {% block process -%}
-    protected function process($id)
+    protected function getObject($pk)
     {
-        $dm = $this->getDocumentManager();
-
-        ${{ builder.ModelClass }} = $dm
+        ${{ builder.ModelClass }} = $this->getDocumentManager()
              ->getRepository('{{ model }}')
-             ->findOneById($id);
+             ->find($pk);
 
         if (!${{ builder.ModelClass }}) {
-            throw new \InvalidArgumentException("No {{ model }} found on id : $id");
+            throw new \InvalidArgumentException("No {{ model }} found on {{ builder.ModelPrimaryKeyName }} : $pk");
         }
 
+        return ${{ builder.ModelClass }};
+    }
+
+    protected function process(\{{ model }} ${{ builder.ModelClass }})
+    {
+        $dm = $this->getDocumentManager();
         $dm->remove(${{ builder.ModelClass }});
         $dm->flush();
         $dm->clear();

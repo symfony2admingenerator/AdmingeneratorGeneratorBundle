@@ -1,11 +1,11 @@
 {% extends '../CommonAdmin/EditAction/EditBuilderAction.php.twig' %}
 {% block getObject -%}
-    protected function getObject($id)
+    protected function getObject($pk)
     {
         return $this->getDoctrine()
                     ->getEntityManager()
                     ->getRepository('{{ model }}')
-                    ->findOneById($id);
+                    ->find($pk);
     }
 {% endblock %}
 

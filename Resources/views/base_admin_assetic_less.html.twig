@@ -10,7 +10,7 @@
             <![endif]-->
         {% endblock %}
         {% block javascript_head %}
-            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
             <script>window.jQuery || document.write('<script src="{{ asset("bundles/admingeneratorgenerator/javascripts/jquery-1.6.4.min.js") }}">\x3C/script>')</script>
         {% endblock %}
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
@@ -42,12 +42,12 @@
         </div>
         <div id="content">
             {% block flashes %}
-                {% if app.session.flash('success') %}
+                {% if app.session.hasFlash('success') %}
                     <div class="notification_box success">
                         {{ app.session.flash('success')|raw }}
                     </div>
                 {% endif %}
-                {% if app.session.flash('error') %}
+                {% if app.session.hasFlash('error') %}
                     <div class="notification_box error">
                         {{ app.session.flash('error')|raw }}
                     </div>

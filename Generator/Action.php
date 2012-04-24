@@ -44,6 +44,7 @@ class Action
         if ( isset ($this->label) ) {
             return $this->label;
         }
+
         return $this->humanize($this->getName());
     }
 
