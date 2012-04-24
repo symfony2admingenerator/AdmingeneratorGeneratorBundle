@@ -24,6 +24,7 @@ object.deleted.error: L'enregistrement n'a pas pu être supprimé
 # Form
 form.btn_save: Enregistrer
 form.type_collection.add: Ajouter
+form.delete.confirm: Etes-vous sur de vouloir supprimer cet élémént ?
 
 # Actions
 List: Retour à la liste
