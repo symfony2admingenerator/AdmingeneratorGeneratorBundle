@@ -24,7 +24,7 @@ class DoctrineQueryFilter extends BaseQueryFilter
         $this->query->andWhere(sprintf('q.%s LIKE :%s',$field, $field));
         $this->query->setParameter($field, '%'.$value.'%');
     }
-    
+
     public function addTextFilter($field, $value)
     {
         $this->addStringFilter($field, $value);

@@ -9,8 +9,7 @@
  * @see http://symfony.com/doc/2.0/contributing/code/standards.html
  *
  */
-require_once __DIR__.'/../../../../app/bootstrap.php.cache';
-require_once __DIR__.'/../../../../app/autoload.php';
+require_once __DIR__.'/../../../../../app/autoload.php';
 
 use Symfony\Component\Finder\Finder;
 

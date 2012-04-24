@@ -13,6 +13,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 abstract class BaseController extends Controller
 {
+    /**
+     * @return \Doctrine\ODM\MongoDB\DocumentManager
+     */
     protected function getDocumentManager()
     {
         return $this->get('doctrine.odm.mongodb.document_manager');

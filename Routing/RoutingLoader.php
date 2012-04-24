@@ -18,17 +18,17 @@ class RoutingLoader extends FileLoader
                     'requirements' => array(),
                 ),
         'delete' => array(
-                    'pattern'      => '/{id}/delete',
+                    'pattern'      => '/{pk}/delete',
                     'defaults'     => array(),
                     'requirements' => array(),
                 ),
         'edit' => array(
-                    'pattern'      => '/{id}/edit',
+                    'pattern'      => '/{pk}/edit',
                     'defaults'     => array(),
                     'requirements' => array(),
                 ),
         'update' => array(
-                    'pattern'      => '/{id}/update',
+                    'pattern'      => '/{pk}/update',
                     'defaults'     => array(),
                     'requirements' => array(),
                     'controller'   => 'edit',
@@ -66,7 +66,6 @@ class RoutingLoader extends FileLoader
         $bundle_name = $this->getBundleNameFromResource($resource);
 
         foreach ($this->actions as $controller => $datas) {
-
             $action = 'index';
 
             if ($controller_folder = $this->getControllerFolder($resource)) {

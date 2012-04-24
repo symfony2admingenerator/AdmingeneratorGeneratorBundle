@@ -1,8 +1,8 @@
 {% extends '../CommonAdmin/EditAction/EditBuilderAction.php.twig' %}
 {% block getObject -%}
-    protected function getObject($id)
+    protected function getObject($pk)
     {
-        return \{{ model }}Query::create()->findOneById($id);
+        return \{{ model }}Query::create()->findPk($pk);
     }
 {% endblock %}
 
