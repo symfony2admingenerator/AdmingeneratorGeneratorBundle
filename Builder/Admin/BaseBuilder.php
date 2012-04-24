@@ -2,6 +2,8 @@
 
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
+use Symfony\Component\DependencyInjection\Container;
+
 use Admingenerator\GeneratorBundle\Builder\BaseBuilder as GenericBaseBuilder;
 
 use Admingenerator\GeneratorBundle\Generator\Column;
@@ -204,7 +206,12 @@ class BaseBuilder extends GenericBaseBuilder
     protected function findActions()
     {
         foreach ($this->getVariable('actions', array()) as $actionName => $actionParams) {
-            $action = new Action($actionName);
+            $class = 'Admingenerator\\GeneratorBundle\\Generator\\'.Container::camelize($actionName.'Action');
+            if (class_exists($class)) {
+                $action = new $class($actionName, $this);
+            } else {
+                $action = new Action($actionName);
+            }
 
             $this->setUserActionConfiguration($action);
 
