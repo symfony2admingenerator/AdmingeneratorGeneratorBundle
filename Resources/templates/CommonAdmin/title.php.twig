@@ -4,6 +4,9 @@
             <h1>{{ title }}</h1>
         </head>
     {{ echo_endblock() }}
+{% endblock %}
+
+{% block site_title %}
     {{ echo_block("title") }}
         {{ echo_twig('parent()') }} - {{ title }}
     {{ echo_endblock() }}
