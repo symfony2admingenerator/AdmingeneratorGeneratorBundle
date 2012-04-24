@@ -18,17 +18,6 @@
 
           {% endif %}
 
-         <li>
-          {% if action.params %}
-
-            <a class="{{ action.name }}" href="{{ echo_path((action.route ? action.route : builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_' ~ action.name), echo_twig_assoc(action.params)) }}"
-
-          {% else %}
-
-            <a class="{{ action.name }}" href="{{ echo_path((action.route ? action.route : builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_' ~ action.name)) }}"
-
-          {% endif %}
-
          {%- if action.confirm %}onclick='return confirm("{{ action.confirm }}")'{% endif %}>{{ echo_trans(action.label) }}</a></li>
 
           {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
@@ -40,3 +29,4 @@
     {% endif %}
     {{ echo_endblock() }}
 {% endblock %}
+
