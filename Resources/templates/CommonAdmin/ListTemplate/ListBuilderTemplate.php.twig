@@ -5,6 +5,7 @@
 {% use '../CommonAdmin/ListTemplate/tbody.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/paginator.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/actions.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/batch_actions.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/filters.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/scopes.php.twig' %}
 
@@ -32,6 +33,7 @@
 
         {{ block('list_paginator') -}}
 
+        {{- block('list_batch_actions') -}}
         {{- block('list_actions') }}
     </div>
     {{ echo_block("filters") }}

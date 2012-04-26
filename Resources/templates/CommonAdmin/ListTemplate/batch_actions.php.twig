@@ -1,0 +1,22 @@
+{% block list_batch_actions %}
+    {{ echo_block("list_batch_actions") }}
+        {% if object_actions|length > 0 %}
+         <select class="batch_actions">
+                <option selected></option>
+            {% for action in builder.BatchActions %}
+                {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
+                    {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials'), builder.ModelClass ) }}
+                {% endif %}
+
+                <option
+                 value="{{ action.name }}" 
+                 {% if action.confirm %}data-confirm='{{ action.confirm }}'{% endif %}>{{ echo_trans(action.label, i18n_catalog is defined ? i18n_catalog : "Admin") }}</option>
+
+                {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
+                    {{ echo_endif () }}
+                {% endif %}
+            {% endfor %}
+         </select>
+        {% endif -%}
+    {{ echo_endblock() }}
+{% endblock %}
