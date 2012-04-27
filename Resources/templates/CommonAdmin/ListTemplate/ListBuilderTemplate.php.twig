@@ -5,6 +5,7 @@
 {% use '../CommonAdmin/ListTemplate/tbody.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/paginator.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/actions.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/batch_actions.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/filters.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/scopes.php.twig' %}
 
@@ -23,16 +24,20 @@
 
         {{ block('list_scopes') -}}
 
-        {{- block('list_nbresults') }}
+        {{- block('list_nbresults') -}}
 
+        {{- block('form_batch_actions') }}
         <table>
             {{ block('list_thead') -}}
             {{- block('list_tbody') }}
         </table>
 
-        {{ block('list_paginator') -}}
+        {{- block('list_paginator') -}}
 
-        {{- block('list_actions') }}
+        {{- block('list_batch_actions') -}}
+        {{- block('list_actions') -}}
+
+        {{- block('endform_batch_actions') }}
     </div>
     {{ echo_block("filters") }}
         {% if builder.filterColumns|length > 0 %}
