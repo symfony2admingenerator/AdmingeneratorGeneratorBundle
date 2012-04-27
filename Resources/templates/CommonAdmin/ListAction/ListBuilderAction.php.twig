@@ -78,6 +78,15 @@ class ListController extends BaseController
     }
     {% endblock %}
 
+    {{ block('batch_actions') }}
+
+    {% block doBatchDelete -%}
+    protected function doBatchDelete(array $ids)
+    {
+        // ORM JOB
+    }
+    {% endblock %}
+
     protected function getFiltersType()
     {
         $type = new FiltersType();

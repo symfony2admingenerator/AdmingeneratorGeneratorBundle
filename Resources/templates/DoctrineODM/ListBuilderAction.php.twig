@@ -183,12 +183,10 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
 {% block doBatchDelete -%}
     protected function doBatchDelete(array $ids)
     {
-        if ($this->getDocumentManager()
-                 ->createQueryBuilder('{{ model }}')
-                 ->field('{{ builder.ModelPrimaryKeyName }}')->in($ids)
-                 ->remove()
-                 ->getQuery()
-                 ->execute()) {
+        if ($this->getDoctrine()
+            ->getDocumentManager()
+            ->createQuery(sprintf('delete from {{ model }} q where q.{{ builder.ModelPrimaryKeyName }} IN (%s)', implode(',', $ids)))
+            ->execute()) {
             $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ "batch.deleted.success" }}", array(), 'Admingenerator') );
         } else {
             $this->get('session')->setFlash('error', $this->get('translator')->trans("{{ "batch.deleted.error" }}", array(), 'Admingenerator') );
