@@ -30,6 +30,8 @@ class Generator extends TwigGeneratorGenerator
     protected $base_generator_name;
 
     protected $container;
+    
+    protected $listParams = array();
 
     /**
      * Init a new generator and automatically define the base of tempDir
@@ -149,4 +151,23 @@ class Generator extends TwigGeneratorGenerator
         return $this->container;
     }
 
+     /**
+     * Set list configuaration params
+     *
+     * @param array $value
+     */
+    public function setListParams($value)
+    {
+        $this->listParams = $value;
+    }
+
+     /**
+     * Date, DateTime formats for list
+     *
+     * @return array
+     */
+    public function getListParams()
+    {
+        return $this->listParams;
+    }  
 }
