@@ -50,6 +50,8 @@ class PropelGenerator extends Generator
             $generator->addBuilder(new ListBuilderAction());
             $generator->addBuilder(new ListBuilderTemplate());
             $generator->addBuilder(new FiltersBuilderType());
+
+            $generator->setListParams($this->container->getParameter('admingenerator.twig'));
         }
 
         if (array_key_exists('nested_list',$builders)) {

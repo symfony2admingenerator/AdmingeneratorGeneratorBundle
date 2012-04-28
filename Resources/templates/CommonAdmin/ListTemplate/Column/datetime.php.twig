@@ -1,4 +1,7 @@
 {% block column_datetime %}
-{# Need to implement a config for date formats #}
-{{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|date("Y-m-d H:i:s")') -}}
+    {%- if builder.generator.ListParams.use_localized_date == true -%}
+        {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|localizeddate("medium", "medium")') -}}
+    {%- else -%}
+        {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|date("' ~ builder.generator.ListParams.datetime_format ~ '")') -}}
+    {%- endif -%}
 {% endblock %}
