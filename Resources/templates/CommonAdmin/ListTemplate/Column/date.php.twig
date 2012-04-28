@@ -1,3 +1,7 @@
 {% block column_date %}
-{{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|date') -}}
+    {%- if builder.generator.ListParams.use_localized_date == true -%}
+        {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|localizeddate("medium", "none")') -}}
+    {%- else -%}
+        {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|date("' ~ builder.generator.ListParams.date_format ~ '")') -}}
+    {%- endif -%}
 {% endblock %}
