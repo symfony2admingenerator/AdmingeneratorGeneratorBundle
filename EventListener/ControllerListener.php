@@ -46,10 +46,6 @@ class ControllerListener
 
         if($this->container->hasParameter('admingenerator.twig')) {
             $twig_params = $this->container->getParameter('admingenerator.twig');
-            
-            if(isset($twig_params['date_format'])) {
-                $this->container->get('twig')->getExtension('core')->setDateFormat($twig_params['date_format'], '%d days');
-            }
 
             if(isset($twig_params['number_format'])) {
                 $this->container->get('twig')->getExtension('core')->setNumberFormat($twig_params['number_format']['decimal'], $twig_params['number_format']['decimal_point'], $twig_params['number_format']['thousand_separator']);
