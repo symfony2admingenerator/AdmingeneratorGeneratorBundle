@@ -155,6 +155,5 @@ class Generator extends TwigGeneratorGenerator
     {
         return $this->getContainer()->getParameter('admingenerator.twig');
     }
-
 }
 

@@ -5,3 +5,4 @@
         {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|date("' ~ builder.generator.TwigParams.datetime_format ~ '")') -}}
     {%- endif -%}
 {% endblock %}
+

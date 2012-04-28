@@ -50,14 +50,6 @@ class PropelGenerator extends Generator
             $generator->addBuilder(new ListBuilderAction());
             $generator->addBuilder(new ListBuilderTemplate());
             $generator->addBuilder(new FiltersBuilderType());
-
-            $generator->setListParams($this->container->getParameter('admingenerator.twig'));
-        }
-
-        if (array_key_exists('nested_list',$builders)) {
-            $generator->addBuilder(new NestedListBuilderAction());
-            $generator->addBuilder(new NestedListBuilderTemplate());
-            $generator->addBuilder(new FiltersBuilderType());
         }
 
         if (array_key_exists('nested_list',$builders)) {
@@ -85,3 +77,4 @@ class PropelGenerator extends Generator
         $generator->writeOnDisk($this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));
     }
 }
+

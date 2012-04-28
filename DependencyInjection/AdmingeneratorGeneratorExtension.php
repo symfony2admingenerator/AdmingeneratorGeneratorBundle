@@ -70,3 +70,4 @@ class AdmingeneratorGeneratorExtension extends Extension
         return 'admingenerator_generator';
     }
 }
+
