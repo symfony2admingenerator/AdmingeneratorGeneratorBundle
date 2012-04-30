@@ -32,6 +32,9 @@ class Column
 
     protected $crendentials;
 
+    /** For special columns template */
+    protected $extras;
+
     public function __construct($name)
     {
         $this->name = $name;
@@ -166,5 +169,15 @@ class Column
 
             $this->formOptions[$option] = $value;
         }
+    }
+
+    public function setExtras(array $values)
+    {
+        $this->extras = $values;
+    }
+
+    public function getExtras()
+    {
+        return $this->extras;
     }
 }
