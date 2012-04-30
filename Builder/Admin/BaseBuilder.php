@@ -100,6 +100,19 @@ class BaseBuilder extends GenericBaseBuilder
 
         $display = $this->getVariable('display');
 
+        // tabs
+        if (null == $display || 0 == sizeof($display)) {
+            $tabs = $this->getVariable('tabs');
+
+            if (null != $tabs || 0 < sizeof($tabs)) {
+                $display = array();
+
+                foreach ($tabs as $tab) {
+                    $display = array_merge($display, $tab);
+                }
+            }
+        }
+
         if (null == $display || 0 == sizeof($display)) {
            return $this->getAllFields();
         }
@@ -143,6 +156,19 @@ class BaseBuilder extends GenericBaseBuilder
     public function getFieldsets()
     {
         $display = $this->getVariable('display');
+
+        // tabs
+        if (null == $display || 0 == sizeof($display)) {
+            $tabs = $this->getVariable('tabs');
+
+            if (null != $tabs || 0 < sizeof($tabs)) {
+                $display = array();
+
+                foreach ($tabs as $tab) {
+                    $display = array_merge($display, $tab);
+                }
+            }
+        }
 
         if (null == $display || 0 == sizeof($display)) {
            $display = $this->getAllFields();
