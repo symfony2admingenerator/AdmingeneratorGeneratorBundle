@@ -1,6 +1,6 @@
 {% block list_batch_actions %}
     {{ echo_block("list_batch_actions") }}
-        {% if object_actions|length > 0 %}
+        {% if batch_actions is defined and batch_actions|length > 0 %}
          <select name="action" id="batch_actions">
             {% for action in builder.BatchActions %}
                 {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
