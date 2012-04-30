@@ -149,7 +149,7 @@ class ListBuilder extends BaseBuilder
 
     protected function findBatchActions()
     {
-        foreach ($this->getVariable('batch_actions') as $actionName => $actionParams) {
+        foreach ($this->getVariable('batch_actions', array()) as $actionName => $actionParams) {
             $class = 'Admingenerator\\GeneratorBundle\\Generator\\'.Container::camelize($actionName.'BatchAction');
             if (class_exists($class)) {
                 $action = new $class($actionName, $this);
