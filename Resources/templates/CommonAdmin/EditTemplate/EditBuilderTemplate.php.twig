@@ -1,5 +1,6 @@
 {% use '../CommonAdmin/title.php.twig' %}
 {% use '../CommonAdmin/stylesheets.php.twig' %}
+{% use '../CommonAdmin/EditTemplate/tabs.php.twig' %}
 {% use '../CommonAdmin/EditTemplate/form.php.twig' %}
 {{ echo_extends( builder.getBaseAdminTemplate ) }}
 
@@ -10,7 +11,9 @@
 {{- block('site_title') -}}
 
 {{ echo_block("body") }}
-    {{- block('title') }}
+    {{- block('title') -}}
+
+    {{- block('form_tabs') }}
 
     <div class="admin_form">
         {{- block('form') -}}
