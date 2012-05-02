@@ -7,19 +7,19 @@ pagerfanta.previous: Anterior
 pagerfanta.next: Próximo
 
 # List
-list.no_results: Não há resultados
+list.no_results: Não há resultados.
 list.filters: Filtros
 list.filter.btn_filter: Filtro
 list.filter.btn_reset: Redefinir
-"Display all <b>%count%</b> results": Mostrando todos os <b>%count%</b> resultados
+"Display all <b>%count%</b> results": "Mostrando todos o resultado|Mostrando todos os <b>%count%</b> resultados"
 "Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Mostrando <b>%start%</b> - <b>%end%</b> de <b>%count%</b> resultados
 list.actions: Ações
 
 #Object
-object.saved.success: O objeto foi salvo com sucesso
-object.saved.error: O formulário não pode ser salvo. Verifique os erros e tente novamente
-object.deleted.success: The record have been successfully deleted
-object.deleted.error: The record can't be deleted
+object.saved.success: O objeto foi salvo com sucesso.
+object.saved.error: O formulário não pode ser salvo. Verifique os erros e tente novamente.
+object.deleted.success: The record have been successfully deleted.
+object.deleted.error: The record can't be deleted.
 
 # Form
 form.btn_save: Salvar
