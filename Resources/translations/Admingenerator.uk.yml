@@ -24,7 +24,14 @@ object.deleted.error: Запис не може бути видалений
 # Form
 form.btn_save: Зберегти
 form.type_collection.add: Додати
+form.delete.confirm: Ви дійсно хочете видалити цей елемент ?
 
 # Actions
 List: Список
 New: Додати
+
+# Batch
+batch.delete.confirm: Ви підтверджуєте видалення вибраних елементів ?
+batch.none_selected: Необхідно вибрати не менше одного елемента
+batch.deleted.success: Записи було успішно видалено
+batch.deleted.error: Неможливо видалити записи
