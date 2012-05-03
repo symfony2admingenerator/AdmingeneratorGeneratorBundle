@@ -32,6 +32,7 @@ class DoctrineODMGenerator extends Generator
     public function build()
     {
         $generator = new AdminGenerator($this->cache_dir, $this->getGeneratorYml());
+        $generator->setContainer($this->container);
         $generator->setBaseAdminTemplate($this->container->getParameter('admingenerator.base_admin_template'));
         $generator->setFieldGuesser($this->getFieldGuesser());
         $generator->setMustOverwriteIfExists($this->container->getParameter('admingenerator.overwrite_if_exists'));
@@ -45,8 +46,6 @@ class DoctrineODMGenerator extends Generator
             $generator->addBuilder(new ListBuilderAction());
             $generator->addBuilder(new ListBuilderTemplate());
             $generator->addBuilder(new FiltersBuilderType());
-
-            $generator->setListParams($this->container->getParameter('admingenerator.twig'));
         }
 
         if (array_key_exists('delete', $builders)) {

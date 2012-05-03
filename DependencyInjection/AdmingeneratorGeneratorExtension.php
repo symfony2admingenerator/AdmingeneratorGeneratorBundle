@@ -35,6 +35,8 @@ class AdmingeneratorGeneratorExtension extends Extension
         $container->setParameter('admingenerator.overwrite_if_exists', $config['overwrite_if_exists']);
         $container->setParameter('admingenerator.base_admin_template', $config['base_admin_template']);
         $container->setParameter('admingeneretor.menu_builder.class', $config['knp_menu_class']);
+        $container->setParameter('admingenerator.stylesheets', $config['stylesheets']);
+
         $container->setParameter('session.flashbag.class', 'Symfony\Component\HttpFoundation\Session\Flash\FlashBag');
 
         $resources = $container->getParameter('twig.form.resources');

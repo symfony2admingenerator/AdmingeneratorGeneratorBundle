@@ -5,6 +5,8 @@ namespace Admingenerator\GeneratorBundle\Builder;
 /**
  * @author Cedric LOMBARDOT
  */
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 use Symfony\Component\Yaml\Yaml;
 
 use TwigGenerator\Builder\Generator as TwigGeneratorGenerator;
@@ -27,7 +29,7 @@ class Generator extends TwigGeneratorGenerator
 
     protected $base_generator_name;
 
-    protected $listParams = array();
+    protected $container;
 
     /**
      * Init a new generator and automatically define the base of tempDir
@@ -137,23 +139,14 @@ class Generator extends TwigGeneratorGenerator
         return 'Base'.$this->base_generator_name.'Controller';
     }
 
-     /**
-     * Set list configuaration params
-     *
-     * @param array $value
-     */
-    public function setListParams($value)
+    public function setContainer(ContainerInterface $container)
     {
-        $this->listParams = $value;
+        return $this->container = $container;
     }
 
-     /**
-     * Date, DateTime formats for list
-     *
-     * @return array
-     */
-    public function getListParams()
+    public function getContainer()
     {
-        return $this->listParams;
-    }  
+        return $this->container;
+    }
+
 }

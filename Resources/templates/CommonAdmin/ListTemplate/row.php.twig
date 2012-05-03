@@ -2,8 +2,14 @@
 {% use '../CommonAdmin/ListTemplate/Column/date.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/Column/datetime.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/Column/decimal.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/Column/collection.php.twig' %}
 {% block list_row %}
 {{ echo_block("list_row") }}
+    {% if batch_actions is defined and batch_actions|length > 0 %}
+        <td class="td_batch_action">
+            <input type="checkbox" name="ids[]" class="batch_select_id" value="{{- echo_twig(builder.ModelClass ~ '.' ~ builder.ModelPrimaryKeyName) -}}" />
+        </td>
+    {% endif %}
     {% for column in builder.columns %}
     {% if column.credentials %}
           {{ echo_if_granted(column.credentials) }}
@@ -14,10 +20,12 @@
                         {{- block('column_boolean') -}}
                     {%- elseif column.dbType|lower == "date" -%}
                         {{- block('column_date') -}}
-                    {%- elseif (column.dbType|lower == "datetime") or (column.dbType|lower == "vardatetime") or (column.dbType|lower == "datetimetz") -%}
+                    {%- elseif (column.dbType|lower == "datetime") or (column.dbType|lower == "timestamp") or (column.dbType|lower == "vardatetime") or (column.dbType|lower == "datetimetz") -%}
                         {{- block('column_datetime') -}}
                     {%- elseif column.dbType|lower == "decimal" -%}
                         {{- block('column_decimal') -}}
+                    {%- elseif (column.dbType|lower == "array") or (column.dbType|lower == "collection")  -%}
+                        {{- block('column_collection') -}}
                     {%- else -%}
                         {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter) -}}
                     {%- endif -%}

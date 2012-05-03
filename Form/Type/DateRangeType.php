@@ -34,34 +34,33 @@ class DateRangeType extends AbstractType
                ->add('to', new DateType(), $options['to']);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getParent(array $options)
     {
         return 'form';
     }
 
-    public function getDefaultOptions(array $options)
+    /**
+     * {@inheritdoc}
+     */
+    public function getDefaultOptions()
     {
-        $defaultOptions = array(
+        $years = range(date('Y'), date('Y') - 120);
+
+        return array(
             'format'            => null,
-            'years'             => range(date('Y'), date('Y') - 120),
-            'to'                => null,
-            'from'              => null,
+            'years'             => $years,
+            'to'                => array('years' => $years, 'widget' => 'choice'),
+            'from'              => array('years' => $years, 'widget' => 'choice'),
             'widget'            => 'choice',
         );
-
-        $options = array_replace($defaultOptions, $options);
-
-        if (is_null($defaultOptions['to'])) {
-            $defaultOptions['to'] = array('years' => $defaultOptions['years'], 'widget' => $defaultOptions['widget']);
-        }
-
-        if (is_null($defaultOptions['from'])) {
-            $defaultOptions['from'] = array('years' => $defaultOptions['years'], 'widget' => $defaultOptions['widget']);
-        }
-
-        return $defaultOptions;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'date_range';
