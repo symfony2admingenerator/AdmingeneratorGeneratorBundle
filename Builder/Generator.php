@@ -31,8 +31,6 @@ class Generator extends TwigGeneratorGenerator
 
     protected $container;
 
-    protected $listParams = array();
-
     /**
      * Init a new generator and automatically define the base of tempDir
      *
