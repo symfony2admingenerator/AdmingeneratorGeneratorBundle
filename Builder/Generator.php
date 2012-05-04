@@ -151,24 +151,10 @@ class Generator extends TwigGeneratorGenerator
         return $this->container;
     }
 
-     /**
-     * Set list configuaration params
-     *
-     * @param array $value
-     */
-    public function setListParams($value)
+    public function getTwigParams()
     {
-        $this->listParams = $value;
-    }
-
-     /**
-     * Date, DateTime formats for list
-     *
-     * @return array
-     */
-    public function getListParams()
-    {
-        return $this->listParams;
+        return $this->getContainer()->getParameter('admingenerator.twig');
     }
 
 }
+
