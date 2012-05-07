@@ -7,12 +7,21 @@
             return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
         }
 
-        $form = $this->getFilterForm();
-        $form->bindRequest($this->get('request'));
+        if ( $this->getRequest()->getMethod() == "POST"){
 
-        if ($form->isValid()) {
-            $this->setFilters($form->getClientData());
+            $form = $this->getFilterForm();
+            $form->bindRequest($this->get('request'));
+
+            if ($form->isValid()) {
+                $filters = $form->getClientData();
+            }
         }
+
+        if ( $this->getRequest()->getMethod() == "GET"){
+            $filters = $this->getRequest()->query->all();
+        }
+
+        $this->setFilters($filters);
 
         return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
     }
