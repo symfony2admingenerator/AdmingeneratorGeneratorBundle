@@ -8,19 +8,39 @@
     protected function setFilters($filters)
     {
 
-        {%- for filter in builder.filters.display -%}
-            {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
+        if ( $this->getRequest()->getMethod() == "POST"){
+            
+            {%- for filter in builder.filters.display -%}
+                {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
 
-        if (isset($filters['{{ filter }}'])) {
-                $filters['{{ filter }}'] = array (
-                    'id' => $filters['{{ filter }}']->getId(),
-                    'entityName' => get_class($filters['{{ filter }}'])
-                );
+            if (isset($filters['{{ filter }}'])) {
+                    $filters['{{ filter }}'] = array (
+                        'id' => $filters['{{ filter }}']->getId(),
+                        'entityName' => get_class($filters['{{ filter }}'])
+                    );
+            }
+
+                {%- endif %}
+
+            {% endfor -%}
         }
 
-            {%- endif %}
+        if ( $this->getRequest()->getMethod() == "GET"){
 
-        {% endfor -%}
+            {%- for filter in builder.filters.display -%}
+                {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
+
+            if (isset($filters['{{ filter }}'])) {
+                    $filters['{{ filter }}'] = array (
+                        'id' => $filters['{{ filter }}'],
+                        'entityName' => 'HelloKot\SiteBundle\Entity\User'
+                    );
+            }
+
+                {%- endif %}
+
+            {% endfor -%}
+        }
 
         $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Filters', $filters);
     }
