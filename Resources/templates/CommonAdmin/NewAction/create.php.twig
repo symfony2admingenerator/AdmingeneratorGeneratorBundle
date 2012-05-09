@@ -9,9 +9,7 @@
 
         ${{ builder.ModelClass }} = $this->getNewObject();
 
-        $type = new NewType();
-        $type->setSecurityContext($this->get('security.context'));
-        $form = $this->createForm($type, ${{ builder.ModelClass }});
+        $form = $this->createForm($this->getNewType(), ${{ builder.ModelClass }});
         $form->bindRequest($this->get('request'));
 
         if ($form->isValid()) {

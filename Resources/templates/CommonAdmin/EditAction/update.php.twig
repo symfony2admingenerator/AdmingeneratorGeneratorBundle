@@ -12,10 +12,9 @@
         if (!${{ builder.ModelClass }}) {
             throw new NotFoundHttpException("The {{ model }} with {{ builder.ModelPrimaryKeyName }} $pk can't be found");
         }
+
         $this->preBindRequest(${{ builder.ModelClass }});
-        $type = new EditType();
-        $type->setSecurityContext($this->get('security.context'));
-        $form = $this->createForm($type, ${{ builder.ModelClass }});
+        $form = $this->createForm($this->getEditType(), ${{ builder.ModelClass }});
         $form->bindRequest($this->get('request'));
 
         if ($form->isValid()) {

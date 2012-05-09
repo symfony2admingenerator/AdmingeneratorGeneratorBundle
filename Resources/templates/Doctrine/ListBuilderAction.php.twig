@@ -99,10 +99,7 @@
 
         {% endfor -%}
 
-        $type = new FiltersType();
-        $type->setSecurityContext($this->get('security.context'));
-
-        return $this->createForm($type, $filters);
+        return $this->createForm($this->getFiltersType(), $filters);
     }
 {% endblock %}
 

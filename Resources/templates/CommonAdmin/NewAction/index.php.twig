@@ -11,9 +11,7 @@ use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ bu
 
         ${{ builder.ModelClass }} = $this->getNewObject();
 
-        $type = new NewType();
-        $type->setSecurityContext($this->get('security.context'));
-        $form = $this->createForm($type, ${{ builder.ModelClass }});
+        $form = $this->createForm($this->getNewType(), ${{ builder.ModelClass }});
 
         return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}New:index.html.twig', array(
             "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
