@@ -18,7 +18,7 @@ class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
         if (false !== $this->securityContext->isGranted(array(new Expression('{{ column.credentials }}')))) {
         {%- endif %}
 
-           $builder->add('{{ column.name }}', '{{ column.formType }}', {{ column.formOptions|as_php|convert_as_form(column.formType) }});
+           $builder->add('{{ column.name }}', {{ column.formType|as_php|convert_as_form('form_widget') }}, {{ column.formOptions|as_php|convert_as_form(column.formType) }});
 
         {% if column.credentials %}
         }

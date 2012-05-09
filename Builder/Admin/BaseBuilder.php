@@ -2,6 +2,8 @@
 
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
+use Symfony\Component\DependencyInjection\Container;
+
 use Admingenerator\GeneratorBundle\Builder\BaseBuilder as GenericBaseBuilder;
 
 use Admingenerator\GeneratorBundle\Generator\Column;
@@ -98,6 +100,19 @@ class BaseBuilder extends GenericBaseBuilder
 
         $display = $this->getVariable('display');
 
+        // tabs
+        if (null == $display || 0 == sizeof($display)) {
+            $tabs = $this->getVariable('tabs');
+
+            if (null != $tabs || 0 < sizeof($tabs)) {
+                $display = array();
+
+                foreach ($tabs as $tab) {
+                    $display = array_merge($display, $tab);
+                }
+            }
+        }
+
         if (null == $display || 0 == sizeof($display)) {
            return $this->getAllFields();
         }
@@ -141,6 +156,19 @@ class BaseBuilder extends GenericBaseBuilder
     public function getFieldsets()
     {
         $display = $this->getVariable('display');
+
+        // tabs
+        if (null == $display || 0 == sizeof($display)) {
+            $tabs = $this->getVariable('tabs');
+
+            if (null != $tabs || 0 < sizeof($tabs)) {
+                $display = array();
+
+                foreach ($tabs as $tab) {
+                    $display = array_merge($display, $tab);
+                }
+            }
+        }
 
         if (null == $display || 0 == sizeof($display)) {
            $display = $this->getAllFields();
@@ -204,7 +232,12 @@ class BaseBuilder extends GenericBaseBuilder
     protected function findActions()
     {
         foreach ($this->getVariable('actions', array()) as $actionName => $actionParams) {
-            $action = new Action($actionName);
+            $class = 'Admingenerator\\GeneratorBundle\\Generator\\'.Container::camelize($actionName.'Action');
+            if (class_exists($class)) {
+                $action = new $class($actionName, $this);
+            } else {
+                $action = new Action($actionName);
+            }
 
             $this->setUserActionConfiguration($action);
 
@@ -271,7 +304,7 @@ class BaseBuilder extends GenericBaseBuilder
     public function getStylesheets()
     {
         $parse_stylesheets = function($params, $stylesheets) {
-            foreach($params as $css) {
+            foreach ($params as $css) {
                 if (is_string($css)) {
                     $css = array(
                         'path'  => $css,

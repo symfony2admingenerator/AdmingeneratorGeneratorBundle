@@ -6,6 +6,8 @@ use Admingenerator\GeneratorBundle\Builder\Generator as AdminGenerator;
 
 use Admingenerator\GeneratorBundle\Builder\Propel\ListBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\Propel\ListBuilderTemplate;
+use Admingenerator\GeneratorBundle\Builder\Propel\NestedListBuilderAction;
+use Admingenerator\GeneratorBundle\Builder\Propel\NestedListBuilderTemplate;
 use Admingenerator\GeneratorBundle\Builder\Propel\FiltersBuilderType;
 
 use Admingenerator\GeneratorBundle\Builder\Propel\DeleteBuilderAction;
@@ -46,6 +48,12 @@ class PropelGenerator extends Generator
         if (array_key_exists('list',$builders)) {
             $generator->addBuilder(new ListBuilderAction());
             $generator->addBuilder(new ListBuilderTemplate());
+            $generator->addBuilder(new FiltersBuilderType());
+        }
+
+        if (array_key_exists('nested_list',$builders)) {
+            $generator->addBuilder(new NestedListBuilderAction());
+            $generator->addBuilder(new NestedListBuilderTemplate());
             $generator->addBuilder(new FiltersBuilderType());
         }
 
