@@ -22,6 +22,14 @@ class NewController extends BaseController
 
     {{- block('security_check') }}
 
+    protected function getNewType()
+    {
+        $type = new NewType();
+        $type->setSecurityContext($this->get('security.context'));
+
+        return $type;
+    }
+
     {% block getNewObject -%}
     protected function getNewObject()
     {

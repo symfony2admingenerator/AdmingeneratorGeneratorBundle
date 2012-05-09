@@ -16,9 +16,7 @@ use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ bu
             throw new NotFoundHttpException("The {{ model }} with {{ builder.ModelPrimaryKeyName }} $pk can't be found");
         }
 
-        $type = new EditType();
-        $type->setSecurityContext($this->get('security.context'));
-        $form = $this->createForm($type, ${{ builder.ModelClass }});
+        $form = $this->createForm($this->getEditType(), ${{ builder.ModelClass }});
 
         return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Edit:index.html.twig', array(
             "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},

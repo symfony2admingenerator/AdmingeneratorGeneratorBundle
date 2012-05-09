@@ -22,6 +22,14 @@ class EditController extends BaseController
 
     {{- block('security_check_with_object') }}
 
+    protected function getEditType()
+    {
+        $type = new EditType();
+        $type->setSecurityContext($this->get('security.context'));
+
+        return $type;
+    }
+
     {% block getObject -%}
     protected function getObject($pk)
     {
