@@ -76,4 +76,12 @@ class ListController extends BaseController
         // ORM JOB
     }
     {% endblock %}
+
+    protected function getFiltersType()
+    {
+        $type = new FiltersType();
+        $type->setSecurityContext($this->get('security.context'));
+
+        return $type;
+    }
 }

@@ -100,10 +100,7 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
 
         {% endfor -%}
 
-        $type = new FiltersType();
-        $type->setSecurityContext($this->get('security.context'));
-
-        return $this->createForm($type, $this->getFilters());
+        return $this->createForm($this->getFiltersType(), $this->getFilters());
     }
 {% endblock %}
 
