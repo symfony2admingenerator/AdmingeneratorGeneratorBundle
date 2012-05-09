@@ -5,17 +5,20 @@ namespace Admingenerator\GeneratorBundle\Menu;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Router;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class DefaultMenuBuilder
 {
     protected $factory;
 
     /**
+     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
      * @param \Knp\Menu\FactoryInterface $factory
      */
-    public function __construct(FactoryInterface $factory)
+    public function __construct(ContainerInterface $container, FactoryInterface $factory)
     {
         $this->factory = $factory;
+        $this->setContainer($container);
     }
 
     /**
