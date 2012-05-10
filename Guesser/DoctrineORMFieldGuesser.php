@@ -198,4 +198,15 @@ class DoctrineORMFieldGuesser
     {
         return $this->getMetadatas()->getSingleIdentifierFieldName();
     }
+    
+    /**
+     * Find the target entity
+     */
+    public function getTargetEntity($fieldName)
+    {
+        $associationMapping = $this->getMetadatas()->getAssociationMapping($fieldName);
+
+        return $associationMapping['targetEntity'];
+        
+    }
 }
