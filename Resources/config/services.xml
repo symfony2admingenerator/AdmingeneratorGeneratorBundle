@@ -71,6 +71,7 @@
         <!-- Menu -->
         <service id="admingeneretor.menu_builder" class="%admingeneretor.menu_builder.class%">
             <tag name="knp_menu.menu" alias="admin" />
+            <argument type="service" id="service_container" />
             <argument type="service" id="knp_menu.factory" />
         </service>
 
