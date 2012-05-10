@@ -28,7 +28,7 @@
         if ($this->getRequest()->getMethod() == "GET") {
 
             {%- for filter in builder.filters.display -%}
-                {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
+                {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) -%}
 
             if (isset($filters['{{ filter }}'])) {
                     $filters['{{ filter }}'] = array (
