@@ -33,7 +33,7 @@
             if (isset($filters['{{ filter }}'])) {
                     $filters['{{ filter }}'] = array (
                         'id' => $filters['{{ filter }}'],
-                        'entityName' => 'HelloKot\SiteBundle\Entity\User'
+                        'entityName' => '{{ builder.getFieldGuesser().getTargetEntity(filter) }}'
                     );
             }
 
