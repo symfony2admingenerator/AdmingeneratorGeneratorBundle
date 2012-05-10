@@ -5,9 +5,10 @@ namespace Admingenerator\GeneratorBundle\Menu;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Router;
+use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class DefaultMenuBuilder
+class DefaultMenuBuilder extends ContainerAware
 {
     private $factory;
 
