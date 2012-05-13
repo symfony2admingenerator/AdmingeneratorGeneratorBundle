@@ -223,7 +223,7 @@ class PropelORMFieldGuesser
         $pks = $this->getMetadatas()->getPrimaryKeyColumns();
 
         if (count($pks) == 1) {
-            return $pks[0]->getName();
+            return $pks[0]->getPhpName();
         }
 
         throw new \LogicException('No valid primary keys found');
