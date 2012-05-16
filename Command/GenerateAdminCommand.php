@@ -59,7 +59,7 @@ EOT
     {
         $dialog = $this->getDialogHelper();
         $dialog->writeSection($output, 'Welcome to the Symfony2 admin generator');
-        $output->writeln('<comment>Create an admingenrator bundle with generate:bundle</comment>');
+        $output->writeln('<comment>Create an admingenerator bundle with generate:bundle</comment>');
 
         $generator = $dialog->askAndValidate($output, $dialog->getQuestion('Generator to use (doctrine, doctrine_odm, propel)', $input->getOption('generator')),  function ($generator) { if (!in_array($generator, array('doctrine','doctrine_odm','propel'))) { throw new \RuntimeException('Generator to use have to be doctrine, doctrine_odm or propel'); } return $generator; } , false, $input->getOption('generator'));
         $input->setOption('generator', $generator);
