@@ -42,7 +42,7 @@
             <argument type="service" id="file_locator" />
         </service>
 
-        <service id="pagerfanta.view.admingenerator" class="Admingenerator\GeneratorBundle\Pagerfanta\View\AdmingenratorView">
+        <service id="pagerfanta.view.admingenerator" class="Admingenerator\GeneratorBundle\Pagerfanta\View\AdmingeneratorView">
             <tag name="pagerfanta.view" alias="admingenerator" />
             <argument type="service" id="translator" />
         </service>
