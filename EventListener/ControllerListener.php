@@ -59,6 +59,7 @@ class ControllerListener
 
     protected function getGenerator($generatorYaml)
     {
+        Yaml::enablePhpParsing(true);
         $yaml = Yaml::parse($generatorYaml);
 
         return $this->container->get($yaml['generator']);
