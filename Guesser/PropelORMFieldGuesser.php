@@ -30,7 +30,7 @@ class PropelORMFieldGuesser
         $return = array();
 
         foreach ($this->getMetadatas($class)->getColumns() as $column) {
-            $return[] = strtolower($column->getName());
+            $return[] = Inflector::tableize($column->getPhpName());
         }
 
         return $return;
@@ -254,6 +254,12 @@ class PropelORMFieldGuesser
 
         if ($table && $table->hasColumn($property)) {
             return $this->cache[$class.'::'.$property] = $table->getColumn($property);
+        } else {
+            foreach ($table->getColumns() as $column) {
+                if (Inflector::tableize($column->getPhpName()) === $property) {
+                    return $this->cache[$class.'::'.$property] = $column;
+                }
+            }
         }
     }
 
