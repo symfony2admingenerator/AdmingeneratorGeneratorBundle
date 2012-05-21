@@ -48,9 +48,10 @@ class PropelORMFieldGuesser
     protected function getRelation($fieldName, $class = null)
     {
         $table = $this->getMetadatas($class);
+        $relName = Inflector::classify($fieldName);
 
         foreach ($table->getRelations() as $relation) {
-            if (Inflector::classify($fieldName) == $relation->getName()) {
+            if ($relName === $relation->getName() || $relName === $relation->getPluralName()) {
                 return $relation;
             }
         }
