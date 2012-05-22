@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 
 class DefaultMenuBuilder extends ContainerAware
 {
-    private $factory;
+    protected $factory;
 
     /**
      * @param \Knp\Menu\FactoryInterface $factory
