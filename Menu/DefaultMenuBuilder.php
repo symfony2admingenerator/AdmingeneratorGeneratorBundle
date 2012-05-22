@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Router;
 
 class DefaultMenuBuilder
 {
-    private $factory;
+    protected $factory;
 
     /**
      * @param \Knp\Menu\FactoryInterface $factory
