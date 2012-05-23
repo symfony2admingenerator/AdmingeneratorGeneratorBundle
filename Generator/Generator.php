@@ -2,6 +2,8 @@
 
 namespace Admingenerator\GeneratorBundle\Generator;
 
+use Symfony\Component\Finder\Finder;
+
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 use Admingenerator\GeneratorBundle\Builder\Generator as AdminGenerator;
@@ -77,5 +79,31 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
     public function getFieldGuesser()
     {
         return $this->fieldGuesser;
+    }
+
+    /**
+     * Check if we have to build file
+     */
+    public function needToOverwrite(\Admingenerator\GeneratorBundle\Builder\Generator $generator)
+    {
+        if ($this->container->getParameter('admingenerator.overwrite_if_exists')) {
+            return true;
+        }
+
+        $cacheDir = $this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name'));
+
+        if (!is_dir($cacheDir)) {
+            return true;
+        }
+
+        $fileInfo = new \SplFileInfo($this->getGeneratorYml());
+
+        $finder = new Finder();
+        $files = $finder->files()
+                        ->date('< '.date('Y-m-d H:i:s',$fileInfo->getMTime()))
+                        ->in($cacheDir)
+                        ->count();
+
+        return $files > 0;
     }
 }
