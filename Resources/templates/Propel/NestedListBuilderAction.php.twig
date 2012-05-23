@@ -1,0 +1,96 @@
+{% extends '../CommonAdmin/NestedListAction/NestedListBuilderAction.php.twig' %}
+{% block getQuery -%}
+    protected function getQuery()
+    {
+        $query = \{{ model }}Query::create();
+
+        $this->processFilters($query);
+        {% if scopes is defined %}
+        $this->processScopes($query);
+        {% endif %}
+
+        return $query;
+    }
+{% endblock %}
+
+{% block getFilterForm -%}
+    protected function getFilterForm()
+    {
+        $filters = $this->getFilters();
+
+        $type = new FiltersType();
+        $type->setSecurityContext($this->get('security.context'));
+
+        return $this->createForm($type, $this->getFilters());
+    }
+{% endblock %}
+
+{% block addJoinFor -%}
+    protected function addJoinFor($table, $query)
+    {
+        $query->leftJoin($table);
+    }
+{% endblock %}
+
+{% block processFilters -%}
+    protected function processFilters($query)
+    {
+        $filterObject = $this->getFilters();
+
+        $queryFilter = $this->get('admingenerator.queryfilter.propel');
+        $queryFilter->setQuery($query);
+
+        {% for filter in builder.filterColumns %}
+
+        if (isset($filterObject['{{ filter.name }}']) && null !== $filterObject['{{ filter.name }}']) {
+            $queryFilter->add{{ filter.dbType|lower|classify }}Filter("{{ filter.filterOn }}", $filterObject['{{ filter.name }}']);
+        }
+        {% endfor %}
+
+    }
+{% endblock %}
+
+{% block processScopes -%}
+    {% if scopes is defined %}
+    protected function processScopes($query)
+    {
+        $scopes = $this->getScopes();
+
+        {% for groupName, group in scopes -%}
+            {%- for scopeName, params in group %}
+
+        if (isset($scopes['{{ groupName }}']) && $scopes['{{ groupName }}'] == '{{ scopeName }}') {
+            {% if params["filters"] is defined -%}
+                {%- for filter, filterParams in params["filters"] -%}
+                {%- if filter|is_numeric -%}
+                $query->{{ filterParams }}();
+                {%- else -%}
+                $query->{{ filter }}({{ filterParams|as_php }});
+                {%- endif -%}
+                {%- endfor -%}
+            {%- endif %}
+
+        }
+            {% endfor -%}
+        {%- endfor %}
+
+    }
+    {% endif %}
+{% endblock %}
+
+{% block nested_appendAction -%}
+    public function nested_appendAction($source, $to)
+    {
+        $source = \{{ model }}Query::create()->findPk($source);
+        $to = \{{ model }}Query::create()->findPk($to);
+
+        if (!$to || !$source) {
+            throw new NotFoundHttpException("Can't found the nodes");
+        }
+
+        $source->moveTofirstChildOf($to);
+        $source->save();
+
+        return new Response();
+    }
+{% endblock %}
