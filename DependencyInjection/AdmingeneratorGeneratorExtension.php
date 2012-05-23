@@ -58,7 +58,7 @@ class AdmingeneratorGeneratorExtension extends Extension
 
         $container->setParameter('admingenerator.twig', $config['twig']);
 
-        if($config['twig']['use_localized_date']) {
+        if ($config['twig']['use_localized_date']) {
             // Register Intl extension for localized date
             $container->register('twig.extension.intl', 'Twig_Extensions_Extension_Intl')
                         ->addTag('twig.extension');
