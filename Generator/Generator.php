@@ -84,7 +84,7 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
     /**
      * Check if we have to build file
      */
-    public function needToOverwrite(\Admingenerator\GeneratorBundle\Builder\Generator $generator)
+    public function needToOverwrite(AdminGenerator $generator)
     {
         if ($this->container->getParameter('admingenerator.overwrite_if_exists')) {
             return true;
@@ -104,6 +104,17 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
                         ->in($cacheDir)
                         ->count();
 
-        return $files > 0;
+        if ($files > 0) {
+            return true;
+        }
+
+        $finder = new Finder();
+        foreach ($finder->files()->in($cacheDir) as $file) {
+            if (false !== strpos(file_get_contents($file), 'AdmingeneratorEmptyBuilderClass')) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
