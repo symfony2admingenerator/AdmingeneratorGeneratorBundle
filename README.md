@@ -301,16 +301,7 @@ Publish assets:
 php app/console assets:install web/
 ```
 
-### Last step
-
-Configure the dev environment:
-
-``` yaml
-admingenerator_generator:
-    overwrite_if_exists: true
-```
-
-And of course for prod:
+### Last step for prod:
 
 ```
 php app/console -env prod cache:warmup
