@@ -20,7 +20,7 @@
         "symfony/symfony": "2.0.*",
         "cedriclombardot/twig-generator": "dev-master",
         "knplabs/knp-menu-bundle": "dev-master",
-        "white-october/pagerfanta-bundle": "dev-master"
+        "white-october/pagerfanta-bundle": "dev-symfony2.0"
     },
     "target-dir": "Admingenerator/GeneratorBundle",
     "autoload": {
