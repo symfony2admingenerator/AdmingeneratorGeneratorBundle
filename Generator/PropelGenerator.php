@@ -2,8 +2,6 @@
 
 namespace Admingenerator\GeneratorBundle\Generator;
 
-use Symfony\Component\Finder\SplFileInfo;
-
 use Admingenerator\GeneratorBundle\Builder\Generator as AdminGenerator;
 
 use Admingenerator\GeneratorBundle\Builder\Propel\ListBuilderAction;
