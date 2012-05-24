@@ -7,6 +7,7 @@
     <parameters>
         <!--  Base -->
         <parameter key="routing.loader.admingenerator.class">Admingenerator\GeneratorBundle\Routing\RoutingLoader</parameter>
+        <parameter key="routing.loader.admingenerator_nested.class">Admingenerator\GeneratorBundle\Routing\NestedRoutingLoader</parameter>
         <parameter key="admingenerator.cache_warmer.class">Admingenerator\GeneratorBundle\CacheWarmer\GeneratorCacheWarmer</parameter>
         <parameter key="admingenerator.finder.class">Admingenerator\GeneratorBundle\CacheWarmer\GeneratorFinder</parameter>
         <parameter key="form.type_guesser.admingenerator.class">Admingenerator\GeneratorBundle\Validator\ValidatorTypeGuesser</parameter>
@@ -42,6 +43,11 @@
             <argument type="service" id="file_locator" />
         </service>
 
+        <service id="routing.loader.admingenerator_nested" class="%routing.loader.admingenerator_nested.class%">
+            <tag name="routing.loader" />
+            <argument type="service" id="file_locator" />
+        </service>
+
         <service id="pagerfanta.view.admingenerator" class="Admingenerator\GeneratorBundle\Pagerfanta\View\AdmingeneratorView">
             <tag name="pagerfanta.view" alias="admingenerator" />
             <argument type="service" id="translator" />
@@ -66,6 +72,9 @@
         <service id="admingeneretor.menu_builder" class="%admingeneretor.menu_builder.class%">
             <tag name="knp_menu.menu" alias="admin" />
             <argument type="service" id="knp_menu.factory" />
+            <call method="setContainer">
+                    <argument type="service" id="service_container" />
+            </call>
         </service>
 
         <service id="admingeneretor.menu.admin" class="%admingeneretor.menu_builder.class%"

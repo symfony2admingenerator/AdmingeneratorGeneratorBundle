@@ -149,4 +149,9 @@ class Generator extends TwigGeneratorGenerator
         return $this->container;
     }
 
+    public function getTwigParams()
+    {
+        return $this->getContainer()->getParameter('admingenerator.twig');
+    }
 }
+

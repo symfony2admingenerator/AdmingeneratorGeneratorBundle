@@ -3,6 +3,7 @@
 {% use '../CommonAdmin/ListAction/sorter.php.twig' %}
 {% use '../CommonAdmin/ListAction/filters.php.twig' %}
 {% use '../CommonAdmin/ListAction/scopes.php.twig' %}
+{% use '../CommonAdmin/ListAction/batch_actions.php.twig' %}
 {% use '../CommonAdmin/security_action.php.twig' %}
 <?php
 
@@ -77,6 +78,15 @@ class ListController extends BaseController
     }
     {% endblock %}
 
+    {{ block('batch_actions') }}
+
+    {% block doBatchDelete -%}
+    protected function doBatchDelete(array $ids)
+    {
+        // ORM JOB
+    }
+    {% endblock %}
+
     protected function getFiltersType()
     {
         $type = new FiltersType();
@@ -84,4 +94,5 @@ class ListController extends BaseController
 
         return $type;
     }
+
 }

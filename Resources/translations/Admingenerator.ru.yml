@@ -24,7 +24,14 @@ object.deleted.error: Материал не может быть удален
 # Form
 form.btn_save: Сохранить
 form.type_collection.add: Добавить
+form.delete.confirm: Ви действительно хотите удалить этот элемент ?
 
 # Actions
 List: Список
-New: Новое
+New: Добавить
+
+# Batch
+batch.delete.confirm: Вы подтверждаете удаление выбранных элементов ?
+batch.none_selected: Необходимо выбрать не менее одного элемента
+batch.deleted.success: Материалы было успешно удалено
+batch.deleted.error: Невозможно удалить материалы

@@ -93,3 +93,16 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
     }
     {% endif %}
 {% endblock %}
+
+{% block doBatchDelete -%}
+    protected function doBatchDelete(array $ids)
+    {
+        if (\{{ model }}Query::create()
+            ->filterByPrimaryKeys($ids)
+            ->delete()) {
+            $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ "batch.deleted.success" }}", array(), 'Admingenerator') );
+        } else {
+            $this->get('session')->setFlash('error', $this->get('translator')->trans("{{ "batch.deleted.error" }}", array(), 'Admingenerator') );
+        }
+    }
+{% endblock %}

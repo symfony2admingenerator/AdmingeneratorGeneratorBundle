@@ -24,7 +24,6 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode    = $treeBuilder->root('admingenerator_generator');
 
-
         $rootNode
             ->children()
                 ->booleanNode('use_doctrine_orm')->defaultFalse()->end()
@@ -35,7 +34,11 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('knp_menu_class')->defaultValue("Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder")->end()
                 ->arrayNode('twig')
                     ->children()
+                        ->booleanNode('use_localized_date')->defaultFalse()->end()
                         ->scalarNode('date_format')->defaultValue('Y-m-d')->end()
+                        ->scalarNode('datetime_format')->defaultValue('Y-m-d H:i:s')->end()
+                        ->scalarNode('localized_date_format')->defaultValue('medium')->end()
+                        ->scalarNode('localized_datetime_format')->defaultValue('medium')->end()
                         ->arrayNode('number_format')
                             ->children()
                                 ->scalarNode('decimal')->defaultValue(0)->end()
@@ -58,3 +61,4 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 }
+

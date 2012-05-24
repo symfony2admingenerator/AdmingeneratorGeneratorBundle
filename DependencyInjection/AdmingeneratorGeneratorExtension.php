@@ -43,8 +43,25 @@ class AdmingeneratorGeneratorExtension extends Extension
         $resources[] = 'AdmingeneratorGeneratorBundle:Form:fields.html.twig';
         $container->setParameter('twig.form.resources', $resources);
 
-        if (isset($config['twig'])) {
-            $container->setParameter('admingenerator.twig', $config['twig']);
+        if (!isset($config['twig'])) {
+            $config['twig'] = array(
+                'use_localized_date' => false,
+                'date_format'        => 'Y-m-d',
+                'datetime_format'    => 'Y-m-d H:i:s',
+                'number_format'      => array(
+                    'decimal'            => 0,
+                    'decimal_point'      => '.',
+                    'thousand_separator' => ',',
+                )
+             );
+        }
+
+        $container->setParameter('admingenerator.twig', $config['twig']);
+
+        if ($config['twig']['use_localized_date']) {
+            // Register Intl extension for localized date
+            $container->register('twig.extension.intl', 'Twig_Extensions_Extension_Intl')
+                        ->addTag('twig.extension');
         }
     }
 
@@ -53,3 +70,4 @@ class AdmingeneratorGeneratorExtension extends Extension
         return 'admingenerator_generator';
     }
 }
+
