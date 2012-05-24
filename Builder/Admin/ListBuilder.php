@@ -2,6 +2,8 @@
 
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
+use Symfony\Component\DependencyInjection\Container;
+
 use Admingenerator\GeneratorBundle\Generator\Column;
 
 use Admingenerator\GeneratorBundle\Generator\Action;
@@ -15,6 +17,8 @@ class ListBuilder extends BaseBuilder
 {
 
     protected $object_actions;
+
+    protected $batch_actions;
 
     protected $filter_columns;
 
@@ -110,6 +114,51 @@ class ListBuilder extends BaseBuilder
             $action = new Action($actionName);
             $this->setUserObjectActionConfiguration($action);
             $this->addObjectAction($action);
+        }
+    }
+
+
+    /**
+     * Return a list of batch action from list.batch_actions
+     * @return array
+     */
+    public function getBatchActions()
+    {
+        if (0 === count($this->batch_actions)) {
+            $this->findBatchActions();
+        }
+
+        return $this->batch_actions;
+    }
+
+    protected function setUserBatchActionConfiguration(Action $action)
+    {
+        $options = $this->getVariable(sprintf('batch_actions[%s]', $action->getName()),array(), true);
+
+        if (null !== $options) {
+            foreach ($options as $option => $value) {
+                $action->setOption($option, $value);
+            }
+        }
+    }
+
+    protected function addBatchAction(Action $action)
+    {
+        $this->batch_actions[$action->getName()] = $action;
+    }
+
+    protected function findBatchActions()
+    {
+        foreach ($this->getVariable('batch_actions', array()) as $actionName => $actionParams) {
+            $class = 'Admingenerator\\GeneratorBundle\\Generator\\'.Container::camelize($actionName.'BatchAction');
+            if (class_exists($class)) {
+                $action = new $class($actionName, $this);
+            } else {
+                $action = new Action($actionName);
+            }
+
+            $this->setUserBatchActionConfiguration($action);
+            $this->addBatchAction($action);
         }
     }
 

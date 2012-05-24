@@ -1,0 +1,13 @@
+{% block batch_actions %}
+public function batchAction()
+{
+    if (!$this->get('request')->get('action') || !$this->get('request')->get('ids')) {
+        return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
+    }
+
+    $method = 'doBatch'.ucfirst($this->get('request')->get('action'));
+    $this->$method($this->get('request')->get('ids'));
+
+    return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
+}
+{% endblock %}

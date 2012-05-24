@@ -75,7 +75,7 @@ class GeneratorCacheWarmer implements CacheWarmerInterface
 
     protected function parseYaml($file)
     {
-       $this->yaml_datas = Yaml::parse($file);
+        $this->yaml_datas = Yaml::parse($file);
     }
 
 }
