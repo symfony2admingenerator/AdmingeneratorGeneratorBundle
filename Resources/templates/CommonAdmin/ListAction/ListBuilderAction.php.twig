@@ -95,20 +95,4 @@ class ListController extends BaseController
         return $type;
     }
 
-    {{ block('batch_actions') }}
-
-    {% block doBatchDelete -%}
-    protected function doBatchDelete(array $ids)
-    {
-        // ORM JOB
-    }
-    {% endblock %}
-
-    protected function getFiltersType()
-    {
-        $type = new FiltersType();
-        $type->setSecurityContext($this->get('security.context'));
-
-        return $type;
-    }
 }
