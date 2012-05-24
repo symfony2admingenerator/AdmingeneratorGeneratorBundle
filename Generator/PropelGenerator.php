@@ -60,6 +60,12 @@ class PropelGenerator extends Generator
             $generator->addBuilder(new FiltersBuilderType());
         }
 
+        if (array_key_exists('nested_list',$builders)) {
+            $generator->addBuilder(new NestedListBuilderAction());
+            $generator->addBuilder(new NestedListBuilderTemplate());
+            $generator->addBuilder(new FiltersBuilderType());
+        }
+
         if (array_key_exists('delete', $builders)) {
             $generator->addBuilder(new DeleteBuilderAction());
         }
