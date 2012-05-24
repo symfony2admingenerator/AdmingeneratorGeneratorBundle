@@ -101,9 +101,8 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
         $finder = new Finder();
         $files = $finder->files()
                         ->date('< '.date('Y-m-d H:i:s',$fileInfo->getMTime()))
-                        ->in($cacheDir)
-                        ->count();
+                        ->in($cacheDir);
 
-        return $files > 0;
+        return iterator_count($files->getIterator()) > 0;
     }
 }
