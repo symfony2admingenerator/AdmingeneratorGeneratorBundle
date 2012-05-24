@@ -48,28 +48,17 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-                ->append($this->getStylesheetNode())
+                ->arrayNode('stylesheets')
+                ->prototype('array')
+                ->fixXmlConfig('stylesheets')
+                    ->children()
+                        ->scalarNode('path')->end()
+                        ->scalarNode('media')->defaultValue('all')->end()
+                    ->end()
+                ->end()
             ->end();
 
         return $treeBuilder;
-    }
-
-    private function getStylesheetNode()
-    {
-        $treeBuilder = new TreeBuilder();
-        $node    = $treeBuilder->root('stylesheets');
-
-        $node
-            ->prototype('array')
-            ->fixXmlConfig('stylesheets')
-                ->children()
-                    ->scalarNode('path')->end()
-                    ->scalarNode('media')->defaultValue('all')->end()
-                ->end()
-            ->end()
-            ;
-
-       return $node;
     }
 }
 
