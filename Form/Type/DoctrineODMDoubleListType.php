@@ -3,7 +3,7 @@
 namespace Admingenerator\GeneratorBundle\Form\Type;
 
 use Doctrine\Bundle\MongoDBBundle\Form\Type\DocumentType;
-use Symfony\Component\Form\FormView;
+use Symfony\Component\Form\FormViewInterface;
 use Symfony\Component\Form\FormInterface;
 
 class DoctrineODMDoubleListType extends DocumentType
@@ -11,7 +11,7 @@ class DoctrineODMDoubleListType extends DocumentType
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form)
+    public function buildView(FormViewInterface $view, FormInterface $form, array $options)
     {
         $choiceList = $form->getAttribute('choice_list');
 
