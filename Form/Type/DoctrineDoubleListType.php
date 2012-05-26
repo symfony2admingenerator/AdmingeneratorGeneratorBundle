@@ -3,7 +3,7 @@
 namespace Admingenerator\GeneratorBundle\Form\Type;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\FormView;
+use Symfony\Component\Form\FormViewInterface;
 use Symfony\Component\Form\FormInterface;
 
 class DoctrineDoubleListType extends EntityType
@@ -11,7 +11,7 @@ class DoctrineDoubleListType extends EntityType
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form)
+    public function buildView(FormViewInterface $view, FormInterface $form, array $options)
     {
         $choiceList = $form->getAttribute('choice_list');
 
