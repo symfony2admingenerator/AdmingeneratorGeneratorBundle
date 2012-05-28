@@ -3,7 +3,7 @@
 namespace Admingenerator\GeneratorBundle\Form\Type;
 
 use Symfony\Bridge\Propel1\Form\Type\ModelType;
-use Symfony\Component\Form\FormView;
+use Symfony\Component\Form\FormViewInterface;
 use Symfony\Component\Form\FormInterface;
 
 class PropelDoubleListType extends ModelType
@@ -11,7 +11,7 @@ class PropelDoubleListType extends ModelType
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form)
+    public function buildView(FormViewInterface $view, FormInterface $form, array $options)
     {
         $choiceList = $form->getAttribute('choice_list');
 
