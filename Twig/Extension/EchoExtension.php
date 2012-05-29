@@ -2,7 +2,6 @@
 
 namespace Admingenerator\GeneratorBundle\Twig\Extension;
 
-
 class EchoExtension extends \Twig_Extension
 {
     protected $loader;

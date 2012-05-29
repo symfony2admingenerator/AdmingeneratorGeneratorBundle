@@ -6,7 +6,6 @@ use Admingenerator\GeneratorBundle\Builder\Admin\BaseBuilder;
 
 use Admingenerator\GeneratorBundle\Tests\TestCase;
 
-
 class BaseBuilderTest extends TestCase
 {
     public function testGetSimpleClassName()
@@ -53,10 +52,10 @@ class BaseBuilderTest extends TestCase
     {
         $builder = $this->initBuilder();
 
-        $this->assertEquals('Hello cedric!', $builder->getCode());
+        $this->assertEquals('Hello cedric!'."\n", $builder->getCode());
 
         $builder->setVariables(array('name' => 'Tux'));
-        $this->assertEquals('Hello Tux!', $builder->getCode(), 'If I change variables code is changed');
+        $this->assertEquals('Hello Tux!'."\n", $builder->getCode(), 'If I change variables code is changed');
     }
 
     public function testWriteOnDisk()
@@ -65,25 +64,25 @@ class BaseBuilderTest extends TestCase
 
         $builder->writeOnDisk(sys_get_temp_dir());
         $this->assertTrue(file_exists(sys_get_temp_dir() . '/test.php'));
-        $this->assertEquals('Hello cedric!', file_get_contents(sys_get_temp_dir() . '/test.php'));
+        $this->assertEquals('Hello cedric!'."\n", file_get_contents(sys_get_temp_dir() . '/test.php'));
 
         $builder->setVariables(array('name' => 'Tux'));
         $builder->writeOnDisk(sys_get_temp_dir());
         $this->assertTrue($builder->mustOverwriteIfExists());
         $this->assertTrue(file_exists(sys_get_temp_dir() . '/test.php'));
-        $this->assertEquals('Hello Tux!', file_get_contents(sys_get_temp_dir() . '/test.php'), 'If i change variables code is changed');
+        $this->assertEquals('Hello Tux!'."\n", file_get_contents(sys_get_temp_dir() . '/test.php'), 'If i change variables code is changed');
 
         $builder->setVariables(array('name' => 'cedric'));
         $builder->setMustOverwriteIfExists(false);
         $builder->writeOnDisk(sys_get_temp_dir());
         $this->assertFalse($builder->mustOverwriteIfExists());
         $this->assertTrue(file_exists(sys_get_temp_dir() . '/test.php'));
-        $this->assertEquals('Hello Tux!', file_get_contents(sys_get_temp_dir() . '/test.php'), 'If i change variables on an existant files code is not generated');
+        $this->assertEquals('Hello Tux!'."\n", file_get_contents(sys_get_temp_dir() . '/test.php'), 'If i change variables on an existant files code is not generated');
 
         unlink(sys_get_temp_dir() . '/test.php');
         $this->assertFalse(file_exists(sys_get_temp_dir() . '/test.php'));
         $builder->writeOnDisk(sys_get_temp_dir());
-        $this->assertEquals('Hello cedric!', file_get_contents(sys_get_temp_dir() . '/test.php'), 'If i change variables on a non existant files code is generated');
+        $this->assertEquals('Hello cedric!'."\n", file_get_contents(sys_get_temp_dir() . '/test.php'), 'If i change variables on a non existant files code is generated');
     }
 
     public function testGetModelClass()

@@ -2,7 +2,6 @@
 
 namespace Admingenerator\GeneratorBundle\Routing;
 
-
 class NestedRoutingLoader extends RoutingLoader
 {
     public function load($resource, $type = null)

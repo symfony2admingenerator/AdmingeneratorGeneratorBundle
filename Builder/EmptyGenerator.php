@@ -6,7 +6,6 @@ namespace Admingenerator\GeneratorBundle\Builder;
  * @author Cedric LOMBARDOT
  */
 
-
 class EmptyGenerator extends Generator
 {
 
