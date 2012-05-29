@@ -182,16 +182,12 @@
 {% block doBatchDelete -%}
     protected function doBatchDelete(array $ids)
     {
-    
-        $em = $this->getDoctrine()->getEntityManager();
-    	$status = $em
-    		->createQuery('DELETE {{ model }} m WHERE m.{{ builder.ModelPrimaryKeyName }} IN (:ids)') 
+        if ($this->getDoctrine()->getEntityManager()
+            ->createQuery('DELETE {{ model }} m WHERE m.{{ builder.ModelPrimaryKeyName }} IN (:ids)') 
     		->setParameter('ids', $ids)
     		->getResult()
-    		;
-    	
-       if ($status){
-           $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ "batch.deleted.success" }}", array(), 'Admingenerator') );
+        ){
+            $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ "batch.deleted.success" }}", array(), 'Admingenerator') );
         }else{
             $this->get('session')->setFlash('error', $this->get('translator')->trans("{{ "batch.deleted.error" }}", array(), 'Admingenerator') );
        }
