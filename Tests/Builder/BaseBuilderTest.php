@@ -6,7 +6,6 @@ use Admingenerator\GeneratorBundle\Builder\Admin\BaseBuilder;
 
 use Admingenerator\GeneratorBundle\Tests\TestCase;
 
-use Symfony\Component\HttpFoundation\ParameterBag;
 
 class BaseBuilderTest extends TestCase
 {

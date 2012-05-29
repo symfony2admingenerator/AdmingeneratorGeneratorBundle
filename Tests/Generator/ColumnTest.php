@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Admingenerator\GeneratorBundle\Tests\Generator;
 
 use Doctrine\Common\Util\Inflector;
@@ -81,7 +80,6 @@ class ColumnTest extends TestCase
 
         $this->assertEquals(array(1900, 1905, 1910, 1915), $options['years']);
     }
-
 
     protected function checkColumn($from_to_array, $method)
     {

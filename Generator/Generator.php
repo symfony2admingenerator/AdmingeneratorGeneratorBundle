@@ -7,8 +7,6 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 use Admingenerator\GeneratorBundle\Builder\Generator as AdminGenerator;
-use Admingenerator\GeneratorBundle\Builder\ListBuilderAction;
-use Admingenerator\GeneratorBundle\Builder\ListBuilderTemplate;
 
 abstract class Generator extends ContainerAware implements GeneratorInterface
 {
@@ -69,7 +67,6 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
     {
         throw new \LogicException('Not implemented');
     }
-
 
     public function setFieldGuesser($fieldGuesser)
     {

@@ -2,9 +2,7 @@
 
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
-use Admingenerator\GeneratorBundle\Generator\Action;
 
-use Admingenerator\GeneratorBundle\Generator\Column;
 
 /**
  * This builder generate php for new actions
