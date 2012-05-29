@@ -2,8 +2,6 @@
 
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
-
-
 /**
  * This builder generate php for new actions
  * @author cedric Lombardot
