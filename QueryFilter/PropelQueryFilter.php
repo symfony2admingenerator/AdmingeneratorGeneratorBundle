@@ -54,7 +54,7 @@ class PropelQueryFilter extends BaseQueryFilter
             }
 
             if ($value['to']) {
-                $filters['to'] = $value['to']->format('Y-m-d');
+                $filters['max'] = $value['to']->format('Y-m-d');
             }
 
             if (count($filters) > 0) {
