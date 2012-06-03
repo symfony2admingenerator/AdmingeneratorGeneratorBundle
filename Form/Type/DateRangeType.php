@@ -45,7 +45,7 @@ class DateRangeType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getDefaultOptions()
+    public function getDefaultOptions(array $options)
     {
         $years = range(date('Y'), date('Y') - 120);
 
