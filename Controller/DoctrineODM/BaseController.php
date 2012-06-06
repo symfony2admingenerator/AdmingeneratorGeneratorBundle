@@ -4,7 +4,6 @@ namespace Admingenerator\GeneratorBundle\Controller\DoctrineODM;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-
 /**
  * A base controller for DoctrineODM
  *

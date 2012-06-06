@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Admingenerator\GeneratorBundle\Tests\Routing;
 
 use Symfony\Component\Routing\RouteCollection;

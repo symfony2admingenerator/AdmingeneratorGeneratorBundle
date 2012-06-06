@@ -6,9 +6,6 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
-use Symfony\Component\Form\FormView;
-use Symfony\Component\Form\FormInterface;
-
 
 class DateRangeType extends AbstractType
 {
@@ -27,7 +24,6 @@ class DateRangeType extends AbstractType
             $options['from']['format'] = $options['format'];
             $options['to']['format'] = $options['format'];
          }
-
 
          $builder
                ->add('from', new DateType(), $options['from'])

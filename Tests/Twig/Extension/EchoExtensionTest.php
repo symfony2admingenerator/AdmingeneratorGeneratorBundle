@@ -21,7 +21,7 @@ use Symfony\Bundle\TwigBundle\Loader\FilesystemLoader;
  */
 class EchoExtensionTest extends TestCase
 {
-    static protected $params;
+    protected static $params;
 
     public function setUp()
     {
@@ -361,18 +361,16 @@ class EchoExtensionTest extends TestCase
     }
 }
 
-
 class Object
 {
-    static public $called = array('__toString' => 0, 'foo' => 0, 'getFooBar' => 0);
-
+    public static $called = array('__toString' => 0, 'foo' => 0, 'getFooBar' => 0);
 
     public function __construct($bar ='bar')
     {
 
     }
 
-    static public function reset()
+    public static function reset()
     {
         self::$called = array('__toString' => 0, 'foo' => 0, 'getFooBar' => 0);
     }

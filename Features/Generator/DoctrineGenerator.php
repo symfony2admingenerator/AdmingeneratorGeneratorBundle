@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Admingenerator\GeneratorBundle\Features\Generator;
 
 use Admingenerator\GeneratorBundle\Generator\DoctrineGenerator as BaseDoctrineGenerator;

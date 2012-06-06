@@ -3,10 +3,6 @@
 namespace Admingenerator\GeneratorBundle\Form\Type;
 
 
-use Symfony\Component\Validator\Constraints\ChoiceValidator;
-
-use Symfony\Component\Form\Extension\Core\DataTransformer\ArrayToChoicesTransformer;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 use Propel\PropelBundle\Form\ChoiceList\ModelChoiceList;
 
@@ -15,9 +11,7 @@ use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 
-use Propel\PropelBundle\Form\EventListener\MergeCollectionListener;
 use Propel\PropelBundle\Form\DataTransformer\ModelsToArrayTransformer;
-use Propel\PropelBundle\Form\DataTransformer\ModelToIdTransformer;
 
 class PropelDoubleListType extends AbstractType
 {
@@ -38,7 +32,6 @@ class PropelDoubleListType extends AbstractType
         unset($options['choices']);
 
     }
-
 
     /**
      * {@inheritdoc}

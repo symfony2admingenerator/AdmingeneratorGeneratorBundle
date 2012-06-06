@@ -3,10 +3,6 @@
 namespace Admingenerator\GeneratorBundle\Form\Type;
 
 
-use Symfony\Component\Validator\Constraints\ChoiceValidator;
-
-use Symfony\Component\Form\Extension\Core\DataTransformer\ArrayToChoicesTransformer;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityChoiceList;
 
@@ -17,9 +13,7 @@ use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 
-use Symfony\Bridge\Doctrine\Form\EventListener\MergeCollectionListener;
 use Symfony\Bridge\Doctrine\Form\DataTransformer\EntitiesToArrayTransformer;
-use Symfony\Bridge\Doctrine\Form\DataTransformer\EntityToIdTransformer;
 
 class DoctrineDoubleListType extends AbstractType
 {
@@ -47,7 +41,6 @@ class DoctrineDoubleListType extends AbstractType
         unset($options['choices']);
 
     }
-
 
     /**
      * {@inheritdoc}

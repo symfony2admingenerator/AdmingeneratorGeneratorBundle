@@ -4,13 +4,7 @@ namespace Admingenerator\GeneratorBundle\Features\Context;
 
 use Symfony\Component\Yaml\Yaml;
 
-use Behat\BehatBundle\Context\BehatContext;
 use Behat\BehatBundle\Context\MinkContext;
-use Behat\Behat\Context\ClosuredContextInterfacen;
-use Behat\Behat\Context\TranslatedContextInterfacen;
-use Behat\Behat\Exception\PendingException;
-use Behat\Gherkin\Node\PyStringNoden;
-use Behat\Gherkin\Node\TableNode;
 
 require_once 'PHPUnit/Autoload.php';
 require_once 'PHPUnit/Framework/Assert/Functions.php';

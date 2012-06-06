@@ -9,14 +9,14 @@ interface QueryFilterInterface
      *
      * @api
      */
-    function setQuery($query);
+    public function setQuery($query);
 
     /**
      * @return the query object interface depend of the ORM
      *
      * @api
      */
-    function getQuery();
+    public function getQuery();
 
     /**
      * Add filter for Default db types (types, not found
@@ -27,6 +27,6 @@ interface QueryFilterInterface
      *
      * @api
      */
-    function addDefaultFilter($field, $value);
+    public function addDefaultFilter($field, $value);
 
 }
