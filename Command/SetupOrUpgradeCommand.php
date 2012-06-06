@@ -2,9 +2,7 @@
 
 namespace Admingenerator\GeneratorBundle\Command;
 
-
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -73,7 +71,6 @@ EOT
 
         $dialog->writeSection($output, 'The skin you want to use');
         $skin = $dialog->askAndValidate($output, $dialog->getQuestion('Which skin you want (default, active_admin, own)?', $input->getOption('skin')),  function ($skin) { if (!in_array($skin, array('default', 'active_admin', 'own'))) { throw new \RuntimeException('You have to choose between default, active_admin, own'); } return $skin; } , false, $input->getOption('skin'));
-
 
         $help = '';
         if ('own' == $skin) {
@@ -423,10 +420,8 @@ EOD;
     {
         $dialog = $this->getDialogHelper();
 
-
         $output->writeln('<info>Bundle setuped</info>');
     }
-
 
     protected function getDialogHelper()
     {

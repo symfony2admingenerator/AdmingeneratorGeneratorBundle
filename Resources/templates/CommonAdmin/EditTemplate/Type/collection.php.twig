@@ -21,8 +21,7 @@
 
         $('#type_collection_{{ field }} .new').click(function() {
            var prototype = $('#{{ builder.YamlKey }}_{{ builder.ModelClass|lower }}_{{ field }}').attr('data-prototype');
-           prototype = prototype.replace(/__name__label__/g, "{{ builder.Columns[field].extras.new_label is defined ? builder.Columns[field].extras.new_label : 'type_collection_' ~ field ~ '_nextId' }}");
-           prototype = prototype.replace(/__name__/g, type_collection_{{ field }}_nextId);
+           prototype = prototype.replace(/\$\$name\$\$/g, type_collection_{{ field }}_nextId);
            type_collection_{{ field }}_nextId++;
            $('#{{ builder.YamlKey }}_{{ builder.ModelClass|lower }}_{{ field }}').append(prototype);
 

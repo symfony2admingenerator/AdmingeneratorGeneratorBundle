@@ -62,7 +62,7 @@ class DoctrineORMFieldGuesser
 
     public function getFormType($dbType, $columnName)
     {
-        switch($dbType) {
+        switch ($dbType) {
             case 'boolean':
                 return 'checkbox';
             case 'datetime':
@@ -110,7 +110,7 @@ class DoctrineORMFieldGuesser
 
     public function getFilterType($dbType, $columnName)
     {
-         switch($dbType) {
+         switch ($dbType) {
              case 'text':
                 return 'text';
                 break;
@@ -171,8 +171,7 @@ class DoctrineORMFieldGuesser
     {
         $options = array('required' => false);
 
-        if ('boolean' == $dbType)
-        {
+        if ('boolean' == $dbType) {
            $options['choices'] = array(
                     0 => 'No',
                     1 => 'Yes'

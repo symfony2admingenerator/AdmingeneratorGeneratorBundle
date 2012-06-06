@@ -2,11 +2,6 @@
 
 namespace Admingenerator\GeneratorBundle\Routing;
 
-use Symfony\Component\Config\Loader\FileLoader;
-use Symfony\Component\Config\Resource\FileResource;
-use Symfony\Component\Routing\RouteCollection;
-use Symfony\Component\Routing\Route;
-
 class NestedRoutingLoader extends RoutingLoader
 {
     public function load($resource, $type = null)

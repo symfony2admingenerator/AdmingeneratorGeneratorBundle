@@ -8,7 +8,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Processor;
 
-
 class AdmingeneratorGeneratorExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)

@@ -2,8 +2,6 @@
 
 namespace Admingenerator\GeneratorBundle\Twig\Extension;
 
-use Symfony\Component\HttpKernel\KernelInterface;
-
 class EchoExtension extends \Twig_Extension
 {
     protected $loader;
@@ -56,7 +54,7 @@ class EchoExtension extends \Twig_Extension
      *
      * eg type option for collection type
      *
-     * @param string $options the string as php
+     * @param string $options  the string as php
      * @param string $formType the form type
      *
      * @return string the new options
@@ -233,7 +231,7 @@ class EchoExtension extends \Twig_Extension
     }
 
     /**
-     * Converts an assoc array to a twig array expression (string).
+     * Converts an assoc array to a twig array expression (string) .
      * Only in case a value contains '{{' and '}}' the value won't be
      * wrapped in quotes.
      *
@@ -252,15 +250,12 @@ class EchoExtension extends \Twig_Extension
     public function getEchoTwigAssoc(array $arr)
     {
         $contents = array();
-        foreach ($arr as $key => $value)
-        {
+        foreach ($arr as $key => $value) {
             if (!strstr($value, '{{')
                 || !strstr($value, '}}'))
             {
                 $value = "'$value'";
-            }
-            else
-            {
+            } else {
                 $value = trim(str_replace(array('{{', '}}'), '', $value));
             }
 
