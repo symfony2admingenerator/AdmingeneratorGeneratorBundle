@@ -21,7 +21,7 @@ class DefaultMenuBuilder extends ContainerAware
 
     /**
      * @param Request $request
-     * @param Router $router
+     * @param Router  $router
      */
     public function createAdminMenu(Request $request)
     {

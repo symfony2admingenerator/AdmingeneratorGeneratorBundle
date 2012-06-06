@@ -6,16 +6,13 @@ namespace Admingenerator\GeneratorBundle\Builder;
  * @author Cedric LOMBARDOT
  */
 
-use Symfony\Component\Yaml\Yaml;
-
 class EmptyGenerator extends Generator
 {
-
 
     /**
      * Init a new generator and automatically define the base of temp directory.
      *
-     * @param string $baseTempDir    Optional base for temporary template files
+     * @param string $baseTempDir Optional base for temporary template files
      */
     public function __construct($baseTempDir = null)
     {

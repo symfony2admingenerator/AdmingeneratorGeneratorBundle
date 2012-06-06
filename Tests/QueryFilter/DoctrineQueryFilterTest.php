@@ -62,7 +62,6 @@ class QueryFilterTest extends TestCase
         return $queryFilter;
     }
 
-
     /**
      * Creates an EntityManager for testing purposes.
      *

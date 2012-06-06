@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Admingenerator\GeneratorBundle\Tests\Generator;
 
 use Admingenerator\GeneratorBundle\Tests\TestCase;

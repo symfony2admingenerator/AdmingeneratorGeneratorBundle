@@ -4,7 +4,6 @@ namespace Admingenerator\GeneratorBundle\Controller\Doctrine;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-
 /**
  * A base controller for Doctrine
  *

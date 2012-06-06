@@ -15,7 +15,6 @@ class PropelORMFieldGuesser
 
     private static $current_class;
 
-
     protected function getMetadatas($class = null)
     {
         if ($class) {
@@ -71,7 +70,7 @@ class PropelORMFieldGuesser
 
     public function getFormType($dbType, $columnName)
     {
-        switch($dbType) {
+        switch ($dbType) {
             case \PropelColumnTypes::ENUM:
                 return 'choice';
             case \PropelColumnTypes::BOOLEAN:
@@ -118,7 +117,7 @@ class PropelORMFieldGuesser
 
     public function getFilterType($dbType, $columnName)
     {
-         switch($dbType) {
+         switch ($dbType) {
              case \PropelColumnTypes::BOOLEAN:
              case \PropelColumnTypes::BOOLEAN_EMU:
                 return 'choice';
@@ -196,8 +195,7 @@ class PropelORMFieldGuesser
     {
         $options = array('required' => false);
 
-        if (\PropelColumnTypes::BOOLEAN == $dbType || \PropelColumnTypes::BOOLEAN_EMU == $dbType)
-        {
+        if (\PropelColumnTypes::BOOLEAN == $dbType || \PropelColumnTypes::BOOLEAN_EMU == $dbType) {
            $options['choices'] = array(
                     0 => 'No',
                     1 => 'Yes'
