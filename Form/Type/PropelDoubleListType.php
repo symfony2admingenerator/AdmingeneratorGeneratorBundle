@@ -13,11 +13,11 @@ class PropelDoubleListType extends ModelType
      */
     public function buildView(FormViewInterface $view, FormInterface $form, array $options)
     {
-        $choiceList = $form->getAttribute('choice_list');
+        $choiceList = $options['choice_list'];
 
         $choices = $choiceList->getChoices();
         $indices =  $choiceList->getValuesForChoices($choices);
-        $selectedChoices = $choiceList->getChoicesForValues($view->get('value'));
+        $selectedChoices = $choiceList->getChoicesForValues($form->getViewData() ? $form->getViewData() : array());
         $selectedIndices =  $choiceList->getValuesForChoices($selectedChoices);
 
         $choices_selected = $choices_unselected = array();
@@ -26,18 +26,18 @@ class PropelDoubleListType extends ModelType
             if (in_array($indice, $selectedIndices)) {
                 $choices_selected[] = array(
                     'value' => $indice,
-                    'label' => $choices[$indice]
+                    'label' => (string) $choices[$indice]
                 );
             } else {
                 $choices_unselected[] = array(
                     'value' => $indice,
-                    'label' => $choices[$indice]
+                    'label' => (string) $choices[$indice]
                 );
             }
         }
 
-        $view->set('choices_selected',  $choices_selected);
-        $view->set('choices_unselected', $choices_unselected);
+        $view->setVar('choices_selected',  $choices_selected);
+        $view->setVar('choices_unselected', $choices_unselected);
     }
 
     /**
@@ -57,4 +57,5 @@ class PropelDoubleListType extends ModelType
     {
         return 'propel_double_list';
     }
+
 }
