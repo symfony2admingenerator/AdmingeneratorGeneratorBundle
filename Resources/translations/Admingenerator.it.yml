@@ -1,0 +1,37 @@
+# Double list form
+double_list.selected: Selezionati
+double_list.unselected: Non selezionati
+
+# Pager
+pagerfanta.previous: Precedente
+pagerfanta.next: Successivo
+
+# List
+list.no_results: Nessun risultato
+list.filters: Filtri
+list.filter.btn_filter: Filtra
+list.filter.btn_reset: Pulisci
+"Display all <b>%count%</b> results": Mostra tutti i <b>%count%</b> risultati
+"Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Mostra i risultati da <b>%start%</b> a <b>%end%</b> di <b>%count%</b>
+list.actions: Azioni
+
+#Object
+object.saved.success: L'oggetto è stato salvato con successo
+object.saved.error: Non è stato possibile salvare il form. Controlla gli errori e reinvia il form
+object.deleted.success: Il dato è stato cancellato correttamente
+object.deleted.error: Il dato non può essere cancellato
+
+# Form
+form.btn_save: Salva
+form.type_collection.add: Aggiungi
+form.delete.confirm: Sei sicuro ?
+
+# Actions
+List: Lista
+New: Nuovo
+
+# Batch
+batch.delete.confirm: Confermi l'eliminazione di tutti gli elementi selezionati ?
+batch.none_selected: È necessario selezionare alemeno 1 elemento
+batch.deleted.success: I dati sono stati correttamente eliminati
+batch.deleted.error: I dati non possono essere eliminati
