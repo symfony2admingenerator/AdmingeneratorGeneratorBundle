@@ -31,7 +31,7 @@ List: List
 New: New
 
 # Batch
-batch.delete.confirm: Doo you confirm deletion of all selected elements ?
-batch.none_selected: You have to select at least 1 elmement
+batch.delete.confirm: Do you confirm deletion of all selected elements ?
+batch.none_selected: You have to select at least 1 element
 batch.deleted.success: Records have been successfully deleted
 batch.deleted.error: Records can't be deleted
