@@ -9,7 +9,7 @@ pagerfanta.next: Successivo
 # List
 list.no_results: Nessun risultato
 list.filters: Filtri
-list.filter.btn_filter: Filtro
+list.filter.btn_filter: Filtra
 list.filter.btn_reset: Pulisci
 "Display all <b>%count%</b> results": Mostra tutti i <b>%count%</b> risultati
 "Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Mostra i risultati da <b>%start%</b> a <b>%end%</b> di <b>%count%</b>
