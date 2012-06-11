@@ -4,8 +4,10 @@
     <div style="float: left">
         <div class="double_list_label">{% trans from "Admingenerator" %}double_list.unselected{% endtrans %}</div>
         <select name="{{ form.getParent().getVar('id') }}[{{ form.getVar("name") }}][unselected]" multiple="true" id="{{ form.getVar("id") }}_unselected" class="double_list_select-unselected">
-        {% for choice in choices_unselected %}
-            <option value="{{ choice.value }}">{{ choice.label }}</option>
+        {% for choice in choices %}
+            {% if not _form_is_choice_selected(form, choice) %}
+                <option value="{{ choice.value }}">{{ choice.label }}</option>
+            {% endif %}
         {% endfor %}
         </select>
     </div>
@@ -21,8 +23,10 @@
     <div style="float: left">
          <div class="double_list_label">{% trans from "Admingenerator" %}double_list.selected{% endtrans %}</div>
          <select name="{{ form.getParent().getVar('id') }}[{{ form.getVar("name") }}][]" multiple="true" id="{{ form.getVar("id") }}_selected" class="double_list_select-selected">
-         {% for choice in choices_selected %}
-            <option value="{{ choice.value }}">{{ choice.label }}</option>
+         {% for choice in choices %}
+            {% if _form_is_choice_selected(form, choice) %}
+                <option value="{{ choice.value }}">{{ choice.label }}</option>
+            {% endif %}
          {% endfor %}
          </select>
     </div>
