@@ -57,6 +57,10 @@
             <tag name="form.type" alias="date_range" />
         </service>
 
+        <service id="form.type.double_list" class="Admingenerator\GeneratorBundle\Form\Type\DoubleListType">
+            <tag name="form.type" alias="double_list" />
+        </service>
+
         <!-- Warmup -->
         <service id="admingenerator.finder" class="%admingenerator.finder.class%" public="false">
             <argument type="service" id="kernel" />
