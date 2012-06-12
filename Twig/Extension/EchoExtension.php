@@ -77,7 +77,7 @@ class EchoExtension extends \Twig_Extension
             }
         }
 
-        if ('choice' == $formType) {
+        if ('choice' == $formType || 'double_list' == $formType ) {
             preg_match("/'choices' => '(.+?)',/i", $options, $matches);
 
             if (count($matches) > 0) {
