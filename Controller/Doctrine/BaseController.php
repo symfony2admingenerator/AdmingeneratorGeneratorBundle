@@ -14,6 +14,6 @@ abstract class BaseController extends Controller
 {
     protected function getEntityManager()
     {
-        $this->getDoctrine()->getEntityManager();
+        return $this->getDoctrine()->getEntityManager();
     }
 }
