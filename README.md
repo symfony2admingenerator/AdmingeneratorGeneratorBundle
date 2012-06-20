@@ -58,7 +58,7 @@ Or using deps file
 [AdmingeneratorGeneratorBundle]
     git=git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git
     target=/bundles/Admingenerator/GeneratorBundle
-    version=origin/master
+    version=origin/2.0
 ```
 
 Register it in the `autoload.php` file:
