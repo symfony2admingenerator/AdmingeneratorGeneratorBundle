@@ -27,8 +27,6 @@ class DefaultMenuBuilder extends ContainerAware
     {
         $menu = $this->factory->createItem('root', array('childrenAttributes' => array('id' => 'main_navigation', 'class'=>'menu') ) );
 
-        $menu->setCurrentUri($request->getRequestUri());
-
         $help = $menu->addChild('Overwrite this menu', array('uri' => '#'));
         $help->setLinkAttributes(array('class'=>'sub main'));
 
