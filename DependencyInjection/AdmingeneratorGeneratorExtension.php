@@ -36,6 +36,7 @@ class AdmingeneratorGeneratorExtension extends Extension
         $container->setParameter('admingeneretor.menu_builder.class', $config['knp_menu_class']);
         $container->setParameter('admingenerator.stylesheets', $config['stylesheets']);
         $container->setParameter('admingenerator.javascripts', $config['javascripts']);
+        $container->setParameter('admingenerator.templates_dirs', isset($config['templates_dirs'])  ? $config['templates_dirs'] : array());
 
         $container->setParameter('session.flashbag.class', 'Symfony\Component\HttpFoundation\Session\Flash\FlashBag');
 

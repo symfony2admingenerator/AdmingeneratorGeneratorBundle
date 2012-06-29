@@ -39,7 +39,10 @@ class PropelGenerator extends Generator
         $generator->setBaseAdminTemplate($this->container->getParameter('admingenerator.base_admin_template'));
         $generator->setFieldGuesser($this->getFieldGuesser());
         $generator->setMustOverwriteIfExists($this->needToOverwrite($generator));
-        $generator->setTemplateDirs(array(__DIR__.'/../Resources/templates/Propel'));
+        $generator->setTemplateDirs(array_merge(
+            $this->container->getParameter('admingenerator.templates_dirs'),
+            array(__DIR__.'/../Resources/templates/Propel')
+        ));
         $generator->setBaseController('Admingenerator\GeneratorBundle\Controller\Propel\BaseController');
         $generator->setColumnClass('Admingenerator\GeneratorBundle\Generator\PropelColumn');
         $generator->setBaseGeneratorName($this->getBaseGeneratorName());

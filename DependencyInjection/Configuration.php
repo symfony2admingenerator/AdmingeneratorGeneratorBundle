@@ -47,6 +47,10 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
+                ->arrayNode('templates_dirs')
+                    ->useAttributeAsKey('key')
+                    ->prototype('scalar')->end()
+                ->end()
                 ->append($this->getStylesheetNode())
                 ->append($this->getJavascriptsNode())
             ->end();
