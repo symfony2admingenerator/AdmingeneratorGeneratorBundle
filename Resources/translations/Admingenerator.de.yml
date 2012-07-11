@@ -23,6 +23,8 @@ object.deleted.error: Der Eintrag kann nicht gelöscht werden
 
 # Form
 form.btn_save: Speichern
+form.btn_save_and_add: Speichern und Hinzufügen
+form.btn_save_and_list: Speichern und Auflisten
 form.type_collection.add: Hinzufügen
 
 # Actions

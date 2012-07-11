@@ -23,6 +23,8 @@ object.deleted.error: Материал не может быть удален
 
 # Form
 form.btn_save: Сохранить
+form.btn_save_and_add: Сохранить и Добавить
+form.btn_save_and_list: Сохранить и Список
 form.type_collection.add: Добавить
 form.delete.confirm: Ви действительно хотите удалить этот элемент ?
 

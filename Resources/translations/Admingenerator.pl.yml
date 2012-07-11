@@ -23,6 +23,8 @@ object.deleted.error: Nie można usunąć tego wpisu
 
 # Form
 form.btn_save: Zapisz
+form.btn_save_and_add: Zapisz i Dodaj
+form.btn_save_and_list: Zapisz i Lista
 form.type_collection.add: Dodaj
 
 # Actions

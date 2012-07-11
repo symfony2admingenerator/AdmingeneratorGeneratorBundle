@@ -23,6 +23,8 @@ object.deleted.error: Predmet ni bil izbrisan.
 
 # Form
 form.btn_save: Shrani
+form.btn_save_and_add:  Shrani in Dodaj
+form.btn_save_and_list: Shrani  in Seznam
 form.type_collection.add: Dodaj
 
 # Actions

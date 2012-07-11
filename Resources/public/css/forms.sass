@@ -94,7 +94,24 @@ fieldset.form_block
       background: url(/bundles/admingeneratorgenerator/images/submit_background_hover.png) repeat-x
       cursor: pointer
       cursor: hand
-      
+form 
+  .actions
+    li 
+      float: left
+      padding-right: 10px 
+    .submit_button
+      background: url(/bundles/admingeneratorgenerator/images/submit_background.png) repeat-x
+      height: 20px
+      border: 1px solid #D2D2D2
+      color: #2A363B
+      padding-left: 20px
+      padding-right: 20px
+      +buttons_border
+      outline: none
+      &:hover
+        background: url(/bundles/admingeneratorgenerator/images/submit_background_hover.png) repeat-x
+        cursor: pointer
+        cursor: hand      
 .filters
   fieldset.form_block 
     .form_row

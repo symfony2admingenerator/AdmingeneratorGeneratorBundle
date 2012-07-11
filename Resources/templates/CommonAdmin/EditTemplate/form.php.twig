@@ -24,7 +24,13 @@
         {{ echo_block("form_buttons") }}
         <ul class="actions">
             <li>
-                 <input type="submit" class="submit_button" value="{{ echo_trans('form.btn_save') }}" />
+                 <input type="submit" name="_save" class="submit_button" value="{{ echo_trans('form.btn_save') }}" />
+            </li>
+            <li>
+                 <input type="submit" name="_save_and_add" class="submit_button" value="{{ echo_trans('form.btn_save_and_add') }}" />
+            </li>
+            <li>
+                 <input type="submit" name="_save_and_list" class="submit_button" value="{{ echo_trans('form.btn_save_and_list') }}" />
             </li>
         </ul>
         {{ echo_endblock() }}

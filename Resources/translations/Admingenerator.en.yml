@@ -23,6 +23,8 @@ object.deleted.error: The record can't be deleted
 
 # Form
 form.btn_save: Save
+form.btn_save_and_add: Save and Add
+form.btn_save_and_list: Save and List
 form.type_collection.add: Add
 form.delete.confirm: Are you sure ?
 
