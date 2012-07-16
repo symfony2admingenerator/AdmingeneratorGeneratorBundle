@@ -307,6 +307,27 @@ php app/console assets:install web/
 php app/console -env prod cache:warmup
 ```
 
+### Running tests
+
+Bundle use phpunit framework for testing.
+To running test suite please first install needed deps.
+
+You can do that by running install_vendors script:
+
+```
+php vendor/install_vendors.php 0
+php vendor/install_vendors.php 1
+```
+
+or using composer:
+
+```
+curl -s http://getcomposer.org/installer | php
+php composer.phar install --dev
+```
+
+then you can run tests by type `phpunit` command
+
 ## Need support?
 
 https://groups.google.com/group/symfony2admingenerator
