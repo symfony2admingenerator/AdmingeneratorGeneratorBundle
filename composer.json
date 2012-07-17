@@ -33,8 +33,7 @@
     "target-dir": "Admingenerator/GeneratorBundle",
     "autoload": {
         "psr-0": {
-            "Admingenerator\\GeneratorBundle": "",
-            "Doctrine\\Tests": "vendor/doctrine/orm/tests/"
+            "Admingenerator\\GeneratorBundle": ""
         }
     }
 }
