@@ -3,28 +3,28 @@
 <div class="double_list">
     <div style="float: left">
         <div class="double_list_label">{% trans from "Admingenerator" %}double_list.unselected{% endtrans %}</div>
-        <select name="{{ form.getParent().getVar('id') }}[{{ form.getVar("name") }}][unselected]" multiple="true" id="{{ form.getVar("id") }}_unselected" class="double_list_select-unselected">
+        <select name="{{ form.getParent().get('id') }}[{{ form.get("name") }}][unselected]" multiple="true" id="{{ form.get("id") }}_unselected" class="double_list_select-unselected">
         {% for choice in choices %}
-            {% if not _form_is_choice_selected(form, choice) %}
+            {% if choice is not selectedchoice(value) %}
                 <option value="{{ choice.value }}">{{ choice.label }}</option>
             {% endif %}
         {% endfor %}
         </select>
     </div>
     <div style="float: left; margin-top: 2em">
-         <a href="#" onclick="sfDoubleList.move('{{ form.getVar("id") }}_unselected','{{ form.getVar("id") }}_selected'); return false;">
+         <a href="#" onclick="sfDoubleList.move('{{ form.get("id") }}_unselected','{{ form.get("id") }}_selected'); return false;">
             <img src="{{ asset('bundles/admingeneratorgenerator/images/next.png') }}" alt="unassociate" />
          </a>
          <br />
-         <a href="#" onclick="sfDoubleList.move('{{ form.getVar("id") }}_selected','{{ form.getVar("id") }}_unselected'); return false;">
+         <a href="#" onclick="sfDoubleList.move('{{ form.get("id") }}_selected','{{ form.get("id") }}_unselected'); return false;">
             <img src="{{ asset('bundles/admingeneratorgenerator/images/previous.png') }}" alt="associate" />
          </a>
     </div>
     <div style="float: left">
          <div class="double_list_label">{% trans from "Admingenerator" %}double_list.selected{% endtrans %}</div>
-         <select name="{{ form.getParent().getVar('id') }}[{{ form.getVar("name") }}][]" multiple="true" id="{{ form.getVar("id") }}_selected" class="double_list_select-selected">
+         <select name="{{ form.getParent().get('id') }}[{{ form.get("name") }}][]" multiple="true" id="{{ form.get("id") }}_selected" class="double_list_select-selected">
          {% for choice in choices %}
-            {% if _form_is_choice_selected(form, choice) %}
+            {% if choice is selectedchoice(value) %}
                 <option value="{{ choice.value }}">{{ choice.label }}</option>
             {% endif %}
          {% endfor %}
@@ -32,7 +32,7 @@
     </div>
     <br style="clear: both" />
     <script type="text/javascript">
-        sfDoubleList.init(document.getElementById('{{ form.getVar("id") }}_selected'), 'double_list_select');
+        sfDoubleList.init(document.getElementById('{{ form.get("id") }}_selected'), 'double_list_select');
     </script>
 </div>
 {% endblock %}
