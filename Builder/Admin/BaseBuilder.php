@@ -48,7 +48,7 @@ class BaseBuilder extends GenericBaseBuilder
             $column = new $this->columnClass($columnName);
             $column->setDbType($this->getFieldOption($column, 'dbType', $this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName)));
 
-            if ($this->getYamlKey() != 'list') {
+            if ($this->getYamlKey() != 'list' && $this->getYamlKey() != 'nested_list') {
               $column->setFormType($this->getFieldOption($column, 'formType', $this->getFieldGuesser()->getFormType($column->getDbType(), $columnName)));
               $column->setFormOptions($this->getFieldOption($column, 'formOptions', $this->getFieldGuesser()->getFormOptions($column->getFormType(), $column->getDbType(), $columnName)));
             }
