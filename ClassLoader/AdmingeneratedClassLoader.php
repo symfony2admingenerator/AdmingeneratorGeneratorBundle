@@ -53,7 +53,7 @@ class AdmingeneratedClassLoader
     {
         $generator = new EmptyGenerator($this->base_path);
 
-        list($admingenerated, $bundle, $baseController, $controllerName) = explode('\\',$class);
+        list($admingenerated, $bundle, $baseController, $controllerName) = explode('/',$class);
 
         $builder = new EmptyBuilderAction();
         $generator->addBuilder($builder);
