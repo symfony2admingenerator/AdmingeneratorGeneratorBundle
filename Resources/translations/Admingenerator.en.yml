@@ -35,3 +35,5 @@ batch.delete.confirm: Do you confirm deletion of all selected elements ?
 batch.none_selected: You have to select at least 1 element
 batch.deleted.success: Records have been successfully deleted
 batch.deleted.error: Records can't be deleted
+batch.list.selected: Selected
+batch.list.execute: Execute
