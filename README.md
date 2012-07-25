@@ -48,6 +48,18 @@ This is a complete Symfony2 application with this bundle well configured.
 
 ### Install this bundle
 
+Using composer
+
+```
+"require": {
+    "cedriclombardot/admingenerator-generator-bundle": "dev-master"
+},
+```
+
+php composer.phar update
+
+Or cloning
+
 ``` bash
 git clone git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git vendor/bundles/Admingenerator/GeneratorBundle
 ```
