@@ -35,3 +35,5 @@ batch.delete.confirm: Etes-vous sur de vouloir supprimer les élements sélectio
 batch.none_selected: Vous devez sélectionner au moins un élément
 batch.deleted.success: Les enregistrements ont étés supprimés avec succès
 batch.deleted.error: Les enregistrements n'ont pu être supprimés
+batch.list.selected: Choisir
+batch.list.execute: Execute
