@@ -40,56 +40,60 @@
             <span class="icon-bar"></span>
         </a>
         {% block logo %}
-        <a class="brand" href="#">Project name</a>
+        <a class="brand" href="#">Admin</a>
         {% endblock %}
         <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-              {% block profile %}
-              <div class="profile">
-                <ul>
-                    <li>
-                        <a href="#">Welcome</a>
-                    </li>
-                    <li>
-                        <a class='logout' href="#">Log out will be connect to security</a>
-                    </li>
-                    {% block menu %}
-                    {{ knp_menu_render('admin') }}
-                    {% endblock %}
-                </ul>
+            <ul class="nav nav-pills">
+              <li class="dropdown" id="menu1">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
+                  Menu
+                  <b class="caret"></b>
+              </a>
+              {% block menu %}
+              {{ knp_menu_render('admin') }}
+              {% endblock %}
+          </li>
+          
+          {% block profile %}
+          <div class="span8 offset1">
+          <ul class="nav pull-right">
+            <li>
+                <a href="#">Welcome</a>
+            </li>
+            <li>
+                <a class='logout' href="#">Log out will be connect to security</a>
+            </ul>
             </div>
             {% endblock %}
-        </ul>
-    </div><!--/.nav-collapse -->
+        </div><!--/.nav-collapse -->
+    </div>
 </div>
 </div>
-</div>>
 
-<div class="conteiner-fluid">
-    {% block flashes %}
-    {% if app.session.hasFlash('success') %}
-    <div class="notification_box success">
-        {{ app.session.flash('success')|raw }}
+<div class="container-fluid">
+    <div class="row-fluid">
+
+        {% block flashes %}
+        {% if app.session.hasFlash('success') %}
+        <div class="notification_box success">
+            {{ app.session.flash('success')|raw }}
+        </div>
+        {% endif %}
+        {% if app.session.hasFlash('error') %}
+        <div class="notification_box error">
+            {{ app.session.flash('error')|raw }}
+        </div>
+        {% endif %}
+        {% endblock %}
     </div>
-    {% endif %}
-    {% if app.session.hasFlash('error') %}
-    <div class="notification_box error">
-        {{ app.session.flash('error')|raw }}
-    </div>
-    {% endif %}
-    {% endblock %}
 
     {% block body %}{% endblock %}
+
+    
 </div>
 {% block javascripts %}
-<script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/javascripts/menu.js') }}"></script>
-<script type="text/javascript">
-var menu=new menu.dd("menu");
-menu.init("main_navigation","mainhover");
-</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/javascripts/bootstrap/bootstrap.min.js') }}"></script>
 {% endblock %}
 </body>
 </html>
