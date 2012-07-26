@@ -20,7 +20,7 @@ With almost the same features:
 * Configure more that one field per line
 * Change the database column you want to sortOn or filterOn for a field in list
 * A complete admin design
-* Translated into EN, FR, RU, PT, ES, SL, DE , PL, UK(you can easily contribute to add your own)
+* Translated into EN, FR, RU, PT, ES, SL, DE , PL, UK, IT (you can easily contribute to add your own)
 * Filters by form & by scopes combinable
 * Credentials for actions, columns, and form fields
 * ...
@@ -47,6 +47,18 @@ This is a complete Symfony2 application with this bundle well configured.
 ## Installation
 
 ### Install this bundle
+
+Using composer
+
+```
+"require": {
+    "cedriclombardot/admingenerator-generator-bundle": "dev-master"
+},
+```
+
+php composer.phar update
+
+Or cloning
 
 ``` bash
 git clone git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git vendor/bundles/Admingenerator/GeneratorBundle
@@ -301,16 +313,7 @@ Publish assets:
 php app/console assets:install web/
 ```
 
-### Last step
-
-Configure the dev environment:
-
-``` yaml
-admingenerator_generator:
-    overwrite_if_exists: true
-```
-
-And of course for prod:
+### Last step for prod:
 
 ```
 php app/console -env prod cache:warmup

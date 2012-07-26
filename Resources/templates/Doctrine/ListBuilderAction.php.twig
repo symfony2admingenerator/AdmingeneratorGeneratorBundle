@@ -99,10 +99,7 @@
 
         {% endfor -%}
 
-        $type = new FiltersType();
-        $type->setSecurityContext($this->get('security.context'));
-
-        return $this->createForm($type, $filters);
+        return $this->createForm($this->getFiltersType(), $filters);
     }
 {% endblock %}
 
@@ -185,15 +182,14 @@
 {% block doBatchDelete -%}
     protected function doBatchDelete(array $ids)
     {
-        if ($this->getDocumentManager()
-                 ->createQueryBuilder('{{ model }}')
-                 ->field('{{ builder.ModelPrimaryKeyName }}')->in($ids)
-                 ->remove()
-                 ->getQuery()
-                 ->execute()) {
+        if ($this->getDoctrine()->getEntityManager()
+            ->createQuery('DELETE {{ model }} m WHERE m.{{ builder.ModelPrimaryKeyName }} IN (:ids)')
+    		->setParameter('ids', $ids)
+    		->getResult()) {
             $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ "batch.deleted.success" }}", array(), 'Admingenerator') );
         } else {
             $this->get('session')->setFlash('error', $this->get('translator')->trans("{{ "batch.deleted.error" }}", array(), 'Admingenerator') );
-        }
+       }
+
     }
 {% endblock %}

@@ -48,7 +48,7 @@ class BaseBuilder extends GenericBaseBuilder
             $column = new $this->columnClass($columnName);
             $column->setDbType($this->getFieldOption($column, 'dbType', $this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName)));
 
-            if ($this->getYamlKey() != 'list') {
+            if ($this->getYamlKey() != 'list' && $this->getYamlKey() != 'nested_list') {
               $column->setFormType($this->getFieldOption($column, 'formType', $this->getFieldGuesser()->getFormType($column->getDbType(), $columnName)));
               $column->setFormOptions($this->getFieldOption($column, 'formOptions', $this->getFieldGuesser()->getFormOptions($column->getFormType(), $column->getDbType(), $columnName)));
             }
@@ -325,6 +325,52 @@ class BaseBuilder extends GenericBaseBuilder
         $stylesheets = $parse_stylesheets($this->getVariable('stylesheets', array()), $stylesheets);
 
         return $stylesheets;
+    }
+
+    /**
+     * Allow to add complementary javascripts
+     *
+     *
+     * param:
+     *   javascripts:
+     *     - path/js.js
+     *     - { path: path/js.js }
+     *     - { route: my_route, routeparams: {} }
+     *
+     * @return array
+     */
+    public function getJavascripts()
+    {
+        $self = $this;
+        $parse_javascripts = function($params, $javascripts) use ($self) {
+            foreach ($params as $js) {
+
+                if (is_string($js)) {
+                    $js = array(
+                        'path'  => $js,
+                    );
+                } elseif (isset($js['route'])) {
+                    $js = array(
+                        'path'  => $self->getGenerator()
+                                        ->getContainer()
+                                        ->get('router')
+                                        ->generate($js['route'], $js['routeparams'])
+                    );
+                }
+
+                $javascripts[] = $js;
+            }
+
+            return $javascripts;
+        };
+
+        // From config.yml
+        $javascripts = $parse_javascripts($this->getGenerator()->getContainer()->getParameter('admingenerator.javascripts', array()), array());
+
+        // From generator.yml
+        $javascripts = $parse_javascripts($this->getVariable('javascripts', array()), $javascripts);
+
+        return $javascripts;
     }
 
 }

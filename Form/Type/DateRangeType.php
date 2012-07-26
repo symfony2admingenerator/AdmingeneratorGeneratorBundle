@@ -5,10 +5,7 @@ namespace Admingenerator\GeneratorBundle\Form\Type;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
-use Symfony\Component\Form\FormView;
-use Symfony\Component\Form\FormInterface;
-
+use Symfony\Component\Form\FormBuilderInterface;
 
 class DateRangeType extends AbstractType
 {
@@ -16,7 +13,7 @@ class DateRangeType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
          unset($options['years']);
 
@@ -28,7 +25,6 @@ class DateRangeType extends AbstractType
             $options['to']['format'] = $options['format'];
          }
 
-
          $builder
                ->add('from', new DateType(), $options['from'])
                ->add('to', new DateType(), $options['to']);
@@ -37,7 +33,7 @@ class DateRangeType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getParent(array $options)
+    public function getParent()
     {
         return 'form';
     }

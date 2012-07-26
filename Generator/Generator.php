@@ -2,11 +2,11 @@
 
 namespace Admingenerator\GeneratorBundle\Generator;
 
+use Symfony\Component\Finder\Finder;
+
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 use Admingenerator\GeneratorBundle\Builder\Generator as AdminGenerator;
-use Admingenerator\GeneratorBundle\Builder\ListBuilderAction;
-use Admingenerator\GeneratorBundle\Builder\ListBuilderTemplate;
 
 abstract class Generator extends ContainerAware implements GeneratorInterface
 {
@@ -68,7 +68,6 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
         throw new \LogicException('Not implemented');
     }
 
-
     public function setFieldGuesser($fieldGuesser)
     {
         return $this->fieldGuesser = $fieldGuesser;
@@ -77,5 +76,42 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
     public function getFieldGuesser()
     {
         return $this->fieldGuesser;
+    }
+
+    /**
+     * Check if we have to build file
+     */
+    public function needToOverwrite(AdminGenerator $generator)
+    {
+        if ($this->container->getParameter('admingenerator.overwrite_if_exists')) {
+            return true;
+        }
+
+        $cacheDir = $this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name'));
+
+        if (!is_dir($cacheDir)) {
+            return true;
+        }
+
+        $fileInfo = new \SplFileInfo($this->getGeneratorYml());
+
+        $finder = new Finder();
+        $files = $finder->files()
+                        ->date('< '.date('Y-m-d H:i:s',$fileInfo->getMTime()))
+                        ->in($cacheDir)
+                        ->count();
+
+        if ($files > 0) {
+            return true;
+        }
+
+        $finder = new Finder();
+        foreach ($finder->files()->in($cacheDir) as $file) {
+            if (false !== strpos(file_get_contents($file), 'AdmingeneratorEmptyBuilderClass')) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

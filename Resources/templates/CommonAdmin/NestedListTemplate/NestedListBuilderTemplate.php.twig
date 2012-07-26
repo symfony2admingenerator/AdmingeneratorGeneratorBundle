@@ -1,5 +1,6 @@
 {% use '../CommonAdmin/title.php.twig' %}
 {% use '../CommonAdmin/stylesheets.php.twig' %}
+{% use '../CommonAdmin/javascripts.php.twig' %}
 {% use '../CommonAdmin/NestedListTemplate/nbresults.php.twig' %}
 {% use '../CommonAdmin/NestedListTemplate/thead.php.twig' %}
 {% use '../CommonAdmin/NestedListTemplate/tbody.php.twig' %}
@@ -10,7 +11,7 @@
 {{ echo_extends( builder.getBaseAdminTemplate ) }}
 
 {{ echo_block("javascripts") }}
-    {{ echo_twig('parent()') }}
+    {{- block('complementary_javascripts') -}}
     <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/javascripts/jquery-ui-1.8.16.custom.min.js")') }}" ></script>
     <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/javascripts/jquery.treeTable.js")') }}" ></script>
     <script type="text/javascript">

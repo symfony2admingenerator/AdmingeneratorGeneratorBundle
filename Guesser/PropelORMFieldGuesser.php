@@ -15,7 +15,6 @@ class PropelORMFieldGuesser
 
     private static $current_class;
 
-
     protected function getMetadatas($class = null)
     {
         if ($class) {
@@ -30,7 +29,7 @@ class PropelORMFieldGuesser
         $return = array();
 
         foreach ($this->getMetadatas($class)->getColumns() as $column) {
-            $return[] = strtolower($column->getName());
+            $return[] = Inflector::tableize($column->getPhpName());
         }
 
         return $return;
@@ -48,9 +47,10 @@ class PropelORMFieldGuesser
     protected function getRelation($fieldName, $class = null)
     {
         $table = $this->getMetadatas($class);
+        $relName = Inflector::classify($fieldName);
 
         foreach ($table->getRelations() as $relation) {
-            if (Inflector::classify($fieldName) == $relation->getName()) {
+            if ($relName === $relation->getName() || $relName === $relation->getPluralName()) {
                 return $relation;
             }
         }
@@ -70,7 +70,7 @@ class PropelORMFieldGuesser
 
     public function getFormType($dbType, $columnName)
     {
-        switch($dbType) {
+        switch ($dbType) {
             case \PropelColumnTypes::ENUM:
                 return 'choice';
             case \PropelColumnTypes::BOOLEAN:
@@ -117,7 +117,7 @@ class PropelORMFieldGuesser
 
     public function getFilterType($dbType, $columnName)
     {
-         switch($dbType) {
+         switch ($dbType) {
              case \PropelColumnTypes::BOOLEAN:
              case \PropelColumnTypes::BOOLEAN_EMU:
                 return 'choice';
@@ -195,8 +195,7 @@ class PropelORMFieldGuesser
     {
         $options = array('required' => false);
 
-        if (\PropelColumnTypes::BOOLEAN == $dbType || \PropelColumnTypes::BOOLEAN_EMU == $dbType)
-        {
+        if (\PropelColumnTypes::BOOLEAN == $dbType || \PropelColumnTypes::BOOLEAN_EMU == $dbType) {
            $options['choices'] = array(
                     0 => 'No',
                     1 => 'Yes'
@@ -223,7 +222,7 @@ class PropelORMFieldGuesser
         $pks = $this->getMetadatas()->getPrimaryKeyColumns();
 
         if (count($pks) == 1) {
-            return $pks[0]->getName();
+            return $pks[0]->getPhpName();
         }
 
         throw new \LogicException('No valid primary keys found');
@@ -254,6 +253,12 @@ class PropelORMFieldGuesser
 
         if ($table && $table->hasColumn($property)) {
             return $this->cache[$class.'::'.$property] = $table->getColumn($property);
+        } else {
+            foreach ($table->getColumns() as $column) {
+                if (Inflector::tableize($column->getPhpName()) === $property) {
+                    return $this->cache[$class.'::'.$property] = $column;
+                }
+            }
         }
     }
 

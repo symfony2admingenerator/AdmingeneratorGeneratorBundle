@@ -8,7 +8,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Processor;
 
-
 class AdmingeneratorGeneratorExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
@@ -36,6 +35,8 @@ class AdmingeneratorGeneratorExtension extends Extension
         $container->setParameter('admingenerator.base_admin_template', $config['base_admin_template']);
         $container->setParameter('admingeneretor.menu_builder.class', $config['knp_menu_class']);
         $container->setParameter('admingenerator.stylesheets', $config['stylesheets']);
+        $container->setParameter('admingenerator.javascripts', $config['javascripts']);
+        $container->setParameter('admingenerator.templates_dirs', isset($config['templates_dirs'])  ? $config['templates_dirs'] : array());
 
         $container->setParameter('session.flashbag.class', 'Symfony\Component\HttpFoundation\Session\Flash\FlashBag');
 
@@ -43,14 +44,25 @@ class AdmingeneratorGeneratorExtension extends Extension
         $resources[] = 'AdmingeneratorGeneratorBundle:Form:fields.html.twig';
         $container->setParameter('twig.form.resources', $resources);
 
-        if (isset($config['twig'])) {
-            $container->setParameter('admingenerator.twig', $config['twig']);
+        if (!isset($config['twig'])) {
+            $config['twig'] = array(
+                'use_localized_date' => false,
+                'date_format'        => 'Y-m-d',
+                'datetime_format'    => 'Y-m-d H:i:s',
+                'number_format'      => array(
+                    'decimal'            => 0,
+                    'decimal_point'      => '.',
+                    'thousand_separator' => ',',
+                )
+             );
+        }
 
-            if($config['twig']['use_localized_date']) {
-                // Register Intl extension for localized date
-                $container->register('twig.extension.intl', 'Twig_Extensions_Extension_Intl')
-                            ->addTag('twig.extension');
-            }
+        $container->setParameter('admingenerator.twig', $config['twig']);
+
+        if ($config['twig']['use_localized_date']) {
+            // Register Intl extension for localized date
+            $container->register('twig.extension.intl', 'Twig_Extensions_Extension_Intl')
+                        ->addTag('twig.extension');
         }
     }
 

@@ -24,7 +24,7 @@ class GeneratorCacheWarmer implements CacheWarmerInterface
     /**
      * Constructor.
      *
-     * @param ContainerInterface      $container The dependency injection container
+     * @param ContainerInterface $container The dependency injection container
      */
     public function __construct(ContainerInterface $container, GeneratorFinder $finder)
     {
@@ -39,8 +39,7 @@ class GeneratorCacheWarmer implements CacheWarmerInterface
      */
     public function warmUp($cacheDir)
     {
-        foreach ($this->finder->findAllGeneratorYamls() as $yaml)
-        {
+        foreach ($this->finder->findAllGeneratorYamls() as $yaml) {
             $this->buildFromYaml($yaml);
         }
     }
@@ -75,7 +74,8 @@ class GeneratorCacheWarmer implements CacheWarmerInterface
 
     protected function parseYaml($file)
     {
-       $this->yaml_datas = Yaml::parse($file);
+        Yaml::enablePhpParsing(true);
+        $this->yaml_datas = Yaml::parse($file);
     }
 
 }

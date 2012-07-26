@@ -13,7 +13,7 @@ list.filter.btn_filter: Filtruj
 list.filter.btn_reset: Reset
 "Display all <b>%count%</b> results": Wyświetlanie wszystkich <b>%count%</b> rezultatów
 "Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Wyświetlanie <b>%start%</b> - <b>%end%</b> z <b>%count%</b> rezultatów
-list.actions: Actions
+list.actions: Akcje
 
 #Object
 object.saved.success: Poprawnie zapisano obiekt

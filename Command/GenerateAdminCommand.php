@@ -2,15 +2,12 @@
 
 namespace Admingenerator\GeneratorBundle\Command;
 
-
 use Admingenerator\GeneratorBundle\Routing\Manipulator\RoutingManipulator;
 
 use Admingenerator\GeneratorBundle\Generator\BundleGenerator;
 
 use Sensio\Bundle\GeneratorBundle\Command\GenerateBundleCommand;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -59,7 +56,7 @@ EOT
     {
         $dialog = $this->getDialogHelper();
         $dialog->writeSection($output, 'Welcome to the Symfony2 admin generator');
-        $output->writeln('<comment>Create an admingenrator bundle with generate:bundle</comment>');
+        $output->writeln('<comment>Create an admingenerator bundle with generate:bundle</comment>');
 
         $generator = $dialog->askAndValidate($output, $dialog->getQuestion('Generator to use (doctrine, doctrine_odm, propel)', $input->getOption('generator')),  function ($generator) { if (!in_array($generator, array('doctrine','doctrine_odm','propel'))) { throw new \RuntimeException('Generator to use have to be doctrine, doctrine_odm or propel'); } return $generator; } , false, $input->getOption('generator'));
         $input->setOption('generator', $generator);

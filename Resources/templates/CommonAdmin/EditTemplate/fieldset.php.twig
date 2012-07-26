@@ -18,7 +18,7 @@
                             {{ echo_twig("form_errors(form['" ~ field ~ "'])") }}
                         </div>
 
-                        {{ echo_twig("form_label(form['" ~ field ~ "'], '" ~ builder.Columns[field].label|addslashes ~ "')") }}
+                        {{ echo_twig("form_label(form['" ~ field ~ "'], '" ~ builder.Columns[field].label|addslashes ~ "'|trans({}, '" ~ (i18n_catalog is defined ? i18n_catalog : "Admin") ~ "'))") }}
 
                         {% if builder.Columns[field].formType == "collection" -%}
                             {{- block('type_collection') -}}
@@ -28,7 +28,7 @@
 
                         {%- if builder.columns[field].help %}
                         <span class="help">
-                            {{ builder.columns[field].help }}
+                            {{ echo_twig("'" ~ builder.columns[field].help|addslashes ~ "'|trans({}, '" ~ (i18n_catalog is defined ? i18n_catalog : "Admin") ~ "')") }}
                         </span>
                         {% endif -%}
 

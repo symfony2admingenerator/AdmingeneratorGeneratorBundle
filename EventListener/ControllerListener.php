@@ -59,6 +59,7 @@ class ControllerListener
 
     protected function getGenerator($generatorYaml)
     {
+        Yaml::enablePhpParsing(true);
         $yaml = Yaml::parse($generatorYaml);
 
         return $this->container->get($yaml['generator']);
@@ -97,7 +98,6 @@ class ControllerListener
         $finder = new Finder();
         $finder->files()
                ->name($generatorName);
-
 
         if (is_dir($src = realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$dir.'/Resources/config'))) {
             $namespace_directory = $src;

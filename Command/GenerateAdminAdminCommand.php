@@ -2,15 +2,12 @@
 
 namespace Admingenerator\GeneratorBundle\Command;
 
-
 use Admingenerator\GeneratorBundle\Routing\Manipulator\RoutingManipulator;
 
 use Admingenerator\GeneratorBundle\Generator\BundleGenerator;
 
 use Sensio\Bundle\GeneratorBundle\Command\GenerateBundleCommand;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;

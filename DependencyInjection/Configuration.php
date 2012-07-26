@@ -2,7 +2,6 @@
 
 namespace Admingenerator\GeneratorBundle\DependencyInjection;
 
-use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -48,13 +47,12 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-                ->arrayNode('stylesheets')
-                    ->children()
-                        ->scalarNode('path')->end()
-                        ->scalarNode('media')->defaultValue('all')->end()
-                    ->end()
+                ->arrayNode('templates_dirs')
+                    ->useAttributeAsKey('key')
+                    ->prototype('scalar')->end()
                 ->end()
-//                ->append($this->getStylesheetNode())
+                ->append($this->getStylesheetNode())
+                ->append($this->getJavascriptsNode())
             ->end();
 
         return $treeBuilder;
@@ -71,6 +69,29 @@ class Configuration implements ConfigurationInterface
                 ->children()
                     ->scalarNode('path')->end()
                     ->scalarNode('media')->defaultValue('all')->end()
+                ->end()
+            ->end()
+            ;
+
+       return $node;
+    }
+
+    private function getJavascriptsNode()
+    {
+        $treeBuilder = new TreeBuilder();
+        $node    = $treeBuilder->root('javascripts');
+
+        $node
+            ->prototype('array')
+            ->fixXmlConfig('javascripts')
+                ->children()
+                    ->scalarNode('path')->end()
+                    ->scalarNode('route')->end()
+                    ->arrayNode('routeparams')
+                        ->useAttributeAsKey(array('key'))
+                        ->prototype('scalar')
+                        ->end()
+                    ->end()
                 ->end()
             ->end()
             ;

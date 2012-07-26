@@ -2,10 +2,10 @@
 
 namespace Admingenerator\GeneratorBundle\Form\Type;
 
-use Doctrine\Bundle\MongoDBBundle\Form\Type\DocumentType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class DoctrineODMDoubleListType extends DocumentType
+class DoubleListType extends ChoiceType
 {
    /**
     * {@inheritdoc}
@@ -22,6 +22,6 @@ class DoctrineODMDoubleListType extends DocumentType
      */
     public function getName()
     {
-        return 'doctrine_odm_double_list';
+        return 'double_list';
     }
 }

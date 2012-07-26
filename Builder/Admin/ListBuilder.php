@@ -8,7 +8,6 @@ use Admingenerator\GeneratorBundle\Generator\Column;
 
 use Admingenerator\GeneratorBundle\Generator\Action;
 
-
 /**
  * This builder generate php for lists actions
  * @author cedric Lombardot
@@ -21,7 +20,6 @@ class ListBuilder extends BaseBuilder
     protected $batch_actions;
 
     protected $filter_columns;
-
 
     /**
      * (non-PHPdoc)
@@ -116,7 +114,6 @@ class ListBuilder extends BaseBuilder
             $this->addObjectAction($action);
         }
     }
-
 
     /**
      * Return a list of batch action from list.batch_actions

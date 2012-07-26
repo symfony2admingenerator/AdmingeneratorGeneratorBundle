@@ -24,14 +24,16 @@ object.deleted.error: L'enregistrement n'a pas pu être supprimé
 # Form
 form.btn_save: Enregistrer
 form.type_collection.add: Ajouter
-form.delete.confirm: Etes-vous sur de vouloir supprimer cet élémént ?
+form.delete.confirm: Etes-vous sur de vouloir supprimer cet élement ?
 
 # Actions
 List: Retour à la liste
 New: Nouveau
 
 # Batch
-batch.delete.confirm: Etes-vous sur de vouloir supprimer les éléménts séléctionnés ?
+batch.delete.confirm: Etes-vous sur de vouloir supprimer les élements sélectionnés ?
 batch.none_selected: Vous devez sélectionner au moins un élément
 batch.deleted.success: Les enregistrements ont étés supprimés avec succès
 batch.deleted.error: Les enregistrements n'ont pu être supprimés
+batch.list.selected: Choisir
+batch.list.execute: Execute

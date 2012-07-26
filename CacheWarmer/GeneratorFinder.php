@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Admingenerator\GeneratorBundle\CacheWarmer;
 
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -21,7 +20,7 @@ class GeneratorFinder
     /**
      * Constructor.
      *
-     * @param KernelInterface      $kernel  A KernelInterface instance
+     * @param KernelInterface $kernel A KernelInterface instance
      */
     public function __construct(KernelInterface $kernel)
     {

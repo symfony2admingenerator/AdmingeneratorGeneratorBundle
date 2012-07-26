@@ -1,24 +1,27 @@
 {% block list_batch_actions %}
     {{ echo_block("list_batch_actions") }}
         {% if batch_actions is defined and batch_actions|length > 0 %}
-         <select name="action" id="batch_actions">
-            {% for action in builder.BatchActions %}
-                {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
-                    {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials'), builder.ModelClass ) }}
-                {% endif %}
+        <div id="batch_controls">
+            <span>{{ echo_trans('batch.list.selected') }}: </span>
+            <select name="action" id="batch_actions">
+                {% for action in builder.BatchActions %}
+                    {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
+                        {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials')) }}
+                    {% endif %}
 
-                <option
-                 value="{{ action.name }}"
-                 {% if action.confirm %}data-confirm='{{ action.confirm }}'{% endif %}>{{ echo_trans(action.label, i18n_catalog is defined ? i18n_catalog : "Admin") }}</option>
+                    <option
+                     value="{{ action.name }}"
+                     {% if action.confirm %}data-confirm='{{ action.confirm }}'{% endif %}>{{ echo_trans(action.label, i18n_catalog is defined ? i18n_catalog : "Admin") }}</option>
 
-                {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
-                    {{ echo_endif () }}
-                {% endif %}
-            {% endfor %}
-         </select>
-         <input type="submit" onclick="
-         if ($('input.batch_select_id:checked').length == 0) { alert('{{ echo_trans("batch.none_selected") }}'); return false; }
-         if ($('#batch_actions option:selected').data('confirm')) { return confirm($('#batch_actions option:selected').data('confirm')); } else { return true; }" />
+                    {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
+                        {{ echo_endif () }}
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <input type="submit" value="{{ echo_trans('batch.list.execute') }}" onclick="
+if ($('input.batch_select_id:checked').length == 0) { alert('{{ echo_trans("batch.none_selected") }}'); return false; }
+if ($('#batch_actions option:selected').data('confirm')) { return confirm($('#batch_actions option:selected').data('confirm')); } else { return true; }" />
+        </div>
         {% endif -%}
     {{ echo_endblock() }}
 {% endblock %}

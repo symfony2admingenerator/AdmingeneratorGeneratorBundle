@@ -48,13 +48,17 @@
             <argument type="service" id="file_locator" />
         </service>
 
-        <service id="pagerfanta.view.admingenerator" class="Admingenerator\GeneratorBundle\Pagerfanta\View\AdmingenratorView">
+        <service id="pagerfanta.view.admingenerator" class="Admingenerator\GeneratorBundle\Pagerfanta\View\AdmingeneratorView">
             <tag name="pagerfanta.view" alias="admingenerator" />
             <argument type="service" id="translator" />
         </service>
 
         <service id="form.type.date_range" class="Admingenerator\GeneratorBundle\Form\Type\DateRangeType">
             <tag name="form.type" alias="date_range" />
+        </service>
+
+        <service id="form.type.double_list" class="Admingenerator\GeneratorBundle\Form\Type\DoubleListType">
+            <tag name="form.type" alias="double_list" />
         </service>
 
         <!-- Warmup -->
@@ -72,6 +76,9 @@
         <service id="admingeneretor.menu_builder" class="%admingeneretor.menu_builder.class%">
             <tag name="knp_menu.menu" alias="admin" />
             <argument type="service" id="knp_menu.factory" />
+            <call method="setContainer">
+                    <argument type="service" id="service_container" />
+            </call>
         </service>
 
         <service id="admingeneretor.menu.admin" class="%admingeneretor.menu_builder.class%"

@@ -7,8 +7,7 @@
             return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
         }
 
-        if ( $this->getRequest()->getMethod() == "POST"){
-
+        if ($this->getRequest()->getMethod() == "POST") {
             $form = $this->getFilterForm();
             $form->bindRequest($this->get('request'));
 
@@ -17,7 +16,7 @@
             }
         }
 
-        if ( $this->getRequest()->getMethod() == "GET"){
+        if ($this->getRequest()->getMethod() == "GET") {
             $filters = $this->getRequest()->query->all();
         }
 
@@ -25,12 +24,14 @@
 
         return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
     }
+
     {% block setFilters -%}
     protected function setFilters($filters)
     {
         $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Filters', $filters);
     }
     {% endblock %}
+
     {% block getFilters -%}
     protected function getFilters()
     {
