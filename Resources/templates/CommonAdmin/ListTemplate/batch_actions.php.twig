@@ -11,7 +11,7 @@
 
                     <option
                      value="{{ action.name }}"
-                     {% if action.confirm %}data-confirm='{{ action.confirm }}'{% endif %}>{{ echo_trans(action.label, i18n_catalog is defined ? i18n_catalog : "Admin") }}</option>
+                     {% if action.confirm %}data-confirm='{{ echo_trans(action.confirm, i18n_catalog is defined ? i18n_catalog : "Admin") }}'{% endif %}>{{ echo_trans(action.label, i18n_catalog is defined ? i18n_catalog : "Admin") }}</option>
 
                     {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
                         {{ echo_endif () }}
