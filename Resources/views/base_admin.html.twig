@@ -1,77 +1,99 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>{% block title %}Admin{% endblock %}</title>
-        {% block stylesheets %}
-            {% stylesheets '@AdmingeneratorGeneratorBundle/Resources/public/css/screen.sass'
-                           '@AdmingeneratorGeneratorBundle/Resources/public/css/menu.sass'
-                           filter='sass'
-             %}
-                <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
-            {% endstylesheets %}
-            <!--[if IE]>
-                {% stylesheets '@AdmingeneratorGeneratorBundle/Resources/public/css/ie.sass' filter='sass' %}
-                     <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
-                {% endstylesheets %}
-            <![endif]-->
-        {% endblock %}
-        {% block javascript_head %}
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-            <script>window.jQuery || document.write('<script src="{{ asset("bundles/admingeneratorgenerator/javascripts/jquery-1.6.4.min.js") }}">\x3C/script>')</script>
-        {% endblock %}
-        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        <div id="header">
-            {% block header %}
-                {% block logo %}
-                <div class="logo">
-                    Admin
-                </div>
-                {% endblock %}
-                {% block profile %}
-                <div class="profile">
-                    <ul>
-                        <li>
-                            <a href="#">Welcome</a>
-                        </li>
-                        <li>
-                            <a class='logout' href="#">Log out will be connect to security</a>
-                        </li>
-                    </ul>
-                </div>
-                {% endblock %}
-                {% block menu %}
-                     {{ knp_menu_render('admin') }}
-                {% endblock %}
-            {% endblock %}
-        </div>
-        <div id="content">
-            {% block flashes %}
-                {% if app.session.hasFlash('success') %}
-                    <div class="notification_box success">
-                        {{ app.session.flash('success')|raw }}
-                    </div>
-                {% endif %}
-                {% if app.session.hasFlash('error') %}
-                    <div class="notification_box error">
-                        {{ app.session.flash('error')|raw }}
-                    </div>
-                {% endif %}
-            {% endblock %}
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-            {% block body %}{% endblock %}
-        </div>
-        {% block javascripts %}
-            {% javascripts '@AdmingeneratorGeneratorBundle/Resources/public/javascripts/menu.js'
-             %}
-                <script type="text/javascript" src="{{ asset_url }}"></script>
-            {% endjavascripts %}
-            <script type="text/javascript">
-                var menu=new menu.dd("menu");
-                menu.init("main_navigation","mainhover");
-            </script>
+    <title>{% block title %}Admin{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width">
+
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/bootstrap.min.css') }}">
+    <style>
+    body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+  }
+  </style>
+  <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/bootstrap-responsive.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/style.css') }}">
+  {% endblock %}
+  {% block javascript_head %}
+  <script src="{{ asset('bundles/admingeneratorgenerator/js/libs/modernizr-2.5.3-respond-1.1.0.min.js') }}"></script>
+  {% endblock %}
+</head>
+<body>
+    <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+        {% block logo %}
+        <a class="brand" href="#">Admin</a>
         {% endblock %}
-    </body>
+        <div class="nav-collapse">
+            <ul class="nav nav-pills">
+              <li class="dropdown" id="menu1">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
+                  Menu
+                  <b class="caret"></b>
+              </a>
+              {% block menu %}
+              {{ knp_menu_render('admin') }}
+              {% endblock %}
+          </li>
+          
+          {% block profile %}
+          <div class="span8 offset1">
+          <ul class="nav pull-right">
+            <li>
+                <a href="#">Welcome</a>
+            </li>
+            <li>
+                <a class='logout' href="#">Log out will be connect to security</a>
+            </ul>
+            </div>
+            {% endblock %}
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+
+        {% block flashes %}
+        {% if app.session.hasFlash('success') %}
+        <div class="notification_box success">
+            {{ app.session.flash('success')|raw }}
+        </div>
+        {% endif %}
+        {% if app.session.hasFlash('error') %}
+        <div class="notification_box error">
+            {{ app.session.flash('error')|raw }}
+        </div>
+        {% endif %}
+        {% endblock %}
+    </div>
+
+    {% block body %}{% endblock %}
+
+    
+</div>
+{% block javascripts %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/javascripts/bootstrap/bootstrap.min.js') }}"></script>
+{% endblock %}
+</body>
 </html>
