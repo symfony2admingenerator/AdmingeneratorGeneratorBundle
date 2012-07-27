@@ -23,9 +23,10 @@
   </style>
   <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/bootstrap-responsive.min.css') }}">
   <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/style.css') }}">
+
   {% endblock %}
   {% block javascript_head %}
-  <script src="{{ asset('bundles/admingeneratorgenerator/js/libs/modernizr-2.5.3-respond-1.1.0.min.js') }}"></script>
+  <script src="{{ asset('bundles/admingeneratorgenerator/js/modernizr-2.5.3-respond-1.1.0.min.js') }}"></script>
   {% endblock %}
 </head>
 <body>
@@ -56,13 +57,13 @@
           
           {% block profile %}
           <div class="span8 offset1">
-          <ul class="nav pull-right">
-            <li>
-                <a href="#">Welcome</a>
-            </li>
-            <li>
-                <a class='logout' href="#">Log out will be connect to security</a>
-            </ul>
+              <ul class="nav pull-right">
+                <li>
+                    <a href="#">Welcome</a>
+                </li>
+                <li>
+                    <a class='logout' href="#">Log out will be connect to security</a>
+                </ul>
             </div>
             {% endblock %}
         </div><!--/.nav-collapse -->
@@ -73,27 +74,29 @@
 <div class="container-fluid">
     <div class="row-fluid">
 
-        {% block flashes %}
-        {% if app.session.hasFlash('success') %}
-        <div class="notification_box success">
-            {{ app.session.flash('success')|raw }}
-        </div>
-        {% endif %}
-        {% if app.session.hasFlash('error') %}
-        <div class="notification_box error">
-            {{ app.session.flash('error')|raw }}
-        </div>
-        {% endif %}
-        {% endblock %}
+     {% block flashes %}
+     {% if app.session.hasFlash('success') %}
+     <div class="alert alert-success">
+          <a class="close" data-dismiss="alert" href="#">×</a>
+        {{ app.session.flash('success')|raw }}
     </div>
+    {% endif %}
+    {% if app.session.hasFlash('error') %}
+    <div class="alert alert-error">
+          <a class="close" data-dismiss="alert" href="#">×</a>
+        {{ app.session.flash('error')|raw }}
+    </div>
+    {% endif %}
+    {% endblock %}
+</div>
 
-    {% block body %}{% endblock %}
+{% block body %}{% endblock %}
 
-    
+
 </div>
 {% block javascript_foot %}
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/javascripts/bootstrap/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap.min.js') }}"></script>
 {% endblock %}
 </body>
 </html>
