@@ -18,13 +18,13 @@
             {{ echo_endif () }}
         {% endif %}
         {% endfor %}
-        <ul class="actions">
-            <li>
+        <div class="actions">
+            <p>
                  {{ echo_twig("form_rest(form)") }}
-                 <input type="submit" class="submit_button" value="{{ echo_trans('list.filter.btn_filter') }}" />
-                 <input type="submit" class="reset_button" name="reset" value="{{ echo_trans('list.filter.btn_reset') }}" />
-            </li>
-        </ul>
+                 <input type="submit" class="submit_button btn" value="{{ echo_trans('list.filter.btn_filter') }}" />
+                 <input type="submit" class="reset_button btn" name="reset" value="{{ echo_trans('list.filter.btn_reset') }}" />
+            </p>
+        </div>
     </fieldset>
 </form>
 {{ echo_endblock() }}

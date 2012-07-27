@@ -22,11 +22,9 @@
         {{ block("form_actions") }}
 
         {{ echo_block("form_buttons") }}
-        <ul class="actions">
-            <li>
-                 <input type="submit" class="submit_button" value="{{ echo_trans('form.btn_save') }}" />
-            </li>
-        </ul>
+        <p>
+            <button class="btn btn-success" type="submit">{{ echo_trans('form.btn_save') }}</button> 
+        </p>
         {{ echo_endblock() }}
     </form>
     {{ echo_endblock() }}

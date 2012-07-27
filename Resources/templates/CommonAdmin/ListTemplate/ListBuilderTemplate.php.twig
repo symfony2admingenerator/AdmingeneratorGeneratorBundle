@@ -13,55 +13,47 @@
 {{ echo_extends( builder.getBaseAdminTemplate ) }}
 
 {{ echo_block("stylesheets") }}
-    {{- block('complementary_stylesheets') -}}
+{{- block('complementary_stylesheets') -}}
 {{ echo_endblock() }}
 
 {{ echo_block("javascripts") }}
-    {{- block('complementary_javascripts') -}}
+{{- block('complementary_javascripts') -}}
 {{ echo_endblock() }}
 
 {{- block('site_title') -}}
 
 {{ echo_block("body") }}
-    {{- block('title') -}}
+{{- block('title') -}}
+<div class="row-fluid">
+<div class="span9">
 
-    <div class="admin_list main_content{% if builder.filterColumns|length == 0 %} full_size{% endif %}">
+    {{ block('list_scopes') -}}
 
-        {{ block('list_scopes') -}}
+    {{- block('list_nbresults') -}}
 
-        {{- block('list_nbresults') -}}
+    {{- block('form_batch_actions') }}
+    <table class="table table-bordered">
+        {{ block('list_thead') -}}
+        {{- block('list_tbody') }}
+    </table>
 
-        {{- block('form_batch_actions') }}
-        <table>
-            {{ block('list_thead') -}}
-            {{- block('list_tbody') }}
-        </table>
+    {{- block('list_paginator') -}}
 
-        {{- block('list_paginator') -}}
+    {{- block('list_batch_actions') -}}
+    {{- block('list_actions') -}}
 
-        {{- block('list_batch_actions') -}}
-        {{- block('list_actions') -}}
+    {{- block('endform_batch_actions') }}
+</div>
+{{ echo_block("filters") }}
+{% if builder.filterColumns|length > 0 %}
+<div class="span3">
+    <div class="row-fluid"><h2>{{ echo_trans('list.filters') }}</h2></div>
 
-        {{- block('endform_batch_actions') }}
-    </div>
-    {{ echo_block("filters") }}
-        {% if builder.filterColumns|length > 0 %}
-        <div class="filters">
-            <table>
-                <thead>
-                    <tr>
-                        <th>{{ echo_trans('list.filters') }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            {{- block('list_filters') -}}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        {% endif %}
-    {{ echo_endblock() }}
+    {{- block('list_filters') -}}
+</div>
+<div>{# end row-fluid responsive #}
+{% endif %}
 {{ echo_endblock() }}
+{{ echo_endblock() }}
+
+
