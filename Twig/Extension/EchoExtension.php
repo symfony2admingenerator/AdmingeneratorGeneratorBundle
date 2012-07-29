@@ -134,8 +134,8 @@ class EchoExtension extends \Twig_Extension
 
     public function getEchoTrans($str, $catalog = 'Admingenerator')
     {
-        if (preg_match("/^\'(?<str>[^'|{}\[\]]+)\'\|(?<with>\{(\'.+\':\s{1}[^,}]+){1}(,\s{1}\'.+\':\s{1}[^,}]+)*\})\s*$/", $str, $matches)) {
-            $str = $matches['str'];     
+        if (preg_match("/^\'(?<str>[^|{}\[\]]+)\'\|(?<with>\{(\'.+\':\s{1}[^,}]+){1}(,\s{1}\'.+\':\s{1}[^,}]+)*\})\s*$/", $str, $matches)) {
+            $str = $matches['str'];
             $with = trim($matches['with']);
             
             return '{% trans with '.$with.' from "'.$catalog.'" %}'.$str.'{% endtrans %}';
