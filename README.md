@@ -1,4 +1,4 @@
-# Symfony2 Admin Generator: The Real Missing Admin Generator for Symfony2! ![project status](http://stillmaintained.com/cedriclombardot/AdmingeneratorGeneratorBundle.png)# ![build status](https://secure.travis-ci.org/cedriclombardot/AdmingeneratorGeneratorBundle.png)#
+# Symfony2 Admin Generator: The Real Missing Admin Generator for Symfony2! ![project status](http://stillmaintained.com/symfony2admingenerator/AdmingeneratorGeneratorBundle.png)# ![build status](https://secure.travis-ci.org/cedriclombardot/AdmingeneratorGeneratorBundle.png)#
 
 **:warning: This branch work only with the symfony 2.0 for 2.1 use the master branch :warning:**
 
@@ -28,20 +28,20 @@ With almost the same features:
 
 ## This bundle in pictures
 
-![Preview of list](https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/list-preview.png)
+![Preview of list](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/list-preview.png)
 
-![Preview of edit](https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/edit-preview.png)
+![Preview of edit](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/edit-preview.png)
 
 ### Want another skin?
 
-Just install [ActiveAdminTheme](https://github.com/cedriclombardot/AdmingeneratorActiveAdminThemeBundle)
+Just install [ActiveAdminTheme](https://github.com/symfony2admingenerator/AdmingeneratorActiveAdminThemeBundle)
 
-![Preview of ActiveAdminTheme] (https://github.com/cedriclombardot/AdmingeneratorActiveAdminThemeBundle/raw/master/Resources/doc/list-preview.png)
+![Preview of ActiveAdminTheme] (https://github.com/symfony2admingenerator/AdmingeneratorActiveAdminThemeBundle/raw/master/Resources/doc/list-preview.png)
 
 
 ## Want to run a test?
 
-The fastest way to try it is to setup the AdmingeneratorIpsum project: https://github.com/cedriclombardot/AdmingeneratorIpsum.
+The fastest way to try it is to setup the AdmingeneratorIpsum project: https://github.com/symfony2admingenerator/AdmingeneratorIpsum.
 This is a complete Symfony2 application with this bundle well configured.
 
 ## Installation
@@ -49,14 +49,14 @@ This is a complete Symfony2 application with this bundle well configured.
 ### Install this bundle
 
 ``` bash
-git clone git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git vendor/bundles/Admingenerator/GeneratorBundle
+git clone git://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle.git vendor/bundles/Admingenerator/GeneratorBundle
 ```
 
 Or using deps file
 
 ```
 [AdmingeneratorGeneratorBundle]
-    git=git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git
+    git=git://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle.git
     target=/bundles/Admingenerator/GeneratorBundle
     version=origin/2.0
 ```
