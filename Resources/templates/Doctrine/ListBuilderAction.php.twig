@@ -92,7 +92,7 @@
             {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
 
         if (isset($filters['{{ filter }}'])) {
-            $this->getDoctrine()->getEntityManager()->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array($filters['{{ filter }}']->getId()), array());
+            $this->getDoctrine()->getEntityManager()->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array('id' => $filters['{{ filter }}']->getId()), array());
         }
 
             {%- endif %}
