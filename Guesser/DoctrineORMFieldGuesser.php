@@ -133,9 +133,6 @@ class DoctrineORMFieldGuesser
 
     public function getFormOptions($formType, $dbType, $columnName)
     {
-//$mapping = $this->getMetadatas()->getAssociationMapping($columnName);
-            //var_dump($mapping);
-            exec('echo > poc22');
         if ('boolean' == $dbType) {
             return array('required' => false);
         }
