@@ -1,6 +1,14 @@
 <?php
 
 $vendorDir = __DIR__.'/../vendor';
+
+//composer autoload file
+if (file_exists($vendorDir.'/autoload.php')) {
+    require_once $vendorDir.'/autoload.php';
+
+    return;
+}
+
 require_once $vendorDir.'/symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php';
 
 use Symfony\Component\ClassLoader\UniversalClassLoader;
