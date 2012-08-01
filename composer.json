@@ -1,5 +1,6 @@
 {
     "name": "cedriclombardot/admingenerator-generator-bundle",
+    "minimum-stability": "dev",
     "version": "1.0.0-BETA",
     "description": "Admingenerator for Symfony2 based on YAML configuration and Twig templating",
     "keywords": ["admin", "generator", "yaml"],
@@ -20,10 +21,19 @@
         "symfony/symfony": "2.1.*",
         "cedriclombardot/twig-generator": "dev-master",
         "knplabs/knp-menu-bundle": "dev-master",
-        "white-october/pagerfanta-bundle": "dev-master"
+        "white-october/pagerfanta-bundle": "dev-master",
+        "twig/twig": "1.9.*",
+        "twig/extensions": "dev-master"
+    },
+    "require-dev": {
+        "doctrine/common": "2.3.*",
+        "doctrine/orm": "2.3.*",
+        "doctrine/dbal": "2.3.*"
     },
     "target-dir": "Admingenerator/GeneratorBundle",
     "autoload": {
-        "psr-0": { "Admingenerator\\GeneratorBundle": "" }
+        "psr-0": {
+            "Admingenerator\\GeneratorBundle": ""
+        }
     }
 }

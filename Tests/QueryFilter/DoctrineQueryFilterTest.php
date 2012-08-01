@@ -14,7 +14,7 @@ class QueryFilterTest extends TestCase
     {
         parent::setUp();
 
-        if (!class_exists('\Doctrine\Tests\Mocks\DriverMock')) {
+        if (!class_exists('Doctrine\DBAL\DriverManager')) {
             $this->markTestSkipped('The "doctrine" service is not found.');
         }
 
@@ -65,11 +65,6 @@ class QueryFilterTest extends TestCase
     /**
      * Creates an EntityManager for testing purposes.
      *
-     * NOTE: The created EntityManager will have its dependant DBAL parts completely
-     * mocked out using a DriverMock, ConnectionMock, etc. These mocks can then
-     * be configured in the tests to simulate the DBAL behavior that is desired
-     * for a particular test,
-     *
      * @return Doctrine\ORM\EntityManager
      */
     protected function _getTestEntityManager($conn = null, $conf = null, $eventManager = null)
@@ -86,8 +81,8 @@ class QueryFilterTest extends TestCase
 
         if ($conn === null) {
             $conn = array(
-                'driverClass'  => '\Doctrine\Tests\Mocks\DriverMock',
-                'wrapperClass' => '\Doctrine\Tests\Mocks\ConnectionMock',
+                'driverClass'  => '\Admingenerator\GeneratorBundle\Tests\Mocks\Doctrine\DriverMock',
+                'wrapperClass' => '\Admingenerator\GeneratorBundle\Tests\Mocks\Doctrine\ConnectionMock',
                 'user'         => 'john',
                 'password'     => 'wayne'
             );
@@ -97,6 +92,6 @@ class QueryFilterTest extends TestCase
             $conn = \Doctrine\DBAL\DriverManager::getConnection($conn, $config, $eventManager);
         }
 
-        return \Doctrine\Tests\Mocks\EntityManagerMock::create($conn, $config, $eventManager);
+        return \Admingenerator\GeneratorBundle\Tests\Mocks\Doctrine\EntityManagerMock::create($conn, $config, $eventManager);
     }
 }
