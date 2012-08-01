@@ -125,11 +125,11 @@ or using deps file
 
 ```
 [MenuBundle]
-    git=git://github.com/knplabs/KnpMenuBundle.git
+    git=git://github.com/KnpLabs/KnpMenuBundle.git
     target=/bundles/Knp/Bundle/MenuBundle
 
 [KnpMenu]
-    git=git://github.com/knplabs/KnpMenu.git
+    git=git://github.com/KnpLabs/KnpMenu.git
     target=/KnpMenu
 ```
 
