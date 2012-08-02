@@ -7,6 +7,5 @@ php:
 env:
     - SYMFONY_VERSION=origin/master
 
-before_script: 
-    - php vendor/install_vendors.php 0
-    - php vendor/install_vendors.php 1
+before_script:
+    - composer install --dev
