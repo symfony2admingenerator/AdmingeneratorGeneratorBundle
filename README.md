@@ -324,15 +324,7 @@ php app/console -env prod cache:warmup
 Bundle use phpunit framework for testing.
 To running test suite please first install needed deps.
 
-You can do that by running install_vendors script:
-
-```
-export SYMFONY_VERSION=origin/master
-php vendor/install_vendors.php 0
-php vendor/install_vendors.php 1
-```
-
-or using composer:
+Using composer:
 
 ```
 curl -s http://getcomposer.org/installer | php
