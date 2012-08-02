@@ -18,13 +18,22 @@ list.actions: Actions
 #Object
 object.saved.success: Poprawnie zapisano obiekt
 object.saved.error: Formularz nie może zostać zapisany. Sprawdź błędy i spróbuj ponownie.
-object.deleted.success: Poprawnie usunięto wpis
-object.deleted.error: Nie można usunąć tego wpisu
+object.deleted.success: Poprawnie usunięto obiekt
+object.deleted.error: Nie można usunąć tego obiektu
 
 # Form
 form.btn_save: Zapisz
 form.type_collection.add: Dodaj
+form.delete.confirm: Czy potwierdzasz usunięcie obiektu ?
 
 # Actions
 List: Lista
 New: Nowy
+
+# Batch
+batch.delete.confirm: Czy potwierdzasz usunięcie zaznaczonych elementów ?
+batch.none_selected: Musisz zaznaczyć co najmniej 1 element
+batch.deleted.success: Usunięto zaznaczone elementy
+batch.deleted.error: Nie można było usunąć zaznaczonych elementów
+batch.list.selected: Zaznaczone
+batch.list.execute: Wykonaj
