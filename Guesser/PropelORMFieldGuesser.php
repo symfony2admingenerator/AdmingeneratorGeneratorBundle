@@ -171,11 +171,12 @@ class PropelORMFieldGuesser
         }
 
         if (\PropelColumnTypes::ENUM == $dbType) {
+            $valueSet = $this->getMetadatas()
+                                   ->getColumn($columnName)
+                                   ->getValueSet();
             return array(
                 'required' => $this->isRequired($columnName),
-                'choices'  => $this->getMetadatas()
-                                   ->getColumn($columnName)
-                                   ->getValueSet(),
+                'choices'  => array_combine($valueSet, $valueSet),
             );
         }
 
