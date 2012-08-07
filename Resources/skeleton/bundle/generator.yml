@@ -26,7 +26,7 @@ builders:
         list: ~
   edit:
     params:
-      title: You're editing the object "{% raw %}{{ YourModel.title }}{% endraw %}"
+      title: {% raw %}"'You're editing the object \"%object_title%\"'|{'%object_title%': YourModel.title }"{% endraw %}"
       display: ~
       actions:
         list: ~

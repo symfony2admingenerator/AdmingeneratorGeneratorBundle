@@ -134,7 +134,14 @@ class EchoExtension extends \Twig_Extension
 
     public function getEchoTrans($str, $catalog = 'Admingenerator')
     {
-        return '{% trans from "'.$catalog.'" %}'.$str.'{% endtrans %}';
+        if (preg_match("/^\'(?<str>[^|{}\[\]]+)\'\|(?<with>\{(\'.+\':\s{1}[^,}]+){1}(,\s{1}\'.+\':\s{1}[^,}]+)*\})\s*$/", $str, $matches)) {
+            $str = $matches['str'];
+            $with = trim($matches['with']);
+            
+            return '{% trans with '.$with.' from "'.$catalog.'" %}'.$str.'{% endtrans %}';
+        }
+        else
+            return '{% trans from "'.$catalog.'" %}'.$str.'{% endtrans %}';
     }
 
     public function getEchoSet($var, $value, $value_as_string = true)
