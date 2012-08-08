@@ -204,6 +204,16 @@ class PropelORMFieldGuesser
            $options['empty_value'] = 'Yes or No';
         }
 
+        if (\PropelColumnTypes::ENUM == $dbType) {
+            $valueSet = $this->getMetadatas()
+                                   ->getColumn($ColumnName)
+                                   ->getValueSet();
+            return array(
+                'required' => false,
+                'choices'  => array_combine($valueSet, $valueSet),
+            );
+        }
+
          if ('model' == $dbType) {
              return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
          }
