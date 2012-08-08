@@ -18,7 +18,7 @@ use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ bu
 
         $form = $this->createForm($this->getEditType(), ${{ builder.ModelClass }});
 
-        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Edit:index.html.twig', array(
+        return $this->render('{{ bundle_name }}:{{ builder.BaseGeneratorName }}Edit:index.html.twig', array(
             "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
             "form" => $form->createView(),
         ));

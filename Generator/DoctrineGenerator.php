@@ -67,6 +67,7 @@ class DoctrineGenerator extends Generator
             $generator->addBuilder(new NewBuilderType());
         }
 
-        $generator->writeOnDisk($this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));
+        $prefix =  $generator->getFromYaml('params.namespace_prefix').DIRECTORY_SEPARATOR.$generator->getFromYaml('params.subfolder').DIRECTORY_SEPARATOR;
+        $generator->writeOnDisk($this->getCachePath($prefix, $generator->getFromYaml('params.bundle_name')));
     }
 }
