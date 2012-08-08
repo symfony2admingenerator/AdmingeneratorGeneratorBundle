@@ -44,12 +44,13 @@ class BundleGenerator extends BaseBundleGenerator
     {
         $dir .= '/'.strtr($namespace, '\\', '/');
 
-        list( $namespace_prefix, $bundle_name) = explode('\\', $namespace, 2);
+        list($namespace_prefix, $subfolder, $bundle_name) = explode('\\', $namespace, 3);
         $parameters = array(
             'namespace'        => $namespace,
             'bundle'           => $bundle,
             'generator'        => 'admingenerator.generator.'.$this->generator,
             'namespace_prefix' => $namespace_prefix,
+            'subfolder'        => $subfolder,
             'bundle_name'      => $bundle_name,
             'prefix'           => ucfirst($this->prefix),
         );
