@@ -145,10 +145,6 @@ class EchoExtension extends \Twig_Extension
         }
         return '{% trans '.$echo_parameters.' from "'.$catalog.'" %}'.$str.'{% endtrans %}';
     }
-    public function getEchoTrans($str, $catalog = 'Admingenerator')
-    {
-        return '{% trans from "'.$catalog.'" %}'.$str.'{% endtrans %}';
-    }
 
     public function getEchoSet($var, $value, $value_as_string = true)
     {
