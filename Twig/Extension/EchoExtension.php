@@ -38,16 +38,16 @@ class EchoExtension extends \Twig_Extension
             'echo_set'        => new \Twig_Function_Method($this, 'getEchoSet'),
             'echo_trans'      => new \Twig_Function_Method($this, 'getEchoTrans'),
             'echo_twig_assoc' => new \Twig_Function_Method($this, 'getEchoTwigAssoc'),
-            );
-}
-
-public function getFilters()
-{
-    return array(
-        'as_php'          => new \Twig_Filter_Method($this, 'asPhp'),
-        'convert_as_form' => new \Twig_Filter_Method($this, 'convertAsForm'),
         );
-}
+    }
+
+    public function getFilters()
+    {
+        return array(
+            'as_php'          => new \Twig_Filter_Method($this, 'asPhp'),
+            'convert_as_form' => new \Twig_Filter_Method($this, 'convertAsForm'),
+        );
+    }
 
     /**
      * Try to convert options of form given as string from yaml to a good object
@@ -77,19 +77,11 @@ public function getFilters()
             }
         }
 
-        if ('choice' == $formType) {
+        if ('choice' == $formType || 'double_list' == $formType ) {
             preg_match("/'choices' => '(.+?)',/i", $options, $matches);
 
             if (count($matches) > 0) {
                 $options = str_replace("'choices' => '".$matches[1]."'", '\'choices\' => '.stripslashes($matches[1]), $options);
-            }
-        }
-
-        if ('form_widget'== $formType) { // For type wich are not strings
-            preg_match("/\'(.*)Type/", $options, $matches);
-
-            if (count($matches) > 0) {
-                return 'new '.stripslashes($matches[1]).'Type()';
             }
         }
 
@@ -106,81 +98,83 @@ public function getFilters()
 
     public function asPhp($variable)
     {
-     if (!is_array($variable)) {
-         return $this->export($variable);
-     }
+       if (!is_array($variable)) {
+           return $this->export($variable);
+       }
 
-     $str = $this->export($variable);
+       $str = $this->export($variable);
 
-     preg_match_all('/[^> ]+::__set_state\(array\((.+),\'loaded/i', $str, $matches);
+       preg_match_all('/[^> ]+::__set_state\(array\((.+),\'loaded/i', $str, $matches);
 
-         if (isset($matches[1][0])) {
-             $params = 'return array('.$matches[1][0].')';
-             $params = eval($params. '?>');
+       if (isset($matches[1][0])) {
+           $params = 'return array('.$matches[1][0].')';
+           $params = eval($params. '?>');
 
-             $str_param = '';
-             foreach ($params as $p) {
-                 if ('' !== $str_param ) {
-                     $str_param .= ', ';
-                 }
-                 $str_param .= $this->export($p);
-             }
+           $str_param = '';
+           foreach ($params as $p) {
+               if ('' !== $str_param ) {
+                   $str_param .= ', ';
+               }
+               $str_param .= $this->export($p);
+           }
 
-             $str = preg_replace("/([^> ]+)::__set_state\(/i", ' new \\\$0', $str);
-                 $str = str_replace('::__set_state', '', $str);
-                 $str = str_replace('array('.$matches[1][0].',\'loaded\' => false,  )', $str_param, $str);
-             }
+           $str = preg_replace("/([^> ]+)::__set_state\(/i", ' new \\\$0', $str);
+           $str = str_replace('::__set_state', '', $str);
+           $str = str_replace('array('.$matches[1][0].',\'loaded\' => false,  )', $str_param, $str);
+       }
 
-             return $str;
+       return $str;
 
-         }
+    }
 
-         public function export($variable)
-         {
-            return str_replace(array("\n", 'array (', '     '), array('', 'array(', ''), var_export($variable, true));
-        }
+    public function export($variable)
+    {
+        return str_replace(array("\n", 'array (', '     '), array('', 'array(', ''), var_export($variable, true));
+    }
 
-        public function getEchoTrans($str, $parameters=NULL, $catalog = 'Admingenerator')
-        {   
-            $echo_parameters=NULL;
-            if(is_array($parameters))
-            {
-                $echo_parameters="with {";
-                foreach ($parameters as $key => $value) {
-                    $echo_parameters.= "'%".$key."%': '".$value."',";
-                }
-                $echo_parameters.="}";
-            }
-
-
-            return '{% trans '.$echo_parameters.' from "'.$catalog.'" %}'.$str.'{% endtrans %}';
-        }
-
-        public function getEchoSet($var, $value, $value_as_string = true)
+    public function getEchoTrans($str, $parameters=NULL, $catalog = 'Admingenerator')
+    {   
+        $echo_parameters=NULL;
+        if(is_array($parameters))
         {
-            if ($value_as_string) {
-                return strtr('{% set %%var%% = "%%value%%" %}',array('%%var%%' => $var, '%%value%%' => $value));
-            } else {
-                return strtr('{% set %%var%% = %%value%% %}',array('%%var%%' => $var, '%%value%%' => $value));
+            $echo_parameters="with {";
+            foreach ($parameters as $key => $value) {
+                $echo_parameters.= "'%".$key."%': '".$value."',";
             }
+            $echo_parameters.="}";
+        }
+        return '{% trans '.$echo_parameters.' from "'.$catalog.'" %}'.$str.'{% endtrans %}';
+    }
+    public function getEchoTrans($str, $catalog = 'Admingenerator')
+    {
+        return '{% trans from "'.$catalog.'" %}'.$str.'{% endtrans %}';
+    }
+
+    public function getEchoSet($var, $value, $value_as_string = true)
+    {
+        if ($value_as_string) {
+            return strtr('{% set %%var%% = "%%value%%" %}',array('%%var%%' => $var, '%%value%%' => $value));
+        } else {
+            return strtr('{% set %%var%% = %%value%% %}',array('%%var%%' => $var, '%%value%%' => $value));
+        }
+    }
+
+    public function getEchopath($path, $params = null)
+    {
+        if (null === $params) {
+            return strtr('{{ path("%%path%%") }}',array('%%path%%' => $path));
         }
 
-        public function getEchopath($path, $params = null)
-        {
-            if (null === $params) {
-                return strtr('{{ path("%%path%%") }}',array('%%path%%' => $path));
-            }
+        return strtr('{{ path("%%path%%", %%params%%) }}',array('%%path%%' => $path, '%%params%%'=>$params));
+    }
 
-            return strtr('{{ path("%%path%%", %%params%%) }}',array('%%path%%' => $path, '%%params%%'=>$params));
-        }
-
-        public function getEchoIfGranted($credentials, $modelName = null)
-        {
-         if (null === $modelName) {
+    public function getEchoIfGranted($credentials, $modelName = null)
+    {
+       if (null === $modelName) {
             return $this->getEchoIf('is_expr_granted(\''.$credentials.'\')');
-        }
+       }
 
-        return $this->getEchoIf('is_expr_granted(\''.$credentials.'\', '.$modelName.')');
+       return $this->getEchoIf('is_expr_granted(\''.$credentials.'\', '.$modelName.')');
     }
 
     public function getEchoIf($condition)
