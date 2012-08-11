@@ -3,7 +3,7 @@
 {{ echo_block("form_fieldset_" ~ fieldset|classify) }}
         <fieldset class="form_block form_fieldset_{{ fieldset|classify }}">
         {% if "NONE" != fieldset %}
-        <legend>{{ echo_trans(fieldset, i18n_catalog is defined ? i18n_catalog : "Admin" ) }}</legend>
+        <legend>{{ echo_trans(fieldset,{},{}, i18n_catalog is defined ? i18n_catalog : "Admin" ) }}</legend>
         {% endif -%}
         {% for rows in builder.fieldsets[fieldset] %}
     <div class="form_row">
@@ -18,7 +18,7 @@
                             {{ echo_twig("form_errors(form['" ~ field ~ "'])") }}
                         </div>
 
-                         {{ echo_twig("form_label(form['" ~ field ~ "'], '" ~ builder.Columns[field].label|addslashes ~ "'|trans({}, '" ~ (i18n_catalog is defined ? i18n_catalog : "Admin") ~ "'))") }}
+                        {{ echo_twig("form_label(form['" ~ field ~ "'], '" ~ builder.Columns[field].label|addslashes ~ "'|trans({}, '" ~ (i18n_catalog is defined ? i18n_catalog : "Admin") ~ "'))") }}
 
                         {% if builder.Columns[field].formType == "collection" -%}
                             {{- block('type_collection') -}}

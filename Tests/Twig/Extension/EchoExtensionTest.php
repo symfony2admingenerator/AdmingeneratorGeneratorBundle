@@ -105,8 +105,6 @@ class EchoExtensionTest extends TestCase
        $this->runTwigTests($tpls, $returns);
     }
 
-    
-
     public function testGetEchoSet()
     {
         $tpls = array(

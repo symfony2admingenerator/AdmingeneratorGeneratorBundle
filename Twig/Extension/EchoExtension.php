@@ -132,10 +132,10 @@ class EchoExtension extends \Twig_Extension
         return str_replace(array("\n", 'array (', '     '), array('', 'array(', ''), var_export($variable, true));
     }
 
-    public function getEchoTrans($str, $parameters=NULL, $catalog = 'Admingenerator')
+    public function getEchoTrans($str, array $parameters=array(), $catalog = 'Admingenerator')
     {   
         $echo_parameters=NULL;
-        if(is_array($parameters))
+        if(!empty($parameters))
         {
             $echo_parameters="with {";
             foreach ($parameters as $key => $value) {
