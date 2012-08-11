@@ -93,8 +93,8 @@ class EchoExtensionTest extends TestCase
     public function testGetEchoTransWithParameters()
     {
         $tpls = array(
-            'string' => "{{ echo_trans('Display all <b>%foo% %bar%</b> results',{ 'foo': 'foo',{}, 'bar': 'bar' }) }}",
-            'variable_key' => '{{ echo_trans( name,{ \'foo\': \'foo\',{}, \'bar\': \'bar\' } ) }}',
+            'string' => "{{ echo_trans('Display all <b>%foo% %bar%</b> results',{ 'foo': 'foo', 'bar': 'bar' }) }}",
+            'variable_key' => '{{ echo_trans( name,{ \'foo\': \'foo\', \'bar\': \'bar\' } ) }}',
         );
 
         $returns = array(
