@@ -39,7 +39,9 @@ class DoctrineDoubleListType extends AbstractType
         $this->choices = $options['choice_list']->getChoices();
 
         unset($options['choices']);
-
+        foreach ($this->choices as $key => $choice) {
+            $this->choices[$key] = array('value' => $key, 'label' => $choice);    
+        }
     }
 
     /**
@@ -77,7 +79,7 @@ class DoctrineDoubleListType extends AbstractType
             'class'             => null,
             'property'          => null,
             'query_builder'     => null,
-            'choices'           => array(),
+            'choices'           => null,
         );
 
         $options = array_replace($defaultOptions, $options);
