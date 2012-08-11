@@ -3,7 +3,7 @@
 {{ echo_block("form_fieldset_" ~ fieldset|classify) }}
         <fieldset class="form_block form_fieldset_{{ fieldset|classify }}">
         {% if "NONE" != fieldset %}
-        <legend>{{ echo_trans(fieldset, i18n_catalog is defined ? i18n_catalog : "Admin" ) }}</legend>
+        <legend>{{ echo_trans(fieldset,{}, i18n_catalog is defined ? i18n_catalog : "Admin" ) }}</legend>
         {% endif -%}
         {% for rows in builder.fieldsets[fieldset] %}
     <div class="form_row">
