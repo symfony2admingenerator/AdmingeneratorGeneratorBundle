@@ -89,6 +89,23 @@ class EchoExtensionTest extends TestCase
 
        $this->runTwigTests($tpls, $returns);
     }
+    
+    public function testGetEchoTransWithParameters()
+    {
+        $tpls = array(
+            'string' => "{{ echo_trans('Display all <b>%foo% %bar%</b> results',{ 'foo': 'foo', 'bar': 'bar' }) }}",
+            'variable_key' => '{{ echo_trans( name,{ \'foo\': \'foo\', \'bar\': \'bar\' } ) }}',
+        );
+
+        $returns = array(
+             'string' => array('{% trans with {\'%foo%\': \'foo\',\'%bar%\': \'bar\',} from "Admingenerator" %}Display all <b>%foo% %bar%</b> results{% endtrans %}', 'trans return a good trans tag with string elements'),
+             'variable_key' => array('{% trans with {\'%foo%\': \'foo\',\'%bar%\': \'bar\',} from "Admingenerator" %}cedric{% endtrans %}', 'trans return a good trans tag with variable as key'),
+        );
+
+       $this->runTwigTests($tpls, $returns);
+    }
+
+    
 
     public function testGetEchoSet()
     {
