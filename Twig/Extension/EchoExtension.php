@@ -141,9 +141,9 @@ class EchoExtension extends \Twig_Extension
             foreach ($parameters as $key => $value) {
                 $echo_parameters.= "'%".$key."%': '".$value."',";
             }
-            $echo_parameters.="}";
+            $echo_parameters.="} ";
         }
-        return '{% trans '.$echo_parameters.' from "'.$catalog.'" %}'.$str.'{% endtrans %}';
+        return '{% trans '.$echo_parameters.'from "'.$catalog.'" %}'.$str.'{% endtrans %}';
     }
 
     public function getEchoSet($var, $value, $value_as_string = true)
