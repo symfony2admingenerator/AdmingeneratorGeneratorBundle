@@ -51,7 +51,7 @@ class RoutingManipulator extends Manipulator
         if (null === $prefix) {
             $prefix = '/admin/'.Container::underscore($bundle). ($this->yaml_prefix ? '/'.$this->yaml_prefix : '');
         }
-        
+
         $routing_name=$bundle.('/' !== $prefix ? '_'.str_replace('/', '_', substr($prefix, 1)) : '');
         if (file_exists($this->file)) {
             $current = file_get_contents($this->file);
