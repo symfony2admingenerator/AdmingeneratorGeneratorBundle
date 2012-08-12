@@ -68,6 +68,7 @@ class ConnectionMock extends \Doctrine\DBAL\Connection
         if (is_string($input)) {
             return "'" . $input . "'";
         }
+
         return $input;
     }
 
