@@ -22,8 +22,6 @@
         $('#type_collection_{{ field }} .new').click(function() {
            var prototype = $('#{{ builder.YamlKey }}_{{ builder.ModelClass|lower }}_{{ field }}').data('prototype');
            prototype = prototype.replace(/\$\$name\$\$/g, type_collection_{{ field }}_nextId);
-           prototype = prototype.replace(/__name__label__/g, "{{ echo_trans(builder.Columns[field].extras.new_label is defined ? builder.Columns[field].extras.new_label : 'type_collection_' ~ field ~ '_nextId',{}, i18n_catalog is defined ? i18n_catalog : "Admin" ) }}");
-           prototype = prototype.replace(/__name__/g, type_collection_{{ field }}_nextId);
            type_collection_{{ field }}_nextId++;
            $('#{{ builder.YamlKey }}_{{ builder.ModelClass|lower }}_{{ field }}').append(prototype);
 
