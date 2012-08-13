@@ -71,7 +71,6 @@ class ControllerListener
         //Find if its a name-generator or generator.yml
         if (isset($matches[2]) && strstr($matches[2], '\\')) {
             if (3 != count(explode('\\', $matches[2]))) {
-
                 return '';
             }
 
@@ -110,7 +109,6 @@ class ControllerListener
             $it->rewind();
 
             if ($it->valid()) {
-
                 return $it->current()->getRealpath();
             }
         }

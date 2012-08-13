@@ -89,7 +89,7 @@ class EchoExtensionTest extends TestCase
 
        $this->runTwigTests($tpls, $returns);
     }
-    
+
     public function testGetEchoTransWithParameters()
     {
         $tpls = array(
@@ -353,7 +353,7 @@ class EchoExtensionTest extends TestCase
     {
         $twig = $this->getEnvironment(false, array(), $tpls);
 
-        foreach ($tpls as $name => $tpl ) {
+        foreach ($tpls as $name => $tpl) {
             $this->assertEquals($returns[$name][0],
             $twig->loadTemplate($name)
                             ->render(self::$params),

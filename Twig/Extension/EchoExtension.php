@@ -77,7 +77,7 @@ class EchoExtension extends \Twig_Extension
             }
         }
 
-        if ('choice' == $formType || 'double_list' == $formType ) {
+        if ('choice' == $formType || 'double_list' == $formType) {
             preg_match("/'choices' => '(.+?)',/i", $options, $matches);
 
             if (count($matches) > 0) {
@@ -112,7 +112,7 @@ class EchoExtension extends \Twig_Extension
 
            $str_param = '';
            foreach ($params as $p) {
-               if ('' !== $str_param ) {
+               if ('' !== $str_param) {
                    $str_param .= ', ';
                }
                $str_param .= $this->export($p);
@@ -133,16 +133,16 @@ class EchoExtension extends \Twig_Extension
     }
 
     public function getEchoTrans($str, array $parameters=array(), $catalog = 'Admingenerator')
-    {   
+    {
         $echo_parameters=NULL;
-        if(!empty($parameters))
-        {
+        if (!empty($parameters)) {
             $echo_parameters="with {";
             foreach ($parameters as $key => $value) {
                 $echo_parameters.= "'%".$key."%': '".$value."',";
             }
             $echo_parameters.="} ";
         }
+
         return '{% trans '.$echo_parameters.'from "'.$catalog.'" %}'.$str.'{% endtrans %}';
     }
 
