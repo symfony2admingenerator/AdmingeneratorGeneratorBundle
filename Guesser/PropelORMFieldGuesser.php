@@ -63,7 +63,6 @@ class PropelORMFieldGuesser
         $column = $this->getColumn($class, $fieldName);
 
         if ($column) {
-
             return $column->getPhpName();
         }
     }
@@ -174,6 +173,7 @@ class PropelORMFieldGuesser
             $valueSet = $this->getMetadatas()
                                    ->getColumn($columnName)
                                    ->getValueSet();
+
             return array(
                 'required' => $this->isRequired($columnName),
                 'choices'  => array_combine($valueSet, $valueSet),
@@ -208,6 +208,7 @@ class PropelORMFieldGuesser
             $valueSet = $this->getMetadatas()
                                    ->getColumn($ColumnName)
                                    ->getValueSet();
+
             return array(
                 'required' => false,
                 'choices'  => array_combine($valueSet, $valueSet),
