@@ -2,8 +2,6 @@
 
 namespace Admingenerator\GeneratorBundle\Form\Type;
 
-
-
 use Propel\PropelBundle\Form\ChoiceList\ModelChoiceList;
 
 use Symfony\Component\Form\AbstractType;

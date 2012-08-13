@@ -63,7 +63,6 @@ class PropelORMFieldGuesser
         $column = $this->getColumn($class, $fieldName);
 
         if ($column) {
-
             return $column->getPhpName();
         }
     }

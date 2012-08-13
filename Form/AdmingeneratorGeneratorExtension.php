@@ -5,7 +5,7 @@ namespace Admingenerator\GeneratorBundle\Form;
 use Symfony\Component\Form\AbstractExtension;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class DoctrineOrmExtension extends AbstractExtension
+class AdmingeneratorGeneratorExtension extends AbstractExtension
 {
     protected $registry;
 

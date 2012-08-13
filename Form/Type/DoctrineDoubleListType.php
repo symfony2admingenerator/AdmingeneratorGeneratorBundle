@@ -2,8 +2,6 @@
 
 namespace Admingenerator\GeneratorBundle\Form\Type;
 
-
-
 use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityChoiceList;
 
 use Symfony\Bridge\Doctrine\RegistryInterface;
