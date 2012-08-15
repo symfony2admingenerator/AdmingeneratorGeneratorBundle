@@ -28,9 +28,9 @@ With almost the same features:
 
 ## This bundle in pictures
 
-![Preview of list](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/list-preview.png)
+![Preview of list](https://github.com/symfony2admingenerator/AdmingeneratorOldThemeBundle/raw/master/Resources/doc/list-preview.png)
 
-![Preview of edit](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/edit-preview.png)
+![Preview of edit](https://github.com/symfony2admingenerator/AdmingeneratorOldThemeBundle/raw/master/Resources/doc/edit-preview.png)
 
 ### Want another skin?
 
@@ -300,9 +300,9 @@ Configure your config.yml to use the assetic less template
 
 ``` yaml
 admingenerator_generator:
-    base_admin_template: AdmingeneratorGeneratorBundle::base_admin_assetic_less.html.twig
+    base_admin_template: AdmingeneratorOldThemeBundle::base_admin_assetic_less.html.twig
 admingenerator_user:
-    login_template: AdmingeneratorGeneratorBundle::base_login_assetic_less.html.twig
+    login_template: AdmingeneratorOldThemeBundle::base_login_assetic_less.html.twig
 ```
 
 ### With or without assetic
