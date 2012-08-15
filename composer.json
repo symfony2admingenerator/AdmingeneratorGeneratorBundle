@@ -30,6 +30,10 @@
         "doctrine/orm": "2.3.*",
         "doctrine/dbal": "2.3.*"
     },
+    "suggest": {
+        "cedriclombardot/admingenerator-activeadmintheme-bundle": "The rails admin theme",
+        "cedriclombardot/admingenerator-user-bundle": "Help you to overwrite the base layout of FOSUserBundle or others giving a parameter key of the container"
+    },
     "target-dir": "Admingenerator/GeneratorBundle",
     "autoload": {
         "psr-0": {
