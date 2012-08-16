@@ -97,11 +97,19 @@ public function registerBundles()
 
         // Admin Generator
         new Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle(),
+        new Admingenerator\GeneratorBundle\AdmingeneratorOldThemeBundle(),
     );
 
     // ...
 }
 ```
+In config.yml
+
+```
+admingenerator_generator:
+    templates_dirs: [ %kernel.root_dir%/../vendor/cedriclombardot/admingenerator-oldtheme-bundle/Admingenerator/OldThemeBundle/Resources/templates ]
+```
+
 
 ### Install SensioGeneratorBundle
 
