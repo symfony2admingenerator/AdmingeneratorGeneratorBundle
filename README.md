@@ -97,7 +97,7 @@ public function registerBundles()
 
         // Admin Generator
         new Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle(),
-        new Admingenerator\GeneratorBundle\AdmingeneratorOldThemeBundle(),
+        new Admingenerator\OldThemeBundle\AdmingeneratorOldThemeBundle(),
     );
 
     // ...
