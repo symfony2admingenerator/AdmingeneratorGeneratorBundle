@@ -7,6 +7,8 @@ use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+use Admingenerator\GeneratorBundle\ClassLoader\AdmingeneratedClassLoader;
+
 /**
  * Generate all admingenerated bundle on warmup
  *
@@ -42,16 +44,26 @@ class GeneratorCacheWarmer implements CacheWarmerInterface
         foreach ($this->finder->findAllGeneratorYamls() as $yaml) {
             $this->buildFromYaml($yaml);
         }
+
+        /* 
+         * Load classe to avoid problem with other cache warmers
+         * like JmsDiExtraBundle
+         * 
+         * See issue #190
+        */
+        $AdmingeneratedClassLoader = new AdmingeneratedClassLoader;
+        $AdmingeneratedClassLoader->setBasePath($cacheDir);
+        $AdmingeneratedClassLoader->register();
     }
 
     /**
      * Checks whether this warmer is optional or not.
      *
-     * @return Boolean always true
+     * @return Boolean always false
      */
     public function isOptional()
     {
-        return true;
+        return false;
     }
 
     protected function buildFromYaml($file)
