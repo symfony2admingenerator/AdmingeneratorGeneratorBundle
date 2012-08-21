@@ -23,6 +23,8 @@ object.deleted.error: Запис не може бути видалений
 
 # Form
 form.btn_save: Зберегти
+form.btn_save_and_add: Зберегти й Додати
+form.btn_save_and_list: Зберегти й Список
 form.type_collection.add: Додати
 form.delete.confirm: Ви дійсно хочете видалити цей елемент ?
 

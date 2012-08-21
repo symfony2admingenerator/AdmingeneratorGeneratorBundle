@@ -23,6 +23,8 @@ object.deleted.error: L'enregistrement n'a pas pu être supprimé
 
 # Form
 form.btn_save: Enregistrer
+form.btn_save_and_add: Enregistrer et Ajouter
+form.btn_save_and_list: Enregistrer et Lister
 form.type_collection.add: Ajouter
 form.delete.confirm: Etes-vous sur de vouloir supprimer cet élement ?
 

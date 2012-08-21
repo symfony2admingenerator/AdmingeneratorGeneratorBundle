@@ -23,6 +23,8 @@ object.deleted.error: Nie można usunąć tego obiektu
 
 # Form
 form.btn_save: Zapisz
+form.btn_save_and_add: Zapisz i Dodaj
+form.btn_save_and_list: Zapisz i Lista
 form.type_collection.add: Dodaj
 form.delete.confirm: Czy potwierdzasz usunięcie obiektu ?
 

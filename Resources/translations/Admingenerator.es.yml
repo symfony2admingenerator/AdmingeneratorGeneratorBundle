@@ -23,6 +23,8 @@ object.deleted.error: Este registro no puede ser borrado
 
 # Form
 form.btn_save: Guardar
+form.btn_save_and_add: Guardar y Añadir
+form.btn_save_and_list: Guardar y Listar
 form.type_collection.add: Añadir
 
 # Actions

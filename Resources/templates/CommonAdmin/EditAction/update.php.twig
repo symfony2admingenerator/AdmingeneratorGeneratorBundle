@@ -25,6 +25,12 @@
 
                 $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ messages.success is defined ? messages.success : "object.saved.success" }}", array(), 'Admingenerator') );
 
+                $request = $this->getRequest()->request;
+                if($request->has('_save_and_add')) {
+                    return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_new"));
+                } elseif($request->has('_save_and_list')) {
+                    return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
+                }
                 return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_edit", array('pk' => $pk) ));
             } catch (\Exception $e) {
                 $this->get('session')->setFlash('error',  $this->get('translator')->trans("{{ messages.error is defined ? messages.error : "object.saved.error" }}", array(), 'Admingenerator') );
