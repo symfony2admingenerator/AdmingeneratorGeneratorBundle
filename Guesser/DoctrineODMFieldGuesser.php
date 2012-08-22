@@ -38,6 +38,9 @@ class DoctrineODMFieldGuesser
 
     public function getAllFields($class)
     {
+        if (!class_exists($class)) 
+            throw new ClassNotFoundException('Ups, maybe error typo in your generator.yml, the class '.$class.' not found');
+        
         $fields = array();
 
         foreach ($this->getMetadatas($class)->fieldMappings as $fieldName => $metadatas) {
@@ -65,149 +68,149 @@ class DoctrineODMFieldGuesser
           $mapping = $metadata->getFieldMapping($fieldName);
 
           return $mapping['type'];
-        }
+      }
 
-        return 'virtual';
+      return 'virtual';
 
         //return $metadata->getTypeOfField($fieldName);//Not Yet implemented by doctrine
+  }
+
+  public function getFormType($dbType, $columnName)
+  {
+    switch ($dbType) {
+        case 'boolean':
+        return 'checkbox';
+        case 'datetime':
+        case 'vardatetime':
+        case 'datetimetz':
+        return 'datetime';
+        case 'date':
+        return 'datetime';
+        break;
+        case 'decimal':
+        case 'float':
+        return 'number';
+        break;
+        case 'int':
+        case 'integer':
+        case 'bigint':
+        case 'smallint':
+        return 'integer';
+        break;
+        case 'id':
+        case 'custom_id':
+        case 'string':
+        return 'text';
+        break;
+        case 'text':
+        return 'textarea';
+        break;
+        case 'time':
+        return 'time';
+        break;
+        case 'document':
+        return 'document';
+        break;
+        case 'collection':
+        return 'doctrine_odm_double_list';
+        break;
+        case 'hash':
+        return 'collection';
+        break;
+        case 'virtual':
+        throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented (column "'.$columnName.'") ');
+        break;
+        default:
+        throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'")');
+        break;
+    }
+}
+
+public function getFilterType($dbType, $columnName)
+{
+   switch ($dbType) {
+       case 'hash':
+       case 'text':
+       return 'text';
+       break;
+       case 'boolean':
+       return 'choice';
+       break;
+       case 'datetime':
+       case 'vardatetime':
+       case 'datetimetz':
+       case 'date':
+       return 'date_range';
+       break;
+       case 'collection':
+       return 'document';
+       break;
+   }
+
+   return $this->getFormType($dbType, $columnName);
+}
+
+public function getFormOptions($formType, $dbType, $columnName)
+{
+    if ('boolean' == $dbType) {
+        return array('required' => false);
     }
 
-    public function getFormType($dbType, $columnName)
-    {
-        switch ($dbType) {
-            case 'boolean':
-                return 'checkbox';
-            case 'datetime':
-            case 'vardatetime':
-            case 'datetimetz':
-                return 'datetime';
-            case 'date':
-                return 'datetime';
-                break;
-            case 'decimal':
-            case 'float':
-                return 'number';
-                break;
-            case 'int':
-            case 'integer':
-            case 'bigint':
-            case 'smallint':
-                return 'integer';
-                break;
-            case 'id':
-            case 'custom_id':
-            case 'string':
-                return 'text';
-                break;
-            case 'text':
-                return 'textarea';
-                break;
-            case 'time':
-                return 'time';
-                break;
-            case 'document':
-                return 'document';
-                break;
-             case 'collection':
-                return 'doctrine_odm_double_list';
-                break;
-            case 'hash':
-                return 'collection';
-                break;
-            case 'virtual':
-                throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented (column "'.$columnName.'") ');
-                break;
-            default:
-                throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'")');
-                break;
-        }
+    if ('document' == $dbType) {
+        $mapping = $this->getMetadatas()->getFieldMapping($columnName);
+
+        return array( 'class' => $mapping['targetDocument'], 'multiple' => false);
     }
 
-    public function getFilterType($dbType, $columnName)
-    {
-         switch ($dbType) {
-             case 'hash':
-             case 'text':
-                return 'text';
-                break;
-             case 'boolean':
-                return 'choice';
-                break;
-             case 'datetime':
-             case 'vardatetime':
-             case 'datetimetz':
-             case 'date':
-                return 'date_range';
-                break;
-             case 'collection':
-                return 'document';
-                break;
-         }
+    if ('collection' == $dbType) {
+        $mapping = $this->getMetadatas()->getFieldMapping($columnName);
 
-         return $this->getFormType($dbType, $columnName);
+        return array('class' => $mapping['targetDocument']);
     }
 
-    public function getFormOptions($formType, $dbType, $columnName)
-    {
-        if ('boolean' == $dbType) {
-            return array('required' => false);
-        }
-
-        if ('document' == $dbType) {
-            $mapping = $this->getMetadatas()->getFieldMapping($columnName);
-
-            return array( 'class' => $mapping['targetDocument'], 'multiple' => false);
-        }
-
-        if ('collection' == $dbType) {
-            $mapping = $this->getMetadatas()->getFieldMapping($columnName);
-
-            return array('class' => $mapping['targetDocument']);
-        }
-
-        if ('collection' == $formType) {
-            return array('allow_add' => true, 'allow_delete' => true);
-        }
-
-        return array('required' => $this->isRequired($columnName));
+    if ('collection' == $formType) {
+        return array('allow_add' => true, 'allow_delete' => true);
     }
 
-    protected function isRequired($fieldName)
-    {
-        if ($this->getMetadatas()->hasField($fieldName) &&
-            (!$this->getMetadatas()->hasAssociation($fieldName) || $this->getMetadatas()->isSingleValuedAssociation($fieldName))) {
-            return !$this->getMetadatas()->isNullable($fieldName);
-        }
+    return array('required' => $this->isRequired($columnName));
+}
 
-        return false;
-    }
+protected function isRequired($fieldName)
+{
+    if ($this->getMetadatas()->hasField($fieldName) &&
+        (!$this->getMetadatas()->hasAssociation($fieldName) || $this->getMetadatas()->isSingleValuedAssociation($fieldName))) {
+        return !$this->getMetadatas()->isNullable($fieldName);
+}
 
-    public function getFilterOptions($formType, $dbType, $ColumnName)
-    {
-        $options = array('required' => false);
+return false;
+}
 
-        if ('boolean' == $dbType) {
-           $options['choices'] = array(
-                    0 => 'No',
-                    1 => 'Yes'
-                    );
-           $options['empty_value'] = 'Yes or No';
-        }
+public function getFilterOptions($formType, $dbType, $ColumnName)
+{
+    $options = array('required' => false);
 
-        if ('document' == $dbType) {
-             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
-        }
+    if ('boolean' == $dbType) {
+     $options['choices'] = array(
+        0 => 'No',
+        1 => 'Yes'
+        );
+     $options['empty_value'] = 'Yes or No';
+ }
 
-        if ('collection' == $formType) {
-            return array('allow_add' => true, 'allow_delete' => true, 'by_reference' => true);
-        }
+ if ('document' == $dbType) {
+   return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
+}
 
-        if ('collection' == $dbType) {
-             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
-        }
+if ('collection' == $formType) {
+    return array('allow_add' => true, 'allow_delete' => true, 'by_reference' => true);
+}
 
-        return $options;
-    }
+if ('collection' == $dbType) {
+   return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
+}
+
+return $options;
+}
 
     /**
      * Find the pk name
