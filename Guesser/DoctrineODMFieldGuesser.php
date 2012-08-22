@@ -38,9 +38,10 @@ class DoctrineODMFieldGuesser
 
     public function getAllFields($class)
     {
-        if (!class_exists($class)) 
-            throw new ClassNotFoundException('Ups, maybe error typo in your generator.yml, the class '.$class.' not found');
-        
+        if (!class_exists($class)) {
+            throw new ClassNotFoundException($class);
+        }
+
         $fields = array();
 
         foreach ($this->getMetadatas($class)->fieldMappings as $fieldName => $metadatas) {

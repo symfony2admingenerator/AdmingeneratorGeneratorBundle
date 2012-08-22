@@ -45,10 +45,10 @@ class GeneratorCacheWarmer implements CacheWarmerInterface
             $this->buildFromYaml($yaml);
         }
 
-        /* 
+        /*
          * Load classe to avoid problem with other cache warmers
          * like JmsDiExtraBundle
-         * 
+         *
          * See issue #190
         */
         $AdmingeneratedClassLoader = new AdmingeneratedClassLoader;

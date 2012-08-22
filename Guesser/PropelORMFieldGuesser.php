@@ -26,9 +26,10 @@ class PropelORMFieldGuesser
 
     public function getAllFields($class)
     {
-        if (!class_exists($class)) 
-            throw new ClassNotFoundException('Ups, maybe type error, in your generator.yml, the class '.$class.' not found');
-        
+        if (!class_exists($class)) {
+            throw new ClassNotFoundException($class);
+        }
+
         $return = array();
 
         foreach ($this->getMetadatas($class)->getColumns() as $column) {
