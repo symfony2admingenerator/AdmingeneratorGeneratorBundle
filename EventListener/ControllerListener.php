@@ -17,8 +17,6 @@ class ControllerListener
 {
     protected $container;
 
-    protected $router;
-
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
