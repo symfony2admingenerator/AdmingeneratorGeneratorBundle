@@ -1,7 +1,0 @@
-{% block list_paginator %}
-{{ echo_block("list_paginator") }}
-    <div class="pagination">
-        {{ echo_twig("pagerfanta(" ~ builder.ModelClass ~ "s, 'admingenerator')") }}
-    </div>
-    {{ echo_endblock() }}
-{% endblock %}

@@ -47,22 +47,26 @@ class RoutingManipulator extends Manipulator
     public function addResource($bundle, $format, $prefix = null, $path = 'routing')
     {
         $current = '';
+
+        if (null === $prefix) {
+            $prefix = '/admin/'.Container::underscore($bundle). ($this->yaml_prefix ? '/'.$this->yaml_prefix : '');
+        }
+
+        $routing_name=$bundle.('/' !== $prefix ? '_'.str_replace('/', '_', substr($prefix, 1)) : '');
         if (file_exists($this->file)) {
             $current = file_get_contents($this->file);
 
             // Don't add same bundle twice
-            if (false !== strpos($current, $bundle)) {
+            if (false !== strpos($current, $routing_name)) {
                 throw new \RuntimeException(sprintf('Bundle "%s" is already imported.', $bundle));
             }
         } elseif (!is_dir($dir = dirname($this->file))) {
             mkdir($dir, 0777, true);
         }
 
-        if (null === $prefix) {
-            $prefix = '/admin/'.Container::underscore($bundle). ($this->yaml_prefix ? '/'.$this->yaml_prefix : '');
-        }
 
-        $code = sprintf("%s:\n", $bundle.('/' !== $prefix ? '_'.str_replace('/', '_', substr($prefix, 1)) : ''));
+
+        $code = sprintf("%s:\n", $routing_name);
         if ('admingenerator' == $format) {
             $code .= sprintf("    resource: \"@%s/Controller/%s\"\n    type:     admingenerator\n", $bundle, $this->yaml_prefix ? ucfirst($this->yaml_prefix).'/' : '');
         } else {

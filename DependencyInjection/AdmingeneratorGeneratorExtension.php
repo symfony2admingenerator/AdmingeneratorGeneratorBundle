@@ -19,16 +19,29 @@ class AdmingeneratorGeneratorExtension extends Extension
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
 
+
+        // Fix template_dirs
+        $doctrine_template_dirs = $doctrineodm_template_dirs = $propel_template_dirs = array();
+        $config['templates_dirs'] = isset($config['templates_dirs'])  ? $config['templates_dirs'] : array();  
+        foreach ($config['templates_dirs'] as $dir) {
+            $doctrine_template_dirs[]    = $dir.'/Doctrine';
+            $doctrineodm_template_dirs[] = $dir.'/DoctrineODM';
+            $propel_template_dirs[]      = $dir.'/Propel';
+        }
+
         if ($config['use_doctrine_orm']) {
             $loader->load('doctrine.xml');
+            $container->setParameter('admingenerator.doctrine_templates_dirs', $doctrine_template_dirs);
         }
 
         if ($config['use_doctrine_odm']) {
             $loader->load('doctrine_odm.xml');
+            $container->setParameter('admingenerator.doctrineodm_templates_dirs', $doctrineodm_template_dirs);
         }
 
         if ($config['use_propel']) {
             $loader->load('propel.xml');
+            $container->setParameter('admingenerator.propel_templates_dirs', $propel_template_dirs);
         }
 
         $container->setParameter('admingenerator.overwrite_if_exists', $config['overwrite_if_exists']);
@@ -36,7 +49,6 @@ class AdmingeneratorGeneratorExtension extends Extension
         $container->setParameter('admingeneretor.menu_builder.class', $config['knp_menu_class']);
         $container->setParameter('admingenerator.stylesheets', $config['stylesheets']);
         $container->setParameter('admingenerator.javascripts', $config['javascripts']);
-        $container->setParameter('admingenerator.templates_dirs', isset($config['templates_dirs'])  ? $config['templates_dirs'] : array());
 
         $container->setParameter('session.flashbag.class', 'Symfony\Component\HttpFoundation\Session\Flash\FlashBag');
 
@@ -63,7 +75,8 @@ class AdmingeneratorGeneratorExtension extends Extension
             // Register Intl extension for localized date
             $container->register('twig.extension.intl', 'Twig_Extensions_Extension_Intl')
                         ->addTag('twig.extension');
-        }
+        }     
+
     }
 
     public function getAlias()

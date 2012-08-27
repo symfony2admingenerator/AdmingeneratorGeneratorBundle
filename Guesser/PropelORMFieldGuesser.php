@@ -63,7 +63,6 @@ class PropelORMFieldGuesser
         $column = $this->getColumn($class, $fieldName);
 
         if ($column) {
-
             return $column->getPhpName();
         }
     }
@@ -171,11 +170,13 @@ class PropelORMFieldGuesser
         }
 
         if (\PropelColumnTypes::ENUM == $dbType) {
+            $valueSet = $this->getMetadatas()
+                                   ->getColumn($columnName)
+                                   ->getValueSet();
+
             return array(
                 'required' => $this->isRequired($columnName),
-                'choices'  => $this->getMetadatas()
-                                   ->getColumn($columnName)
-                                   ->getValueSet(),
+                'choices'  => array_combine($valueSet, $valueSet),
             );
         }
 
@@ -201,6 +202,17 @@ class PropelORMFieldGuesser
                     1 => 'Yes'
                     );
            $options['empty_value'] = 'Yes or No';
+        }
+
+        if (\PropelColumnTypes::ENUM == $dbType) {
+            $valueSet = $this->getMetadatas()
+                                   ->getColumn($ColumnName)
+                                   ->getValueSet();
+
+            return array(
+                'required' => false,
+                'choices'  => array_combine($valueSet, $valueSet),
+            );
         }
 
          if ('model' == $dbType) {

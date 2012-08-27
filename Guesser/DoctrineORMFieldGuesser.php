@@ -137,6 +137,12 @@ class DoctrineORMFieldGuesser
             return array('required' => false);
         }
 
+        if ('number' == $formType) {
+            $mapping = $this->getMetadatas()->getFieldMapping($columnName);
+
+            return array('precision'=>$mapping['precision']);
+        }
+
         if ('entity' == $formType) {
 
             $mapping = $this->getMetadatas()->getAssociationMapping($columnName);

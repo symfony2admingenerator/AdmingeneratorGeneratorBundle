@@ -37,7 +37,7 @@ class DoctrineGenerator extends Generator
         $generator->setFieldGuesser($this->getFieldGuesser());
         $generator->setMustOverwriteIfExists($this->needToOverwrite($generator));
         $generator->setTemplateDirs(array_merge(
-            $this->container->getParameter('admingenerator.templates_dirs'),
+            $this->container->getParameter('admingenerator.doctrine_templates_dirs'),
             array(__DIR__.'/../Resources/templates/Doctrine')
         ));
         $generator->setBaseController('Admingenerator\GeneratorBundle\Controller\Doctrine\BaseController');

@@ -1,4 +1,4 @@
-# Symfony2 Admin Generator: The Real Missing Admin Generator for Symfony2! ![project status](http://stillmaintained.com/cedriclombardot/AdmingeneratorGeneratorBundle.png)# ![build status](https://secure.travis-ci.org/cedriclombardot/AdmingeneratorGeneratorBundle.png)#
+# Symfony2 Admin Generator: The Real Missing Admin Generator for Symfony2! ![project status](http://stillmaintained.com/cedriclombardot/AdmingeneratorGeneratorBundle.png)# ![build status](https://secure.travis-ci.org/symfony2admingenerator/AdmingeneratorGeneratorBundle.png)#
 
 **:warning: This branch work only with the symfony 2.1 for 2.0 use the 2.0 branch :warning:**
 
@@ -28,20 +28,20 @@ With almost the same features:
 
 ## This bundle in pictures
 
-![Preview of list](https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/list-preview.png)
+![Preview of list](https://github.com/symfony2admingenerator/AdmingeneratorOldThemeBundle/raw/master/Resources/doc/list-preview.png)
 
-![Preview of edit](https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/edit-preview.png)
+![Preview of edit](https://github.com/symfony2admingenerator/AdmingeneratorOldThemeBundle/raw/master/Resources/doc/edit-preview.png)
 
 ### Want another skin?
 
-Just install [ActiveAdminTheme](https://github.com/cedriclombardot/AdmingeneratorActiveAdminThemeBundle)
+Just install [ActiveAdminTheme](https://github.com/symfony2admingenerator/AdmingeneratorActiveAdminThemeBundle)
 
-![Preview of ActiveAdminTheme] (https://github.com/cedriclombardot/AdmingeneratorActiveAdminThemeBundle/raw/master/Resources/doc/list-preview.png)
+![Preview of ActiveAdminTheme] (https://github.com/symfony2admingenerator/AdmingeneratorActiveAdminThemeBundle/raw/master/Resources/doc/list-preview.png)
 
 
 ## Want to run a test?
 
-The fastest way to try it is to setup the AdmingeneratorIpsum project: https://github.com/cedriclombardot/AdmingeneratorIpsum.
+The fastest way to try it is to setup the AdmingeneratorIpsum project: https://github.com/symfony2admingenerator/AdmingeneratorIpsum.
 This is a complete Symfony2 application with this bundle well configured.
 
 ## Installation
@@ -61,14 +61,14 @@ php composer.phar update
 Or cloning
 
 ``` bash
-git clone git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git vendor/bundles/Admingenerator/GeneratorBundle
+git clone git://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle.git vendor/bundles/Admingenerator/GeneratorBundle
 ```
 
 Or using deps file
 
 ```
 [AdmingeneratorGeneratorBundle]
-    git=git://github.com/cedriclombardot/AdmingeneratorGeneratorBundle.git
+    git=git://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle.git
     target=/bundles/Admingenerator/GeneratorBundle
     version=origin/master
 ```
@@ -97,11 +97,19 @@ public function registerBundles()
 
         // Admin Generator
         new Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle(),
+        new Admingenerator\OldThemeBundle\AdmingeneratorOldThemeBundle(),
     );
 
     // ...
 }
 ```
+In config.yml
+
+```
+admingenerator_generator:
+    templates_dirs: [ %kernel.root_dir%/../vendor/cedriclombardot/admingenerator-oldtheme-bundle/Admingenerator/OldThemeBundle/Resources/templates ]
+```
+
 
 ### Install SensioGeneratorBundle
 
@@ -137,11 +145,11 @@ or using deps file
 
 ```
 [MenuBundle]
-    git=git://github.com/knplabs/KnpMenuBundle.git
+    git=git://github.com/KnpLabs/KnpMenuBundle.git
     target=/bundles/Knp/Bundle/MenuBundle
 
 [KnpMenu]
-    git=git://github.com/knplabs/KnpMenu.git
+    git=git://github.com/KnpLabs/KnpMenu.git
     target=/KnpMenu
 ```
 
@@ -300,9 +308,9 @@ Configure your config.yml to use the assetic less template
 
 ``` yaml
 admingenerator_generator:
-    base_admin_template: AdmingeneratorGeneratorBundle::base_admin_assetic_less.html.twig
+    base_admin_template: AdmingeneratorOldThemeBundle::base_admin_assetic_less.html.twig
 admingenerator_user:
-    login_template: AdmingeneratorGeneratorBundle::base_login_assetic_less.html.twig
+    login_template: AdmingeneratorOldThemeBundle::base_login_assetic_less.html.twig
 ```
 
 ### With or without assetic
@@ -318,6 +326,20 @@ php app/console assets:install web/
 ```
 php app/console -env prod cache:warmup
 ```
+
+### Running tests
+
+Bundle use phpunit framework for testing.
+To running test suite please first install needed deps.
+
+Using composer:
+
+```
+curl -s http://getcomposer.org/installer | php
+php composer.phar install --dev
+```
+
+then you can run tests by `phpunit` command
 
 ## Need support?
 
