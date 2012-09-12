@@ -230,8 +230,8 @@ class EchoExtension extends \Twig_Extension
       }
       
       # Feature - read abbreviated syntax parameters
-      $abbreviated_pattern_string = '/^(?<string>[^|]+)(?<params>\|\{(\s?[a-zA-Z0-9.]+,?\s?)+\s?\}\|)\s*$/';
-      $abbreviated_pattern_params = '/(?>(?<=(\|\{\s|.,\s))(?<parameter_bag>[a-zA-Z0-9.]+)(?=(,\s.|\s\}\|)))+?/';
+      $abbreviated_pattern_string = '/^(?<string>[^|]+)(?<parameter_bag>\|\{(\s?[a-zA-Z0-9.]+,?\s?)+\s?\}\|)\s*$/';
+      $abbreviated_pattern_params = '/(?>(?<=(\|\{\s|.,\s))(?<param>[a-zA-Z0-9.]+)(?=(,\s.|\s\}\|)))+?/';
       
       if ( preg_match($abbreviated_pattern_string, $subject, $match_string)) {
           $string = $match_string['string'];
