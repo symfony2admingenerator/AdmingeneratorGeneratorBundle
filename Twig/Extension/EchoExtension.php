@@ -194,7 +194,7 @@ class EchoExtension extends \Twig_Extension
      *     [book] -> Book.title
      *     [author] -> Book.author.name
      */
-    private function getParameterPocket($subject) {      
+    private function getParameterBag($subject) {      
       # Backwards compability - replace twig tags with parameters
       $pattern_bc = '/\{\{\s(?<param>[a-zA-Z0-9.]+)\s\}\}+/';
       
@@ -211,31 +211,35 @@ class EchoExtension extends \Twig_Extension
       }
       
       # Feature - read key/value syntax parameters
-      $pattern_string = '/^(?<string>[^|]+)\|\{(\s?%[a-zA-Z0-9.]+%:\s[a-zA-Z0-9.]+,?\s?)+\s?\}\|\s*$/';
+      $pattern_string = '/^(?<string>[^|]+)(?<parameter_bag>\|\{(\s?%[a-zA-Z0-9.]+%:\s[a-zA-Z0-9.]+,?\s?)+\s?\}\|)\s*$/';
       $pattern_params = '/(?>(?<=(\|\{\s|.,\s))%(?<key>[a-zA-Z0-9.]+)%:\s(?<value>[a-zA-Z0-9.]+)(?=(,\s.|\s\}\|)))+/';
       
-      if ( preg_match($pattern_string, $subject, $match_string) && 
-           preg_match_all($pattern_params, $subject, $match_params, PREG_SET_ORDER) ) {
-        $string = $match_string['string'];   
+      if ( preg_match($pattern_string, $subject, $match_string) ) {        
+          $string = $match_string['string']; 
+          $parameter_bag = $match_string['parameter_bag'];  
 
-        $param = array();
-        foreach($match_params as $match) { $param[$match['key']] = $match['value']; }
+          $param = array();
+          preg_match_all($pattern_params, $parameter_bag, $match_params, PREG_SET_ORDER);
 
-        return array(
-            'string' => $string,
-            'params' => $param
-        );
+          foreach($match_params as $match) { $param[$match['key']] = $match['value']; }
+
+          return array(
+              'string' => $string,
+              'params' => $param
+          );
       }
       
       # Feature - read abbreviated syntax parameters
-      $abbreviated_pattern_string = '/^(?<string>[^|]+)\|\{(\s?[a-zA-Z0-9.]+,?\s?)+\s?\}\|\s*$/';
-      $abbreviated_pattern_params = '/(?>(?<=(\|\{\s|.,\s))(?<param>[a-zA-Z0-9.]+)(?=(,\s.|\s\}\|)))+?/';
+      $abbreviated_pattern_string = '/^(?<string>[^|]+)(?<params>\|\{(\s?[a-zA-Z0-9.]+,?\s?)+\s?\}\|)\s*$/';
+      $abbreviated_pattern_params = '/(?>(?<=(\|\{\s|.,\s))(?<parameter_bag>[a-zA-Z0-9.]+)(?=(,\s.|\s\}\|)))+?/';
       
-      if ( preg_match($abbreviated_pattern_string, $subject, $match_string) && 
-           preg_match_all($abbreviated_pattern_params, $subject, $match_params) ) {
+      if ( preg_match($abbreviated_pattern_string, $subject, $match_string)) {
           $string = $match_string['string'];
+          $parameter_bag = $match_string['parameter_bag'];
 
           $param = array();
+          preg_match_all($abbreviated_pattern_params, $parameter_bag, $match_params);
+          
           foreach($match_params['param'] as $value) { $param[$value] = $value; }
 
           return array(
@@ -249,22 +253,22 @@ class EchoExtension extends \Twig_Extension
     }
     
     public function getEchoTrans($str, array $parameters=array(), $catalog = 'Admingenerator')
-    {
-        $bag_params = array();
+    {        
+        $echo_parameters=NULL;
+        $bag_parameters=array();
         
-        if($parameterBag = $this->getParameterPocket($str)) {
+        if($parameterBag = $this->getParameterBag($str)) {
             $str = $parameterBag['string'];
-            $bag_params = $parameterBag['params'];
+            $bag_parameters = $parameterBag['params'];
         }
       
-        $echo_parameters=NULL;
-        if (!empty($parameters) || !empty($bag_params)) {
+        if (!empty($parameters) || !empty($bag_parameters)) {
             $echo_parameters="with {";
             
             foreach ($parameters as $key => $value) { 
               $echo_parameters.= "'%".$key."%': '".$value."',";
             }
-            foreach ($bag_params as $key => $value) { 
+            foreach ($bag_parameters as $key => $value) { 
               $echo_parameters.= "'%".$key."%': ".$value.",";
             }
             
