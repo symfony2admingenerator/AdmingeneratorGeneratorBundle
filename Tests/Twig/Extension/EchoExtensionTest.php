@@ -119,8 +119,8 @@ class EchoExtensionTest extends TestCase
             'string_bc' => array('{% trans with {\'%Book.title%\': Book.title,\'%Book.author.name%\': Book.author.name,} from "Admingenerator" %}You\'re editing %Book.title% written by %Book.author.name%!{% endtrans %}', 'trans return a good trans tag with string elements'),
             'string_with_full_param_bag' => array('{% trans with {\'%book%\': Book.title,\'%author%\': Book.author.name,} from "Admingenerator" %}You\'re editing %book% written by %author%!{% endtrans %}', 'trans return a good trans tag with string elements'),
             'string_with_abbrev_param_bag' => array('{% trans with {\'%Book.title%\': Book.title,\'%Book.author.name%\': Book.author.name,} from "Admingenerator" %}You\'re editing %Book.title% written by %Book.author.name%!{% endtrans %}', 'trans return a good trans tag with string elements'),
-            'string_with_full_param_bag_and_params' => array('{% trans with {\'%book%\': Book.title,\'%foo%\': \'foo\',} from "Admingenerator" %}You\'re editing %book% written by %foo%!{% endtrans %}', 'trans return a good trans tag with string elements'),
-            'string_with_abbrev_param_bag_and_params' => array('{% trans with {\'%Book.title%\': Book.title,\'%foo%\': \'foo\',} from "Admingenerator" %}You\'re editing %Book.title% written by %foo%!{% endtrans %}', 'trans return a good trans tag with string elements'),
+            'string_with_full_param_bag_and_params' => array('{% trans with {\'%foo%\': \'foo\',\'%book%\': Book.title,} from "Admingenerator" %}You\'re editing %book% written by %foo%!{% endtrans %}', 'trans return a good trans tag with string elements'),
+            'string_with_abbrev_param_bag_and_params' => array('{% trans with {\'%foo%\': \'foo\',\'%Book.title%\': Book.title,} from "Admingenerator" %}You\'re editing %Book.title% written by %foo%!{% endtrans %}', 'trans return a good trans tag with string elements'),
         );
 
        $this->runTwigTests($tpls, $returns);
