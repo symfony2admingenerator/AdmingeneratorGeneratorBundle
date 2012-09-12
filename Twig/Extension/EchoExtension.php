@@ -250,6 +250,8 @@ class EchoExtension extends \Twig_Extension
     
     public function getEchoTrans($str, array $parameters=array(), $catalog = 'Admingenerator')
     {
+        $bag_params = array();
+        
         if($parameterBag = $this->getParameterPocket($str)) {
             $str = $parameterBag['string'];
             $bag_params = $parameterBag['params'];
