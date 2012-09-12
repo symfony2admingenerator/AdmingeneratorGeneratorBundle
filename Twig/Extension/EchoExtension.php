@@ -184,15 +184,15 @@ class EchoExtension extends \Twig_Extension
      * results in:
      *   string -> You're editing %Book.title% written by %Book.author.name%!
      *   params ->
-     *     [book] -> Book.title
-     *     [author] -> Book.author.name
+     *     [Book.title] -> Book.title
+     *     [Book.author.name] -> Book.author.name
      * 
      * example: book.edit.title|{ Book.title, Book.author.name }|
      * results in:
      *   string -> book.edit.title
      *   params ->
-     *     [book] -> Book.title
-     *     [author] -> Book.author.name
+     *     [Book.title] -> Book.title
+     *     [Book.author.name] -> Book.author.name
      */
     private function getParameterBag($subject) {      
       # Backwards compability - replace twig tags with parameters
