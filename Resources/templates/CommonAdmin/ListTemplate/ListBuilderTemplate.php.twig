@@ -25,12 +25,18 @@
 {{ echo_block("body") }}
 {{- block('title') -}}
 
-<div class="admin_list main_content{% if builder.filterColumns|length == 0 %} full_size{% endif %}">
+<div class="{% if builder.filterColumns|length == 0 %} full_size{% endif %}">
 
     {{ block('list_scopes') -}}
-
-    {{- block('list_nbresults') -}}
-
+    <div class="row-fluid">
+        <div class="span5">
+            {{- block('list_nbresults') -}}
+        </div>
+        <div class="span7">
+            {{- block('list_paginator_header') -}}
+        </div>
+    </div>
+    
     {{- block('form_batch_actions') }}
     <div class="row-fluid">
         <table class="table table-bordered">
@@ -39,7 +45,7 @@
         </table>
     </div>
 
-    {{- block('list_paginator') -}}
+    {{- block('list_paginator_footer') -}}
 
     {{- block('list_batch_actions') -}}
     {{- block('list_actions') -}}
