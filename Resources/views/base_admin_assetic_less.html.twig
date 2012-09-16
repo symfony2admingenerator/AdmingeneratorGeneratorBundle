@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{% block title %}Admin{% endblock %}</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('bundles/admingeneratorgenerator/css/bootstrap.min.css')}}">
+    <style>
+    body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+    }
+    </style>
+    <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/bootstrap-responsive.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/main.css')}}">
+    {% endblock %}
+    {% block header_javascript %}
+    <script src="{{ asset('bundles/admingeneratorgenerator/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js')}}"></script>
+    {% endblock %}
+</head>
+<body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+            <![endif]-->
+
+            <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
+
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        {% block header %}
+
+                        
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        {% block logo %}
+                        <a class="brand" href="#">AdminGenerator</a>
+                        {% endblock %}
+                        <div class="nav-collapse collapse">
+                            <ul class="nav">
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                                    {% block menu %}
+                                    {{ knp_menu_render('admin') }}
+                                    {% endblock %}
+                                </li>
+                            </ul>
+                            {% block profile %}
+                            <form class="navbar-form pull-right">
+                                <input class="span2" type="text" placeholder="Email">
+                                <input class="span2" type="password" placeholder="Password">
+                                <button type="submit" class="btn">Sign in</button>
+                            </form>
+                            {% endblock %}
+                        </div><!--/.nav-collapse -->
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                {% block flashes %}
+                {% if app.session.hasFlash('success') %}
+                <div class="notification_box success">
+                    {{ app.session.flash('success')|raw }}
+                </div>
+                {% endif %}
+                {% if app.session.hasFlash('error') %}
+                <div class="notification_box error">
+                    {{ app.session.flash('error')|raw }}
+                </div>
+                {% endif %}
+                {% endblock %}
+                {% block body %}{% endblock %}
+                <footer>
+                    <p>&copy; Company 2012</p>
+                </footer>
+            </div>
+            {% block bottom_javascripts %}
+
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+            <script>window.jQuery || document.write('<script src="{{ asset('bundles/admingeneratorgenerator/js/vendor/jquery-1.8.1.min.js')}}"><\/script>')</script>
+
+            <script src="{{ asset('bundles/admingeneratorgenerator/js/vendor/bootstrap.min.js')}}"></script>
+
+            <script src="{{ asset('bundles/admingeneratorgenerator/js/main.js')}}"></script>
+{#  
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>#}
+
+        {% endblock %}
+    </div> <!-- /container -->
+
+</body>
+</html>
+

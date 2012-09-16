@@ -1,0 +1,31 @@
+{% block list_filters %}
+{{ echo_block('list_filters') }}
+<form action="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_filters" ) }}" method="post" {{ echo_twig("form_enctype(form)") }}>
+    <fieldset class="form_block form_fieldset_NONE">
+        {{ echo_twig("form_errors(form)") }}
+        {% for field in builder.filterColumns %}
+        {% if builder.filterColumns[field.name].credentials %}
+              {{ echo_if_granted(builder.filterColumns[field.name].credentials) }}
+        {% endif %}
+         <div class="form_row">
+             <div class="form_field field_{{ field.formType }} field_{{ field.name }}">
+                {{ echo_twig("form_label(form['" ~ field.name ~ "'], '" ~ builder.FilterColumns[field.name].label|addslashes ~ "'|trans({}, '" ~ (i18n_catalog is defined ? i18n_catalog : "Admin") ~ "'))") }}
+                {{ echo_twig("form_widget(form['" ~ field.name ~ "'])") }}
+                {{ echo_twig("form_errors(form['" ~ field.name ~ "'])") }}
+            </div>
+        </div>
+        {% if builder.filterColumns[field.name].credentials %}
+            {{ echo_endif () }}
+        {% endif %}
+        {% endfor %}
+        <ul class="actions">
+            <li>
+                 {{ echo_twig("form_rest(form)") }}
+                 <input type="submit" class="submit_button" value="{{ echo_trans('list.filter.btn_filter') }}" />
+                 <input type="submit" class="reset_button" name="reset" value="{{ echo_trans('list.filter.btn_reset') }}" />
+            </li>
+        </ul>
+    </fieldset>
+</form>
+{{ echo_endblock() }}
+{% endblock %}
