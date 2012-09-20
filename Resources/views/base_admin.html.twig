@@ -13,14 +13,14 @@
 
     {% block stylesheets %}
         {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/bootstrap.css'
-            'bundles/admingeneratortwittertheme/css/bootstrap.css'
-            'bundles/admingeneratortwittertheme/css/bootstrap-extended.css'
-            'bundles/admingeneratortwittertheme/css/datepicker.css'
+            'bundles/admingeneratorgenerator/css/bootstrap.css'
+            'bundles/admingeneratorgenerator/css/bootstrap-extended.css'
+            'bundles/admingeneratorgenerator/css/datepicker.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
         {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/bootstrap-responsive.css'
-            'bundles/admingeneratortwittertheme/css/bootstrap-responsive.css'
+            'bundles/admingeneratorgenerator/css/bootstrap-responsive.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
@@ -113,9 +113,9 @@
     
     {% block javascripts %}
         {% javascripts filter='?yui_js' output='assetic/js/compiled/bootstrap.js'
-            'bundles/admingeneratortwittertheme/js/bootstrap.js'
-            'bundles/admingeneratortwittertheme/js/bootstrap-datepicker.js'
-            'bundles/admingeneratortwittertheme/js/locales/bootstrap-datepicker.*.js'
+            'bundles/admingeneratorgenerator/js/bootstrap.js'
+            'bundles/admingeneratorgenerator/js/bootstrap-datepicker.js'
+            'bundles/admingeneratorgenerator/js/locales/bootstrap-datepicker.*.js'
         %}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}    
