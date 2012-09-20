@@ -16,7 +16,9 @@ class DeleteAction extends Action
     {
         parent::__construct($name);
 
-        $this->setConfirm('{% trans from "Admingenerator" %}form.delete.confirm{% endtrans %}');
+        $this->setIcon('icon-remove');
+        $this->setConfirm('Are you sure ?');
+        
         $this->setParams(array(
             'pk' => '{{ '.$builder->getModelClass().'.'.$builder->getModelPrimaryKeyName().' }}',
         ));

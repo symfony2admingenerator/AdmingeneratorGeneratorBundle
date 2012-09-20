@@ -45,3 +45,61 @@
 {% block propel_double_list_widget %}
     {{- block('double_list_widget') -}}
 {% endblock %}
+
+{% block date_range_widget %}
+    <div {{ block('widget_container_attributes') }}>
+        {% for child in form %}
+            <div class="input-prepend input-append">                
+                <span class="add-on span2">{{ form_label(child) }}</span>
+                {{ form_widget(child) }}
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#{{ child.vars.id }}').datepicker({
+                      format: 'yyyy-mm-dd',
+                      language: '{{ app.request.locale }}',
+                      weekStart: 1,
+                    });
+                });
+            </script>
+        {% endfor %}
+    </div>    
+{% endblock %}
+
+{% block date_widget %}
+    <div class="input-append">
+        {{ form_widget(form) }}
+        <span class="add-on"><i class="icon-calendar"></i></span>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#{{ form.vars.id }}').datepicker({
+              format: 'yyyy-mm-dd',
+              language: '{{ app.request.locale }}',
+              weekStart: 1,
+            });
+        });
+    </script>
+{% endblock %}
+    
+{% block form_widget_compound %}
+{% spaceless %}
+    <div class="control-group" {{ block('widget_container_attributes') }}>
+        {% if form.parent is empty %}
+            {{ form_errors(form) }}
+        {% endif %}
+        {{ block('form_rows') }}
+        {{ form_rest(form) }}
+    </div>
+{% endspaceless %}
+{% endblock form_widget_compound %}
+    
+{% block form_row %}
+{% spaceless %}
+    <div class="control">
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+    </div>
+{% endspaceless %}
+{% endblock form_row %}

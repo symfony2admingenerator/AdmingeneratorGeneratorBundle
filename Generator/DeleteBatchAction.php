@@ -16,6 +16,8 @@ class DeleteBatchAction extends Action
     {
         parent::__construct($name);
 
-        $this->setConfirm('batch.delete.confirm|tran({}, "Admingenerator")');
+        $this->setLabel('batch.delete.label');
+        $this->setIcon('icon-remove');
+        $this->setConfirm('batch.delete.confirm');
     }
 }

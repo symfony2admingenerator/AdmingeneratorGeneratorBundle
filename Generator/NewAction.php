@@ -10,18 +10,13 @@ namespace Admingenerator\GeneratorBundle\Generator;
  */
 use Admingenerator\GeneratorBundle\Builder\Admin\BaseBuilder;
 
-class DeleteObjectAction extends Action
+class NewAction extends Action
 {
     public function __construct($name, BaseBuilder $builder)
     {
         parent::__construct($name);
 
-        $this->setLabel('Delete');
-        $this->setIcon('icon-remove');
-        $this->setConfirm('Are you sure ?');
-        
-        $this->setParams(array(
-            'pk' => '{{ '.$builder->getModelClass().'.'.$builder->getModelPrimaryKeyName().' }}',
-        ));
+        $this->setIcon('icon-white icon-certificate');
+        $this->setClass('btn-primary');
     }
 }
