@@ -1,0 +1,63 @@
+{% block list_batch_actions %}
+    {{ echo_block("list_batch_actions") }}
+        {% if batch_actions is defined and batch_actions|length > 0 %}
+        <div class="btn-group">
+            <button class="btn">{{ echo_trans('batch.list.selected') }}</button>
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                <span class="caret"></span>
+            </a>
+            <ul id="batch_actions_list" class="dropdown-menu">
+                {% for action in builder.BatchActions %}
+                    {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
+                        {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials')) }}
+                    {% endif %}
+                    <li>
+                        <a class="{{ action.class|default('') }}" href="#" data-action='{{ action.name }}' {% if action.confirm %}data-confirm='{{ echo_trans(action.confirm, {}, i18n_catalog is defined ? i18n_catalog : "Admin") }}'{% endif %}>
+                          {% if action.icon %}<i class="{{ action.icon }}"></i> {% endif %}{{ echo_trans(action.label,{}, i18n_catalog is defined ? i18n_catalog : "Admin") }}
+                        </a>
+                    </li>
+                    {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
+                        {{ echo_endif () }}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("ul#batch_actions_list li a").click(function(e) {
+                        e.preventDefault();
+
+                        if ($('input.batch_select_id:checked').length == 0) { 
+                            alert('{{ echo_trans("batch.none_selected") }}'); 
+                            return false; 
+                        }
+
+                        if ($(this).data('confirm')) { 
+                            if(!confirm($(this).data('confirm')))
+                              return false;
+                        }
+                            
+                        var input = $('<input>').attr('type', 'hidden').attr('name', 'action').val($(this).data('action'));
+                        $(this).closest('form').append($(input)).submit();
+                    });
+                });
+            </script>
+        </div>
+        {% endif -%}
+    {{ echo_endblock() }}
+{% endblock %}
+
+{% block form_batch_actions %}
+    {{ echo_block("form_batch_actions") }}
+    {% if batch_actions is defined and batch_actions|length > 0 %}
+        <form method="post" action="{{ echo_path(( builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_batch')) }}">
+    {% endif %}
+    {{ echo_endblock() }}
+{% endblock %}
+
+{% block endform_batch_actions %}
+    {{ echo_block("endform_batch_actions") }}
+    {% if batch_actions is defined and batch_actions|length > 0 %}
+        </form>
+    {% endif %}
+    {{ echo_endblock() }}
+{% endblock %}

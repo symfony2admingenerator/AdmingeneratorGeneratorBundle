@@ -1,0 +1,28 @@
+{% use '../CommonAdmin/ListTemplate/row.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/object_actions.php.twig' %}
+
+{% block list_tbody %}
+{{ echo_block("list_tbody") }}
+    <tbody>
+        {{ echo_if (builder.ModelClass ~ "s|length > 0") }}
+
+        {{ echo_for(builder.ModelClass, builder.ModelClass ~ "s" ) }}
+        <tr class="list_trow">
+            {{- block('list_row') -}}
+
+            {{- block('list_object_actions') }}
+        </tr>
+        {{ echo_endfor() }}
+
+        {{ echo_else() }}
+        <tr class="list_trow no_results_row">
+            {% if batch_actions is defined and batch_actions|length > 0 %}
+                <td colspan="{{ (object_actions|length > 0) ? (builder.columns|length + 2) : builder.columns|length+1 }}">{{ echo_trans('list.no_results') }}</td>
+            {% else %}
+                <td colspan="{{ (object_actions|length > 0) ? (builder.columns|length + 1) : builder.columns|length }}">{{ echo_trans('list.no_results') }}</td>
+            {% endif %}
+        </tr>
+        {{ echo_endif () }}
+    </tbody>
+{{ echo_endblock() }}
+{% endblock %}

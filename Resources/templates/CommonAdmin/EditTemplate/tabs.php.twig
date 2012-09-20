@@ -1,0 +1,42 @@
+{% block form_tabs %}
+{{ echo_block("form_tabs") }}
+{% if tabs is defined and tabs|length > 0 %}
+<div class="form_tabs list_scopes">
+    {% for name, tab in tabs %}
+        <a
+            href="javascript:showFieldsetsForTab('{{ name|classify }}')"
+            data-name="{{ name|classify }}"
+            data-display="{%- for fieldsetName, fieldset in tab -%}
+            {{ fieldsetName|classify }} {% endfor %}">{{ name }}</a>
+    {% endfor %}
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+    {% set i=0 %}
+    {% for name in tabs|keys %}{% if i == 0 %}
+    showFieldsetsForTab('{{ name|classify }}');
+    {% set i= 1 %}
+    {% endif %}{% endfor %}
+});
+
+function showFieldsetsForTab(name)
+{
+    $('.admin_form fieldset').css('display','none');
+    $('.form_tabs a').removeClass('active');
+    $('.form_tabs a').addClass('inactive');
+
+    var toDisplay = $('.form_tabs a[data-name='+name+']').data('display').split(' ');
+
+    for (var i in toDisplay) {
+        if (toDisplay[i] != '') {
+            $('.admin_form .form_fieldset_'+toDisplay[i]).css('display','block');
+        }
+    }
+
+    $('.form_tabs a[data-name='+name+']').addClass('active');
+    $('.form_tabs a[data-name='+name+']').removeClass('inactive');
+}
+</script>
+{% endif %}
+{{ echo_endblock() }}
+{% endblock %}
