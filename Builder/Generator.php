@@ -25,7 +25,7 @@ class Generator extends TwigGeneratorGenerator
 
     protected $columnClass = 'Admingenerator\GeneratorBundle\Generator\Column';
 
-    protected $base_admin_template = 'AdmingeneratoroldThemeBundle::base_admin.html.twig';
+    protected $base_admin_template = 'AdmingeneratorGeneratorBundle::base_admin.html.twig';
 
     protected $base_generator_name;
 
