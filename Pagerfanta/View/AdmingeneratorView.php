@@ -106,7 +106,7 @@ class AdmingeneratorView implements ViewInterface
             }
         }
 
-        return '<ul class="pagination">'.$pagesHtml.'</ul>';
+        return '<ul>'.$pagesHtml.'</ul>';
     }
 
     /**
