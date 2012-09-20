@@ -29,7 +29,7 @@ class Configuration implements ConfigurationInterface
                 ->booleanNode('use_doctrine_odm')->defaultFalse()->end()
                 ->booleanNode('use_propel')->defaultFalse()->end()
                 ->booleanNode('overwrite_if_exists')->defaultFalse()->end()
-                ->scalarNode('base_admin_template')->defaultValue("AdmingeneratorOldThemeBundle::base_admin.html.twig")->end()
+                ->scalarNode('base_admin_template')->defaultValue("AdmingeneratorGeneratorBundle::base_admin.html.twig")->end()
                 ->scalarNode('knp_menu_class')->defaultValue("Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder")->end()
                 ->arrayNode('twig')
                     ->children()
