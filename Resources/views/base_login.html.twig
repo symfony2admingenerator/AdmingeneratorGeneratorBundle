@@ -8,7 +8,7 @@
     <meta name="author" content="">
         
     {% block scripts_head %}        
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
     {% endblock %}
 
     {% block stylesheets %}
@@ -124,7 +124,7 @@
             'bundles/admingeneratorgenerator/js/bootstrap-datepicker.js'
             'bundles/admingeneratorgenerator/js/locales/bootstrap-datepicker.*.js'
         %}
-        <script src="{{ asset_url }}"></script>
+        <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}    
     {% endblock %}
 
