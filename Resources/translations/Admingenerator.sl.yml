@@ -55,3 +55,8 @@ batch.delete:
 batch.list:
   selected:       Izbrano
   none.selected:  Izbrati morate vsaj en element.
+  
+# Profile
+profile:
+  welcome:  <b>Dobrodošli</b>, %username%!</p>
+  logout:   Odjava
