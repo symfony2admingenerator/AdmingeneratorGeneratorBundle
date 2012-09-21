@@ -55,3 +55,8 @@ batch.delete:
 batch.list:
   selected:       Выберите действие
   none.selected:  Необходимо выбрать не менее одного элемента. 
+  
+# Profile
+profile:
+  welcome:  <b>Здравствуйте</b>, %username%!</p>
+  logout:   Выйти
