@@ -7,9 +7,9 @@
     {{ echo_set("end", "end > count ? count : end", false) }}
 
     {{ echo_if ( builder.ModelClass ~ "s.haveToPaginate") }}
-    {{ echo_trans("Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results") }}
+    {{ echo_trans("list.display.range|{ start, end, count }|") }}
     {{ echo_elseif (" count > 0 ") }}
-    {{ echo_trans("Display all <b>%count%</b> results") }}
+    {{ echo_trans("list.display.all|{ count }|") }}
     {{ echo_endif () }}
 </div>
 {{ echo_endblock() }}
