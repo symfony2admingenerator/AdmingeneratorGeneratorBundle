@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Admin{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+        
+    {% block scripts_head %}        
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    {% endblock %}
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/bootstrap.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/bootstrap-extended.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/datepicker.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/bootstrap-responsive.css') }}" type="text/css" media="all" />
+        
+        <style type="text/css">
+          body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+          }
+        </style>
+    {% endblock %}
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    {% block icons %}
+      <!-- Favicon and touch icons -->
+      <link rel="shortcut icon" href="{{ asset('/ico/favicon.ico') }}">
+      <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('/ico/apple-touch-icon-144-precomposed.png') }}">
+      <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('/ico/apple-touch-icon-114-precomposed.png') }}">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('/ico/apple-touch-icon-72-precomposed.png') }}">
+      <link rel="apple-touch-icon-precomposed" href="{{ asset('/ico/apple-touch-icon-57-precomposed.png') }}">
+    {% endblock %}
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          {% block logo %}
+            <a class="brand" href="#">Admin</a>
+          {% endblock %}
+          <div class="nav-collapse collapse">
+            {% block profile %}              
+              <ul class="nav pull-right">
+                <li><p class="navbar-text" style="padding-right: 10px;">{% trans with {'%username%': 'anonymous'} from "Admingenerator" %}profile.welcome{% endtrans %}</li>
+                <li><button href="#" class="btn disabled" title="Log out will be connected to security">{% trans from "Admingenerator" %}profile.logout{% endtrans %}</button></li>
+              </ul>
+            {% endblock %}
+            {% block menu %}
+              {{ knp_menu_render('admin') }}
+            {% endblock %}
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+        {% block flashes %}
+            <div class="row-fluid">  
+                {% if app.session.hasFlash('success') %}
+                  <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    {{ app.session.flash('success')|raw }}
+                  </div>
+                {% endif %}
+                {% if app.session.hasFlash('error') %}
+                  <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    {{ app.session.flash('error')|raw }}
+                  </div>
+                {% endif %}
+            </div><!--/row-->
+        {% endblock %}
+      
+        {% block body %}     
+            <div class="row-fluid">
+            </div><!--/row-->
+        {% endblock %}
+      
+      <hr>
+
+      <footer>
+        <p>
+          {% block footer %}
+            &copy; Company 2012
+          {% endblock %}
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+    
+    {% block javascripts %}
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap-datepicker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/locales/bootstrap-datepicker.en.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/locales/bootstrap-datepicker.' ~ app.request.locale ~ '.js') }}"></script>   
+    {% endblock %}
+
+  </body>
+</html>
