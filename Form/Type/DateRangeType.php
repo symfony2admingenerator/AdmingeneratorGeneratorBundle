@@ -46,11 +46,19 @@ class DateRangeType extends AbstractType
         $years = range(date('Y'), date('Y') - 120);
 
         return array(
-            'format'            => null,
-            'years'             => $years,
-            'to'                => array('years' => $years, 'widget' => 'single_text', 'attr' => array('class' => 'input-small')),
-            'from'              => array('years' => $years, 'widget' => 'single_text', 'attr' => array('class' => 'input-small')),
-            'widget'            => 'single_text',
+            'format'  => null,
+            'years'   => $years,
+            'to'      => array(
+                'label'   =>  'date_range.to.label',
+                'years'   =>  $years, 
+                'widget'  =>  'single_text', 
+                'attr'    =>  array('class' => 'input-small')),
+            'from'    => array(
+                'label'   =>  'date_range.from.label',
+                'years'   =>  $years, 
+                'widget'  =>  'single_text', 
+                'attr'    =>  array('class' => 'input-small')),
+            'widget'  => 'single_text',
         );
     }
 
