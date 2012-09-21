@@ -1,39 +1,52 @@
 # Double list form
-double_list.selected: Wybrane
-double_list.unselected: Nie wybrane
+double_list:
+  selected:   Wybrane
+  unselected: Nie wybrane
 
 # Pager
-pagerfanta.previous: Poprzednia
-pagerfanta.next: Następna
+pagerfanta:
+  previous: Poprzednia
+  next:     Następna
 
 # List
-list.no_results: Brak wyników
-list.filters: Filtry
-list.filter.btn_filter: Filtruj
-list.filter.btn_reset: Reset
-"Display all <b>%count%</b> results": Wyświetlanie wszystkich <b>%count%</b> rezultatów
-"Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Wyświetlanie <b>%start%</b> - <b>%end%</b> z <b>%count%</b> rezultatów
-list.actions: Akcje
-
-#Object
-object.saved.success: Poprawnie zapisano obiekt
-object.saved.error: Formularz nie może zostać zapisany. Sprawdź błędy i spróbuj ponownie.
-object.deleted.success: Poprawnie usunięto obiekt
-object.deleted.error: Nie można usunąć tego obiektu
+list:
+  no.results: Brak wyników.
+  filters:    Filtry
+list.button:
+  filter:     Filtruj
+  reset:      Reset
+list.display:
+  range:      Wyświetlanie <b>%start%</b> - <b>%end%</b> z <b>%count%</b> rezultatów.
+  all:        Wyświetlanie wszystkich <b>%count%</b> rezultatów.
+list.header:
+  actions:    Akcje
 
 # Form
-form.btn_save: Zapisz
-form.type_collection.add: Dodaj
-form.delete.confirm: Czy potwierdzasz usunięcie obiektu ?
+form.button:
+  save:             Zapisz
+  collection.add:   Dodaj
 
 # Actions
-List: Lista
-New: Nowy
-
-# Batch
-batch.delete.confirm: Czy potwierdzasz usunięcie zaznaczonych elementów ?
-batch.none_selected: Musisz zaznaczyć co najmniej 1 element
-batch.deleted.success: Usunięto zaznaczone elementy
-batch.deleted.error: Nie można było usunąć zaznaczonych elementów
-batch.list.selected: Zaznaczone
-batch.list.execute: Wykonaj
+actions.list:
+  label:  Lista
+actions.new:
+  label:  Nowy
+  
+# Object actions
+object.edit:
+  label:    Edit
+  success:  Zapisano zmiany.
+  error:    Zmiany nie mogły zostać zapisane. Sprawdź błędy i spróbuj ponownie.
+object.delete:
+  label:    Usuń
+  confirm:  Czy potwierdzasz usunięcie elementu?
+    
+# Batch actions
+batch.delete:
+  label:    Usuń
+  confirm:  Czy potwierdzasz usunięcie wszystkich zaznaczonych elementów?
+  success:  Usunięto wskazane elementy.
+  error:    Zaznaczone elementy nie mogły zostać usunięte.
+batch.list:
+  selected:       Zaznaczone
+  none.selected:  Musisz zaznaczyć co najmniej jeden element.
