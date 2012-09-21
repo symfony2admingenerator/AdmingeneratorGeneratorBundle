@@ -3,10 +3,15 @@ double_list:
   selected:   Выбранные
   unselected: Доступные
   
+# Date range form
+date_range:
+  from.label: С
+  to.label:   По
+  
 # Pager
 pagerfanta:
-  previous: Пред.
-  next:     След.
+  previous: Пред
+  next:     След
 
 # List
 list:
