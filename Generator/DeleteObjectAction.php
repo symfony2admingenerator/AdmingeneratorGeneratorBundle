@@ -16,9 +16,9 @@ class DeleteObjectAction extends Action
     {
         parent::__construct($name);
 
-        $this->setLabel('Delete');
+        $this->setLabel('object.delete.label');
         $this->setIcon('icon-remove');
-        $this->setConfirm('Are you sure ?');
+        $this->setConfirm('object.delete.confirm');
         
         $this->setParams(array(
             'pk' => '{{ '.$builder->getModelClass().'.'.$builder->getModelPrimaryKeyName().' }}',
