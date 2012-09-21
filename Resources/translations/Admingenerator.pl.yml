@@ -39,7 +39,7 @@ actions.new:
   
 # Object actions
 object.edit:
-  label:    Edit
+  label:    Edytuj
   success:  Zapisano zmiany.
   error:    Zmiany nie mogły zostać zapisane. Sprawdź błędy i spróbuj ponownie.
 object.delete:
