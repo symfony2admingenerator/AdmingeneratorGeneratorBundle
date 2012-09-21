@@ -55,3 +55,8 @@ batch.delete:
 batch.list:
   selected:       Seleccionado
   none.selected:  Debe seleccionar al menos un elemento.
+  
+# Profile
+profile:
+  welcome:  <b>Bienvenido</b>, %username%!</p>
+  logout:   Finalizar la sesión
