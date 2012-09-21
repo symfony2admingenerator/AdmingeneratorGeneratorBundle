@@ -16,6 +16,7 @@ class NewAction extends Action
     {
         parent::__construct($name);
 
+        $this->setLabel('actions.new.label');
         $this->setIcon('icon-white icon-certificate');
         $this->setClass('btn-primary');
     }
