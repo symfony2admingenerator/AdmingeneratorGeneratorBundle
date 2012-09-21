@@ -50,7 +50,7 @@
     <div {{ block('widget_container_attributes') }}>
         {% for child in form %}
             <div class="input-prepend input-append">                
-                <span class="add-on span2">{{ form_label(child) }}</span>
+                <span class="add-on span2">{% trans(child.label) %}</span>
                 {{ form_widget(child) }}
             </div>
             <script type="text/javascript">
