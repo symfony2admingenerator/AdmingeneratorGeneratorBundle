@@ -2,6 +2,11 @@
 double_list:
   selected:   Selected
   unselected: Unselected
+  
+# Date range form
+date_range:
+  from.label: From
+  to.label:   To
 
 # Pager
 pagerfanta:
