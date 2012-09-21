@@ -6,7 +6,7 @@
         {% if builder.Columns[field].formOptions['allow_add'] %}
         <ul class="actions unstyled">
             <li>
-                <a class="btn btn-primary new"><i class="icon-plus icon-white"></i> {{ echo_trans('form.type_collection.add') }}</a>
+                <a class="btn btn-primary new"><i class="icon-plus icon-white"></i> {{ echo_trans('form.button.collection.add') }}</a>
             </li>
         </ul>
         {% endif %}
@@ -22,7 +22,7 @@
 
         $('#type_collection_{{ field }} .new').click(function() {
            var prototype = $('#{{ field_id  }}').data('prototype');
-           prototype = prototype.replace(/__name__label__/g, "{{ echo_trans(builder.Columns[field].extras.new_label is defined ? builder.Columns[field].extras.new_label : 'type_collection_' ~ field ~ '_nextId',{}, i18n_catalog is defined ? i18n_catalog : "Admin" ) }}");
+           prototype = prototype.replace(/__name__label__/g, "{{ echo_trans(builder.Columns[field].extras.new_label is defined ? builder.Columns[field].extras.new_label : 'type_collection_' ~ field ~ '_nextId',{}, i18n_catalog is defined ? i18n_catalog : "Admingenerator" ) }}");
            prototype = prototype.replace(/__name__/g, type_collection_{{ field }}_nextId);
            type_collection_{{ field }}_nextId++;
            $('#{{ field_id  }}').append(prototype);

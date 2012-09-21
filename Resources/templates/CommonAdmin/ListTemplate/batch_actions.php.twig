@@ -12,8 +12,8 @@
                         {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials')) }}
                     {% endif %}
                     <li>
-                        <a class="{{ action.class|default('') }}" href="#" data-action='{{ action.name }}' {% if action.confirm %}data-confirm='{{ echo_trans(action.confirm, {}, i18n_catalog is defined ? i18n_catalog : "Admin") }}'{% endif %}>
-                          {% if action.icon %}<i class="{{ action.icon }}"></i> {% endif %}{{ echo_trans(action.label,{}, i18n_catalog is defined ? i18n_catalog : "Admin") }}
+                        <a class="{{ action.class|default('') }}" href="#" data-action='{{ action.name }}' {% if action.confirm %}data-confirm='{{ echo_trans(action.confirm, {}, i18n_catalog is defined ? i18n_catalog : "Admingenerator") }}'{% endif %}>
+                          {% if action.icon %}<i class="{{ action.icon }}"></i> {% endif %}{{ echo_trans(action.label,{}, i18n_catalog is defined ? i18n_catalog : "Admingenerator") }}
                         </a>
                     </li>
                     {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
@@ -27,7 +27,7 @@
                         e.preventDefault();
 
                         if ($('input.batch_select_id:checked').length == 0) { 
-                            alert('{{ echo_trans("batch.none_selected") }}'); 
+                            alert('{{ echo_trans("batch.list.none.selected") }}'); 
                             return false; 
                         }
 
