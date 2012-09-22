@@ -46,34 +46,23 @@
     {{- block('double_list_widget') -}}
 {% endblock %}
 
-{% block date_range_widget %}
+{% block datepicker_range_widget %}
     <div {{ block('widget_container_attributes') }}>
         {% for child in form %}
-            <div class="input-prepend input-append">
-                <span class="add-on span2">{{ child.vars.label|trans({}, 'Admingenerator') }}</span>
-                {{ form_widget(child) }}
-            </div>
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    $('#{{ child.vars.id }}').datepicker({
-                      format: 'yyyy-mm-dd',
-                      language: '{{ app.request.locale }}',
-                      weekStart: 1,
-                    });
-                });
-            </script>
+            {{ form_widget(child) }}
         {% endfor %}
     </div>    
 {% endblock %}
 
-{% block date_widget %}
-    <div class="input-append">
-        {{ form_widget(form) }}
+{% block datepicker_widget %}
+    <div class="{% if prepend %}input-prepend {% endif %}input-append">
+        {% if prepend %}<span class="add-on span2">{{ label|trans({}, 'Admingenerator') }}</span>{% endif %}
+        <input type="text" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
         <span class="add-on"><i class="icon-calendar"></i></span>
     </div>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#{{ form.vars.id }}').datepicker({
+            $('#{{ id }}').datepicker({
               format: 'yyyy-mm-dd',
               language: '{{ app.request.locale }}',
               weekStart: 1,
