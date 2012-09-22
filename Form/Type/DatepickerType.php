@@ -60,30 +60,30 @@ class DatepickerType extends DateType
         };
 
         $resolver->setDefaults(array(
-            'years'          => range(date('Y') - 5, date('Y') + 5),
-            'months'         => range(1, 12),
-            'days'           => range(1, 31),
-            'prepend'        => false,
-            'weekstart'      => 1,
-            'widget'         => 'datepicker',
-            'input'          => 'string',
-            'format'         => self::HTML5_FORMAT,
-            'model_timezone' => $modelTimezone,
-            'view_timezone'  => $viewTimezone,
+            'years'           => range(date('Y') - 5, date('Y') + 5),
+            'months'          => range(1, 12),
+            'days'            => range(1, 31),
+            'prepend_label'   => false,
+            'weekstart'       => 1,
+            'widget'          => 'datepicker',
+            'input'           => 'string',
+            'format'          => self::HTML5_FORMAT,
+            'model_timezone'  => $modelTimezone,
+            'view_timezone'   => $viewTimezone,
             // Deprecated timezone options
-            'data_timezone'  => null,
-            'user_timezone'  => null,
-            'empty_value'    => $emptyValue,
+            'data_timezone'   => null,
+            'user_timezone'   => null,
+            'empty_value'     => $emptyValue,
             // Don't modify \DateTime classes by reference, we treat
             // them like immutable value objects
-            'by_reference'   => false,
-            'error_bubbling' => false,
+            'by_reference'    => false,
+            'error_bubbling'  => false,
             // If initialized with a \DateTime object, FormType initializes
             // this option to "\DateTime". Since the internal, normalized
             // representation is not \DateTime, but an array, we need to unset
             // this option.
-            'data_class'     => null,
-            'compound'       => false,
+            'data_class'      => null,
+            'compound'        => false,
         ));
 
         $resolver->setNormalizers(array(
@@ -91,10 +91,10 @@ class DatepickerType extends DateType
         ));
 
         $resolver->setAllowedValues(array(
-            'input'       =>  array('string'),
-            'widget'      =>  array('datepicker'),
-            'prepend'     =>  array(false, true),
-            'weekstart'   =>  range(0, 6),
+            'input'           =>  array('string'),
+            'widget'          =>  array('datepicker'),
+            'prepend_label'   =>  array(false, true),
+            'weekstart'       =>  range(0, 6),
         ));
 
         $resolver->setAllowedTypes(array(
@@ -141,7 +141,7 @@ class DatepickerType extends DateType
     {
         parent::finishView($view, $form, $options);
             
-        $view->vars['prepend'] = $options['prepend'];
+        $view->vars['prepend_label'] = $options['prepend_label'];
         $view->vars['format'] = $options['format'];
         $view->vars['weekstart'] = $options['weekstart'];
     }
