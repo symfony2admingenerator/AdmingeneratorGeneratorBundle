@@ -63,9 +63,9 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#{{ id }}').datepicker({
-              format: 'yyyy-mm-dd',
+              format: '{{ format|lower }}',
               language: '{{ app.request.locale }}',
-              weekStart: 1,
+              weekStart: {{ weekstart }},
             });
         });
     </script>
