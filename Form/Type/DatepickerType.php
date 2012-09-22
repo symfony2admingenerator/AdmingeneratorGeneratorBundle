@@ -64,6 +64,7 @@ class DatepickerType extends DateType
             'months'         => range(1, 12),
             'days'           => range(1, 31),
             'prepend'        => false,
+            'weekstart'      => 1,
             'widget'         => 'datepicker',
             'input'          => 'string',
             'format'         => self::HTML5_FORMAT,
@@ -90,9 +91,10 @@ class DatepickerType extends DateType
         ));
 
         $resolver->setAllowedValues(array(
-            'input'     => array('string'),
-            'widget'    => array('datepicker'),
-            'prepend'   => array(false, true),
+            'input'       =>  array('string'),
+            'widget'      =>  array('datepicker'),
+            'prepend'     =>  array(false, true),
+            'weekstart'   =>  range(0, 6),
         ));
 
         $resolver->setAllowedTypes(array(
@@ -140,6 +142,8 @@ class DatepickerType extends DateType
         parent::finishView($view, $form, $options);
             
         $view->vars['prepend'] = $options['prepend'];
+        $view->vars['format'] = $options['format'];
+        $view->vars['weekstart'] = $options['weekstart'];
     }
     
     /**
