@@ -22,24 +22,6 @@ class DatepickerType extends DateType
         \IntlDateFormatter::MEDIUM,
         \IntlDateFormatter::SHORT,
     );
-    
-    /**
-     * {@inheritdoc}
-     */
-//    public function setDefaultOptions(OptionsResolverInterface $resolver)
-//    {
-//        parent::setDefaultOptions($resolver);
-//        
-//        $resolver->addAllowedValues(array(
-//            'widget'    => array('datepicker'),
-//        ));
-//        
-//        $resolver->replaceDefaults(array(
-//            'input'     =>  'string',
-//            'widget'    =>  'datepicker',
-//            'compound'  =>  false,
-//        ));
-//    }
 
     /**
      * {@inheritdoc}
