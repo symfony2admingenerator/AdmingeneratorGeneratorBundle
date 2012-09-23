@@ -22,7 +22,7 @@
         "cedriclombardot/twig-generator": "dev-master",
         "knplabs/knp-menu-bundle": "dev-master",
         "white-october/pagerfanta-bundle": "dev-master",
-        "twig/twig": "1.9.*",
+        "twig/twig": ">=1.9.*",
         "twig/extensions": "dev-master",
         "cedriclombardot/admingenerator-oldtheme-bundle": "dev-master"
     },
