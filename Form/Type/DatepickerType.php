@@ -128,10 +128,6 @@ class DatepickerType extends DateType
             $calendar,
             $pattern
         ));
-
-        $builder->addModelTransformer(new ReversedTransformer(
-            new DateTimeToStringTransformer($options['model_timezone'], $options['model_timezone'], 'Y-m-d')
-        ));
     }
 
     /**
