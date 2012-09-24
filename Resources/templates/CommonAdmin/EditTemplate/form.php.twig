@@ -3,7 +3,7 @@
 {% block form %}
 
     {{ echo_block('form') }}
-    <form
+    <form class="admin_form" 
         {{ echo_if (builder.ModelClass ~ "." ~ builder.ModelPrimaryKeyName ) }}
             action="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_update", "{ 'pk': " ~ builder.ModelClass ~ "."~ builder.ModelPrimaryKeyName ~ " }" ) }}"
         {{ echo_else() }}
