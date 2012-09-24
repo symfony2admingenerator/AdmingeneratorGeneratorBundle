@@ -15,3 +15,15 @@
     border-top: 0px solid transparent;
     border-bottom: 5px solid #0088CC;
 }
+
+.row-fluid > .form_field {
+    -moz-box-sizing: border-box;
+    display: block;
+    float: left;
+    margin-left: 2.5641%;
+    min-height: 30px;
+}
+
+.row-fluid > .form_field:first-child {
+    margin-left: 0;
+}
