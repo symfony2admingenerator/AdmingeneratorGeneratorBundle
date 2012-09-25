@@ -151,7 +151,7 @@ EOT
         try {
             $ret = $auto ? $routing->addResource($bundle, 'admingenerator') : false;
             if (!$ret) {
-                $help = sprintf("        <comment>resource: \"@%s/Resources/Controller/%s/\"</comment>\n        <comment>type:     admingenerator</comment>\n", $bundle, ucfirst($input->getOption('prefix')));
+                $help = sprintf("        <comment>resource: \"@%s/Controller/%s/\"</comment>\n        <comment>type:     admingenerator</comment>\n", $bundle, ucfirst($input->getOption('prefix')));
                 $help .= "        <comment>prefix:   /</comment>\n";
 
                 return array(
