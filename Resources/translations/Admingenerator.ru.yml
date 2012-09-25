@@ -1,39 +1,62 @@
 # Double list form
-double_list.selected: Выбранные
-double_list.unselected: Доступные
-
+double_list:
+  selected:   Выбранные
+  unselected: Доступные
+  
+# Date range form
+date_range:
+  from.label: С
+  to.label:   По
+  
 # Pager
-pagerfanta.previous: Пред.
-pagerfanta.next: След.
+pagerfanta:
+  previous: Пред
+  next:     След
 
 # List
-list.no_results: Нет записей
-list.filters: Фильтры
-list.filter.btn_filter: Фильтровать
-list.filter.btn_reset: Сбросить
-"Display all <b>%count%</b> results": Показаны все <b>%count%</b> записи(ей)
-"Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Показаны <b>%start%</b> - <b>%end%</b> из <b>%count%</b> записи(ей)
-list.actions: Действия
-
-#Object
-object.saved.success: Материал успешно сохранен
-object.saved.error: Форма не сохранена. Исправьте ошибки и попробуйте еще раз
-object.deleted.success: Материал успешно удален
-object.deleted.error: Материал не может быть удален
+list:
+  no.results: Нет записей.
+  filters:    Фильтры
+list.button:
+  filter:     Фильтровать
+  reset:      Сбросить
+list.display:
+  range:      Показаны <b>%start%</b> - <b>%end%</b> из <b>%count%</b> записи(ей).
+  all:        Показаны все <b>%count%</b> записи(ей).
+list.header:
+  actions:    Действия
 
 # Form
-form.btn_save: Сохранить
-form.type_collection.add: Добавить
-form.delete.confirm: Вы действительно хотите удалить этот элемент ?
+form.button:
+  save:             Сохранить
+  collection.add:   Добавить
 
 # Actions
-List: Список
-New: Добавить
-
-# Batch
-batch.delete.confirm: Вы подтверждаете удаление выбранных элементов ?
-batch.none_selected: Необходимо выбрать не менее одного элемента
-batch.deleted.success: Материалы были успешно удалены
-batch.deleted.error: Невозможно удалить материалы
-batch.list.selected: Выберите действие
-batch.list.execute: Выполнить
+actions.list:
+  label:  Список
+actions.new:
+  label:  Добавить
+  
+# Object actions
+object.edit:
+  label:    Редактировать
+  success:  Материал успешно сохранен.
+  error:    Форма не сохранена. Исправьте ошибки и попробуйте еще раз.
+object.delete:
+  label:    Удалять
+  confirm:  Вы действительно хотите удалить этот элемент?
+    
+# Batch actions
+batch.delete:
+  label:    Удалять
+  confirm:  Вы подтверждаете удаление выбранных элементов?
+  success:  Материалы были успешно удалены.
+  error:    Невозможно удалить материалы.
+batch.list:
+  selected:       Выберите действие
+  none.selected:  Необходимо выбрать не менее одного элемента. 
+  
+# Profile
+profile:
+  welcome:  <b>Здравствуйте</b>, %username%!</p>
+  logout:   Выйти

@@ -55,6 +55,12 @@ class AdmingeneratorGeneratorExtension extends Extension
         $resources = $container->getParameter('twig.form.resources');
         $resources[] = 'AdmingeneratorGeneratorBundle:Form:fields.html.twig';
         $container->setParameter('twig.form.resources', $resources);
+        
+        $date_type = array(
+                'class' => 'Admingenerator\GeneratorBundle\Form\Type\DateType',
+                'tags' => array('name' => 'form.type', 'alias' => 'date'),
+            );
+        $container->setParameter('services.form.type.date', $date_type);
 
         if (!isset($config['twig'])) {
             $config['twig'] = array(
