@@ -1,0 +1,30 @@
+{% use "../CommonAdmin/EditTemplate/actions.php.twig" %}
+{% use "../CommonAdmin/EditTemplate/fieldset.php.twig" %}
+{% block form %}
+
+    {{ echo_block('form') }}
+    <form class="admin_form" 
+        {{ echo_if (builder.ModelClass ~ "." ~ builder.ModelPrimaryKeyName ) }}
+            action="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_update", "{ 'pk': " ~ builder.ModelClass ~ "."~ builder.ModelPrimaryKeyName ~ " }" ) }}"
+        {{ echo_else() }}
+            action="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_create" ) }}"
+        {{ echo_endif () }}
+        method="post" {{ echo_twig("form_enctype(form)") }}>
+
+        {{ echo_twig("form_errors(form)") }}
+
+        {% for fieldset in builder.fieldsets|keys %}
+            {{- block('form_fieldset') }}
+        {% endfor -%}
+
+        {{ echo_twig("form_rest(form)") }}
+
+        {{ echo_block("form_buttons") }}        
+            <div class="form-actions">
+                <input type="submit" class="btn btn-primary" value="{{ echo_trans('form.button.save') }}" />
+                {{ block("form_actions") }}
+            </div>
+        {{ echo_endblock() }}
+    </form>
+    {{ echo_endblock() }}
+{% endblock %}

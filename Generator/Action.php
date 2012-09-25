@@ -15,6 +15,10 @@ class Action
     protected $name;
 
     protected $label;
+    
+    protected $icon;
+    
+    protected $class;
 
     protected $route;
 
@@ -46,6 +50,26 @@ class Action
         }
 
         return $this->humanize($this->getName());
+    }
+
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
+    }
+
+    public function getIcon()
+    {
+        return $this->icon;
+    }
+    
+    public function setClass($class)
+    {
+        $this->class = $class;
+    }
+
+    public function getClass()
+    {
+        return $this->class;
     }
 
     public function getRoute()

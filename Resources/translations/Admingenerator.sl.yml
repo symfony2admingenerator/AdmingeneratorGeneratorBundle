@@ -1,30 +1,62 @@
 # Double list form
-double_list.selected: Izbrano
-double_list.unselected: Neizbrano
+double_list:
+  selected:   Izbrano
+  unselected: Neizbrano
+  
+# Date range form
+date_range:
+  from.label: Od
+  to.label:   Do
 
 # Pager
-pagerfanta.previous: Nazaj
-pagerfanta.next: Naprej
+pagerfanta:
+  previous: Nazaj
+  next:     Naprej
 
 # List
-list.no_results: Ni rezultatov
-list.filters: Filtri
-list.filter.btn_filter: Filter
-list.filter.btn_reset: Počisti
-"Display all <b>%count%</b> results": Prikazani vsi rezultati <b>(%count%)</b>
-"Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Prikazani rezultati <b>%start%</b> - <b>%end%</b> od <b>%count%</b>
-list.actions: Akcije
-
-#Object
-object.saved.success: Predmet je bil uspešno shranjen.
-object.saved.error: Predmet ni bil shranjen. Preverite napake in poskusite ponovno.
-object.deleted.success: Predmet je bil uspešno izbrisan.
-object.deleted.error: Predmet ni bil izbrisan.
+list:
+  no.results: Ni rezultatov.
+  filters:    Filtri
+list.button:
+  filter:     Filter
+  reset:      Počisti
+list.display:
+  range:      Prikazani rezultati <b>%start%</b> - <b>%end%</b> od <b>%count%</b>.
+  all:        Prikazani vsi rezultati <b>(%count%)</b>.
+list.header:
+  actions:    Akcije
 
 # Form
-form.btn_save: Shrani
-form.type_collection.add: Dodaj
+form.button:
+  save:             Shrani
+  collection.add:   Dodaj
 
 # Actions
-List: Seznam
-New: Novo
+actions.list:
+  label:  Seznam
+actions.new:
+  label:  Novo
+  
+# Object actions
+object.edit:
+  label:    Urejanje
+  success:  Predmet je bil uspešno shranjen.
+  error:    Predmet ni bil shranjen. Preverite napake in poskusite ponovno.
+object.delete:
+  label:    Izbriši
+  confirm:  Ali ste prepričani, da želite izbrisati ta element?
+    
+# Batch actions
+batch.delete:
+  label:    Izbriši
+  confirm:  Ali lahko potrdite brisanje vseh izbranih elementov?
+  success:  Predmet je bil uspešno izbrisan.
+  error:    Predmet ni bil izbrisan.
+batch.list:
+  selected:       Izbrano
+  none.selected:  Izbrati morate vsaj en element.
+  
+# Profile
+profile:
+  welcome:  <b>Dobrodošli</b>, %username%!</p>
+  logout:   Odjava

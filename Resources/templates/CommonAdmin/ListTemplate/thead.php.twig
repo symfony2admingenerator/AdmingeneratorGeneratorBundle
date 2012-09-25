@@ -1,0 +1,47 @@
+{% block list_thead %}
+{{ echo_block("list_thead") }}
+        <thead>
+            <tr class="list_thead">
+                {% if batch_actions is defined and batch_actions|length > 0 %}
+                    <th class="list_thead_batch_action">
+                        <input type="checkbox"
+                            onchange="this.checked ? $('.td_batch_action input').attr('checked', 'checked') : $('.td_batch_action input').removeAttr('checked')" />
+                    </th>
+                {% endif %}
+                {% for column in builder.columns -%}
+                {% if column.credentials %}
+                      {{ echo_if_granted(column.credentials) }}
+                {% endif %}
+                <th class="list_thead_column{{ echo_if (column.isSortable) }} sortable{{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }} sort_asc{{ echo_elseif ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'DESC'") }} sort_desc{{ echo_endif () }}{{ echo_endif () }}">
+                    {% if column.isSortable -%}
+                        {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }}
+                            <a href="?sort={{ column.sortOn }}&order_by=desc">
+                        {{ echo_else() }}
+                            <a href="?sort={{ column.sortOn }}&order_by=asc">
+                        {{ echo_endif () }}
+                    {%- endif -%}
+
+                                {{ echo_twig("'" ~ column.label|addslashes ~ "'|trans({}, '" ~ (i18n_catalog is defined ? i18n_catalog : "Admin") ~ "')") }}
+                    {%- if column.isSortable -%}
+                              </a>
+                        {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "'") }}
+                            {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }}
+                                <span class="sorted-asc"></span>
+                            {{ echo_else() }}
+                                <span class="sorted-desc"></span>
+                            {{ echo_endif () }}
+                        {{ echo_endif () }}
+                    {% endif -%}
+              </th>
+                {% if column.credentials %}
+                    {{ echo_endif () }}
+                {% endif %}
+                {% endfor -%}
+
+                {%- if object_actions|length > 0 -%}
+                    <th class="actions">{{ echo_trans('list.header.actions') }}</th>
+                {% endif -%}
+            </tr>
+        </thead>
+{{ echo_endblock() }}
+{% endblock %}

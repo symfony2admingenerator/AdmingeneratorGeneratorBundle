@@ -1,37 +1,62 @@
 # Double list form
-double_list.selected: Selezionati
-double_list.unselected: Non selezionati
+double_list:
+  selected:   Selezionati
+  unselected: Non selezionati
+  
+# Date range form
+date_range:
+  from.label: Dal
+  to.label:   Alla
 
 # Pager
-pagerfanta.previous: Precedente
-pagerfanta.next: Successivo
+pagerfanta:
+  previous: Precedente
+  next:     Successivo
 
 # List
-list.no_results: Nessun risultato
-list.filters: Filtri
-list.filter.btn_filter: Filtra
-list.filter.btn_reset: Pulisci
-"Display all <b>%count%</b> results": Mostra tutti i <b>%count%</b> risultati
-"Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Mostra i risultati da <b>%start%</b> a <b>%end%</b> di <b>%count%</b>
-list.actions: Azioni
-
-#Object
-object.saved.success: L'oggetto è stato salvato con successo
-object.saved.error: Non è stato possibile salvare il form. Controlla gli errori e reinvia il form
-object.deleted.success: Il dato è stato cancellato correttamente
-object.deleted.error: Il dato non può essere cancellato
+list:
+  no.results: Nessun risultato.
+  filters:    Filtri
+list.button:
+  filter:     Filtra
+  reset:      Pulisci
+list.display:
+  range:      Mostra i risultati da <b>%start%</b> a <b>%end%</b> di <b>%count%</b>.
+  all:        Mostra tutti i <b>%count%</b> risultati.
+list.header:
+  actions:    Azioni
 
 # Form
-form.btn_save: Salva
-form.type_collection.add: Aggiungi
-form.delete.confirm: Sei sicuro ?
+form.button:
+  save:             Salva
+  collection.add:   Aggiungi
 
 # Actions
-List: Lista
-New: Nuovo
-
-# Batch
-batch.delete.confirm: Confermi l'eliminazione di tutti gli elementi selezionati ?
-batch.none_selected: È necessario selezionare alemeno 1 elemento
-batch.deleted.success: I dati sono stati correttamente eliminati
-batch.deleted.error: I dati non possono essere eliminati
+actions.list:
+  label:  Lista
+actions.new:
+  label:  Nuovo
+  
+# Object actions
+object.edit:
+  label:    Modifica
+  success:  L'oggetto è stato salvato con successo.
+  error:    Non è stato possibile salvare il form. Controlla gli errori e reinvia il form.
+object.delete:
+  label:    Cancellare
+  confirm:  Sei sicuro di voler eliminare questo elemento?
+    
+# Batch actions
+batch.delete:
+  label:    Cancellare
+  confirm:  Confermi l'eliminazione di tutti gli elementi selezionati?
+  success:  I dati sono stati correttamente eliminati.
+  error:    I dati non possono essere eliminati.
+batch.list:
+  selected:       Selezionati
+  none.selected:  È necessario selezionare alemeno uno elemento.
+  
+# Profile
+profile:
+  welcome:  <b>Benvenuto</b>, %username%!</p>
+  logout:   Esci

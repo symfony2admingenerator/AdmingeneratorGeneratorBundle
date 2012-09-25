@@ -1,39 +1,62 @@
 # Double list form
-double_list.selected: Sélectionné
-double_list.unselected: Non-sélectionné
+double_list:
+  selected:   Sélectionné
+  unselected: Non-sélectionné
+  
+# Date range form
+date_range:
+  from.label: Du
+  to.label:   Au
 
 # Pager
-pagerfanta.previous: Précédent
-pagerfanta.next: Suivant
+pagerfanta:
+  previous: Précédent
+  next:     Suivant
 
 # List
-list.no_results: Il n'y a pas de résultats
-list.filters: Filtres
-list.filter.btn_filter: Filtrer
-list.filter.btn_reset: Réinitialiser
-"Display all <b>%count%</b> results": Affiche les <b>%count%</b> résultats
-"Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Résultats <b>%start%</b> à <b>%end%</b> sur <b>%count%</b>
-list.actions: Actions
-
-#Object
-object.saved.success: L'enregistrement a été effectué avec succès
-object.saved.error: Le formulaire n'a pas pu être sauvegardé. Vérifiez les erreurs et essayez de soumettre à nouveau
-object.deleted.success: L'enregistrement a été supprimé avec succès
-object.deleted.error: L'enregistrement n'a pas pu être supprimé
+list:
+  no.results: Il n'y a pas de résultats.
+  filters:    Filtres
+list.button:
+  filter:     Filtrer
+  reset:      Réinitialiser
+list.display:
+  range:      Résultats <b>%start%</b> à <b>%end%</b> sur <b>%count%</b>.
+  all:        Affiche les <b>%count%</b> résultats.
+list.header:
+  actions:    Actes
 
 # Form
-form.btn_save: Enregistrer
-form.type_collection.add: Ajouter
-form.delete.confirm: Etes-vous sur de vouloir supprimer cet élement ?
+form.button:
+  save:             Enregistrer
+  collection.add:   Ajouter
 
 # Actions
-List: Retour à la liste
-New: Nouveau
-
-# Batch
-batch.delete.confirm: Etes-vous sur de vouloir supprimer les élements sélectionnés ?
-batch.none_selected: Vous devez sélectionner au moins un élément
-batch.deleted.success: Les enregistrements ont étés supprimés avec succès
-batch.deleted.error: Les enregistrements n'ont pu être supprimés
-batch.list.selected: Choisir
-batch.list.execute: Execute
+actions.list:
+  label:  Retour à la liste
+actions.new:
+  label:  Nouveau
+  
+# Object actions
+object.edit:
+  label:    Éditer
+  success:  L'enregistrement a été effectué avec succès.
+  error:    Le formulaire n'a pas pu être sauvegardé. Vérifiez les erreurs et essayez de soumettre à nouveau.
+object.delete:
+  label:    Effacer
+  confirm:  Etes-vous sur de vouloir supprimer cet élement?
+    
+# Batch actions
+batch.delete:
+  label:    Effacer
+  confirm:  Etes-vous sur de vouloir supprimer les élements sélectionnés?
+  success:  Les enregistrements ont étés supprimés avec succès.
+  error:    Les enregistrements n'ont pu être supprimés.
+batch.list:
+  selected:       Choisir
+  none.selected:  Vous devez sélectionner au moins un élément.
+  
+# Profile
+profile:
+  welcome:  <b>Bienvenue</b>, %username%!</p>
+  logout:   Déconnexion
