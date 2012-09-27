@@ -65,7 +65,11 @@ class EchoExtension extends \Twig_Extension
             preg_match("/'type' => '(.+?)'/i", $options, $matches);
 
             if (count($matches) > 0) {
-                $options = str_replace("'type' => '".$matches[1]."'", '\'type\' =>  new '.stripslashes($matches[1]).'()', $options);
+                $pattern_formtype = '/^(\\[a-zA-Z0-9]+)+$/';
+                # Sanity check - add new only if type is a classname
+                if(preg_match($pattern_formtype, $matches[1])) {
+                  $options = str_replace("'type' => '".$matches[1]."'", '\'type\' =>  new '.stripslashes($matches[1]).'()', $options);
+                }
             }
         }
 
