@@ -71,6 +71,75 @@
     </script>
 {% endblock %}
     
+{% macro datasource(object, builder) %}
+{% autoescape -%}
+    {% for key,property in builder %}
+      {%- if loop.first %}{{ '{' }}{% endif -%}
+          {{ '"' ~ key ~ '": "' ~ attribute(object, property) ~ '"' }}
+          {%- if not loop.last %}{{ ', ' }}{% endif -%}
+      {%- if loop.last %}{{ '}' }}{% endif -%}
+    {% endfor %}
+{%- endautoescape %}
+{% endmacro %}
+    
+{% block entity_picker_widget %}
+{% spaceless %}
+    <input type="text" id="{{ id ~ '_typeahead' }}" data-source="
+      {%- for choice in choices -%}
+        {%- if loop.first %}{{ '[' }}{% endif -%}
+            {{ _self.datasource(choice.data, builder) }}
+        {%- if not loop.last %}{{ ',' }}{% else %}{{ ']' }}{% endif -%}
+      {%- endfor -%}" {% if placeholder %}placeholder="{{ placeholder|trans({}, 'Admingenerator') }}"{% endif %}/>
+    <input type="hidden" {{ block('widget_attributes') }} />
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#{{ id ~ '_typeahead' }}').typeahead({
+              source: function() {
+                  return this.$element.data('source'); 
+              },
+              matcher: function (item) {
+                  return ~{{ matcher }}.toLowerCase().indexOf(this.query.toLowerCase());
+              },
+              sorter: function (items) {
+                  var beginswith = []
+                    , caseSensitive = []
+                    , caseInsensitive = []
+                    , item
+
+                  while (item = items.shift()) {
+                    if (!{{ matcher }}.toLowerCase().indexOf(this.query.toLowerCase())) beginswith.push(item)
+                    else if (~{{ matcher }}.indexOf(this.query)) caseSensitive.push(item)
+                    else caseInsensitive.push(item)
+                  }
+
+                  return beginswith.concat(caseSensitive, caseInsensitive)
+              },
+              highlighter: function (item) {
+                  var query = this.query.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, '\\$&')
+                  return {{ matcher }}.replace(new RegExp('(' + query + ')', 'ig'), function ($1, match) {
+                      return '<strong>' + match + '</strong>'
+                  });
+              },
+              updater: function (item) {
+                $('#{{ id }}').val({{ identifier }});
+                return {{ matcher }};
+              },
+              getter: function(pk) {
+                  var source = $.isFunction(this.source) ? this.source() : this.source;
+                  return $.grep(source, function(item){
+                      return {{ identifier }} == pk;
+                  })[0];
+              },
+              setter: function(item) {
+                  return {{ identifier }};
+              }
+            });
+        });
+    </script>
+{% endspaceless %}
+{% endblock %}
+    
 {% block form_widget_compound %}
 {% spaceless %}
     <div class="control-group" {{ block('widget_container_attributes') }}>
