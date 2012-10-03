@@ -96,7 +96,22 @@
         $(document).ready(function() {
             $('#{{ id ~ '_typeahead' }}').typeahead({
               source: function() {
-                  return this.$element.data('source'); 
+                  var data = this.$element.data('source'); 
+                  
+                  {% if form.parent.vars.prototype is defined %}
+                    return $(data).filter(function(index, item) {
+                        var values = [];
+                        var hiddens = $('#{{ form.parent.vars.id }}').find('input[type="hidden"]');
+                        
+                        hiddens.each(function(i,e){
+                          values.push($(e).val());
+                        });
+                        
+                        return ($.inArray({{ identifier }}, values) > -1) ? false : true;
+                    });
+                  {% else %}
+                    return data;
+                  {% endif %}
               },
               matcher: function (item) {
                   return ~{{ matcher }}.toLowerCase().indexOf(this.query.toLowerCase());
