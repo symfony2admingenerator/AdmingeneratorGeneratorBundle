@@ -32,7 +32,7 @@ class EchoExtensionTest extends TestCase
             'obj'  => $object,
             'arr'  => array('obj' => 'val'),
             'arr_obj' => array('obj' => $object),
-            'options_form_collection_type_class' => "array( 'allow_add' => true, 'allow_delete' => true, 'by_reference' => false, 'type' => '\\\Admingenerator\\\PropelDemoBundle\\\Form\\\Type\\\ActorType',)",
+            'options_form_collection_type_class' => "array( 'allow_add' => true, 'allow_delete' => true, 'by_reference' => false, 'type' => '\\Admingenerator\\PropelDemoBundle\\Form\\Type\\ActorType',)",
             'options_form_collection_type_name' => "array( 'allow_add' => true, 'allow_delete' => true, 'by_reference' => false, 'type' => 'my_formType_name',)",
             'options_form_model' => "array( 'query' => '\\\Admingenerator\\\PropelDemoBundle\\\Model\\\ActorQuery::create()->orderById()',)",
             'options_form_choice_method' => "array( 'choices' => '\\\Admingenerator\\\PropelDemoBundle\\\Model\\\ActorQuery::getMyCustoms()',)",
