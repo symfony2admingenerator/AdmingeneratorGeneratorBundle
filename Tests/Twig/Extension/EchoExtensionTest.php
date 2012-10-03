@@ -54,7 +54,7 @@ class EchoExtensionTest extends TestCase
 
         $returns = array(
             'options_form_collection_type_class' => array("array( 'allow_add' => true, 'allow_delete' => true, 'by_reference' => false, 'type' =>  new \Admingenerator\PropelDemoBundle\Form\Type\ActorType(),)", 'convert as form can convert the type option for the collection type'),
-            'options_form_collection_type_name' => array("array( 'allow_add' => true, 'allow_delete' => true, 'by_reference' => false, 'type' =>  'my_formType_name',)", 'convert as form can convert the type option for the collection type'),
+            'options_form_collection_type_name' => array("array( 'allow_add' => true, 'allow_delete' => true, 'by_reference' => false, 'type' => 'my_formType_name',)", 'convert as form can convert the type option for the collection type'),
             'options_form_model' => array("array( 'query' => \Admingenerator\PropelDemoBundle\Model\ActorQuery::create()->orderById(),)", 'convert as form can convert the query option for the model type'),
             'options_form_choice_method' => array("array( 'choices' => \Admingenerator\PropelDemoBundle\Model\ActorQuery::getMyCustoms(),)", 'convert as form can convert the choices option for the choice type'),
             'options_form_choice_array' => array("array( 'choices' => array('a' => 'b'),)", 'convert as form can convert the choices option for the choice type'),
