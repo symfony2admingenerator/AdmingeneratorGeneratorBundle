@@ -30,31 +30,6 @@ list.header:
 form.button:
   save:             Speichern
   collection.add:   Hinzufügen
-
-# Actions
-actions.list:
-  label:  Übersicht
-actions.new:
-  label:  Neu
-  
-# Object actions
-object.edit:
-  label:    Bearbeiten
-  success:  Das Objekt wurde erfolgreich gespeichert.
-  error:    Das Formular konnte nicht gespeichert werden. Bitte Fehler prüfen und erneut versuchen.
-object.delete:
-  label:    Löschen
-  confirm:  Sind Sie sicher, dass Sie dieses Element löschen?
-    
-# Batch actions
-batch.delete:
-  label:    Delete
-  confirm:  Sie bestätigen das Löschen aller ausgewählten Elemente?
-  success:  Die Eintrage wurden erfolgreich gelöscht.
-  error:    Die Eintrage können nicht gelöscht werden.
-batch.list:
-  selected:       Ausgewählte
-  none.selected:  Sie müssen mindestens ein Element auswählen.
   
 # Profile
 profile:

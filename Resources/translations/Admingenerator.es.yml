@@ -30,31 +30,6 @@ list.header:
 form.button:
   save:             Guardar
   collection.add:   Añadir
-
-# Actions
-actions.list:
-  label:  Listar
-actions.new:
-  label:  Nuevo
-  
-# Object actions
-object.edit:
-  label:    Editar
-  success:  El objeto fue guardado satisfactoriamente.
-  error:    El formulario no pudo ser guardado. comprueba los errores y vuelve a intentarlo.
-object.delete:
-  label:    Borrar
-  confirm:  ¿Está seguro que desea eliminar este elemento?
-    
-# Batch actions
-batch.delete:
-  label:    Borrar
-  confirm:  ¿Te confirmar la eliminación de todos los elementos seleccionados?
-  success:  El registro ha sido borrado correctamente.
-  error:    Este registro no puede ser borrado.
-batch.list:
-  selected:       Seleccionado
-  none.selected:  Debe seleccionar al menos un elemento.
   
 # Profile
 profile:
