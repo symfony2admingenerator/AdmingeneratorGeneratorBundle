@@ -27,3 +27,27 @@
 .row-fluid > .form_field:first-child {
     margin-left: 0;
 }
+
+ul.typeahead.dropdown-menu blockquote {
+    border: 0 none;
+    margin: 0;
+}
+
+ul.typeahead.dropdown-menu div:first-of-type > blockquote {
+    padding: 0;
+}
+
+ul.typeahead.dropdown-menu blockquote small:before, 
+ul.typeahead.dropdown-menu blockquote small:after {
+    content: "";
+}
+
+ul.typeahead.dropdown-menu blockquote .label,
+ul.typeahead.dropdown-menu blockquote .badge {
+    margin-left: 4px;
+}
+
+ul.typeahead.dropdown-menu blockquote .label:first-of-type,
+ul.typeahead.dropdown-menu blockquote .badge:first-of-type {
+    margin-left: 0;
+}
