@@ -31,7 +31,6 @@ class EntityPickerType extends EntityType
             'builder'     => array(),
             'matcher'     => 'item',
             'identifier'  => 'item',
-            'placeholder' => false,
             'description' => array(),
             'thumb'       => array(),
         ));
@@ -40,7 +39,6 @@ class EntityPickerType extends EntityType
             'builder'     => array('array'),
             'matcher'     => array('string'),
             'identifier'  => array('string'),
-            'placeholder' => array('boolean', 'string'),
             'description' => array('array'),
             'thumb'       => array('array'),
         ));
