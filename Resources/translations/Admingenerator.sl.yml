@@ -35,3 +35,7 @@ form.button:
 profile:
   welcome:  <b>Dobrodošli</b>, %username%!</p>
   logout:   Odjava
+  
+# EntityPicker
+entity_picker:
+  placeholder:  Iskanje...
