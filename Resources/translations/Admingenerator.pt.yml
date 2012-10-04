@@ -35,3 +35,7 @@ form.button:
 profile:
   welcome:  <b>Bem-vindo</b>, %username%!</p>
   logout:   Sair
+  
+# EntityPicker
+entity_picker:
+  placeholder:  Pesquisar...

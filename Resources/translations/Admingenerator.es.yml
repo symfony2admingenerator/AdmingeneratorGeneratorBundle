@@ -35,3 +35,7 @@ form.button:
 profile:
   welcome:  <b>Bienvenido</b>, %username%!</p>
   logout:   Finalizar la sesión
+  
+# EntityPicker
+entity_picker:
+  placeholder:  Buscar...
