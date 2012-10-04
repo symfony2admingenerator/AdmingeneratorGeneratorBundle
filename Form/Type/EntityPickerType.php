@@ -28,17 +28,21 @@ class EntityPickerType extends EntityType
         parent::setDefaultOptions($resolver);
         
         $resolver->setDefaults(array(
-            'builder'     =>  array(),
+            'builder'     => array(),
             'matcher'     => 'item',
             'identifier'  => 'item',
             'placeholder' => false,
+            'description' => array(),
+            'thumb'       => array(),
         ));
         
         $resolver->setAllowedTypes(array(
             'builder'     => array('array'),
             'matcher'     => array('string'),
             'identifier'  => array('string'),
-            'placeholder'  => array('boolean', 'string'),
+            'placeholder' => array('boolean', 'string'),
+            'description' => array('array'),
+            'thumb'       => array('array'),
         ));
     }
     
@@ -51,6 +55,8 @@ class EntityPickerType extends EntityType
         $view->vars['matcher'] = $options['matcher'];
         $view->vars['identifier'] = $options['identifier'];
         $view->vars['placeholder'] = $options['placeholder'];
+        $view->vars['description'] = $options['description'];
+        $view->vars['thumb'] = $options['thumb'];
     }
     /**
      * {@inheritdoc}
