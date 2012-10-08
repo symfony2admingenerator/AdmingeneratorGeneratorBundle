@@ -51,3 +51,25 @@ ul.typeahead.dropdown-menu blockquote .label:first-of-type,
 ul.typeahead.dropdown-menu blockquote .badge:first-of-type {
     margin-left: 0;
 }
+
+fieldset {
+  border: 1px solid #DDDDDD;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin: 0;
+}
+
+fieldset legend {
+  border: 0 none; 
+  margin: 0 0 0 -8px;
+  width: auto;
+}
+
+fieldset legend span {
+  background-color: #FFF; 
+  padding: 0 8px;
+}
+
+legend + .control-group {
+  margin-top: 0px;
+}
