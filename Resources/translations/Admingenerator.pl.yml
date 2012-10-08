@@ -30,33 +30,12 @@ list.header:
 form.button:
   save:             Zapisz
   collection.add:   Dodaj
-
-# Actions
-actions.list:
-  label:  Lista
-actions.new:
-  label:  Nowy
-  
-# Object actions
-object.edit:
-  label:    Edytuj
-  success:  Zapisano zmiany.
-  error:    Zmiany nie mogły zostać zapisane. Sprawdź błędy i spróbuj ponownie.
-object.delete:
-  label:    Usuń
-  confirm:  Czy potwierdzasz usunięcie elementu?
-    
-# Batch actions
-batch.delete:
-  label:    Usuń
-  confirm:  Czy potwierdzasz usunięcie wszystkich zaznaczonych elementów?
-  success:  Usunięto wskazane elementy.
-  error:    Zaznaczone elementy nie mogły zostać usunięte.
-batch.list:
-  selected:       Zaznaczone
-  none.selected:  Musisz zaznaczyć co najmniej jeden element.
   
 # Profile
 profile:
   welcome:  <b>Witaj</b>, %username%!</p>
   logout:   Wyloguj
+  
+# EntityPicker
+entity_picker:
+  placeholder:  Szukaj...

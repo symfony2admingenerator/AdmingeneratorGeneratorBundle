@@ -30,33 +30,12 @@ list.header:
 form.button:
   save:             Salva
   collection.add:   Aggiungi
-
-# Actions
-actions.list:
-  label:  Lista
-actions.new:
-  label:  Nuovo
-  
-# Object actions
-object.edit:
-  label:    Modifica
-  success:  L'oggetto è stato salvato con successo.
-  error:    Non è stato possibile salvare il form. Controlla gli errori e reinvia il form.
-object.delete:
-  label:    Cancellare
-  confirm:  Sei sicuro di voler eliminare questo elemento?
-    
-# Batch actions
-batch.delete:
-  label:    Cancellare
-  confirm:  Confermi l'eliminazione di tutti gli elementi selezionati?
-  success:  I dati sono stati correttamente eliminati.
-  error:    I dati non possono essere eliminati.
-batch.list:
-  selected:       Selezionati
-  none.selected:  È necessario selezionare alemeno uno elemento.
   
 # Profile
 profile:
   welcome:  <b>Benvenuto</b>, %username%!</p>
   logout:   Esci
+  
+# EntityPicker
+entity_picker:
+  placeholder:  Cerca...

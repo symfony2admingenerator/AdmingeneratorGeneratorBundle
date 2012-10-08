@@ -16,6 +16,7 @@ class EditObjectAction extends Action
     {
         parent::__construct($name);
 
+        $this->setLabel('object.edit.label');
         $this->setIcon('icon-edit');
         
         $this->setParams(array(

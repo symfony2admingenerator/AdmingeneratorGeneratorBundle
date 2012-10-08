@@ -30,33 +30,12 @@ list.header:
 form.button:
   save:             Сохранить
   collection.add:   Добавить
-
-# Actions
-actions.list:
-  label:  Список
-actions.new:
-  label:  Добавить
-  
-# Object actions
-object.edit:
-  label:    Редактировать
-  success:  Материал успешно сохранен.
-  error:    Форма не сохранена. Исправьте ошибки и попробуйте еще раз.
-object.delete:
-  label:    Удалять
-  confirm:  Вы действительно хотите удалить этот элемент?
-    
-# Batch actions
-batch.delete:
-  label:    Удалять
-  confirm:  Вы подтверждаете удаление выбранных элементов?
-  success:  Материалы были успешно удалены.
-  error:    Невозможно удалить материалы.
-batch.list:
-  selected:       Выберите действие
-  none.selected:  Необходимо выбрать не менее одного элемента. 
   
 # Profile
 profile:
   welcome:  <b>Здравствуйте</b>, %username%!</p>
   logout:   Выйти
+  
+# EntityPicker
+entity_picker:
+  placeholder:  Искать...
