@@ -73,3 +73,11 @@ fieldset legend span {
 legend + .control-group {
   margin-top: 0px;
 }
+
+/* Remove firefox grey dotted focus outline */
+a:focus {
+  outline: none;
+}
+button::-moz-focus-inner, select::-moz-focus-inner {
+  border: 0;
+}
