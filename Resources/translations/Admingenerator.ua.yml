@@ -30,33 +30,12 @@ list.header:
 form.button:
   save:             Зберегти
   collection.add:   Додати
-
-# Actions
-actions.list:
-  label:  Список
-actions.new:
-  label:  Додати
-  
-# Object actions
-object.edit:
-  label:    Редагувати
-  success:  Об'єкт був успішно збережений.
-  error:    Неможливо зберегти об'єкт. Форма не збережена. Виправте помилки і спробуйте ще раз.
-object.delete:
-  label:    Видаляти
-  confirm:  Ви дійсно хочете видалити цей елемент?
-    
-# Batch actions
-batch.delete:
-  label:    Видаляти
-  confirm:  Ви підтверджуєте видалення вибраних елементів?
-  success:  Записи було успішно видалено.
-  error:    Неможливо видалити записи.
-batch.list:
-  selected:       Оберіть дію
-  none.selected:  Необхідно вибрати не менше одного елемента.
   
 # Profile
 profile:
   welcome:  <b>Привіт</b>, %username%!</p>
   logout:   Вийти
+  
+# EntityPicker
+entity_picker:
+  placeholder:  Шукати...

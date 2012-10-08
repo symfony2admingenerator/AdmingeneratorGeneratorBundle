@@ -27,3 +27,57 @@
 .row-fluid > .form_field:first-child {
     margin-left: 0;
 }
+
+ul.typeahead.dropdown-menu blockquote {
+    border: 0 none;
+    margin: 0;
+}
+
+ul.typeahead.dropdown-menu div:first-of-type > blockquote {
+    padding: 0;
+}
+
+ul.typeahead.dropdown-menu blockquote small:before, 
+ul.typeahead.dropdown-menu blockquote small:after {
+    content: "";
+}
+
+ul.typeahead.dropdown-menu blockquote .label,
+ul.typeahead.dropdown-menu blockquote .badge {
+    margin-left: 4px;
+}
+
+ul.typeahead.dropdown-menu blockquote .label:first-of-type,
+ul.typeahead.dropdown-menu blockquote .badge:first-of-type {
+    margin-left: 0;
+}
+
+fieldset {
+  border: 1px solid #DDDDDD;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin: 0;
+}
+
+fieldset legend {
+  border: 0 none; 
+  margin: 0 0 0 -8px;
+  width: auto;
+}
+
+fieldset legend span {
+  background-color: #FFF; 
+  padding: 0 8px;
+}
+
+legend + .control-group {
+  margin-top: 0px;
+}
+
+/* Remove firefox grey dotted focus outline */
+a:focus {
+  outline: none;
+}
+button::-moz-focus-inner, select::-moz-focus-inner {
+  border: 0;
+}

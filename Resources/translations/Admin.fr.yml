@@ -1,0 +1,24 @@
+# Actions
+actions.list:
+  label:  Retour à la liste
+actions.new:
+  label:  Nouveau
+  
+# Object actions
+object.edit:
+  label:    Éditer
+  success:  L'enregistrement a été effectué avec succès.
+  error:    Le formulaire n'a pas pu être sauvegardé. Vérifiez les erreurs et essayez de soumettre à nouveau.
+object.delete:
+  label:    Effacer
+  confirm:  Etes-vous sur de vouloir supprimer cet élement?
+    
+# Batch actions
+batch.delete:
+  label:    Effacer
+  confirm:  Etes-vous sur de vouloir supprimer les élements sélectionnés?
+  success:  Les enregistrements ont étés supprimés avec succès.
+  error:    Les enregistrements n'ont pu être supprimés.
+batch.list:
+  selected:       Choisir
+  none.selected:  Vous devez sélectionner au moins un élément.
