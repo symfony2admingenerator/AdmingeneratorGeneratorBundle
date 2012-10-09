@@ -75,7 +75,7 @@ legend + .control-group {
 }
 
 /* Remove firefox grey dotted focus outline */
-a:focus {
+a:focus, .btn:focus {
   outline: none;
 }
 button::-moz-focus-inner, select::-moz-focus-inner {
