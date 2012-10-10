@@ -4,7 +4,7 @@ var sfDoubleList =
   {
     form = sfDoubleList.get_current_form(id);
 
-    callback = function() { sfDoubleList.submit(form, className) };
+    callback = function() { sfDoubleList.submit(form, className); };
 
     if (form.addEventListener)
     {
@@ -34,13 +34,15 @@ var sfDoubleList =
   submit: function(form, className)
   {
     var element;
+    var selectedClassName;
 
     for (var i = 0; i < form.elements.length; i++)
     {
       element = form.elements[i];
       if (element.type == 'select-multiple')
       {
-        if (element.className == className + '-selected')
+        selectedClassName = className + '-selected';
+        if (element.className.match(new RegExp(selectedClassName, 'gi')))
         {
           for (var j = 0; j < element.options.length; j++)
           {
