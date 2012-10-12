@@ -14,6 +14,8 @@
         <parameter key="admingeneretor.menu_builder.class">Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder</parameter>
         <parameter key="admingenerator.base_admin_template">AdmingeneratorOldThemeBundle::base_admin.html.twig</parameter>
         <parameter key="admingenerator.overwrite_if_exists">false</parameter>
+        <parameter key="admingenerator.validator.model_class.class">Admingenerator\GeneratorBundle\Validator\ModelClassValidator</parameter>
+        <parameter key="admingenerator.validator.propel_model_class.class">Admingenerator\GeneratorBundle\Validator\PropelModelClassValidator</parameter>
     </parameters>
 
     <services>
@@ -70,18 +72,27 @@
             <tag name="form.type" alias="upload" />
             <argument type="service" id="service_container" />
         </service>
-        
-        <!-- Form type extensions -->        
+
+        <!-- Form type extensions -->
         <service id="form.type_extension.autocomplete" class="Admingenerator\GeneratorBundle\Form\Extension\AutocompleteTypeExtension">
             <tag name="form.type_extension" alias="form" />
         </service>
-        
+
         <service id="form.type_extension.collection" class="Admingenerator\GeneratorBundle\Form\Extension\BootstrapCollectionTypeExtension">
             <tag name="form.type_extension" alias="collection" />
         </service>
-        
+
         <service id="form.type_extension.help_message" class="Admingenerator\GeneratorBundle\Form\Extension\HelpMessageTypeExtension">
             <tag name="form.type_extension" alias="form" />
+        </service>
+
+        <!-- Validators -->
+        <service id="admingenerator.validator.model_class" class="%admingenerator.validator.model_class.class%" public="false">
+            <tag name="admingenerator.validator" alias="model_class" />
+        </service>
+
+        <service id="admingenerator.validator.propel_model_class" class="%admingenerator.validator.propel_model_class.class%" public="false">
+            <tag name="admingenerator.validator.propel" alias="propel_model_class" />
         </service>
 
         <!-- Warmup -->
@@ -111,7 +122,7 @@
             <tag name="knp_menu.menu" alias="admin" />
             <argument type="service" id="request" />
         </service>
-        
+
         <!-- Dashboard Menu -->
         <service id="admingeneretor.menu_builder.dashboard" class="%admingeneretor.menu_builder.class%">
             <tag name="knp_menu.menu" alias="dashboard" />
