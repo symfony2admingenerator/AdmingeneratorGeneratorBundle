@@ -21,7 +21,7 @@
 
         {{ echo_block("form_buttons") }}        
             <div class="form-actions">
-                <input type="submit" class="btn btn-primary" value="{{ echo_trans('form.button.save') }}" />
+                <input type="submit" class="btn btn-primary" value="{{ echo_trans('actions.save',{}, i18n_catalog is defined ? i18n_catalog : "Admin") }}" />
                 {{ block("form_actions") }}
             </div>
         {{ echo_endblock() }}
