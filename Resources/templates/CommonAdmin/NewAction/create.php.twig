@@ -19,8 +19,13 @@
                 $this->postSave($form, ${{ builder.ModelClass }});
 
                 $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ messages.success is defined ? messages.success : "object.edit.success" }}", array(), 'Admin') );
-
-                return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_edit", array('pk' => ${{ builder.ModelClass }}->get{{ builder.ModelPrimaryKeyName|classify }}()) ));
+           
+                if($this->get('request')->request->has('save-and-add'))
+                  return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_new" ));
+                if($this->get('request')->request->has('save-and-list'))
+                  return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list" ));
+                else
+                  return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_edit", array('pk' => ${{ builder.ModelClass }}->get{{ builder.ModelPrimaryKeyName|classify }}()) ));
             } catch (\Exception $e) {
                 $this->get('session')->setFlash('error',  $this->get('translator')->trans("{{ messages.error is defined ? messages.error : "object.edit.error" }}", array(), 'Admin') );
                 $this->onException($e, $form, ${{ builder.ModelClass }});
