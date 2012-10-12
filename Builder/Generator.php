@@ -8,7 +8,6 @@ namespace Admingenerator\GeneratorBundle\Builder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use Symfony\Component\Yaml\Yaml;
-
 use TwigGenerator\Builder\Generator as TwigGeneratorGenerator;
 use TwigGenerator\Builder\BuilderInterface;
 
