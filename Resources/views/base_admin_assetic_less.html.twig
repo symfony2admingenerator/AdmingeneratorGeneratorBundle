@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-        
-    {% block scripts_head %}        
+
+    {% block scripts_head %}
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
     {% endblock %}
 
@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/bootstrap-extended.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/datepicker.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/bootstrap-responsive.css') }}" type="text/css" media="all" />
-        
+
         <style type="text/css">
           body {
             padding-top: 60px;
@@ -56,8 +56,12 @@
           <div class="nav-collapse collapse">
             {% block profile %}
               <ul class="nav pull-right">
-                <li><p class="navbar-text" style="padding-right: 10px;">{{ 'profile.welcome'|trans({'%username%': 'anonymous'}, 'Admingenerator')|raw }}</li>
-                <li><button href="#" class="btn disabled" title="Log out will be connected to security">{{ 'profile.logout'|trans({}, 'Admingenerator') }}</button></li>
+                <li><p class="navbar-text" style="padding-right: 10px;">{{ 'profile.welcome'|trans({'%username%': app.user ? app.user : 'anonymous'}, 'Admingenerator')|raw }}</li>
+                {% if app.user %}
+                  <li><button onclick="document.location='{{ path('fos_user_security_logout') }}'" class="btn " title="{{ 'profile.logout'|trans({}, 'Admingenerator') }}">{{ 'profile.logout'|trans({}, 'Admingenerator') }}</button></li>
+                {% else %}
+                  <li><button onclick="document.location='{{ path('fos_user_security_login') }}'" class="btn " title="{{ 'profile.login'|trans({}, 'Admingenerator') }}">{{ 'profile.login'|trans({}, 'Admingenerator') }}</button></li>
+                {% endif %}
               </ul>
             {% endblock %}
             {% block menu %}
@@ -70,7 +74,7 @@
 
     <div class="container-fluid">
         {% block flashes %}
-            <div class="row-fluid">  
+            <div class="row-fluid">
                 {% if app.session.hasFlash('success') %}
                   <div class="alert alert-success">
                     <button type="button" class="close" data-dismiss="alert">×</button>
@@ -85,12 +89,12 @@
                 {% endif %}
             </div><!--/row-->
         {% endblock %}
-      
-        {% block body %}     
+
+        {% block body %}
             <div class="row-fluid">
             </div><!--/row-->
         {% endblock %}
-      
+
       <hr>
 
       <footer>
@@ -102,7 +106,7 @@
       </footer>
 
     </div> <!-- /container -->
-    
+
     {% block javascripts %}
         <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap-transition.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap-alert.js') }}"></script>
@@ -119,7 +123,7 @@
         <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap-affix.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap-datepicker.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/locales/bootstrap-datepicker.en.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/locales/bootstrap-datepicker.' ~ app.request.locale ~ '.js') }}"></script>   
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/locales/bootstrap-datepicker.' ~ app.request.locale ~ '.js') }}"></script>
     {% endblock %}
 
   </body>

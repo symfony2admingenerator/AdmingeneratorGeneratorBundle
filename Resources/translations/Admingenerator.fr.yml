@@ -2,7 +2,7 @@
 double_list:
   selected:   Sélectionné
   unselected: Non-sélectionné
-  
+
 # Date range form
 date_range:
   from.label: Du
@@ -25,16 +25,17 @@ list.display:
   all:        Affiche les <b>%count%</b> résultats.
 list.header:
   actions:    Actes
-  
+
 # Profile
 profile:
   welcome:  <b>Bienvenue</b>, %username%!</p>
   logout:   Déconnexion
-  
+  login:    Se connecter
+
 # EntityPicker
 entity_picker:
   placeholder:  Rechercher...
-  
+
 # Actions
 actions:
   list:   Retour à la liste
@@ -42,9 +43,9 @@ actions:
   save:   Enregistrer
   save-and-add:   Enregistrer et Nouveau
   save-and-list:  Enregistrer et Retour à la liste
-  collection.add: Ajouter 
+  collection.add: Ajouter
   file.add:   Ajouter un fichier...
-  
+
 # Object actions
 object.edit:
   label:    Éditer
@@ -53,7 +54,7 @@ object.edit:
 object.delete:
   label:    Effacer
   confirm:  Etes-vous sur de vouloir supprimer cet élement?
-    
+
 # Batch actions
 batch.delete:
   label:    Effacer
