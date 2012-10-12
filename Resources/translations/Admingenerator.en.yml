@@ -37,3 +37,6 @@ batch.deleted.success: Records have been successfully deleted
 batch.deleted.error: Records can't be deleted
 batch.list.selected: Selected
 batch.list.execute: Execute
+
+# Layout
+layout.welcome: Homepage
