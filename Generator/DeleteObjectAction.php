@@ -4,7 +4,7 @@ namespace Admingenerator\GeneratorBundle\Generator;
 
 /**
  *
- * This class describe an action
+ * This class describes object Delete action
  * @author cedric Lombardot
  *
  */
