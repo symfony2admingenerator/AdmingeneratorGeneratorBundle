@@ -50,6 +50,6 @@ class EntityPickerType extends EntityType
      */
     public function getName()
     {
-        return 'entity_picker';
+        return 'entitypicker';
     }
 }
