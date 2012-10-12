@@ -6,6 +6,7 @@ use Knp\Menu\FactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Router;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Knp\Menu\ItemInterface;
 
 class DefaultMenuBuilder extends ContainerAware
 {
@@ -25,14 +26,30 @@ class DefaultMenuBuilder extends ContainerAware
      */
     public function createAdminMenu(Request $request)
     {
-        $menu = $this->factory->createItem('root', array('childrenAttributes' => array('id' => 'main_navigation', 'class'=>'menu') ) );
+        $menu = $this->createMainMenu();
 
         $help = $menu->addChild('Overwrite this menu', array('uri' => '#'));
-        $help->setLinkAttributes(array('class'=>'sub main'));
+        $this->addMenuWithSubItemsProperties($help);
 
         $help->addChild('Configure menu class', array('uri' => 'https://github.com/knplabs/KnpMenuBundle/blob/master/Resources/doc/index.md'));
         $help->addChild('Configure php class to use', array('uri' => 'https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/change-the-menu-class.markdown'));
 
         return $menu;
+    }
+
+    protected function createMainMenu($menuId = 'main_navigation')
+    {
+        $menu = $this->factory->createItem('root');
+        $menu->setchildrenAttributes(array('id' => $menuId, 'class'=>'nav'));
+
+        return $menu;
+    }
+
+
+    protected function addMenuWithSubItemsProperties(ItemInterface $menu)
+    {
+        $menu->setLinkAttributes(array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'));
+        $menu->setChildrenAttributes(array('class' => 'dropdown-menu'));
+        $menu->setAttributes(array('class' => 'dropdown'));
     }
 }
