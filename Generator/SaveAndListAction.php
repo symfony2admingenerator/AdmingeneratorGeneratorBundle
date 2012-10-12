@@ -3,19 +3,18 @@
 namespace Admingenerator\GeneratorBundle\Generator;
 
 /**
- * This class describes New action
- * @author cedric Lombardot
+ * This class describes Save and List action
+ * @author loostro <loostro@gmail.com>
  */
 use Admingenerator\GeneratorBundle\Builder\Admin\BaseBuilder;
 
-class NewAction extends Action
+class SaveAndListAction extends Action
 {
     public function __construct($name, BaseBuilder $builder)
     {
         parent::__construct($name);
 
-        $this->setLabel('actions.new.label');
-        $this->setIcon('icon-white icon-plus');
-        $this->setClass('btn-primary');
+        $this->setSubmit(true);
+        $this->setLabel('form.button.save-and-list');
     }
 }

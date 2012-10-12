@@ -21,6 +21,8 @@ class Action
     protected $class;
 
     protected $route;
+    
+    protected $submit;
 
     protected $confirm_message;
 
@@ -75,6 +77,16 @@ class Action
     public function getRoute()
     {
         return $this->route;
+    }
+
+    public function setSubmit($submit)
+    {
+        $this->submit = (bool) $submit;
+    }
+
+    public function isSubmit()
+    {
+        return $this->submit;
     }
 
     private function humanize($text)

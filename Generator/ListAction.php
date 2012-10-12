@@ -3,10 +3,8 @@
 namespace Admingenerator\GeneratorBundle\Generator;
 
 /**
- *
- * This class describe an action
+ * This class describes List action
  * @author cedric Lombardot
- *
  */
 use Admingenerator\GeneratorBundle\Builder\Admin\BaseBuilder;
 
