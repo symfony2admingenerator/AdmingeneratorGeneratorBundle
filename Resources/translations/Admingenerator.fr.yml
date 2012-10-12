@@ -25,11 +25,6 @@ list.display:
   all:        Affiche les <b>%count%</b> résultats.
 list.header:
   actions:    Actes
-
-# Form
-form.button:
-  save:             Enregistrer
-  collection.add:   Ajouter
   
 # Profile
 profile:

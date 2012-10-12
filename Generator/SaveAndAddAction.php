@@ -15,6 +15,6 @@ class SaveAndAddAction extends Action
         parent::__construct($name);
 
         $this->setSubmit(true);
-        $this->setLabel('form.button.save-and-add');
+        $this->setLabel('actions.save-and-add');
     }
 }

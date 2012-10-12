@@ -17,7 +17,7 @@
           {% endif %}
               {%- if action.confirm %}onclick='return confirm("{{ action.confirm }}")'{% endif %}>
               {%- if action.icon %}<i class="{{ action.icon }}"></i> {% endif -%}
-              {{ echo_trans(action.label) -}}
+              {{ echo_trans(action.label,{}, i18n_catalog is defined ? i18n_catalog : "Admin") -}}
           {% if action.submit %}</button>{% else %}</a>{% endif %}
               
           {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}

@@ -25,11 +25,6 @@ list.display:
   all:        Показаны все <b>%count%</b> записи(ей).
 list.header:
   actions:    Действия
-
-# Form
-form.button:
-  save:             Сохранить
-  collection.add:   Добавить
   
 # Profile
 profile:

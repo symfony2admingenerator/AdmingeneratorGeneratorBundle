@@ -1,8 +1,11 @@
 # Actions
-actions.list:
-  label:  Список
-actions.new:
-  label:  Додати
+actions:
+  list:   Список
+  new:    Додати
+  save:   Зберегти
+  save-and-add:   Зберегти і Додати
+  save-and-list:  Зберегти і Список
+  collection.add: Додати  
   
 # Object actions
 object.edit:

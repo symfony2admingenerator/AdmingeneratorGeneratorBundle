@@ -1,8 +1,11 @@
 # Actions
-actions.list:
-  label:  Lista
-actions.new:
-  label:  Nowy
+actions:
+  list:   Lista
+  new:    Nowy
+  save:   Zapisz
+  save-and-add:   Zapisz i Nowy
+  save-and-list:  Zapisz i Lista
+  collection.add: Dodaj
   
 # Object actions
 object.edit:

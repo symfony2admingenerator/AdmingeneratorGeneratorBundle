@@ -26,11 +26,6 @@ list.display:
 list.header:
   actions:    Actions
 
-# Form
-form.button:
-  save:             Save
-  collection.add:   Add
-
 # Profile
 profile:
   welcome:  <b>Welcome</b>, %username%!</p>

@@ -14,7 +14,7 @@ class ListAction extends Action
     {
         parent::__construct($name);
 
-        $this->setLabel('actions.list.label');
+        $this->setLabel('actions.list');
         $this->setIcon('icon-list-alt');
     }
 }

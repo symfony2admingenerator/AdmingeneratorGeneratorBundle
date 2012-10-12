@@ -25,11 +25,6 @@ list.display:
   all:        Prikazani vsi rezultati <b>(%count%)</b>.
 list.header:
   actions:    Akcije
-
-# Form
-form.button:
-  save:             Shrani
-  collection.add:   Dodaj
   
 # Profile
 profile:

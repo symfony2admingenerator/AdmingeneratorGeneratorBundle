@@ -6,7 +6,7 @@
         {% if builder.Columns[field].formOptions['allow_add'] %}
         <ul class="actions unstyled">
             <li>
-                <a class="btn btn-primary new"><i class="icon-plus icon-white"></i> {{ echo_trans('form.button.collection.add') }}</a>
+                <a class="btn btn-primary new"><i class="icon-plus icon-white"></i> {{ echo_trans('actions.collection.add',{}, i18n_catalog is defined ? i18n_catalog : "Admin") }}</a>
             </li>
         </ul>
         {% endif %}

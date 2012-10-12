@@ -1,8 +1,11 @@
 # Actions
-actions.list:
-  label:  Seznam
-actions.new:
-  label:  Novo
+actions:
+  list:   Seznam
+  new:    Novo
+  save:   Shrani
+  save-and-add:   Shrani in Novo
+  save-and-list:  Shrani in Seznam
+  collection.add: Dodati
   
 # Object actions
 object.edit:
