@@ -6,7 +6,7 @@
             <li data-name="{{ name|classify }}">
               <a data-toggle="tab" href="#" onclick="showFieldsetsForTab('{{ name|classify }}')" 
                  data-display="{%- for fieldsetName, fieldset in tab -%}
-                {{ fieldsetName|classify }} {% endfor %}">{{ name }}</a>
+                {{ fieldsetName|classify }} {% endfor %}">{{ echo_trans(name,{}, i18n_catalog is defined ? i18n_catalog : "Admin" ) }}</a>
             </li>
         {% endfor %}
     </ul>
