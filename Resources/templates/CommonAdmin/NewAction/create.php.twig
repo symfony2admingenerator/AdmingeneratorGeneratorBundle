@@ -45,6 +45,9 @@
     */
     public function onException(\Exception $exception, \Symfony\Component\Form\Form $form, \{{ model }} ${{ builder.ModelClass }})
     {
+        if ($this->get('kernel.debug')) {
+            throw $exception;
+        }
     }
 
     /**
