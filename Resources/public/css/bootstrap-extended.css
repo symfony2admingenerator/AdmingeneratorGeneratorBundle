@@ -16,6 +16,14 @@
     border-bottom: 5px solid #0088CC;
 }
 
+.pagination {
+    margin: 0;
+}
+
+.btn-toolbar + .pagination {
+   margin-top: 5px;
+}
+
 .row-fluid > .form_field {
     -moz-box-sizing: border-box;
     display: block;
