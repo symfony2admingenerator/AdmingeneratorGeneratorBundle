@@ -97,8 +97,8 @@ class DatepickerType extends DateType
         ));
 
         $resolver->setAllowedTypes(array(
-            'format' => array('int', 'string'),
-            'prepend'   =>  array('int', 'string'),
+            'format'    =>  array('int', 'string'),
+            'prepend'   =>  array('bool', 'string'),
         ));
     }
 
