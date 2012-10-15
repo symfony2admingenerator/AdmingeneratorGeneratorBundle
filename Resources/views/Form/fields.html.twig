@@ -268,3 +268,13 @@
     </div>
 {% endspaceless %}
 {% endblock form_row %}
+    
+{% block file_widget %}
+{% spaceless %}
+    <span class="btn btn-success fileinput">
+        <i class="icon-plus icon-white"></i>
+        <span>{{ 'actions.file.add'|trans({}, 'Admingenerator') }}</span>
+        <input type="file" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    </span>
+{% endspaceless %}
+{% endblock %}
