@@ -31,6 +31,8 @@ class DoctrineODMGenerator extends Generator
      */
     public function build()
     {
+        $this->validateYaml();
+
         $generator = new AdminGenerator($this->cache_dir, $this->getGeneratorYml());
         $generator->setContainer($this->container);
         $generator->setBaseAdminTemplate($this->container->getParameter('admingenerator.base_admin_template'));
