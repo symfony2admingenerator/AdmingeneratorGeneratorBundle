@@ -22,7 +22,7 @@
     </div>
     <div style="float: left">
          <div class="double_list_label">{% trans from "Admingenerator" %}double_list.selected{% endtrans %}</div>
-         <select name="{{ form.getParent().get('id') }}[{{ form.get("name") }}][]" multiple="true" id="{{ form.get("id") }}_selected" {% if (form.vars.required) %}required="required" {% endif %}class="double_list_select-selected">
+         <select name="{{ form.getParent().get('id') }}[{{ form.get("name") }}][]" multiple="true" id="{{ form.get("id") }}_selected" class="double_list_select-selected">
          {% for choice in choices %}
             {% if choice is selectedchoice(value) %}
                 <option value="{{ choice.value }}">{{ choice.label }}</option>
@@ -55,8 +55,8 @@
 {% endblock %}
 
 {% block datepicker_widget %}
-    <div class="{% if prepend_label %}input-prepend {% endif %}input-append">
-        {% if prepend_label %}<span class="add-on span2">{{ label|trans({}, 'Admingenerator') }}</span>{% endif %}
+    <div class="{% if prepend %}input-prepend {% endif %}input-append">
+        {% if prepend %}<span class="add-on span2">{{ prepend|trans({}, 'Admingenerator') }}</span>{% endif %}
         <input type="text" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
         <span class="add-on"><i class="icon-calendar"></i></span>
     </div>
@@ -82,7 +82,7 @@
 {%- endautoescape %}
 {% endmacro %}
     
-{% block entity_picker_widget %}
+{% block entitypicker_widget %}
 {% spaceless %}
     <input type="text" id="{{ id ~ '_typeahead' }}" data-source="
       {%- for choice in choices -%}
@@ -181,6 +181,71 @@
     </script>
 {% endspaceless %}
 {% endblock %}
+
+{% block form_label %}
+{% spaceless %}
+    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control-label')|trim}) %}
+    {% if not compound %}
+        {% set label_attr = label_attr|merge({'for': id}) %}
+    {% endif %}
+    {% if required %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+    {% endif %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+{% endspaceless %}
+{% endblock form_label %}
+
+{% block collection_widget %}
+{% spaceless %}
+    <div class="collection">
+        {% set attr = attr|merge({'class': 'control-group' }) %}
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': block('collection_item_widget') }) %}
+        {% endif %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ form_errors(form) }}
+            {% for rows in form %}
+                {% set form = rows %}
+                {{ block('collection_item_widget') }}
+            {% endfor %}
+            {{ form_rest(form) }}
+        </div>
+        
+        {% if allow_add %}
+        <div class="btn-toolbar">
+            <a class="btn btn-primary new"><i class="icon-plus icon-white"></i> {{ 'actions.collection.add'|trans({}, 'Admingenerator') }}</a>
+        </div>
+        {% endif %}
+    </div>
+{% endspaceless %}
+{% endblock collection_widget %}
+
+{% block collection_item_widget %}
+{% spaceless %}
+    <fieldset class="collection_item">
+        <legend>__name__label__</legend>
+        {% for row in prototype %}
+            {{ form_row(row) }}
+        {% endfor %}
+        {% if allow_delete %}
+            <a class="btn btn-danger delete"><i class="icon-remove icon-white"></i></a>
+        {% endif %}
+    </fieldset>
+{% endspaceless %}
+{% endblock collection_item_widget %}
+
+{% block form_widget %}
+{% spaceless %}
+    {% if compound %}
+        {{ block('form_widget_compound') }}
+    {% else %}
+        {{ block('form_widget_simple') }}
+    {% endif %}
+{% endspaceless %}
+{% endblock form_widget %}
     
 {% block form_widget_compound %}
 {% spaceless %}
@@ -203,3 +268,13 @@
     </div>
 {% endspaceless %}
 {% endblock form_row %}
+    
+{% block file_widget %}
+{% spaceless %}
+    <span class="btn btn-success fileinput">
+        <i class="icon-plus icon-white"></i>
+        <span>{{ 'actions.file.add'|trans({}, 'Admingenerator') }}</span>
+        <input type="file" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    </span>
+{% endspaceless %}
+{% endblock %}

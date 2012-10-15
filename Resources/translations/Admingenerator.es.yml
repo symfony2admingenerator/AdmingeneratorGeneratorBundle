@@ -25,11 +25,6 @@ list.display:
   all:        Mostrar todos los <b>%count%</b> resultados.
 list.header:
   actions:    Acciones
-
-# Form
-form.button:
-  save:             Guardar
-  collection.add:   Añadir
   
 # Profile
 profile:
@@ -39,3 +34,32 @@ profile:
 # EntityPicker
 entity_picker:
   placeholder:  Buscar...
+  
+# Actions
+actions:
+  list:   Listar
+  new:    Nuevo
+  save:   Guardar
+  save-and-add:   Guardar y Nuevo
+  save-and-list:  Guardar y Listar
+  collection.add: Añadir 
+  file.add:   Añadir archivo...
+  
+# Object actions
+object.edit:
+  label:    Editar
+  success:  El objeto fue guardado satisfactoriamente.
+  error:    El formulario no pudo ser guardado. comprueba los errores y vuelve a intentarlo.
+object.delete:
+  label:    Borrar
+  confirm:  ¿Está seguro que desea eliminar este elemento?
+    
+# Batch actions
+batch.delete:
+  label:    Borrar
+  confirm:  ¿Te confirmar la eliminación de todos los elementos seleccionados?
+  success:  El registro ha sido borrado correctamente.
+  error:    Este registro no puede ser borrado.
+batch.list:
+  selected:       Seleccionado
+  none.selected:  Debe seleccionar al menos un elemento.

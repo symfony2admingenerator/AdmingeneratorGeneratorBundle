@@ -3,10 +3,8 @@
 namespace Admingenerator\GeneratorBundle\Generator;
 
 /**
- *
- * This class describe an action
+ * This class describes New action
  * @author cedric Lombardot
- *
  */
 use Admingenerator\GeneratorBundle\Builder\Admin\BaseBuilder;
 
@@ -16,8 +14,8 @@ class NewAction extends Action
     {
         parent::__construct($name);
 
-        $this->setLabel('actions.new.label');
-        $this->setIcon('icon-white icon-plus');
+        $this->setLabel('actions.new');
+        $this->setIcon('icon-white icon-certificate');
         $this->setClass('btn-primary');
     }
 }

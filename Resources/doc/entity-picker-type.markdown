@@ -14,7 +14,7 @@ On submission the first input's value is ignored.
 ```yaml
 fields:
   song:
-    formType:         entity_picker
+    formType:         entitypicker
     addFormOptions:
       class:          Acme\RadioBundle\Entity\Song
       builder:        { pk: id, title: title, album: album.name, artist: album.artist.name, thumb: album.cover }
@@ -115,7 +115,7 @@ fields:
     extras:
       new_label:      Add tag
     addFormOptions:
-      type:           entity_picker
+      type:           entitypicker
       allow_add:      true
       allow_delete:   true
       by_reference:   false
