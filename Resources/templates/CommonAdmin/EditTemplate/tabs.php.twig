@@ -3,23 +3,23 @@
 {% if tabs is defined and tabs|length > 0 %}
     <ul class="form_tabs nav nav-tabs">
         {% for name, tab in tabs %}
-            <li data-name="{{ name|classify }}">
-              <a data-toggle="tab" href="#" onclick="showFieldsetsForTab('{{ name|classify }}')" 
+            <li data-name="{{ name|classify|replace({'.': '_'}) }}">
+              <a data-toggle="tab" href="#" onclick="showFieldsetsForTab('{{ name|classify|replace({'.': '_'}) }}')" 
                  data-display="{%- for fieldsetName, fieldset in tab -%}
-                {{ fieldsetName|classify }} {% endfor %}">{{ name }}</a>
+                {{ fieldsetName|classify|replace({'.': '_'}) }} {% endfor %}">{{ echo_trans(name,{}, i18n_catalog is defined ? i18n_catalog : "Admin" ) }}</a>
             </li>
         {% endfor %}
     </ul>
     <script type="text/javascript">
     $(document).ready(function() {
         {% for name in tabs|keys %}
-          {% if loop.first %}showFieldsetsForTab('{{ name|classify }}');{% endif %}
+          {% if loop.first %}showFieldsetsForTab('{{ name|classify|replace({'.': '_'}) }}');{% endif %}
         {% endfor %}
     });
 
     function showFieldsetsForTab(name)
     {
-        $('.admin_form fieldset').css('display','none');
+        $('.admin_form fieldset.fieldset_tabbable').css('display','none');
         $('.form_tabs li').removeClass('active');
         
         var toDisplay = $('.form_tabs li[data-name="'+name+'"] a').data('display').split(' ');

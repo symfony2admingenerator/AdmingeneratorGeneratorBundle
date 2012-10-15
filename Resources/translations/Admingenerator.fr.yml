@@ -25,11 +25,6 @@ list.display:
   all:        Affiche les <b>%count%</b> résultats.
 list.header:
   actions:    Actes
-
-# Form
-form.button:
-  save:             Enregistrer
-  collection.add:   Ajouter
   
 # Profile
 profile:
@@ -39,3 +34,32 @@ profile:
 # EntityPicker
 entity_picker:
   placeholder:  Rechercher...
+  
+# Actions
+actions:
+  list:   Retour à la liste
+  new:    Nouveau
+  save:   Enregistrer
+  save-and-add:   Enregistrer et Nouveau
+  save-and-list:  Enregistrer et Retour à la liste
+  collection.add: Ajouter 
+  file.add:   Ajouter un fichier...
+  
+# Object actions
+object.edit:
+  label:    Éditer
+  success:  L'enregistrement a été effectué avec succès.
+  error:    Le formulaire n'a pas pu être sauvegardé. Vérifiez les erreurs et essayez de soumettre à nouveau.
+object.delete:
+  label:    Effacer
+  confirm:  Etes-vous sur de vouloir supprimer cet élement?
+    
+# Batch actions
+batch.delete:
+  label:    Effacer
+  confirm:  Etes-vous sur de vouloir supprimer les élements sélectionnés?
+  success:  Les enregistrements ont étés supprimés avec succès.
+  error:    Les enregistrements n'ont pu être supprimés.
+batch.list:
+  selected:       Choisir
+  none.selected:  Vous devez sélectionner au moins un élément.

@@ -37,8 +37,8 @@
             <argument type="service" id="doctrine" />
         </service>
 
-        <service id="form.type.entity_picker" class="Admingenerator\GeneratorBundle\Form\Type\EntityPickerType">
-            <tag name="form.type" alias="entity_picker" />
+        <service id="form.type.entitypicker" class="Admingenerator\GeneratorBundle\Form\Type\EntityPickerType">
+            <tag name="form.type" alias="entitypicker" />
             <argument type="service" id="doctrine" />
         </service>
     </services>
