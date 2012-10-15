@@ -5,6 +5,7 @@ namespace Admingenerator\GeneratorBundle\Generator;
 use Symfony\Component\Finder\Finder;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Admingenerator\GeneratorBundle\Validator\ValidatorInterface;
 
 use Admingenerator\GeneratorBundle\Builder\Generator as AdminGenerator;
 
@@ -24,6 +25,8 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
 
     protected $base_generator_name;
 
+    protected $validators = array();
+
     public function __construct($root_dir, $cache_dir)
     {
         $this->root_dir = $root_dir;
@@ -35,7 +38,7 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
         $this->generator_yaml = $yaml_file;
     }
 
-    protected function getGeneratorYml()
+    public function getGeneratorYml()
     {
         return $this->generator_yaml;
     }
@@ -113,5 +116,17 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
         }
 
         return false;
+    }
+
+    public function addValidator(ValidatorInterface $validator)
+    {
+        $this->validators[] = $validator;
+    }
+
+    public function validateYaml()
+    {
+        foreach ($this->validators as $validator) {
+            $validator->validate($this);
+        }
     }
 }

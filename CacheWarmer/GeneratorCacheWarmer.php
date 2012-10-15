@@ -7,6 +7,7 @@ use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+use Admingenerator\GeneratorBundle\Exception\GeneratedModelClassNotFoundException;
 use Admingenerator\GeneratorBundle\ClassLoader\AdmingeneratedClassLoader;
 
 /**
@@ -42,13 +43,17 @@ class GeneratorCacheWarmer implements CacheWarmerInterface
     public function warmUp($cacheDir)
     {
         foreach ($this->finder->findAllGeneratorYamls() as $yaml) {
-            $this->buildFromYaml($yaml);
+            try {
+                $this->buildFromYaml($yaml);
+            } catch (GeneratedModelClassNotFoundException $e) {
+                echo ">> Skip warmup ".$e->getMessage()."\n";
+            }
         }
 
-        /* 
+        /*
          * Load classe to avoid problem with other cache warmers
          * like JmsDiExtraBundle
-         * 
+         *
          * See issue #190
         */
         $AdmingeneratedClassLoader = new AdmingeneratedClassLoader;
