@@ -1,7 +1,7 @@
 {% use '../CommonAdmin/EditTemplate/Type/collection.php.twig' %}
 {% block form_fieldset %}
 {{ echo_block("form_fieldset_" ~ fieldset|classify|replace({'.': '_'})) }}
-    <fieldset class="form_block form_fieldset_{{ fieldset|classify|replace({'.': '_'}) }}">
+    <fieldset class="form_block form_fieldset_{{ fieldset|classify|replace({'.': '_'}) }} fieldset_tabbable">
         {% if "NONE" != fieldset %}
         <legend><span>{{ echo_trans(fieldset,{}, i18n_catalog is defined ? i18n_catalog : "Admin" ) }}</span></legend>
         {% endif -%}

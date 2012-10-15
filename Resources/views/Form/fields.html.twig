@@ -181,6 +181,71 @@
     </script>
 {% endspaceless %}
 {% endblock %}
+
+{% block form_label %}
+{% spaceless %}
+    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control-label')|trim}) %}
+    {% if not compound %}
+        {% set label_attr = label_attr|merge({'for': id}) %}
+    {% endif %}
+    {% if required %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+    {% endif %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+{% endspaceless %}
+{% endblock form_label %}
+
+{% block collection_widget %}
+{% spaceless %}
+    <div class="collection">
+        {% set attr = attr|merge({'class': 'control-group' }) %}
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': block('collection_item_widget') }) %}
+        {% endif %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ form_errors(form) }}
+            {% for rows in form %}
+                {% set form = rows %}
+                {{ block('collection_item_widget') }}
+            {% endfor %}
+            {{ form_rest(form) }}
+        </div>
+        
+        {% if allow_add %}
+        <div class="btn-toolbar">
+            <a class="btn btn-primary new"><i class="icon-plus icon-white"></i> {{ 'actions.collection.add'|trans({}, 'Admingenerator') }}</a>
+        </div>
+        {% endif %}
+    </div>
+{% endspaceless %}
+{% endblock collection_widget %}
+
+{% block collection_item_widget %}
+{% spaceless %}
+    <fieldset class="collection_item">
+        <legend>__name__label__</legend>
+        {% for row in prototype %}
+            {{ form_row(row) }}
+        {% endfor %}
+        {% if allow_delete %}
+            <a class="btn btn-danger delete"><i class="icon-remove icon-white"></i></a>
+        {% endif %}
+    </fieldset>
+{% endspaceless %}
+{% endblock collection_item_widget %}
+
+{% block form_widget %}
+{% spaceless %}
+    {% if compound %}
+        {{ block('form_widget_compound') }}
+    {% else %}
+        {{ block('form_widget_simple') }}
+    {% endif %}
+{% endspaceless %}
+{% endblock form_widget %}
     
 {% block form_widget_compound %}
 {% spaceless %}

@@ -19,7 +19,7 @@
 
     function showFieldsetsForTab(name)
     {
-        $('.admin_form fieldset').css('display','none');
+        $('.admin_form fieldset.fieldset_tabbable').css('display','none');
         $('.form_tabs li').removeClass('active');
         
         var toDisplay = $('.form_tabs li[data-name="'+name+'"] a').data('display').split(' ');
