@@ -25,11 +25,6 @@ list.display:
   all:        Mostra tutti i <b>%count%</b> risultati.
 list.header:
   actions:    Azioni
-
-# Form
-form.button:
-  save:             Salva
-  collection.add:   Aggiungi
   
 # Profile
 profile:
@@ -39,3 +34,32 @@ profile:
 # EntityPicker
 entity_picker:
   placeholder:  Cerca...
+
+# Actions
+actions:
+  list:   Lista
+  new:    Nuovo
+  save:   Salvare
+  save-and-add:   Salvare e Nuovo
+  save-and-list:  Salvare e Lista
+  collection.add: Aggiungi
+  file.add:   Aggiungi archivio...
+  
+# Object actions
+object.edit:
+  label:    Modifica
+  success:  L'oggetto è stato salvato con successo.
+  error:    Non è stato possibile salvare il form. Controlla gli errori e reinvia il form.
+object.delete:
+  label:    Cancellare
+  confirm:  Sei sicuro di voler eliminare questo elemento?
+    
+# Batch actions
+batch.delete:
+  label:    Cancellare
+  confirm:  Confermi l'eliminazione di tutti gli elementi selezionati?
+  success:  I dati sono stati correttamente eliminati.
+  error:    I dati non possono essere eliminati.
+batch.list:
+  selected:       Selezionati
+  none.selected:  È necessario selezionare alemeno uno elemento.

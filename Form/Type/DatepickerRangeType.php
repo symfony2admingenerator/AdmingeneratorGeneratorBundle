@@ -47,16 +47,14 @@ class DatepickerRangeType extends AbstractType
             'format'  => null,
             'years'   => $years,
             'to'      => array(
-                'label'         =>  'date_range.to.label',
                 'years'         =>  $years, 
                 'widget'        =>  'datepicker',
-                'prepend_label' =>  true,
+                'prepend'       =>  'date_range.to.label',
                 'attr'          =>  array('class' => 'input-small')),
             'from'    => array(
-                'label'         =>  'date_range.from.label',
                 'years'         =>  $years, 
                 'widget'        =>  'datepicker',
-                'prepend_label' =>  true,
+                'prepend'       =>  'date_range.from.label',
                 'attr'          =>  array('class' => 'input-small')),
             'widget'  =>  'datepicker_range',
         );
