@@ -25,11 +25,6 @@ list.display:
   all:        Zeige alle <b>%count%</b> Datensätze.
 list.header:
   actions:    Aktionen
-
-# Form
-form.button:
-  save:             Speichern
-  collection.add:   Hinzufügen
   
 # Profile
 profile:
@@ -39,3 +34,32 @@ profile:
 # EntityPicker
 entity_picker:
   placeholder:  Suchen...
+  
+# Actions
+actions:
+  list:   Übersicht
+  new:    Neu
+  save:   Speichern
+  save-and-add:   Speichern und Neu
+  save-and-list:  Speichern und Übersicht
+  collection.add: Hinzufügen 
+  file.add:   Datei hinzufügen...
+  
+# Object actions
+object.edit:
+  label:    Bearbeiten
+  success:  Das Objekt wurde erfolgreich gespeichert.
+  error:    Das Formular konnte nicht gespeichert werden. Bitte Fehler prüfen und erneut versuchen.
+object.delete:
+  label:    Löschen
+  confirm:  Sind Sie sicher, dass Sie dieses Element löschen?
+    
+# Batch actions
+batch.delete:
+  label:    Delete
+  confirm:  Sie bestätigen das Löschen aller ausgewählten Elemente?
+  success:  Die Eintrage wurden erfolgreich gelöscht.
+  error:    Die Eintrage können nicht gelöscht werden.
+batch.list:
+  selected:       Ausgewählte
+  none.selected:  Sie müssen mindestens ein Element auswählen.
