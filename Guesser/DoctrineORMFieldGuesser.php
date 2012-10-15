@@ -3,7 +3,7 @@
 namespace Admingenerator\GeneratorBundle\Guesser;
 
 use Admingenerator\GeneratorBundle\Exception\NotImplementedException;
-
+use Admingenerator\GeneratorBundle\Exception\ClassNotFoundException;
 use Doctrine\ORM\EntityManager;
 
 class DoctrineORMFieldGuesser
@@ -38,6 +38,10 @@ class DoctrineORMFieldGuesser
 
     public function getAllFields($class)
     {
+        if (!class_exists($class)) {
+            throw new ClassNotFoundException($class);
+        }
+
         return $this->getMetadatas($class)->getFieldNames();
     }
 

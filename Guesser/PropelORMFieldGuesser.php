@@ -26,6 +26,10 @@ class PropelORMFieldGuesser
 
     public function getAllFields($class)
     {
+        if (!class_exists($class)) {
+            throw new ClassNotFoundException($class);
+        }
+
         $return = array();
 
         foreach ($this->getMetadatas($class)->getColumns() as $column) {
@@ -71,81 +75,81 @@ class PropelORMFieldGuesser
     {
         switch ($dbType) {
             case \PropelColumnTypes::ENUM:
-                return 'choice';
+            return 'choice';
             case \PropelColumnTypes::BOOLEAN:
             case \PropelColumnTypes::BOOLEAN_EMU:
-                return 'checkbox';
+            return 'checkbox';
             case \PropelColumnTypes::TIMESTAMP:
             case \PropelColumnTypes::BU_TIMESTAMP:
-                return 'datetime';
+            return 'datetime';
             case \PropelColumnTypes::DATE:
             case \PropelColumnTypes::BU_DATE:
-                return 'date';
+            return 'date';
             case \PropelColumnTypes::TIME:
-                return 'time';
+            return 'time';
             case \PropelColumnTypes::FLOAT:
             case \PropelColumnTypes::REAL:
             case \PropelColumnTypes::DOUBLE:
             case \PropelColumnTypes::DECIMAL:
-                return 'number';
+            return 'number';
             case \PropelColumnTypes::TINYINT:
             case \PropelColumnTypes::SMALLINT:
             case \PropelColumnTypes::INTEGER:
             case \PropelColumnTypes::BIGINT:
             case \PropelColumnTypes::NUMERIC:
-                return 'integer';
+            return 'integer';
             case \PropelColumnTypes::CHAR:
             case \PropelColumnTypes::VARCHAR:
-                return 'text';
+            return 'text';
             case \PropelColumnTypes::LONGVARCHAR:
             case \PropelColumnTypes::BLOB:
             case \PropelColumnTypes::CLOB:
             case \PropelColumnTypes::CLOB_EMU:
-                return 'textarea';
+            return 'textarea';
             case 'model':
-                return 'model';
+            return 'model';
             case \PropelColumnTypes::PHP_ARRAY:
-                return 'collection';
-                break;
+            return 'collection';
+            break;
             case 'collection':
-                return 'propel_double_list';
+            return 'propel_double_list';
             default:
-                throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'")');
+            throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'")');
         }
     }
 
     public function getFilterType($dbType, $columnName)
     {
-         switch ($dbType) {
-             case \PropelColumnTypes::BOOLEAN:
-             case \PropelColumnTypes::BOOLEAN_EMU:
-                return 'choice';
-                break;
-             case \PropelColumnTypes::TIMESTAMP:
-             case \PropelColumnTypes::BU_TIMESTAMP:
-             case \PropelColumnTypes::DATE:
-             case \PropelColumnTypes::BU_DATE:
-                return 'date_range';
-                break;
-             case 'collection':
-                return 'model';
-                break;
-         }
+       switch ($dbType) {
+           case \PropelColumnTypes::BOOLEAN:
+           case \PropelColumnTypes::BOOLEAN_EMU:
+           return 'choice';
+           break;
+           case \PropelColumnTypes::TIMESTAMP:
+           case \PropelColumnTypes::BU_TIMESTAMP:
+           case \PropelColumnTypes::DATE:
+           case \PropelColumnTypes::BU_DATE:
+           return 'date_range';
+           break;
+           case 'collection':
+           return 'model';
+           break;
+       }
 
-         return $this->getFormType($dbType, $columnName);
+       return $this->getFormType($dbType, $columnName);
+   }
+
+   public function getFormOptions($formType, $dbType, $columnName)
+   {
+    if (\PropelColumnTypes::BOOLEAN == $dbType || \PropelColumnTypes::BOOLEAN_EMU == $dbType) {
+        return array('required' => false);
     }
 
-    public function getFormOptions($formType, $dbType, $columnName)
-    {
-        if (\PropelColumnTypes::BOOLEAN == $dbType || \PropelColumnTypes::BOOLEAN_EMU == $dbType) {
-            return array('required' => false);
-        }
-
-        if ('model' == $formType) {
-            $relation = $this->getRelation($columnName);
-            if ($relation) {
-                if (\RelationMap::MANY_TO_ONE === $relation->getType()) {
-                    return array('class' => $relation->getForeignTable()->getClassname(), 'multiple' => false);
+    if ('model' == $formType) {
+        $relation = $this->getRelation($columnName);
+        if ($relation) {
+            if (\RelationMap::MANY_TO_ONE === $relation->getType()) {
+                return array('class' => $relation->getForeignTable()->getClassname(), 'multiple' => false);
                 } else { // Many to many
 
                     return array('class' => $relation->getLocalTable()->getClassname(), 'multiple' => false);
@@ -171,13 +175,13 @@ class PropelORMFieldGuesser
 
         if (\PropelColumnTypes::ENUM == $dbType) {
             $valueSet = $this->getMetadatas()
-                                   ->getColumn($columnName)
-                                   ->getValueSet();
+            ->getColumn($columnName)
+            ->getValueSet();
 
             return array(
                 'required' => $this->isRequired($columnName),
                 'choices'  => array_combine($valueSet, $valueSet),
-            );
+                );
         }
 
         return array('required' => $this->isRequired($columnName));
@@ -197,34 +201,34 @@ class PropelORMFieldGuesser
         $options = array('required' => false);
 
         if (\PropelColumnTypes::BOOLEAN == $dbType || \PropelColumnTypes::BOOLEAN_EMU == $dbType) {
-           $options['choices'] = array(
-                    0 => 'No',
-                    1 => 'Yes'
-                    );
-           $options['empty_value'] = 'Yes or No';
-        }
-
-        if (\PropelColumnTypes::ENUM == $dbType) {
-            $valueSet = $this->getMetadatas()
-                                   ->getColumn($ColumnName)
-                                   ->getValueSet();
-
-            return array(
-                'required' => false,
-                'choices'  => array_combine($valueSet, $valueSet),
+         $options['choices'] = array(
+            0 => 'No',
+            1 => 'Yes'
             );
-        }
+         $options['empty_value'] = 'Yes or No';
+     }
 
-         if ('model' == $dbType) {
-             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
-         }
+     if (\PropelColumnTypes::ENUM == $dbType) {
+        $valueSet = $this->getMetadatas()
+        ->getColumn($ColumnName)
+        ->getValueSet();
 
-        if ('collection' == $dbType) {
-             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
-         }
-
-        return $options;
+        return array(
+            'required' => false,
+            'choices'  => array_combine($valueSet, $valueSet),
+            );
     }
+
+    if ('model' == $dbType) {
+       return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
+   }
+
+   if ('collection' == $dbType) {
+       return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
+   }
+
+   return $options;
+}
 
     /**
      * Find the pk name
