@@ -42,7 +42,8 @@ actions:
   save:   Enregistrer
   save-and-add:   Enregistrer et Nouveau
   save-and-list:  Enregistrer et Retour à la liste
-  collection.add: Ajouter  
+  collection.add: Ajouter 
+  file.add:   Ajouter un fichier...
   
 # Object actions
 object.edit:

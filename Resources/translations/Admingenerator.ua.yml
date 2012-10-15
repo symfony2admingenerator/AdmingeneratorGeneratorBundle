@@ -43,6 +43,7 @@ actions:
   save-and-add:   Зберегти і Додати
   save-and-list:  Зберегти і Список
   collection.add: Додати  
+  file.add:   Додати файл...
   
 # Object actions
 object.edit:

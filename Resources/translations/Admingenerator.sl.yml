@@ -43,6 +43,7 @@ actions:
   save-and-add:   Shrani in Novo
   save-and-list:  Shrani in Seznam
   collection.add: Dodati
+  file.add:   Dodaj datoteko...
   
 # Object actions
 object.edit:
