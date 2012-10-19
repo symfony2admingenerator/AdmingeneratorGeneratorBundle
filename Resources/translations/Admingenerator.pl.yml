@@ -34,6 +34,17 @@ profile:
 # EntityPicker
 entity_picker:
   placeholder:  Szukaj...
+  
+# Multifile
+multifile:
+  error:
+    head:       Błąd
+    extension:  "Niedozwolony typ pliku %ext%.<br />Wybierz inny plik..."
+    duplicate:  "Ten plik już został wybrany:<ul><li>%file%</li></ul>"
+  file:
+    name:       %file%
+    title:      "Wybrany plik: %file%"
+    remove:     Usuń
 
 # Actions
 actions:

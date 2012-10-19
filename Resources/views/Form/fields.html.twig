@@ -181,6 +181,45 @@
     </script>
 {% endspaceless %}
 {% endblock %}
+    
+{% block multifile_widget %}
+{% spaceless %}    
+    <div class="btn-toolbar">
+        <span class="btn btn-success fileinput">
+            <i class="icon-plus icon-white"></i>
+            <span>{{ 'actions.file.add'|trans({}, 'Admingenerator') }}</span>
+            <input type="file" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+        </span>
+    </div>
+    <table class="table table-striped"><tbody id="{{ 'upload_list_' ~ id }}"></tbody></table>
+    
+    <div id="{{ 'modal_' ~ id }}" aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade in alert alert-error">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4>{{ 'multifile.error.head'|trans({}, 'Admingenerator')|raw }}</h4>
+        </div>
+        <div class="modal-body"></div>
+        <div class="modal-footer"><button type="button" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button></div>
+    </div>
+    <script type="text/javascript">        
+        $(document).ready(function() {     
+            $('#{{ id }}').MultiFile({
+                list:           '{{ '#upload_list_' ~ id }}',
+                modal:          '{{ '#modal_' ~ id }}',
+                max:            '{{ max_files }}', 
+                accept:         '{{ accepted }}',
+                STRING: {
+                    file:       '{{ 'multifile.file.name'|trans({}, 'Admingenerator')|raw }}',
+                    remove:     '<b title="{{ 'multifile.file.remove'|trans({}, 'Admingenerator') }}">×</b>',
+                    selected:   '{{ 'multifile.file.title'|trans({}, 'Admingenerator') }}',
+                    denied:     '{{ 'multifile.error.extension'|trans({}, 'Admingenerator')|raw }}',
+                    duplicate:  '{{ 'multifile.error.duplicate'|trans({}, 'Admingenerator')|raw }}',
+                },
+            });
+        });
+    </script>
+{% endspaceless %}
+{% endblock %}
 
 {% block form_label %}
 {% spaceless %}
@@ -268,13 +307,3 @@
     </div>
 {% endspaceless %}
 {% endblock form_row %}
-    
-{% block file_widget %}
-{% spaceless %}
-    <span class="btn btn-success fileinput">
-        <i class="icon-plus icon-white"></i>
-        <span>{{ 'actions.file.add'|trans({}, 'Admingenerator') }}</span>
-        <input type="file" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
-    </span>
-{% endspaceless %}
-{% endblock %}

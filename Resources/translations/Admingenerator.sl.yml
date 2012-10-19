@@ -34,6 +34,17 @@ profile:
 # EntityPicker
 entity_picker:
   placeholder:  Iskanje...
+  
+# Multifile
+multifile:
+  error:
+    head:       Napaka
+    extension:  "Ne morete izbrati datoteke %ext%.<br />Izberite drugo datoteko..."
+    duplicate:  "Ta datoteka je že izbran:<ul><li>%file%</li></ul>"
+  file:
+    name:       %file%
+    title:      "Datoteka izbrana: %file%"
+    remove:     Odstrani
 
 # Actions
 actions:

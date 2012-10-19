@@ -35,6 +35,17 @@ profile:
 # EntityPicker
 entity_picker:
   placeholder:  Search...
+  
+# Multifile
+multifile:
+  error:
+    head:       Error
+    extension:  "You cannot select a %ext% file.<br />Choose another file..."
+    duplicate:  "This file has already been selected:<ul><li>%file%</li></ul>"
+  file:
+    name:       %file%
+    title:      "File selected: %file%"
+    remove:     Remove
 
 # Actions
 actions:

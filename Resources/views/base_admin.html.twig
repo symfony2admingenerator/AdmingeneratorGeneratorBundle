@@ -135,6 +135,12 @@
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
+        
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/multifile.js'
+            'bundles/admingeneratorgenerator/js/jquery.MultiFile-1.48-extended.js'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}    
     {% endblock %}
 
   </body>
