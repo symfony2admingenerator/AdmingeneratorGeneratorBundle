@@ -191,7 +191,7 @@
             <input type="file" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
         </span>
     </div>
-    <table class="table table-striped"><tbody id="{{ 'upload_list_' ~ id }}"></tbody></table>
+    <table class="table table-striped table-hover"><tbody id="{{ 'upload_list_' ~ id }}"></tbody></table>
     
     <div id="{{ 'modal_' ~ id }}" aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade in alert alert-error">
         <div class="modal-header">
