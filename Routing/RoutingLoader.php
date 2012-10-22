@@ -124,6 +124,6 @@ class RoutingLoader extends FileLoader
     {
         preg_match('#.+/(.+)/(.+Bundle)/Controller?/(.*?)/?$#', $resource, $matches);
 
-        return str_replace('/', '\\', $matches[2]);
+        return str_replace('/', '\\', $matches[1]);
     }
 }
