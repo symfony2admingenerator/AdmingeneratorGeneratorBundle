@@ -266,7 +266,7 @@
 {% spaceless %}
     <fieldset class="collection_item">
         <legend>__name__label__</legend>
-        {% for row in prototype %}
+        {% for row in form %}
             {{ form_row(row) }}
         {% endfor %}
         {% if allow_delete %}
