@@ -15,7 +15,6 @@ class DateRangeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-         unset($options['years']);
 
          $options['from']['required'] = $options['required'];
          $options['to']['required'] = $options['required'];
