@@ -151,3 +151,8 @@ button::-moz-focus-inner, select::-moz-focus-inner {
 .modal-header .close {
     right: 0px;
 }
+
+/* Additional text styles */
+.justify {
+  text-align: justify;
+}

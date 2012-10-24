@@ -1,0 +1,17 @@
+{% extends 'AdmingeneratorGeneratorBundle:Dashboard:dashboard.html.twig' %}
+
+{% block title %}
+    {{ 'documentation.commands.header'|trans({}, 'Admingenerator')|raw }}
+{% endblock %}
+
+{% block content %}       
+    {% block page_title %}
+        <header>
+            <h1>{{ 'documentation.commands.header'|trans({}, 'Admingenerator')|raw }}</h1>
+            <p class="muted">{{ 'documentation.commands.message'|trans({}, 'Admingenerator')|raw }}</p>
+        </header>
+    {% endblock %}
+    <div class="row-fluid">
+          Lorem ipsum
+    </div><!--/row-->
+{% endblock %}
