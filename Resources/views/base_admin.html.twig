@@ -7,8 +7,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    {% block scripts_head %}
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    {% block scripts_head %}        
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/jquery.min.js'
+            'bundles/admingeneratorgenerator/js/jquery-1.8.1.min.js'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
     {% endblock %}
 
     {% block stylesheets %}
