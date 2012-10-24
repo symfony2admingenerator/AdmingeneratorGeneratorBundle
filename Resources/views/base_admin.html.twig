@@ -9,7 +9,7 @@
 
     {% block scripts_head %}        
         {% javascripts filter='?yui_js' output='assetic/js/compiled/jquery.min.js'
-            'bundles/admingeneratorgenerator/js/jquery-1.8.1.min.js'
+            'bundles/admingeneratorgenerator/js/jquery-1.8.2.min.js'
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
@@ -139,6 +139,11 @@
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
+        
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/jquery-extended.js'
+            'bundles/admingeneratorgenerator/js/jquery.ui.widget.js'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
         
         {% javascripts filter='?yui_js' output='assetic/js/compiled/multifile.js'
             'bundles/admingeneratorgenerator/js/jquery.MultiFile-1.48-extended.js'
