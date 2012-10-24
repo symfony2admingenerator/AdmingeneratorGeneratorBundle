@@ -69,8 +69,8 @@
             <tag name="form.type" alias="datepicker_range" />
         </service>
 
-        <service id="form.type.multifile" class="Admingenerator\GeneratorBundle\Form\Type\MultifileType">
-            <tag name="form.type" alias="multifile" />
+        <service id="form.type.upload" class="Admingenerator\GeneratorBundle\Form\Type\UploadType">
+            <tag name="form.type" alias="upload" />
         </service>
 
         <!-- Warmup -->

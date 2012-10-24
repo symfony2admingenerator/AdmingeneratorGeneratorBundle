@@ -36,8 +36,8 @@ profile:
 entity_picker:
   placeholder:  Szukaj...
   
-# Multifile
-multifile:
+# Upload
+upload:
   error:
     head:       Błąd
     extension:  "Niedozwolony typ pliku %ext%.<br />Wybierz inny plik..."

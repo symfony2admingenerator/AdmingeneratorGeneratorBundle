@@ -182,7 +182,7 @@
 {% endspaceless %}
 {% endblock %}
     
-{% block multifile_widget %}
+{% block upload_widget %}
 {% spaceless %}    
     <div class="btn-toolbar">
         <span class="btn btn-success fileinput">
@@ -196,7 +196,7 @@
     <div id="{{ 'modal_' ~ id }}" aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade in alert alert-error">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4>{{ 'multifile.error.head'|trans({}, 'Admingenerator')|raw }}</h4>
+            <h4>{{ 'upload.error.head'|trans({}, 'Admingenerator')|raw }}</h4>
         </div>
         <div class="modal-body"></div>
         <div class="modal-footer"><button type="button" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button></div>
@@ -209,11 +209,11 @@
                 max:            '{{ max_files }}', 
                 accept:         '{{ accepted }}',
                 STRING: {
-                    file:       '{{ 'multifile.file.name'|trans({}, 'Admingenerator')|raw }}',
-                    remove:     '<b title="{{ 'multifile.file.remove'|trans({}, 'Admingenerator') }}">×</b>',
-                    selected:   '{{ 'multifile.file.title'|trans({}, 'Admingenerator') }}',
-                    denied:     '{{ 'multifile.error.extension'|trans({}, 'Admingenerator')|raw }}',
-                    duplicate:  '{{ 'multifile.error.duplicate'|trans({}, 'Admingenerator')|raw }}',
+                    file:       '{{ 'upload.file.name'|trans({}, 'Admingenerator')|raw }}',
+                    remove:     '<b title="{{ 'upload.file.remove'|trans({}, 'Admingenerator') }}">×</b>',
+                    selected:   '{{ 'upload.file.title'|trans({}, 'Admingenerator') }}',
+                    denied:     '{{ 'upload.error.extension'|trans({}, 'Admingenerator')|raw }}',
+                    duplicate:  '{{ 'upload.error.duplicate'|trans({}, 'Admingenerator')|raw }}',
                 },
             });
         });

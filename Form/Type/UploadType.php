@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class MultifileType extends FileType
+class UploadType extends FileType
 {
     /**
      * {@inheritdoc}
@@ -43,6 +43,6 @@ class MultifileType extends FileType
      */
     public function getName()
     {
-        return 'multifile';
+        return 'upload';
     }
 }

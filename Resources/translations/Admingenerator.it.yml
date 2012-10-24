@@ -36,8 +36,8 @@ profile:
 entity_picker:
   placeholder:  Cerca...
   
-# Multifile
-multifile:
+# Upload
+upload:
   error:
     head:       Errore
     extension:  "Non è possibile selezionare un file %ext%.<br />Scegliere un altro file..."

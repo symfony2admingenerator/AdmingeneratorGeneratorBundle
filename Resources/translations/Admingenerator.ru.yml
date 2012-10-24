@@ -36,8 +36,8 @@ profile:
 entity_picker:
   placeholder:  Искать...
   
-# Multifile
-multifile:
+# Upload
+upload:
   error:
     head:       Ошибка
     extension:  "Вы не можете выбрать файл %ext%.<br />Выбрать другой файл..."
