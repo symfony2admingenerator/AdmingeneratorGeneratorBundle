@@ -29,6 +29,7 @@ list.header:
 # Profile
 profile:
   welcome:  <b>Bem-vindo</b>, %username%!</p>
+  login:    Iniciar sessão
   logout:   Sair
   
 # EntityPicker

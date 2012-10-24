@@ -29,8 +29,8 @@ list.header:
 # Profile
 profile:
   welcome:  <b>Welcome</b>, %username%!</p>
-  logout:   Log out
   login:    Login
+  logout:   Log out
 
 # EntityPicker
 entity_picker:
