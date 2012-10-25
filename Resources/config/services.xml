@@ -69,6 +69,10 @@
             <tag name="form.type" alias="datepicker_range" />
         </service>
 
+        <service id="form.type.upload" class="Admingenerator\GeneratorBundle\Form\Type\UploadType">
+            <tag name="form.type" alias="upload" />
+        </service>
+
         <!-- Warmup -->
         <service id="admingenerator.finder" class="%admingenerator.finder.class%" public="false">
             <argument type="service" id="kernel" />
@@ -80,7 +84,7 @@
             <argument type="service" id="admingenerator.finder" />
         </service>
 
-        <!-- Menu -->
+        <!-- Admin Menu -->
         <service id="admingeneretor.menu_builder" class="%admingeneretor.menu_builder.class%">
             <tag name="knp_menu.menu" alias="admin" />
             <argument type="service" id="knp_menu.factory" />
@@ -94,6 +98,23 @@
              factory-method="createAdminMenu"
              scope="request">
             <tag name="knp_menu.menu" alias="admin" />
+            <argument type="service" id="request" />
+        </service>
+        
+        <!-- Dashboard Menu -->
+        <service id="admingeneretor.menu_builder.dashboard" class="%admingeneretor.menu_builder.class%">
+            <tag name="knp_menu.menu" alias="dashboard" />
+            <argument type="service" id="knp_menu.factory" />
+            <call method="setContainer">
+                    <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <service id="admingeneretor.menu.dashboard" class="%admingeneretor.menu_builder.class%"
+             factory-service="admingeneretor.menu_builder.dashboard"
+             factory-method="createDashboardMenu"
+             scope="request">
+            <tag name="knp_menu.menu" alias="dashboard" />
             <argument type="service" id="request" />
         </service>
     </services>

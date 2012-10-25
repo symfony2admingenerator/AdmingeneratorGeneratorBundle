@@ -29,11 +29,17 @@ list.header:
 # Profile
 profile:
   welcome:  <b>Witaj</b>, %username%!</p>
+  login:    Zaloguj
   logout:   Wyloguj
   
 # EntityPicker
 entity_picker:
   placeholder:  Szukaj...
+  
+# Upload
+upload:
+  error:        Błąd
+  cancel:       Anuluj
 
 # Actions
 actions:

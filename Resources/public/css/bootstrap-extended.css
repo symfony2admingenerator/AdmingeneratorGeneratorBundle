@@ -112,6 +112,7 @@ button::-moz-focus-inner, select::-moz-focus-inner {
 
 .fileinput {
   position: relative;
+  overflow: hidden;
 }
 
 .fileinput input[type="file"] {
@@ -133,4 +134,25 @@ button::-moz-focus-inner, select::-moz-focus-inner {
     transform: translate(-300px, 0px) scale(4);
     height: 30px;
     line-height: 30px;
+}
+
+.MultiFile-remove, .MultiFile-remove:hover  {
+    color: #B94A48;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+/* File input error modal */
+.modal.alert.alert-error {
+    padding: 0px;
+}
+
+.modal-header .close {
+    right: 0px;
+}
+
+/* Additional text styles */
+.justify {
+  text-align: justify;
 }

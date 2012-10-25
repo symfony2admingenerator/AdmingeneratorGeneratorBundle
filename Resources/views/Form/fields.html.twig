@@ -1,202 +1,82 @@
 {% block double_list_widget %}
-<script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/javascripts/double_list.js') }}"></script>
-<div class="double_list">
-    <div style="float: left">
-        <div class="double_list_label">{% trans from "Admingenerator" %}double_list.unselected{% endtrans %}</div>
-        <select name="{{ form.getParent().get('id') }}[{{ form.get("name") }}][unselected]" multiple="true" id="{{ form.get("id") }}_unselected" class="double_list_select-unselected">
-        {% for choice in choices %}
-            {% if choice is not selectedchoice(value) %}
-                <option value="{{ choice.value }}">{{ choice.label }}</option>
-            {% endif %}
-        {% endfor %}
-        </select>
+{% spaceless %}
+    <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/javascripts/double_list.js') }}"></script>
+    <div class="double_list">
+        <div style="float: left">
+            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:double_list_unselected.html.twig" %}
+        </div>
+        <div style="float: left; margin-top: 2em">
+            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:double_list_controls.html.twig" %}
+        </div>
+        <div style="float: left">
+            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:double_list_selected.html.twig" %}
+        </div>
+        <br style="clear: both" />
+        {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:javascript.html.twig" %}
     </div>
-    <div style="float: left; margin-top: 2em">
-         <a href="#" onclick="sfDoubleList.move('{{ form.get("id") }}_unselected','{{ form.get("id") }}_selected'); return false;">
-            <img src="{{ asset('bundles/admingeneratorgenerator/images/next.png') }}" alt="unassociate" />
-         </a>
-         <br />
-         <a href="#" onclick="sfDoubleList.move('{{ form.get("id") }}_selected','{{ form.get("id") }}_unselected'); return false;">
-            <img src="{{ asset('bundles/admingeneratorgenerator/images/previous.png') }}" alt="associate" />
-         </a>
-    </div>
-    <div style="float: left">
-         <div class="double_list_label">{% trans from "Admingenerator" %}double_list.selected{% endtrans %}</div>
-         <select name="{{ form.getParent().get('id') }}[{{ form.get("name") }}][]" multiple="true" id="{{ form.get("id") }}_selected" class="double_list_select-selected">
-         {% for choice in choices %}
-            {% if choice is selectedchoice(value) %}
-                <option value="{{ choice.value }}">{{ choice.label }}</option>
-            {% endif %}
-         {% endfor %}
-         </select>
-    </div>
-    <br style="clear: both" />
-    <script type="text/javascript">
-        sfDoubleList.init(document.getElementById('{{ form.get("id") }}_selected'), 'double_list_select');
-    </script>
-</div>
+{% endspaceless %}
 {% endblock %}
+
 {% block doctrine_double_list_widget %}
     {{- block('double_list_widget') -}}
 {% endblock %}
+
 {% block doctrine_odm_double_list_widget %}
     {{- block('double_list_widget') -}}
 {% endblock %}
+
 {% block propel_double_list_widget %}
     {{- block('double_list_widget') -}}
 {% endblock %}
 
-{% block datepicker_range_widget %}
-    <div {{ block('widget_container_attributes') }}>
-        {% for child in form %}
-            {{ form_widget(child) }}
-        {% endfor %}
-    </div>    
-{% endblock %}
-
 {% block datepicker_widget %}
+{% spaceless %}
     <div class="{% if prepend %}input-prepend {% endif %}input-append">
         {% if prepend %}<span class="add-on span2">{{ prepend|trans({}, 'Admingenerator') }}</span>{% endif %}
         <input type="text" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
         <span class="add-on"><i class="icon-calendar"></i></span>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#{{ id }}').datepicker({
-              format: '{{ format|lower }}',
-              language: '{{ app.request.locale }}',
-              weekStart: {{ weekstart }},
-            });
-        });
-    </script>
+    {% include "AdmingeneratorGeneratorBundle:Form/DatePicker:javascript.html.twig" %}
+{% endspaceless %}
 {% endblock %}
-    
-{% macro datasource(object, builder) %}
-{% autoescape -%}
-    {% for key,property in builder %}
-      {%- if loop.first %}{{ '{' }}{% endif -%}
-          {{ '"' ~ key ~ '": "' ~ attribute(object, property) ~ '"' }}
-          {%- if not loop.last %}{{ ', ' }}{% endif -%}
-      {%- if loop.last %}{{ '}' }}{% endif -%}
-    {% endfor %}
-{%- endautoescape %}
-{% endmacro %}
+
+{% block datepicker_range_widget %}
+{% spaceless %}
+    <div {{ block('widget_container_attributes') }}>
+        {% for child in form %}
+            {{ form_widget(child) }}
+        {% endfor %}
+    </div>    
+{% endspaceless %}
+{% endblock %}
     
 {% block entitypicker_widget %}
 {% spaceless %}
-    <input type="text" id="{{ id ~ '_typeahead' }}" data-source="
-      {%- for choice in choices -%}
-        {%- if loop.first %}{{ '[' }}{% endif -%}
-            {{ _self.datasource(choice.data, builder) }}
-        {%- if not loop.last %}{{ ',' }}{% else %}{{ ']' }}{% endif -%}
-      {%- endfor -%}" placeholder="{{ 'entity_picker.placeholder'|trans({}, 'Admingenerator') }}"/>
+    <input type="text" id="{{ id ~ '_typeahead' }}" 
+           data-source="{% include "AdmingeneratorGeneratorBundle:Form/EntityPicker:data_source.html.twig" %}" 
+           placeholder="{{ 'entity_picker.placeholder'|trans({}, 'Admingenerator') }}" />
     <input type="hidden" {{ block('widget_attributes') }} />
     
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#{{ id ~ '_typeahead' }}').typeahead({
-              source: function() {
-                  var data = this.$element.data('source'); 
-                  
-                  {% if form.parent.vars.prototype is defined %}
-                    return $(data).filter(function(index, item) {
-                        var values = [];
-                        var hiddens = $('#{{ form.parent.vars.id }}').find('input[type="hidden"]');
-                        
-                        hiddens.each(function(i,e){
-                          values.push($(e).val());
-                        });
-                        
-                        return ($.inArray({{ identifier }}, values) > -1) ? false : true;
-                    });
-                  {% else %}
-                    return data;
-                  {% endif %}
-              },
-              matcher: function (item) {
-                  return ~{{ matcher|raw }}.toLowerCase().indexOf(this.query.toLowerCase());
-              },
-              sorter: function (items) {
-                  var beginswith = []
-                    , caseSensitive = []
-                    , caseInsensitive = []
-                    , item
-
-                  while (item = items.shift()) {
-                    if (!{{ matcher|raw }}.toLowerCase().indexOf(this.query.toLowerCase())) beginswith.push(item)
-                    else if (~{{ matcher|raw }}.indexOf(this.query)) caseSensitive.push(item)
-                    else caseInsensitive.push(item)
-                  }
-
-                  return beginswith.concat(caseSensitive, caseInsensitive)
-              },
-              highlighter: function (item) {           
-                  var query = this.query.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, '\\$&')
-                  var heading = {{ matcher|raw }}.replace(new RegExp('(' + query + ')', 'ig'), function ($1, match) {
-                      return '<strong>' + match + '</strong>'
-                  });
-                  
-                  var builder = $('<div></div>').addClass('clearfix');
-                    
-                  {% if thumb|length > 0 %}                    
-                  var thumb = $('<div></div>').addClass('pull-left')
-                    .append($('<img>').addClass('img-polaroid img-rounded')
-                    .attr('src', {{ (thumb.src|default("'http://placehold.it/32x32'"))|raw }})
-                    .attr('width', '{{ thumb.width|default('32px') }}')
-                    .attr('height', '{{ thumb.height|default('32px') }}')
-                  );
-                  builder.append(thumb);
-                  {% endif %}
-                  
-                  var text = $('<div></div>').addClass('pull-left').append(
-                    $('<blockquote></blockquote>')                 
-                      .append($('<p></p>').html(heading))
-                      {% for line in description %}
-                      .append($('<div></div>')
-                        .append($('<{{ line.type|default('small') }}></{{ line.type|default('small') }}>')
-                        .addClass('{{ line.class|default('') }}')
-                        .html({{ line.content|raw }}))
-                      )
-                      {% endfor %}
-                  );                    
-                  builder.append(text);
-                  
-                  return builder;
-              },
-              updater: function (item) {
-                $('#{{ id }}').val({{ identifier }});
-                return {{ matcher|raw }};
-              },
-              getter: function(pk) {
-                  var source = $.isFunction(this.source) ? this.source() : this.source;
-                  return $.grep(source, function(item){
-                      return {{ identifier }} == pk;
-                  })[0];
-              },
-              setter: function(item) {
-                  return {{ identifier }};
-              }
-            });
-        });
-    </script>
+    {% include "AdmingeneratorGeneratorBundle:Form/EntityPicker:javascript.html.twig" %}
 {% endspaceless %}
 {% endblock %}
-
-{% block form_label %}
+    
+{% block upload_widget %}
 {% spaceless %}
-    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control-label')|trim}) %}
-    {% if not compound %}
-        {% set label_attr = label_attr|merge({'for': id}) %}
-    {% endif %}
-    {% if required %}
-        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
-    {% endif %}
-    {% if label is empty %}
-        {% set label = name|humanize %}
-    {% endif %}
-    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+    {% set full_name = full_name ~ '[]' %}
+    <div id="fileupload" class="btn-toolbar">
+        <span class="btn btn-success fileinput">
+            <i class="icon-plus icon-white"></i>
+            <span>{{ 'actions.file.add'|trans({}, 'Admingenerator') }}</span>
+            <input type="file" {{ block('widget_attributes') }} multiple />
+        </span>
+    </div>
+    {% include "AdmingeneratorGeneratorBundle:Form/Upload:presentation_table.html.twig" %}    
+    {% include "AdmingeneratorGeneratorBundle:Form/Upload:template_download.html.twig" %}
+    {% include "AdmingeneratorGeneratorBundle:Form/Upload:template_upload.html.twig" %}    
+    {% include "AdmingeneratorGeneratorBundle:Form/Upload:javascript.html.twig" %}
 {% endspaceless %}
-{% endblock form_label %}
+{% endblock %}
 
 {% block collection_widget %}
 {% spaceless %}
@@ -213,12 +93,7 @@
             {% endfor %}
             {{ form_rest(form) }}
         </div>
-        
-        {% if allow_add %}
-        <div class="btn-toolbar">
-            <a class="btn btn-primary new"><i class="icon-plus icon-white"></i> {{ 'actions.collection.add'|trans({}, 'Admingenerator') }}</a>
-        </div>
-        {% endif %}
+        {% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_add.html.twig" %}
     </div>
 {% endspaceless %}
 {% endblock collection_widget %}
@@ -227,25 +102,13 @@
 {% spaceless %}
     <fieldset class="collection_item">
         <legend>__name__label__</legend>
-        {% for row in prototype %}
+        {% for row in form %}
             {{ form_row(row) }}
         {% endfor %}
-        {% if allow_delete %}
-            <a class="btn btn-danger delete"><i class="icon-remove icon-white"></i></a>
-        {% endif %}
+        {% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_delete.html.twig" %}
     </fieldset>
 {% endspaceless %}
 {% endblock collection_item_widget %}
-
-{% block form_widget %}
-{% spaceless %}
-    {% if compound %}
-        {{ block('form_widget_compound') }}
-    {% else %}
-        {{ block('form_widget_simple') }}
-    {% endif %}
-{% endspaceless %}
-{% endblock form_widget %}
     
 {% block form_widget_compound %}
 {% spaceless %}
@@ -268,13 +131,19 @@
     </div>
 {% endspaceless %}
 {% endblock form_row %}
-    
-{% block file_widget %}
+
+{% block form_label %}
 {% spaceless %}
-    <span class="btn btn-success fileinput">
-        <i class="icon-plus icon-white"></i>
-        <span>{{ 'actions.file.add'|trans({}, 'Admingenerator') }}</span>
-        <input type="file" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
-    </span>
+    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control-label')|trim}) %}
+    {% if not compound %}
+        {% set label_attr = label_attr|merge({'for': id}) %}
+    {% endif %}
+    {% if required %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+    {% endif %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
 {% endspaceless %}
-{% endblock %}
+{% endblock form_label %}

@@ -1,0 +1,8 @@
+<div class="double_list_label">{% trans from "Admingenerator" %}double_list.selected{% endtrans %}</div>
+<select name="{{ form.getParent().get('id') }}[{{ form.get("name") }}][]" multiple="true" id="{{ form.get("id") }}_selected" class="double_list_select-selected">
+{% for choice in choices %}
+    {% if choice is selectedchoice(value) %}
+        <option value="{{ choice.value }}">{{ choice.label }}</option>
+    {% endif %}
+{% endfor %}
+</select>
