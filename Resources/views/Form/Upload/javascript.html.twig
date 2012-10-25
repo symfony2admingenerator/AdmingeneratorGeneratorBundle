@@ -1,11 +1,16 @@
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#{{ id }}').closest('form').fileupload({
+        $('#{{ id }}').fileupload({
             fileInput:          $('#{{ id }}'),
             replaceFileInput:   false,
+            uploadTemplateId:   '{{ id ~ '_upload_template' }}',
+            downloadTemplateId: '{{ id ~ '_download_template' }}',
+            filesContainer:     '#{{ id ~ '_files_list' }}',
+            dropZone:           $('#{{ id }}').closest('.control-group'),
+            pasteZone:          $('#{{ id }}').closest('.control-group'),
         });
 
-        $('#{{ id }}').closest('form').fileupload('option', {
+        $('#{{ id }}').fileupload('option', {
             {% if maxNumberOfFiles %}maxNumberOfFiles: {{ maxNumberOfFiles }},{% endif %}
             {% if maxFileSize %}maxFileSize: {{ maxFileSize }},{% endif %}
             {% if minFileSize %}minFileSize: {{ minFileSize }},{% endif %}
