@@ -1,0 +1,26 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#{{ id }}').fileupload({
+            fileInput:          $('#{{ id }}'),
+            replaceFileInput:   false,
+            uploadTemplateId:   '{{ id ~ '_upload_template' }}',
+            downloadTemplateId: '{{ id ~ '_download_template' }}',
+            filesContainer:     '#{{ id ~ '_files_list' }}',
+            dropZone:           $('#{{ id }}').closest('.control-group'),
+            pasteZone:          $('#{{ id }}').closest('.control-group'),
+        });
+
+        $('#{{ id }}').fileupload('option', {
+            {% if maxNumberOfFiles %}maxNumberOfFiles: {{ maxNumberOfFiles }},{% endif %}
+            {% if maxFileSize %}maxFileSize: {{ maxFileSize }},{% endif %}
+            {% if minFileSize %}minFileSize: {{ minFileSize }},{% endif %}
+            {% if acceptFileTypes %}acceptFileTypes: {{ acceptFileTypes }},{% endif %}
+            previewSourceFileTypes:   {{ previewSourceFileTypes }},
+            previewSourceMaxFileSize: {{ previewSourceMaxFileSize }},
+            previewMaxWidth:          {{ previewMaxWidth }},
+            previewMaxHeight:         {{ previewMaxHeight }},
+            {% if not previewAsCanvas %}previewAsCanvas: false,{% endif %}
+            {% if prependFiles %}prependFiles: true,{% endif %}
+        });
+    });  
+</script>

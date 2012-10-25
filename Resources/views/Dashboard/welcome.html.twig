@@ -1,0 +1,66 @@
+{% extends 'AdmingeneratorGeneratorBundle:Dashboard:dashboard.html.twig' %}
+
+{% block title %}Admingenerator{% endblock %}
+
+{% block content %}
+    <div class="hero-unit">          
+      {% block page_title %}
+          <header>
+              <h1>Admingenerator</h1>
+          </header>
+      {% endblock %}
+      <p>Open-souce admin generator for the famous PHP framework Symfony2.</p>
+    </div>
+    <div class="row-fluid">
+      <div class="span4">
+        <h2>Commands</h2>
+        <p class="justify">
+          Commands that generate whole bundle (including stubs for controllers) 
+          and those for generating admin for existing bundle.
+        </p>
+        <p><a href="#" class="btn">View details »</a></p>
+      </div><!--/span-->
+      <div class="span4">
+        <h2>Filters</h2>
+        <p class="justify">
+          Standard set of filters for each field type and easy configuration for
+          nonstandard filters and scopes.
+        </p>
+        <p><a href="#" class="btn">View details »</a></p>
+      </div><!--/span-->
+      <div class="span4">
+        <h2>Routing</h2>
+        <p class="justify">
+          Routing integrated with Symfony's security framework. Easy priviledge 
+          management for actions.
+        </p>
+        <p><a href="#" class="btn">View details »</a></p>
+      </div><!--/span-->
+    </div><!--/row-->
+    <div class="row-fluid">
+      <div class="span4">
+        <h2>Forms</h2>
+        <p class="justify">
+          Form generation supporting fields, field sets, multiple sections and 
+          sub forms. Configurable labels, help text, widgets and validation.
+        </p>
+        <p><a href="#" class="btn">View details »</a></p>
+      </div><!--/span-->
+      <div class="span4">
+        <h2>Templates</h2>
+        <p class="justify">
+          Generating Twig templates for standard actions (list, edit, add), that
+          can be easily extended or overriden.
+        </p>
+        <p><a href="#" class="btn">View details »</a></p>
+      </div><!--/span-->
+      <div class="span4">
+        <h2>Model manager</h2>
+        <p class="justify">
+          Support for most popular ORM's - full functionality for <b>Doctrine 
+          ORM</b>, <b>Doctrine ODM</b> and <b>Propel</b>.
+        </p>
+        <p><a href="#" class="btn">View details »</a></p>
+      </div><!--/span-->
+    </div><!--/row-->
+{% endblock %}

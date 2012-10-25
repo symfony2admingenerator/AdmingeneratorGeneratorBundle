@@ -29,11 +29,17 @@ list.header:
 # Profile
 profile:
   welcome:  <b>Dobrodošli</b>, %username%!</p>
+  login:    Prijava
   logout:   Odjava
   
 # EntityPicker
 entity_picker:
   placeholder:  Iskanje...
+  
+# Upload
+upload:
+  error:        Napaka
+  cancel:       Odstrani
 
 # Actions
 actions:
