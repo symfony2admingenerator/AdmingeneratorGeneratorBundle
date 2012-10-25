@@ -1,0 +1,21 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#{{ id }}').closest('form').fileupload({
+            fileInput:          $('#{{ id }}'),
+            replaceFileInput:   false,
+        });
+
+        $('#{{ id }}').closest('form').fileupload('option', {
+            {% if maxNumberOfFiles %}{{ 'maxNumberOfFiles: ' ~ maxNumberOfFiles ~ ',' }}{% endif %}
+            {% if maxFileSize %}{{ 'maxFileSize: ' ~ maxFileSize ~ ',' }}{% endif %}
+            {% if minFileSize %}{{ 'minFileSize: ' ~ minFileSize ~ ',' }}{% endif %}
+            {{ 'acceptFileTypes: ' ~ acceptFileTypes ~ ',' }},
+            previewSourceFileTypes:   {{ previewSourceFileTypes }},
+            previewSourceMaxFileSize: {{ previewSourceMaxFileSize }},
+            previewMaxWidth:          {{ previewMaxWidth }},
+            previewMaxHeight:         {{ previewMaxHeight }},
+            previewAsCanvas:          {{ previewAsCanvas }},
+            prependFiles:             {{ prependFiles }},
+        });
+    });  
+</script>

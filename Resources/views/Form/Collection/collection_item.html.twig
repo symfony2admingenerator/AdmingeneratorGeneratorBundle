@@ -1,0 +1,11 @@
+{% spaceless %}
+    <fieldset class="collection_item">
+        <legend>__name__label__</legend>
+        {% for row in form %}
+            {{ form_row(row) }}
+        {% endfor %}
+        {% if allow_delete %}
+            <a class="btn btn-danger delete"><i class="icon-remove icon-white"></i></a>
+        {% endif %}
+    </fieldset>
+{% endspaceless %}

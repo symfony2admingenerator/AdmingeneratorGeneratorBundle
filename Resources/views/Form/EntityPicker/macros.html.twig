@@ -1,0 +1,10 @@
+{% macro datasource(object, builder) %}
+{% autoescape -%}
+    {% for key,property in builder %}
+      {%- if loop.first %}{{ '{' }}{% endif -%}
+          {{ '"' ~ key ~ '": "' ~ attribute(object, property) ~ '"' }}
+          {%- if not loop.last %}{{ ', ' }}{% endif -%}
+      {%- if loop.last %}{{ '}' }}{% endif -%}
+    {% endfor %}
+{%- endautoescape %}
+{% endmacro %}

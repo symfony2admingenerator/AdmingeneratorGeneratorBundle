@@ -15,9 +15,17 @@ class UploadType extends FileType
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['multipart'] = true;
-        $view->vars['max_files'] = $options['max_files'];
-        $view->vars['accepted'] = $options['accepted'];
+        $view->vars['multipart']                =   true;
+        $view->vars['maxNumberOfFiles']         =   $options['maxNumberOfFiles'];
+        $view->vars['maxFileSize']              =   $options['maxFileSize'];
+        $view->vars['minFileSize']              =   $options['minFileSize'];
+        $view->vars['acceptFileTypes']          =   $options['acceptFileTypes'];
+        $view->vars['previewSourceFileTypes']   =   $options['previewSourceFileTypes'];
+        $view->vars['previewSourceMaxFileSize'] =   $options['previewSourceMaxFileSize'];
+        $view->vars['previewMaxWidth']          =   $options['previewMaxWidth'];
+        $view->vars['previewMaxHeight']         =   $options['previewMaxHeight'];
+        $view->vars['previewAsCanvas']          =   $options['previewAsCanvas'];
+        $view->vars['prependFiles']             =   $options['prependFiles'];
     }
 
     /**
@@ -28,13 +36,29 @@ class UploadType extends FileType
         parent::setDefaultOptions($resolver);
         
         $resolver->setDefaults(array(
-            'max_files' => (-1),
-            'accepted'  => '',
+            'maxNumberOfFiles'          =>  null,
+            'maxFileSize'               =>  null,
+            'minFileSize'               =>  null,
+            'acceptFileTypes'           =>  '/.*$/i',
+            'previewSourceFileTypes'    =>  '/^image\/(gif|jpeg|png)$/',
+            'previewSourceMaxFileSize'  =>  5000000,
+            'previewMaxWidth'           =>  80,
+            'previewMaxHeight'          =>  80,
+            'previewAsCanvas'           =>  true,
+            'prependFiles'              =>  false
         ));
         
         $resolver->setAllowedTypes(array(
-            'max_files'   => array('integer'),
-            'accepted'    => array('string'),
+            'maxNumberOfFiles'          =>  array('integer', 'null'),
+            'maxFileSize'               =>  array('integer', 'null'),
+            'minFileSize'               =>  array('integer', 'null'),
+            'acceptFileTypes'           =>  array('string'),
+            'previewSourceFileTypes'    =>  array('string'),
+            'previewSourceMaxFileSize'  =>  array('integer'),
+            'previewMaxWidth'           =>  array('integer'),
+            'previewMaxHeight'          =>  array('integer'),
+            'previewAsCanvas'           =>  array('bool'),
+            'prependFiles'              =>  array('bool')
         ));
     }
     

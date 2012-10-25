@@ -140,16 +140,23 @@
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
         
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/jquery-extended.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/jquery-ui.js'
             'bundles/admingeneratorgenerator/js/jquery.ui.widget.js'
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
         
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/multifile.js'
-            'bundles/admingeneratorgenerator/js/jquery.MultiFile-1.48-extended.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/blueimp.jquery-file-upload.js'
+            'bundles/admingeneratorgenerator/js/blueimp/blueimp.javascript-templates.min.js'
+            'bundles/admingeneratorgenerator/js/blueimp/blueimp.javascript-load-image.min.js'
+            'bundles/admingeneratorgenerator/js/blueimp/blueimp.canvas-to-blob.min.js'
+            'bundles/admingeneratorgenerator/js/blueimp/jquery.iframe-transport.js'
+            'bundles/admingeneratorgenerator/js/blueimp/jquery.fileupload.js'
+            'bundles/admingeneratorgenerator/js/blueimp/jquery.fileupload-fp.js'
+            'bundles/admingeneratorgenerator/js/blueimp/jquery.fileupload-ui.js'
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}    
+        {% endjavascripts %}   
     {% endblock %}
 
   </body>
