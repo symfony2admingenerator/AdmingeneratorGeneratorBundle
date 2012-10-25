@@ -1,5 +1,19 @@
-{% block double_list_widget %}
-    {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:double_list.html.twig" %}
+{% block double_list_widget %}{% spaceless %}
+    <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/javascripts/double_list.js') }}"></script>
+    <div class="double_list">
+        <div style="float: left">
+            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:double_list_unselected.html.twig" %}
+        </div>
+        <div style="float: left; margin-top: 2em">
+            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:double_list_controls.html.twig" %}
+        </div>
+        <div style="float: left">
+            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:double_list_selected.html.twig" %}
+        </div>
+        <br style="clear: both" />
+        {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:javascript.html.twig" %}
+    </div>
+{% endspaceless %}
 {% endblock %}
 
 {% block doctrine_double_list_widget %}
@@ -15,37 +29,120 @@
 {% endblock %}
 
 {% block datepicker_widget %}
-    {% include "AdmingeneratorGeneratorBundle:Form/DatePicker:datepicker.html.twig" %}
+{% spaceless %}
+    <div class="{% if prepend %}input-prepend {% endif %}input-append">
+        {% if prepend %}<span class="add-on span2">{{ prepend|trans({}, 'Admingenerator') }}</span>{% endif %}
+        <input type="text" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+        <span class="add-on"><i class="icon-calendar"></i></span>
+    </div>
+    {% include "AdmingeneratorGeneratorBundle:Form/DatePicker:javascript.html.twig" %}
+{% endspaceless %}
 {% endblock %}
 
 {% block datepicker_range_widget %}
-    {% include "AdmingeneratorGeneratorBundle:Form/DatePickerRange:datepicker_range.html.twig" %}
+{% spaceless %}
+    <div {{ block('widget_container_attributes') }}>
+        {% for child in form %}
+            {{ form_widget(child) }}
+        {% endfor %}
+    </div>    
+{% endspaceless %}
 {% endblock %}
     
 {% block entitypicker_widget %}
-    {% include "AdmingeneratorGeneratorBundle:Form/EntityPicker:entitypicker.html.twig" %}
+{% spaceless %}
+    <input type="text" id="{{ id ~ '_typeahead' }}" 
+           data-source="{% include "AdmingeneratorGeneratorBundle:Form/EntityPicker:data_source.html.twig" %}" 
+           placeholder="{{ 'entity_picker.placeholder'|trans({}, 'Admingenerator') }}" />
+    <input type="hidden" {{ block('widget_attributes') }} />
+    
+    {% include "AdmingeneratorGeneratorBundle:Form/EntityPicker:javascript.html.twig" %}
+{% endspaceless %}
 {% endblock %}
     
 {% block upload_widget %}
-    {% include "AdmingeneratorGeneratorBundle:Form/Upload:upload.html.twig" %}
+{% spaceless %}
+    {% set full_name = full_name ~ '[]' %}
+    <div id="fileupload" class="btn-toolbar">
+        <span class="btn btn-success fileinput">
+            <i class="icon-plus icon-white"></i>
+            <span>{{ 'actions.file.add'|trans({}, 'Admingenerator') }}</span>
+            <input type="file" {{ block('widget_attributes') }} multiple />
+        </span>
+    </div>
+    {% include "AdmingeneratorGeneratorBundle:Form/Upload:presentation_table.html.twig" %}    
+    {% include "AdmingeneratorGeneratorBundle:Form/Upload:template_download.html.twig" %}
+    {% include "AdmingeneratorGeneratorBundle:Form/Upload:template_upload.html.twig" %}    
+    {% include "AdmingeneratorGeneratorBundle:Form/Upload:javascript.html.twig" %}
+{% endspaceless %}
 {% endblock %}
 
 {% block collection_widget %}
-    {% include "AdmingeneratorGeneratorBundle:Form/Collection:collection.html.twig" %}
+{% spaceless %}
+    <div class="collection">
+        {% set attr = attr|merge({'class': 'control-group' }) %}
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': block('collection_item_widget') }) %}
+        {% endif %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ form_errors(form) }}
+            {% for rows in form %}
+                {% set form = rows %}
+                {{ block('collection_item_widget') }}
+            {% endfor %}
+            {{ form_rest(form) }}
+        </div>
+        {% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_add.html.twig" %}
+    </div>
+{% endspaceless %}
 {% endblock collection_widget %}
 
 {% block collection_item_widget %}
-    {% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_item.html.twig" %}
+{% spaceless %}
+    <fieldset class="collection_item">
+        <legend>__name__label__</legend>
+        {% for row in form %}
+            {{ form_row(row) }}
+        {% endfor %}
+        {% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_delete.html.twig" %}
+    </fieldset>
+{% endspaceless %}
 {% endblock collection_item_widget %}
     
 {% block form_widget_compound %}
-    {% include "AdmingeneratorGeneratorBundle:Form/Form:form_compound.html.twig" %}
+{% spaceless %}
+    <div class="control-group" {{ block('widget_container_attributes') }}>
+        {% if form.parent is empty %}
+            {{ form_errors(form) }}
+        {% endif %}
+        {{ block('form_rows') }}
+        {{ form_rest(form) }}
+    </div>
+{% endspaceless %}
 {% endblock form_widget_compound %}
     
 {% block form_row %}
-    {% include "AdmingeneratorGeneratorBundle:Form/Form:form_row.html.twig" %}
+{% spaceless %}
+    <div class="control">
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+    </div>
+{% endspaceless %}
 {% endblock form_row %}
 
 {% block form_label %}
-    {% include "AdmingeneratorGeneratorBundle:Form/Form:form_label.html.twig" %}
+{% spaceless %}
+    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control-label')|trim}) %}
+    {% if not compound %}
+        {% set label_attr = label_attr|merge({'for': id}) %}
+    {% endif %}
+    {% if required %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+    {% endif %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+{% endspaceless %}
 {% endblock form_label %}

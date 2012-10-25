@@ -1,8 +1,0 @@
-{% spaceless %}
-    <input type="text" id="{{ id ~ '_typeahead' }}" 
-           data-source="{% include "AdmingeneratorGeneratorBundle:Form/EntityPicker:data_source.html.twig" %}" 
-           placeholder="{{ 'entity_picker.placeholder'|trans({}, 'Admingenerator') }}" />
-    <input type="hidden" {{ block('widget_attributes') }} />
-    
-    {% include "AdmingeneratorGeneratorBundle:Form/EntityPicker:javascript.html.twig" %}
-{% endspaceless %}

@@ -6,16 +6,16 @@
         });
 
         $('#{{ id }}').closest('form').fileupload('option', {
-            {% if maxNumberOfFiles %}{{ 'maxNumberOfFiles: ' ~ maxNumberOfFiles ~ ',' }}{% endif %}
-            {% if maxFileSize %}{{ 'maxFileSize: ' ~ maxFileSize ~ ',' }}{% endif %}
-            {% if minFileSize %}{{ 'minFileSize: ' ~ minFileSize ~ ',' }}{% endif %}
-            {{ 'acceptFileTypes: ' ~ acceptFileTypes ~ ',' }},
+            {% if maxNumberOfFiles %}maxNumberOfFiles: {{ maxNumberOfFiles }},{% endif %}
+            {% if maxFileSize %}maxFileSize: {{ maxFileSize }},{% endif %}
+            {% if minFileSize %}minFileSize: {{ minFileSize }},{% endif %}
+            {% if acceptFileTypes %}acceptFileTypes: {{ acceptFileTypes }},{% endif %}
             previewSourceFileTypes:   {{ previewSourceFileTypes }},
             previewSourceMaxFileSize: {{ previewSourceMaxFileSize }},
             previewMaxWidth:          {{ previewMaxWidth }},
             previewMaxHeight:         {{ previewMaxHeight }},
-            previewAsCanvas:          {{ previewAsCanvas }},
-            prependFiles:             {{ prependFiles }},
+            {% if not previewAsCanvas %}previewAsCanvas: false,{% endif %}
+            {% if prependFiles %}prependFiles: true,{% endif %}
         });
     });  
 </script>
