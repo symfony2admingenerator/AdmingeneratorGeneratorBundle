@@ -21,7 +21,7 @@
 
         {{ echo_block("form_buttons") }}        
             <div class="form-actions">
-                <input type="submit" class="btn btn-primary" value="{{ echo_trans('actions.save') }}" />
+                <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> {{ echo_trans('actions.save') }}</button>
                 {{ block("form_actions") }}
             </div>
         {{ echo_endblock() }}
