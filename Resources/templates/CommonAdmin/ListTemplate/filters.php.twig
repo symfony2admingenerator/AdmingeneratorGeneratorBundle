@@ -23,8 +23,8 @@
             {{ echo_twig("form_rest(form)") }}
         </fieldset>
         <div class="form-actions">
-            <input type="submit" class="btn btm-small btn-primary" value="{{ echo_trans('list.button.filter') }}" />
-            <input type="submit" class="btn btm-small" name="reset" value="{{ echo_trans('list.button.reset') }}" />
+            <button type="submit" class="btn btm-small btn-primary"><i class="icon-search icon-white"></i> {{ echo_trans('list.button.filter') }}</button>
+            <button type="submit" class="btn btm-small" name="reset"><i class="icon-refresh"></i> {{ echo_trans('list.button.reset') }}</button>
         </div>
     </form>    
 </div>
