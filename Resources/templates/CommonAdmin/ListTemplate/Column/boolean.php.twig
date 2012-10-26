@@ -1,9 +1,9 @@
 {% block column_boolean %}
 
                 {{ echo_if (builder.ModelClass ~ '.' ~ column.getter) }}
-                    <img src="{{ echo_twig('asset("bundles/admingeneratorgenerator/images/tick.png")') }}" alt="OK" />
+                    <i class="icon-ok"></i>
                 {{ echo_else() }}
-                    <img src="{{ echo_twig('asset("bundles/admingeneratorgenerator/images/cross.png")') }}" alt="KO" />
+                    <i class="icon-remove"></i>
                 {{ echo_endif () -}}
 
 {% endblock %}

@@ -70,7 +70,7 @@
               <ul class="nav pull-right">
                 <li><p class="navbar-text" style="padding-right: 10px;">{{ 'profile.welcome'|trans({'%username%': app.user ? app.user : 'anonymous'}, 'Admingenerator')|raw }}</li>
                 {% if app.user %}
-                  <li><button onclick="document.location='{{ path('fos_user_security_logout') }}'" class="btn " title="{{ 'profile.logout'|trans({}, 'Admingenerator') }}">{{ 'profile.logout'|trans({}, 'Admingenerator') }}</button></li>
+                  <li><button onclick="document.location='{{ path('fos_user_security_logout') }}'" class="btn " title="{{ 'profile.logout'|trans({}, 'Admingenerator') }}"><i class="icon-off"></i> {{ 'profile.logout'|trans({}, 'Admingenerator') }}</button></li>
                 {% else %}
                   <li><button onclick="document.location='{{ path('fos_user_security_login') }}'" class="btn " title="{{ 'profile.login'|trans({}, 'Admingenerator') }}">{{ 'profile.login'|trans({}, 'Admingenerator') }}</button></li>
                 {% endif %}
