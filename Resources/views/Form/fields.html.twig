@@ -64,17 +64,19 @@
 {% block upload_widget %}
 {% spaceless %}
     {% set full_name = full_name ~ '[]' %}
-    <div id="fileupload" class="btn-toolbar">
-        <span class="btn btn-success fileinput">
-            <i class="icon-plus icon-white"></i>
-            <span>{{ 'actions.file.add'|trans({}, 'Admingenerator') }}</span>
-            <input type="file" {{ block('widget_attributes') }} multiple />
-        </span>
+    <div id="{{ id ~ '_widget_container' }}">
+        <div class="btn-toolbar">
+            <span class="btn btn-success fileinput">
+                <i class="icon-plus icon-white"></i>
+                <span>{{ 'actions.file.add'|trans({}, 'Admingenerator') }}</span>
+                <input type="file" {{ block('widget_attributes') }} multiple />
+            </span>
+        </div>
+        {% include "AdmingeneratorGeneratorBundle:Form/Upload:presentation_table.html.twig" %}    
+        {% include "AdmingeneratorGeneratorBundle:Form/Upload:template_download.html.twig" %}
+        {% include "AdmingeneratorGeneratorBundle:Form/Upload:template_upload.html.twig" %}    
+        {% include "AdmingeneratorGeneratorBundle:Form/Upload:javascript.html.twig" %}
     </div>
-    {% include "AdmingeneratorGeneratorBundle:Form/Upload:presentation_table.html.twig" %}    
-    {% include "AdmingeneratorGeneratorBundle:Form/Upload:template_download.html.twig" %}
-    {% include "AdmingeneratorGeneratorBundle:Form/Upload:template_upload.html.twig" %}    
-    {% include "AdmingeneratorGeneratorBundle:Form/Upload:javascript.html.twig" %}
 {% endspaceless %}
 {% endblock %}
 
