@@ -1,28 +1,40 @@
 <script id="{{ id ~ '_upload_template' }}" type="text/x-tmpl">
 {% raw %}
-    {% for (var i=0, file; file=o.files[i]; i++) { %}
-        <tr class="template-upload fade">
-            <td class="preview"><span class="fade"></span></td>
-            <td class="name"><span>{%=file.name%}</span></td>
-            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
-            {% if (file.error) { %}
-                <td class="error" colspan="2">
-                    <span class="label label-important">
-                    {% endraw %}{{ 'upload.error'|trans({}, 'Admingenerator') }}{% raw %}
-                    </span> {%=file.error%}
-                </td>
-            {% } else { %}
-                <td colspan="2"></td>
-            {% } %}
-            <td class="cancel">{% if (!i) { %}
-                <button class="btn btn-warning">
-                    {% endraw %}
-                    <i class="icon-ban-circle icon-white"></i> 
-                    <span> {{ 'upload.cancel'|trans({}, 'Admingenerator') }}</span>
-                    {% raw %}
-                </button>
-            {% } %}</td>
-        </tr>
-    {% } %}
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+{% endraw %}
+    <tr class="template-upload fade">
+        <td class="preview"><span class="fade"></span></td>
+        <td class="name"><span>{% raw %}{%=file.name%}{% endraw %}</span></td>
+        <td class="size"><span>{% raw %}{%=o.formatFileSize(file.size)%}{% endraw %}</span></td>
+        {% raw %}
+        {% if (file.error) { %}
+        {% endraw %}
+            <td class="error" colspan="2">
+                <span class="label label-important">
+                {{ 'upload.error'|trans({}, 'Admingenerator') }}
+                </span> {% raw %}{%=file.error%}{% endraw %}
+            </td>
+        {% raw %}
+        {% } else { %}
+        {% endraw %}
+            <td colspan="2"></td>
+        {% raw %}
+        {% } %}
+        {% endraw %}
+        <td class="cancel">
+        {% raw %}
+        {% if (!i) { %}
+        {% endraw %}
+            <button class="btn btn-warning">
+                <i class="icon-ban-circle icon-white"></i> 
+                <span> {{ 'upload.cancel'|trans({}, 'Admingenerator') }}</span>
+            </button>
+        {% raw %}
+        {% } %}
+        {% endraw %}
+        </td>
+    </tr>
+{% raw %}
+{% } %}
 {% endraw %}
 </script>
