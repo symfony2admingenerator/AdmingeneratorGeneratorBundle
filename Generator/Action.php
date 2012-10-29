@@ -103,16 +103,16 @@ class Action
         $this->route = $route;
     }
     
-    public function setCondition($value) 
+    public function setCondition(array $condition)
     {
-        if (!isset($value['function'])) {
+        if (!isset($condition['function'])) {
             return false;
-        }    
-        
-        $this->conditional_function = $value['function'];
-        
-        if (isset($value['inverse'])) {
-            $this->conditional_inverse = (boolean) $value['inverse'];
+        }
+
+        $this->conditional_function = $condition['function'];
+
+        if (isset($condition['inverse'])) {
+            $this->conditional_inverse = (boolean) $condition['inverse'];
         }
     }
     
