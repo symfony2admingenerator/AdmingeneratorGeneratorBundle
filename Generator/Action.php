@@ -22,6 +22,10 @@ class Action
 
     protected $crendentials;
 
+    protected $conditional_function;
+    
+    protected $conditional_inverse = false;
+    
     protected $params;
 
     public function __construct($name)
@@ -97,5 +101,28 @@ class Action
     public function setRoute($route)
     {
         $this->route = $route;
+    }
+    
+    public function setCondition(array $condition)
+    {
+        if (!isset($condition['function'])) {
+            return false;
+        }
+
+        $this->conditional_function = $condition['function'];
+
+        if (isset($condition['inverse'])) {
+            $this->conditional_inverse = (boolean) $condition['inverse'];
+        }
+    }
+    
+    public function getConditionalFunction()
+    {
+        return $this->conditional_function;
+    }
+    
+    public function getConditionalInverse()
+    {
+        return $this->conditional_inverse;
     }
 }
