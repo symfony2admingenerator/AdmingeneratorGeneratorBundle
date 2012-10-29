@@ -24,7 +24,7 @@ class Action
 
     protected $conditional_function;
     
-    protected $conditional_inverse;
+    protected $conditional_inverse = false;
     
     protected $params;
 
@@ -105,20 +105,14 @@ class Action
     
     public function setCondition($value) 
     {
-        if (!isset($value['function']))
-        {
+        if (!isset($value['function'])) {
             return false;
         }    
         
         $this->conditional_function = $value['function'];
         
-        if (isset($value['inverse'])) 
-        {
+        if (isset($value['inverse'])) {
             $this->conditional_inverse = (boolean) $value['inverse'];
-        }
-        else
-        {
-            $this->conditional_inverse = false;        
         }
     }
     
