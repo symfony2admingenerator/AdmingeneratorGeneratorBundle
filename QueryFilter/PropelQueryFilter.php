@@ -66,4 +66,9 @@ class PropelQueryFilter extends BaseQueryFilter
             $this->query->filterBy($field, $value->format('Y-m-d'));
         }
     }
+
+    public function addTimestampFilter($field, $value)
+    {
+        return $this->addDateFilter($field, $value);
+    }
 }
