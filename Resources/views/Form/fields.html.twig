@@ -114,7 +114,7 @@
     
 {% block form_widget_compound %}
 {% spaceless %}
-    <div class="control-group" {{ block('widget_container_attributes') }}>
+    <div {{ block('widget_container_attributes') }}>
         {% if form.parent is empty %}
             {{ form_errors(form) }}
         {% endif %}
@@ -126,10 +126,14 @@
     
 {% block form_row %}
 {% spaceless %}
-    <div class="control">
+    <div class="control-group{% if errors|length > 0 %} error{% endif %}">
         {{ form_label(form) }}
-        {{ form_errors(form) }}
-        {{ form_widget(form) }}
+        <div class="controls">
+            {% if not compound %}
+                {{ form_errors(form) }}
+            {% endif %}
+            {{ form_widget(form) }}
+        </div>
     </div>
 {% endspaceless %}
 {% endblock form_row %}
@@ -149,3 +153,19 @@
     <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
 {% endspaceless %}
 {% endblock form_label %}
+
+{% block form_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <p class="help-block">
+        {% for error in errors %}
+            <span>{{
+                error.messagePluralization is null
+                    ? error.messageTemplate|trans(error.messageParameters, 'validators')
+                    : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
+            }}</span>
+        {% endfor %}
+    </p>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors %}
