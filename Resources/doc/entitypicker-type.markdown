@@ -73,15 +73,15 @@ Javascript expression used to return selected item's identifier. Can be somethin
 
 #### thumb.width
 
-**type**: `string` **default:** `32px`
+**type**: `string` **default:** `32`
 
-Thumbnail image width.
+Thumbnail image width (in pixels).
 
 #### thumb.height
 
-**type**: `string` **default:** `32px`
+**type**: `string` **default:** `32`
 
-Thumbnail image height.
+Thumbnail image height (in pixels).
 
 #### description
 

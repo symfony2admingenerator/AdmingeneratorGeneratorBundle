@@ -1,3 +1,5 @@
+/* List sorting styles */
+
 .sorted-asc, .sorted-desc {
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
@@ -16,6 +18,8 @@
     border-bottom: 5px solid #0088CC;
 }
 
+/* List pagination styles */
+
 .pagination {
     margin: 0;
 }
@@ -23,6 +27,8 @@
 .btn-toolbar + .pagination {
    margin-top: 5px;
 }
+
+/* Fieldset styles */
 
 .row-fluid > .form_field {
     -moz-box-sizing: border-box;
@@ -35,6 +41,34 @@
 .row-fluid > .form_field:first-child {
     margin-left: 0;
 }
+
+.row-fluid > .form_field:only-child {
+    width: 100%;
+}
+
+fieldset {
+  border: 1px solid #DDDDDD;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin: 0;
+}
+
+fieldset legend {
+  border: 0 none; 
+  margin: 0 0 0 -8px;
+  width: auto;
+}
+
+fieldset legend span {
+  background-color: #FFF; 
+  padding: 0 8px;
+}
+
+legend + .control-group {
+  margin-top: 0px;
+}
+
+/* Entitypicker styles */
 
 ul.typeahead.dropdown-menu blockquote {
     border: 0 none;
@@ -60,29 +94,54 @@ ul.typeahead.dropdown-menu blockquote .badge:first-of-type {
     margin-left: 0;
 }
 
-fieldset {
-  border: 1px solid #DDDDDD;
-  border-radius: 8px;
-  padding: 10px 20px;
-  margin: 0;
+.typeahead.dropdown-menu .active > a .muted, 
+.typeahead.dropdown-menu .active > a:hover .muted {
+    color: #e4e4e4;
 }
 
-fieldset legend {
-  border: 0 none; 
-  margin: 0 0 0 -8px;
-  width: auto;
+/* Table additional styles */
+
+.table.table-shrinked {
+  display: inline-block;
 }
 
-fieldset legend span {
-  background-color: #FFF; 
-  padding: 0 8px;
+/* Table collection styles */
+
+tr.collection-item th.new-label {
+  white-space: nowrap;
+  padding-right: 20px;
 }
 
-legend + .control-group {
-  margin-top: 0px;
+tr.collection-item > td:first-of-type {
+  width: 100%;
 }
 
-fieldset.collection_item {
+tr.collection-item > td:last-of-type {
+  white-space: nowrap;
+}
+
+tr.collection-item > td > fieldset:last-child {
+  margin-bottom: 20px;
+}
+
+tr.collection-item > td:last-of-type > .delete {
+  padding: 3px 6px;
+  -webkit-border-radius: 40px;
+     -moz-border-radius: 40px;
+          border-radius: 40px;
+}
+
+tr.collection-item > td:last-of-type > .delete {
+  margin-left: 5px;
+}
+
+tr.collection-item > td:last-of-type > .btn-toggle {
+  margin-left: 20px;
+}
+
+/* Fieldset collection styles */
+
+fieldset.collection-item {
   position: relative;
   padding-bottom: 20px;
   margin-right: 30px;
@@ -90,7 +149,7 @@ fieldset.collection_item {
   vertical-align: top
 }
 
-fieldset.collection_item .delete {
+fieldset.collection-item > .delete {
   position: absolute;
   top: 5px;
   right: -15px;
@@ -100,10 +159,29 @@ fieldset.collection_item .delete {
           border-radius: 40px;
 }
 
+fieldset.collection-item > .btn-toggle {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  padding: 3px 6px;
+  opacity: 1;
+  background-color: #efefef;
+  border-color: #d9d9d9;
+}
+
+fieldset.collection-item > .btn-toggle > input[type="checkbox"] {
+  opacity: 0.65;
+}
+
 /* Remove firefox grey dotted focus outline */
 a:focus, .btn:focus {
   outline: none;
 }
+
+input[type="checkbox"] {
+  outline: none !important;
+}
+
 button::-moz-focus-inner, select::-moz-focus-inner {
   border: 0;
 }
@@ -136,23 +214,20 @@ button::-moz-focus-inner, select::-moz-focus-inner {
     line-height: 30px;
 }
 
-.MultiFile-remove, .MultiFile-remove:hover  {
-    color: #B94A48;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.3em;
-}
-
-/* File input error modal */
-.modal.alert.alert-error {
-    padding: 0px;
-}
-
-.modal-header .close {
-    right: 0px;
-}
-
 /* Additional text styles */
 .justify {
   text-align: justify;
+}
+
+/* Toogle selection button */
+.btn.btn-toggle {
+  padding: 3px 6px;
+  cursor: pointer;
+}
+
+/* Actions toolbar */
+.form-actions.form-actions-condensed {
+  padding: 10px;
+  margin: 0px;
+  border: 0 none;
 }

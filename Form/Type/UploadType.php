@@ -2,14 +2,56 @@
 
 namespace Admingenerator\GeneratorBundle\Form\Type;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\EventListener\ResizeFormListener;
+use Admingenerator\GeneratorBundle\Form\EventListener\CaptureUploadListener;
 
-class UploadType extends FileType
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
+class UploadType extends CollectionType
 {
+    protected $container;
+    
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;       
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $prototype = $builder->create(
+                $options['prototype_name'], 
+                new \Admingenerator\GeneratorBundle\Form\Type\UploadedFileType(), 
+                $options['options']
+        );
+        $builder->setAttribute('prototype', $prototype->getForm());
+        
+        $captureListener = new CaptureUploadListener(
+            $builder->getFormFactory(),
+            $options['options']['data_class']
+        );
+        $builder->addEventSubscriber($captureListener);
+        
+        $resizeListener = new ResizeFormListener(
+            $builder->getFormFactory(),
+            new \Admingenerator\GeneratorBundle\Form\Type\UploadedFileType(),
+            $options['options'],
+            $options['allow_add'],
+            $options['allow_delete']
+        );
+
+        $builder->addEventSubscriber($resizeListener);
+        
+        $builder->setAttribute('thumbnail_generator', $this->container->getParameter('admingenerator.thumbnail_generator'));
+    }
+    
     /**
      * {@inheritdoc}
      */
@@ -26,6 +68,8 @@ class UploadType extends FileType
         $view->vars['previewMaxHeight']         =   $options['previewMaxHeight'];
         $view->vars['previewAsCanvas']          =   $options['previewAsCanvas'];
         $view->vars['prependFiles']             =   $options['prependFiles'];
+        $view->vars['thumbnailFilter']          =   $options['thumbnailFilter'];
+        $view->vars['thumbnailGenerator']       =   $form->getConfig()->getAttribute('thumbnail_generator');        
     }
 
     /**
@@ -45,7 +89,8 @@ class UploadType extends FileType
             'previewMaxWidth'           =>  80,
             'previewMaxHeight'          =>  80,
             'previewAsCanvas'           =>  true,
-            'prependFiles'              =>  false
+            'prependFiles'              =>  false,
+            'thumbnailFilter'           =>  null
         ));
         
         $resolver->setAllowedTypes(array(
@@ -58,7 +103,8 @@ class UploadType extends FileType
             'previewMaxWidth'           =>  array('integer'),
             'previewMaxHeight'          =>  array('integer'),
             'previewAsCanvas'           =>  array('bool'),
-            'prependFiles'              =>  array('bool')
+            'prependFiles'              =>  array('bool'),
+            'thumbnailFilter'           =>  array('string', 'null')
         ));
     }
     

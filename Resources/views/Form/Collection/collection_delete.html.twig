@@ -1,3 +1,8 @@
 {% if allow_delete %}
-    <a class="btn btn-danger delete"><i class="icon-remove icon-white"></i></a>
+    <label class="btn btn-toggle disabled input-append">
+        <input type="checkbox" name="delete" value="1">
+    </label>
+    <a class="btn btn-danger delete" title="{{ 'object.delete.label'|trans({}, 'Admingenerator') }}">
+        <i class="icon-remove icon-white"></i>
+    </a>
 {% endif %}

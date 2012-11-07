@@ -1,0 +1,52 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        {% if allow_add %}
+            // add item
+            var nextId = $('#{{ id }} > .collection > .collection-item').length;
+
+            $('#{{ id ~ '_toolbar' }} > .new').click(function() {
+                var new_item = $('#{{ id }}').data('prototype');
+                new_item = new_item.replace({{ '/' ~ prototype_name|default('__name__') ~ 'label__/g' }}, "{{ new_label|trans({}, translation_domain) }}");
+                new_item = new_item.replace({{ '/' ~ prototype_name|default('__name__') ~ '/g' }}, nextId);
+                new_item = $(new_item);
+                
+                {% if allow_delete %}
+                    new_item.find('.delete').click(function(){
+                        if(confirm('{{ 'object.delete.confirm'|trans({}, 'Admingenerator') }}')) {
+                            $(this).closest('.collection-item').remove();
+                        }
+                    });
+                {% endif %}
+                
+                nextId++;
+                $('#{{ id }} > .collection').append(new_item);
+            });
+        {% endif %}
+        {% if allow_delete %}
+            // remove item
+            $('.{{ id ~ '_actions' }} .delete').click(function(){
+                if(confirm('{{ 'object.delete.confirm'|trans({}, 'Admingenerator') }}')) {
+                    $(this).closest('.collection-item').remove();
+                }
+            });
+            
+            // select/deselect all
+            $('#{{ id ~ '_toolbar' }} > .btn-toggle > input[name="toggle"]').change(function() {
+                if($(this).is(':checked'))
+                    $('.{{ id ~ '_actions' }} > .btn-toggle > input[name="delete"]').attr('checked', true);
+                else
+                    $('.{{ id ~ '_actions' }} > .btn-toggle > input[name="delete"]').attr('checked', false);
+            });
+            
+            // delete selected
+            $('#{{ id ~ '_toolbar' }} > .batch-delete').click(function() {
+                if(confirm('{{ 'batch.delete.confirm'|trans({}, 'Admingenerator') }}')) {
+                    $('.{{ id ~ '_actions' }} > .btn-toggle > input[name="delete"]:checked').each(function(){
+                          $(this).closest('.collection-item').remove();
+                    });
+                    $('#{{ id ~ '_toolbar' }} > .btn-toggle > input[name="toggle"]').attr('checked', false);
+                }
+            });
+        {% endif %}
+    });
+</script>

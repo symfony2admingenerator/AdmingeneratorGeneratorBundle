@@ -40,6 +40,12 @@ entity_picker:
 upload:
   error:        Erro
   cancel:       Remover
+  delete:       Excluir
+upload.errors:
+  maxNumFiles:      Número máximo de arquivos excedeu.
+  typeNotAllowed:   Tipo de arquivo não permitido.
+  maxFileSize:      O arquivo é muito grande.
+  minFileSize:      O arquivo é muito pequeno.
 
 # Actions
 actions:
