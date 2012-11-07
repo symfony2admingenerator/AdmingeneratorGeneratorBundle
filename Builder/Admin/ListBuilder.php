@@ -109,7 +109,13 @@ class ListBuilder extends BaseBuilder
     protected function findObjectActions()
     {
         foreach ($this->getVariable('object_actions') as $actionName => $actionParams) {
-            $action = new Action($actionName);
+            $class = 'Admingenerator\\GeneratorBundle\\Generator\\'.Container::camelize($actionName.'Action');
+            if (class_exists($class)) {
+                $action = new $class($actionName, $this);
+            } else {
+                $action = new Action($actionName);
+            }
+
             $this->setUserObjectActionConfiguration($action);
             $this->addObjectAction($action);
         }
