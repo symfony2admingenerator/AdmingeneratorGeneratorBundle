@@ -3,13 +3,13 @@
     <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/javascripts/double_list.js') }}"></script>
     <div class="double_list">
         <div style="float: left">
-            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:unselected_list.html.twig" %}
+            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:double_list_unselected.html.twig" %}
         </div>
         <div style="float: left; margin-top: 2em">
-            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:controls.html.twig" %}
+            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:double_list_controls.html.twig" %}
         </div>
         <div style="float: left">
-            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:selected_list.html.twig" %}
+            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:double_list_selected.html.twig" %}
         </div>
         <br style="clear: both" />
         {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:javascript.html.twig" %}
@@ -54,8 +54,8 @@
 {% spaceless %}
     <input type="text" id="{{ id ~ '_typeahead' }}" 
            data-source="{% include "AdmingeneratorGeneratorBundle:Form/EntityPicker:data_source.html.twig" %}" 
-           placeholder="{{ 'entity_picker.placeholder'|trans({}, 'Admingenerator') }}" />
-    <input type="hidden" {{ block('widget_attributes') }} />
+           placeholder="{{ 'entity_picker.placeholder'|trans({}, 'Admingenerator') }}" autocomplete="off" />
+    <input type="hidden" {{ block('widget_attributes') }} {% if value is defined %}value="{{ value }}"{% endif %} />
     
     {% include "AdmingeneratorGeneratorBundle:Form/EntityPicker:javascript.html.twig" %}
 {% endspaceless %}
@@ -63,14 +63,26 @@
     
 {% block upload_widget %}
 {% spaceless %}
-    {% set full_name = full_name ~ '[]' %}
+    {% set full_name = full_name ~ '[uploads][]' %}
+    
     <div id="{{ id ~ '_widget_container' }}">
-        <div class="btn-toolbar">
+        <div class="btn-toolbar form-actions form-actions-condensed fileupload-buttonbar">
             <span class="btn btn-success fileinput">
                 <i class="icon-plus icon-white"></i>
                 <span>{{ 'actions.file.add'|trans({}, 'Admingenerator') }}</span>
                 <input type="file" {{ block('widget_attributes') }} multiple />
             </span>
+            <button type="reset" class="btn btn-warning cancel">
+                <i class="icon-ban-circle icon-white"></i>
+                <span> {{ 'upload.cancel'|trans({}, 'Admingenerator') }}</span>
+            </button>
+            <button type="button" class="btn btn-danger delete">
+                <i class="icon-trash icon-white"></i>
+                <span> {{ 'upload.delete'|trans({}, 'Admingenerator') }}</span>
+            </button>
+            <label class="btn btn-toggle disabled input-append">
+                <input type="checkbox" class="toggle">
+            </label>
         </div>
         {% include "AdmingeneratorGeneratorBundle:Form/Upload:presentation_table.html.twig" %}    
         {% include "AdmingeneratorGeneratorBundle:Form/Upload:template_download.html.twig" %}
@@ -78,39 +90,97 @@
         {% include "AdmingeneratorGeneratorBundle:Form/Upload:javascript.html.twig" %}
     </div>
 {% endspaceless %}
-{% endblock %}
+{% endblock upload_widget %}
 
 {% block collection_widget %}
-{% spaceless %}
-    <div class="collection">
-        {% set attr = attr|merge({'class': 'control-group' }) %}
-        {% if prototype is defined %}
-            {% set attr = attr|merge({'data-prototype': block('collection_item_widget') }) %}
-        {% endif %}
-        <div {{ block('widget_container_attributes') }}>
-            {{ form_errors(form) }}
-            {% for rows in form %}
-                {% set form = rows %}
-                {{ block('collection_item_widget') }}
-            {% endfor %}
-            {{ form_rest(form) }}
-        </div>
-        {% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_add.html.twig" %}
-    </div>
-{% endspaceless %}
+    {{ block(widget ~ '_collection_widget') }}
 {% endblock collection_widget %}
-
-{% block collection_item_widget %}
+    
+{% block default_collection_widget %}
 {% spaceless %}
-    <fieldset class="collection_item">
-        <legend>__name__label__</legend>
-        {% for row in form %}
-            {{ form_row(row) }}
-        {% endfor %}
+    {% if prototype is defined %}
+        {% set attr = attr|merge({'data-prototype': form_row(prototype) }) %}
+    {% endif %}
+    {{ block('form_widget') }}
+{% endspaceless %}
+{% endblock default_collection_widget %}
+    
+{% block fieldset_collection_widget %}
+{% spaceless %}
+    {% if prototype is defined %}
+        {% set item = prototype %}
+        {% set attr = attr|merge({'data-prototype': block('fieldset_collection_item_widget') }) %}
+    {% endif %}
+    {% set attr = attr|merge({'class': 'control-group' }) %}
+    <div {{ block('widget_container_attributes') }}>  
+        {% if form.parent is empty %}
+            {{ form_errors(form) }}
+        {% endif %}
+        <div id="{{ id ~ '_toolbar' }}" class="btn-toolbar form-actions form-actions-condensed">
+            {% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_add.html.twig" %}
+            {% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_batch_delete.html.twig" %}
+        </div>
+        <div class="collection">
+            {% for item in form %}
+                {{ block('fieldset_collection_item_widget') }}
+            {% endfor %}
+        </div>
+        {{ form_rest(form) }}
+    </div>
+    {% include "AdmingeneratorGeneratorBundle:Form/Collection:javascript.html.twig" %}
+{% endspaceless %}
+{% endblock fieldset_collection_widget %}
+    
+{% block fieldset_collection_item_widget %}
+{% spaceless %}
+    <fieldset class="collection-item {{ id ~ '_actions' }}">
+        <legend>{{ form_label(item) }}</legend>
+        {{ form_widget(item) }}
         {% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_delete.html.twig" %}
     </fieldset>
 {% endspaceless %}
-{% endblock collection_item_widget %}
+{% endblock fieldset_collection_item_widget %}
+
+{% block table_collection_widget %}
+{% spaceless %}
+    {% if prototype is defined %}
+        {% set item = prototype %}
+        {% set attr = attr|merge({'data-prototype': block('table_collection_item_widget') }) %}
+    {% endif %}
+    {% set attr = attr|merge({'class': 'table table-striped' }) %}
+    <table {{ block('widget_container_attributes') }}>
+        {% if form.parent is empty %}
+            <caption>
+                {{ form_errors(form) }}
+            </caption>
+        {% endif %}
+        <thead>
+          <tr>
+            <td id="{{ id ~ '_toolbar' }}" class="btn-toolbar form-actions form-actions-condensed" colspan="3">
+                {% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_add.html.twig" %}
+                {% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_batch_delete.html.twig" %}
+            </td>
+          </tr>
+        </thead>
+        <tbody class="collection">
+            {% for item in form %}
+                {{ block('table_collection_item_widget') }}
+            {% endfor %}
+        </tbody>
+    </table>
+    {% include "AdmingeneratorGeneratorBundle:Form/Collection:javascript.html.twig" %}
+{% endspaceless %}
+{% endblock table_collection_widget %}
+
+{% block table_collection_item_widget %}
+{% spaceless %}
+    <tr class="collection-item">
+        <th class="new-label">{{ form_label(item) }}</th>
+        <td>{{ form_widget(item) }}</td>
+        <td class="{{ id ~ '_actions' }}">{% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_delete.html.twig" %}</td>
+    </tr>
+{% endspaceless %}
+{% endblock table_collection_item_widget %}
     
 {% block form_widget_compound %}
 {% spaceless %}
@@ -123,6 +193,20 @@
     </div>
 {% endspaceless %}
 {% endblock form_widget_compound %}
+
+{% block form_rows %}
+{% spaceless %}
+    {% if options is defined %}
+        {% for child in form %}
+            {{ form_row(child, options) }}
+        {% endfor %}
+    {% else %}
+        {% for child in form %}
+            {{ form_row(child) }}
+        {% endfor %}
+    {% endif %}
+{% endspaceless %}
+{% endblock form_rows %}
     
 {% block form_row %}
 {% spaceless %}

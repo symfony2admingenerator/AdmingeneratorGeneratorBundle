@@ -35,7 +35,7 @@ params:
         previewMaxHeight:           100
         previewAsCanvas:            true
         prependFiles:               false
-````
+```
 
 In Entity, `upload` field has to be a `Collection` of `Symfony\Component\HttpFoundation\File\UploadedFile`.
 
@@ -107,6 +107,13 @@ The maximum height of the preview images.
 By default, preview images are displayed as [canvas](https://developer.mozilla.org/en/HTML/canvas) elements if supported by the browser.
 Set this option to false to always display preview images as *img* elements.
 
+#### thumbnailFilter
+
+**type:** `string` **default:** `null`
+
+By default, thumbnail images are displayed with width and height attribute only. However, you may want to generate thumbnail images to reduce bandwidth usage. This option lets you specify [AvalancheImagineBundle](https://github.com/avalanche123/AvalancheImagineBundle) filter name.
+If null, no filter will be applied. Requires setting configuration option `admingenerator_generator.thumbnail_generator` (see section 4 below).
+
 #### prependFiles
 
 **type:** `boolean` **default:** `false`
@@ -114,6 +121,17 @@ Set this option to false to always display preview images as *img* elements.
 By default, files are appended to the files container.
 Set this option to true, to prepend files instead.
 
-### 4. Special thanks
+### 4. Use AvalancheImagineBundle to display thumbnails (optional)
+
+To enable useing AvalancheImagineBundle for thumbnail generation just edit `config.yml`:
+
+```yaml
+admingenerator_generator:
+    thumbnail_generator:  avalanche  # default null
+```
+
+> **Important:** These options are just for User Interface and cannot be considered safe (javascript is client-side). Always validate form input data server-side!
+
+### 5. Special thanks
 
 Special thanks to [Sebastian Tschan](https://github.com/blueimp)  for ` jQuery-File-Upload` licensed under [MIT License](https://github.com/blueimp/jQuery-File-Upload#license).

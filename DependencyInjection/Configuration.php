@@ -31,6 +31,7 @@ class Configuration implements ConfigurationInterface
                 ->booleanNode('overwrite_if_exists')->defaultFalse()->end()
                 ->scalarNode('base_admin_template')->defaultValue("AdmingeneratorGeneratorBundle::base_admin.html.twig")->end()
                 ->scalarNode('knp_menu_class')->defaultValue("Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder")->end()
+                ->scalarNode('thumbnail_generator')->defaultNull()->end()
                 ->arrayNode('twig')
                     ->children()
                         ->booleanNode('use_localized_date')->defaultFalse()->end()

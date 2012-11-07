@@ -53,10 +53,7 @@
             <argument type="service" id="translator" />
         </service>
 
-        <service id="form.type.date_range" class="Admingenerator\GeneratorBundle\Form\Type\DateRangeType">
-            <tag name="form.type" alias="date_range" />
-        </service>
-
+        <!-- Form types -->
         <service id="form.type.double_list" class="Admingenerator\GeneratorBundle\Form\Type\DoubleListType">
             <tag name="form.type" alias="double_list" />
         </service>
@@ -71,6 +68,12 @@
 
         <service id="form.type.upload" class="Admingenerator\GeneratorBundle\Form\Type\UploadType">
             <tag name="form.type" alias="upload" />
+            <argument type="service" id="service_container" />
+        </service>
+        
+        <!-- Form type extensions -->
+        <service id="form.type_extension.collection" class="Admingenerator\GeneratorBundle\Form\Extension\BootstrapCollectionTypeExtension">
+            <tag name="form.type_extension" alias="collection" />
         </service>
 
         <!-- Warmup -->
