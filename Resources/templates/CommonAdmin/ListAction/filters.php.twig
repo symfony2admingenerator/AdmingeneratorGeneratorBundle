@@ -20,7 +20,9 @@
             $filters = $this->getRequest()->query->all();
         }
 
-        $this->setFilters($filters);
+        if (isset($filters)) {
+            $this->setFilters($filters);
+        }
 
         return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
     }

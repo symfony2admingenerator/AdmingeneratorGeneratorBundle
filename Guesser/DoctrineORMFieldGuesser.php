@@ -121,7 +121,7 @@ class DoctrineORMFieldGuesser
              case 'vardatetime':
              case 'datetimetz':
              case 'date':
-                return 'date_range';
+                return 'datepicker_range';
                 break;
              case 'collection':
                 return 'entity';

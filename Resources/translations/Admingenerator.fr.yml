@@ -24,7 +24,7 @@ list.display:
   range:      Résultats <b>%start%</b> à <b>%end%</b> sur <b>%count%</b>.
   all:        Affiche les <b>%count%</b> résultats.
 list.header:
-  actions:    Actes
+  actions:    Actions
 
 # Profile
 profile:
@@ -35,7 +35,7 @@ profile:
 # EntityPicker
 entity_picker:
   placeholder:  Rechercher...
-  
+
 # Upload
 upload:
   error:        Erreur

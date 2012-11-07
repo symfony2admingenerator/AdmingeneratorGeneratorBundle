@@ -23,8 +23,7 @@
         "knplabs/knp-menu-bundle": "dev-master",
         "white-october/pagerfanta-bundle": "dev-master",
         "twig/twig": ">= 1.9.0",
-        "twig/extensions": "dev-master",
-        "cedriclombardot/admingenerator-oldtheme-bundle": "dev-master"
+        "twig/extensions": "dev-master"
     },
     "require-dev": {
         "doctrine/common": "2.3.*",
@@ -32,7 +31,6 @@
         "doctrine/dbal": "2.3.*"
     },
     "suggest": {
-        "cedriclombardot/admingenerator-activeadmintheme-bundle": "The rails admin theme",
         "cedriclombardot/admingenerator-user-bundle": "Help you to overwrite the base layout of FOSUserBundle or others giving a parameter key of the container"
     },
     "target-dir": "Admingenerator/GeneratorBundle",

@@ -3,13 +3,13 @@
     <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/javascripts/double_list.js') }}"></script>
     <div class="double_list">
         <div style="float: left">
-            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:double_list_unselected.html.twig" %}
+            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:unselected_list.html.twig" %}
         </div>
         <div style="float: left; margin-top: 2em">
-            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:double_list_controls.html.twig" %}
+            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:controls.html.twig" %}
         </div>
         <div style="float: left">
-            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:double_list_selected.html.twig" %}
+            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:selected_list.html.twig" %}
         </div>
         <br style="clear: both" />
         {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:javascript.html.twig" %}
