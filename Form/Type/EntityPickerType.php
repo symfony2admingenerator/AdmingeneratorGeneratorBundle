@@ -13,38 +13,55 @@ class EntityPickerType extends EntityType
     /**
      * {@inheritdoc}
      */
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        if($options['primaryKey']) {
+            $options['builder'] = array_merge($options['builder'], array(
+                'primaryKey' => $options['primaryKey'],
+            ));
+        }
+               
+        $view->vars['builder'] = $options['builder'];
+        $view->vars['matcher'] = $options['matcher'];
+        $view->vars['primaryKey'] = $options['primaryKey'];
+        $view->vars['description'] = $options['description'];
+        $view->vars['thumb'] = $options['thumb'];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         parent::setDefaultOptions($resolver);
         
         $resolver->setDefaults(array(
-            'builder'     => array('pk' => 'id', 'name' => 'name'),
-            'matcher'     => 'item.name',
-            'identifier'  => 'item.id',
-            'description' => array(),
-            'thumb'       => array('src' => null, 'width' => '32px', 'height' => '32px'),
+            'exclude'         => null,  // this option is currently unused, patch coming soon
+            'builder'         => array(),
+            'matcher'         => 'item',
+            'primaryKey'      => null,
+            'description'     => array(),
+            'thumb'           => array(
+                'src'     => null, 
+                'width'   => '32', 
+                'height'  => '32'
+            ),
         ));
         
         $resolver->setAllowedTypes(array(
-            'builder'     => array('array'),
-            'matcher'     => array('string'),
-            'identifier'  => array('string'),
-            'description' => array('array'),
-            'thumb'       => array('array'),
+            'exclude'         => array('null', 'string'),
+            'builder'         => array('array'),
+            'matcher'         => array('string'),
+            'primaryKey'      => array('string'),
+            'description'     => array('array'),
+            'thumb'           => array('array'),
+        ));
+        
+        $resolver->setAllowedValues(array(
+            'exclude'       => array( null, 'entity', 'collection', 'root' ),
         ));
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function finishView(FormView $view, FormInterface $form, array $options)
-    {
-        $view->vars['builder'] = $options['builder'];
-        $view->vars['matcher'] = $options['matcher'];
-        $view->vars['identifier'] = $options['identifier'];
-        $view->vars['description'] = $options['description'];
-        $view->vars['thumb'] = $options['thumb'];
-    }
     /**
      * {@inheritdoc}
      */

@@ -11,7 +11,7 @@
         {% endraw %}
             <td class="error" colspan="2">
                 <span class="label label-important">
-                {{ 'upload.error'|trans({}, 'Admingenerator') }}
+                {{- 'upload.error'|trans({}, 'Admingenerator') -}}
                 </span> {% raw %}{%=file.error%}{% endraw %}
             </td>
         {% raw %}
@@ -25,10 +25,12 @@
         {% raw %}
         {% if (!i) { %}
         {% endraw %}
-            <button class="btn btn-warning">
-                <i class="icon-ban-circle icon-white"></i> 
-                <span> {{ 'upload.cancel'|trans({}, 'Admingenerator') }}</span>
-            </button>
+            <div class="btn-toolbar">
+                <button class="btn btn-warning">
+                    <i class="icon-ban-circle icon-white"></i> 
+                    <span> {{ 'upload.cancel'|trans({}, 'Admingenerator') }}</span>
+                </button>
+            </div>
         {% raw %}
         {% } %}
         {% endraw %}

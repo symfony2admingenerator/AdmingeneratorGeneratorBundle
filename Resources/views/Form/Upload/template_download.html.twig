@@ -11,7 +11,7 @@
             <td class="size"><span>{% raw %}{%=o.formatFileSize(file.size)%}{% endraw %}</span></td>
             <td class="error" colspan="2">
                 <span class="label label-important">
-                {{ 'upload.error'|trans({}, 'Admingenerator') }}
+                {{- 'upload.error'|trans({}, 'Admingenerator') -}}
                 </span> {% raw %}{%=file.error%}{% endraw %}
             </td>
         {% raw %}
@@ -20,34 +20,46 @@
             <td class="preview">
                 {% raw %}
                 {% if (file.thumbnail_url) { %}
-                    <a href="{%=file.url%}" 
-                       title="{%=file.name%}" 
-                       rel="gallery" 
-                       download="{%=file.name%}">
-                      <img src="{%=file.thumbnail_url%}"></a>
+                {% endraw %}
+                {% if thumbnailFilter %}
+                    {% raw %}
+                    <a href="{%=file.url%}" title="{%=file.name%}"><img src="{%=file.thumbnail_url%}" /></a>
+                    {% endraw %}
+                {% else %}
+                    {% raw %}
+                    <a href="{%=file.url%}" title="{%=file.name%}">
+                    {% endraw %}
+                        <img src="{% raw %}{%=file.thumbnail_url%}{% endraw %}" 
+                             width="{{ previewMaxWidth }}" height="{{ previewMaxHeight }}" />
+                    </a>
+                {% endif %}
+                {% raw %}
                 {% } %}
                 {% endraw %}
             </td>
             <td class="name">
                 {% raw %}
-                <a href="{%=file.url%}" 
-                   title="{%=file.name%}" 
-                   rel="{%=file.thumbnail_url&&'gallery'%}" 
-                   download="{%=file.name%}">{%=file.name%}</a>
+                <a href="{%=file.url%}" title="{%=file.name%}">{%=file.name%}</a>
                 {% endraw %}
             </td>
             <td class="size"><span>{% raw %}{%=o.formatFileSize(file.size)%}{% endraw %}</span></td>
-            <td colspan="2"></td>
+            <td colspan="2">
+              {% set options = {'value': '{%=file.file_id%}'} %}
+              {{ form_widget(prototype,{'options': options})|replace({'__name__': '{%=file.count%}'})|raw }}
+            </td>
         {% raw %}
         {% } %}
         {% endraw %}
         <td class="delete">
-            <button class="btn btn-danger" 
-            {% raw %}data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"{% endraw %}>
-                <i class="icon-trash icon-white"></i>
-                <span>Delete</span>
-            </button>
-            <input type="checkbox" name="delete" value="1">
+            <div class="btn-toolbar">
+                <button class="btn btn-danger">
+                    <i class="icon-trash icon-white"></i> 
+                    <span> {{ 'upload.delete'|trans({}, 'Admingenerator') }}</span>
+                </button>
+                <span class="btn btn-toggle disabled input-append">
+                    <input type="checkbox" name="delete" value="1">
+                </span>
+            </div>
         </td>
     </tr>
 {% raw %}

@@ -1,15 +1,21 @@
+{% if primaryKey is defined %}
+    {% set identifier = 'item.primaryKey' %}
+{% else %}
+    {% set identifier = 'item' %}
+{% endif %}
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('#{{ id ~ '_typeahead' }}').typeahead({
             source: function() {
-                var data = this.$element.data('source'); 
-
+                var data = this.$element.data('source');
+                
                 {% if form.parent.vars.prototype is defined %}
                     return $(data).filter(function(index, item) {
                         var values = [];
                         var hiddens = $('#{{ form.parent.vars.id }}').find('input[type="hidden"]');
 
-                        hiddens.each(function(i,e){
+                        hiddens.not('#{{ id }}').each(function(i,e){
                             values.push($(e).val());
                         });
 
@@ -44,12 +50,12 @@
 
                 var builder = $('<div></div>').addClass('clearfix');
 
-                {% if thumb|length > 0 %}                    
+                {% if thumb.src %}                    
                 var thumb = $('<div></div>').addClass('pull-left')
                     .append($('<img>').addClass('img-polaroid img-rounded')
-                    .attr('src', {{ (thumb.src|default("'http://placehold.it/32x32'"))|raw }})
-                    .attr('width', '{{ thumb.width|default('32px') }}')
-                    .attr('height', '{{ thumb.height|default('32px') }}')
+                    .attr('src', ({{ thumb.src|raw }}))
+                    .attr('width', '{{ thumb.width|default('32') }}px')
+                    .attr('height', '{{ thumb.height|default('32') }}px')
                 );
                 builder.append(thumb);
                 {% endif %}
@@ -59,7 +65,7 @@
                       .append($('<p></p>').html(heading))
                       {% for line in description %}
                       .append($('<div></div>')
-                          .append($('<{{ line.type|default('small') }}></{{ line.type|default('small') }}>')
+                          .append($('<{{ line.type|default('small') }}/>')
                           .addClass('{{ line.class|default('') }}')
                           .html({{ line.content|raw }}))
                       )
@@ -83,5 +89,13 @@
                 return {{ identifier }};
             }
         });
+        
+        {% if value is defined and value|length > 0 %}
+            var data = $('#{{ id ~ '_typeahead' }}').data('source');
+            var item = $.grep(data, function(item){
+                    return {{ identifier }} == {{ value }};
+                })[0];
+            $('#{{ id ~ '_typeahead' }}').val({{ matcher }});
+        {% endif %}
     });
 </script>

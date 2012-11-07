@@ -17,9 +17,14 @@ class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
         {%- if column.credentials -%}
         if (false !== $this->securityContext->isGranted(array(new Expression('{{ column.credentials }}')))) {
         {%- endif %}
+        
+          {% set columnType = column.formType|as_php|convert_as_form('form_widget') %}
+          {% set columnOptions = column.formOptions %}
+              {% if column.label is defined %}{% set columnOptions = columnOptions|merge({'label': column.label}) %}{% endif %}
+          {% set columnOptions = columnOptions|i18n(i18n_catalog|default('Admin'))|as_php|convert_as_form(column.formType) %}
 
-           $builder->add('{{ column.name }}', {{ column.formType|as_php|convert_as_form('form_widget') }}, {{ column.formOptions|i18n(i18n_catalog|default('Admin'))|as_php|convert_as_form(column.formType) }});
-
+           $builder->add('{{ column.name }}', {{ columnType }}, {{ columnOptions }});
+           
         {% if column.credentials %}
         }
 
