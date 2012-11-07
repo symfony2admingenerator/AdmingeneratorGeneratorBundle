@@ -1,4 +1,3 @@
-{% use '../CommonAdmin/EditTemplate/Type/collection.php.twig' %}
 {% block form_fieldset %}
 {{ echo_block("form_fieldset_" ~ fieldset|classify|replace({'.': '_'})) }}
     <fieldset class="form_block form_fieldset_{{ fieldset|classify|replace({'.': '_'}) }} fieldset_tabbable">
