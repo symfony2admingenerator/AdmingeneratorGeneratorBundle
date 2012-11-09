@@ -102,14 +102,15 @@
               "name":             "{{ item.name }}",
               "size":             {{ item.size }},
               "url":              "{{ vich_uploader_asset(item, 'file') }}",
-            {% if thumbnailGenerator and thumbnailFilter %}
-                {% if thumbnailGenerator is sameas('avalanche') %}
-                    "thumbnail_url":    "{{ vich_uploader_asset(item, 'file')|apply_filter(thumbnailFilter) }}",
+            {% if item.preview %}
+                {% if thumbnailGenerator and thumbnailFilter %}
+                    {% if thumbnailGenerator is sameas('avalanche') %}
+                        "thumbnail_url":    "{{ vich_uploader_asset(item, 'file')|apply_filter(thumbnailFilter) }}",
+                    {% endif %}
+                {% elseif item.size < previewSourceMaxFileSize %}
+                  "thumbnail_url":    "{{ vich_uploader_asset(item, 'file') }}",
                 {% endif %}
-            {% elseif item.size < previewSourceMaxFileSize %}
-              "thumbnail_url":    "{{ vich_uploader_asset(item, 'file') }}",
             {% endif %}
-              "file_id":          "{{ item.id }}",
               "count":            "{{ key }}",
             }
             {%- if not loop.last %},{% endif %}
@@ -117,6 +118,6 @@
         ]; // end of JSON array
         
         // Load existing files:
-        $(fileupload).fileupload('option', 'done').call(fileupload, null, {result: result});
+        $(fileupload).fileupload('option', 'done').call(fileupload, null, {result: result});        
     });
 </script>

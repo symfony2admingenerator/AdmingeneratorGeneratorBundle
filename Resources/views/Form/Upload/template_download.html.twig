@@ -44,8 +44,7 @@
             </td>
             <td class="size"><span>{% raw %}{%=o.formatFileSize(file.size)%}{% endraw %}</span></td>
             <td colspan="2">
-              {% set options = {'value': '{%=file.file_id%}'} %}
-              {{ form_widget(prototype,{'options': options})|replace({'__name__': '{%=file.count%}'})|raw }}
+                {{ form_widget(prototype['name'],{'value': '{%=file.name%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
             </td>
         {% raw %}
         {% } %}
