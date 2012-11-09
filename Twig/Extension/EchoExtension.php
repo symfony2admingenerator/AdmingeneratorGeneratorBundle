@@ -46,25 +46,7 @@ class EchoExtension extends \Twig_Extension
         return array(
             'as_php'          => new \Twig_Filter_Method($this, 'asPhp'),
             'convert_as_form' => new \Twig_Filter_Method($this, 'convertAsForm'),
-            'i18n'            => new \Twig_Filter_Method($this, 'i18n'),
         );
-    }
-    
-    /**
-     * Pass i18n_catalog to form options as translation_domain
-     * 
-     * @param array $variable
-     * @param type $i18n_catalog translation domain
-     * @return array
-     */
-    public function i18n($variable, $i18n_catalog)
-    { 
-       if (!is_array($variable)) {
-           return $variable;
-       }
-       
-       $variable['translation_domain'] = $i18n_catalog;
-       return $variable;
     }
 
     /**

@@ -136,6 +136,7 @@
     <fieldset class="collection-item {{ id ~ '_actions' }}">
         <legend>{{ form_label(item) }}</legend>
         {{ form_widget(item) }}
+        {{ form_errors(item) }}
         {% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_delete.html.twig" %}
     </fieldset>
 {% endspaceless %}
@@ -156,7 +157,7 @@
         {% endif %}
         <thead>
           <tr>
-            <td id="{{ id ~ '_toolbar' }}" class="btn-toolbar form-actions form-actions-condensed" colspan="3">
+            <td id="{{ id ~ '_toolbar' }}" class="btn-toolbar form-actions form-actions-condensed" colspan="4">
                 {% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_add.html.twig" %}
                 {% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_batch_delete.html.twig" %}
             </td>
@@ -177,6 +178,7 @@
     <tr class="collection-item">
         <th class="new-label">{{ form_label(item) }}</th>
         <td>{{ form_widget(item) }}</td>
+        <td>{{ form_errors(item) }}</td>
         <td class="{{ id ~ '_actions' }}">{% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_delete.html.twig" %}</td>
     </tr>
 {% endspaceless %}
@@ -184,7 +186,7 @@
     
 {% block form_widget_compound %}
 {% spaceless %}
-    <div class="control-group" {{ block('widget_container_attributes') }}>
+    <div {{ block('widget_container_attributes') }}>
         {% if form.parent is empty %}
             {{ form_errors(form) }}
         {% endif %}
@@ -210,10 +212,15 @@
     
 {% block form_row %}
 {% spaceless %}
-    <div class="control">
+    <div class="control-group {% if errors|length > 0 %} error{% endif %}">
         {{ form_label(form) }}
-        {{ form_errors(form) }}
+        <div class="controls">
         {{ form_widget(form) }}
+        {% if not compound %}
+            {{ form_errors(form) }}
+        {% endif %}
+        {{ block('form_help') }}
+        </div>
     </div>
 {% endspaceless %}
 {% endblock form_row %}
@@ -233,3 +240,30 @@
     <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
 {% endspaceless %}
 {% endblock form_label %}
+    
+{% block form_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <span class="help-block">
+        <ul class="form-errors">
+        {% for error in errors %}
+            <li>{{ error.messagePluralization is null
+                ? error.messageTemplate|trans(error.messageParameters, 'validators')
+                : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
+            }}</li>
+        {% endfor %}
+        </ul>
+    </span>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors %}
+    
+{% block form_help %}
+{% spaceless %}
+    {% if help %}
+        <span class="help-block">
+            <p class="muted">{{ help|trans({}, translation_domain) }}</p>
+        </span>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_help %}

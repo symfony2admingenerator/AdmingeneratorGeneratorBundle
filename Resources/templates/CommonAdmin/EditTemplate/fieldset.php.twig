@@ -11,21 +11,9 @@
                           {{ echo_if_granted(builder.Columns[field].credentials, builder.ModelClass) }}
                     {% endif %}
                     <div class="control-group form_field field_{{ builder.Columns[field].formType }} field_{{ field }}">
-                    {{ echo_block("form_" ~ field) }}
-                        <div class="error">
-                            {{ echo_twig("form_errors(form['" ~ field ~ "'])") }}
-                        </div>
-                        {{ echo_twig("form_label(form['" ~ field ~ "'], '" ~ builder.Columns[field].label|addslashes ~ "'|trans({}, '" ~ (i18n_catalog is defined ? i18n_catalog : "Admin") ~ "'))") }}
-                        <div class="controls">
-                            {{- echo_twig("form_widget(form['" ~ field ~ "'])") -}}
-
-                            {%- if builder.columns[field].help %}
-                            <span class="help-inline">
-                                {{ echo_twig("'" ~ builder.columns[field].help|addslashes ~ "'|trans({}, '" ~ (i18n_catalog is defined ? i18n_catalog : "Admin") ~ "')") }}
-                            </span>
-                            {% endif -%}
-                        </div>
-                    {{ echo_endblock() }}
+                        {{ echo_block("form_" ~ field) }}
+                            {{ echo_twig("form_row(form['" ~ field ~ "'])") }}
+                        {{ echo_endblock() }}
                     </div>
                     {% if builder.Columns[field].credentials %}
                         {{ echo_endif () }}
