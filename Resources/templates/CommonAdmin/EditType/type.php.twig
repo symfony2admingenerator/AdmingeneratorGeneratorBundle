@@ -21,7 +21,9 @@ class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
           {% set columnType = column.formType|as_php|convert_as_form('form_widget') %}
           {% set columnOptions = column.formOptions %}
               {% if column.label is defined %}{% set columnOptions = columnOptions|merge({'label': column.label}) %}{% endif %}
-          {% set columnOptions = columnOptions|i18n(i18n_catalog|default('Admin'))|as_php|convert_as_form(column.formType) %}
+              {% if column.help is defined %}{% set columnOptions = columnOptions|merge({'help': column.help}) %}{% endif %}
+              {% set columnOptions = columnOptions|merge({'translation_domain': i18n_catalog|default('Admin')}) %}
+          {% set columnOptions = columnOptions|as_php|convert_as_form(column.formType) %}
 
            $builder->add('{{ column.name }}', {{ columnType }}, {{ columnOptions }});
            

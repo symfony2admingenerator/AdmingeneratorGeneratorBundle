@@ -41,21 +41,6 @@ class EchoExtensionTest extends TestCase
         );
     }
 
-    public function testI18n()
-    {
-        $tpls = array(
-            'string' => '{{ "cedric"|i18n("foo") }}',
-            'array' => '{{ arr|i18n("foo")|as_php }}',
-        );
-
-        $returns = array(
-            'string' => array("cedric", 'i18n does not modify the string'),
-            'array' => array("array(  'obj' => 'val',  'translation_domain' => 'foo',)", 'i18n succesfully adds translation_domain to the array'),
-        );
-
-       $this->runTwigTests($tpls, $returns);
-    }
-
     public function testConvertAsForm()
     {
 
