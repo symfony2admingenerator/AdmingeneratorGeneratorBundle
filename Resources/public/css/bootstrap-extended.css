@@ -149,6 +149,14 @@ fieldset.collection-item {
   vertical-align: top
 }
 
+fieldset.collection-item > legend > label {
+  display: inline;
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
 fieldset.collection-item > .delete {
   position: absolute;
   top: 5px;
@@ -171,6 +179,11 @@ fieldset.collection-item > .btn-toggle {
 
 fieldset.collection-item > .btn-toggle > input[type="checkbox"] {
   opacity: 0.65;
+}
+
+/* Form error styles */
+ul.form-errors {
+  margin-left: 15px;
 }
 
 /* Remove firefox grey dotted focus outline */
