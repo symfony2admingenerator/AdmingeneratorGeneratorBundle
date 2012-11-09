@@ -60,7 +60,7 @@ interface FileInterface
     /**
      * Set Symfony\Component\HttpFoundation\File\File
      */
-    public function setFile();
+    public function setFile(\Symfony\Component\HttpFoundation\File\File $file);
 
     /**
      * Return instance of Symfony\Component\HttpFoundation\File\File
