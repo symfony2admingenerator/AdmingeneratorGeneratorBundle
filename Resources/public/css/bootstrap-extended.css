@@ -227,6 +227,22 @@ button::-moz-focus-inner, select::-moz-focus-inner {
     line-height: 30px;
 }
 
+/* Upload presentation table styles */
+tbody.files > tr > td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+tbody.files > tr > td.delete {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+tbody.files > tr > td > span {
+  line-height: 20px;
+  padding: 4px 0px; 
+}
+
 /* Additional text styles */
 .justify {
   text-align: justify;
