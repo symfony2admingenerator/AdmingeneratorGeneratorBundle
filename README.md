@@ -1,5 +1,8 @@
 # Symfony2 Admin Generator: The Real Missing Admin Generator for Symfony2! ![project status](http://stillmaintained.com/cedriclombardot/AdmingeneratorGeneratorBundle.png)# ![build status](https://secure.travis-ci.org/symfony2admingenerator/AdmingeneratorGeneratorBundle.png)#
 
+<a href="http://knpbundles.com/symfony2admingenerator/AdmingeneratorGeneratorBundle"><img src="http://knpbundles.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/badge"></a>
+
+
 **:warning: This branch work only with the symfony 2.1 for 2.0 use the 2.0 branch :warning:**
 
 This package is a Symfony2 Admin Generator based on YAML configuration and Twig templating.
