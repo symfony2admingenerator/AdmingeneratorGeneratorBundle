@@ -52,19 +52,22 @@
 {% block getQuery -%}
     protected function getQuery()
     {
-        $query = $this->getDoctrine()
+        $query = $this->buildQuery();
+
+        $this->processSort($query);
+        $this->processFilters($query);
+        $this->processScopes($query);
+
+        return $query->getQuery();
+    }
+    
+    protected function buildQuery()
+    {
+        return $this->getDoctrine()
                     ->getEntityManager()
                     ->createQueryBuilder()
                     ->select('q')
                     ->from('{{ model }}', 'q');
-
-        $this->processSort($query);
-        $this->processFilters($query);
-        {% if scopes is defined %}
-        $this->processScopes($query);
-        {% endif %}
-
-        return $query->getQuery();
     }
 {% endblock %}
 
@@ -128,9 +131,9 @@
 {% endblock %}
 
 {% block processScopes -%}
-    {% if scopes is defined %}
     protected function processScopes($query)
     {
+    {% if scopes is defined %}
         $scopes = $this->getScopes();
 
         $queryFilter = $this->get('admingenerator.queryfilter.doctrine');
@@ -154,8 +157,10 @@
         }
             {% endfor -%}
         {%- endfor %}
+    {%- endif %}
     }
 
+    {% if scopes is defined %}
     {% for groupName, group in scopes -%}
         {%- for scopeName, params in group %}
             {% if params["filters"] is defined -%}
