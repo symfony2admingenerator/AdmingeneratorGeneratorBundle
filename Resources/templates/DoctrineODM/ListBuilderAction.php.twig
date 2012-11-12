@@ -54,18 +54,22 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
 {% block getQuery -%}
     protected function getQuery()
     {
-        $query = $this->getDocumentManager()
-                      ->createQueryBuilder('{{ model }}');
+        $query = $this->buildQuery();
 
 
         $this->processSort($query);
         $this->processFilters($query);
-        {% if scopes is defined -%}
         $this->processScopes($query);
-        {% endif -%}
 
         return $query;
     }
+    
+    protected function buildQuery()
+    {
+        return $this->getDocumentManager()
+                      ->createQueryBuilder('{{ model }}');
+    }
+    
 {% endblock %}
 
 {% block processSort -%}
@@ -130,9 +134,9 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
 {% endblock %}
 
 {% block processScopes -%}
-    {% if scopes is defined -%}
     protected function processScopes($query)
     {
+    {% if scopes is defined -%}
         $scopes = $this->getScopes();
 
         $queryFilter = $this->get('admingenerator.queryfilter.doctrine_odm');
@@ -156,8 +160,10 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
         }
             {% endfor -%}
         {%- endfor -%}
+    {%- endif %}        
     }
 
+    {% if scopes is defined -%}
     {% for groupName, group in scopes -%}
         {%- for scopeName, params in group %}
             {% if params["filters"] is defined -%}
