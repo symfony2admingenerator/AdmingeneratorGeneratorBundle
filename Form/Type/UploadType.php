@@ -34,10 +34,10 @@ class UploadType extends CollectionType
         $builder->setAttribute('prototype', $prototype->getForm());
         
         $captureListener = new CaptureUploadListener(
-            $builder->getFormFactory(),
+            $builder->getName(),
             $options['options']['data_class']
         );
-        $builder->addEventSubscriber($captureListener);
+        $builder->getParent()->addEventSubscriber($captureListener);
         
         $resizeListener = new ResizeFormListener(
             $builder->getFormFactory(),

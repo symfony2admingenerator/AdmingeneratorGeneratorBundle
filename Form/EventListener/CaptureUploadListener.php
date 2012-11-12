@@ -11,25 +11,30 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class CaptureUploadListener implements EventSubscriberInterface
 {
     /**
-     * @var FormFactoryInterface
+     * @var string Property edited with UploadType
      */
-    protected $factory;
+    protected $propertyName;
 
     /**
-     * @var string File class
+     * @var string UploadType data_class
      */
-    protected $data_class;
+    protected $dataClass;
+
+    /**
+     * Used to revert changes if form is not valid.
+     * @var Doctrine\Common\Collections\Collection Original collection
+     */
+    protected $originalFiles;
     
     /**
-     * @var array Uploaded files
+     * @var array Captured upload
      */
     protected $uploads;
     
-    public function __construct(FormFactoryInterface $factory, $data_class)
+    public function __construct($propertyName, $dataClass)
     {
-        $this->factory = $factory;
-        $this->data_class = $data_class;
-        $this->uploads = array();
+        $this->propertyName = $propertyName;
+        $this->dataClass = $dataClass;
     }
 
     public static function getSubscribedEvents()
@@ -37,6 +42,7 @@ class CaptureUploadListener implements EventSubscriberInterface
         return array(
             FormEvents::PRE_BIND => array('preBind', 0),
             FormEvents::BIND => array('onBind', 0),
+            FormEvents::POST_BIND => array('postBind', 0),
         );
     }
 
@@ -46,9 +52,9 @@ class CaptureUploadListener implements EventSubscriberInterface
         $data = $event->getData();
         
         // capture uploads and store them for onBind event
-        $this->uploads = $data['uploads'];
+        $this->uploads = $data[$this->propertyName]['uploads'];
         // unset additional form data to prevent errors
-        unset($data['uploads']);
+        unset($data[$this->propertyName]['uploads']);
         
         $event->setData($data);
     }
@@ -56,19 +62,42 @@ class CaptureUploadListener implements EventSubscriberInterface
     public function onBind(FormEvent $event) {
         $form = $event->getForm();
         $data = $event->getData();
-        $entity = $form->getParent()->getData();
         
+        // save original files collection for postBind event
+        $getter = 'get'.ucfirst($this->propertyName);
+        $this->originalFiles = $data->$getter();
+        
+        // create file entites for each file
         foreach($this->uploads as $upload) {
             if($upload === null) return;
-            $file = new $this->data_class($upload, $entity);
-            
+            $file = new $this->dataClass($upload, $data);
+
             if (!($file instanceof \Admingenerator\GeneratorBundle\Model\FileInterface)) {
                 throw new UnexpectedTypeException($file, '\Admingenerator\GeneratorBundle\Model\FileInterface');
             }
-            
-            $data->add($file);            
+
+            $data->$getter()->add($file);
         }
-        
+
         $event->setData($data);
+    }
+
+    public function postBind(FormEvent $event)
+    {
+        $form = $event->getForm();
+        $data = $event->getData();  
+        
+        if(!$form->isValid()) {        
+            // remove files absent in the original collection
+            $getter = 'get'.ucfirst($this->propertyName);    
+            $data->$getter()->clear();
+            
+            foreach($this->originalFiles as $file) {
+                $data->$getter()->add($file);
+            }
+            // TODO: find a way to restore $this->uploads to the form
+            
+            $event->setData($data);
+        }
     }
 }
