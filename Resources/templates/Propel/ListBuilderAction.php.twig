@@ -5,15 +5,18 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
 {% block getQuery -%}
     protected function getQuery()
     {
-        $query = \{{ model }}Query::create();
+        $query = $this->buildQuery();
 
         $this->processSort($query);
         $this->processFilters($query);
-        {% if scopes is defined %}
         $this->processScopes($query);
-        {% endif %}
 
         return $query;
+    }
+
+    protected function buildQuery()
+    {
+        return \{{ model }}Query::create();
     }
 {% endblock %}
 
@@ -67,9 +70,9 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
 {% endblock %}
 
 {% block processScopes -%}
-    {% if scopes is defined %}
     protected function processScopes($query)
     {
+    {% if scopes is defined %}
         $scopes = $this->getScopes();
 
         {% for groupName, group in scopes -%}
@@ -89,9 +92,8 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
         }
             {% endfor -%}
         {%- endfor %}
-
-    }
     {% endif %}
+    }
 {% endblock %}
 
 {% block doBatchDelete -%}
