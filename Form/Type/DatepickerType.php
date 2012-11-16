@@ -65,6 +65,7 @@ class DatepickerType extends DateType
             'days'            => range(1, 31),
             'prepend'         => false,
             'weekstart'       => 1,
+            'autoclose'       => false,
             'widget'          => 'datepicker',
             'input'           => 'string',
             'format'          => self::HTML5_FORMAT,
@@ -99,6 +100,7 @@ class DatepickerType extends DateType
         $resolver->setAllowedTypes(array(
             'format'    =>  array('int', 'string'),
             'prepend'   =>  array('bool', 'string'),
+            'autoclose' =>  array('bool'),
         ));
     }
 
@@ -140,6 +142,7 @@ class DatepickerType extends DateType
         $view->vars['prepend'] = $options['prepend'];
         $view->vars['format'] = $options['format'];
         $view->vars['weekstart'] = $options['weekstart'];
+        $view->vars['autoclose'] = $options['autoclose'] === true ? 'true' : 'false';
     }
     
     /**
