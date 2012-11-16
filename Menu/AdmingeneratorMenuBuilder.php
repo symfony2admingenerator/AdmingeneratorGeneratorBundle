@@ -96,7 +96,8 @@ class AdmingeneratorMenuBuilder extends ContainerAware
     
     protected function addDropdownMenu(ItemInterface $menu, $label)
     {
-        $item = $this->addNavLinkURI($menu, $label, '#');
+        $label_with_caret = $label.' <b class="caret"></b>';
+        $item = $this->addNavLinkURI($menu, $label_with_caret, '#');
         $item->setLinkAttributes(array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'));
         $item->setChildrenAttributes(array('class' => 'dropdown-menu'));
         $item->setAttributes(array('class' => 'dropdown'));
