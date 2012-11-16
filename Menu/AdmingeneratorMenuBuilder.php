@@ -94,14 +94,14 @@ class AdmingeneratorMenuBuilder extends ContainerAware
         return $item;
     }
     
-    protected function addDropdownMenu(ItemInterface $menu, $label)
+    protected function addDropdownMenu(ItemInterface $menu, $label, $caret = true)
     {
-        $label_with_caret = $label.' <b class="caret"></b>';
-        $item = $this->addNavLinkURI($menu, $label_with_caret, '#');
+        $item = $this->addNavLinkURI($menu, $label, '#');
         $item->setLinkAttributes(array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'));
         $item->setChildrenAttributes(array('class' => 'dropdown-menu'));
         $item->setAttributes(array('class' => 'dropdown'));
-        $item->setExtra('translation_domain', $menu->getExtra('translation_domain'));
+        $item->setExtra('translation_domain', $menu->getExtra('translation_domain'));        
+        $item->setExtra('caret', $caret);
         $menu->setExtra('request_uri', $menu->getExtra('request_uri'));
         
         return $item;
