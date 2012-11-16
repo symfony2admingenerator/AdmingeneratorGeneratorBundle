@@ -2,5 +2,5 @@
 {% block label %}
     {% if item.getExtra('icon') is defined %}<i class="{{ item.getExtra('icon') }}"></i>{% endif %}
     {{ item.label|trans(item.getExtra('translation_params', {}), item.getExtra('translation_domain', 'messages')) }}
-    {% if item.getExtra('caret') is defined %}<b class="caret"></b>{% endif %}
+    {% if item.getExtra('caret') %}<b class="caret"></b>{% endif %}
 {% endblock %}
