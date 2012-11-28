@@ -65,9 +65,8 @@
     {
         return $this->getDoctrine()
                     ->getEntityManager()
-                    ->createQueryBuilder()
-                    ->select('q')
-                    ->from('{{ model }}', 'q');
+                    ->getRepository('{{ model }}')
+                    ->createQueryBuilder('q');
     }
 {% endblock %}
 
