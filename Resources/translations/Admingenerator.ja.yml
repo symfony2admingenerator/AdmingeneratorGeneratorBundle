@@ -1,0 +1,42 @@
+# Double list form
+double_list.selected: 選択済み
+double_list.unselected: 選択候補
+
+# Pager
+pagerfanta.previous: 前へ
+pagerfanta.next: 次へ
+
+# List
+list.no_results: 結果がありません
+list.filters: 絞り込み
+list.filter.btn_filter: 絞り込み
+list.filter.btn_reset: リセット
+"Display all <b>%count%</b> results": <b>%count%</b> 件の結果を表示中
+"Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": <b>%count%</b> 件中 <b>%start%</b> - <b>%end%</b> 件目を表示中
+list.actions: 操作
+
+#Object
+object.saved.success: データの保存が正常に完了しました。
+object.saved.error: データの保存に失敗しました。エラーを確認して再度保存してください。
+object.deleted.success: データの削除が正常に完了しました。
+object.deleted.error: データの削除に失敗しました。
+
+# Form
+form.btn_save: 保存
+form.type_collection.add: 追加
+form.delete.confirm: 実行するとデータが完全に削除されます。よろしいですか?
+
+# Actions
+List: 一覧
+New: 新規作成
+
+# Batch
+batch.delete.confirm: 選択したすべてのデータが完全に削除されます。よろしいですか?
+batch.none_selected: 1つ以上のデータを選択する必要があります。
+batch.deleted.success: データの削除が正常に完了しました。
+batch.deleted.error: データの削除に失敗しました。
+batch.list.selected: 選択済み
+batch.list.execute: 実行
+
+# Layout
+layout.welcome: ホームへ
