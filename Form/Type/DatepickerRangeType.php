@@ -13,7 +13,7 @@ class DatepickerRangeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-         unset($options['years']);
+         unset($options['years']); // TODO: check if this line can be removed
 
          $options['from']['required'] = $options['required'];
          $options['to']['required'] = $options['required'];
