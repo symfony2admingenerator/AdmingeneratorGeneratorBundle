@@ -14,6 +14,8 @@
         <parameter key="admingeneretor.menu_builder.class">Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder</parameter>
         <parameter key="admingenerator.base_admin_template">AdmingeneratorOldThemeBundle::base_admin.html.twig</parameter>
         <parameter key="admingenerator.overwrite_if_exists">false</parameter>
+        <parameter key="admingenerator.validator.model_class.class">Admingenerator\GeneratorBundle\Validator\ModelClassValidator</parameter>
+        <parameter key="admingenerator.validator.propel_model_class.class">Admingenerator\GeneratorBundle\Validator\PropelModelClassValidator</parameter>
     </parameters>
 
     <services>
@@ -51,6 +53,15 @@
         <service id="pagerfanta.view.admingenerator" class="Admingenerator\GeneratorBundle\Pagerfanta\View\AdmingeneratorView">
             <tag name="pagerfanta.view" alias="admingenerator" />
             <argument type="service" id="translator" />
+        </service>
+        
+        <!-- Validators -->
+        <service id="admingenerator.validator.model_class" class="%admingenerator.validator.model_class.class%" public="false">
+            <tag name="admingenerator.validator" alias="model_class" />
+        </service>
+
+        <service id="admingenerator.validator.propel_model_class" class="%admingenerator.validator.propel_model_class.class%" public="false">
+            <tag name="admingenerator.validator.propel" alias="propel_model_class" />
         </service>
 
         <!-- Form types -->
