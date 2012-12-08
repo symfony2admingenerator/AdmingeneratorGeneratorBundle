@@ -1,30 +1,80 @@
 # Double list form
-double_list.selected: ausgewählt
-double_list.unselected: nicht gewählt
+double_list:
+  selected:   Ausgewählt
+  unselected: Nicht gewählt
+  
+# Date range form
+date_range:
+  from.label: Von
+  to.label:   Bis
 
 # Pager
-pagerfanta.previous: Zurück
-pagerfanta.next: Vor
+pagerfanta:
+  previous: Zurück
+  next:     Vor
 
 # List
-list.no_results: Keine Einträge vorhanden
-list.filters: Filter
-list.filter.btn_filter: Filtern
-list.filter.btn_reset: Zurücksetzen
-"Display all <b>%count%</b> results": Zeige alle <b>%count%</b> Datensätze
-"Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Zeige <b>%start%</b> - <b>%end%</b> von <b>%count%</b> Datensätzen
-list.actions: Aktionen
-
-#Object
-object.saved.success: Das Objekt wurde erfolgreich gespeichert
-object.saved.error: Das Formular konnte nicht gespeichert werden. Bitte Fehler prüfen und erneut versuchen.
-object.deleted.success: Der Eintrag wurde erfolgreich gelöscht
-object.deleted.error: Der Eintrag kann nicht gelöscht werden
-
-# Form
-form.btn_save: Speichern
-form.type_collection.add: Hinzufügen
-
+list:
+  no.results: Keine Einträge vorhanden.
+  filters:    Filter
+list.button:
+  filter:     Filtern
+  reset:      Zurücksetzen
+list.display:
+  range:      Zeige <b>%start%</b> bis <b>%end%</b> von <b>%count%</b> Datensätzen.
+  all:        Zeige alle <b>%count%</b> Datensätze.
+list.header:
+  actions:    Aktionen
+  
+# Profile
+profile:
+  welcome:  <b>Willkommen</b>, %username%!</p>
+  login:    Einloggen
+  logout:   Ausloggen
+  
+# EntityPicker
+entity_picker:
+  placeholder:  Suchen...
+  
+# Upload
+upload:
+  error:        Fehler
+  cancel:       Entfernen
+  delete:       Löschen
+upload.errors:
+  maxNumFiles:      Maximale Anzahl der Dateien überschritten.
+  typeNotAllowed:   Dateityp nicht erlaubt.
+  maxFileSize:      Datei ist zu groß.
+  minFileSize:      Datei ist zu klein.
+  
 # Actions
-List: Übersicht
-New: Neu
+actions:
+  list:   Übersicht
+  new:    Neu
+  save:   Speichern
+  save-and-add:   Speichern und Neu
+  save-and-list:  Speichern und Übersicht
+  collection.add: Hinzufügen 
+  file.add:   Datei hinzufügen...
+  
+# Object actions
+object.edit:
+  label:    Bearbeiten
+  success:  Das Objekt wurde erfolgreich gespeichert.
+  error:    Das Formular konnte nicht gespeichert werden. Bitte Fehler prüfen und erneut versuchen.
+object.delete:
+  label:    Löschen
+  confirm:  Sind Sie sicher, dass Sie dieses Element löschen?
+    
+# Batch actions
+batch.delete:
+  label:    Delete
+  confirm:  Sie bestätigen das Löschen aller ausgewählten Elemente?
+  success:  Die Eintrage wurden erfolgreich gelöscht.
+  error:    Die Eintrage können nicht gelöscht werden.
+batch.list:
+  selected:       Ausgewählte
+  none.selected:  Sie müssen mindestens ein Element auswählen.
+
+# Layout
+layout.welcome:   Startseite

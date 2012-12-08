@@ -1,0 +1,32 @@
+{% block list_filters %}
+{{ echo_block('list_filters') }}
+<div class="row-fluid">
+    <form action="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_filters" ) }}" method="post" {{ echo_twig("form_enctype(form)") }}>
+        <legend>{{ echo_trans('list.filters') }}</legend>
+        <fieldset class="form_block form_fieldset_NONE">
+            {{ echo_twig("form_errors(form)") }}
+            {% for field in builder.filterColumns %}
+                {% if builder.filterColumns[field.name].credentials %}
+                      {{ echo_if_granted(builder.filterColumns[field.name].credentials) }}
+                {% endif %}
+                <div class="control-group">
+                    {{ echo_twig("form_label(form['" ~ field.name ~ "'], '" ~ builder.FilterColumns[field.name].label|addslashes ~ "'|trans({}, '" ~ (i18n_catalog is defined ? i18n_catalog : "Admin") ~ "'))") }}
+                    <div class="controls">
+                        {{ echo_twig("form_widget(form['" ~ field.name ~ "'])") }}
+                    </div>
+                    {{ echo_twig("form_errors(form['" ~ field.name ~ "'])") }}
+                </div>
+                {% if builder.filterColumns[field.name].credentials %}
+                    {{ echo_endif () }}
+                {% endif %}
+            {% endfor %}
+            {{ echo_twig("form_rest(form)") }}
+        </fieldset>
+        <div class="form-actions">
+            <button type="submit" class="btn btm-small btn-primary"><i class="icon-search icon-white"></i> {{ echo_trans('list.button.filter') }}</button>
+            <button type="submit" class="btn btm-small" name="reset"><i class="icon-refresh"></i> {{ echo_trans('list.button.reset') }}</button>
+        </div>
+    </form>    
+</div>
+{{ echo_endblock() }}
+{% endblock %}

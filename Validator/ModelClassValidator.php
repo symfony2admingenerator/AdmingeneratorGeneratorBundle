@@ -14,7 +14,7 @@ class ModelClassValidator extends BaseValidator implements ValidatorInterface
         }
 
         if (!class_exists($model)) {
-            throw new ModelClassNotFoundException(sprintf('Unable to find class %s for %s', $model,  $generator->getGeneratorYml()));
+            throw new ModelClassNotFoundException(sprintf('Unable to find class %s for %s', $model, $generator->getGeneratorYml()));
         }
     }
 }

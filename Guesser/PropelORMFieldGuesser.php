@@ -125,7 +125,7 @@ class PropelORMFieldGuesser
              case \PropelColumnTypes::BU_TIMESTAMP:
              case \PropelColumnTypes::DATE:
              case \PropelColumnTypes::BU_DATE:
-                return 'date_range';
+                return 'datepicker_range';
                 break;
              case 'collection':
                 return 'model';

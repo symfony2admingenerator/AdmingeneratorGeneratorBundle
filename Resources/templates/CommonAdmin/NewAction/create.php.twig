@@ -18,16 +18,21 @@
                 $this->saveObject(${{ builder.ModelClass }});
                 $this->postSave($form, ${{ builder.ModelClass }});
 
-                $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ messages.success is defined ? messages.success : "object.saved.success" }}", array(), 'Admingenerator') );
-
-                return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_edit", array('pk' => ${{ builder.ModelClass }}->get{{ builder.ModelPrimaryKeyName|classify }}()) ));
+                $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ messages.success is defined ? messages.success : "object.edit.success" }}", array(), 'Admingenerator') );
+           
+                if($this->get('request')->request->has('save-and-add'))
+                  return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_new" ));
+                if($this->get('request')->request->has('save-and-list'))
+                  return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list" ));
+                else
+                  return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_edit", array('pk' => ${{ builder.ModelClass }}->get{{ builder.ModelPrimaryKeyName|classify }}()) ));
             } catch (\Exception $e) {
-                $this->get('session')->setFlash('error',  $this->get('translator')->trans("{{ messages.error is defined ? messages.error : "object.saved.error" }}", array(), 'Admingenerator') );
+                $this->get('session')->setFlash('error',  $this->get('translator')->trans("{{ messages.error is defined ? messages.error : "object.edit.error" }}", array(), 'Admingenerator') );
                 $this->onException($e, $form, ${{ builder.ModelClass }});
             }
 
         } else {
-            $this->get('session')->setFlash('error', $this->get('translator')->trans("{{ messages.error is defined ? messages.error : "object.saved.error" }}", array(), 'Admingenerator') );
+            $this->get('session')->setFlash('error', $this->get('translator')->trans("{{ messages.error is defined ? messages.error : "object.edit.error" }}", array(), 'Admingenerator') );
         }
 
         return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}New:index.html.twig', array(
@@ -37,12 +42,12 @@
     }
 
     /**
-    * This method is here to make your life better, so overwrite  it
-    *
-    * @param \Exception $exception throwed exception
-    * @param \Symfony\Component\Form\Form $form the valid form
-    * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
-    */
+     * This method is here to make your life better, so overwrite it
+     *
+     * @param \Exception $exception throwed exception
+     * @param \Symfony\Component\Form\Form $form the valid form
+     * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
+     */
     public function onException(\Exception $exception, \Symfony\Component\Form\Form $form, \{{ model }} ${{ builder.ModelClass }})
     {
         if ($this->container->getParameter('kernel.debug')) {
@@ -51,21 +56,21 @@
     }
 
     /**
-    * This method is here to make your life better, so overwrite  it
-    *
-    * @param \Symfony\Component\Form\Form $form the valid form
-    * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
-    */
+     * This method is here to make your life better, so overwrite  it
+     *
+     * @param \Symfony\Component\Form\Form $form the valid form
+     * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
+     */
     public function preSave(\Symfony\Component\Form\Form $form, \{{ model }} ${{ builder.ModelClass }})
     {
     }
 
     /**
-    * This method is here to make your life better, so overwrite  it
-    *
-    * @param \Symfony\Component\Form\Form $form the valid form
-    * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
-    */
+     * This method is here to make your life better, so overwrite  it
+     *
+     * @param \Symfony\Component\Form\Form $form the valid form
+     * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
+     */
     public function postSave(\Symfony\Component\Form\Form $form, \{{ model }} ${{ builder.ModelClass }})
     {
     }

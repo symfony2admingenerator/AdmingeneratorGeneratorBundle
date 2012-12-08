@@ -1,0 +1,10 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#{{ id }}').datepicker({
+            format: '{{ format|lower }}',
+            language: '{{ app.request.locale }}',
+            weekStart: {{ weekstart }},
+            autoclose: {{ autoclose }},      
+        });
+    });
+</script>

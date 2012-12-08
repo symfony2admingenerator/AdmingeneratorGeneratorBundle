@@ -2,36 +2,28 @@
 
 namespace Admingenerator\GeneratorBundle\Menu;
 
-use Knp\Menu\FactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Router;
-use Symfony\Component\DependencyInjection\ContainerAware;
 
-class DefaultMenuBuilder extends ContainerAware
+class DefaultMenuBuilder extends AdmingeneratorMenuBuilder
 {
-    protected $factory;
-
-    /**
-     * @param \Knp\Menu\FactoryInterface $factory
-     */
-    public function __construct(FactoryInterface $factory)
-    {
-        $this->factory = $factory;
-    }
-
     /**
      * @param Request $request
      * @param Router  $router
      */
     public function createAdminMenu(Request $request)
     {
-        $menu = $this->factory->createItem('root', array('childrenAttributes' => array('id' => 'main_navigation', 'class'=>'menu') ) );
+        $menu = parent::createAdminMenu($request);
 
-        $help = $menu->addChild('Overwrite this menu', array('uri' => '#'));
-        $help->setLinkAttributes(array('class'=>'sub main'));
+        /**
+         * Translation domain is passed down to child elements
+         * in addNavLinkURI, addNavLinkRoute, addDropdownMenu methods.
+         */
+        $menu->setExtra('translation_domain', 'Admingenerator');
 
-        $help->addChild('Configure menu class', array('uri' => 'https://github.com/knplabs/KnpMenuBundle/blob/master/Resources/doc/index.md'));
-        $help->addChild('Configure php class to use', array('uri' => 'https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/change-the-menu-class.markdown'));
+        $help = $this->addDropdownMenu($menu, 'Overwrite this menu');
+
+        $this->addNavLinkURI($help, 'Configure menu class', 'https://github.com/knplabs/KnpMenuBundle/blob/master/Resources/doc/index.md');
+        $this->addNavLinkURI($help, 'Configure php class to use', 'https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/change-the-menu-class.markdown');
 
         return $menu;
     }

@@ -17,7 +17,7 @@ class PropelModelClassValidator extends BaseValidator implements ValidatorInterf
         $model = implode('\\', $parts).'\\om\\Base'.$modelName;
 
         if (!class_exists($model)) {
-            throw new GeneratedModelClassNotFoundException(sprintf('Unable to find class %s for %s', $model,  $generator->getGeneratorYml()));
+            throw new GeneratedModelClassNotFoundException(sprintf('Unable to find class %s for %s', $model, $generator->getGeneratorYml()));
         }
     }
 }

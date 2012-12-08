@@ -1,30 +1,80 @@
 # Double list form
-double_list.selected: Selecionado
-double_list.unselected: N�o selecionado
+double_list:
+  selected:   Selecionado
+  unselected: Não selecionado
+  
+# Date range form
+date_range:
+  from.label: De
+  to.label:   A
 
 # Pager
-pagerfanta.previous: Anterior
-pagerfanta.next: Pr�ximo
+pagerfanta:
+  previous: Anterior
+  next:     Próximo
 
 # List
-list.no_results: N�o h� resultados
-list.filters: Filtros
-list.filter.btn_filter: Filtro
-list.filter.btn_reset: Redefinir
-"Display all <b>%count%</b> results": Mostrando todos os <b>%count%</b> resultados
-"Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Mostrando <b>%start%</b> - <b>%end%</b> de <b>%count%</b> resultados
-list.actions: A��es
-
-#Object
-object.saved.success: O objeto foi salvo com sucesso
-object.saved.error: O formul�rio n�o pode ser salvo. Verifique os erros e tente novamente
-object.deleted.success: The record have been successfully deleted
-object.deleted.error: The record can't be deleted
-
-# Form
-form.btn_save: Salvar
-form.type_collection.add: Adicionar
+list:
+  no.results: Não há resultados.
+  filters:    Filtros
+list.button:
+  filter:     Filtro
+  reset:      Redefinir
+list.display:
+  range:      Mostrando <b>%start%</b> - <b>%end%</b> de <b>%count%</b> resultados.
+  all:        Mostrando todos os <b>%count%</b> resultados.
+list.header:
+  actions:    Ações
+  
+# Profile
+profile:
+  welcome:  <b>Bem-vindo</b>, %username%!</p>
+  login:    Iniciar sessão
+  logout:   Sair
+  
+# EntityPicker
+entity_picker:
+  placeholder:  Pesquisar...
+  
+# Upload
+upload:
+  error:        Erro
+  cancel:       Remover
+  delete:       Excluir
+upload.errors:
+  maxNumFiles:      Número máximo de arquivos excedeu.
+  typeNotAllowed:   Tipo de arquivo não permitido.
+  maxFileSize:      O arquivo é muito grande.
+  minFileSize:      O arquivo é muito pequeno.
 
 # Actions
-List: Listar
-New: Novo
+actions:
+  list:   Listar
+  new:    Novo
+  save:   Salvar
+  save-and-add:   Salvar e Novo
+  save-and-list:  Salvar e Listar
+  collection.add: Adicionar  
+  file.add:   Adicionar arquivo...
+  
+# Object actions
+object.edit:
+  label:    Editar
+  success:  O objeto foi salvo com sucesso.
+  error:    O formulário não pode ser salvo. Verifique os erros e tente novamente.
+object.delete:
+  label:    Excluir
+  confirm:  Tem certeza de que deseja excluir este elemento?
+    
+# Batch actions
+batch.delete:
+  label:    Excluir
+  confirm:  Você confirmar a eliminação de todos os elementos selecionados?
+  success:  Registros foram apagados com sucesso.
+  error:    Os registros não podem ser apagados.
+batch.list:
+  selected:       Selecionado
+  none.selected:  Você tem que selecionar pelo menos um elemento.
+
+# Layout
+layout.welcome:   Homepage

@@ -16,7 +16,7 @@ class AdmingeneratorGeneratorBundle extends Bundle
         $AdmingeneratedClassLoader->setBasePath($this->container->getParameter('kernel.cache_dir'));
         $AdmingeneratedClassLoader->register();
     }
-
+    
     public function build(ContainerBuilder $container)
     {
         parent::build($container);

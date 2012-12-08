@@ -3,10 +3,8 @@
 namespace Admingenerator\GeneratorBundle\Generator;
 
 /**
- *
- * This class describe an action
+ * This class describes batch Delete action
  * @author cedric Lombardot
- *
  */
 use Admingenerator\GeneratorBundle\Builder\Admin\BaseBuilder;
 
@@ -16,6 +14,8 @@ class DeleteBatchAction extends Action
     {
         parent::__construct($name);
 
-        $this->setConfirm('batch.delete.confirm|tran({}, "Admingenerator")');
+        $this->setLabel('batch.delete.label');
+        $this->setIcon('icon-remove');
+        $this->setConfirm('batch.delete.confirm');
     }
 }

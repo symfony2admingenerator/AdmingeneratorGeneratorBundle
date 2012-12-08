@@ -1,0 +1,9 @@
+{% block list_nbresults %}
+{{ echo_block("list_nbresults") }}
+<div class="list_nbresults">
+    {{ echo_set("count",  builder.ModelClass ~ "s.count", false ) }}
+
+    {{ echo_trans("Display all <b>%count%</b> results") }}
+</div>
+{{ echo_endblock() }}
+{% endblock %}

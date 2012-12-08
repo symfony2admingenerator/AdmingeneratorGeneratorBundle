@@ -15,17 +15,23 @@ class Action
     protected $name;
 
     protected $label;
+    
+    protected $icon;
+    
+    protected $class;
 
     protected $route;
+    
+    protected $submit;
 
     protected $confirm_message;
 
     protected $crendentials;
-
+    
     protected $conditional_function;
     
     protected $conditional_inverse = false;
-    
+
     protected $params;
 
     public function __construct($name)
@@ -52,9 +58,39 @@ class Action
         return $this->humanize($this->getName());
     }
 
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
+    }
+
+    public function getIcon()
+    {
+        return $this->icon;
+    }
+    
+    public function setClass($class)
+    {
+        $this->class = $class;
+    }
+
+    public function getClass()
+    {
+        return $this->class;
+    }
+
     public function getRoute()
     {
         return $this->route;
+    }
+
+    public function setSubmit($submit)
+    {
+        $this->submit = (bool) $submit;
+    }
+
+    public function isSubmit()
+    {
+        return $this->submit;
     }
 
     private function humanize($text)
@@ -101,7 +137,7 @@ class Action
     public function setRoute($route)
     {
         $this->route = $route;
-    }
+    }   
     
     public function setCondition(array $condition)
     {

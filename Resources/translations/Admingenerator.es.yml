@@ -1,30 +1,80 @@
 # Double list form
-double_list.selected: Seleccionado
-double_list.unselected: No seleccionado
+double_list:
+  selected:   Seleccionado
+  unselected: No seleccionado
+  
+# Date range form
+date_range:
+  from.label: De
+  to.label:   A
 
 # Pager
-pagerfanta.previous: Anterior
-pagerfanta.next: Siguiente
+pagerfanta:
+  previous: Anterior
+  next:     Siguiente
 
 # List
-list.no_results: No existen resultados
-list.filters: Filtros
-list.filter.btn_filter: Filtro
-list.filter.btn_reset: Borrar
-"Display all <b>%count%</b> results": Mostrar todos los <b>%count%</b> resultados
-"Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Mostrar <b>%start%</b> - <b>%end%</b> de <b>%count%</b> resultados
-list.actions: Acciones
-
-#Object
-object.saved.success: El objeto fue guardado satisfactoriamente
-object.saved.error: El formulario no pudo ser guardado. comprueba los errores y vuelve a intentarlo
-object.deleted.success: El registro ha sido borrado correctamente
-object.deleted.error: Este registro no puede ser borrado
-
-# Form
-form.btn_save: Guardar
-form.type_collection.add: Añadir
-
+list:
+  no.results: No existen resultados.
+  filters:    Filtros
+list.button:
+  filter:     Filtro
+  reset:      Reajustar
+list.display:
+  range:      Mostrar <b>%start%</b> - <b>%end%</b> de <b>%count%</b> resultados.
+  all:        Mostrar todos los <b>%count%</b> resultados.
+list.header:
+  actions:    Acciones
+  
+# Profile
+profile:
+  welcome:  <b>Bienvenido</b>, %username%!</p>
+  login:    Iniciar sesión
+  logout:   Cerrar sesión
+  
+# EntityPicker
+entity_picker:
+  placeholder:  Buscar...
+  
+# Upload
+upload:
+  error:        Error
+  cancel:       Eliminar
+  delete:       Borrar
+upload.errors:
+  maxNumFiles:      Número máximo de archivos superior.
+  typeNotAllowed:   Tipo de archivo no permitido.
+  maxFileSize:      El archivo es demasiado grande.
+  minFileSize:      El archivo es demasiado pequeño.
+  
 # Actions
-List: Listar
-New: Nuevo
+actions:
+  list:   Listar
+  new:    Nuevo
+  save:   Guardar
+  save-and-add:   Guardar y Nuevo
+  save-and-list:  Guardar y Listar
+  collection.add: Añadir 
+  file.add:   Añadir archivo...
+  
+# Object actions
+object.edit:
+  label:    Editar
+  success:  El objeto fue guardado satisfactoriamente.
+  error:    El formulario no pudo ser guardado. comprueba los errores y vuelve a intentarlo.
+object.delete:
+  label:    Borrar
+  confirm:  ¿Está seguro que desea eliminar este elemento?
+    
+# Batch actions
+batch.delete:
+  label:    Borrar
+  confirm:  ¿Te confirmar la eliminación de todos los elementos seleccionados?
+  success:  El registro ha sido borrado correctamente.
+  error:    Este registro no puede ser borrado.
+batch.list:
+  selected:       Seleccionado
+  none.selected:  Debe seleccionar al menos un elemento.
+
+# Layout
+layout.welcome:   Página principal

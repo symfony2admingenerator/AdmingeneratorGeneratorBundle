@@ -1,39 +1,80 @@
 # Double list form
-double_list.selected: Обрані
-double_list.unselected: Доступні
+double_list:
+  selected:   Обрані
+  unselected: Доступні
+  
+# Date range form
+date_range:
+  from.label: З
+  to.label:   По
 
 # Pager
-pagerfanta.previous: Поп.
-pagerfanta.next: Наст.
+pagerfanta:
+  previous: Поп
+  next:     Наст
 
 # List
-list.no_results: Немає записів
-list.filters: Фільтри
-list.filter.btn_filter: Фільтрувати
-list.filter.btn_reset: Очистити
-"Display all <b>%count%</b> results": Відображені всі <b>%count%</b> записи(ів)
-"Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results": Відображені <b>%start%</b> - <b>%end%</b> з <b>%count%</b> записи(ів)
-list.actions: Дії
-
-#Object
-object.saved.success: Об'єкт був успішно збережений
-object.saved.error: Неможливо зберегти об'єкт. Форма не збережена. Виправте помилки і спробуйте ще раз
-object.deleted.success: Запис було успішно видалено
-object.deleted.error: Запис не може бути видалений
-
-# Form
-form.btn_save: Зберегти
-form.type_collection.add: Додати
-form.delete.confirm: Ви дійсно хочете видалити цей елемент ?
+list:
+  no.results: Немає записів.
+  filters:    Фільтри
+list.button:
+  filter:     Фільтрувати
+  reset:      Очистити
+list.display:
+  range:      Відображені <b>%start%</b> - <b>%end%</b> з <b>%count%</b> записи(ів).
+  all:        Відображені всі <b>%count%</b> записи(ів).
+list.header:
+  actions:    Дії
+  
+# Profile
+profile:
+  welcome:  <b>Привіт</b>, %username%!</p>
+  login:    Увійти
+  logout:   Вийти
+  
+# EntityPicker
+entity_picker:
+  placeholder:  Шукати...
+  
+# Upload
+upload:
+  error:        Помилка
+  cancel:       Видалення
+  delete:       Видаляти
+upload.errors:
+  maxNumFiles:      Максимальна кількість файлів перевищений.
+  typeNotAllowed:   Тип файлу не допускається.
+  maxFileSize:      Файл занадто великий.
+  minFileSize:      Файл занадто малий.
 
 # Actions
-List: Список
-New: Додати
+actions:
+  list:   Список
+  new:    Додати
+  save:   Зберегти
+  save-and-add:   Зберегти і Додати
+  save-and-list:  Зберегти і Список
+  collection.add: Додати  
+  file.add:   Додати файл...
+  
+# Object actions
+object.edit:
+  label:    Редагувати
+  success:  Об'єкт був успішно збережений.
+  error:    Неможливо зберегти об'єкт. Форма не збережена. Виправте помилки і спробуйте ще раз.
+object.delete:
+  label:    Видаляти
+  confirm:  Ви дійсно хочете видалити цей елемент?
+    
+# Batch actions
+batch.delete:
+  label:    Видаляти
+  confirm:  Ви підтверджуєте видалення вибраних елементів?
+  success:  Записи було успішно видалено.
+  error:    Неможливо видалити записи.
+batch.list:
+  selected:       Оберіть дію
+  none.selected:  Необхідно вибрати не менше одного елемента.
 
-# Batch
-batch.delete.confirm: Ви підтверджуєте видалення вибраних елементів ?
-batch.none_selected: Необхідно вибрати не менше одного елемента
-batch.deleted.success: Записи було успішно видалено
-batch.deleted.error: Неможливо видалити записи
-batch.list.selected: Оберіть дію
-batch.list.execute: Виконати
+# Layout
+layout.welcome:   Домашня сторінка
