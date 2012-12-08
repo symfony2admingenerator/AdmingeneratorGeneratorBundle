@@ -7,11 +7,11 @@ use Admingenerator\GeneratorBundle\Generator\Generator;
 
 class BaseValidator
 {
-	protected function getFromYaml(Generator $generator, $yaml_path, $default = null)
-	{
-		$search_in = Yaml::parse($generator->getGeneratorYml());
+    protected function getFromYaml(Generator $generator, $yaml_path, $default = null)
+    {
+        $search_in = Yaml::parse($generator->getGeneratorYml());
 
-		$yaml_path = explode('.',$yaml_path);
+        $yaml_path = explode('.',$yaml_path);
         foreach ($yaml_path as $key) {
             if (!isset($search_in[$key])) {
                 return $default;
@@ -20,5 +20,5 @@ class BaseValidator
         }
 
         return $search_in;
-	}
+    }
 }

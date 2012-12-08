@@ -34,7 +34,7 @@ class PropelGenerator extends Generator
     public function build()
     {
         $this->validateYaml();
-
+        
         $generator = new AdminGenerator($this->cache_dir, $this->getGeneratorYml());
 
         $generator->setContainer($this->container);

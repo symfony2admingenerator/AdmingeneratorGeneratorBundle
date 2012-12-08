@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class ValidatorCompilerPass implements CompilerPassInterface
 {
-	public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container)
     {
         $taggedServices = $container->findTaggedServiceIds(
             'admingenerator.validator'
@@ -26,7 +26,6 @@ class ValidatorCompilerPass implements CompilerPassInterface
         $taggedServicesDoctrineOdm = $container->findTaggedServiceIds(
             'admingenerator.validator.doctrine_odm'
         );
-
 
         if ($container->hasDefinition('admingenerator.generator.propel')) {
             $this->addValidators($taggedServicesPropel, $container->getDefinition('admingenerator.generator.propel'));
@@ -46,7 +45,7 @@ class ValidatorCompilerPass implements CompilerPassInterface
 
     protected function addValidators(array $taggedServices, Definition $definition)
     {
-    	foreach ($taggedServices as $id => $attributes) {
+        foreach ($taggedServices as $id => $attributes) {
             $definition->addMethodCall(
                 'addValidator',
                 array(new Reference($id))

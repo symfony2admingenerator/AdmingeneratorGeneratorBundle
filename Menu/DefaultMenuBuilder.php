@@ -23,7 +23,7 @@ class DefaultMenuBuilder extends AdmingeneratorMenuBuilder
         $help = $this->addDropdownMenu($menu, 'Overwrite this menu');
 
         $this->addNavLinkURI($help, 'Configure menu class', 'https://github.com/knplabs/KnpMenuBundle/blob/master/Resources/doc/index.md');
-        $this->addNavLinkURI($help, 'Configure php class to use', 'https://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/change-the-menu-class.markdown');
+        $this->addNavLinkURI($help, 'Configure php class to use', 'https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/change-the-menu-class.markdown');
 
         return $menu;
     }

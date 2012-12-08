@@ -1,0 +1,80 @@
+# Double list form
+double_list:
+  selected:   選択済み
+  unselected: 選択候補
+
+# Date range form
+date_range:
+  from.label: From
+  to.label:   To
+  
+# Pager
+pagerfanta:
+  previous: 前へ
+  next:     次へ
+
+# List
+list:
+  no.results: 結果がありません
+  filters:    絞り込み
+list.button:
+  filter:     絞り込み
+  reset:      リセット
+list.display:
+  range:      <b>%count%</b> 件中 <b>%start%</b> - <b>%end%</b> 件目を表示中
+  all:        <b>%count%</b> 件の結果を表示中
+list.header:
+  actions:    操作
+
+# Profile
+profile:
+  welcome:  <b>Welcome</b>, %username%!</p>
+  login:    Login
+  logout:   Log out
+
+# EntityPicker
+entity_picker:
+  placeholder:  Search...
+  
+# Upload
+upload:
+  error:        Error
+  cancel:       Cancel
+  delete:       Delete
+upload.errors:
+  maxNumFiles:      Maximum number of files exceeded.
+  typeNotAllowed:   Filetype not allowed.
+  maxFileSize:      File is too big.
+  minFileSize:      File is too small.
+  
+# Actions
+actions:
+  list:   一覧
+  new:    新規作成
+  save:   保存
+  save-and-add:   Save and Add
+  save-and-list:  Save and List
+  collection.add: 追加
+  file.add:   Add file...
+  
+# Object actions
+object.edit:
+  label:    Edit
+  success:  データの保存が正常に完了しました。
+  error:    データの保存に失敗しました。エラーを確認して再度保存してください。
+object.delete:
+  label:    Delete
+  confirm:  Are you sure you want to delete this element?
+  
+# Batch actions
+batch.delete:
+  label:    Delete
+  confirm:  選択したすべてのデータが完全に削除されます。よろしいですか?
+  success:  データの削除が正常に完了しました。
+  error:    データの削除に失敗しました。
+batch.list:
+  selected:       選択済み
+  none.selected:  1つ以上のデータを選択する必要があります。
+
+# Layout
+layout.welcome: ホームへ

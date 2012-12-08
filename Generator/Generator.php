@@ -24,6 +24,8 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
     protected $fieldGuesser;
 
     protected $base_generator_name;
+    
+    protected $validators = array();
 
     protected $validators = array();
 
@@ -117,7 +119,7 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
 
         return false;
     }
-
+    
     public function addValidator(ValidatorInterface $validator)
     {
         $this->validators[] = $validator;

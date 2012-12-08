@@ -75,3 +75,6 @@ batch.delete:
 batch.list:
   selected:       Izbrano
   none.selected:  Izbrati morate vsaj en element.
+
+# Layout
+layout.welcome:   Domača stran
