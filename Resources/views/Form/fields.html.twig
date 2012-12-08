@@ -3,13 +3,13 @@
     <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/javascripts/double_list.js') }}"></script>
     <div class="double_list">
         <div style="float: left">
-            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:double_list_unselected.html.twig" %}
+            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:unselected_list.html.twig" %}
         </div>
         <div style="float: left; margin-top: 2em">
-            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:double_list_controls.html.twig" %}
+            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:controls.html.twig" %}
         </div>
         <div style="float: left">
-            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:double_list_selected.html.twig" %}
+            {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:selected_list.html.twig" %}
         </div>
         <br style="clear: both" />
         {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:javascript.html.twig" %}
@@ -46,25 +46,25 @@
         {% for child in form %}
             {{ form_widget(child) }}
         {% endfor %}
-    </div>    
+    </div>
 {% endspaceless %}
 {% endblock %}
-    
+
 {% block entitypicker_widget %}
 {% spaceless %}
-    <input type="text" id="{{ id ~ '_typeahead' }}" 
-           data-source="{% include "AdmingeneratorGeneratorBundle:Form/EntityPicker:data_source.html.twig" %}" 
+    <input type="text" id="{{ id ~ '_typeahead' }}"
+           data-source="{% include "AdmingeneratorGeneratorBundle:Form/EntityPicker:data_source.html.twig" %}"
            placeholder="{{ 'entity_picker.placeholder'|trans({}, 'Admingenerator') }}" autocomplete="off" />
     <input type="hidden" {{ block('widget_attributes') }} {% if value is defined %}value="{{ value }}"{% endif %} />
-    
+
     {% include "AdmingeneratorGeneratorBundle:Form/EntityPicker:javascript.html.twig" %}
 {% endspaceless %}
 {% endblock %}
-    
+
 {% block upload_widget %}
 {% spaceless %}
     {% set full_name = full_name ~ '[uploads][]' %}
-    
+
     <div id="{{ id ~ '_widget_container' }}">
         <div class="btn-toolbar form-actions form-actions-condensed fileupload-buttonbar">
             <span class="btn btn-success fileinput">
@@ -84,9 +84,9 @@
                 <input type="checkbox" class="toggle">
             </label>
         </div>
-        {% include "AdmingeneratorGeneratorBundle:Form/Upload:presentation_table.html.twig" %}    
+        {% include "AdmingeneratorGeneratorBundle:Form/Upload:presentation_table.html.twig" %}
         {% include "AdmingeneratorGeneratorBundle:Form/Upload:template_download.html.twig" %}
-        {% include "AdmingeneratorGeneratorBundle:Form/Upload:template_upload.html.twig" %}    
+        {% include "AdmingeneratorGeneratorBundle:Form/Upload:template_upload.html.twig" %}
         {% include "AdmingeneratorGeneratorBundle:Form/Upload:javascript.html.twig" %}
     </div>
 {% endspaceless %}
@@ -95,7 +95,7 @@
 {% block collection_widget %}
     {{ block(widget ~ '_collection_widget') }}
 {% endblock collection_widget %}
-    
+
 {% block default_collection_widget %}
 {% spaceless %}
     {% if prototype is defined %}
@@ -104,7 +104,7 @@
     {{ block('form_widget') }}
 {% endspaceless %}
 {% endblock default_collection_widget %}
-    
+
 {% block fieldset_collection_widget %}
 {% spaceless %}
     {% if prototype is defined %}
@@ -112,7 +112,7 @@
         {% set attr = attr|merge({'data-prototype': block('fieldset_collection_item_widget') }) %}
     {% endif %}
     {% set attr = attr|merge({'class': 'control-group' }) %}
-    <div {{ block('widget_container_attributes') }}>  
+    <div {{ block('widget_container_attributes') }}>
         {% if form.parent is empty %}
             {{ form_errors(form) }}
         {% endif %}
@@ -130,7 +130,7 @@
     {% include "AdmingeneratorGeneratorBundle:Form/Collection:javascript.html.twig" %}
 {% endspaceless %}
 {% endblock fieldset_collection_widget %}
-    
+
 {% block fieldset_collection_item_widget %}
 {% spaceless %}
     <fieldset class="collection-item {{ id ~ '_actions' }}">
@@ -183,7 +183,7 @@
     </tr>
 {% endspaceless %}
 {% endblock table_collection_item_widget %}
-    
+
 {% block form_widget_compound %}
 {% spaceless %}
     <div {{ block('widget_container_attributes') }}>
@@ -209,7 +209,7 @@
     {% endif %}
 {% endspaceless %}
 {% endblock form_rows %}
-    
+
 {% block form_row %}
 {% spaceless %}
     <div class="control-group {% if errors|length > 0 %} error{% endif %}">
@@ -240,7 +240,7 @@
     <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
 {% endspaceless %}
 {% endblock form_label %}
-    
+
 {% block form_errors %}
 {% spaceless %}
     {% if errors|length > 0 %}
@@ -257,7 +257,7 @@
     {% endif %}
 {% endspaceless %}
 {% endblock form_errors %}
-    
+
 {% block form_help %}
 {% spaceless %}
     {% if help %}

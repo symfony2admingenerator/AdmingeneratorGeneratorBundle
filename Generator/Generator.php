@@ -27,6 +27,8 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
     
     protected $validators = array();
 
+    protected $validators = array();
+
     public function __construct($root_dir, $cache_dir)
     {
         $this->root_dir = $root_dir;

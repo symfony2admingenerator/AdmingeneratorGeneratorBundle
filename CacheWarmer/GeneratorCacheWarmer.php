@@ -53,7 +53,7 @@ class GeneratorCacheWarmer implements CacheWarmerInterface
         /** 
          * Load class to avoid problem with other cache warmers
          * like JmsDiExtraBundle
-         * 
+         *
          * See issue #190
          */
         $AdmingeneratedClassLoader = new AdmingeneratedClassLoader;
