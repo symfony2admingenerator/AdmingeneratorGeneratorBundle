@@ -42,32 +42,35 @@
     }
 
     /**
-    * This method is here to make your life better, so overwrite  it
-    *
-    * @param \Exception $exception throwed exception
-    * @param \Symfony\Component\Form\Form $form the valid form
-    * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
-    */
+     * This method is here to make your life better, so overwrite it
+     *
+     * @param \Exception $exception throwed exception
+     * @param \Symfony\Component\Form\Form $form the valid form
+     * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
+     */
     public function onException(\Exception $exception, \Symfony\Component\Form\Form $form, \{{ model }} ${{ builder.ModelClass }})
     {
+        if ($this->container->getParameter('kernel.debug')) {
+            throw $exception;
+        }
     }
 
     /**
-    * This method is here to make your life better, so overwrite  it
-    *
-    * @param \Symfony\Component\Form\Form $form the valid form
-    * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
-    */
+     * This method is here to make your life better, so overwrite  it
+     *
+     * @param \Symfony\Component\Form\Form $form the valid form
+     * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
+     */
     public function preSave(\Symfony\Component\Form\Form $form, \{{ model }} ${{ builder.ModelClass }})
     {
     }
 
     /**
-    * This method is here to make your life better, so overwrite  it
-    *
-    * @param \Symfony\Component\Form\Form $form the valid form
-    * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
-    */
+     * This method is here to make your life better, so overwrite  it
+     *
+     * @param \Symfony\Component\Form\Form $form the valid form
+     * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
+     */
     public function postSave(\Symfony\Component\Form\Form $form, \{{ model }} ${{ builder.ModelClass }})
     {
     }

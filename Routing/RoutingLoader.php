@@ -122,8 +122,8 @@ class RoutingLoader extends FileLoader
 
     protected function getNamespaceFromResource($resource)
     {
-        preg_match('#.+/(src|bundles)/(.+)/(.+Bundle)/Controller?/(.*?)/?$#', $resource, $matches);
+        preg_match('#.+/(.+)/(.+Bundle)/Controller?/(.*?)/?$#', $resource, $matches);
 
-        return str_replace('/', '\\', $matches[2]);
+        return str_replace('/', '\\', $matches[1]);
     }
 }

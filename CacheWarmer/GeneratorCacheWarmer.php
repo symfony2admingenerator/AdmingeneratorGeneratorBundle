@@ -50,12 +50,12 @@ class GeneratorCacheWarmer implements CacheWarmerInterface
             }
         }
 
-        /*
-         * Load classe to avoid problem with other cache warmers
+        /** 
+         * Load class to avoid problem with other cache warmers
          * like JmsDiExtraBundle
          *
          * See issue #190
-        */
+         */
         $AdmingeneratedClassLoader = new AdmingeneratedClassLoader;
         $AdmingeneratedClassLoader->setBasePath($cacheDir);
         $AdmingeneratedClassLoader->register();

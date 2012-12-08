@@ -54,6 +54,15 @@
             <tag name="pagerfanta.view" alias="admingenerator" />
             <argument type="service" id="translator" />
         </service>
+        
+        <!-- Validators -->
+        <service id="admingenerator.validator.model_class" class="%admingenerator.validator.model_class.class%" public="false">
+            <tag name="admingenerator.validator" alias="model_class" />
+        </service>
+
+        <service id="admingenerator.validator.propel_model_class" class="%admingenerator.validator.propel_model_class.class%" public="false">
+            <tag name="admingenerator.validator.propel" alias="propel_model_class" />
+        </service>
 
         <!-- Form types -->
         <service id="form.type.double_list" class="Admingenerator\GeneratorBundle\Form\Type\DoubleListType">

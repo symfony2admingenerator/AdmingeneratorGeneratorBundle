@@ -75,3 +75,6 @@ batch.delete:
 batch.list:
   selected:       Selecionado
   none.selected:  Você tem que selecionar pelo menos um elemento.
+
+# Layout
+layout.welcome:   Homepage
