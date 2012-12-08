@@ -75,3 +75,6 @@ batch.delete:
 batch.list:
   selected:       Оберіть дію
   none.selected:  Необхідно вибрати не менше одного елемента.
+
+# Layout
+layout.welcome:   Домашня сторінка
