@@ -1,6 +1,8 @@
 <a href="http://knpbundles.com/symfony2admingenerator/AdmingeneratorGeneratorBundle"><img src="http://knpbundles.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/badge"></a>
 
-# Symfony2 Admin Generator: The Real Missing Admin Generator for Symfony2! ![project status](http://stillmaintained.com/cedriclombardot/AdmingeneratorGeneratorBundle.png) ![build status](https://secure.travis-ci.org/symfony2admingenerator/AdmingeneratorGeneratorBundle.png)#
+# Symfony2 Admin Generator: The Real Missing Admin Generator for Symfony2! 
+
+![project status](http://stillmaintained.com/cedriclombardot/AdmingeneratorGeneratorBundle.png) ![build status](https://secure.travis-ci.org/symfony2admingenerator/AdmingeneratorGeneratorBundle.png)
 
 **:warning: This branch work only with the symfony 2.1 for 2.0 use the 2.0 branch :warning:**
 
@@ -30,16 +32,9 @@ With almost the same features:
 
 ## This bundle in pictures
 
-![Preview of list](https://github.com/symfony2admingenerator/AdmingeneratorOldThemeBundle/raw/master/Resources/doc/list-preview.png)
+![Preview of list](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/doc_list.png)
 
-![Preview of edit](https://github.com/symfony2admingenerator/AdmingeneratorOldThemeBundle/raw/master/Resources/doc/edit-preview.png)
-
-### Want another skin?
-
-Just install [ActiveAdminTheme](https://github.com/symfony2admingenerator/AdmingeneratorActiveAdminThemeBundle)
-
-![Preview of ActiveAdminTheme] (https://github.com/symfony2admingenerator/AdmingeneratorActiveAdminThemeBundle/raw/master/Resources/doc/list-preview.png)
-
+![Preview of edit](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/raw/master/Resources/doc/doc_edit.png)
 
 ## Want to run a test?
 
