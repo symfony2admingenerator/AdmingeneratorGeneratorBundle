@@ -2,6 +2,8 @@
 {% block getObject -%}
     protected function getObject($pk)
     {
+        $pk = is_numeric($pk) ? intval($pk) : $pk;
+
         return $this->getDocumentManager()
                     ->getRepository('{{ model }}')
                     ->find($pk);
