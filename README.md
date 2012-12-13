@@ -94,7 +94,6 @@ public function registerBundles()
 
         // Admin Generator
         new Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle(),
-        new Admingenerator\OldThemeBundle\AdmingeneratorOldThemeBundle(),
     );
 
     // ...
@@ -102,9 +101,12 @@ public function registerBundles()
 ```
 In config.yml
 
-```
+``` yaml
 admingenerator_generator:
-    templates_dirs: [ %kernel.root_dir%/../vendor/cedriclombardot/admingenerator-oldtheme-bundle/Admingenerator/OldThemeBundle/Resources/templates ]
+    # choose only one
+    use_propel:           false
+    use_doctrine_orm:     true
+    use_doctrine_odm:     false
 ```
 
 
