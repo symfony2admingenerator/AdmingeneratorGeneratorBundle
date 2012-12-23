@@ -78,6 +78,7 @@ class DoctrineODMFieldGuesser
             case 'boolean':
                 return 'checkbox';
             case 'datetime':
+            case 'timestamp':
             case 'vardatetime':
             case 'datetimetz':
                 return 'datetime';
