@@ -47,7 +47,7 @@ class AdmingeneratorGeneratorExtension extends Extension
         $container->setParameter('admingenerator.thumbnail_generator', $config['thumbnail_generator']);
         $container->setParameter('admingenerator.overwrite_if_exists', $config['overwrite_if_exists']);
         $container->setParameter('admingenerator.base_admin_template', $config['base_admin_template']);
-        $container->setParameter('admingeneretor.menu_builder.class', $config['knp_menu_class']);
+        $container->setParameter('admingenerator.menu_builder.class', $config['knp_menu_class']);
         $container->setParameter('admingenerator.stylesheets', $config['stylesheets']);
         $container->setParameter('admingenerator.javascripts', $config['javascripts']);
 
