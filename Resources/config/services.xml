@@ -11,8 +11,8 @@
         <parameter key="admingenerator.cache_warmer.class">Admingenerator\GeneratorBundle\CacheWarmer\GeneratorCacheWarmer</parameter>
         <parameter key="admingenerator.finder.class">Admingenerator\GeneratorBundle\CacheWarmer\GeneratorFinder</parameter>
         <parameter key="form.type_guesser.admingenerator.class">Admingenerator\GeneratorBundle\Validator\ValidatorTypeGuesser</parameter>
-        <parameter key="admingeneretor.menu_builder.class">Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder</parameter>
-        <parameter key="admingeneretor.pagination.class">Admingenerator\GeneratorBundle\Pagerfanta\View\AdmingeneratorView</parameter>
+        <parameter key="admingenerator.menu_builder.class">Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder</parameter>
+        <parameter key="admingenerator.pagination.class">Admingenerator\GeneratorBundle\Pagerfanta\View\AdmingeneratorView</parameter>
         <parameter key="admingenerator.base_admin_template">AdmingeneratorOldThemeBundle::base_admin.html.twig</parameter>
         <parameter key="admingenerator.overwrite_if_exists">false</parameter>
         <parameter key="admingenerator.validator.model_class.class">Admingenerator\GeneratorBundle\Validator\ModelClassValidator</parameter>
@@ -110,14 +110,14 @@
             <argument type="service" id="kernel" />
         </service>
 
-        <service id="admingeneretor.cache_warmer" class="%admingenerator.cache_warmer.class%" public="false">
+        <service id="admingenerator.cache_warmer" class="%admingenerator.cache_warmer.class%" public="false">
             <tag name="kernel.cache_warmer" priority="100" />
             <argument type="service" id="service_container" />
             <argument type="service" id="admingenerator.finder" />
         </service>
 
         <!-- Admin Menu -->
-        <service id="admingeneretor.menu_builder" class="%admingeneretor.menu_builder.class%">
+        <service id="admingenerator.menu_builder" class="%admingenerator.menu_builder.class%">
             <tag name="knp_menu.menu" alias="admin" />
             <argument type="service" id="knp_menu.factory" />
             <call method="setContainer">
@@ -125,8 +125,8 @@
             </call>
         </service>
 
-        <service id="admingeneretor.menu.admin" class="%admingeneretor.menu_builder.class%"
-             factory-service="admingeneretor.menu_builder"
+        <service id="admingenerator.menu.admin" class="%admingenerator.menu_builder.class%"
+             factory-service="admingenerator.menu_builder"
              factory-method="createAdminMenu"
              scope="request">
             <tag name="knp_menu.menu" alias="admin" />
@@ -134,7 +134,7 @@
         </service>
 
         <!-- Dashboard Menu -->
-        <service id="admingeneretor.menu_builder.dashboard" class="%admingeneretor.menu_builder.class%">
+        <service id="admingenerator.menu_builder.dashboard" class="%admingenerator.menu_builder.class%">
             <tag name="knp_menu.menu" alias="dashboard" />
             <argument type="service" id="knp_menu.factory" />
             <call method="setContainer">
@@ -142,8 +142,8 @@
             </call>
         </service>
 
-        <service id="admingeneretor.menu.dashboard" class="%admingeneretor.menu_builder.class%"
-             factory-service="admingeneretor.menu_builder.dashboard"
+        <service id="admingenerator.menu.dashboard" class="%admingenerator.menu_builder.class%"
+             factory-service="admingenerator.menu_builder.dashboard"
              factory-method="createDashboardMenu"
              scope="request">
             <tag name="knp_menu.menu" alias="dashboard" />
