@@ -59,7 +59,7 @@ class AdmingeneratorView implements ViewInterface
             if (3 == $startPage) {
                 $pages[] = array(2, 2);
             } elseif (2 != $startPage) {
-                $pages[] = sprintf('<span class="%s">...</span>', $options['css_dots_class']);
+                $pages[] = sprintf('<li class="%s"><span class="%s">...</span></li>', $options['css_disabled_class'], $options['css_dots_class']);
             }
         }
 
