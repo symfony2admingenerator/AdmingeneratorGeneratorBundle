@@ -20,6 +20,9 @@ use Admingenerator\GeneratorBundle\Builder\Propel\NewBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\Propel\NewBuilderTemplate;
 use Admingenerator\GeneratorBundle\Builder\Propel\NewBuilderType;
 
+use Admingenerator\GeneratorBundle\Builder\Propel\ShowBuilderAction;
+use Admingenerator\GeneratorBundle\Builder\Propel\ShowBuilderTemplate;
+
 class PropelGenerator extends Generator
 {
     /**
@@ -34,7 +37,7 @@ class PropelGenerator extends Generator
     public function build()
     {
         $this->validateYaml();
-        
+
         $generator = new AdminGenerator($this->cache_dir, $this->getGeneratorYml());
 
         $generator->setContainer($this->container);
@@ -77,6 +80,11 @@ class PropelGenerator extends Generator
             $generator->addBuilder(new NewBuilderAction());
             $generator->addBuilder(new NewBuilderTemplate());
             $generator->addBuilder(new NewBuilderType());
+        }
+
+        if (array_key_exists('show', $builders)) {
+            $generator->addBuilder(new ShowBuilderAction());
+            $generator->addBuilder(new ShowBuilderTemplate());
         }
 
         $generator->writeOnDisk($this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));
