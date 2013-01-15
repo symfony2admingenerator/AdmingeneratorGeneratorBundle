@@ -1,0 +1,80 @@
+# Double list form
+double_list:
+  selected:   Seçili
+  unselected: Seçili değil
+
+# Date range form
+date_range:
+  from.label: Başlangıç
+  to.label:   Bitiş
+
+# Pager
+pagerfanta:
+  previous: Önceki
+  next:     Sonraki
+
+# List
+list:
+  no.results: Hiç bir sonuç bulunamadı.
+  filters:    Filtreler
+list.button:
+  filter:     Filtrele
+  reset:      Sıfırla
+list.display:
+  range:      Toplam <b>%count%</b> sonuçtan <b>%start%</b> - <b>%end%</b> kadarı gösteriliyor.
+  all:        Tüm <b>%count%</b> sonuçlar.
+list.header:
+  actions:    Eylemler
+
+# Profile
+profile:
+  welcome:  <b>Merhaba</b>, %username%!</p>
+  login:    Giriş
+  logout:   Çıkış
+
+# EntityPicker
+entity_picker:
+  placeholder:  Ara...
+
+# Upload
+upload:
+  error:        Hata
+  cancel:       İptal
+  delete:       Sil
+upload.errors:
+  maxNumFiles:      Maksimum dosya limiti aşıldı.
+  typeNotAllowed:   İzinsiz dosya türü.
+  maxFileSize:      Dosya izin verilenden daha büyük.
+  minFileSize:      Dosya izin verilenden daha küçük.
+
+# Actions
+actions:
+  list:   Liste
+  new:    Yeni
+  save:   Kaydet
+  save-and-add:   Kaydet ve Yeni Oluştur
+  save-and-list:  Kaydet ve Listeye Dön
+  collection.add: Ekle
+  file.add:   Dosya ekle...
+
+# Object actions
+object.edit:
+  label:    Düzenle
+  success:  Nesne başarıyla kaydedildi.
+  error:    Form kaydı yapılamadı. Hataları düzeltip tekrar deneyin.
+object.delete:
+  label:    Sil
+  confirm:  Bu öğeyi silmek istediğinize emin misiniz?
+
+# Batch actions
+batch.delete:
+  label:    Sil
+  confirm:  Seçili tüm öğeleri silmek istediğinize emin misiniz?
+  success:  Öğeler başarıyla silindi.
+  error:    Öğeler silinirken bir hata oluştu.
+batch.list:
+  selected:       Seçili
+  none.selected:  En az bir öğe seçmek zorundasınız.
+
+# Layout
+layout.welcome:   Anasayfa
