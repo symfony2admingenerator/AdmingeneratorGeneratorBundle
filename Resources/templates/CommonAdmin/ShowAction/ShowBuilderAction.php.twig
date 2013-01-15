@@ -1,0 +1,26 @@
+{% use '../CommonAdmin/ShowAction/index.php.twig' %}
+{% use '../CommonAdmin/security_action.php.twig' %}
+<?php
+
+namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.generator.GeneratedControllerFolder }};
+
+use {{ builder.generator.baseController }} as BaseController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+{{- block('index_use') -}}
+
+{{- block('security_use') }}
+
+class ShowController extends BaseController
+{
+    {{- block('index') -}}
+
+    {{- block('security_check_with_object') }}
+
+    {% block getObject -%}
+    protected function getObject($pk)
+    {
+        //ORM do JOB
+    }
+    {% endblock %}
+}

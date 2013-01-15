@@ -260,3 +260,8 @@ tbody.files > tr > td > span {
   margin: 0px;
   border: 0 none;
 }
+
+/* Show object action display fix */
+table td.actions a.show {
+  display: inline-block;
+}
