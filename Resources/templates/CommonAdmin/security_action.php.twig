@@ -17,7 +17,7 @@ use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
     {
         $securityContext = $this->get('security.context');
 
-        if (false === $securityContext->isGranted(array(new Expression('{{ credentials }}', ${{ builder.ModelClass }})))) {
+        if (false === $securityContext->isGranted(array(new Expression('{{ credentials }}')), ${{ builder.ModelClass }})) {
             throw new AccessDeniedException();
         }
     }
