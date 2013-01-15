@@ -41,6 +41,11 @@ class RoutingLoader extends FileLoader
                     'requirements' => array(),
                     'controller'   => 'edit',
                 ),
+        'show' => array(
+                    'pattern'      => '/{pk}/show',
+                    'defaults'     => array(),
+                    'requirements' => array()
+                ),
         'new' => array(
                     'pattern'      => '/new',
                     'defaults'     => array(),
