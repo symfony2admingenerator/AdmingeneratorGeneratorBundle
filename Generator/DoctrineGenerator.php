@@ -18,6 +18,9 @@ use Admingenerator\GeneratorBundle\Builder\Doctrine\NewBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\NewBuilderTemplate;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\NewBuilderType;
 
+use Admingenerator\GeneratorBundle\Builder\Doctrine\ShowBuilderAction;
+use Admingenerator\GeneratorBundle\Builder\Doctrine\ShowBuilderTemplate;
+
 class DoctrineGenerator extends Generator
 {
     /**
@@ -32,10 +35,10 @@ class DoctrineGenerator extends Generator
     public function build()
     {
         $this->validateYaml();
-        
+
         $generator = new AdminGenerator($this->cache_dir, $this->getGeneratorYml());
         $generator->setContainer($this->container);
-        $generator->setBaseAdminTemplate($this->container->getParameter('admingenerator.base_admin_template'));
+        $generator->setBaseAdminTemplate($generator->getFromYaml('base_admin_template', $this->container->getParameter('admingenerator.base_admin_template')));
         $generator->setFieldGuesser($this->getFieldGuesser());
         $generator->setMustOverwriteIfExists($this->needToOverwrite($generator));
         $generator->setTemplateDirs(array_merge(
@@ -67,6 +70,11 @@ class DoctrineGenerator extends Generator
             $generator->addBuilder(new NewBuilderAction());
             $generator->addBuilder(new NewBuilderTemplate());
             $generator->addBuilder(new NewBuilderType());
+        }
+
+        if (array_key_exists('show', $builders)) {
+            $generator->addBuilder(new ShowBuilderAction());
+            $generator->addBuilder(new ShowBuilderTemplate());
         }
 
         $generator->writeOnDisk($this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));
