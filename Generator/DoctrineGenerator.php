@@ -6,6 +6,8 @@ use Admingenerator\GeneratorBundle\Builder\Generator as AdminGenerator;
 
 use Admingenerator\GeneratorBundle\Builder\Doctrine\ListBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\ListBuilderTemplate;
+use Admingenerator\GeneratorBundle\Builder\Doctrine\NestedListBuilderAction;
+use Admingenerator\GeneratorBundle\Builder\Doctrine\NestedListBuilderTemplate;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\FiltersBuilderType;
 
 use Admingenerator\GeneratorBundle\Builder\Doctrine\DeleteBuilderAction;
@@ -50,6 +52,12 @@ class DoctrineGenerator extends Generator
         if (array_key_exists('list',$builders)) {
             $generator->addBuilder(new ListBuilderAction());
             $generator->addBuilder(new ListBuilderTemplate());
+            $generator->addBuilder(new FiltersBuilderType());
+        }
+
+        if (array_key_exists('nested_list',$builders)) {
+            $generator->addBuilder(new NestedListBuilderAction());
+            $generator->addBuilder(new NestedListBuilderTemplate());
             $generator->addBuilder(new FiltersBuilderType());
         }
 

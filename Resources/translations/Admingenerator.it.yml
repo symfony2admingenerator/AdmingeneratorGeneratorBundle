@@ -26,6 +26,14 @@ list.display:
 list.header:
   actions:    Azioni
   
+# Nested List
+nested.list:
+  expand:     Mostra
+  collapse:   Nascondere
+  loading:    Caricamento in corso
+  success:    L'elemento è stato spostato con successo.
+  error:      Impossibile spostare elemento.
+  
 # Profile
 profile:
   welcome:  <b>Benvenuto</b>, %username%!</p>

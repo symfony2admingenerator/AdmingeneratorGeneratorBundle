@@ -25,6 +25,14 @@ list.display:
   all:        Display all <b>%count%</b> results.
 list.header:
   actions:    Actions
+  
+# Nested List
+nested.list:
+  expand:     Show
+  collapse:   Hide
+  loading:    Loading in progress
+  success:    The element was successfully moved.
+  error:      Could not move element.
 
 # Profile
 profile:

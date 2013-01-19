@@ -6,8 +6,8 @@ class NestedRoutingLoader extends RoutingLoader
 {
     public function load($resource, $type = null)
     {
-        $this->actions['nested_append'] = array(
-            'pattern'      => '/append-node/{source}/to/{to}',
+        $this->actions['nested_move'] = array(
+            'pattern'      => '/nested-move/{dragged}/{action}/{dropped}',
             'defaults'     => array(),
             'requirements' => array(),
             'controller'   => 'list',
