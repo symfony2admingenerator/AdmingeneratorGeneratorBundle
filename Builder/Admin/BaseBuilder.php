@@ -235,11 +235,10 @@ class BaseBuilder extends GenericBaseBuilder
             if (preg_match('/\-/', $actionName)) {
                 $classNameParts = Container::camelize(explode("-", $actionName));
                 $class = 'Admingenerator\\GeneratorBundle\\Generator\\'.implode('', $classNameParts).'Action';
-            }
-            else {
+            } else {
                 $class = 'Admingenerator\\GeneratorBundle\\Generator\\'.Container::camelize($actionName.'Action');
             }
-            
+
             if (class_exists($class)) {
                 $action = new $class($actionName, $this);
             } else {

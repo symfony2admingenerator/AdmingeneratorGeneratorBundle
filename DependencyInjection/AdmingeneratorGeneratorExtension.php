@@ -19,10 +19,9 @@ class AdmingeneratorGeneratorExtension extends Extension
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
 
-
         // Fix template_dirs
         $doctrine_template_dirs = $doctrineodm_template_dirs = $propel_template_dirs = array();
-        $config['templates_dirs'] = isset($config['templates_dirs'])  ? $config['templates_dirs'] : array();  
+        $config['templates_dirs'] = isset($config['templates_dirs'])  ? $config['templates_dirs'] : array();
         foreach ($config['templates_dirs'] as $dir) {
             $doctrine_template_dirs[]    = $dir.'/Doctrine';
             $doctrineodm_template_dirs[] = $dir.'/DoctrineODM';
@@ -56,7 +55,7 @@ class AdmingeneratorGeneratorExtension extends Extension
         $resources = $container->getParameter('twig.form.resources');
         $resources[] = 'AdmingeneratorGeneratorBundle:Form:fields.html.twig';
         $container->setParameter('twig.form.resources', $resources);
-        
+
         $date_type = array(
                 'class' => 'Admingenerator\GeneratorBundle\Form\Type\DateType',
                 'tags' => array('name' => 'form.type', 'alias' => 'date'),
@@ -82,7 +81,7 @@ class AdmingeneratorGeneratorExtension extends Extension
             // Register Intl extension for localized date
             $container->register('twig.extension.intl', 'Twig_Extensions_Extension_Intl')
                         ->addTag('twig.extension');
-        }     
+        }
 
     }
 

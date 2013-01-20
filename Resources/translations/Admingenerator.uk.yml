@@ -2,7 +2,7 @@
 double_list:
   selected:   Обрані
   unselected: Доступні
-  
+
 # Date range form
 date_range:
   from.label: З
@@ -25,17 +25,17 @@ list.display:
   all:        Відображені всі <b>%count%</b> записи(ів).
 list.header:
   actions:    Дії
-  
+
 # Profile
 profile:
   welcome:  <b>Привіт</b>, %username%!</p>
   login:    Увійти
   logout:   Вийти
-  
+
 # EntityPicker
 entity_picker:
   placeholder:  Шукати...
-  
+
 # Upload
 upload:
   error:        Помилка
@@ -54,9 +54,9 @@ actions:
   save:   Зберегти
   save-and-add:   Зберегти і Додати
   save-and-list:  Зберегти і Список
-  collection.add: Додати  
+  collection.add: Додати
   file.add:   Додати файл...
-  
+
 # Object actions
 object.edit:
   label:    Редагувати
@@ -65,7 +65,7 @@ object.edit:
 object.delete:
   label:    Видаляти
   confirm:  Ви дійсно хочете видалити цей елемент?
-    
+
 # Batch actions
 batch.delete:
   label:    Видаляти

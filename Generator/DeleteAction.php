@@ -16,7 +16,7 @@ class DeleteAction extends Action
 
         $this->setIcon('icon-remove');
         $this->setConfirm('Are you sure?');
-        
+
         $this->setParams(array(
             'pk' => '{{ '.$builder->getModelClass().'.'.$builder->getModelPrimaryKeyName().' }}',
         ));

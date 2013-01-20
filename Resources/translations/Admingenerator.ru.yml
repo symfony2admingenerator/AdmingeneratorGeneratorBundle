@@ -2,12 +2,12 @@
 double_list:
   selected:   Выбранные
   unselected: Доступные
-  
+
 # Date range form
 date_range:
   from.label: С
   to.label:   По
-  
+
 # Pager
 pagerfanta:
   previous: Пред
@@ -25,17 +25,17 @@ list.display:
   all:        Показаны все <b>%count%</b> записи(ей).
 list.header:
   actions:    Действия
-  
+
 # Profile
 profile:
   welcome:  <b>Здравствуйте</b>, %username%!</p>
   login:    Войти
   logout:   Выйти
-  
+
 # EntityPicker
 entity_picker:
   placeholder:  Искать...
-  
+
 # Upload
 upload:
   error:        Ошибка
@@ -56,7 +56,7 @@ actions:
   save-and-list:  Сохранить и Список
   collection.add: Добавить
   file.add:   Добавить файл...
-  
+
 # Object actions
 object.edit:
   label:    Редактировать
@@ -65,7 +65,7 @@ object.edit:
 object.delete:
   label:    Удалять
   confirm:  Вы действительно хотите удалить этот элемент?
-    
+
 # Batch actions
 batch.delete:
   label:    Удалять
@@ -74,7 +74,7 @@ batch.delete:
   error:    Невозможно удалить материалы.
 batch.list:
   selected:       Выберите действие
-  none.selected:  Необходимо выбрать не менее одного элемента. 
+  none.selected:  Необходимо выбрать не менее одного элемента.
 
 # Layout
 layout.welcome:   Главная

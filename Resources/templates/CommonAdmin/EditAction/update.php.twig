@@ -24,7 +24,7 @@
                 $this->postSave($form, ${{ builder.ModelClass }});
 
                 $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ messages.success is defined ? messages.success : "object.edit.success" }}", array(), 'Admingenerator') );
-                
+
                 if($this->get('request')->request->has('save-and-add'))
                   return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_new" ));
                 if($this->get('request')->request->has('save-and-list'))

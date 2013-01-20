@@ -9,7 +9,7 @@
                 new_item = new_item.replace({{ '/' ~ prototype_name|default('__name__') ~ 'label__/g' }}, "{{ new_label|trans({}, translation_domain) }}");
                 new_item = new_item.replace({{ '/' ~ prototype_name|default('__name__') ~ '/g' }}, nextId);
                 new_item = $(new_item);
-                
+
                 {% if allow_delete %}
                     new_item.find('.delete').click(function(){
                         if(confirm('{{ 'object.delete.confirm'|trans({}, 'Admingenerator') }}')) {
@@ -17,7 +17,7 @@
                         }
                     });
                 {% endif %}
-                
+
                 nextId++;
                 $('#{{ id }} > .collection').append(new_item);
             });
@@ -29,7 +29,7 @@
                     $(this).closest('.collection-item').remove();
                 }
             });
-            
+
             // select/deselect all
             $('#{{ id ~ '_toolbar' }} > .btn-toggle > input[name="toggle"]').change(function() {
                 if($(this).is(':checked'))
@@ -37,7 +37,7 @@
                 else
                     $('.{{ id ~ '_actions' }} > .btn-toggle > input[name="delete"]').attr('checked', false);
             });
-            
+
             // delete selected
             $('#{{ id ~ '_toolbar' }} > .batch-delete').click(function() {
                 if(confirm('{{ 'batch.delete.confirm'|trans({}, 'Admingenerator') }}')) {

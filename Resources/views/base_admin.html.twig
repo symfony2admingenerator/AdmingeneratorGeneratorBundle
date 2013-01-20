@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    {% block scripts_head %}        
+    {% block scripts_head %}
         {% javascripts filter='?yui_js' output='assetic/js/compiled/jquery.min.js'
             'bundles/admingeneratorgenerator/js/jquery-1.8.2.min.js'
         %}
@@ -140,13 +140,13 @@
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        
+
         {% javascripts filter='?yui_js' output='assetic/js/compiled/jquery-ui.js'
             'bundles/admingeneratorgenerator/js/jquery.ui.widget.js'
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        
+
         {% javascripts filter='?yui_js' output='assetic/js/compiled/blueimp.jquery-file-upload.js'
             'bundles/admingeneratorgenerator/js/blueimp/blueimp.javascript-templates.min.js'
             'bundles/admingeneratorgenerator/js/blueimp/blueimp.javascript-load-image.min.js'
@@ -157,7 +157,7 @@
             'bundles/admingeneratorgenerator/js/blueimp/jquery.fileupload-ui.js'
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}   
+        {% endjavascripts %}
     {% endblock %}
 
   </body>
