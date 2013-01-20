@@ -26,6 +26,14 @@ list.display:
 list.header:
   actions:    Akcije
   
+# Nested List
+nested.list:
+  expand:     Prikaži
+  collapse:   Schovať
+  loading:    Nalaganje v teku
+  success:    Element je bil uspešno prestavljen.
+  error:      Ne morem premakniti element.
+  
 # Profile
 profile:
   welcome:  <b>Dobrodošli</b>, %username%!</p>

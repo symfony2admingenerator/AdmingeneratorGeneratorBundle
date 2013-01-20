@@ -4,52 +4,51 @@
     <meta charset="utf-8">
     <title>{% block title %}Admin{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
     {% block scripts_head %}        
         {% javascripts filter='?yui_js' output='assetic/js/compiled/jquery.min.js'
-            'bundles/admingeneratorgenerator/js/jquery-1.8.2.min.js'
+            'bundles/admingeneratorgenerator/js/jquery-1.8.3.min.js'
         %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
+            <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="{{ asset('bundles/admingeneratorgenerator/js/html5shiv/html5.js') }}"></script>
+        <![endif]-->
     {% endblock %}
 
     {% block stylesheets %}
-        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/bootstrap.css'
-            'bundles/admingeneratorgenerator/css/bootstrap.css'
-            'bundles/admingeneratorgenerator/css/bootstrap-extended.css'
-            'bundles/admingeneratorgenerator/css/datepicker.css'
+        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/bootstrap.min.css'
+            'bundles/admingeneratorgenerator/css/bootstrap/bootstrap.css'
+            'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-extended.css'
+            'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-datepicker.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
-        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/bootstrap-responsive.css'
-            'bundles/admingeneratorgenerator/css/bootstrap-responsive.css'
-            'bundles/admingeneratorgenerator/css/bootstrap-responsive-extended.css'
+            
+        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/bootstrap-responsive.min.css'
+            'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-responsive.css'
+            'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-responsive-extended.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
-
-        <style type="text/css">
-          body {
-            padding-top: 60px;
-            padding-bottom: 40px;
-          }
-        </style>
+            
+        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator.min.css'
+            'bundles/admingeneratorgenerator/css/admingenerator/general.css'
+            'bundles/admingeneratorgenerator/css/admingenerator/nested-list.css'
+        %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
+        {% endstylesheets %}
     {% endblock %}
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
     {% block icons %}
-      <!-- Favicon and touch icons -->
-      <link rel="shortcut icon" href="{{ asset('bundles/admingeneratorgenerator/ico/favicon.ico') }}">
-      <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('bundles/admingeneratorgenerator/ico/apple-touch-icon-144-precomposed.png') }}">
-      <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('bundles/admingeneratorgenerator/ico/apple-touch-icon-114-precomposed.png') }}">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('bundles/admingeneratorgenerator/ico/apple-touch-icon-72-precomposed.png') }}">
-      <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/admingeneratorgenerator/ico/apple-touch-icon-57-precomposed.png') }}">
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="{{ asset('bundles/admingeneratorgenerator/ico/favicon.ico') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('bundles/admingeneratorgenerator/ico/apple-touch-icon-144-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('bundles/admingeneratorgenerator/ico/apple-touch-icon-114-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('bundles/admingeneratorgenerator/ico/apple-touch-icon-72-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/admingeneratorgenerator/ico/apple-touch-icon-57-precomposed.png') }}">
     {% endblock %}
   </head>
 
@@ -87,7 +86,7 @@
 
     <div class="container-fluid">
         {% block flashes %}
-            <div class="row-fluid">
+            <div id="flashes" class="row-fluid">
                 {% if app.session.hasFlash('success') %}
                   <div class="alert alert-success">
                     <button type="button" class="close" data-dismiss="alert">×</button>
@@ -113,7 +112,7 @@
       <footer>
         <p>
           {% block footer %}
-            &copy; Company 2012
+              &copy; Symfony2Admingenerator {{ ("now"|date('Y') > 2012) ? '2012 - ' ~ "now"|date('Y') : '2012' }}
           {% endblock %}
         </p>
       </footer>
@@ -121,33 +120,37 @@
     </div> <!-- /container -->
 
     {% block javascripts %}
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/bootstrap.js'
-            'bundles/admingeneratorgenerator/js/bootstrap-transition.js'
-            'bundles/admingeneratorgenerator/js/bootstrap-alert.js'
-            'bundles/admingeneratorgenerator/js/bootstrap-modal.js'
-            'bundles/admingeneratorgenerator/js/bootstrap-dropdown.js'
-            'bundles/admingeneratorgenerator/js/bootstrap-scrollspy.js'
-            'bundles/admingeneratorgenerator/js/bootstrap-tab.js'
-            'bundles/admingeneratorgenerator/js/bootstrap-tooltip.js'
-            'bundles/admingeneratorgenerator/js/bootstrap-popover.js'
-            'bundles/admingeneratorgenerator/js/bootstrap-button.js'
-            'bundles/admingeneratorgenerator/js/bootstrap-collapse.js'
-            'bundles/admingeneratorgenerator/js/bootstrap-carousel.js'
-            'bundles/admingeneratorgenerator/js/bootstrap-typeahead-extended.js'
-            'bundles/admingeneratorgenerator/js/bootstrap-affix.js'
-            'bundles/admingeneratorgenerator/js/bootstrap-datepicker.js'
-            'bundles/admingeneratorgenerator/js/locales/bootstrap-datepicker.*.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/bootstrap.min.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-transition.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-alert.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-modal.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-dropdown.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-scrollspy.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-tab.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-tooltip.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-popover.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-button.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-collapse.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-carousel.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-typeahead-extended.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-affix.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-datepicker.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/locales/bootstrap-datepicker.*.js'
         %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
+            <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
         
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/jquery-ui.js'
-            'bundles/admingeneratorgenerator/js/jquery.ui.widget.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/jquery-ui.min.js'
+            'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.core.js'
+            'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.widget.js'
+            'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.mouse.js'
+            'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.draggable.js'
+            'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.droppable.js'
         %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
+            <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
         
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/blueimp.jquery-file-upload.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/blueimp.jquery-file-upload.min.js'
             'bundles/admingeneratorgenerator/js/blueimp/blueimp.javascript-templates.min.js'
             'bundles/admingeneratorgenerator/js/blueimp/blueimp.javascript-load-image.min.js'
             'bundles/admingeneratorgenerator/js/blueimp/blueimp.canvas-to-blob.min.js'
@@ -156,8 +159,14 @@
             'bundles/admingeneratorgenerator/js/blueimp/jquery.fileupload-fp.js'
             'bundles/admingeneratorgenerator/js/blueimp/jquery.fileupload-ui.js'
         %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}   
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/jquery.spin.min.js'
+            'bundles/admingeneratorgenerator/js/spin/jquery.spin.js'
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
     {% endblock %}
 
   </body>

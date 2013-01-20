@@ -1,7 +1,8 @@
 {% block list_nbresults %}
 {{ echo_block("list_nbresults") }}
 <div class="list_nbresults">
-    {{ echo_set("count",  builder.ModelClass ~ "s.count", false ) }}
+    {# Nestedset requiers a fake root node, which is hidden in the result table. See documentation. #}
+    {{ echo_set("count",  builder.ModelClass ~ "s.count - 1", false ) }}
 
     {{ echo_trans("Display all <b>%count%</b> results") }}
 </div>
