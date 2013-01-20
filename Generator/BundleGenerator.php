@@ -40,9 +40,26 @@ class BundleGenerator extends BaseBundleGenerator
         $this->prefix = $prefix;
     }
 
-    public function generate($namespace, $bundle, $dir, $format, $structure)
+    public function generate($namespace, $bundle, $dir, $format, $structure, $generator, $modelName)
     {
         $dir .= '/'.strtr($namespace, '\\', '/');
+
+        // Retrieves model folder depending of chosen ORM
+        $modelFolder = '';
+        switch($generator)
+        {
+          case 'propel':
+            $modelFolder = 'Model';
+            break;
+
+          case 'doctrine':
+            $modelFolder = 'Entity';
+            break;
+
+          case 'doctrine_orm':
+            $modelFolder = 'Document';
+            break;
+        }
 
         list( $namespace_prefix, $bundle_name) = explode('\\', $namespace, 2);
         $parameters = array(
@@ -51,6 +68,8 @@ class BundleGenerator extends BaseBundleGenerator
             'generator'        => 'admingenerator.generator.'.$this->generator,
             'namespace_prefix' => $namespace_prefix,
             'bundle_name'      => $bundle_name,
+            'model_folder'     => $modelFolder,
+            'model_name'       => $modelName,
             'prefix'           => ucfirst($this->prefix),
         );
 
