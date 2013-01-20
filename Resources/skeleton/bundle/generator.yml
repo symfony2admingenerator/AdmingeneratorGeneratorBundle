@@ -30,4 +30,11 @@ builders:
       display: ~
       actions:
         list: ~
+  show:
+    params:
+      title: "You're viewing the object \"%object%\"|{ %object%: YourModel.title }|
+      display: ~
+      actions:
+        list: ~
+        new: ~
   delete: ~

@@ -1,0 +1,22 @@
+{% use '../CommonAdmin/security_action.php.twig' %}
+{% block index_use %}
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+{% endblock %}
+{% block index %}
+
+    public function indexAction($pk)
+    {
+        ${{ builder.ModelClass }} = $this->getObject($pk);
+
+        {{ block('security_action_with_object') }}
+
+        if (!${{ builder.ModelClass }}) {
+            throw new NotFoundHttpException("The {{ model }} with {{ builder.ModelPrimaryKeyName }} $pk can't be found");
+        }
+
+        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Show:index.html.twig', array(
+            "{{ builder.ModelClass }}" => ${{ builder.ModelClass }}
+        ));
+    }
+{% endblock %}
