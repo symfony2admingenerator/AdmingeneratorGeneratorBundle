@@ -17,7 +17,7 @@ class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
         {%- if column.credentials -%}
         if (false !== $this->securityContext->isGranted(array(new Expression('{{ column.credentials }}')), $builder->getData())) {
         {%- endif %}
-        
+
           {% set columnType = column.formType|as_php|convert_as_form('form_widget') %}
           {% set columnOptions = column.formOptions %}
               {% if column.label is defined %}{% set columnOptions = columnOptions|merge({'label': column.label}) %}{% endif %}
@@ -26,7 +26,7 @@ class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
           {% set columnOptions = columnOptions|as_php|convert_as_form(column.formType) %}
 
            $builder->add('{{ column.name }}', {{ columnType }}, {{ columnOptions }});
-           
+
         {% if column.credentials %}
         }
 

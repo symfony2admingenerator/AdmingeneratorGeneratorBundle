@@ -2,7 +2,7 @@
 double_list:
   selected:   Ausgewählt
   unselected: Nicht gewählt
-  
+
 # Date range form
 date_range:
   from.label: Von
@@ -25,17 +25,17 @@ list.display:
   all:        Zeige alle <b>%count%</b> Datensätze.
 list.header:
   actions:    Aktionen
-  
+
 # Profile
 profile:
   welcome:  <b>Willkommen</b>, %username%!</p>
   login:    Einloggen
   logout:   Ausloggen
-  
+
 # EntityPicker
 entity_picker:
   placeholder:  Suchen...
-  
+
 # Upload
 upload:
   error:        Fehler
@@ -46,7 +46,7 @@ upload.errors:
   typeNotAllowed:   Dateityp nicht erlaubt.
   maxFileSize:      Datei ist zu groß.
   minFileSize:      Datei ist zu klein.
-  
+
 # Actions
 actions:
   list:   Übersicht
@@ -54,9 +54,9 @@ actions:
   save:   Speichern
   save-and-add:   Speichern und Neu
   save-and-list:  Speichern und Übersicht
-  collection.add: Hinzufügen 
+  collection.add: Hinzufügen
   file.add:   Datei hinzufügen...
-  
+
 # Object actions
 object.edit:
   label:    Bearbeiten
@@ -65,7 +65,7 @@ object.edit:
 object.delete:
   label:    Löschen
   confirm:  Sind Sie sicher, dass Sie dieses Element löschen?
-    
+
 # Batch actions
 batch.delete:
   label:    Delete

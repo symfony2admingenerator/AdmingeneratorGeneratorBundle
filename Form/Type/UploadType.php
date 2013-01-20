@@ -16,10 +16,10 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 class UploadType extends CollectionType
 {
     protected $container;
-    
+
     public function __construct(ContainerInterface $container)
     {
-        $this->container = $container;       
+        $this->container = $container;
     }
     /**
      * {@inheritdoc}
@@ -27,18 +27,18 @@ class UploadType extends CollectionType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $prototype = $builder->create(
-                $options['prototype_name'], 
-                new \Admingenerator\GeneratorBundle\Form\Type\UploadedFileType(), 
+                $options['prototype_name'],
+                new \Admingenerator\GeneratorBundle\Form\Type\UploadedFileType(),
                 $options['options']
         );
         $builder->setAttribute('prototype', $prototype->getForm());
-        
+
         $captureListener = new CaptureUploadListener(
             $builder->getName(),
             $options['options']['data_class']
         );
         $builder->getParent()->addEventSubscriber($captureListener);
-        
+
         $resizeListener = new ResizeFormListener(
             $builder->getFormFactory(),
             new \Admingenerator\GeneratorBundle\Form\Type\UploadedFileType(),
@@ -48,10 +48,10 @@ class UploadType extends CollectionType
         );
 
         $builder->addEventSubscriber($resizeListener);
-        
+
         $builder->setAttribute('thumbnail_generator', $this->container->getParameter('admingenerator.thumbnail_generator'));
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -69,7 +69,7 @@ class UploadType extends CollectionType
         $view->vars['previewAsCanvas']          =   $options['previewAsCanvas'];
         $view->vars['prependFiles']             =   $options['prependFiles'];
         $view->vars['thumbnailFilter']          =   $options['thumbnailFilter'];
-        $view->vars['thumbnailGenerator']       =   $form->getConfig()->getAttribute('thumbnail_generator');        
+        $view->vars['thumbnailGenerator']       =   $form->getConfig()->getAttribute('thumbnail_generator');
     }
 
     /**
@@ -78,7 +78,7 @@ class UploadType extends CollectionType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         parent::setDefaultOptions($resolver);
-        
+
         $resolver->setDefaults(array(
             'maxNumberOfFiles'          =>  null,
             'maxFileSize'               =>  null,
@@ -92,7 +92,7 @@ class UploadType extends CollectionType
             'prependFiles'              =>  false,
             'thumbnailFilter'           =>  null
         ));
-        
+
         $resolver->setAllowedTypes(array(
             'maxNumberOfFiles'          =>  array('integer', 'null'),
             'maxFileSize'               =>  array('integer', 'null'),
@@ -107,7 +107,7 @@ class UploadType extends CollectionType
             'thumbnailFilter'           =>  array('string', 'null')
         ));
     }
-    
+
     /**
      * {@inheritdoc}
      */

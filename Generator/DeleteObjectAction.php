@@ -19,7 +19,7 @@ class DeleteObjectAction extends Action
         $this->setLabel('object.delete.label');
         $this->setIcon('icon-remove');
         $this->setConfirm('object.delete.confirm');
-        
+
         $this->setParams(array(
             'pk' => '{{ '.$builder->getModelClass().'.'.$builder->getModelPrimaryKeyName().' }}',
         ));

@@ -12,7 +12,7 @@ class DashboardController extends Controller
             'base_admin_template' => $this->container->getParameter('admingenerator.base_admin_template'),
         ));
     }
-    
+
     public function documentationAction($document)
     {
         return $this->render('AdmingeneratorGeneratorBundle:Documentation:'.$document.'.html.twig', array(

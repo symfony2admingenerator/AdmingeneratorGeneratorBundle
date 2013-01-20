@@ -14,7 +14,7 @@ class AdmingeneratorMenuBuilder extends ContainerAware
 
     /**
      * @param \Knp\Menu\FactoryInterface $factory
-     * 
+     *
      */
     public function __construct(FactoryInterface $factory)
     {
@@ -23,7 +23,7 @@ class AdmingeneratorMenuBuilder extends ContainerAware
 
     /**
      * @param Request $request
-     * @param Router $router
+     * @param Router  $router
      */
     public function createAdminMenu(Request $request)
     {
@@ -35,7 +35,7 @@ class AdmingeneratorMenuBuilder extends ContainerAware
 
     /**
      * @param Request $request
-     * @param Router $router
+     * @param Router  $router
      */
     public function createDashboardMenu(Request $request)
     {
@@ -44,7 +44,7 @@ class AdmingeneratorMenuBuilder extends ContainerAware
         $menu->setChildrenAttributes(array('id' => 'dashboard_sidebar', 'class' => 'nav nav-list'));
         $menu->setExtra('request_uri', $this->container->get('request')->getRequestUri());
         $menu->setExtra('translation_domain', 'Admingenerator');
-        
+
         $this->addNavHeader($menu, 'Overview');
         $this->addNavLinkRoute($menu, 'Dashboard', 'AdmingeneratorDashboard_welcome')->setExtra('icon', 'icon-home');
         $this->addNavHeader($menu, 'Features');
@@ -57,53 +57,53 @@ class AdmingeneratorMenuBuilder extends ContainerAware
 
         return $menu;
     }
-    
+
     protected function addNavHeader(ItemInterface $menu, $label)
     {
         $item = $menu->addChild($label);
         $item->setAttribute('class', 'nav-header');
         $item->setExtra('translation_domain', $menu->getExtra('translation_domain'));
         $menu->setExtra('request_uri', $menu->getExtra('request_uri'));
-        
+
         return $item;
     }
-    
+
     protected function addNavLinkURI(ItemInterface $menu, $label, $uri)
     {
         $item = $menu->addChild($label, array('uri' => $uri));
         $item->setExtra('translation_domain', $menu->getExtra('translation_domain'));
         $menu->setExtra('request_uri', $menu->getExtra('request_uri'));
-        
-        if($item->getUri() == $menu->getExtra('request_uri')) {
+
+        if ($item->getUri() == $menu->getExtra('request_uri')) {
           $item->setAttribute('class', 'active');
         }
-        
+
         return $item;
     }
-    
+
     protected function addNavLinkRoute(ItemInterface $menu, $label, $route, $routeParameters = array())
     {
         $item = $menu->addChild($label, array('route' => $route, 'routeParameters' => $routeParameters));
         $item->setExtra('translation_domain', $menu->getExtra('translation_domain'));
         $menu->setExtra('request_uri', $menu->getExtra('request_uri'));
-        
-        if($item->getUri() == $menu->getExtra('request_uri')) {
+
+        if ($item->getUri() == $menu->getExtra('request_uri')) {
           $item->setAttribute('class', 'active');
         }
-        
+
         return $item;
     }
-    
+
     protected function addDropdownMenu(ItemInterface $menu, $label, $caret = true)
     {
         $item = $this->addNavLinkURI($menu, $label, '#');
         $item->setLinkAttributes(array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'));
         $item->setChildrenAttributes(array('class' => 'dropdown-menu'));
         $item->setAttributes(array('class' => 'dropdown'));
-        $item->setExtra('translation_domain', $menu->getExtra('translation_domain'));        
+        $item->setExtra('translation_domain', $menu->getExtra('translation_domain'));
         $item->setExtra('caret', $caret);
         $menu->setExtra('request_uri', $menu->getExtra('request_uri'));
-        
+
         return $item;
     }
 }

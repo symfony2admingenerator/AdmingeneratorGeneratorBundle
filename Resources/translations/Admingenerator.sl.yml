@@ -2,7 +2,7 @@
 double_list:
   selected:   Izbrano
   unselected: Neizbrano
-  
+
 # Date range form
 date_range:
   from.label: Od
@@ -25,17 +25,17 @@ list.display:
   all:        Prikazani vsi rezultati <b>(%count%)</b>.
 list.header:
   actions:    Akcije
-  
+
 # Profile
 profile:
   welcome:  <b>Dobrodošli</b>, %username%!</p>
   login:    Prijava
   logout:   Odjava
-  
+
 # EntityPicker
 entity_picker:
   placeholder:  Iskanje...
-  
+
 # Upload
 upload:
   error:        Napaka
@@ -56,7 +56,7 @@ actions:
   save-and-list:  Shrani in Seznam
   collection.add: Dodati
   file.add:   Dodaj datoteko...
-  
+
 # Object actions
 object.edit:
   label:    Urejanje
@@ -65,7 +65,7 @@ object.edit:
 object.delete:
   label:    Izbriši
   confirm:  Ali ste prepričani, da želite izbrisati ta element?
-    
+
 # Batch actions
 batch.delete:
   label:    Izbriši

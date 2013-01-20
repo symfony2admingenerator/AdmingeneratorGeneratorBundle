@@ -57,6 +57,7 @@ class AdmingeneratedClassLoader
 
         $builder = new EmptyBuilderAction();
         $generator->addBuilder($builder);
+        die();
         $builder->setOutputName($baseController.'/'.$controllerName.'.php');
         $builder->setVariables(array(
             'controllerName' => $controllerName,

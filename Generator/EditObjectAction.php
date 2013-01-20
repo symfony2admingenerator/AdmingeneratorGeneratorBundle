@@ -16,7 +16,7 @@ class EditObjectAction extends Action
 
         $this->setLabel('object.edit.label');
         $this->setIcon('icon-edit');
-        
+
         $this->setParams(array(
             'pk' => '{{ '.$builder->getModelClass().'.'.$builder->getModelPrimaryKeyName().' }}',
         ));

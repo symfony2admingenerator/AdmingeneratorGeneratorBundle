@@ -43,4 +43,3 @@ class AutocompleteTypeExtension extends AbstractTypeExtension
         return 'form';
     }
 }
-?>

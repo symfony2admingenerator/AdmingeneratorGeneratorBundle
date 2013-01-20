@@ -15,21 +15,21 @@ class Action
     protected $name;
 
     protected $label;
-    
+
     protected $icon;
-    
+
     protected $class;
 
     protected $route;
-    
+
     protected $submit;
 
     protected $confirm_message;
 
     protected $crendentials;
-    
+
     protected $conditional_function;
-    
+
     protected $conditional_inverse = false;
 
     protected $params;
@@ -67,7 +67,7 @@ class Action
     {
         return $this->icon;
     }
-    
+
     public function setClass($class)
     {
         $this->class = $class;
@@ -137,8 +137,8 @@ class Action
     public function setRoute($route)
     {
         $this->route = $route;
-    }   
-    
+    }
+
     public function setCondition(array $condition)
     {
         if (!isset($condition['function'])) {
@@ -151,12 +151,12 @@ class Action
             $this->conditional_inverse = (boolean) $condition['inverse'];
         }
     }
-    
+
     public function getConditionalFunction()
     {
         return $this->conditional_function;
     }
-    
+
     public function getConditionalInverse()
     {
         return $this->conditional_inverse;

@@ -26,16 +26,16 @@
                     $("ul#batch_actions_list li a").click(function(e) {
                         e.preventDefault();
 
-                        if ($('input.batch_select_id:checked').length == 0) { 
-                            alert('{{ echo_trans("batch.list.none.selected") }}'); 
-                            return false; 
+                        if ($('input.batch_select_id:checked').length == 0) {
+                            alert('{{ echo_trans("batch.list.none.selected") }}');
+                            return false;
                         }
 
-                        if ($(this).data('confirm')) { 
+                        if ($(this).data('confirm')) {
                             if(!confirm($(this).data('confirm')))
                               return false;
                         }
-                            
+
                         var input = $('<input>').attr('type', 'hidden').attr('name', 'action').val($(this).data('action'));
                         $(this).closest('form').append($(input)).submit();
                     });

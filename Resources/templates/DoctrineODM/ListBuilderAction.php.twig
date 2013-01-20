@@ -63,13 +63,13 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
 
         return $query;
     }
-    
+
     protected function buildQuery()
     {
         return $this->getDocumentManager()
                       ->createQueryBuilder('{{ model }}');
     }
-    
+
 {% endblock %}
 
 {% block processSort -%}
@@ -160,7 +160,7 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
         }
             {% endfor -%}
         {%- endfor -%}
-    {%- endif %}        
+    {%- endif %}
     }
 
     {% if scopes is defined -%}

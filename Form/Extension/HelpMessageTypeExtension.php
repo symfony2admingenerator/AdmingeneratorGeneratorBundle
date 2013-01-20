@@ -35,4 +35,3 @@ class HelpMessageTypeExtension extends AbstractTypeExtension
         return 'form';
     }
 }
-?>
