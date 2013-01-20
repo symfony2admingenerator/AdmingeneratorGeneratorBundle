@@ -13,3 +13,9 @@
       </div><!--/span-->
     </div><!--/row-->
 {% endblock %}
+    
+{% block javascripts %}
+    {{ parent() }}
+    
+    <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/admingenerator/enable-prettify.js') }}"></script>
+{% endblock %}
