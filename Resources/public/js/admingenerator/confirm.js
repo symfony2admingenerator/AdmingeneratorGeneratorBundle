@@ -1,13 +1,13 @@
-
 (function(){
-    $("td.actions a").click(function(event) {
-        event.preventDefault();
+	$("td.actions a").click(function(e) {
+        e.preventDefault();
 
-    	if (!confirm($(this).data('confirm'))) {	
+        if ($(this).data('confirm')) {
+            if(!confirm($(this).data('confirm'))) 
               return false;
         }
-        else {
-			window.location.href = $(this).attr('href');
-        }
+
+        window.location.href = $(this).attr('href');
     });
 })();
+    
