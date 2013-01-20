@@ -26,6 +26,14 @@ list.display:
 list.header:
   actions:    Дії
   
+# Nested List
+nested.list:
+  expand:     Показувати
+  collapse:   Приховувати
+  loading:    Навантаження в прогресі
+  success:    Елемент був успішно переміщений.
+  error:      Не вдалося перемістити елемент.
+  
 # Profile
 profile:
   welcome:  <b>Привіт</b>, %username%!</p>

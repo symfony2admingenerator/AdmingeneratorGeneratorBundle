@@ -1,0 +1,143 @@
+{% extends '../CommonAdmin/NestedListAction/NestedListBuilderAction.php.twig' %}
+{% block getQuery -%}
+    protected function getQuery()
+    {
+        $query = $this->buildQuery();
+
+        $this->processFilters($query);
+        {% if scopes is defined %}
+        $this->processScopes($query);
+        {% endif %}
+
+        return $query;
+    }
+    
+    protected function buildQuery()
+    {
+        return $this->getDoctrine()
+                    ->getEntityManager()
+                    ->getRepository('{{ model }}')
+                    ->getChildrenQueryBuilder()
+                    ->add('orderBy', 'node.root ASC, node.lft ASC')
+                    ->getQuery();
+    }
+    
+    protected function getTree()
+    {  
+        $result = $this->buildQuery()->getResult();
+        
+        return new \Doctrine\Common\Collections\ArrayCollection($result);
+    }
+{% endblock %}
+
+{% block getFilterForm -%}
+    protected function getFilterForm()
+    {
+        $filters = $this->getFilters();
+
+        {%- for filter in builder.filters.display -%}
+            {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
+
+        if (isset($filters['{{ filter }}'])) {
+            $this->getDoctrine()->getEntityManager()->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array('id' => $filters['{{ filter }}']->getId()), array());
+        }
+
+            {%- endif %}
+
+        {% endfor -%}
+
+        $type = new FiltersType();
+        $type->setSecurityContext($this->get('security.context'));
+
+        return $this->createForm($type, $filters);
+    }
+{% endblock %}
+
+{% block addJoinFor -%}
+    protected function addJoinFor($table, $query)
+    {
+        $query->leftJoin('q.'.$table, $table);
+    }
+{% endblock %}
+
+{% block processFilters -%}
+    protected function processFilters($query)
+    {
+        $filterObject = $this->getFilters();
+
+        $queryFilter = $this->get('admingenerator.queryfilter.doctrine');
+        $queryFilter->setQuery($query);
+
+        {% for filter in builder.filterColumns %}
+            if (isset($filterObject['{{ filter.name }}']) && null !== $filterObject['{{ filter.name }}']) {
+                $queryFilter->add{{ filter.dbType|classify }}Filter("{{ filter.filterOn }}", $filterObject['{{ filter.name }}']);
+            }
+        {% endfor %}
+
+    }
+{% endblock %}
+{% block processScopes -%}
+    protected function processScopes($query)
+    {
+    {% if scopes is defined %}
+        $scopes = $this->getScopes();
+
+        $queryFilter = $this->get('admingenerator.queryfilter.doctrine');
+        $queryFilter->setQuery($query);
+
+
+        {% for groupName, group in scopes -%}
+            {%- for scopeName, params in group %}
+
+        if (isset($scopes['{{ groupName }}']) && $scopes['{{ groupName }}'] == '{{ scopeName }}') {
+            {% if params["filters"] is defined -%}
+                {%- for filter, filterParams in params["filters"] -%}
+                {%- if filter|is_numeric -%}
+                $this->scope{{ filterParams|classify }}($queryFilter);
+                {%- else -%}
+                $queryFilter->addDefaultFilter("{{ filter }}", {{ filterParams|as_php }});
+                {%- endif -%}
+                {%- endfor -%}
+            {%- endif %}
+
+        }
+            {% endfor -%}
+        {%- endfor %}
+    {%- endif %}
+    }
+{% endblock %}
+
+{% block nested_moveAction -%}
+    public function nested_moveAction($dragged, $action, $dropped)
+    {
+        if(!in_array($action, array('before', 'in', 'after'))) {
+            throw new NotFoundHttpException("Unknown action");
+        }
+        
+        $em = $this->getDoctrine()->getEntityManager();
+        $repo = $em->getRepository('{{ model }}');
+        
+        $dragged = $repo->findOneBy{{ builder.ModelPrimaryKeyName|capitalize }}($dragged);
+        $dropped = $repo->findOneBy{{ builder.ModelPrimaryKeyName|capitalize }}($dropped);
+        
+        if (!$dragged || !$dropped) {            
+            throw new NotFoundHttpException("Could not find the nodes");
+        }
+        
+        switch($action) {
+          case 'before':
+            $repo->persistAsPrevSiblingOf($dragged, $dropped);
+            break;
+          case 'in':
+            $repo->persistAsFirstChildOf($dragged, $dropped);
+            break;
+          case 'after':
+            $repo->persistAsNextSiblingOf($dragged, $dropped);
+            break;
+        }
+        
+        $em->flush();
+
+        return new Response();
+    }
+{% endblock %}
