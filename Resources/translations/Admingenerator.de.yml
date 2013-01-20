@@ -26,6 +26,14 @@ list.display:
 list.header:
   actions:    Aktionen
   
+# Nested List
+nested.list:
+  expand:     Zeigen
+  collapse:   Verbergen
+  loading:    Laden
+  success:    Das Element wurde erfolgreich bewegt.
+  error:      Konnte nicht den Element bewegen.
+  
 # Profile
 profile:
   welcome:  <b>Willkommen</b>, %username%!</p>

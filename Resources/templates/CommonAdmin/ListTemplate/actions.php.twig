@@ -7,7 +7,7 @@
               {% endif %}
 
                   <a class="btn {{ action.class|default('') }}" href="{{ echo_path((action.route ? action.route : builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_' ~ action.name)) }}"
-                      {%- if action.confirm %}onclick='return confirm("{{ echo_trans(action.confirm) }}")'{% endif %}>
+                      {%- if action.confirm %} data-confirm="{{ echo_trans(action.confirm) }}"{% endif %}>
                       {%- if action.icon %}<i class="{{ action.icon }}"></i> {% endif %}{{ echo_trans(action.label) }}
                   </a>
 

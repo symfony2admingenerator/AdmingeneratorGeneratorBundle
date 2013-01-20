@@ -11,9 +11,9 @@ use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ bu
         $form = $this->getFilterForm();
 
         return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}List:index.html.twig', array(
-            '{{ builder.ModelClass }}s' => $this->getQuery()->findTree(),
-            'form'                      => $form->createView(),
-            'scopes'                    => $this->getScopes(),
+            '{{ builder.ModelClass }}s'   => $this->getTree(),
+            'form'                        => $form->createView(),
+            'scopes'                      => $this->getScopes(),
         ));
     }
 {% endblock %}
