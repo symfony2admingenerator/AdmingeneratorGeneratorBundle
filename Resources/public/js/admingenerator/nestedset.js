@@ -36,7 +36,7 @@ function nestedsetTreeTable() {
             var expander = $('<i />').addClass('icon-expander');
             cell.prepend(expander);
         },
-        onNodeReinit: function(node) {
+        onNodeReinit: function(node, expandable, isRootNode) {
             $(node).find('.icon-expander').remove();
         }
     });

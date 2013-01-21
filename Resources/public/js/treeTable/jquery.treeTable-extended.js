@@ -330,7 +330,7 @@
   function initialize(node) {
     if(!node.hasClass("initialized")) {
       node.addClass("initialized");
-
+      
       var isRootNode = (node[0].className.search(options.childPrefix) == -1);
       var childNodes = childrenOf(node);
       var expandable = childNodes.length > 0;
@@ -373,17 +373,26 @@
   };
   
   function reinitialize(node) {
-    if(node.hasClass("initialized")) {
-      node.removeClass("initialized").removeClass("parent");
+    if(node.hasClass("initialized")) {      
+      node.removeClass('initialized').removeClass('parent')
+          .removeClass('expanded').removeClass('collapsed');
+      
+      var isRootNode = (node[0].className.search(options.childPrefix) == -1);
+      var childNodes = childrenOf(node);
+      var expandable = childNodes.length > 0;
+      
+      if(options.expandable) {
+          var handle = (options.clickableElement) ? node.find(options.clickableElement) : node;
+          handle.removeAttr('title').removeClass('expander');
+          
+          handle.off((options.doubleclickMode) ? 'dblclick' : 'click');
+      }
       
       if($.isFunction(options.onNodeReinit)) {
-        var isRootNode = (node[0].className.search(options.childPrefix) == -1);
-        var childNodes = childrenOf(node);
-        var expandable = childNodes.length > 0;
-        
         options.onNodeReinit.call(this, node, expandable, isRootNode);
       }
       
+      if(expandable) { node.addClass('expanded'); }
       initialize(node);
     }
   };
