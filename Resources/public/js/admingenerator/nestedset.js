@@ -15,7 +15,7 @@
  *  admingeneratorNestedUrl  >>  url used for ajax call
  *  nestedsetStringExpand    >>  collapsed branch title translation
  *  nestedsetStringCollapse  >>  expanded branch title translation
- */  
+ */   
 $(document).ready(function(){
     nestedsetTreeTable(); 
     nestedsetDragAndDrop();
