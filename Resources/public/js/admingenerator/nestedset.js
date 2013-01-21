@@ -101,8 +101,8 @@ function nestedsetDragAndDrop() {
                         // reorganize tree
                         var $parent = $draggable.nodeParent();
                         $draggable.moveBranch(action, $droppable);
-                        $droppable.nodeReinitialize();
                         if($parent) { $parent.nodeReinitialize(); }
+                        if(action == 'in') { $droppable.nodeReinitialize(); }
                         // hide modal, display success alert
                         var alert = $('#nestedset_success').clone();
                         $('#flashes').append(alert);
