@@ -1,0 +1,13 @@
+/* General styles
+-------------------------------------------------- */
+
+/* Block scrolling */
+html, body {
+    overflow-x: hidden;
+}
+
+/* Padding for top static navbar */
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}

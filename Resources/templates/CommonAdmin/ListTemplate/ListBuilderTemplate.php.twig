@@ -18,6 +18,8 @@
 
 {{ echo_block("javascripts") }}
     {{- block('complementary_javascripts') -}}
+
+    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/general.js")') }}"></script>
 {{ echo_endblock() }}
 
 {{- block('site_title') -}}

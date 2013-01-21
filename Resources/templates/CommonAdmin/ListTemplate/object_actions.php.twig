@@ -21,20 +21,6 @@
                     {{ echo_endif () }}
                 {% endif %}
             {% endfor %}
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    $("td.actions a").click(function(e) {
-                        e.preventDefault();
-
-                        if ($(this).data('confirm')) {
-                            if(!confirm($(this).data('confirm')))
-                              return false;
-                        }
-
-                        window.location.href = $(this).attr('href');
-                    });
-                });
-            </script>
          </td>
         {% endif -%}
     {{ echo_endblock() }}

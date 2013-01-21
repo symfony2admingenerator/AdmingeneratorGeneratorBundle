@@ -5,8 +5,8 @@ double_list:
 
 # Date range form
 date_range:
-  from.label: From
-  to.label:   To
+  from.label: から
+  to.label:   へ
   
 # Pager
 pagerfanta:
@@ -25,50 +25,58 @@ list.display:
   all:        <b>%count%</b> 件の結果を表示中
 list.header:
   actions:    操作
+  
+# Nested List
+nested.list:
+  expand:     見せる
+  collapse:   隠す
+  loading:    進行中のロード
+  success:    要素が正常に移動した
+  error:      要素を移動できませんでした
 
 # Profile
 profile:
-  welcome:  <b>Welcome</b>, %username%!</p>
-  login:    Login
-  logout:   Log out
+  welcome:  <b>歓迎</b>, %username%!</p>
+  login:    ログイン
+  logout:   ログアウト
 
 # EntityPicker
 entity_picker:
-  placeholder:  Search...
+  placeholder:  検索...
   
 # Upload
 upload:
-  error:        Error
-  cancel:       Cancel
-  delete:       Delete
+  error:        エラー
+  cancel:       キャンセル
+  delete:       削除
 upload.errors:
-  maxNumFiles:      Maximum number of files exceeded.
-  typeNotAllowed:   Filetype not allowed.
-  maxFileSize:      File is too big.
-  minFileSize:      File is too small.
+  maxNumFiles:      ファイルの最大数を超え
+  typeNotAllowed:   許可されていないファイルタイプ
+  maxFileSize:      ファイルが大きすぎます
+  minFileSize:      ファイルが小さすぎます
   
 # Actions
 actions:
   list:   一覧
   new:    新規作成
   save:   保存
-  save-and-add:   Save and Add
-  save-and-list:  Save and List
+  save-and-add:   保存して、追加
+  save-and-list:  保存し、リスト
   collection.add: 追加
-  file.add:   Add file...
+  file.add:   ファイルを追加...
   
 # Object actions
 object.edit:
-  label:    Edit
+  label:    編集
   success:  データの保存が正常に完了しました。
   error:    データの保存に失敗しました。エラーを確認して再度保存してください。
 object.delete:
-  label:    Delete
-  confirm:  Are you sure you want to delete this element?
+  label:    削除
+  confirm:  あなたは、この要素を削除してもよろしいですか？
   
 # Batch actions
 batch.delete:
-  label:    Delete
+  label:    削除
   confirm:  選択したすべてのデータが完全に削除されます。よろしいですか?
   success:  データの削除が正常に完了しました。
   error:    データの削除に失敗しました。

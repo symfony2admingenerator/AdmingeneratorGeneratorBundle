@@ -2,13 +2,12 @@
 {{ echo_block("list_thead") }}
         <thead>
             <tr class="list_thead">
-
                 {% for column in builder.columns -%}
                 {% if column.credentials %}
                       {{ echo_if_granted(column.credentials) }}
                 {% endif %}
                 <th class="list_thead_column">
-                   {{ column.label }}
+                   {{ echo_twig("'" ~ column.label|addslashes ~ "'|trans({}, '" ~ (i18n_catalog is defined ? i18n_catalog : "Admin") ~ "')") }}
                 </th>
                 {% if column.credentials %}
                     {{ echo_endif () }}

@@ -6,6 +6,8 @@ use Admingenerator\GeneratorBundle\Builder\Generator as AdminGenerator;
 
 use Admingenerator\GeneratorBundle\Builder\Doctrine\ListBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\ListBuilderTemplate;
+use Admingenerator\GeneratorBundle\Builder\Doctrine\NestedListBuilderAction;
+use Admingenerator\GeneratorBundle\Builder\Doctrine\NestedListBuilderTemplate;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\FiltersBuilderType;
 
 use Admingenerator\GeneratorBundle\Builder\Doctrine\DeleteBuilderAction;
@@ -35,7 +37,7 @@ class DoctrineGenerator extends Generator
     public function build()
     {
         $this->validateYaml();
-
+        
         $generator = new AdminGenerator($this->cache_dir, $this->getGeneratorYml());
         $generator->setContainer($this->container);
         $generator->setBaseAdminTemplate($generator->getFromYaml('base_admin_template', $this->container->getParameter('admingenerator.base_admin_template')));
@@ -56,6 +58,12 @@ class DoctrineGenerator extends Generator
             $generator->addBuilder(new FiltersBuilderType());
         }
 
+        if (array_key_exists('nested_list',$builders)) {
+            $generator->addBuilder(new NestedListBuilderAction());
+            $generator->addBuilder(new NestedListBuilderTemplate());
+            $generator->addBuilder(new FiltersBuilderType());
+        }
+
         if (array_key_exists('delete', $builders)) {
             $generator->addBuilder(new DeleteBuilderAction());
         }
@@ -70,11 +78,6 @@ class DoctrineGenerator extends Generator
             $generator->addBuilder(new NewBuilderAction());
             $generator->addBuilder(new NewBuilderTemplate());
             $generator->addBuilder(new NewBuilderType());
-        }
-
-        if (array_key_exists('show', $builders)) {
-            $generator->addBuilder(new ShowBuilderAction());
-            $generator->addBuilder(new ShowBuilderTemplate());
         }
 
         $generator->writeOnDisk($this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));

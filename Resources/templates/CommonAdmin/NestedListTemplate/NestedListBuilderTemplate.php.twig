@@ -4,6 +4,7 @@
 {% use '../CommonAdmin/NestedListTemplate/nbresults.php.twig' %}
 {% use '../CommonAdmin/NestedListTemplate/thead.php.twig' %}
 {% use '../CommonAdmin/NestedListTemplate/tbody.php.twig' %}
+{% use '../CommonAdmin/NestedListTemplate/modal.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/actions.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/filters.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/scopes.php.twig' %}
@@ -12,18 +13,21 @@
 
 {{ echo_block("javascripts") }}
     {{- block('complementary_javascripts') -}}
-    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/javascripts/jquery-ui-1.8.16.custom.min.js")') }}" ></script>
-    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/javascripts/jquery.treeTable.js")') }}" ></script>
+
     <script type="text/javascript">
-    {% set admingeneratorNestedRoute=builder.routePrefixWithSubfolder ~ "_" ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_nested_append" %}
-    var admingeneratorNestedUrl = '{{ echo_path( admingeneratorNestedRoute, "{ 'source': '|source|', 'to': '|to|' }") }}';
+        {% set admingeneratorNestedRoute=builder.routePrefixWithSubfolder ~ "_" ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_nested_move" %}
+        var admingeneratorNestedUrl = '{{ echo_path( admingeneratorNestedRoute, "{ 'dragged': '|dragged|', 'action': '|action|', 'dropped': '|dropped|' }") }}';
+        var nestedsetStringExpand = '{{ echo_trans('nested.list.expand') }}';
+        var nestedsetStringCollapse = '{{ echo_trans('nested.list.collapse') }}';
     </script>
-    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/javascripts/nestedset.js")') }}"></script>
+    
+    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/treeTable/jquery.treeTable-extended.js")') }}"></script>
+    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/nestedset.js")') }}"></script>
+    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/general.js")') }}"></script>
 {{ echo_endblock() }}
 
 {{ echo_block("stylesheets") }}
     {{- block('complementary_stylesheets') -}}
-    <link href="{{ echo_twig('asset("bundles/admingeneratorgenerator/css/jquery.treeTable.css")') }}" rel="stylesheet" />
 {{ echo_endblock() }}
 
 {{- block('site_title') -}}
@@ -31,40 +35,32 @@
 {{ echo_block("body") }}
     {{- block('title') -}}
 
-    <div class="admin_list main_content{% if builder.filterColumns|length == 0 %} full_size{% endif %}">
+    <div class="row-fluid">
+        <div class="{% if builder.filterColumns|length == 0 %} span12 {% else %} span9 {% endif %}">
+    
+            {{ block('list_scopes') -}}
 
-        {{ block('list_scopes') -}}
+            {{- block('list_nbresults') }}
 
-        {{- block('list_nbresults') }}
-
-        <table id="tree-table" class="table">
-            {{ block('list_thead') -}}
-            {{- block('list_tbody') }}
-        </table>
-
-        {{- block('list_actions') }}
-    </div>
-    <div class="nested_loading_box">
-        <span>{{ echo_trans('Loading in progress') }}</span>
-    </div>
-    {{ echo_block("filters") }}
-        {% if builder.filterColumns|length > 0 %}
-        <div class="filters">
-            <table>
-                <thead>
-                    <tr>
-                        <th>{{ echo_trans('list.filters') }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            {{- block('list_filters') -}}
-                        </td>
-                    </tr>
-                </tbody>
+            <table id="tree-table" class="table table-striped table-hover table-condensed">
+                {{ block('list_thead') -}}
+                {{- block('list_tbody') }}
             </table>
-        </div>
-        {% endif %}
-    {{ echo_endblock() }}
+
+            <div class="form-actions">
+                <div class="btn-toolbar pull-left">
+                  {{ block('list_actions') -}}
+                </div>
+            </div>
+        </div>        
+        {{ echo_block("filters") }}
+            {% if builder.filterColumns|length > 0 %}
+            <div class="span3">                
+                {{- block('list_filters') -}}
+            </div>
+            {% endif %}
+        {{ echo_endblock() }}
+    </div>
+    
+    {{- block('nestedset_modal') -}}
 {{ echo_endblock() }}
