@@ -1,0 +1,8 @@
+/* Collection form styles
+ * ------------------------------------------------------------------------- */
+
+/* Set fallback background for collection-item */
+tbody.collection > tr,
+div.collection > fieldset {
+    background-color: #fff;
+}

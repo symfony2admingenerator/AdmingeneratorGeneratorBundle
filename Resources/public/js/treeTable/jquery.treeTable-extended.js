@@ -47,6 +47,8 @@
  * + added insert function
  * + modified initialize function
  * + added reinitialize function
+ * + modified indent function
+ * + modified getPaddingLeft function
  * 
  * Modified 2013, loostro:
  * Released under the MIT license.
@@ -203,11 +205,10 @@
     //    from being moved to the same location where it already is).
     // 3: +node+ should not be inserted as a child of +node+ itself.
     if($.inArray(node[0].id, ancestorNames) == -1 && (!parent || (target.id != parent[0].id)) && target.id != node[0].id) {
-      indent(node, ancestorsOf(node).length * options.indent * -1);         // Remove indentation
       insert(node, 'after', target);                                        // Move nodes to new location
       if(parent) { node.removeClass(options.childPrefix + parent[0].id); }  // Remove parent
       node.addClass(options.childPrefix + target[0].id);                    // Set new parent
-      indent(node, ancestorsOf(node).length * options.indent);              // Add new indentation
+      indent(node, ancestorsOf(node).length * options.indent);              // Set new indentation
     }
 
     return this;
@@ -233,11 +234,10 @@
     //    result in +node+ being an ancestor of itself.
     // 2: +node+ should not be inserted before/after itself.
     if($.inArray(node[0].id, ancestorNames) == -1 && target[0].id != node[0].id) {
-      indent(node, ancestorsOf(node).length * options.indent * -1);                 // Remove indentation
       insert(node, where, target);                                                  // Move nodes to new location
       if(parent) { node.removeClass(options.childPrefix + parent[0].id); }          // Remove parent
       if(targetParent) { node.addClass(options.childPrefix + targetParent[0].id); } // Set new parent
-      indent(node, ancestorsOf(node).length * options.indent);                      // Add new indentation
+      indent(node, ancestorsOf(node).length * options.indent);                      // Set new indentation
     }
 
     return this;
@@ -315,23 +315,22 @@
   };
 
   function getPaddingLeft(node) {
-    var paddingLeft = parseInt(node[0].style.paddingLeft, 10);
-    return (isNaN(paddingLeft)) ? defaultPaddingLeft : paddingLeft;
+    return ancestorsOf(node).length * options.indent;
   }
 
   function indent(node, value) {
     var cell = $(node.children("td")[options.treeColumn]);
-    cell[0].style.paddingLeft = getPaddingLeft(cell) + value + "px";
-
+    cell[0].style.paddingLeft = options.initialIndent + value + 'px';
+    
     childrenOf(node).each(function() {
-      indent($(this), value);
+      indent($(this), value + options.indent);
     });
   };
 
   function initialize(node) {
     if(!node.hasClass("initialized")) {
       node.addClass("initialized");
-
+      
       var isRootNode = (node[0].className.search(options.childPrefix) == -1);
       var childNodes = childrenOf(node);
       var expandable = childNodes.length > 0;
@@ -345,12 +344,7 @@
       }
 
       if(expandable) {
-        var cell = $(node.children("td")[options.treeColumn]);
-        var padding = getPaddingLeft(cell) + options.indent;
-
-        childNodes.each(function() {
-          $(this).children("td")[options.treeColumn].style.paddingLeft = padding + "px";
-        });
+        indent(node, getPaddingLeft(node));
 
         if(options.expandable) {
           var handle = (options.clickableElement) ? node.find(options.clickableElement) : node;
@@ -379,17 +373,26 @@
   };
   
   function reinitialize(node) {
-    if(node.hasClass("initialized")) {
-      node.removeClass("initialized").removeClass("parent");
+    if(node.hasClass("initialized")) {      
+      node.removeClass('initialized').removeClass('parent')
+          .removeClass('expanded').removeClass('collapsed');
+      
+      var isRootNode = (node[0].className.search(options.childPrefix) == -1);
+      var childNodes = childrenOf(node);
+      var expandable = childNodes.length > 0;
+      
+      if(options.expandable) {
+          var handle = (options.clickableElement) ? node.find(options.clickableElement) : node;
+          handle.removeAttr('title').removeClass('expander');
+          
+          handle.off((options.doubleclickMode) ? 'dblclick' : 'click');
+      }
       
       if($.isFunction(options.onNodeReinit)) {
-        var isRootNode = (node[0].className.search(options.childPrefix) == -1);
-        var childNodes = childrenOf(node);
-        var expandable = childNodes.length > 0;
-        
         options.onNodeReinit.call(this, node, expandable, isRootNode);
       }
       
+      if(expandable) { node.addClass('expanded'); }
       initialize(node);
     }
   };
@@ -449,3 +452,4 @@
     }
   }
 })(jQuery);
+ 

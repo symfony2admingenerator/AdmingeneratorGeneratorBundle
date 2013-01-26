@@ -15,7 +15,7 @@
  *  admingeneratorNestedUrl  >>  url used for ajax call
  *  nestedsetStringExpand    >>  collapsed branch title translation
  *  nestedsetStringCollapse  >>  expanded branch title translation
- */  
+ */   
 $(document).ready(function(){
     nestedsetTreeTable(); 
     nestedsetDragAndDrop();
@@ -36,7 +36,7 @@ function nestedsetTreeTable() {
             var expander = $('<i />').addClass('icon-expander');
             cell.prepend(expander);
         },
-        onNodeReinit: function(node) {
+        onNodeReinit: function(node, expandable, isRootNode) {
             $(node).find('.icon-expander').remove();
         }
     });
@@ -101,8 +101,8 @@ function nestedsetDragAndDrop() {
                         // reorganize tree
                         var $parent = $draggable.nodeParent();
                         $draggable.moveBranch(action, $droppable);
-                        $droppable.nodeReinitialize();
                         if($parent) { $parent.nodeReinitialize(); }
+                        if(action == 'in') { $droppable.nodeReinitialize(); }
                         // hide modal, display success alert
                         var alert = $('#nestedset_success').clone();
                         $('#flashes').append(alert);

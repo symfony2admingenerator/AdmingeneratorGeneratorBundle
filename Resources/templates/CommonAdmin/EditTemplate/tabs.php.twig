@@ -10,27 +10,13 @@
             </li>
         {% endfor %}
     </ul>
+    <script type="text/javascript" src="{{ echo_twig("asset('bundles/admingeneratorgenerator/js/admingenerator/tabs.js')") }}"></script>        
     <script type="text/javascript">
-    $(document).ready(function() {
-        {% for name in tabs|keys %}
-          {% if loop.first %}showFieldsetsForTab('{{ name|classify|replace({'.': '_'}) }}');{% endif %}
-        {% endfor %}
-    });
-
-    function showFieldsetsForTab(name)
-    {
-        $('.admin_form fieldset.fieldset_tabbable').css('display','none');
-        $('.form_tabs li').removeClass('active');
-        
-        var toDisplay = $('.form_tabs li[data-name="'+name+'"] a').data('display').split(' ');
-
-        for (var i in toDisplay) {
-            if (toDisplay[i] != '') {
-                $('.admin_form .form_fieldset_'+toDisplay[i]).css('display','block');
-            }
-        }
-        $('.form_tabs li[data-name="'+name+'"]').addClass('active');
-    }
+        $(document).ready(function() {
+            {% for name in tabs|keys %}
+              {% if loop.first %}showFieldsetsForTab('{{ name|classify|replace({'.': '_'}) }}');{% endif %}
+            {% endfor %}
+        });
     </script>
 {% endif %}
 {{ echo_endblock() }}

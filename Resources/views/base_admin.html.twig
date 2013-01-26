@@ -38,6 +38,7 @@
         {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator.min.css'
             'bundles/admingeneratorgenerator/css/admingenerator/general.css'
             'bundles/admingeneratorgenerator/css/admingenerator/nested-list.css'
+            'bundles/admingeneratorgenerator/css/admingenerator/collection.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
@@ -148,6 +149,7 @@
             'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.mouse.js'
             'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.draggable.js'
             'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.droppable.js'
+            'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.sortable.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}

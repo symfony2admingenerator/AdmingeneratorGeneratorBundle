@@ -14,12 +14,26 @@
                     new_item.find('.delete').click(function(){
                         if(confirm('{{ 'object.delete.confirm'|trans({}, 'Admingenerator') }}')) {
                             $(this).closest('.collection-item').remove();
+                
+                            {% if sortable %}
+                            // update sortable positions
+                            $('[id^="{{ id }}"][id$="{{ sortable }}"]').each(function(i){
+                                $(this).val(i);
+                            });
+                            {% endif %}
                         }
                     });
                 {% endif %}
                 
                 nextId++;
                 $('#{{ id }} > .collection').append(new_item);
+                
+                {% if sortable %}
+                // update sortable positions
+                $('[id^="{{ id }}"][id$="{{ sortable }}"]').each(function(i){
+                    $(this).val(i);
+                });
+                {% endif %}
             });
         {% endif %}
         {% if allow_delete %}
@@ -27,6 +41,13 @@
             $('.{{ id ~ '_actions' }} .delete').click(function(){
                 if(confirm('{{ 'object.delete.confirm'|trans({}, 'Admingenerator') }}')) {
                     $(this).closest('.collection-item').remove();
+                    
+                    {% if sortable %}
+                    // update sortable positions
+                    $('[id^="{{ id }}"][id$="{{ sortable }}"]').each(function(i){
+                        $(this).val(i);
+                    });
+                    {% endif %}
                 }
             });
             
@@ -44,6 +65,15 @@
                     $('.{{ id ~ '_actions' }} > .btn-toggle > input[name="delete"]:checked').each(function(){
                           $(this).closest('.collection-item').remove();
                     });
+                
+                    {% if sortable %}
+                    // update sortable positions
+                    $('[id^="{{ id }}"][id$="{{ sortable }}"]').each(function(i){
+                        $(this).val(i);
+                    });
+                    {% endif %}
+                      
+                    // uncheck "select all" box
                     $('#{{ id ~ '_toolbar' }} > .btn-toggle > input[name="toggle"]').attr('checked', false);
                 }
             });
