@@ -54,6 +54,12 @@ If specified, enables sorting collection element. Sortable field will be hidden 
 
 > **Note:** Sortable position is `0-indexed` (first element's index is `0`).
 
+#### new_label
+
+**type:** `string` **default:** `collection.new_label`
+
+New item label.
+
 #### inherited options
 
 See [collection form reference](http://symfony.com/doc/current/reference/forms/types/collection.html#field-options).

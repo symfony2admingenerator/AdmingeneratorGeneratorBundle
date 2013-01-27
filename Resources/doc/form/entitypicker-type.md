@@ -17,49 +17,53 @@ Propel has a similar field type (model) - creating a similar ModelPicker is plan
 
 ### 3. Configuration
 
-Example configuration:
+Example "Choose category" configuration:
 
 ```yaml
 fields:
-  song:
+  category:
+    label:            Category
     formType:         entitypicker
     addFormOptions:
-      class:          Acme\RadioBundle\Entity\Song
-      builder:        { pk: id, title: title, album: album.name, artist: album.artist.name, thumb: album.cover }
-      matcher:        (item.artist + ' - ' + item.name) ## e.g. Will Smith - Miami
-      identifier:     item.pk
-      thumb:
-        src:          item.thumb
-      description:
-        - { content: item.album, class: text-info }
-        - { content: "('ID: ' + item.pk)", class: muted }
+      class:          Acme\CatalogBundle\Entity\Category
+      builder:        { name: name }
+      matcher:        item.name
+      primaryKey:     id
+```
+
+Example collection of related products configuration:
+
+```yaml
+fields:
+  relatedProducts:
+    label:            Related products          
+    formType:         collection
+# collection options
+    addFormOptions:
+      type:           entitypicker
+      widget:         table
+      allow_add:      true
+      allow_delete:   true
+      by_reference:   false
+# entity picker options
+      options:
+        label:        Related product
+        class:        AcmeCatalogBundle:Product
+        exclude:      collection
+        builder:      { name: name, category: category }
+        matcher:      item.name
+        primaryKey:   id
+        description:
+          - { content: item.category, class: muted }
 ```
 
 ### 4. Options
 
-#### class
-
-**type:** `string` **required**
-
-The class of your entity (e.g. AcmeRadioBundle:Song). This can be a fully-qualified class name (e.g. Acme\RadioBundle\Entity\Song) or the short alias name (as shown prior).
-
-#### query_builder
-
-**type:** `Doctrine\ORM\QueryBuilder` or a Closure
-
-If specified, this is used to query the subset of options that should be used for the field. The value of this option can either be a QueryBuilder object or a Closure. If using a Closure, it should take a single argument, which is the EntityRepository of the entity.
-
-#### em
-
-**type:** `string` **default:** `the default entity manager`
-
-If specified, the specified entity manager will be used to load the choices instead of the default entity manager.
-
 #### builder
 
-**type:** `Object` **default:** `{ pk: id, name: name }`
+**type:** `Object` **default:** `{}`
 
-Used to build proxy object passed to the template. If you want to use a field in `matcher`, `identifier`, `thumb` or `description` options, you need to map it to the proxy object first.
+Used to build proxy object passed to the template. If you want to use a field in `matcher`, `thumb` or `description` options, you need to map it to the proxy object first.
 
 #### matcher
 
@@ -67,11 +71,11 @@ Used to build proxy object passed to the template. If you want to use a field in
 
 Javascript expression against which query will be matched. Can be something as simple as `(item.name)` or more complex expression like `(item.title + ' by ' + item.author)`. To access proxy object's properties you need to map them first in `builder` option.
 
-#### identifier
+#### primaryKey
 
-**type:** `string` **default:** `item.pk`
+**type:** `string` **default:** `null`
 
-Javascript expression used to return selected item's identifier. Can be something as simple as `(item.pk)` or more complex expression like `(item.title + ' by ' + item.author)`. To access proxy object's properties you need to map them first in `builder` option.
+Specifies entity's primaryKey field name. Primary key is autoloaded into builder proxy object as `item.primaryKey`.
 
 #### thumb.src
 
@@ -99,34 +103,21 @@ Thumbnail image height (in pixels).
 
 ```yaml
 description:
-  - { content: item.album, class: text-info }
-  - { content: "('ID: ' + item.pk)", class: muted }
+  - { content: item.category, class: muted }
 ```
-
-This config will display two lines of additional information:
-
-* item's Album name (in blue text)
-* `ID: x`, where x is item's id (in grey text)
 
 You may specify class for each line individually. See `Emphasis classes` section in [Base CSS/Typography](http://twitter.github.com/bootstrap/base-css.html#typography).
 
-#### 5. Collection of EntityPicker
+#### exclude
 
-If you want to select multiple entities you should simply use a collection of EntityPicker fields.
+**type**: `string` **default:** `null`
 
-> **Note:** Items already selected are excluded from search results
+Used mainly for collections of entity picker widgets. If specified excludes items from search results. Possible exclude strategies:
 
-```yaml
-fields:
-  tags:                
-    formType:         collection
-    extras:
-      new_label:      Add tag
-    addFormOptions:
-      type:           entitypicker
-      allow_add:      true
-      allow_delete:   true
-      by_reference:   false
-      options:
-        class:        Acme\StoreBundle\Entity\Tag
-```
+* `entity` strategy for simple entity picker widgets - allows to exclude entity picker's parent form
+* `collection` strategy for collection of entity picker widgets - allows to exclude already selected items
+* `root` stragegy for nested forms - allows to exclude *'root'* form (**note:** this option is not tested)
+
+#### inherited options
+
+See [entity form reference](http://symfony.com/doc/current/reference/forms/types/entity.html#field-options).

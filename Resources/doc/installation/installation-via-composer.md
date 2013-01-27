@@ -74,7 +74,7 @@ In order to properly install and configure YUI Compressor follow [this article](
 
 > See also [Asset Management](http://symfony.com/doc/current/cookbook/assetic/asset_management.html) cookbook entry.
 
-### Install assets
+### 4. Install assets
 
 To install assets in your web directory run:
 
