@@ -1,5 +1,4 @@
 # Installation via composer
-
 ---------------------------------------
 
 ### 1. Download files

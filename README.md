@@ -44,13 +44,11 @@ Sorry for inconvenience, we will fix that as soon as possible!
 
 ## Installation
 
-All the installation instructions are located in documentation.
-
-* [Installation via Composer](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/installation/installation-via-composer.md)
+All the installation instructions are located in [documentation](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#installation).
 
 ## Documentation
 
-The documentation for this bundle is available in the [Resources/doc](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/tree/master/Resources/doc) directory of the bundle.
+The documentation for this bundle is located in `Resources/doc` directory. Start by reading [Table of contents](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#table-of-contents).
 
 ## Support
 
