@@ -3,7 +3,7 @@
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
 /**
- * This builder generate php for lists actions
+ * This builder generates php for lists actions
  * @author cedric Lombardot
  */
 class ListBuilderAction extends ListBuilder

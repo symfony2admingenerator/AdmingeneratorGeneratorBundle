@@ -3,7 +3,7 @@
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
 /**
- * This builder generate form for Filters
+ * This builder generates form for Filters
  * @author cedric Lombardot
  */
 class FiltersBuilderType extends FiltersBuilder

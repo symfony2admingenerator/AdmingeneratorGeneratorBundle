@@ -9,7 +9,7 @@ use Admingenerator\GeneratorBundle\Generator\Column;
 use Admingenerator\GeneratorBundle\Generator\Action;
 
 /**
- * This builder generate php for lists actions
+ * This builder generates php for lists actions
  * @author cedric Lombardot
  */
 class ListBuilder extends BaseBuilder
