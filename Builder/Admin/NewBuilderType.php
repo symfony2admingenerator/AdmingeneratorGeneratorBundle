@@ -3,7 +3,7 @@
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
 /**
- * This builder generate form for New actions
+ * This builder generates form for New actions
  * @author cedric Lombardot
  */
 class NewBuilderType extends NewBuilder

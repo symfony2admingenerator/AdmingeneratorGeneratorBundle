@@ -3,7 +3,7 @@
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
 /**
- * This builder generate php for empty actions
+ * This builder generates php for empty actions
  * @author cedric Lombardot
  */
 class EmptyBuilderAction extends BaseBuilder

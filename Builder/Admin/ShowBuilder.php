@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\Container;
 use Admingenerator\GeneratorBundle\Generator\Action;
 
 /**
- * This builder generate php for edit actions
+ * This builder generates php for edit actions
  * @author Eymen Gunay
  */
 class ShowBuilder extends BaseBuilder

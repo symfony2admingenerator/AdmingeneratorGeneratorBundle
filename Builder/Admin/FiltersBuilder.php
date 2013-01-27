@@ -5,7 +5,7 @@ namespace Admingenerator\GeneratorBundle\Builder\Admin;
 use Admingenerator\GeneratorBundle\Generator\Column;
 
 /**
- * This builder generate php for filters
+ * This builder generates php for filters
  * @author cedric Lombardot
  */
 class FiltersBuilder extends BaseBuilder

@@ -3,7 +3,7 @@
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
 /**
- * This builder generate php for New actions
+ * This builder generates php for New actions
  * @author cedric Lombardot
  */
 class NewBuilderTemplate extends NewBuilder
