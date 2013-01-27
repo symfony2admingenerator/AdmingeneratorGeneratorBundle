@@ -14,12 +14,14 @@ and open a ticket on github.
 2. [Support][table-of-contents-2]
 3. [Features][table-of-contents-3]
 4. [Form Extensions][table-of-contents-4]
+5. [Internationalization][table-of-contents-5]
 
 [go-up]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#table-of-contents
 [table-of-contents-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#1-installation
 [table-of-contents-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#2-support
 [table-of-contents-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#3-features
 [table-of-contents-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#4-form-extensions
+[table-of-contents-5]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#5-internationalization
 
 ## 1. Installation
 
@@ -68,3 +70,11 @@ Documentation for new form extensions and types:
 [form-extensions-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/date-picker.md
 [form-extensions-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/upload.md
 [form-extensions-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/collection.md
+
+## 5. Internationalization
+
+1. [Generator translation][internationalization-1]
+
+[go up][go-up]
+
+[internationalization-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/internationalization/generator-translation.md
