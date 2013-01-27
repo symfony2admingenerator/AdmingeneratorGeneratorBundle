@@ -1,4 +1,5 @@
 {% use '../CommonAdmin/ShowTemplate/actions.php.twig' %}
+{% use '../CommonAdmin/ShowTemplate/object_actions.php.twig' %}
 
 {% use '../CommonAdmin/ListTemplate/Column/boolean.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/Column/date.php.twig' %}
@@ -45,6 +46,7 @@
 
         <div class="form-actions">
             {{ block("form_actions") }}
+            {{ block("list_object_actions") }}
         </div>
 
     {{ echo_endblock() }}
