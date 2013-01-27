@@ -1,6 +1,10 @@
 # Installation via composer
 ---------------------------------------
 
+[go back to Table of contents][back-to-index]
+
+[back-to-index]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#installation
+
 ### 1. Download files
 
 Add Admingenerator to your `composer.json`:

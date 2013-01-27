@@ -13,11 +13,13 @@ and open a ticket on github.
 1. [Installation][table-of-contents-1]
 2. [Support][table-of-contents-2]
 3. [Features][table-of-contents-3]
+4. [Form Extensions][table-of-contents-4]
 
 [go-up]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#table-of-contents
 [table-of-contents-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#installation
 [table-of-contents-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#support
 [table-of-contents-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#features
+[table-of-contents-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#form-extensions
 
 ## 1. Installation
 
@@ -50,3 +52,19 @@ List of supported features for each model manager:
 [features-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support/doctrine-orm-features.md
 [features-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support/doctrine-odm-features.md
 [features-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support/propel-features.md
+
+## 4. Form Extensions
+
+Documentation for new form extensions and types:
+
+1. [Entity Picker][form-extensions-1]
+2. [Date Picker][form-extensions-2]
+3. [Upload][form-extensions-3]
+4. [Collection][form-extensions-4]
+
+[go up][go-up]
+
+[form-extensions-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/entity-picker.md
+[form-extensions-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/date-picker.md
+[form-extensions-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/upload.md
+[form-extensions-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/collection.md
