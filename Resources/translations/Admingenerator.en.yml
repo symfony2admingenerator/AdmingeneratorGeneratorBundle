@@ -49,6 +49,7 @@ upload:
   error:        Error
   cancel:       Cancel
   delete:       Delete
+  download:     Download
 upload.errors:
   maxNumFiles:      Maximum number of files exceeded.
   typeNotAllowed:   Filetype not allowed.

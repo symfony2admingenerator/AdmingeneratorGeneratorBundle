@@ -9,7 +9,11 @@ class UploadedFileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', 'hidden');
+        /**
+         * by default form has no fields, if you want to 
+         * add sortable or nameable behavior you should
+         * extend this form and use your custom form instead
+         */
     }
 
     public function getName()

@@ -49,6 +49,7 @@ upload:
   error:        エラー
   cancel:       キャンセル
   delete:       削除
+  download:     ダウンロード
 upload.errors:
   maxNumFiles:      ファイルの最大数を超え
   typeNotAllowed:   許可されていないファイルタイプ

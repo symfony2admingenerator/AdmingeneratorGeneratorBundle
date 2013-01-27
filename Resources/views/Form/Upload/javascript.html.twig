@@ -99,18 +99,20 @@
         var result = [
             {% for key, item in form.vars.data -%}
             {
-              "name":             "{{ item.name }}",
+              {% if customFields %}
+              {% for field in customFields %}
+                  "{{ field }}":  "{{ attribute(item, field) }}",
+              {% endfor %}
+              {% endif %}
               "size":             {{ item.size }},
               "url":              "{{ vich_uploader_asset(item, 'file') }}",
-            {% if item.preview %}
-                {% if thumbnailGenerator and thumbnailFilter %}
-                    {% if thumbnailGenerator is sameas('avalanche') %}
-                        "thumbnail_url":    "{{ vich_uploader_asset(item, 'file')|apply_filter(thumbnailFilter) }}",
-                    {% endif %}
-                {% elseif item.size < previewSourceMaxFileSize %}
+              {% if item.preview %}
+                  {% if thumbnailGenerator is sameas('avalanche') and thumbnailFilter %}
+                  "thumbnail_url":    "{{ vich_uploader_asset(item, 'file')|apply_filter(thumbnailFilter) }}",
+                  {% elseif item.size < previewSourceMaxFileSize %}
                   "thumbnail_url":    "{{ vich_uploader_asset(item, 'file') }}",
-                {% endif %}
-            {% endif %}
+                  {% endif %}
+              {% endif %}
               "count":            "{{ key }}",
             }
             {%- if not loop.last %},{% endif %}

@@ -49,6 +49,7 @@ upload:
   error:        Napaka
   cancel:       Odstrani
   delete:       Izbriši
+  download:     Prenos
 upload.errors:
   maxNumFiles:      Največje število datotek preseglo.
   typeNotAllowed:   Tip ni dovoljeno.

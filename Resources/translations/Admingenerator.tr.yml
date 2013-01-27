@@ -41,6 +41,7 @@ upload:
   error:        Hata
   cancel:       İptal
   delete:       Sil
+  download:     Indir
 upload.errors:
   maxNumFiles:      Maksimum dosya limiti aşıldı.
   typeNotAllowed:   İzinsiz dosya türü.

@@ -49,6 +49,7 @@ upload:
   error:        Помилка
   cancel:       Видалення
   delete:       Видаляти
+  download:     Завантажити
 upload.errors:
   maxNumFiles:      Максимальна кількість файлів перевищений.
   typeNotAllowed:   Тип файлу не допускається.
