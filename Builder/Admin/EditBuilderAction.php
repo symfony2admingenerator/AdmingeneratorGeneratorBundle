@@ -3,7 +3,7 @@
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
 /**
- * This builder generate php for edit actions
+ * This builder generates php for edit actions
  * @author cedric Lombardot
  */
 class EditBuilderAction extends EditBuilder

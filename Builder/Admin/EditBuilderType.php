@@ -3,7 +3,7 @@
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
 /**
- * This builder generate form for edit actions
+ * This builder generates form for edit actions
  * @author cedric Lombardot
  */
 class EditBuilderType extends EditBuilder

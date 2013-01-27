@@ -1,0 +1,27 @@
+{% block list_object_actions %}
+    {{ echo_block("list_object_actions") }}
+        {% if object_actions|length > 0 %}
+         <td class="actions">
+            {% for action in builder.ObjectActions %}
+                {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
+                    {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials'), builder.ModelClass ) }}
+                {% endif -%}
+                    {% if action.conditionalFunction %}
+                        {{ echo_if ((action.conditionalInverse == 'true' ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction) }}
+                    {% endif %}
+
+                    <a class="{{ action.class|default('') }}" href="{{ echo_path((action.route ? action.route : builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_' ~ action.name), "{ 'pk': " ~ builder.ModelClass ~ "." ~ builder.ModelPrimaryKeyName ~ " }") }}"
+                      {% if action.confirm %} data-confirm="{{ echo_trans(action.confirm) }}"{% endif %} rel="tooltip" data-original-title="{{ echo_trans(action.label) }}">
+                      <i class="{{ action.icon|default('icon-asterisk') }}"></i></a>
+
+                    {% if action.conditionalFunction %}
+                        {{ echo_endif () }}
+                    {% endif %}
+                {%- if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
+                    {{ echo_endif () }}
+                {% endif %}
+            {% endfor %}
+         </td>
+        {% endif -%}
+    {{ echo_endblock() }}
+{% endblock %}
