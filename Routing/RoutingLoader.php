@@ -74,6 +74,7 @@ class RoutingLoader extends FileLoader
     public function load($resource, $type = null)
     {
         $collection = new RouteCollection();
+
         $resource = str_replace('\\', '/', $resource);
         $namespace = $this->getNamespaceFromResource($resource);
         $bundle_name = $this->getBundleNameFromResource($resource);
@@ -103,6 +104,11 @@ class RoutingLoader extends FileLoader
             $collection->addResource(new FileResource($resource.ucfirst($controller).'Controller.php'));
         }
 
+        // Import other routes from a controller directory (@Route annotation)
+        if ($controller_folder) {
+            $collection->addCollection($this->import('@'.$namespace.$bundle_name.'/Controller/'.$controller_folder.'/', 'annotation'));
+        }
+        
         return $collection;
     }
 
