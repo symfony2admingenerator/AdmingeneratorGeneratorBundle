@@ -105,8 +105,10 @@ class RoutingLoader extends FileLoader
         }
 
         // Import other routes from a controller directory (@Route annotation)
-        $collection->addCollection($this->import('@'.$namespace.$bundle_name.'/Controller/'.$controller_folder.'/', 'annotation'));
-
+        if ($controller_folder) {
+            $collection->addCollection($this->import('@'.$namespace.$bundle_name.'/Controller/'.$controller_folder.'/', 'annotation'));
+        }
+        
         return $collection;
     }
 
