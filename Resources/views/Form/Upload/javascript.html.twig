@@ -99,10 +99,10 @@
         var result = [
             {% for key, item in form.vars.data -%}
             {
-              {% if customFields %}
-              {% for field in customFields %}
-                  "{{ field }}":  "{{ attribute(item, field) }}",
-              {% endfor %}
+              {% if editable %}
+                  {% for field in editable %}
+                      "{{ field }}":  "{{ attribute(item, field) }}",
+                  {% endfor %}
               {% endif %}
               "size":             {{ item.size }},
               "url":              "{{ vich_uploader_asset(item, 'file') }}",

@@ -37,29 +37,50 @@ Upload supports **Doctrine ORM** and *may* support (untested) Doctrine ODM and P
 Upload widget configuration:
 
 ```yaml
-params:
-  fields:
-    upload:
-      dbType:       collection
-      formType:     upload
-      addFormOptions:
-        maxNumberOfFiles:           5
-        maxFileSize:                500000
-        minFileSize:                1000
-        acceptFileTypes:            /(\.|\/)(gif|jpe?g|png)$/i
-        previewSourceFileTypes:     /^image\/(gif|jpeg|png)$/
-        previewSourceMaxFileSize:   250000
-        previewMaxWidth:            100
-        previewMaxHeight:           100
-        previewAsCanvas:            true
-        prependFiles:               false
+images:
+  label:            Images
+  dbType:           collection
+  formType:         upload
+  addFormOptions:
+    nameable:         name
+    sortable:         position
+    editable:         [ name, description, position ]
+    type:             \Acme\GalleryBundle\Form\Type\Image\EditType
+    maxNumberOfFiles:           5
+    maxFileSize:                500000
+    minFileSize:                1000
+    acceptFileTypes:            /(\.|\/)(gif|jpe?g|png)$/i
+    previewSourceFileTypes:     /^image\/(gif|jpeg|png)$/
+    previewSourceMaxFileSize:   250000
+    previewMaxWidth:            100
+    previewMaxHeight:           100
+    previewAsCanvas:            true
+    prependFiles:               false
 ```
-
-In Entity, `upload` field has to be a `Collection` of `Symfony\Component\HttpFoundation\File\UploadedFile`.
 
 ### 4. Options
 
-> **Important:** These options are just for User Interface and cannot be considered safe (javascript is client-side). Always validate form input data server-side!
+#### nameable
+
+**type:** `string` **default:** `null`
+
+If specified, normalized filenames will be autoloaded into this property upon upload.
+
+#### sortable
+
+**type:** `string` **default:** `null`
+
+If specified, enables sortable behavior and uses this property to store position.
+
+> **Note:** This property must be added to builder in formType and added to **editable** option.
+
+#### editable
+
+**type:** `array` **default:** `[]`
+
+List of editable properties rendered with the form.
+
+> **Note:** Each property must be added to formType builder first.
 
 #### maxNumberOfFiles
 

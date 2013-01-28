@@ -30,7 +30,7 @@ class UploadType extends CollectionType
     {
         $prototype = $builder->create(
             $options['prototype_name'], 
-            $this->getUploadedFileType($options), 
+            $options['type'],
             $options['options']
         );
         $builder->setAttribute('prototype', $prototype->getForm());
@@ -44,7 +44,7 @@ class UploadType extends CollectionType
         
         $resizeListener = new ResizeFormListener(
             $builder->getFormFactory(),
-            $this->getUploadedFileType($options),
+            $options['type'],
             $options['options'],
             $options['allow_add'],
             $options['allow_delete']
@@ -62,7 +62,7 @@ class UploadType extends CollectionType
     {
         $view->vars['multipart']                =   true;
         $view->vars['sortable']                 =   $options['sortable'];
-        $view->vars['customFields']             =   $options['customFields'];
+        $view->vars['editable']                 =   $options['editable'];
         $view->vars['maxNumberOfFiles']         =   $options['maxNumberOfFiles'];
         $view->vars['maxFileSize']              =   $options['maxFileSize'];
         $view->vars['minFileSize']              =   $options['minFileSize'];
@@ -87,8 +87,7 @@ class UploadType extends CollectionType
         $resolver->setDefaults(array(
             'nameable'                  =>  null,
             'sortable'                  =>  null,
-            'customType'                =>  null,
-            'customFields'              =>  null,
+            'editable'                  =>  null,
             'maxNumberOfFiles'          =>  null,
             'maxFileSize'               =>  null,
             'minFileSize'               =>  null,
@@ -105,8 +104,7 @@ class UploadType extends CollectionType
         $resolver->setAllowedTypes(array(
             'nameable'                  =>  array('string', 'null'),
             'sortable'                  =>  array('string', 'null'),
-            'customType'                =>  array('string', 'null'),
-            'customFields'              =>  array('array', 'null'),
+            'editable'                  =>  array('array', 'null'),
             'maxNumberOfFiles'          =>  array('integer', 'null'),
             'maxFileSize'               =>  array('integer', 'null'),
             'minFileSize'               =>  array('integer', 'null'),
@@ -127,23 +125,5 @@ class UploadType extends CollectionType
     public function getName()
     {
         return 'upload';
-    }
-    
-    /**
-     * Returns custom UploadedFileType (if specified) or the default one
-     */
-    public function getUploadedFileType($options)
-    {
-        if($options['customType'] !== null) {
-          
-            $class = new $options['customType']($options);
-        
-            if($class instanceof \Admingenerator\GeneratorBundle\Form\Type\UploadedFileType) 
-                return $class;
-            else
-                throw new UnexpectedTypeException($class, '\Admingenerator\GeneratorBundle\Form\Type\UploadedFileType');
-        }
-        
-        return new \Admingenerator\GeneratorBundle\Form\Type\UploadedFileType($options);
     }
 }
