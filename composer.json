@@ -20,7 +20,7 @@
     "require": {
         "symfony/symfony": "2.1.*",
         "cedriclombardot/twig-generator": "dev-master",
-        "knplabs/knp-menu-bundle": "dev-master",
+        "knplabs/knp-menu-bundle": ">1.0,<2.1",
         "white-october/pagerfanta-bundle": "dev-master",
         "twig/twig": ">= 1.9.0",
         "twig/extensions": "dev-master"
