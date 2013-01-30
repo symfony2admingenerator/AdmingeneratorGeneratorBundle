@@ -1,6 +1,6 @@
 {% block list_object_actions %}
     {{ echo_block("list_object_actions") }}
-        {% if object_actions|length > 0 %}
+        {% if object_actions is defined and object_actions|length > 0 %}
          <td class="actions">
             {% for action in builder.ObjectActions %}
                 {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
