@@ -83,7 +83,7 @@ To install assets in your web directory run:
 
 `php app/console assets:install web --symlink`
 
-> **Note:** We recommend installing assets with `--symlink` option, however you may use the `--hardcopy` option instead.
+> **Note:** We recommend installing assets with `--symlink` option, however you may skip this option if you wish to hard copy assets.
 
 ### (Optional) Dump assets
 
