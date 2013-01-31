@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {% block scripts_head %}        
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/jquery.min.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/jquery.min.js'
             'bundles/admingeneratorgenerator/js/jquery-1.8.3.min.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
@@ -19,7 +19,7 @@
     {% endblock %}
 
     {% block stylesheets %}
-        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/bootstrap.min.css'
+        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/bootstrap.min.css'
             'bundles/admingeneratorgenerator/css/bootstrap/bootstrap.css'
             'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-extended.css'
             'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-datepicker.css'
@@ -28,14 +28,14 @@
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
             
-        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/bootstrap-responsive.min.css'
+        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/bootstrap-responsive.min.css'
             'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-responsive.css'
             'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-responsive-extended.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
             
-        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator.min.css'
+        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/admingenerator.min.css'
             'bundles/admingeneratorgenerator/css/admingenerator/general.css'
             'bundles/admingeneratorgenerator/css/admingenerator/nested-list.css'
             'bundles/admingeneratorgenerator/css/admingenerator/collection.css'
@@ -123,7 +123,7 @@
     </div> <!-- /container -->
 
     {% block javascripts %}
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/bootstrap.min.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/bootstrap.min.js'
             'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-transition.js'
             'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-alert.js'
             'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-modal.js'
@@ -144,7 +144,7 @@
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
         
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/jquery-ui.min.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/jquery-ui.min.js'
             'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.core.js'
             'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.widget.js'
             'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.mouse.js'
@@ -155,7 +155,7 @@
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
         
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/blueimp.jquery-file-upload.min.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/blueimp.jquery-file-upload.min.js'
             'bundles/admingeneratorgenerator/js/blueimp/blueimp.javascript-templates.min.js'
             'bundles/admingeneratorgenerator/js/blueimp/blueimp.javascript-load-image.min.js'
             'bundles/admingeneratorgenerator/js/blueimp/blueimp.canvas-to-blob.min.js'
@@ -167,7 +167,7 @@
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
         
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/jquery.spin.min.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/jquery.spin.min.js'
             'bundles/admingeneratorgenerator/js/spin/jquery.spin.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
