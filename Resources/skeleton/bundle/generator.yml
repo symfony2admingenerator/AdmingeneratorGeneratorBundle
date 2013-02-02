@@ -26,7 +26,7 @@ builders:
         list: ~
   edit:
     params:
-      title: "You're editing the object \"%object%\"|{ %object%: YourModel.title }|"
+      title: "You're editing the object \"%object%\"|{ %object%: YourModel.title }|
       display: ~
       actions:
         list: ~
