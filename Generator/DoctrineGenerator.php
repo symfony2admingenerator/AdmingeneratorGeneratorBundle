@@ -79,6 +79,11 @@ class DoctrineGenerator extends Generator
             $generator->addBuilder(new NewBuilderTemplate());
             $generator->addBuilder(new NewBuilderType());
         }
+        
+        if (array_key_exists('show', $builders)) {
+            $generator->addBuilder(new ShowBuilderAction());
+            $generator->addBuilder(new ShowBuilderTemplate());
+        }
 
         $generator->writeOnDisk($this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));
     }
