@@ -28,6 +28,11 @@ It transforms uploaded files into entities and allows easy manipulation of exist
 * Sort uploaded files
 * Additional form fields (like name, description, etc)
 
+#### Requirements:
+
+* [VichUploaderBundle](https://github.com/dustin10/VichUploaderBundle)
+* (Optional) [AvalancheImagineBundle](https://github.com/avalanche123/AvalancheImagineBundle)
+
 ### 2. Support
 
 Upload supports **Doctrine ORM** and *may* support (untested) Doctrine ODM and Propel.
@@ -151,7 +156,7 @@ Set this option to false to always display preview images as *img* elements.
 **type:** `string` **default:** `null`
 
 By default, thumbnail images are displayed with width and height attribute only. However, you may want to generate thumbnail images to reduce bandwidth usage. This option lets you specify [AvalancheImagineBundle](https://github.com/avalanche123/AvalancheImagineBundle) filter name.
-If null, no filter will be applied. Requires setting configuration option `admingenerator_generator.thumbnail_generator` (see section 4 below).
+If null, no filter will be applied. Requires setting configuration option `admingenerator_generator.thumbnail_generator` (see section 5 below).
 
 #### prependFiles
 

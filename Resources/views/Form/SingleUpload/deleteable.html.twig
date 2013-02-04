@@ -1,0 +1,3 @@
+{% if deleteable|default or true %}
+    <input type="checkbox" id="{{ id ~ '_delete' }}" name="{{ form.parent.vars.full_name ~ '['~name~'_delete]' }}" value="0" class="hidden">
+{% endif %}

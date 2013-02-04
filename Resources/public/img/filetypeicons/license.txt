@@ -1,0 +1,24 @@
+**********************************
+Symfony2 Admingenerator File Icons
+==================================
+
+created by loostro <loostro@gmail.com>
+
+a derrivative work from Filetypeicons.com.
+
+Thanks to FileSquare for shareing!
+Visit their website!
+
+
+**********************************
+# Original work: Filetypeicons.com
+==================================
+
+brought to you by FileSquare 
+http://www.filesq.com
+
+
+This work is licensed under 
+
+Creative Commons Attribution-ShareAlike 3.0 Hong Kong License
+http://creativecommons.org/licenses/by-sa/3.0/hk/

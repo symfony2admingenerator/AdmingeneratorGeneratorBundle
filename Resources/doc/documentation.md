@@ -62,14 +62,16 @@ Documentation for new form extensions and types:
 1. [Entity Picker][form-extensions-1]
 2. [Date Picker][form-extensions-2]
 3. [Upload][form-extensions-3]
-4. [Collection][form-extensions-4]
+4. [SingleUpload][form-extensions-4]
+5. [Collection][form-extensions-5]
 
 [go up][go-up]
 
 [form-extensions-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/entity-picker.md
 [form-extensions-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/date-picker.md
 [form-extensions-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/upload.md
-[form-extensions-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/collection.md
+[form-extensions-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/single-upload.md
+[form-extensions-5]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/collection.md
 
 ## 5. Internationalization
 

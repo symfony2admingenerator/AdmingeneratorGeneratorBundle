@@ -98,7 +98,7 @@ class UploadType extends CollectionType
             'previewMaxHeight'          =>  80,
             'previewAsCanvas'           =>  true,
             'prependFiles'              =>  false,
-            'thumbnailFilter'           =>  null
+            'thumbnailFilter'           =>  null,
         ));
         
         $resolver->setAllowedTypes(array(
@@ -115,7 +115,7 @@ class UploadType extends CollectionType
             'previewMaxHeight'          =>  array('integer'),
             'previewAsCanvas'           =>  array('bool'),
             'prependFiles'              =>  array('bool'),
-            'thumbnailFilter'           =>  array('string', 'null')
+            'thumbnailFilter'           =>  array('string', 'null'),
         ));
     }
     

@@ -55,6 +55,10 @@ upload.errors:
   typeNotAllowed:   Niedozwolony typ pliku.
   maxFileSize:      Plik jest za duży.
   minFileSize:      Plik jest za mały.
+  
+# SingleUpload
+singleupload:
+  display.name:     Wyświetlana nazwa
 
 # Actions
 actions:
@@ -87,3 +91,17 @@ batch.list:
 
 # Layout
 layout.welcome:   Strona Główna
+
+# Filetype icons
+filetype:
+  audio:            Audio
+  archive:          Archiwum
+  html:             HTML
+  image:            Obraz
+  pdf-document:     Dokument<br />PDF
+  plain-text:       Tekst
+  presentation:     Prezentacja
+  spreadsheet:      Arkusz<br />Kalkulacyjny
+  text-document:    Dokument<br />Tekstowy
+  unknown:          Nieznany<br />Typ Pliku
+  video:            Wideo
