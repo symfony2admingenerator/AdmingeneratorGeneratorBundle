@@ -23,7 +23,8 @@ class SingleUploadType extends FileType
                 
         $singleUploadNamerListener = new SingleUploadNamerListener(
             $builder->getName(),
-            $options['nameable']
+            $options['nameable'],
+            $options['deleteable']
         );
         $builder->getParent()->addEventSubscriber($singleUploadNamerListener);
     }

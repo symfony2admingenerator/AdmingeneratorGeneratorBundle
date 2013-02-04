@@ -31,9 +31,14 @@ class SingleUploadNamerListener implements EventSubscriberInterface
     protected $capturedName;
     
     /**
+     * @var bool True if deletable behavior is enabled
+     */
+    protected $deleteable;
+    
+    /**
      * @var bool True if delete was clicked
      */
-    protected $delete;
+    protected $deleteFlag;
     
     /**
      * @var bool Used to revert changes if form is not valid.
@@ -41,10 +46,11 @@ class SingleUploadNamerListener implements EventSubscriberInterface
     protected $originalFile;
 
 
-    public function __construct($propertyName, $nameable)
+    public function __construct($propertyName, $nameable, $deleteable)
     {
         $this->propertyName = $propertyName;
         $this->nameable     = $nameable;
+        $this->deleteable   = $deleteable;
     }
 
     public static function getSubscribedEvents()
@@ -62,11 +68,16 @@ class SingleUploadNamerListener implements EventSubscriberInterface
         
         // capture name and store it for onBind event
         $this->capturedName = $data[$this->propertyName.'_nameable'];
-        $this->delete       = $data[$this->propertyName.'_delete'];
-                
+        
         // unset additional form data to prevent errors
         unset($data[$this->propertyName.'_nameable']);
-        unset($data[$this->propertyName.'_delete']);
+        
+        if ($this->deleteable) { 
+            // capture delete flag and store it for onBind event
+            $this->deleteFlag = $data[$this->propertyName.'_delete']; 
+            // unset additional form data to prevent errors
+            unset($data[$this->propertyName.'_delete']);
+        }
         
         $event->setData($data);
     }
