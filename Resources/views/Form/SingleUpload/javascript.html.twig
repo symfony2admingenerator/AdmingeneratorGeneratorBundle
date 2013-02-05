@@ -5,7 +5,7 @@
             maxHeight:  {{ maxHeight }},
             minWidth:   {{ minWidth }},
             minHeight:  {{ minHeight }},
-            previewImages:    {{ previewImages }},
+            previewImages:    {{ previewImages  ? 'true' : 'false'}},
             previewAsCanvas:  {{ previewAsCanvas }},
             isEmpty:    {{ (form.vars.data|default is empty) ? 'true' : 'false' }},
             nameable:   {{ (nameable|default is not empty) ? 'true' : 'false' }},
