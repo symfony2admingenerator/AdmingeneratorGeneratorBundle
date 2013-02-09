@@ -95,7 +95,7 @@
             throw new NotFoundHttpException("Unknown action");
         }
         
-        $dragged = $this->buildQuery()->findPk($dragged));
+        $dragged = $this->buildQuery()->findPk($dragged);
         $dropped = $this->buildQuery()->findPk($dropped);
 
         if (!$dragged || !$dropped) {
