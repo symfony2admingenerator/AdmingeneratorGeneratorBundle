@@ -6,6 +6,7 @@ php:
 
 env:
     - SYMFONY_VERSION=origin/2.1
+    - SYMFONY_VERSION=origin/2.2
 
 before_script:
     - composer install --dev
