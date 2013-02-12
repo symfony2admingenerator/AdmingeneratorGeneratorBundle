@@ -36,7 +36,7 @@
         </service>
 
         <service id="form.type.entitypicker" class="Admingenerator\GeneratorBundle\Form\Type\PropelEntityPickerType">
-            <tag name="form.type" alias="propel_entitypicker" />
+            <tag name="form.type" alias="entitypicker" />
         </service>
     </services>
 </container>

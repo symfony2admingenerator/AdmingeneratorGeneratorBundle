@@ -38,17 +38,17 @@
         </service>
 
         <service id="form.type.entitypicker" class="Admingenerator\GeneratorBundle\Form\Type\EntityPickerType">
-            <tag name="form.type" alias="doctrine_entitypicker" />
+            <tag name="form.type" alias="entitypicker" />
             <argument type="service" id="doctrine" />
         </service>
 
         <service id="form.type.upload" class="Admingenerator\GeneratorBundle\Form\Type\UploadType">
-            <tag name="form.type" alias="doctrine_upload" />
+            <tag name="form.type" alias="upload" />
             <argument type="service" id="service_container" />
         </service>
 
         <service id="form.type.single_upload" class="Admingenerator\GeneratorBundle\Form\Type\SingleUploadType">
-            <tag name="form.type" alias="doctrine_single_upload" />
+            <tag name="form.type" alias="single_upload" />
             <argument type="service" id="service_container" />
         </service>
     </services>

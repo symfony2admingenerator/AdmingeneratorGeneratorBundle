@@ -8,6 +8,8 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Processor;
 
+use Admingenerator\GeneratorBundle\Exception\ModelManagerNotSelectedException;
+
 class AdmingeneratorGeneratorExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
@@ -32,16 +34,14 @@ class AdmingeneratorGeneratorExtension extends Extension
         if ($config['use_doctrine_orm']) {
             $loader->load('doctrine.xml');
             $container->setParameter('admingenerator.doctrine_templates_dirs', $doctrine_template_dirs);
-        }
-
-        if ($config['use_doctrine_odm']) {
+        } else if ($config['use_doctrine_odm']) {
             $loader->load('doctrine_odm.xml');
             $container->setParameter('admingenerator.doctrineodm_templates_dirs', $doctrineodm_template_dirs);
-        }
-
-        if ($config['use_propel']) {
+        } else if ($config['use_propel']) {
             $loader->load('propel.xml');
             $container->setParameter('admingenerator.propel_templates_dirs', $propel_template_dirs);
+        } else {
+            throw new ModelManagerNotSelectedException();
         }
 
         $container->setParameter('admingenerator.thumbnail_generator', $config['thumbnail_generator']);
