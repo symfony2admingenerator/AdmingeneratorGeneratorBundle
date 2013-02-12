@@ -21,11 +21,11 @@ class EntityPickerType extends EntityType
             ));
         }
                
-        $view->vars['builder'] = $options['builder'];
-        $view->vars['matcher'] = $options['matcher'];
-        $view->vars['primaryKey'] = $options['primaryKey'];
-        $view->vars['description'] = $options['description'];
-        $view->vars['thumb'] = $options['thumb'];
+        $view->vars['builder']      = $options['builder'];
+        $view->vars['matcher']      = $options['matcher'];
+        $view->vars['primaryKey']   = $options['primaryKey'];
+        $view->vars['description']  = $options['description'];
+        $view->vars['thumb']        = $options['thumb'];
     }
 
     /**

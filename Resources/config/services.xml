@@ -78,16 +78,6 @@
             <tag name="form.type" alias="datepicker_range" />
         </service>
 
-        <service id="form.type.upload" class="Admingenerator\GeneratorBundle\Form\Type\UploadType">
-            <tag name="form.type" alias="upload" />
-            <argument type="service" id="service_container" />
-        </service>
-
-        <service id="form.type.single_upload" class="Admingenerator\GeneratorBundle\Form\Type\SingleUploadType">
-            <tag name="form.type" alias="single_upload" />
-            <argument type="service" id="service_container" />
-        </service>
-
         <!-- Form type extensions -->
         <service id="form.type_extension.autocomplete" class="Admingenerator\GeneratorBundle\Form\Extension\AutocompleteTypeExtension">
             <tag name="form.type_extension" alias="form" />
