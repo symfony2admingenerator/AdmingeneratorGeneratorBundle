@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class CaptureUploadListener implements EventSubscriberInterface
 {
@@ -39,8 +40,9 @@ class CaptureUploadListener implements EventSubscriberInterface
     public function __construct($propertyName, $dataClass, $nameable)
     {
         $this->propertyName = $propertyName;
-        $this->dataClass = $dataClass;
-        $this->nameable = $nameable;
+        $this->dataClass    = $dataClass;
+        $this->nameable     = $nameable;
+        $this->uploads      = array();
     }
 
     public static function getSubscribedEvents()
@@ -57,10 +59,12 @@ class CaptureUploadListener implements EventSubscriberInterface
         $form = $event->getForm();
         $data = $event->getData();
         
-        // capture uploads and store them for onBind event
-        $this->uploads = $data[$this->propertyName]['uploads'];
-        // unset additional form data to prevent errors
-        unset($data[$this->propertyName]['uploads']);
+        if(array_key_exists($this->propertyName, $data)) {
+            // capture uploads and store them for onBind event
+            $this->uploads = $data[$this->propertyName]['uploads'];
+            // unset additional form data to prevent errors
+            unset($data[$this->propertyName]['uploads']);
+        }
         
         $event->setData($data);
     }
@@ -108,9 +112,9 @@ class CaptureUploadListener implements EventSubscriberInterface
         $form = $event->getForm();
         $data = $event->getData();  
         
-        if(!$form->isValid()) {        
+        $getter = 'get'.ucfirst($this->propertyName);
+        if(!$form->isValid() && $data->$getter() instanceof ArrayCollection) {        
             // remove files absent in the original collection
-            $getter = 'get'.ucfirst($this->propertyName);    
             $data->$getter()->clear();
             
             foreach($this->originalFiles as $file) {

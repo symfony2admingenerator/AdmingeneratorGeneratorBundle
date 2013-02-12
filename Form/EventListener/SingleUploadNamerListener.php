@@ -51,6 +51,7 @@ class SingleUploadNamerListener implements EventSubscriberInterface
         $this->propertyName = $propertyName;
         $this->nameable     = $nameable;
         $this->deleteable   = $deleteable;
+        $this->capturedName = null;
     }
 
     public static function getSubscribedEvents()
@@ -66,13 +67,15 @@ class SingleUploadNamerListener implements EventSubscriberInterface
     {
         $data = $event->getData();
         
-        // capture name and store it for onBind event
-        $this->capturedName = $data[$this->propertyName.'_nameable'];
+        if($this->nameable && array_key_exists($this->propertyName.'_nameable', $data)) {
+            // capture name and store it for onBind event
+            $this->capturedName = $data[$this->propertyName.'_nameable'];
+
+            // unset additional form data to prevent errors
+            unset($data[$this->propertyName.'_nameable']);
+        }
         
-        // unset additional form data to prevent errors
-        unset($data[$this->propertyName.'_nameable']);
-        
-        if ($this->deleteable) { 
+        if ($this->deleteable && array_key_exists($this->propertyName.'_delete', $data)) { 
             // capture delete flag and store it for onBind event
             $this->deleteFlag = $data[$this->propertyName.'_delete']; 
             // unset additional form data to prevent errors
