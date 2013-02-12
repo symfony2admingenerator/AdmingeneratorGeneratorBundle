@@ -34,12 +34,12 @@
     -moz-box-sizing: border-box;
     display: block;
     float: left;
-    margin-left: 2.5641%;
+    margin-right: 2.5641%;
     min-height: 30px;
 }
 
-.row-fluid > .form_field:first-child {
-    margin-left: 0;
+.row-fluid > .form_field:last-child {
+    margin-right: 0;
 }
 
 .row-fluid > .form_field:only-child {
