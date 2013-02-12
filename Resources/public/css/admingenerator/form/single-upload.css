@@ -73,3 +73,7 @@
 .singleupload-buttonbar .btn-wrapper.removed {
     margin-left: 5px;
 }
+
+.single-upload + .help-block {
+    margin-top: 20px;
+}
