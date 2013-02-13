@@ -90,3 +90,18 @@ To install assets in your web directory run:
 If you're useing assetic for asset management dump your assets by running:
 
 `php app/console assetic:dump`
+
+### 5. Import Dashboard routes
+
+Default Admingenerator templates use these routes for Dashboard view:
+
+* `AdmingeneratorDashboard_welcome`
+* `AdmingeneratorDashboard_documentation`
+
+To import these routes add this to your `app/config/routing.yml`:
+
+```yaml
+AdmingeneratorGeneratorBundle_Dashboard:
+    resource: "@AdmingeneratorGeneratorBundle/Resources/config/routing.yml"
+    prefix:   /
+```
