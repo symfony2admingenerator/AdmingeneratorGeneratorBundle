@@ -54,7 +54,7 @@ class ShowBuilder extends BaseBuilder
 
     protected function findObjectActions()
     {
-        foreach ($this->getVariable('object_actions') as $actionName => $actionParams) {
+        foreach ($this->getVariable('object_actions', array()) as $actionName => $actionParams) {
             $class = 'Admingenerator\\GeneratorBundle\\Generator\\'.Container::camelize($actionName.'ObjectAction');
             if (class_exists($class)) {
                 $action = new $class($actionName, $this);
