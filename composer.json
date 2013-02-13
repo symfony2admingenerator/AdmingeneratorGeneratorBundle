@@ -31,8 +31,7 @@
         "doctrine/dbal": "2.3.*"
     },
     "suggest": {
-        "cedriclombardot/admingenerator-user-bundle": "Help you to overwrite the base layout of FOSUserBundle or others giving a parameter key of the container",
-        "knplabs/knp-markdown-bundle": "View admingenerator documentation in your local project."
+        "cedriclombardot/admingenerator-user-bundle": "Help you to overwrite the base layout of FOSUserBundle or others giving a parameter key of the container"
     },
     "target-dir": "Admingenerator/GeneratorBundle",
     "autoload": {
