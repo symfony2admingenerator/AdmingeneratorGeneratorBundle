@@ -67,6 +67,6 @@ class PropelEntityPickerType extends ModelType
      */
     public function getName()
     {
-        return 'modelpicker';
+        return 'entitypicker';
     }
 }
