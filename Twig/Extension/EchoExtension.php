@@ -61,6 +61,8 @@ class EchoExtension extends \Twig_Extension
      */
     public function convertAsForm($options, $formType)
     {
+        $options = preg_replace("/'__php\((.+?)\)'/i", '$1', $options, -1, $count);
+        
         if ('collection' == $formType || 'upload' == $formType) {
             preg_match("/'type' => '(.+?)'/i", $options, $matches);
 
