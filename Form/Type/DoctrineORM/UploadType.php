@@ -124,6 +124,6 @@ class UploadType extends CollectionType
      */
     public function getName()
     {
-        return 'doctrine_orm_upload';
+        return 'upload';
     }
 }

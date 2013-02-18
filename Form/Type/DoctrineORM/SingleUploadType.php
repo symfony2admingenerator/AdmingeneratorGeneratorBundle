@@ -15,6 +15,13 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class SingleUploadType extends FileType
 {
+    protected $container;
+    
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;       
+    }
+    
     /**
      * {@inheritdoc}
      */
@@ -99,7 +106,7 @@ class SingleUploadType extends FileType
      */
     public function getName()
     {
-        return 'doctrine_orm_single_upload';
+        return 'single_upload';
     }
     
     /**

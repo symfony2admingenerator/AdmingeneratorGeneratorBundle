@@ -22,7 +22,7 @@ class DoubleListType extends ModelType
      */
     public function getName()
     {
-        return 'propel_double_list';
+        return 'double_list';
     }
 
 }

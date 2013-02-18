@@ -67,6 +67,6 @@ class EntityPickerType extends EntityType
      */
     public function getName()
     {
-        return 'doctrine_orm_entitypicker';
+        return 'entitypicker';
     }
 }

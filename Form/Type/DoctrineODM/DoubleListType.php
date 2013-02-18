@@ -22,6 +22,6 @@ class DoubleListType extends DocumentType
      */
     public function getName()
     {
-        return 'doctrine_odm_double_list';
+        return 'double_list';
     }
 }

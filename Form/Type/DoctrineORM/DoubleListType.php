@@ -22,6 +22,6 @@ class DoubleListType extends EntityType
      */
     public function getName()
     {
-        return 'doctrine_orm_double_list';
+        return 'double_list';
     }
 }
