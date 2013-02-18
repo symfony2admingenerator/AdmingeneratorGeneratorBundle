@@ -1,15 +1,15 @@
 <?php
 
-namespace Admingenerator\GeneratorBundle\Form\Type;
+namespace Admingenerator\GeneratorBundle\Form\Type\Propel;
 
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Bridge\Propel1\Form\Type\ModelType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class DoctrineDoubleListType extends EntityType
+class DoubleListType extends ModelType
 {
-    /**
-     * {@inheritdoc}
-     */
+   /**
+    * {@inheritdoc}
+    */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         parent::setDefaultOptions($resolver);
@@ -22,6 +22,7 @@ class DoctrineDoubleListType extends EntityType
      */
     public function getName()
     {
-        return 'doctrine_double_list';
+        return 'propel_double_list';
     }
+
 }

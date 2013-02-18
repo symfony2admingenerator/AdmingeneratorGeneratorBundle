@@ -1,6 +1,6 @@
 <?php
 
-namespace Admingenerator\GeneratorBundle\Form\Type;
+namespace Admingenerator\GeneratorBundle\Form\Type\Propel;
 
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Symfony\Bridge\Propel1\Form\Type\ModelType;
 
-class PropelEntityPickerType extends ModelType
+class EntityPickerType extends ModelType
 {
     /**
      * {@inheritdoc}
@@ -67,6 +67,6 @@ class PropelEntityPickerType extends ModelType
      */
     public function getName()
     {
-        return 'entitypicker';
+        return 'propel_entitypicker';
     }
 }

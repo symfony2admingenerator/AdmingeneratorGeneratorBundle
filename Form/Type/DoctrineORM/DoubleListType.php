@@ -1,15 +1,15 @@
 <?php
 
-namespace Admingenerator\GeneratorBundle\Form\Type;
+namespace Admingenerator\GeneratorBundle\Form\Type\DoctrineORM;
 
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class DoubleListType extends ChoiceType
+class DoubleListType extends EntityType
 {
-   /**
-    * {@inheritdoc}
-    */
+    /**
+     * {@inheritdoc}
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         parent::setDefaultOptions($resolver);
@@ -22,6 +22,6 @@ class DoubleListType extends ChoiceType
      */
     public function getName()
     {
-        return 'double_list';
+        return 'doctrine_orm_double_list';
     }
 }

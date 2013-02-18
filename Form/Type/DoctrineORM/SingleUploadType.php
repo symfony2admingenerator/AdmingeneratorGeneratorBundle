@@ -1,6 +1,6 @@
 <?php
 
-namespace Admingenerator\GeneratorBundle\Form\Type;
+namespace Admingenerator\GeneratorBundle\Form\Type\DoctrineORM;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,6 +27,8 @@ class SingleUploadType extends FileType
             $options['deleteable']
         );
         $builder->getParent()->addEventSubscriber($singleUploadNamerListener);
+        
+        $builder->setAttribute('thumbnail_generator', $this->container->getParameter('admingenerator.thumbnail_generator'));
     }
 
     /**
@@ -56,6 +58,7 @@ class SingleUploadType extends FileType
         $view->vars['previewImages']      =   $options['previewImages'];
         $view->vars['previewAsCanvas']    =   $options['previewAsCanvas'];
         $view->vars['thumbnailFilter']    =   $options['thumbnailFilter'];
+        $view->vars['thumbnailGenerator'] =   $form->getConfig()->getAttribute('thumbnail_generator'); 
         $view->vars['downloadType']       =   $this->_checkFileType($view->get('data'));
     }
 
@@ -96,7 +99,7 @@ class SingleUploadType extends FileType
      */
     public function getName()
     {
-        return 'single_upload';
+        return 'doctrine_orm_single_upload';
     }
     
     /**

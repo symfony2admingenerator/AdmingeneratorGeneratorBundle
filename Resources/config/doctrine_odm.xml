@@ -32,8 +32,8 @@
         </service>
 
         <!-- Form -->
-        <service id="form.type.doctrine_odm_double_list" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineODMDoubleListType">
-            <tag name="form.type" alias="doctrine_odm_double_list" />
+        <service id="form.type.doctrine_odm_double_list" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineODM\DoubleListType">
+            <tag name="form.type" alias="double_list" />
             <argument type="service" id="doctrine_mongodb" />
         </service>
     </services>

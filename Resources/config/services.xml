@@ -66,10 +66,6 @@
         </service>
 
         <!-- Form types -->
-        <service id="form.type.double_list" class="Admingenerator\GeneratorBundle\Form\Type\DoubleListType">
-            <tag name="form.type" alias="double_list" />
-        </service>
-
         <service id="form.type.datepicker" class="Admingenerator\GeneratorBundle\Form\Type\DatepickerType">
             <tag name="form.type" alias="datepicker" />
         </service>

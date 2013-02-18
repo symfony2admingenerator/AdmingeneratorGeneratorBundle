@@ -1,11 +1,11 @@
 <?php
 
-namespace Admingenerator\GeneratorBundle\Form\Type;
+namespace Admingenerator\GeneratorBundle\Form\Type\DoctrineODM;
 
 use Doctrine\Bundle\MongoDBBundle\Form\Type\DocumentType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class DoctrineODMDoubleListType extends DocumentType
+class DoubleListType extends DocumentType
 {
    /**
     * {@inheritdoc}

@@ -32,22 +32,22 @@
         </service>
 
         <!-- Form -->
-        <service id="form.type.doctrine_double_list" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineDoubleListType">
-            <tag name="form.type" alias="doctrine_double_list" />
+        <service id="form.type.doctrine_orm_double_list" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineORM\DoubleListType">
+            <tag name="form.type" alias="double_list" />
             <argument type="service" id="doctrine" />
         </service>
 
-        <service id="form.type.entitypicker" class="Admingenerator\GeneratorBundle\Form\Type\EntityPickerType">
+        <service id="form.type.doctrine_orm_entitypicker" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineORM\EntityPickerType">
             <tag name="form.type" alias="entitypicker" />
             <argument type="service" id="doctrine" />
         </service>
 
-        <service id="form.type.upload" class="Admingenerator\GeneratorBundle\Form\Type\UploadType">
+        <service id="form.type.doctrine_orm_upload" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineORM\UploadType">
             <tag name="form.type" alias="upload" />
             <argument type="service" id="service_container" />
         </service>
 
-        <service id="form.type.single_upload" class="Admingenerator\GeneratorBundle\Form\Type\SingleUploadType">
+        <service id="form.type.doctrine_orm_single_upload" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineORM\SingleUploadType">
             <tag name="form.type" alias="single_upload" />
             <argument type="service" id="service_container" />
         </service>

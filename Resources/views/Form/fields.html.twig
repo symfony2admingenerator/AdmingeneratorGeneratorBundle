@@ -17,7 +17,7 @@
 {% endspaceless %}
 {% endblock %}
 
-{% block doctrine_double_list_widget %}
+{% block doctrine_orm_double_list_widget %}
     {{- block('double_list_widget') -}}
 {% endblock %}
 
@@ -61,6 +61,18 @@
 {% endspaceless %}
 {% endblock %}
 
+{% block doctrine_orm_entitypicker_widget %}
+    {{- block('entitypicker_widget') -}}
+{% endblock %}
+
+{#% block doctrine_odm_entitypicker_widget %}
+    {{- block('entitypicker_widget') -}}
+{% endblock %#}
+
+{% block propel_entitypicker_widget %}
+    {{- block('entitypicker_widget') -}}
+{% endblock %}
+
 {% block upload_widget %}
 {% spaceless %}
     {% set full_name = full_name ~ '[uploads][]' %}
@@ -92,6 +104,18 @@
     </div>
 {% endspaceless %}
 {% endblock upload_widget %}
+
+{% block doctrine_orm_upload_widget %}
+    {{- block('upload_widget') -}}
+{% endblock %}
+
+{#% block doctrine_odm_upload_widget %}
+    {{- block('upload_widget') -}}
+{% endblock %#}
+
+{#% block propel_upload_widget %}
+    {{- block('upload_widget') -}}
+{% endblock %#}
     
 {% block single_upload_widget %}
 {% spaceless %}
@@ -114,6 +138,18 @@
     </div>
 {% endspaceless %}
 {% endblock single_upload_widget %}
+
+{% block doctrine_orm_single_upload_widget %}
+    {{- block('single_upload_widget') -}}
+{% endblock %}
+
+{#% block doctrine_odm_single_upload_widget %}
+    {{- block('single_upload_widget') -}}
+{% endblock %#}
+
+{#% block propel_single_upload_widget %}
+    {{- block('single_upload_widget') -}}
+{% endblock %#}
 
 {% block collection_widget %}
     {{ block(widget ~ '_collection_widget') }}

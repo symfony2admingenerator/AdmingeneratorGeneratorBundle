@@ -7,8 +7,13 @@
 <div class="{{ id ~ '_preview_image' }} download active">    
 {% if file|default is not empty %}
     {% if previewImages and downloadType == 'image' %}
+        {% if thumbnailGenerator is sameas('avalanche') and thumbnailFilter %}
+            {% set src = vich_uploader_asset(entity, property)|apply_filter(thumbnailFilter) %}
+        {% elseif item.size < previewSourceMaxFileSize %}
+            {% set src = vich_uploader_asset(entity, property) %}
+        {% endif %}
         <img class="img-polaroid" 
-             src="{{ vich_uploader_asset(entity, property)|apply_filter('gallery_item_view') }}"
+             src="{{ src }}"
              style="{{- 'max-width:'  ~ maxWidth   ~'px;' -}}
                     {{- 'max-height:' ~ maxHeight  ~'px;' -}}
                     {{- 'min-width:'  ~ minWidth   ~'px;' -}}
