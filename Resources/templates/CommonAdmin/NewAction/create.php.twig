@@ -9,6 +9,7 @@
 
         ${{ builder.ModelClass }} = $this->getNewObject();
 
+        $this->preBindRequest(${{ builder.ModelClass }});
         $form = $this->createForm($this->getNewType(), ${{ builder.ModelClass }});
         $form->bindRequest($this->get('request'));
 
@@ -53,6 +54,15 @@
         if ($this->container->getParameter('kernel.debug')) {
             throw $exception;
         }
+    }
+
+    /**
+     * This method is here to make your life better, so overwrite  it
+     *
+     * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
+     */
+    public function preBindRequest(\{{ model }} ${{ builder.ModelClass }})
+    {
     }
 
     /**
