@@ -44,8 +44,13 @@ profile:
 entity_picker:
   placeholder:  Шукати...
   
+# Collection
+collection:
+  add:          Додати
+  
 # Upload
 upload:
+  file.add:     Додати файл...
   error:        Помилка
   cancel:       Видалення
   delete:       Видаляти
@@ -56,31 +61,33 @@ upload.errors:
   maxFileSize:      Файл занадто великий.
   minFileSize:      Файл занадто малий.
 
-# Actions
-actions:
+# Generic actions
+action.generic:
   list:   Список
   new:    Додати
   save:   Зберегти
   save-and-add:   Зберегти і Додати
   save-and-list:  Зберегти і Список
-  collection.add: Додати  
-  file.add:   Додати файл...
   
 # Object actions
-object.edit:
+action.object.edit:
   label:    Редагувати
   success:  Об'єкт був успішно збережений.
   error:    Неможливо зберегти об'єкт. Форма не збережена. Виправте помилки і спробуйте ще раз.
-object.delete:
+action.object.delete:
   label:    Видаляти
   confirm:  Ви дійсно хочете видалити цей елемент?
-    
+action.object.show:
+  label:    Показувати
+  
 # Batch actions
-batch.delete:
+action.batch.delete:
   label:    Видаляти
   confirm:  Ви підтверджуєте видалення вибраних елементів?
   success:  Записи було успішно видалено.
   error:    Неможливо видалити записи.
+  
+# Batch list
 batch.list:
   selected:       Оберіть дію
   none.selected:  Необхідно вибрати не менше одного елемента.

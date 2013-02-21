@@ -44,8 +44,13 @@ profile:
 entity_picker:
   placeholder:  Szukaj...
   
+# Collection
+collection:
+  add:          Dodaj
+  
 # Upload
 upload:
+  file.add:     Dodaj plik...
   error:        Błąd
   cancel:       Anuluj
   delete:       Usuń
@@ -60,31 +65,33 @@ upload.errors:
 singleupload:
   display.name:     Wyświetlana nazwa
 
-# Actions
-actions:
+# Generic actions
+action.generic:
   list:   Lista
   new:    Nowy
   save:   Zapisz
   save-and-add:   Zapisz i Nowy
   save-and-list:  Zapisz i Lista
-  collection.add: Dodaj
-  file.add:   Dodaj plik...
   
 # Object actions
-object.edit:
+action.object.edit:
   label:    Edytuj
   success:  Zapisano zmiany.
   error:    Zmiany nie mogły zostać zapisane. Sprawdź błędy i spróbuj ponownie.
-object.delete:
+action.object.delete:
   label:    Usuń
   confirm:  Czy potwierdzasz usunięcie elementu?
+action.object.show:
+  label:    Pokaż
     
 # Batch actions
-batch.delete:
+action.batch.delete:
   label:    Usuń
   confirm:  Czy potwierdzasz usunięcie wszystkich zaznaczonych elementów?
   success:  Usunięto wskazane elementy.
   error:    Zaznaczone elementy nie mogły zostać usunięte.
+  
+# Batch list
 batch.list:
   selected:       Zaznaczone
   none.selected:  Musisz zaznaczyć co najmniej jeden element.

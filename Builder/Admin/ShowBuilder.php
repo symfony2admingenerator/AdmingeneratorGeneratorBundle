@@ -2,18 +2,16 @@
 
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
-use Symfony\Component\DependencyInjection\Container;
-
 use Admingenerator\GeneratorBundle\Generator\Action;
 
 /**
- * This builder generates php for edit actions
+ * This builder generates php for show actions
+ * 
  * @author Eymen Gunay
+ * @author Piotr Gołębiewski <loostro@gmail.com>
  */
 class ShowBuilder extends BaseBuilder
 {
-    protected $object_actions;
-
     /**
      * (non-PHPdoc)
      * @see Admingenerator\GeneratorBundle\Builder.BaseBuilder::getYamlKey()
@@ -22,48 +20,19 @@ class ShowBuilder extends BaseBuilder
     {
         return 'show';
     }
-
+    
     /**
-     * Return a list of action from list.object_actions
-     * @return array
+     * Find form actions
      */
-    public function getObjectActions()
+    protected function findActions()
     {
-        if (0 === count($this->object_actions)) {
-            $this->findObjectActions();
-        }
+        foreach ($this->getVariable('actions', array()) as $actionName => $actionParams) {
+            $action = $this->findGenericAction($actionName);
+            if(!$action) $action = $this->findObjectAction($actionName);
+            if(!$action) $action = new Action($actionName);
 
-        return $this->object_actions;
-    }
-
-    protected function setUserObjectActionConfiguration(Action $action)
-    {
-        $options = $this->getVariable(sprintf('object_actions[%s]', $action->getName()),array(), true);
-
-        if (null !== $options) {
-            foreach ($options as $option => $value) {
-                $action->setOption($option, $value);
-            }
-        }
-    }
-
-    protected function addObjectAction(Action $action)
-    {
-        $this->object_actions[$action->getName()] = $action;
-    }
-
-    protected function findObjectActions()
-    {
-        foreach ($this->getVariable('object_actions', array()) as $actionName => $actionParams) {
-            $class = 'Admingenerator\\GeneratorBundle\\Generator\\'.Container::camelize($actionName.'ObjectAction');
-            if (class_exists($class)) {
-                $action = new $class($actionName, $this);
-            } else {
-                $action = new Action($actionName);
-            }
-
-            $this->setUserObjectActionConfiguration($action);
-            $this->addObjectAction($action);
+            $this->setUserActionConfiguration($action);
+            $this->addAction($action);
         }
     }
 }

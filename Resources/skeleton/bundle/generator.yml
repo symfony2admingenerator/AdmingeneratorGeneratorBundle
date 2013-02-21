@@ -23,12 +23,14 @@ builders:
       title: New object for {{ bundle_name }}
       display: ~
       actions:
+        save: ~
         list: ~
   edit:
     params:
       title: "You're editing the object \"%object%\"|{ %object%: YourModel.title }|"
       display: ~
       actions:
+        save: ~
         list: ~
   show:
     params:

@@ -44,8 +44,13 @@ profile:
 entity_picker:
   placeholder:  Buscar...
   
+# Collection
+collection:
+  add:          Añadir
+  
 # Upload
 upload:
+  file.add:     Añadir archivo...
   error:        Error
   cancel:       Eliminar
   delete:       Borrar
@@ -56,31 +61,33 @@ upload.errors:
   maxFileSize:      El archivo es demasiado grande.
   minFileSize:      El archivo es demasiado pequeño.
   
-# Actions
-actions:
+# Generic actions
+action.generic:
   list:   Listar
   new:    Nuevo
   save:   Guardar
   save-and-add:   Guardar y Nuevo
   save-and-list:  Guardar y Listar
-  collection.add: Añadir 
-  file.add:   Añadir archivo...
   
 # Object actions
-object.edit:
+action.object.edit:
   label:    Editar
   success:  El objeto fue guardado satisfactoriamente.
   error:    El formulario no pudo ser guardado. comprueba los errores y vuelve a intentarlo.
-object.delete:
+action.object.delete:
   label:    Borrar
   confirm:  ¿Está seguro que desea eliminar este elemento?
+action.object.show:
+  label:    Mostrar
     
 # Batch actions
-batch.delete:
+action.batch.delete:
   label:    Borrar
   confirm:  ¿Te confirmar la eliminación de todos los elementos seleccionados?
   success:  El registro ha sido borrado correctamente.
   error:    Este registro no puede ser borrado.
+  
+# Batch list
 batch.list:
   selected:       Seleccionado
   none.selected:  Debe seleccionar al menos un elemento.

@@ -44,8 +44,13 @@ profile:
 entity_picker:
   placeholder:  Search...
   
+# Collection
+collection:
+  add: Add
+  
 # Upload
 upload:
+  file.add:     Add file...
   error:        Error
   cancel:       Cancel
   delete:       Delete
@@ -60,31 +65,33 @@ upload.errors:
 singleupload:
   display.name:     Displayed name
 
-# Actions
-actions:
+# Generic actions
+action.generic:
   list:   List
   new:    New
   save:   Save
   save-and-add:   Save and Add
   save-and-list:  Save and List
-  collection.add: Add
-  file.add:   Add file...
 
 # Object actions
-object.edit:
+action.object.edit:
   label:    Edit
   success:  The object was successfully saved.
   error:    The form can't be saved. Check errors and try to resubmit.
-object.delete:
+action.object.delete:
   label:    Delete
   confirm:  Are you sure you want to delete this element?
+action.object.show:
+  label:    Show
 
 # Batch actions
-batch.delete:
+action.batch.delete:
   label:    Delete
   confirm:  Do you confirm deletion of all selected elements?
   success:  Records have been successfully deleted.
   error:    Records can't be deleted.
+
+# Batch list
 batch.list:
   selected:       Selected
   none.selected:  You have to select at least one element.

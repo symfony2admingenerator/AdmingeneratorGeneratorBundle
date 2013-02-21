@@ -43,9 +43,14 @@ profile:
 # EntityPicker
 entity_picker:
   placeholder:  Rechercher...
-
+  
+# Collection
+collection:
+  add:          Ajouter
+  
 # Upload
 upload:
+  file.add:     Ajouter un fichier...
   error:        Erreur
   cancel:       Enlever
   delete:       Effacer
@@ -56,31 +61,33 @@ upload.errors:
   maxFileSize:      Le fichier est trop gros.
   minFileSize:      Le fichier est trop petite.
 
-# Actions
-actions:
+# Generic actions
+action.generic:
   list:   Retour à la liste
   new:    Nouveau
   save:   Enregistrer
   save-and-add:   Enregistrer et Nouveau
   save-and-list:  Enregistrer et Retour à la liste
-  collection.add: Ajouter
-  file.add:   Ajouter un fichier...
 
 # Object actions
-object.edit:
+action.object.edit:
   label:    Éditer
   success:  L'enregistrement a été effectué avec succès.
   error:    Le formulaire n'a pas pu être sauvegardé. Vérifiez les erreurs et essayez de soumettre à nouveau.
-object.delete:
+action.object.delete:
   label:    Effacer
   confirm:  Etes-vous sur de vouloir supprimer cet élement?
+action.object.show:
+  label:    Montrer
 
 # Batch actions
-batch.delete:
+action.batch.delete:
   label:    Effacer
   confirm:  Etes-vous sur de vouloir supprimer les élements sélectionnés?
   success:  Les enregistrements ont étés supprimés avec succès.
   error:    Les enregistrements n'ont pu être supprimés.
+  
+# Batch list
 batch.list:
   selected:       Choisir
   none.selected:  Vous devez sélectionner au moins un élément.

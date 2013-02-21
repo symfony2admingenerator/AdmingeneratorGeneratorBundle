@@ -44,8 +44,13 @@ profile:
 entity_picker:
   placeholder:  Искать...
   
+# Collection
+collection:
+  add:          Добавить
+  
 # Upload
 upload:
+  file.add:     Добавить файл...
   error:        Ошибка
   cancel:       Удаление
   delete:       Удалять
@@ -56,31 +61,33 @@ upload.errors:
   maxFileSize:      Файл слишком большой.
   minFileSize:      Файл слишком мал.
 
-# Actions
-actions:
+# Generic actions
+action.generic:
   list:   Список
   new:    Добавить
   save:   Сохранить
   save-and-add:   Сохранить и Добавить
   save-and-list:  Сохранить и Список
-  collection.add: Добавить
-  file.add:   Добавить файл...
   
 # Object actions
-object.edit:
+action.object.edit:
   label:    Редактировать
   success:  Материал успешно сохранен.
   error:    Форма не сохранена. Исправьте ошибки и попробуйте еще раз.
-object.delete:
+action.object.delete:
   label:    Удалять
   confirm:  Вы действительно хотите удалить этот элемент?
+action.object.show:
+  label:    Показывать
     
 # Batch actions
-batch.delete:
+action.batch.delete:
   label:    Удалять
   confirm:  Вы подтверждаете удаление выбранных элементов?
   success:  Материалы были успешно удалены.
   error:    Невозможно удалить материалы.
+  
+# Batch list
 batch.list:
   selected:       Выберите действие
   none.selected:  Необходимо выбрать не менее одного элемента. 

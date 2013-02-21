@@ -44,8 +44,13 @@ profile:
 entity_picker:
   placeholder:  Cerca...
   
+# Collection
+collection:
+  add:          Aggiungi
+  
 # Upload
 upload:
+  file.add:     Aggiungi archivio...
   error:        Errore
   cancel:       Rimuovere
   delete:       Cancellare
@@ -56,31 +61,33 @@ upload.errors:
   maxFileSize:      Il file è troppo grande.
   minFileSize:      Il file è troppo piccolo.
 
-# Actions
-actions:
+# Generic actions
+action.generic:
   list:   Lista
   new:    Nuovo
   save:   Salvare
   save-and-add:   Salvare e Nuovo
   save-and-list:  Salvare e Lista
-  collection.add: Aggiungi
-  file.add:   Aggiungi archivio...
   
 # Object actions
-object.edit:
+action.object.edit:
   label:    Modifica
   success:  L'oggetto è stato salvato con successo.
   error:    Non è stato possibile salvare il form. Controlla gli errori e reinvia il form.
-object.delete:
+action.object.delete:
   label:    Cancellare
   confirm:  Sei sicuro di voler eliminare questo elemento?
+action.object.show:
+  label:    Mostra
     
 # Batch actions
-batch.delete:
+action.batch.delete:
   label:    Cancellare
   confirm:  Confermi l'eliminazione di tutti gli elementi selezionati?
   success:  I dati sono stati correttamente eliminati.
   error:    I dati non possono essere eliminati.
+  
+# Batch list
 batch.list:
   selected:       Selezionati
   none.selected:  È necessario selezionare alemeno uno elemento.

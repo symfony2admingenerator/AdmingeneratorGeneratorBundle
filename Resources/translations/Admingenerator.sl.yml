@@ -44,8 +44,13 @@ profile:
 entity_picker:
   placeholder:  Iskanje...
   
+# Collection
+collection:
+  add:          Dodati
+  
 # Upload
 upload:
+  file.add:     Dodaj datoteko...
   error:        Napaka
   cancel:       Odstrani
   delete:       Izbriši
@@ -56,31 +61,33 @@ upload.errors:
   maxFileSize:      Datoteka je prevelika.
   minFileSize:      Datoteka je premajhna.
 
-# Actions
-actions:
+# Generic actions
+action.generic:
   list:   Seznam
   new:    Novo
   save:   Shrani
   save-and-add:   Shrani in Novo
   save-and-list:  Shrani in Seznam
-  collection.add: Dodati
-  file.add:   Dodaj datoteko...
   
 # Object actions
-object.edit:
+action.object.edit:
   label:    Urejanje
   success:  Predmet je bil uspešno shranjen.
   error:    Predmet ni bil shranjen. Preverite napake in poskusite ponovno.
-object.delete:
+action.object.delete:
   label:    Izbriši
   confirm:  Ali ste prepričani, da želite izbrisati ta element?
+action.object.show:
+  label:    Prikaži
     
 # Batch actions
-batch.delete:
+action.batch.delete:
   label:    Izbriši
   confirm:  Ali lahko potrdite brisanje vseh izbranih elementov?
   success:  Predmet je bil uspešno izbrisan.
   error:    Predmet ni bil izbrisan.
+  
+# Batch list
 batch.list:
   selected:       Izbrano
   none.selected:  Izbrati morate vsaj en element.

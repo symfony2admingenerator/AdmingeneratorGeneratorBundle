@@ -1,5 +1,4 @@
 {% use "../CommonAdmin/EditTemplate/actions.php.twig" %}
-{% use "../CommonAdmin/EditTemplate/object_actions.php.twig" %}
 {% use "../CommonAdmin/EditTemplate/fieldset.php.twig" %}
 {% block form %}
 
@@ -22,9 +21,7 @@
 
         {{ echo_block("form_buttons") }}
             <div class="form-actions">
-                <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> {{ echo_trans('actions.save') }}</button>
                 {{ block("form_actions") }}
-                {{ block("edit_object_actions") }}
             </div>
         {{ echo_endblock() }}
     </form>

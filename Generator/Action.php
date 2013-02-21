@@ -5,14 +5,16 @@ namespace Admingenerator\GeneratorBundle\Generator;
 use Doctrine\Common\Util\Inflector;
 
 /**
- *
- * This class describe an action
+ * This class describes an action
+ * 
  * @author cedric Lombardot
- *
+ * @author Piotr Gołębiewski <loostro@gmail.com>
  */
 class Action
 {
     protected $name;
+    
+    protected $type;
 
     protected $label;
     
@@ -34,14 +36,20 @@ class Action
 
     protected $params;
 
-    public function __construct($name)
+    public function __construct($name, $type = 'generic')
     {
         $this->name = $name;
+        $this->type = $type;
     }
 
     public function getName()
     {
         return $this->name;
+    }
+
+    public function getType()
+    {
+        return $this->type;
     }
 
     public function setLabel($label)

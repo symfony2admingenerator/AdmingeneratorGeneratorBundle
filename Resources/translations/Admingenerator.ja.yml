@@ -44,8 +44,13 @@ profile:
 entity_picker:
   placeholder:  検索...
   
+# Collection
+collection:
+  add:          追加
+  
 # Upload
 upload:
+  file.add:     ファイルを追加...
   error:        エラー
   cancel:       キャンセル
   delete:       削除
@@ -56,31 +61,33 @@ upload.errors:
   maxFileSize:      ファイルが大きすぎます
   minFileSize:      ファイルが小さすぎます
   
-# Actions
-actions:
+# Generic actions
+action.generic:
   list:   一覧
   new:    新規作成
   save:   保存
   save-and-add:   保存して、追加
   save-and-list:  保存し、リスト
-  collection.add: 追加
-  file.add:   ファイルを追加...
   
 # Object actions
-object.edit:
+action.object.edit:
   label:    編集
   success:  データの保存が正常に完了しました。
   error:    データの保存に失敗しました。エラーを確認して再度保存してください。
-object.delete:
+action.object.delete:
   label:    削除
   confirm:  あなたは、この要素を削除してもよろしいですか？
+action.object.show:
+  label:    見せる
   
 # Batch actions
-batch.delete:
+action.batch.delete:
   label:    削除
   confirm:  選択したすべてのデータが完全に削除されます。よろしいですか?
   success:  データの削除が正常に完了しました。
   error:    データの削除に失敗しました。
+  
+# Batch list
 batch.list:
   selected:       選択済み
   none.selected:  1つ以上のデータを選択する必要があります。

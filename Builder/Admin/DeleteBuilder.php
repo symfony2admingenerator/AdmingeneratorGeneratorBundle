@@ -4,6 +4,7 @@ namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
 /**
  * This builder generates php for delete actions
+ * 
  * @author cedric Lombardot
  */
 class DeleteBuilder extends BaseBuilder
@@ -16,5 +17,4 @@ class DeleteBuilder extends BaseBuilder
     {
         return 'delete';
     }
-
 }

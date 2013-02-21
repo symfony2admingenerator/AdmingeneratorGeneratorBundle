@@ -57,7 +57,7 @@
         <div class="btn-toolbar form-actions form-actions-condensed fileupload-buttonbar">
             <span class="btn btn-success fileinput">
                 <i class="icon-plus icon-white"></i>
-                <span>{{ 'actions.file.add'|trans({}, 'Admingenerator') }}</span>
+                <span>{{ 'upload.file.add'|trans({}, 'Admingenerator') }}</span>
                 <input type="file" {{ block('widget_attributes') }} multiple />
             </span>
             <button type="reset" class="btn btn-warning cancel">
@@ -88,7 +88,7 @@
         <div class="btn-toolbar form-actions form-actions-condensed singleupload-buttonbar">
             <span class="btn btn-success fileinput">
                 <i class="icon-plus icon-white"></i>
-                <span>Wgraj plik...</span>
+                <span>{{ 'upload.file.add'|trans({}, 'Admingenerator') }}</span>
                 <input type="file" {{ block('widget_attributes') }} />
             </span>
             {% include "AdmingeneratorGeneratorBundle:Form/SingleUpload:controls.html.twig" %}

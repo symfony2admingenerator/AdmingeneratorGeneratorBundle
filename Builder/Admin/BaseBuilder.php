@@ -3,16 +3,18 @@
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
 use Symfony\Component\DependencyInjection\Container;
-
 use Admingenerator\GeneratorBundle\Builder\BaseBuilder as GenericBaseBuilder;
-
 use Admingenerator\GeneratorBundle\Generator\Column;
-
 use Admingenerator\GeneratorBundle\Generator\Action;
 
+/**
+ * Base builder generating php for actions
+ * 
+ * @author cedric Lombardot
+ * @author Piotr Gołębiewski <loostro@gmail.com>
+ */
 class BaseBuilder extends GenericBaseBuilder
 {
-
     protected $columns;
 
     protected $actions;
@@ -97,7 +99,6 @@ class BaseBuilder extends GenericBaseBuilder
      */
     protected function getDisplayAsColumns()
     {
-
         $display = $this->getVariable('display');
 
         // tabs
@@ -148,10 +149,7 @@ class BaseBuilder extends GenericBaseBuilder
     }
 
     /**
-     * @return array(
-     *
-     * )
-     *
+     * @return array
      */
     public function getFieldsets()
     {
@@ -232,24 +230,48 @@ class BaseBuilder extends GenericBaseBuilder
     protected function findActions()
     {
         foreach ($this->getVariable('actions', array()) as $actionName => $actionParams) {
-            if (preg_match('/\-/', $actionName)) {
-                $classNameParts = Container::camelize(explode("-", $actionName));
-                $class = 'Admingenerator\\GeneratorBundle\\Generator\\'.implode('', $classNameParts).'Action';
-            }
-            else {
-                $class = 'Admingenerator\\GeneratorBundle\\Generator\\'.Container::camelize($actionName.'Action');
-            }
-            
-            if (class_exists($class)) {
-                $action = new $class($actionName, $this);
-            } else {
-                $action = new Action($actionName);
-            }
+            $action = $this->findGenericAction($actionName);
+            if(!$action) $action = new Action($actionName);
 
             $this->setUserActionConfiguration($action);
-
             $this->addAction($action);
         }
+    }
+    
+    public function findGenericAction($actionName)
+    {
+        if(preg_match('/\-/', $actionName)) {
+            $classNameParts = Container::camelize(explode("-", $actionName));
+            $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Generic\\'.implode('', $classNameParts).'Action';
+        } else {
+            $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Generic\\'.Container::camelize($actionName.'Action');
+        }
+
+        return (class_exists($class)) ? new $class($actionName, $this) : false;
+    }
+    
+    public function findObjectAction($actionName)
+    {
+        if(preg_match('/\-/', $actionName)) {
+            $classNameParts = Container::camelize(explode("-", $actionName));
+            $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Object\\'.implode('', $classNameParts).'Action';
+        } else {
+            $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Object\\'.Container::camelize($actionName.'Action');
+        }
+
+        return (class_exists($class)) ? new $class($actionName, $this) : false;
+    }
+    
+    public function findBatchAction($actionName)
+    {
+        if(preg_match('/\-/', $actionName)) {
+            $classNameParts = Container::camelize(explode("-", $actionName));
+            $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Batch\\'.implode('', $classNameParts).'Action';
+        } else {
+            $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Batch\\'.Container::camelize($actionName.'Action');
+        }
+
+        return (class_exists($class)) ? new $class($actionName, $this) : false;
     }
 
     /**
