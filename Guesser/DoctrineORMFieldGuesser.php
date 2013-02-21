@@ -97,7 +97,7 @@ class DoctrineORMFieldGuesser
                 return 'collection';
                 break;
              case 'collection':
-                return 'doctrine_double_list';
+                return 'double_list';
                 break;
             case 'virtual':
                 throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented (column "'.$columnName.'")');
@@ -150,7 +150,7 @@ class DoctrineORMFieldGuesser
             return array('em' => 'default', 'class' => $mapping['targetEntity'], 'multiple' => false, 'required' => $this->isRequired($columnName));
         }
 
-        if ('doctrine_double_list' == $formType) {
+        if ('double_list' == $formType) {
             $mapping = $this->getMetadatas()->getAssociationMapping($columnName);
 
             return array('em' => 'default', 'class' => $mapping['targetEntity']);
