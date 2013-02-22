@@ -102,9 +102,9 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
         if (\{{ model }}Query::create()
             ->filterByPrimaryKeys($ids)
             ->delete()) {
-            $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ "batch.delete.success" }}", array(), 'Admingenerator') );
+            $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ "action.batch.delete.success" }}", array(), 'Admingenerator') );
         } else {
-            $this->get('session')->setFlash('error', $this->get('translator')->trans("{{ "batch.delete.error" }}", array(), 'Admingenerator') );
+            $this->get('session')->setFlash('error', $this->get('translator')->trans("{{ "action.batch.delete.error" }}", array(), 'Admingenerator') );
         }
     }
 {% endblock %}

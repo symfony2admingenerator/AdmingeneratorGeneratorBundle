@@ -193,9 +193,9 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
             ->getDocumentManager()
             ->createQuery(sprintf('delete from {{ model }} q where q.{{ builder.ModelPrimaryKeyName }} IN (%s)', implode(',', $ids)))
             ->execute()) {
-            $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ "batch.delete.success" }}", array(), 'Admingenerator') );
+            $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ "action.batch.delete.success" }}", array(), 'Admingenerator') );
         } else {
-            $this->get('session')->setFlash('error', $this->get('translator')->trans("{{ "batch.delete.error" }}", array(), 'Admingenerator') );
+            $this->get('session')->setFlash('error', $this->get('translator')->trans("{{ "action.batch.delete.error" }}", array(), 'Admingenerator') );
         }
     }
 {% endblock %}

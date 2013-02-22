@@ -3,7 +3,6 @@
 namespace Admingenerator\GeneratorBundle\ClassLoader;
 
 use Admingenerator\GeneratorBundle\Builder\Admin\EmptyBuilderAction;
-
 use Admingenerator\GeneratorBundle\Builder\EmptyGenerator;
 
 /**
@@ -17,7 +16,6 @@ class AdmingeneratedClassLoader
      * Registers this instance as an autoloader.
      *
      * @param Boolean $prepend Whether to prepend the autoloader or not
-     *
      */
     public function register($prepend = false)
     {
