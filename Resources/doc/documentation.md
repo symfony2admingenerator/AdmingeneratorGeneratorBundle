@@ -13,15 +13,17 @@ and open a ticket on github.
 1. [Installation][table-of-contents-1]
 2. [Support][table-of-contents-2]
 3. [Features][table-of-contents-3]
-4. [Form Extensions][table-of-contents-4]
-5. [Internationalization][table-of-contents-5]
+4. [Generator][table-of-contents-4]
+5. [Form Extensions][table-of-contents-5]
+6. [Internationalization][table-of-contents-6]
 
 [go-up]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#table-of-contents
 [table-of-contents-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#1-installation
 [table-of-contents-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#2-support
 [table-of-contents-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#3-features
-[table-of-contents-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#4-form-extensions
-[table-of-contents-5]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#5-internationalization
+[table-of-contents-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#4-generator
+[table-of-contents-5]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#5-form-extensions
+[table-of-contents-6]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#6-internationalization
 
 ## 1. Installation
 
@@ -55,7 +57,15 @@ List of supported features for each model manager:
 [features-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support/doctrine-odm-features.md
 [features-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support/propel-features.md
 
-## 4. Form Extensions
+## 4. Generator
+
+1. [Embed form types][generator-1]
+
+[generator-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/generator/embed-types.md
+
+[go up][go-up]
+
+## 5. Form Extensions
 
 Documentation for new form extensions and types:
 
@@ -73,7 +83,7 @@ Documentation for new form extensions and types:
 [form-extensions-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/single-upload.md
 [form-extensions-5]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/collection.md
 
-## 5. Internationalization
+## 6. Internationalization
 
 1. [Generator translation][internationalization-1]
 
