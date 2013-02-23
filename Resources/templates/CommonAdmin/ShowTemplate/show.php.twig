@@ -7,6 +7,7 @@
 
 {% block show %}
     {{ echo_block('show') }}
+        {{ echo_block('entity') }}
         <table class="table table-striped table-hover table-condensed">
         {% for column in builder.columns %}
             {% if column.credentials %}
@@ -41,9 +42,12 @@
             {% endif %}
         {% endfor %}
         </table>
+    {{ echo_endblock() }}
 
+    {{ echo_block('form_buttons') }}
         <div class="form-actions">
             {{ block("form_actions") }}
         </div>
+    {{ echo_endblock() }}
     {{ echo_endblock() }}
 {% endblock %}
