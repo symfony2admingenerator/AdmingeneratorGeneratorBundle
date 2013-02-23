@@ -110,7 +110,7 @@ class DoctrineODMFieldGuesser
                 return 'document';
                 break;
              case 'collection':
-                return 'doctrine_odm_double_list';
+                return 'double_list';
                 break;
             case 'hash':
                 return 'collection';
