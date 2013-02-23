@@ -108,7 +108,7 @@ class PropelORMFieldGuesser
                 return 'collection';
                 break;
             case 'collection':
-                return 'propel_double_list';
+                return 'double_list';
             default:
                 throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'")');
         }
