@@ -26,9 +26,9 @@
         "twig/extensions": "dev-master"
     },
     "require-dev": {
-        "doctrine/common": "2.3.*",
-        "doctrine/orm": "2.3.*",
-        "doctrine/dbal": "2.3.*"
+        "doctrine/common": ">=2.2.3,<2.5-dev",
+        "doctrine/orm": ">=2.2.3,<2.5-dev",
+        "doctrine/dbal": ">=2.2.3,<2.5-dev"
     },
     "suggest": {
         "cedriclombardot/admingenerator-user-bundle": "Help you to overwrite the base layout of FOSUserBundle or others giving a parameter key of the container"
