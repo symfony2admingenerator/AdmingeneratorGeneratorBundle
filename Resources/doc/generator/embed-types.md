@@ -29,7 +29,7 @@ The short syntax is just `Filename` e.g. `Text-generator.yml`. The bundle namesp
 are assumed to be the same as current generator. 
 
 ```yaml
-generator: admingenerator.generator.doctrine
+generator:            admingenerator.generator.doctrine # this example uses doctrine orm, but it work for all generators
 params:
   model:              Acme\GalleryBundle\Entity\Album
   namespace_prefix:   Acme            # short syntax will use this as namespace
@@ -49,6 +49,7 @@ params:
         nameable:         name
         sortable:         position
         editable:         [ name, caption, position ]
+        # use generated embed type
         type:             \Acme\GalleryBundle\Form\Type\Image\EditType
         allow_add:        true
         allow_delete:     true
@@ -74,11 +75,12 @@ params:
 
 ### 4. Embed generator minimum setup
 
-Embed generator has to be a YAML file with EDIT builder. See an example generator 
-for gallery image:
+Embed generator has to be a YAML file with EDIT builder. You must generate admingenerator 
+files with `php app/console admin:generate-admin` command first. Then edit the generator 
+config:
 
 ```yaml
-generator:          admingenerator.generator.doctrine
+generator:          admingenerator.generator.doctrine # this example uses doctrine orm, but it work for all generators
 params:
   model:            Acme\GalleryBundle\Entity\Image
   namespace_prefix: Acme
