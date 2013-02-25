@@ -29,7 +29,8 @@ The short syntax is just `Filename` e.g. `Text-generator.yml`. The bundle namesp
 are assumed to be the same as current generator. 
 
 ```yaml
-generator:            admingenerator.generator.doctrine # this example uses doctrine orm, but it work for all generators
+# this example uses doctrine orm, but it work for all generators
+generator:            admingenerator.generator.doctrine
 params:
   model:              Acme\GalleryBundle\Entity\Album
   namespace_prefix:   Acme            # short syntax will use this as namespace
@@ -80,7 +81,8 @@ files with `php app/console admin:generate-admin` command first. Then edit the g
 config:
 
 ```yaml
-generator:          admingenerator.generator.doctrine # this example uses doctrine orm, but it work for all generators
+# this example uses doctrine orm, but it work for all generators
+generator:          admingenerator.generator.doctrine
 params:
   model:            Acme\GalleryBundle\Entity\Image
   namespace_prefix: Acme
