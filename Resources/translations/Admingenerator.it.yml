@@ -50,7 +50,7 @@ collection:
   
 # Upload
 upload:
-  file.add:     Aggiungi archivio...
+  file.add:     Aggiungi file...
   error:        Errore
   cancel:       Rimuovere
   delete:       Cancellare
