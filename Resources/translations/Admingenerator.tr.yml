@@ -70,7 +70,7 @@ action.object.delete:
   label:    Sil
   confirm:  Bu öğeyi silmek istediğinize emin misiniz?
 action.object.show:
-  label:    Göstermek
+  label:    Göster
 
 # Batch actions
 action.batch.delete:
