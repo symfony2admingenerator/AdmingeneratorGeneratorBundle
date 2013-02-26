@@ -113,15 +113,17 @@ description:
 
 You may specify class for each line individually. See `Emphasis classes` section in [Base CSS/Typography](http://twitter.github.com/bootstrap/base-css.html#typography).
 
-#### ~~exclude~~ not yet working
+#### ~~exclude~~ 
+
+> **Note:** this options is not working yet
 
 **type**: `string` **default:** `null`
 
-Used mainly for collections of entity picker widgets. If specified excludes items from search results. Possible exclude strategies:
+~~Used mainly for collections of entity picker widgets. If specified excludes items from search results. Possible exclude strategies:~~
 
-* `entity` strategy for simple entity picker widgets - allows to exclude entity picker's parent form
-* `collection` strategy for collection of entity picker widgets - allows to exclude already selected items
-* `root` stragegy for nested forms - allows to exclude *'root'* form (**note:** this option is not tested)
+* ~~`entity` strategy for simple entity picker widgets - allows to exclude entity picker's parent form~~
+* ~~`collection` strategy for collection of entity picker widgets - allows to exclude already selected items~~
+* ~~`root` stragegy for nested forms - allows to exclude *'root'* form (**note:** this option is not tested)~~
 
 #### inherited options
 
