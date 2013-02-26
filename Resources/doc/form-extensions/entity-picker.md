@@ -113,7 +113,7 @@ description:
 
 You may specify class for each line individually. See `Emphasis classes` section in [Base CSS/Typography](http://twitter.github.com/bootstrap/base-css.html#typography).
 
-#### exclude
+#### ~~exclude~~ not yet working
 
 **type**: `string` **default:** `null`
 
