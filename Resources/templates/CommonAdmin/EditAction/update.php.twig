@@ -23,7 +23,7 @@
                 $this->saveObject(${{ builder.ModelClass }});
                 $this->postSave($form, ${{ builder.ModelClass }});
 
-                $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ messages.success is defined ? messages.success : "object.edit.success" }}", array(), 'Admingenerator') );
+                $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ messages.success is defined ? messages.success : "action.object.edit.success" }}", array(), 'Admingenerator') );
                 
                 if($this->get('request')->request->has('save-and-add'))
                   return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_new" ));
@@ -32,12 +32,12 @@
                 else
                   return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_edit", array('pk' => $pk) ));
             } catch (\Exception $e) {
-                $this->get('session')->setFlash('error',  $this->get('translator')->trans("{{ messages.error is defined ? messages.error : "object.edit.error" }}", array(), 'Admingenerator') );
+                $this->get('session')->setFlash('error',  $this->get('translator')->trans("{{ messages.error is defined ? messages.error : "action.object.edit.error" }}", array(), 'Admingenerator') );
                 $this->onException($e, $form, ${{ builder.ModelClass }});
             }
 
         } else {
-            $this->get('session')->setFlash('error',  $this->get('translator')->trans("{{ messages.error is defined ? messages.error : "object.edit.error" }}", array(), 'Admingenerator') );
+            $this->get('session')->setFlash('error',  $this->get('translator')->trans("{{ messages.error is defined ? messages.error : "action.object.edit.error" }}", array(), 'Admingenerator') );
         }
 
         return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Edit:index.html.twig', array(
