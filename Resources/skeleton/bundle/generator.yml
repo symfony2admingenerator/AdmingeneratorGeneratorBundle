@@ -1,42 +1,42 @@
 generator: {{ generator }}
 params:
-  model: {{ namespace }}\{{ model_folder }}\{{ model_name }}
-  namespace_prefix: {{ namespace_prefix }}
-  bundle_name: {{ bundle_name }}
-  fields: ~
+    model: {{ namespace }}\{{ model_folder }}\{{ model_name }}
+    namespace_prefix: {{ namespace_prefix }}
+    bundle_name: {{ bundle_name }}
+    fields: ~
 
 builders:
-  list:
-    params:
-      title: List for {{ bundle_name }}
-      display: ~
-      actions:
-        new: ~
-      object_actions:
-        edit: ~
-        delete: ~
-  filters:
-    params:
-      display: ~
-  new:
-    params:
-      title: New object for {{ bundle_name }}
-      display: ~
-      actions:
-        save: ~
-        list: ~
-  edit:
-    params:
-      title: "You're editing the object \"%object%\"|{ %object%: YourModel.title }|"
-      display: ~
-      actions:
-        save: ~
-        list: ~
-  show:
-    params:
-      title: "You're viewing the object \"%object%\"|{ %object%: YourModel.title }|"
-      display: ~
-      actions:
-        list: ~
-        new: ~
-  delete: ~
+    list:
+        params:
+            title: List for {{ bundle_name }}
+            display: ~
+            actions:
+                new: ~
+            object_actions:
+                edit: ~
+                delete: ~
+    filters:
+        params:
+            display: ~
+    new:
+        params:
+            title: New object for {{ bundle_name }}
+            display: ~
+            actions:
+                save: ~
+                list: ~
+    edit:
+        params:
+            title: "You're editing the object \"%object%\"|{ %object%: YourModel.title }|"
+            display: ~
+            actions:
+                save: ~
+                list: ~
+    show:
+        params:
+            title: "You're viewing the object \"%object%\"|{ %object%: YourModel.title }|"
+            display: ~
+            actions:
+                list: ~
+                new: ~
+    delete: ~
