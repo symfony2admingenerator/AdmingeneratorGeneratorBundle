@@ -123,7 +123,7 @@ You may specify class for each line individually. See `Emphasis classes` section
 
 * ~~`entity` strategy for simple entity picker widgets - allows to exclude entity picker's parent form~~
 * ~~`collection` strategy for collection of entity picker widgets - allows to exclude already selected items~~
-* ~~`root` stragegy for nested forms - allows to exclude *'root'* form (**note:** this option is not tested)~~
+* ~~`root` stragegy for nested forms - allows to exclude *'root'* form~~
 
 #### inherited options
 
