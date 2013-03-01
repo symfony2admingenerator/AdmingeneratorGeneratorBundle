@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "symfony/symfony": "2.1.*",
+        "symfony/symfony": ">= 2.1.0",
         "cedriclombardot/twig-generator": "dev-master",
         "knplabs/knp-menu-bundle": ">1.0,<2.1",
         "white-october/pagerfanta-bundle": "dev-master",
