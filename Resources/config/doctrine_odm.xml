@@ -36,5 +36,10 @@
             <tag name="form.type" alias="double_list" />
             <argument type="service" id="doctrine_mongodb" />
         </service>
+
+        <service id="form.type.doctrine_odm_documentpicker" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineODM\DocumentPickerType">
+            <tag name="form.type" alias="documentpicker" />
+            <argument type="service" id="doctrine_mongodb" />
+        </service>
     </services>
 </container>
