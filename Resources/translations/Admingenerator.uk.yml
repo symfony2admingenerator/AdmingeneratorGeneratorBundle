@@ -2,7 +2,7 @@
 double_list:
   selected:   Обрані
   unselected: Доступні
-  
+
 # Date range form
 date_range:
   from.label: З
@@ -25,7 +25,7 @@ list.display:
   all:        Відображені всі <b>%count%</b> записи(ів).
 list.header:
   actions:    Дії
-  
+
 # Nested List
 nested.list:
   expand:     Показувати
@@ -33,21 +33,25 @@ nested.list:
   loading:    Навантаження в прогресі
   success:    Елемент був успішно переміщений.
   error:      Не вдалося перемістити елемент.
-  
+
 # Profile
 profile:
   welcome:  <b>Привіт</b>, %username%!</p>
   login:    Увійти
   logout:   Вийти
-  
+
 # EntityPicker
 entity_picker:
   placeholder:  Шукати...
-  
+
+# DocumentPicker
+document_picker:
+  placeholder:  Шукати...
+
 # Collection
 collection:
   add:          Додати
-  
+
 # Upload
 upload:
   file.add:     Додати файл...
@@ -68,7 +72,7 @@ action.generic:
   save:   Зберегти
   save-and-add:   Зберегти і Додати
   save-and-list:  Зберегти і Список
-  
+
 # Object actions
 action.object.edit:
   label:    Редагувати
@@ -79,14 +83,14 @@ action.object.delete:
   confirm:  Ви дійсно хочете видалити цей елемент?
 action.object.show:
   label:    Показувати
-  
+
 # Batch actions
 action.batch.delete:
   label:    Видаляти
   confirm:  Ви підтверджуєте видалення вибраних елементів?
   success:  Записи було успішно видалено.
   error:    Неможливо видалити записи.
-  
+
 # Batch list
 batch.list:
   selected:       Оберіть дію

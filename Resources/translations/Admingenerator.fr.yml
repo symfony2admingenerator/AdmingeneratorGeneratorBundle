@@ -25,7 +25,7 @@ list.display:
   all:        Affiche les <b>%count%</b> résultats.
 list.header:
   actions:    Actions
-  
+
 # Nested List
 nested.list:
   expand:     Montrer
@@ -43,11 +43,15 @@ profile:
 # EntityPicker
 entity_picker:
   placeholder:  Rechercher...
-  
+
+# DocumentPicker
+document_picker:
+  placeholder:  Rechercher...
+
 # Collection
 collection:
   add:          Ajouter
-  
+
 # Upload
 upload:
   file.add:     Ajouter un fichier...
@@ -86,7 +90,7 @@ action.batch.delete:
   confirm:  Etes-vous sur de vouloir supprimer les élements sélectionnés?
   success:  Les enregistrements ont étés supprimés avec succès.
   error:    Les enregistrements n'ont pu être supprimés.
-  
+
 # Batch list
 batch.list:
   selected:       Choisir

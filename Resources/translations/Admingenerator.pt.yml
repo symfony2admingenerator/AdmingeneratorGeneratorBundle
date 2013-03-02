@@ -2,7 +2,7 @@
 double_list:
   selected:   Selecionado
   unselected: Não selecionado
-  
+
 # Date range form
 date_range:
   from.label: De
@@ -25,7 +25,7 @@ list.display:
   all:        Mostrando todos os <b>%count%</b> resultados.
 list.header:
   actions:    Ações
-  
+
 # Nested List
 nested.list:
   expand:     Mostrar
@@ -33,21 +33,25 @@ nested.list:
   loading:    Carregamento em curso
   success:    O elemento foi movido com sucesso.
   error:      Não foi possível mover elemento.
-  
+
 # Profile
 profile:
   welcome:  <b>Bem-vindo</b>, %username%!</p>
   login:    Iniciar sessão
   logout:   Sair
-  
+
 # EntityPicker
 entity_picker:
   placeholder:  Pesquisar...
-  
+
+# DocumentPicker
+document_picker:
+  placeholder:  Pesquisar...
+
 # Collection
 collection:
   add:          Adicionar
-  
+
 # Upload
 upload:
   file.add:     Adicionar arquivo...
@@ -68,7 +72,7 @@ action.generic:
   save:   Salvar
   save-and-add:   Salvar e Novo
   save-and-list:  Salvar e Listar
-  
+
 # Object actions
 action.object.edit:
   label:    Editar
@@ -79,14 +83,14 @@ action.object.delete:
   confirm:  Tem certeza de que deseja excluir este elemento?
 action.object.show:
   label:    Mostrar
-    
+
 # Batch actions
 action.batch.delete:
   label:    Excluir
   confirm:  Você confirmar a eliminação de todos os elementos selecionados?
   success:  Registros foram apagados com sucesso.
   error:    Os registros não podem ser apagados.
-  
+
 # Batch list
 batch.list:
   selected:       Selecionado
