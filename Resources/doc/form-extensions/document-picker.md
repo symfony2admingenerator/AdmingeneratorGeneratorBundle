@@ -1,4 +1,4 @@
-# Entity Picker
+# Document Picker
 ---------------------------------------
 
 [go back to Table of contents][back-to-index]
@@ -7,20 +7,20 @@
 
 ### 1. Usage
 
-EntityPicker is a widget for [entity field type](http://symfony.com/doc/current/reference/forms/types/entity.html). Instead of standard `<select>` tag it renders two `<input>` tags:
+DocumentPicker is a widget for [document field type](https://github.com/doctrine/DoctrineMongoDBBundle/blob/master/Form/Type/DocumentType.php). Instead of standard `<select>` tag it renders two `<input>` tags:
 
 * First input (visible) is used to get text input from user to perform a search query (uses `twitter bootstrap/typeahead` widget).
-* The second input (hidden) is used to store chosen entity's identifier value (most likely Entity's `id` field, but it can be any unique field).
+* The second input (hidden) is used to store chosen entity's identifier value (most likely Document's `id` field, but it can be any unique field).
 
 On form submission the first input's value is ignored.
 
 ### 2. Support
 
-EntityPicker supports only **Doctrine ORM** (entity field type is doctrine-only).
+DocumentPicker supports only **Doctrine ODM** (document field type is doctrine-odm only).
 
-For **Doctrine ODM** support see [DocumentPicker][document-picker]
+For **Doctrine ORM** support see [EntityPicker][entity-picker]
 
-[document-picker]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/document-picker.md
+[entity-picker]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/entity-picker.md
 
 Propel has a similar field type (model) - creating a similar ModelPicker is planned.
 
@@ -32,9 +32,9 @@ Example "Choose category" configuration:
 fields:
   category:
     label:            Category
-    formType:         entitypicker
+    formType:         documentpicker
     addFormOptions:
-      class:          Acme\CatalogBundle\Entity\Category
+      class:          Acme\CatalogBundle\Document\Category
       builder:        { name: name }
       matcher:        item.name
       primaryKey:     id
@@ -45,16 +45,16 @@ Example collection of related products configuration:
 ```yaml
 fields:
   relatedProducts:
-    label:            Related products
+    label:            Related products          
     formType:         collection
 # collection options
     addFormOptions:
-      type:           entitypicker
+      type:           documentpicker
       widget:         table
       allow_add:      true
       allow_delete:   true
       by_reference:   false
-# entity picker options
+# document picker options
       options:
         label:        Related product
         class:        AcmeCatalogBundle:Product
@@ -84,7 +84,7 @@ Javascript expression against which query will be matched. Can be something as s
 
 **type:** `string` **default:** `null`
 
-Specifies entity's primaryKey field name. Primary key is autoloaded into builder proxy object as `item.primaryKey`.
+Specifies document's primaryKey field name. Primary key is autoloaded into builder proxy object as `item.primaryKey`.
 
 #### thumb.src
 
@@ -117,18 +117,18 @@ description:
 
 You may specify class for each line individually. See `Emphasis classes` section in [Base CSS/Typography](http://twitter.github.com/bootstrap/base-css.html#typography).
 
-#### ~~exclude~~
+#### ~~exclude~~ 
 
 > **Note:** this options is not working yet
 
 **type**: `string` **default:** `null`
 
-~~Used mainly for collections of entity picker widgets. If specified excludes items from search results. Possible exclude strategies:~~
+~~Used mainly for collections of document picker widgets. If specified excludes items from search results. Possible exclude strategies:~~
 
-* ~~`entity` strategy for simple entity picker widgets - allows to exclude entity picker's parent form~~
-* ~~`collection` strategy for collection of entity picker widgets - allows to exclude already selected items~~
+* ~~`document` strategy for simple document picker widgets - allows to exclude document picker's parent form~~
+* ~~`collection` strategy for collection of document picker widgets - allows to exclude already selected items~~
 * ~~`root` stragegy for nested forms - allows to exclude *'root'* form~~
 
 #### inherited options
 
-See [entity form reference](http://symfony.com/doc/current/reference/forms/types/entity.html#field-options).
+See [document form api](https://github.com/doctrine/DoctrineMongoDBBundle/blob/master/Form/Type/DocumentType.php).
