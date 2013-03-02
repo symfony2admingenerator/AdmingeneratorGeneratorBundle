@@ -2,7 +2,7 @@
 double_list:
   selected:   Izbrano
   unselected: Neizbrano
-  
+
 # Date range form
 date_range:
   from.label: Od
@@ -25,7 +25,7 @@ list.display:
   all:        Prikazani vsi rezultati <b>(%count%)</b>.
 list.header:
   actions:    Akcije
-  
+
 # Nested List
 nested.list:
   expand:     Prikaži
@@ -33,21 +33,25 @@ nested.list:
   loading:    Nalaganje v teku
   success:    Element je bil uspešno prestavljen.
   error:      Ne morem premakniti element.
-  
+
 # Profile
 profile:
   welcome:  <b>Dobrodošli</b>, %username%!</p>
   login:    Prijava
   logout:   Odjava
-  
+
 # EntityPicker
 entity_picker:
   placeholder:  Iskanje...
-  
+
+# DocumentPicker
+document_picker:
+  placeholder:  Iskanje...
+
 # Collection
 collection:
   add:          Dodati
-  
+
 # Upload
 upload:
   file.add:     Dodaj datoteko...
@@ -68,7 +72,7 @@ action.generic:
   save:   Shrani
   save-and-add:   Shrani in Novo
   save-and-list:  Shrani in Seznam
-  
+
 # Object actions
 action.object.edit:
   label:    Urejanje
@@ -79,14 +83,14 @@ action.object.delete:
   confirm:  Ali ste prepričani, da želite izbrisati ta element?
 action.object.show:
   label:    Prikaži
-    
+
 # Batch actions
 action.batch.delete:
   label:    Izbriši
   confirm:  Ali lahko potrdite brisanje vseh izbranih elementov?
   success:  Predmet je bil uspešno izbrisan.
   error:    Predmet ni bil izbrisan.
-  
+
 # Batch list
 batch.list:
   selected:       Izbrano

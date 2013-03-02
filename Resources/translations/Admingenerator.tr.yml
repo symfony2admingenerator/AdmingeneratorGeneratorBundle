@@ -35,11 +35,15 @@ profile:
 # EntityPicker
 entity_picker:
   placeholder:  Ara...
-  
+
+# DocumentPicker
+document_picker:
+  placeholder:  Ara...
+
 # Collection
 collection:
   add:          Ekle
-  
+
 # Upload
 upload:
   file.add:     Dosya ekle...
@@ -78,7 +82,7 @@ action.batch.delete:
   confirm:  Seçili tüm öğeleri silmek istediğinize emin misiniz?
   success:  Öğeler başarıyla silindi.
   error:    Öğeler silinirken bir hata oluştu.
-  
+
 # Batch list
 batch.list:
   selected:       Seçili

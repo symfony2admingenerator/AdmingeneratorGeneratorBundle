@@ -25,7 +25,7 @@ list.display:
   all:        Display all <b>%count%</b> results.
 list.header:
   actions:    Actions
-  
+
 # Nested List
 nested.list:
   expand:     Show
@@ -43,11 +43,15 @@ profile:
 # EntityPicker
 entity_picker:
   placeholder:  Search...
-  
+
+# DocumentPicker
+document_picker:
+  placeholder:  Search...
+
 # Collection
 collection:
   add: Add
-  
+
 # Upload
 upload:
   file.add:     Add file...
@@ -60,7 +64,7 @@ upload.errors:
   typeNotAllowed:   Filetype not allowed.
   maxFileSize:      File is too big.
   minFileSize:      File is too small.
-  
+
 # SingleUpload
 singleupload:
   display.name:     Displayed name

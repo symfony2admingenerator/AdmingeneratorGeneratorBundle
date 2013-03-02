@@ -2,12 +2,12 @@
 double_list:
   selected:   Выбранные
   unselected: Доступные
-  
+
 # Date range form
 date_range:
   from.label: С
   to.label:   По
-  
+
 # Pager
 pagerfanta:
   previous: Пред
@@ -25,7 +25,7 @@ list.display:
   all:        Показаны все <b>%count%</b> записи(ей).
 list.header:
   actions:    Действия
-  
+
 # Nested List
 nested.list:
   expand:     Показывать
@@ -33,21 +33,25 @@ nested.list:
   loading:    Погрузка в прогрессе
   success:    Элемент был успешно перемещен.
   error:      Не удалось переместить элемент.
-  
+
 # Profile
 profile:
   welcome:  <b>Здравствуйте</b>, %username%!</p>
   login:    Войти
   logout:   Выйти
-  
+
 # EntityPicker
 entity_picker:
   placeholder:  Искать...
-  
+
+# DocumentPicker
+document_picker:
+  placeholder:  Искать...
+
 # Collection
 collection:
   add:          Добавить
-  
+
 # Upload
 upload:
   file.add:     Добавить файл...
@@ -68,7 +72,7 @@ action.generic:
   save:   Сохранить
   save-and-add:   Сохранить и Добавить
   save-and-list:  Сохранить и Список
-  
+
 # Object actions
 action.object.edit:
   label:    Редактировать
@@ -79,18 +83,18 @@ action.object.delete:
   confirm:  Вы действительно хотите удалить этот элемент?
 action.object.show:
   label:    Показывать
-    
+
 # Batch actions
 action.batch.delete:
   label:    Удалять
   confirm:  Вы подтверждаете удаление выбранных элементов?
   success:  Материалы были успешно удалены.
   error:    Невозможно удалить материалы.
-  
+
 # Batch list
 batch.list:
   selected:       Выберите действие
-  none.selected:  Необходимо выбрать не менее одного элемента. 
+  none.selected:  Необходимо выбрать не менее одного элемента.
 
 # Layout
 layout.welcome:   Главная
