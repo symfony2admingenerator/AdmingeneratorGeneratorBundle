@@ -7,7 +7,7 @@ double_list:
 date_range:
   from.label: から
   to.label:   へ
-  
+
 # Pager
 pagerfanta:
   previous: 前へ
@@ -25,7 +25,7 @@ list.display:
   all:        <b>%count%</b> 件の結果を表示中
 list.header:
   actions:    操作
-  
+
 # Nested List
 nested.list:
   expand:     見せる
@@ -43,11 +43,15 @@ profile:
 # EntityPicker
 entity_picker:
   placeholder:  検索...
-  
+
+# DocumentPicker
+document_picker:
+  placeholder:  検索...
+
 # Collection
 collection:
   add:          追加
-  
+
 # Upload
 upload:
   file.add:     ファイルを追加...
@@ -60,7 +64,7 @@ upload.errors:
   typeNotAllowed:   許可されていないファイルタイプ
   maxFileSize:      ファイルが大きすぎます
   minFileSize:      ファイルが小さすぎます
-  
+
 # Generic actions
 action.generic:
   list:   一覧
@@ -68,7 +72,7 @@ action.generic:
   save:   保存
   save-and-add:   保存して、追加
   save-and-list:  保存し、リスト
-  
+
 # Object actions
 action.object.edit:
   label:    編集
@@ -79,14 +83,14 @@ action.object.delete:
   confirm:  あなたは、この要素を削除してもよろしいですか？
 action.object.show:
   label:    見せる
-  
+
 # Batch actions
 action.batch.delete:
   label:    削除
   confirm:  選択したすべてのデータが完全に削除されます。よろしいですか?
   success:  データの削除が正常に完了しました。
   error:    データの削除に失敗しました。
-  
+
 # Batch list
 batch.list:
   selected:       選択済み
