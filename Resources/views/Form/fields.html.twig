@@ -49,17 +49,6 @@
 {% endspaceless %}
 {% endblock %}
 
-{% block documentpicker_widget %}
-{% spaceless %}
-    <input type="text" id="{{ id ~ '_typeahead' }}"
-           data-source="{% include "AdmingeneratorGeneratorBundle:Form/DocumentPicker:data_source.html.twig" %}"
-           placeholder="{{ 'document_picker.placeholder'|trans({}, 'Admingenerator') }}" autocomplete="off" />
-    <input type="hidden" {{ block('widget_attributes') }} {% if value is defined %}value="{{ value }}"{% endif %} />
-
-    {% include "AdmingeneratorGeneratorBundle:Form/DocumentPicker:javascript.html.twig" %}
-{% endspaceless %}
-{% endblock %}
-
 {% block upload_widget %}
 {% spaceless %}
     {% set full_name = full_name ~ '[uploads][]' %}

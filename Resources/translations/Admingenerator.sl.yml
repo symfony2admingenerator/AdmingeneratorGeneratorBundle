@@ -44,10 +44,6 @@ profile:
 entity_picker:
   placeholder:  Iskanje...
 
-# DocumentPicker
-document_picker:
-  placeholder:  Iskanje...
-
 # Collection
 collection:
   add:          Dodati
