@@ -34,6 +34,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('thumbnail_generator')->defaultNull()->end()
                 ->arrayNode('twig')
                     ->children()
+                        ->booleanNode('use_form_resources')->defaultTrue()->end()
                         ->booleanNode('use_localized_date')->defaultFalse()->end()
                         ->scalarNode('date_format')->defaultValue('Y-m-d')->end()
                         ->scalarNode('datetime_format')->defaultValue('Y-m-d H:i:s')->end()
