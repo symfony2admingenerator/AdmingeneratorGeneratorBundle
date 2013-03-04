@@ -16,6 +16,7 @@ and open a ticket on github.
 4. [Generator][table-of-contents-4]
 5. [Form Extensions][table-of-contents-5]
 6. [Internationalization][table-of-contents-6]
+7. [Cookbook][table-of-contents-7]
 
 [go-up]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#table-of-contents
 [table-of-contents-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#1-installation
@@ -24,6 +25,7 @@ and open a ticket on github.
 [table-of-contents-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#4-generator
 [table-of-contents-5]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#5-form-extensions
 [table-of-contents-6]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#6-internationalization
+[table-of-contents-7]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#7-cookbook
 
 ## 1. Installation
 
@@ -90,3 +92,9 @@ Documentation for new form extensions and types:
 [go up][go-up]
 
 [internationalization-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/internationalization/generator-translation.md
+
+## 7. Cookbook
+
+> No cookbook entries created yet.
+
+[go up][go-up]
