@@ -24,7 +24,7 @@ class AdmingeneratorGeneratorExtension extends Extension
 
         // Fix template_dirs
         $doctrine_template_dirs = $doctrineodm_template_dirs = $propel_template_dirs = array();
-        $config['templates_dirs'] = isset($config['templates_dirs'])  ? $config['templates_dirs'] : array();  
+        $config['templates_dirs'] = isset($config['templates_dirs'])  ? $config['templates_dirs'] : array();
         foreach ($config['templates_dirs'] as $dir) {
             $doctrine_template_dirs[]    = $dir.'/Doctrine';
             $doctrineodm_template_dirs[] = $dir.'/DoctrineODM';
@@ -53,10 +53,6 @@ class AdmingeneratorGeneratorExtension extends Extension
 
         $container->setParameter('session.flashbag.class', 'Symfony\Component\HttpFoundation\Session\Flash\FlashBag');
 
-        $resources = $container->getParameter('twig.form.resources');
-        $resources[] = 'AdmingeneratorGeneratorBundle:Form:fields.html.twig';
-        $container->setParameter('twig.form.resources', $resources);
-        
         $date_type = array(
                 'class' => 'Admingenerator\GeneratorBundle\Form\Type\DateType',
                 'tags' => array('name' => 'form.type', 'alias' => 'date'),
@@ -65,6 +61,7 @@ class AdmingeneratorGeneratorExtension extends Extension
 
         if (!isset($config['twig'])) {
             $config['twig'] = array(
+                'use_form_resources' => true,
                 'use_localized_date' => false,
                 'date_format'        => 'Y-m-d',
                 'datetime_format'    => 'Y-m-d H:i:s',
@@ -82,7 +79,7 @@ class AdmingeneratorGeneratorExtension extends Extension
             // Register Intl extension for localized date
             $container->register('twig.extension.intl', 'Twig_Extensions_Extension_Intl')
                         ->addTag('twig.extension');
-        }     
+        }
 
     }
 
