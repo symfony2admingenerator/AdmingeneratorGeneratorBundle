@@ -44,10 +44,6 @@ profile:
 entity_picker:
   placeholder:  Шукати...
 
-# DocumentPicker
-document_picker:
-  placeholder:  Шукати...
-
 # Collection
 collection:
   add:          Додати

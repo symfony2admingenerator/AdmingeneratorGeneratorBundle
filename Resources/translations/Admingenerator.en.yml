@@ -44,10 +44,6 @@ profile:
 entity_picker:
   placeholder:  Search...
 
-# DocumentPicker
-document_picker:
-  placeholder:  Search...
-
 # Collection
 collection:
   add: Add

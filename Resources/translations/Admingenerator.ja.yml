@@ -44,10 +44,6 @@ profile:
 entity_picker:
   placeholder:  検索...
 
-# DocumentPicker
-document_picker:
-  placeholder:  検索...
-
 # Collection
 collection:
   add:          追加

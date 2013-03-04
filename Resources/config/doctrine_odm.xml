@@ -37,8 +37,8 @@
             <argument type="service" id="doctrine_mongodb" />
         </service>
 
-        <service id="form.type.doctrine_odm_documentpicker" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineODM\DocumentPickerType">
-            <tag name="form.type" alias="documentpicker" />
+        <service id="form.type.doctrine_odm_entitypicker" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineODM\EntityPickerType">
+            <tag name="form.type" alias="entitypicker" />
             <argument type="service" id="doctrine_mongodb" />
         </service>
     </services>

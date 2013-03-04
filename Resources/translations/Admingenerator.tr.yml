@@ -36,10 +36,6 @@ profile:
 entity_picker:
   placeholder:  Ara...
 
-# DocumentPicker
-document_picker:
-  placeholder:  Ara...
-
 # Collection
 collection:
   add:          Ekle

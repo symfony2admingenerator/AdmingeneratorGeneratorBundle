@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Doctrine\Bundle\MongoDBBundle\Form\Type\DocumentType;
 
-class DocumentPickerType extends DocumentType
+class EntityPickerType extends DocumentType
 {
     /**
      * {@inheritdoc}
@@ -67,6 +67,6 @@ class DocumentPickerType extends DocumentType
      */
     public function getName()
     {
-        return 'documentpicker';
+        return 'entitypicker';
     }
 }
