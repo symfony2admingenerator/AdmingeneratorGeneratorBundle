@@ -12,7 +12,7 @@
                 
                 {% if allow_delete %}
                     new_item.find('.delete').click(function(){
-                        if(confirm('{{ 'object.delete.confirm'|trans({}, 'Admingenerator') }}')) {
+                        if(confirm('{{ 'action.object.delete.confirm'|trans({}, 'Admingenerator') }}')) {
                             $(this).closest('.collection-item').remove();
                 
                             {% if sortable %}
@@ -61,7 +61,7 @@
             
             // delete selected
             $('#{{ id ~ '_toolbar' }} > .batch-delete').click(function() {
-                if(confirm('{{ 'batch.delete.confirm'|trans({}, 'Admingenerator') }}')) {
+                if(confirm('{{ 'action.batch.delete.confirm'|trans({}, 'Admingenerator') }}')) {
                     $('.{{ id ~ '_actions' }} > .btn-toggle > input[name="delete"]:checked').each(function(){
                           $(this).closest('.collection-item').remove();
                     });
