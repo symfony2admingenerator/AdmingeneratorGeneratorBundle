@@ -229,9 +229,9 @@ class PropelORMFieldGuesser
     /**
      * Find the pk name
      */
-    public function getModelPrimaryKeyName()
+    public function getModelPrimaryKeyName($class = null)
     {
-        $pks = $this->getMetadatas()->getPrimaryKeyColumns();
+        $pks = $this->getMetadatas($class)->getPrimaryKeyColumns();
 
         if (count($pks) == 1) {
             return $pks[0]->getPhpName();

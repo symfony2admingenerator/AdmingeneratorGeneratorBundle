@@ -199,8 +199,8 @@ class DoctrineORMFieldGuesser
     /**
      * Find the pk name
      */
-    public function getModelPrimaryKeyName()
+    public function getModelPrimaryKeyName($class = null)
     {
-        return $this->getMetadatas()->getSingleIdentifierFieldName();
+        return $this->getMetadatas($class)->getSingleIdentifierFieldName();
     }
 }

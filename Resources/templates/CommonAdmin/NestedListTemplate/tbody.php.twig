@@ -7,8 +7,8 @@
         {{ echo_if (builder.ModelClass ~ "s|length > 0") }}
 
         {{ echo_for(builder.ModelClass, builder.ModelClass ~ "s" ) }}
-        <tr id="node-{{ echo_twig(builder.ModelClass ~ "." ~ builder.ModelPrimaryKeyName) }}"
-        class="list_trow {{ echo_twig(builder.ModelClass ~ ".parent() ? 'child-of-node-' ~ " ~ builder.ModelClass ~ ".parent()." ~ builder.ModelPrimaryKeyName ~ ": ''"  ) }}">
+        <tr id="node-{{ echo_twig(builder.ModelClass ~ "." ~ builder.getFieldGuesser().getModelPrimaryKeyName(model)) }}"
+        class="list_trow {{ echo_twig(builder.ModelClass ~ ".parent() ? 'child-of-node-' ~ " ~ builder.ModelClass ~ ".parent()." ~ builder.getFieldGuesser().getModelPrimaryKeyName(model) ~ ": ''"  ) }}">
             {{- block('list_row') -}}
 
             {{- block('list_object_actions') }}

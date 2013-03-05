@@ -7,7 +7,7 @@
 {{ echo_block("list_row") }}
     {% if batch_actions is defined and batch_actions|length > 0 %}
         <td class="td_batch_action">
-            <input type="checkbox" name="ids[]" class="batch_select_id" value="{{- echo_twig(builder.ModelClass ~ '.' ~ builder.ModelPrimaryKeyName) -}}" />
+            <input type="checkbox" name="ids[]" class="batch_select_id" value="{{- echo_twig(builder.ModelClass ~ '.' ~ builder.getFieldGuesser().getModelPrimaryKeyName(model)) -}}" />
         </td>
     {% endif %}
     {% for column in builder.columns %}

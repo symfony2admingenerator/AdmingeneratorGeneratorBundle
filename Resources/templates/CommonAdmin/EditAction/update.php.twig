@@ -10,7 +10,7 @@
         {{ block('security_action_with_object') }}
 
         if (!${{ builder.ModelClass }}) {
-            throw new NotFoundHttpException("The {{ model }} with {{ builder.ModelPrimaryKeyName }} $pk can't be found");
+            throw new NotFoundHttpException("The {{ model }} with {{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} $pk can't be found");
         }
 
         $this->preBindRequest(${{ builder.ModelClass }});
