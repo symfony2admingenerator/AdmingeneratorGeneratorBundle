@@ -12,14 +12,5 @@ tools:
             paths:                []
             excluded_paths:       []
         config:
-            level:                psr1 # Allowed Values: "psr0", "psr1", "psr2", "all"
+            level:                all # Allowed Values: "psr0", "psr1", "psr2", "all"
             fixers:               []
-        path_configs:
-
-            # Prototype
-            -
-                paths:                []
-                enabled:              true
-                config:
-                    level:                all # Allowed Values: "psr0", "psr1", "psr2", "all"
-                    fixers:               []
