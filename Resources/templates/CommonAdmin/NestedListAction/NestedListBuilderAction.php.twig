@@ -31,6 +31,16 @@ class ListController extends BaseController
 
     {{- block('security_check') }}
 
+    /**
+     * Get additional parameters for rendering.
+     *
+     * return array
+     **/
+    protected function getAdditionalRenderParameters()
+    {
+        return array();
+    }
+
     {% block getQuery -%}
     protected function getQuery()
     {
