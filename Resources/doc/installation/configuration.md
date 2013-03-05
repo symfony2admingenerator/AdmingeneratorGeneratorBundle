@@ -32,9 +32,9 @@ By default, `AdmingeneratorGeneratorBundle` adds its own form theme to your appl
 * if `admingenerator_generator.twig.use_form_resources` is true and `twig.form.resources` doesn't contain `AdmingeneratorGeneratorBundle:Form:fields.html.twig`, resources `AdmingeneratorGeneratorBundle:Form:fields.html.twig` and `AdmingeneratorGeneratorBundle:Form:widgets.html.twig` are added into `twig.form.resources` right after `form_div_layout.html.twig`. If `form_div_layout.html.twig` is not in `twig.form.resources` values are unshifted;
 * if `AdmingeneratorGeneratorBundle:Form:fields.html.twig` is already in `twig.form.resources` nothing will be change;
 
-This permits you to control how `AdmingeneratorGeneratorBundle` modify form theming in you all application. If you want to use another bundle for form theming (like `MopaBoostrapBundle`) you should probably define this parameter as false.
+This permits you to control how `AdmingeneratorGeneratorBundle` modify form theming in your application. If you want to use another bundle for form theming (like `MopaBoostrapBundle`) you should probably define this parameter as false.
 
-> **Note:** take care that if you are in this a case, don't forget to add `AdmingeneratorGeneratorBundle:Form:widgets.html.twig` if you don't provide your own implemntation.
+> **Note:** take care that if you are in this case, don't forget to add `AdmingeneratorGeneratorBundle:Form:widgets.html.twig` if you don't provide your own implementation.
 
 *To complete*
 
