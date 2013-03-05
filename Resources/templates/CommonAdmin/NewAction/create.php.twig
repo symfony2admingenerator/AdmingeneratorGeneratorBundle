@@ -26,7 +26,7 @@
                 if($this->get('request')->request->has('save-and-list'))
                   return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list" ));
                 else
-                  return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_edit", array('pk' => ${{ builder.ModelClass }}->get{{ builder.ModelPrimaryKeyName|classify }}()) ));
+                  return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_edit", array('pk' => ${{ builder.ModelClass }}->get{{ builder.getFieldGuesser().getModelPrimaryKeyName(model)|classify }}()) ));
             } catch (\Exception $e) {
                 $this->get('session')->setFlash('error',  $this->get('translator')->trans("{{ messages.error is defined ? messages.error : "action.object.edit.error" }}", array(), 'Admingenerator') );
                 $this->onException($e, $form, ${{ builder.ModelClass }});

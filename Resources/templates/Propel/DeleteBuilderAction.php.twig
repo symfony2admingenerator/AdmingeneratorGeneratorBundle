@@ -5,7 +5,7 @@
         ${{ builder.ModelClass }} = \{{ model }}Query::create()->findPk($pk);
 
         if (!${{ builder.ModelClass }}) {
-            throw new \InvalidArgumentException("No {{ model }} found on {{ builder.ModelPrimaryKeyName }} : $pk");
+            throw new \InvalidArgumentException("No {{ model }} found on {{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} : $pk");
         }
 
         return ${{ builder.ModelClass }};

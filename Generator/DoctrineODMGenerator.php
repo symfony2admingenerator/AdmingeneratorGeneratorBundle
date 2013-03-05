@@ -108,7 +108,7 @@ class DoctrineODMGenerator extends Generator
             $namespace_directory = realpath($this->container->getParameter('kernel.root_dir').'/../vendor/bundles/'.$dir.'/Resources/config');
         }
         
-        $yaml_file = $namespace_directory.'\\'.$generator_path;
+        $yaml_file = $namespace_directory.'/'.$generator_path;
         
         if(!file_exists($yaml_file)) {
             throw new CantGenerateException("Can't generate embed type for $yaml_file, file not found.");

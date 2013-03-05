@@ -117,8 +117,8 @@
         $em = $this->getDoctrine()->getEntityManager();
         $repo = $em->getRepository('{{ model }}');
         
-        $dragged = $repo->findOneBy{{ builder.ModelPrimaryKeyName|capitalize }}($dragged);
-        $dropped = $repo->findOneBy{{ builder.ModelPrimaryKeyName|capitalize }}($dropped);
+        $dragged = $repo->findOneBy{{ builder.getFieldGuesser().getModelPrimaryKeyName(model)|classify }}($dragged);
+        $dropped = $repo->findOneBy{{ builder.getFieldGuesser().getModelPrimaryKeyName(model)|classify }}($dropped);
         
         if (!$dragged || !$dropped) {            
             throw new NotFoundHttpException("Could not find the nodes");
