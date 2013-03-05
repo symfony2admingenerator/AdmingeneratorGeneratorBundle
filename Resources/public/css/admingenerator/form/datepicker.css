@@ -2,5 +2,5 @@
  * ------------------------------------------------------------------------- */
 
 .datepicker-widget {
-    display: inline-block;
+    display: table;
 }

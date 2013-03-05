@@ -20,7 +20,7 @@
 {% block datepicker_widget %}
 {% spaceless %}
     <div class="datepicker-widget {% if prepend %}input-prepend {% endif %}input-append">
-        {% if prepend %}<span class="add-on span2">{{ prepend|trans({}, 'Admingenerator') }}</span>{% endif %}
+        {% if prepend %}<span class="add-on">{{ prepend|trans({}, 'Admingenerator') }}</span>{% endif %}
         <input type="text" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
         <span class="add-on"><i class="icon-calendar"></i></span>
     </div>
