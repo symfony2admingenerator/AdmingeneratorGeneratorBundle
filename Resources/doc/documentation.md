@@ -95,6 +95,8 @@ Documentation for new form extensions and types:
 
 ## 7. Cookbook
 
-> No cookbook entries created yet.
+1. [Controllers Tips and Tricks][cookbook-1]
 
 [go up][go-up]
+
+[cookbook-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/controllers.md
