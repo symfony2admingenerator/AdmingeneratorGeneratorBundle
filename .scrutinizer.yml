@@ -1,0 +1,41 @@
+tools:
+
+    # Runs the PHP CS Fixer (http://http://cs.sensiolabs.org/).
+    php_cs_fixer:
+        extensions:
+
+            # Default:
+            - php
+        command:              php-cs-fixer
+        enabled:              true
+        filter:
+            paths:                []
+            excluded_paths:       []
+        config:
+            level:                all # Allowed Values: "psr0", "psr1", "psr2", "all"
+            fixers:               []
+            
+    sensiolabs_security_checker: true
+    
+    #php code sniffer
+    php_code_sniffer:
+        extensions:
+
+            # Default:
+            - php
+        command:              phpcs
+        enabled:              true
+        filter:
+            paths:                []
+            excluded_paths:       []
+        config:
+
+            # Built-in standards: PEAR, PHPCS, PSR1, PSR2, Squiz, Zend
+            standard:             PSR2
+            sniffs:               []
+            severity:             ~
+            error_severity:       ~
+            warning_severity:     ~
+            tab_width:            ~
+            encoding:             ~
+            config:    
