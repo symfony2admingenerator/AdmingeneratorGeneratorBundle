@@ -23,19 +23,23 @@ admingenerator_generator:
             decimal_point: .
             thousand_separator: ,
 ```
+
 `use_form_resources`
-By default, `AdmingeneratorGeneratorBundle` adds its own form theme to your application based on files `AdmingeneratorGeneratorBundle:Form:fields.html.twig` and `AdmingeneratorGeneratorBundle:Form:widgets.html.twig`. Depending on value of `admingenerator_generator.twig.use_form_resources` parameter and `twig.form.resources` one, you can modify this behavior.
-If `admingenerator_generator.twig.use_form_resources` is false, nothing will be change to `twig.form.resources` value.
-If `admingenerator_generator.twig.use_form_resources` is true and `twig.form.resources` doesn't contain `AdmingeneratorGeneratorBundle:Form:fields.html.twig`, resources `AdmingeneratorGeneratorBundle:Form:fields.html.twig` and `AdmingeneratorGeneratorBundle:Form:widgets.html.twig` are added into `twig.form.resources` right after `form_div_layout.html.twig`. If `form_div_layout.html.twig` is not in `twig.form.resources` values are unshifted.
-If `AdmingeneratorGeneratorBundle:Form:fields.html.twig` is already in `twig.form.resources` nothing will be change.
+
+By default, `AdmingeneratorGeneratorBundle` adds its own form theme to your application based on files `AdmingeneratorGeneratorBundle:Form:fields.html.twig` and `AdmingeneratorGeneratorBundle:Form:widgets.html.twig`. Depending on value of `admingenerator_generator.twig.use_form_resources` parameter and `twig.form.resources` one, you can modify this behavior:
+
+* if `admingenerator_generator.twig.use_form_resources` is false, nothing will be change to `twig.form.resources` value;
+* if `admingenerator_generator.twig.use_form_resources` is true and `twig.form.resources` doesn't contain `AdmingeneratorGeneratorBundle:Form:fields.html.twig`, resources `AdmingeneratorGeneratorBundle:Form:fields.html.twig` and `AdmingeneratorGeneratorBundle:Form:widgets.html.twig` are added into `twig.form.resources` right after `form_div_layout.html.twig`. If `form_div_layout.html.twig` is not in `twig.form.resources` values are unshifted;
+* if `AdmingeneratorGeneratorBundle:Form:fields.html.twig` is already in `twig.form.resources` nothing will be change;
 
 This permits you to control how `AdmingeneratorGeneratorBundle` modify form theming in you all application. If you want to use another bundle for form theming (like `MopaBoostrapBundle`) you should probably define this parameter as false.
 
-> **Note:** take that if you are in such a case, don't forget adding `AdmingeneratorGeneratorBundle:Form:widgets.html.twig` if you don't provide your own implemntation.
+> **Note:** take care that if you are in this a case, don't forget to add `AdmingeneratorGeneratorBundle:Form:widgets.html.twig` if you don't provide your own implemntation.
 
 *To complete*
 
 ### 2. Full configuration
+
 ```yaml
 admingenerator_generator:
     ## Global
