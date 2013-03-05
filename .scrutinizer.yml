@@ -1,2 +1,25 @@
 tools:
-    php_analyzer: true
+
+    # Runs the PHP CS Fixer (http://http://cs.sensiolabs.org/).
+    php_cs_fixer:
+        extensions:
+
+            # Default:
+            - php
+        command:              php-cs-fixer
+        enabled:              true
+        filter:
+            paths:                []
+            excluded_paths:       []
+        config:
+            level:                psr1 # Allowed Values: "psr0", "psr1", "psr2", "all"
+            fixers:               []
+        path_configs:
+
+            # Prototype
+            -
+                paths:                []
+                enabled:              true
+                config:
+                    level:                all # Allowed Values: "psr0", "psr1", "psr2", "all"
+                    fixers:               []
