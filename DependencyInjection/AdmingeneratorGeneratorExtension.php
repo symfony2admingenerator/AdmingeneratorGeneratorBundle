@@ -24,7 +24,6 @@ class AdmingeneratorGeneratorExtension extends Extension
 
         // Fix template_dirs
         $doctrine_template_dirs = $doctrineodm_template_dirs = $propel_template_dirs = array();
-        $config['templates_dirs'] = isset($config['templates_dirs'])  ? $config['templates_dirs'] : array();
         foreach ($config['templates_dirs'] as $dir) {
             $doctrine_template_dirs[]    = $dir.'/Doctrine';
             $doctrineodm_template_dirs[] = $dir.'/DoctrineODM';
@@ -50,8 +49,6 @@ class AdmingeneratorGeneratorExtension extends Extension
         $container->setParameter('admingenerator.menu_builder.class', $config['knp_menu_class']);
         $container->setParameter('admingenerator.stylesheets', $config['stylesheets']);
         $container->setParameter('admingenerator.javascripts', $config['javascripts']);
-
-        $container->setParameter('session.flashbag.class', 'Symfony\Component\HttpFoundation\Session\Flash\FlashBag');
 
         $date_type = array(
                 'class' => 'Admingenerator\GeneratorBundle\Form\Type\DateType',
