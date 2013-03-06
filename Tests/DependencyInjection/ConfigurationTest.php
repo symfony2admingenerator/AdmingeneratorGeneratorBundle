@@ -7,6 +7,9 @@ use Symfony\Component\Config\Definition\Processor;
 
 class ConfigurationTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Test that default configuration is correctly initialized
+     */
     public function testDefaultConfig()
     {
         $processor = new Processor();
@@ -15,9 +18,16 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->getBundleDefaultConfig(), $config);
     }
 
+    /**
+     * Get waiting default values from configuration. If $key is not null
+     * and is in first level keys, returns value of this specific key only.
+     * 
+     * @param string $key
+     * @return mixed
+     */
     private function getBundleDefaultConfig($key = null)
     {
-        static $defaultValues = array(
+        static $defaultConfiguration = array(
             'use_doctrine_orm' => false,
             'use_doctrine_odm' => false,
             'use_propel'       => false,
@@ -43,10 +53,10 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
             'javascripts'   => array()
         );
         
-        if (!is_null($key) && array_key_exists($key, $defaultValues)) {
-            return $defaultValues[$key];
+        if (!is_null($key) && array_key_exists($key, $defaultConfiguration)) {
+            return $defaultConfiguration[$key];
         }
         
-        return $defaultValues;
+        return $defaultConfiguration;
     }
 }
