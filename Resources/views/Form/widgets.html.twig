@@ -41,7 +41,7 @@
 {% block entitypicker_widget %}
 {% spaceless %}
     <input type="text" id="{{ id ~ '_typeahead' }}"
-           data-source="{% include "AdmingeneratorGeneratorBundle:Form/EntityPicker:data_source.html.twig" %}"
+           data-source='{% include "AdmingeneratorGeneratorBundle:Form/EntityPicker:data_source.html.twig" %}'
            placeholder="{{ 'entity_picker.placeholder'|trans({}, 'Admingenerator') }}" autocomplete="off" />
     <input type="hidden" {{ block('widget_attributes') }} {% if value is defined %}value="{{ value }}"{% endif %} />
 

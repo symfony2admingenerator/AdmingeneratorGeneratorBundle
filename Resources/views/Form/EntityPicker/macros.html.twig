@@ -1,10 +1,23 @@
 {% macro datasource(object, builder) %}
+{% import _self as macros %}
 {% autoescape -%}
     {% for key,property in builder %}
       {%- if loop.first %}{{ '{' }}{% endif -%}
-          {{ '"' ~ key ~ '": "' ~ attribute(object, property) ~ '"' }}
+          {{ '"' ~ key ~ '": "' ~ macros.property(object, property)|replace({'\n': "", '\t': ""}) ~ '"' }}
           {%- if not loop.last %}{{ ', ' }}{% endif -%}
       {%- if loop.last %}{{ '}' }}{% endif -%}
     {% endfor %}
 {%- endautoescape %}
+{% endmacro %}
+
+{% macro property(object, path) %}
+{% spaceless %}
+    {% for part in path|split('.') %}
+        {% if not loop.last and attribute(object, part) is defined %}
+            {% set object = attribute(object, part) %}
+        {% elseif loop.last and attribute(object, part) is defined  %}
+            {{ attribute(object, part) }}
+        {% endif %}
+    {% endfor %}
+{% endspaceless %}
 {% endmacro %}
