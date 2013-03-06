@@ -59,20 +59,6 @@ class AdmingeneratorGeneratorExtension extends Extension
             );
         $container->setParameter('services.form.type.date', $date_type);
 
-        if (!isset($config['twig'])) {
-            $config['twig'] = array(
-                'use_form_resources' => true,
-                'use_localized_date' => false,
-                'date_format'        => 'Y-m-d',
-                'datetime_format'    => 'Y-m-d H:i:s',
-                'number_format'      => array(
-                    'decimal'            => 0,
-                    'decimal_point'      => '.',
-                    'thousand_separator' => ',',
-                )
-             );
-        }
-
         $container->setParameter('admingenerator.twig', $config['twig']);
 
         if ($config['twig']['use_localized_date']) {

@@ -33,6 +33,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('knp_menu_class')->defaultValue("Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder")->end()
                 ->scalarNode('thumbnail_generator')->defaultNull()->end()
                 ->arrayNode('twig')
+                    ->addDefaultsIfNotSet()
                     ->children()
                         ->booleanNode('use_form_resources')->defaultTrue()->end()
                         ->booleanNode('use_localized_date')->defaultFalse()->end()
