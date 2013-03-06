@@ -21,7 +21,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     /**
      * Get waiting default values from configuration. If $key is not null
      * and is in first level keys, returns value of this specific key only.
-     * 
+     *
      * @param string $key
      * @return mixed
      */
@@ -48,15 +48,15 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                         'thousand_separator' => ','
                         )
             ),
-            'template_dirs' => array(),
+            'templates_dirs' => array(),
             'stylesheets'   => array(),
             'javascripts'   => array()
         );
-        
+
         if (!is_null($key) && array_key_exists($key, $defaultConfiguration)) {
             return $defaultConfiguration[$key];
         }
-        
+
         return $defaultConfiguration;
     }
 }
