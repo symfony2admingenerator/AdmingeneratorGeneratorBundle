@@ -42,6 +42,7 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('localized_date_format')->defaultValue('medium')->end()
                         ->scalarNode('localized_datetime_format')->defaultValue('medium')->end()
                         ->arrayNode('number_format')
+                            ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('decimal')->defaultValue(0)->end()
                                 ->scalarNode('decimal_point')->defaultValue('.')->end()
