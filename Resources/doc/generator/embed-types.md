@@ -89,9 +89,12 @@ params:
   bundle_name:      GalleryBundle
   i18n_catalog:     GalleryImage
   fields:
-    name.label:         Name
-    desc.label:         Description
-    position.formType:  hidden
+    name:
+      label:         Name
+    desc:
+      label:         Description
+    position:
+      formType:  hidden
 builders:
   edit:
     params:
