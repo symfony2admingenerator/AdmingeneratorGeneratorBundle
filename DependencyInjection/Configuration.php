@@ -29,10 +29,15 @@ class Configuration implements ConfigurationInterface
                 ->booleanNode('use_doctrine_odm')->defaultFalse()->end()
                 ->booleanNode('use_propel')->defaultFalse()->end()
                 ->booleanNode('overwrite_if_exists')->defaultFalse()->end()
-                ->scalarNode('base_admin_template')->defaultValue("AdmingeneratorGeneratorBundle::base_admin.html.twig")->end()
-                ->scalarNode('knp_menu_class')->defaultValue("Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder")->end()
+                ->scalarNode('base_admin_template')
+                    ->defaultValue("AdmingeneratorGeneratorBundle::base_admin.html.twig")
+                ->end()
+                ->scalarNode('knp_menu_class')
+                    ->defaultValue("Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder")
+                ->end()
                 ->scalarNode('thumbnail_generator')->defaultNull()->end()
                 ->arrayNode('twig')
+                    ->addDefaultsIfNotSet()
                     ->children()
                         ->booleanNode('use_form_resources')->defaultTrue()->end()
                         ->booleanNode('use_localized_date')->defaultFalse()->end()
@@ -41,6 +46,7 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('localized_date_format')->defaultValue('medium')->end()
                         ->scalarNode('localized_datetime_format')->defaultValue('medium')->end()
                         ->arrayNode('number_format')
+                            ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('decimal')->defaultValue(0)->end()
                                 ->scalarNode('decimal_point')->defaultValue('.')->end()
@@ -75,7 +81,7 @@ class Configuration implements ConfigurationInterface
             ->end()
             ;
 
-       return $node;
+        return $node;
     }
 
     private function getJavascriptsNode()
@@ -98,6 +104,6 @@ class Configuration implements ConfigurationInterface
             ->end()
             ;
 
-       return $node;
+        return $node;
     }
 }
