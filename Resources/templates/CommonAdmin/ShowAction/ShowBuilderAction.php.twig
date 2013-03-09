@@ -17,6 +17,17 @@ class ShowController extends BaseController
 
     {{- block('security_check_with_object') }}
 
+    /**
+     * Get additional parameters for rendering.
+     *
+     * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
+     * return array
+     **/
+    protected function getAdditionalRenderParameters(\{{ model }} ${{ builder.ModelClass }})
+    {
+        return array();
+    }
+
     {% block getObject -%}
     protected function getObject($pk)
     {

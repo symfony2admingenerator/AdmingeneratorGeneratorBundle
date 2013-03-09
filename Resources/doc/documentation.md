@@ -32,10 +32,12 @@ and open a ticket on github.
 1. [Installation via composer][installation-1]
 2. Installation via deps
 3. Installation via git submodules
+4. [Configuration][installation-4]
 
 [go up][go-up]
 
 [installation-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/installation/installation-via-composer.md
+[installation-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/installation/configuration.md
 
 ## 2. Support
 
@@ -95,6 +97,8 @@ Documentation for new form extensions and types:
 
 ## 7. Cookbook
 
-> No cookbook entries created yet.
+1. [Controllers Tips and Tricks][cookbook-1]
 
 [go up][go-up]
+
+[cookbook-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/controllers.md
