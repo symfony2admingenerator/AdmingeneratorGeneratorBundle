@@ -33,6 +33,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
             'use_propel'       => false,
             'overwrite_if_exists' => false,
             'base_admin_template' => 'AdmingeneratorGeneratorBundle::base_admin.html.twig',
+            'dashboard_welcome_path' => null,
             'knp_menu_class'      => 'Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder',
             'thumbnail_generator' => null,
             'twig'         => array(

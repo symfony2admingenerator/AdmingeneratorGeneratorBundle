@@ -93,4 +93,20 @@ batch.list:
   none.selected:  Sie müssen mindestens ein Element auswählen.
 
 # Layout
-layout.welcome:   Startseite
+dashboard:
+  homepage:   Startseite
+  brand:      Armaturenbrett
+
+# Filetype icons
+filetype:
+  audio:            Audio
+  archive:          Archiv
+  html:             HTML
+  image:            Bild
+  pdf-document:     PDF<br />Dokument
+  plain-text:       Klartext
+  presentation:     Präsentation
+  spreadsheet:      Tabellen-<br />kalkulation
+  text-document:    Text<br />Dokument
+  unknown:          Unbekannter<br />Dateityp
+  video:            Video

@@ -93,4 +93,20 @@ batch.list:
   none.selected:  Debe seleccionar al menos un elemento.
 
 # Layout
-layout.welcome:   Página principal
+dashboard:
+  homepage:   Página principal
+  brand:      Tablero de instrumentos
+
+# Filetype icons
+filetype:
+  audio:            Audio
+  archive:          Archivo
+  html:             HTML
+  image:            Imagen
+  pdf-document:     Documento<br />PDF
+  plain-text:       Texto<br />sin formato
+  presentation:     Presentación
+  spreadsheet:      Hoja<br />de cálculo
+  text-document:    Documento<br />de texto
+  unknown:          Tipo de archivo<br />desconocido
+  video:            Video

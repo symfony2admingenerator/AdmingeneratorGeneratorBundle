@@ -25,6 +25,10 @@
             <tag name="twig.extension" />
             <argument type="service" id="twig.loader" />
         </service>
+        <service id="twig.extension.admingenerator.config" class="Admingenerator\GeneratorBundle\Twig\Extension\ConfigExtension" public="false">
+            <tag name="twig.extension" />
+            <argument type="service" id="service_container" />
+        </service>
         <service id="twig.extension.admingenerator.extends" class="Admingenerator\GeneratorBundle\Twig\Extension\ExtendsAdmingeneratedExtension" public="false">
             <tag name="twig.extension" />
             <argument type="service" id="twig.loader" />

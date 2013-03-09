@@ -93,4 +93,20 @@ batch.list:
   none.selected:  Izbrati morate vsaj en element.
 
 # Layout
-layout.welcome:   Domača stran
+dashboard:
+  homepage:   Domača stran
+  brand:      Nadzorne plošče
+
+# Filetype icons
+filetype:
+  audio:            Avdio
+  archive:          Arhiv
+  html:             HTML
+  image:            Podoba
+  pdf-document:     PDF<br />Dokument
+  plain-text:       Golo<br />besedilo
+  presentation:     Predstavitev
+  spreadsheet:      Preglednica
+  text-document:    Besedilo<br />dokumenta
+  unknown:          Neznana<br />datoteka tipa
+  video:            Video

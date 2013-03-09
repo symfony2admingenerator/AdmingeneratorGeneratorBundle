@@ -93,4 +93,20 @@ batch.list:
   none.selected:  Необходимо выбрать не менее одного элемента.
 
 # Layout
-layout.welcome:   Главная
+dashboard:
+  homepage:   Главная
+  brand:      Панель мониторинга
+
+# Filetype icons
+filetype:
+  audio:            Аудио
+  archive:          Архив
+  html:             HTML
+  image:            Изображение
+  pdf-document:     Документ<br />PDF
+  plain-text:       Обычный<br />текст
+  presentation:     Презентация
+  spreadsheet:      Таблицы
+  text-document:    Текстовый<br />документ
+  unknown:          Неизвестный<br />тип
+  video:            Видео

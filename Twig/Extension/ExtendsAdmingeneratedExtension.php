@@ -23,7 +23,6 @@ class ExtendsAdmingeneratedExtension extends \Twig_Extension
     public function getTokenParsers()
     {
         return array(
-            //{% extends_admingenerated "AdmingeneratorDemoBundle:List:index.html.twig" %}
             new ExtendsAdmingeneratedTokenParser(),
         );
     }

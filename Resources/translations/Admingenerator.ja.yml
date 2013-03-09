@@ -93,4 +93,20 @@ batch.list:
   none.selected:  1つ以上のデータを選択する必要があります。
 
 # Layout
-layout.welcome: ホームへ
+dashboard:
+  homepage:   ホームへ
+  brand:      ダッシュ ボード
+
+# Filetype icons
+filetype:
+  audio:            オーディオ
+  archive:          アーカイブ
+  html:             HTML
+  image:            イメージ
+  pdf-document:     PDF<br />ドキュメント
+  plain-text:       プレーン テキスト
+  presentation:     プレゼンテーション
+  spreadsheet:      スプレッドシート
+  text-document:    テキスト ドキュメント
+  unknown:          不明なファイルの種類
+  video:            ビデオ

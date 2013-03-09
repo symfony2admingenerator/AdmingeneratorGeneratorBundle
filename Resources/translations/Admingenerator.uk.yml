@@ -93,4 +93,20 @@ batch.list:
   none.selected:  Необхідно вибрати не менше одного елемента.
 
 # Layout
-layout.welcome:   Домашня сторінка
+dashboard:
+  homepage:   Домашня сторінка
+  brand:      Приладна дошка
+
+# Filetype icons
+filetype:
+  audio:            Аудіо
+  archive:          Архів
+  html:             HTML
+  image:            Зображення
+  pdf-document:     Документ<br />PDF
+  plain-text:       Звичайний<br />текст
+  presentation:     Презентація
+  spreadsheet:      Електронна<br />таблиця
+  text-document:    Текст<br />документа
+  unknown:          Невідомий<br />тип файлу
+  video:            Відео

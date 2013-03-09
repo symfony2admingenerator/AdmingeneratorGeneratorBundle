@@ -85,4 +85,20 @@ batch.list:
   none.selected:  En az bir öğe seçmek zorundasınız.
 
 # Layout
-layout.welcome:   Anasayfa
+dashboard:
+  homepage:   Anasayfa
+  brand:      Kontrol paneli
+
+# Filetype icons
+filetype:
+  audio:            Ses
+  archive:          Arşiv
+  html:             HTML
+  image:            Görüntü
+  pdf-document:     PDF<br />belgesi
+  plain-text:       Düz metin
+  presentation:     Sunu
+  spreadsheet:      Elektronik<br />tablo
+  text-document:    Metin<br />belgesi
+  unknown:          Bilinmeyen<br />dosya türü
+  video:            Video

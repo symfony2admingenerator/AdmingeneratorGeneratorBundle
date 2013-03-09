@@ -51,7 +51,8 @@
             <span class="icon-bar"></span>
           </a>
           {% block logo %}
-            <a class="brand" href="#">Admin</a>
+              {% set brand_path = path(admingenerator_config('dashboard_welcome_path'))|default('#') %}
+              <a class="brand" href="{{ brand_path }}">{% block brand_text %}{{ 'dashboard.brand'|trans({}, 'Admingenerator') }}{% endblock %}</a>
           {% endblock %}
           <div class="nav-collapse collapse">
             {% block profile %}
@@ -73,8 +74,8 @@
     </div>
 
     <div class="container-fluid">
-      <div class="row-fluid">
-        {% block body %}
+      {% block body %}
+        <div class="row-fluid">
           <form class="form-horizontal">
             <legend>Login form</legend>
             
@@ -99,20 +100,16 @@
               </div>
             </div>
           </form>
-        {% endblock %}
-      </div><!--/row-->
-      
-      <hr>
-
+        </div><!--/.row-fluid -->
+      {% endblock %}
+        
+      {% block footer %}
       <footer>
-        <p>
-          {% block footer %}
-              &copy; Symfony2Admingenerator {{ ("now"|date('Y') > 2012) ? '2012 - ' ~ "now"|date('Y') : '2012' }}
-          {% endblock %}
-        </p>
+        <hr>
+        <p>{% block footer_text %}&copy; Symfony2Admingenerator {{ ("now"|date('Y') > 2012) ? '2012 - ' ~ "now"|date('Y') : '2012' }}{% endblock %}</p>
       </footer>
-
-    </div> <!-- /container -->
+      {% endblock %}
+    </div> <!--/.container-fluid -->
     
     {% block javascripts %}
         <!-- bootstrap.min.js -->

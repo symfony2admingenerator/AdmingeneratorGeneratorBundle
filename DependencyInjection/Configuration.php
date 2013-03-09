@@ -32,6 +32,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('base_admin_template')
                     ->defaultValue("AdmingeneratorGeneratorBundle::base_admin.html.twig")
                 ->end()
+                ->scalarNode('dashboard_welcome_path')->defaultNull()->end()
                 ->scalarNode('knp_menu_class')
                     ->defaultValue("Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder")
                 ->end()

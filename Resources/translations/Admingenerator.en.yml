@@ -97,7 +97,9 @@ batch.list:
   none.selected:  You have to select at least one element.
 
 # Layout
-layout.welcome:   Homepage
+dashboard:
+  homepage:   Homepage
+  brand:      Dashboard
 
 # Filetype icons
 filetype:

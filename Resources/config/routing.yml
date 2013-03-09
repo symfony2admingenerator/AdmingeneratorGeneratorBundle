@@ -1,7 +1,0 @@
-AdmingeneratorDashboard_welcome:
-    pattern:   /admin/dashboard
-    defaults:  { _controller: AdmingeneratorGeneratorBundle:Dashboard:welcome }
-    
-AdmingeneratorDashboard_documentation:
-    pattern:   /admin/documentation/{document}
-    defaults:  { _controller: AdmingeneratorGeneratorBundle:Dashboard:documentation }

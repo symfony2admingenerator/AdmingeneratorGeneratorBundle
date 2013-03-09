@@ -97,7 +97,9 @@ batch.list:
   none.selected:  Musisz zaznaczyć co najmniej jeden element.
 
 # Layout
-layout.welcome:   Strona Główna
+dashboard:
+  homepage:   Strona Główna
+  brand:      Pulpit
 
 # Filetype icons
 filetype:
