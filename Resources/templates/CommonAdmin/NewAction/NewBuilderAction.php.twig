@@ -22,6 +22,17 @@ class NewController extends BaseController
 
     {{- block('security_check') }}
 
+    /**
+     * Get additional parameters for rendering.
+     *
+     * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
+     * return array
+     **/
+    protected function getAdditionalRenderParameters(\{{ model }} ${{ builder.ModelClass }})
+    {
+        return array();
+    }
+
     protected function getNewType()
     {
         $type = new NewType();

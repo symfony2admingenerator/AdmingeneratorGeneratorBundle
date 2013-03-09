@@ -13,7 +13,7 @@ use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ bu
 
         $form = $this->createForm($this->getNewType(), ${{ builder.ModelClass }});
 
-        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}New:index.html.twig', array(
+        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}New:index.html.twig', $this->getAdditionalRenderParameters(${{ builder.ModelClass }}) + array(
             "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
             "form" => $form->createView(),
         ));
