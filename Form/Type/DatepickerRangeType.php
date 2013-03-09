@@ -4,6 +4,7 @@ namespace Admingenerator\GeneratorBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class DatepickerRangeType extends AbstractType
 {
@@ -39,11 +40,11 @@ class DatepickerRangeType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getDefaultOptions(array $options)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $years = range(date('Y'), date('Y') - 120);
 
-        return array(
+        $resolver->setDefaults(array(
             'format'  => null,
             'years'   => $years,
             'to'      => array(
@@ -57,7 +58,7 @@ class DatepickerRangeType extends AbstractType
                 'prepend'       =>  'date_range.from.label',
                 'attr'          =>  array('class' => 'input-small')),
             'widget'  =>  'datepicker_range',
-        );
+        ));
     }
 
     /**
