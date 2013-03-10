@@ -13,6 +13,8 @@ use Doctrine\Common\Util\Inflector;
 class Column
 {
     protected $name;
+    
+    protected $sortable;
 
     protected $sortOn;
 
@@ -37,7 +39,8 @@ class Column
 
     public function __construct($name)
     {
-        $this->name = $name;
+        $this->name     = $name;
+        $this->sortable = true;
     }
 
     public function getName()
@@ -77,12 +80,22 @@ class Column
 
     public function isSortable()
     {
-        return $this->isReal() || $this->sortOn != "";
+        return $this->isReal() && $this->sortable;
     }
 
     public function isReal()
     {
         return $this->dbType != 'virtual';
+    }
+
+    public function getSortable()
+    {
+        return $this->sortable;
+    }
+
+    public function setSortable($sortable)
+    {
+        return $this->sortable = ($sortable === 'true');
     }
 
     public function getSortOn()
