@@ -109,9 +109,9 @@ class AdmingeneratorMenuBuilder extends ContainerAware
         return $item;
     }
     
-    protected function addDivider(ItemInterface $menu)
+    protected function addDivider(ItemInterface $menu, $label)
     {
-        $item = $menu->addChild('', array());
+        $item = $menu->addChild($label, array());
         $item->setAttribute('class', 'divider');
         
         return $item;
