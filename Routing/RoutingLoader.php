@@ -82,7 +82,7 @@ class RoutingLoader extends FileLoader
         foreach ($this->actions as $controller => $datas) {
             $action = 'index';
 
-            $loweredNamespace = str_replace(array('/', '\\'), '_', $namespace) ;
+            $loweredNamespace = str_replace(array('/', '\\'), '_', $namespace);
             if ($controller_folder = $this->getControllerFolder($resource)) {
                 $route_name = $loweredNamespace . '_' . $bundle_name . '_' . $controller_folder . '_' . $controller;
             } else {
@@ -99,12 +99,12 @@ class RoutingLoader extends FileLoader
                 if ($controller_folder) {
                     $datas['defaults']['_controller'] = $namespace . '\\'
                             . $bundle_name . '\\Controller\\'
-                            . $controller_folder . '\\' 
+                            . $controller_folder . '\\'
                             . ucfirst($controller) . 'Controller::'
                             . $action . 'Action';
                 } else {
-                    $datas['defaults']['_controller'] = $loweredNamespace 
-                            . $bundle_name . ':' 
+                    $datas['defaults']['_controller'] = $loweredNamespace
+                            . $bundle_name . ':'
                             . ucfirst($controller) . ':' . $action;
                 }
                 $route = new Route($datas['pattern'], $datas['defaults'], $datas['requirements']);
