@@ -3,9 +3,9 @@
 namespace Admingenerator\GeneratorBundle\Form\Type;
 
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class DateRangeType extends AbstractType
 {
@@ -16,17 +16,17 @@ class DateRangeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-         $options['from']['required'] = $options['required'];
-         $options['to']['required'] = $options['required'];
+        $options['from']['required'] = $options['required'];
+        $options['to']['required'] = $options['required'];
 
-         if ($options['format']) {
+        if ($options['format']) {
             $options['from']['format'] = $options['format'];
             $options['to']['format'] = $options['format'];
-         }
+        }
 
-         $builder
-               ->add('from', new DateType(), $options['from'])
-               ->add('to', new DateType(), $options['to']);
+        $builder
+                ->add('from', new DateType(), $options['from'])
+                ->add('to', new DateType(), $options['to']);
     }
 
     /**
@@ -40,16 +40,18 @@ class DateRangeType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getDefaultOptions(array $options)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+
         $years = range(date('Y'), date('Y') - 120);
 
-        return array(
-            'format'            => null,
-            'years'             => $years,
-            'to'                => array('years' => $years, 'widget' => 'choice'),
-            'from'              => array('years' => $years, 'widget' => 'choice'),
-            'widget'            => 'choice',
+        $resolver->setDefaults(
+            array(
+            'format' => null,
+            'years'  => $years,
+            'to'     => array('years' => $years, 'widget' => 'choice'),
+            'from'   => array('years' => $years, 'widget' => 'choice'),
+            'widget' => 'choice')
         );
     }
 
