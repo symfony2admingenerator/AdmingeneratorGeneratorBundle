@@ -58,7 +58,8 @@ class DatepickerRangeType extends AbstractType
                 'widget'        =>  'datepicker',
                 'prepend'       =>  'date_range.from.label',
                 'attr'          =>  array('class' => 'input-small')),
-            'widget'  =>  'datepicker_range'));
+            'widget'  =>  'datepicker_range')
+                );
     }
 
     /**

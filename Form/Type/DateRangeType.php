@@ -51,7 +51,8 @@ class DateRangeType extends AbstractType
             'years'  => $years,
             'to'     => array('years' => $years, 'widget' => 'choice'),
             'from'   => array('years' => $years, 'widget' => 'choice'),
-            'widget' => 'choice'));
+            'widget' => 'choice')
+                );
     }
 
     /**
