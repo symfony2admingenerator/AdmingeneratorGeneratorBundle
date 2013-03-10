@@ -45,13 +45,13 @@ class DateRangeType extends AbstractType
 
         $years = range(date('Y'), date('Y') - 120);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults(
+            array(
             'format' => null,
             'years'  => $years,
             'to'     => array('years' => $years, 'widget' => 'choice'),
             'from'   => array('years' => $years, 'widget' => 'choice'),
-            'widget' => 'choice',
-        ));
+            'widget' => 'choice'));
     }
 
     /**
@@ -61,5 +61,4 @@ class DateRangeType extends AbstractType
     {
         return 'date_range';
     }
-
 }
