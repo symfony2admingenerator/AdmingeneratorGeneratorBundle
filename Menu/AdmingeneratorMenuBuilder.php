@@ -34,6 +34,8 @@ class AdmingeneratorMenuBuilder extends ContainerAware
     }
 
     /**
+     * Example dashboard menu
+     * 
      * @param Request $request
      * @param Router $router
      */
@@ -103,6 +105,14 @@ class AdmingeneratorMenuBuilder extends ContainerAware
         $item->setExtra('translation_domain', $menu->getExtra('translation_domain'));        
         $item->setExtra('caret', $caret);
         $menu->setExtra('request_uri', $menu->getExtra('request_uri'));
+        
+        return $item;
+    }
+    
+    protected function addDivider(ItemInterface $menu)
+    {
+        $item = $menu->addChild('', array());
+        $item->setAttribute('class', 'divider');
         
         return $item;
     }
