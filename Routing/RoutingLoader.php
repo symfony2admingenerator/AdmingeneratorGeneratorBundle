@@ -93,15 +93,17 @@ class RoutingLoader extends FileLoader
                 $controller = $datas['controller'];
             }
 
-            if ($controller_folder) {
-                $datas['defaults']['_controller'] = $namespace.'\\'.$bundle_name.'\\Controller\\'.$controller_folder.'\\'.ucfirst($controller).'Controller::'.$action.'Action';
-            } else {
-                $datas['defaults']['_controller'] = str_replace(array('/', '\\'),'_',$namespace).$bundle_name.':'.ucfirst($controller).':'.$action;
+            $controllerName = $resource.ucfirst($controller).'Controller.php';
+            if(is_file($controllerName)) {
+                if ($controller_folder) {
+                    $datas['defaults']['_controller'] = $namespace.'\\'.$bundle_name.'\\Controller\\'.$controller_folder.'\\'.ucfirst($controller).'Controller::'.$action.'Action';
+                } else {
+                    $datas['defaults']['_controller'] = str_replace(array('/', '\\'),'_',$namespace).$bundle_name.':'.ucfirst($controller).':'.$action;
+                }
+                $route = new Route($datas['pattern'], $datas['defaults'], $datas['requirements']);
+                $collection->add($route_name, $route);
+                $collection->addResource(new FileResource($controllerName));
             }
-
-            $route = new Route($datas['pattern'], $datas['defaults'], $datas['requirements']);
-            $collection->add($route_name, $route);
-            $collection->addResource(new FileResource($resource.ucfirst($controller).'Controller.php'));
         }
 
         // Import other routes from a controller directory (@Route annotation)
