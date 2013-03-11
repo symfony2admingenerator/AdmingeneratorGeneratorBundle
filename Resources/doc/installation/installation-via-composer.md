@@ -52,7 +52,7 @@ admingenerator_generator:
     use_doctrine_odm:     false
 ```
 
-Enable translation of KnpMenu - add following lines to `app/config/config.yml`:</p>
+Enable translation of KnpMenu - add following lines to `app/config/config.yml`:
 
 ```yaml
 knp_menu:
@@ -91,17 +91,12 @@ If you're useing assetic for asset management dump your assets by running:
 
 `php app/console assetic:dump`
 
-### 5. Import Dashboard routes
+### 5. (Optional) Specify dashboard route
 
-Default Admingenerator templates use these routes for Dashboard view:
-
-* `AdmingeneratorDashboard_welcome`
-* `AdmingeneratorDashboard_documentation`
-
-To import these routes add this to your `app/config/routing.yml`:
+By default brand text ("Dashboard") is disabled. To link it with your Dashboard 
+add `dashboard_welcome_path` under `admingenerator_generator` in your `app/config/config.yml`:
 
 ```yaml
-AdmingeneratorGeneratorBundle_Dashboard:
-    resource: "@AdmingeneratorGeneratorBundle/Resources/config/routing.yml"
-    prefix:   /
+admingenerator_generator:
+    dashboard_welcome_path:     MyDashboard_path
 ```
