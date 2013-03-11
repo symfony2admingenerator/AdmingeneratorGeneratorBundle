@@ -42,7 +42,7 @@ public function registerBundles()
 
 ### 3. Basic configuration
 
-Choose your model manager - add following lines to `app/config/config.yml`:
+Choose your model manager and choose basic admingenerator template - with or without assetic. -- add following lines to `app/config/config.yml`:
 
 ```yaml
 admingenerator_generator:
@@ -50,6 +50,10 @@ admingenerator_generator:
     use_propel:           false
     use_doctrine_orm:     true
     use_doctrine_odm:     false
+    
+    # choose and uncomment ONLY one
+#    base_admin_template: AdmingeneratorGeneratorBundle::base_admin.html.twig
+#    base_admin_template: AdmingeneratorGeneratorBundle::base_admin_assetic_less.html.twig
 ```
 
 Enable translation of KnpMenu - add following lines to `app/config/config.yml`:
@@ -58,15 +62,6 @@ Enable translation of KnpMenu - add following lines to `app/config/config.yml`:
 knp_menu:
     twig:
         template: AdmingeneratorGeneratorBundle:KnpMenu:knp_menu_trans.html.twig
-```
-
-Choose basic admingenerator template - with or without assetic.
-
-```yaml
-admingenerator_generator:
-    # choose and uncomment only one
-#    base_admin_template: AdmingeneratorGeneratorBundle::base_admin.html.twig
-#    base_admin_template: AdmingeneratorGeneratorBundle::base_admin_assetic_less.html.twig
 ```
 
 ### (Optional) Configure Assetic & YUI comperssor
