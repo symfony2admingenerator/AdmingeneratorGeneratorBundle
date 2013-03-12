@@ -16,17 +16,13 @@ class DatepickerRangeType extends AbstractType
     {
         unset($options['years']); // TODO: check if this line can be removed
 
-        $options['from']['required'] = $options['required'];
-        $options['to']['required'] = $options['required'];
-
-        if ($options['format']) {
-            $options['from']['format'] = $options['format'];
-            $options['to']['format'] = $options['format'];
-        }
+        // prepare default options
+        $default = clone $options;
+        unset($default['from'], $default['to']);
 
         $builder
-               ->add('from', new DatepickerType(), $options['from'])
-               ->add('to', new DatepickerType(), $options['to']);
+               ->add('from', new DatepickerType(), array_merge($defaults, $options['from']))
+               ->add('to',   new DatepickerType(), array_merge($defaults, $options['to']));
     }
 
     /**
@@ -60,6 +56,18 @@ class DatepickerRangeType extends AbstractType
                 'attr'          =>  array('class' => 'input-small')),
             'widget'  =>  'datepicker_range')
         );
+
+        $resolver->setAllowedValues(array(
+            'input'           =>  array('string'),
+            'widget'          =>  array('datepicker_range'),
+            'weekstart'       =>  range(0, 6),
+        ));
+
+        $resolver->setAllowedTypes(array(
+            'format'    =>  array('null', 'int', 'string'),
+            'prepend'   =>  array('bool', 'string'),
+            'autoclose' =>  array('bool'),
+        ));
     }
 
     /**
