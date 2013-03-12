@@ -57,7 +57,7 @@
             <span class="icon-bar"></span>
           </a>
           {% block logo %}
-              {% set brand_path = path(admingenerator_config('dashboard_welcome_path'))|default('#') %}
+              {% set brand_path = (admingenerator_config('dashboard_welcome_path') is not null) ? path(admingenerator_config('dashboard_welcome_path')) : '#' %}
               <a class="brand" href="{{ brand_path }}">{% block brand_text %}{{ 'dashboard.brand'|trans({}, 'Admingenerator') }}{% endblock %}</a>
           {% endblock %}
           <div class="nav-collapse collapse">
