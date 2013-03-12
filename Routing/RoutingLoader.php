@@ -82,10 +82,11 @@ class RoutingLoader extends FileLoader
         foreach ($this->actions as $controller => $datas) {
             $action = 'index';
 
+            $loweredNamespace = str_replace(array('/', '\\'), '_', $namespace);
             if ($controller_folder = $this->getControllerFolder($resource)) {
-                $route_name = str_replace(array('/', '\\'),'_',$namespace).'_'.$bundle_name.'_'.$controller_folder.'_'.$controller;
+                $route_name = $loweredNamespace . '_' . $bundle_name . '_' . $controller_folder . '_' . $controller;
             } else {
-                $route_name = str_replace(array('/', '\\'),'_',$namespace).'_'.$bundle_name.'_'.$controller;
+                $route_name = $loweredNamespace . '_' . $bundle_name . '_' . $controller;
             }
 
             if (isset($datas['controller'])) {
@@ -93,22 +94,31 @@ class RoutingLoader extends FileLoader
                 $controller = $datas['controller'];
             }
 
-            if ($controller_folder) {
-                $datas['defaults']['_controller'] = $namespace.'\\'.$bundle_name.'\\Controller\\'.$controller_folder.'\\'.ucfirst($controller).'Controller::'.$action.'Action';
-            } else {
-                $datas['defaults']['_controller'] = str_replace(array('/', '\\'),'_',$namespace).$bundle_name.':'.ucfirst($controller).':'.$action;
+            $controllerName = $resource.ucfirst($controller).'Controller.php';
+            if (is_file($controllerName)) {
+                if ($controller_folder) {
+                    $datas['defaults']['_controller'] = $namespace . '\\'
+                            . $bundle_name . '\\Controller\\'
+                            . $controller_folder . '\\'
+                            . ucfirst($controller) . 'Controller::'
+                            . $action . 'Action';
+                } else {
+                    $datas['defaults']['_controller'] = $loweredNamespace
+                            . $bundle_name . ':'
+                            . ucfirst($controller) . ':' . $action;
+                }
+                $route = new Route($datas['pattern'], $datas['defaults'], $datas['requirements']);
+                $collection->add($route_name, $route);
+                $collection->addResource(new FileResource($controllerName));
             }
-
-            $route = new Route($datas['pattern'], $datas['defaults'], $datas['requirements']);
-            $collection->add($route_name, $route);
-            $collection->addResource(new FileResource($resource.ucfirst($controller).'Controller.php'));
         }
 
         // Import other routes from a controller directory (@Route annotation)
         if ($controller_folder) {
-            $collection->addCollection($this->import('@'.$namespace.$bundle_name.'/Controller/'.$controller_folder.'/', 'annotation'));
+            $annotationRouteName = '@' . $namespace . $bundle_name . '/Controller/' . $controller_folder . '/';
+            $collection->addCollection($this->import($annotationRouteName, 'annotation'));
         }
-        
+
         return $collection;
     }
 
