@@ -8,21 +8,27 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class DatepickerRangeType extends AbstractType
 {
-
+    protected $defaults;
+    
+    public function __construct() {
+        $this->defaults = array(
+            'autoclose'     =>  true,
+            'html5_format'  =>  'yyyy-MM-dd',
+            'prepend_from'  =>  'date_range.from.label',
+            'prepend_to'    =>  'date_range.to.label',
+            'weekstart'     =>  1,
+            'years'         =>  range(date('Y'), date('Y') - 120),
+        );
+    }
+    
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        unset($options['years']); // TODO: check if this line can be removed
-
-        // prepare default options
-        $default = clone $options;
-        unset($default['from'], $default['to']);
-
         $builder
-               ->add('from', new DatepickerType(), array_merge($defaults, $options['from']))
-               ->add('to',   new DatepickerType(), array_merge($defaults, $options['to']));
+               ->add('from', new DatepickerType(), $options['from'])
+               ->add('to',   new DatepickerType(), $options['to']);
     }
 
     /**
@@ -38,35 +44,47 @@ class DatepickerRangeType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $years = range(date('Y'), date('Y') - 120);
-
-        $resolver->setDefaults(
-            array(
-            'format'  => null,
-            'years'   => $years,
-            'to'      => array(
-                'years'         =>  $years,
-                'widget'        =>  'datepicker',
-                'prepend'       =>  'date_range.to.label',
-                'attr'          =>  array('class' => 'input-small')),
-            'from'    => array(
-                'years'         =>  $years,
-                'widget'        =>  'datepicker',
-                'prepend'       =>  'date_range.from.label',
-                'attr'          =>  array('class' => 'input-small')),
-            'widget'  =>  'datepicker_range')
-        );
+        $resolver->setDefaults(array(
+            'autoclose'   =>    null,
+            'format'      =>    null,
+            'prepend'     =>    null,
+            'weekstart'   =>    null,
+            'years'       =>    null,
+            'widget'      =>    'datepicker_range',
+            'from'        =>    function (Options $options) {
+                return array(
+                    'widget'        =>  'datepicker',
+                    'attr'          =>  array('class' => 'input-small'),
+                    'autoclose'     =>  is_null($options['autoclose']) ? $this->defaults['autoclose']    : $options['autoclose'],
+                    'format'        =>  is_null($options['format'])    ? $this->defaults['html5_format'] : $options['format'],
+                    'prepend'       =>  is_null($options['prepend'])   ? $this->defaults['prepend_from'] : $options['prepend'],
+                    'weekstart'     =>  is_null($options['weekstart']) ? $this->defaults['weekstart']    : $options['weekstart'],
+                    'years'         =>  is_null($options['years'])     ? $this->defaults['years']        : $options['years'],
+                );
+            },
+            'to'          =>    function (Options $options) {
+                return array(
+                    'widget'        =>  'datepicker',
+                    'attr'          =>  array('class' => 'input-small'),
+                    'autoclose'     =>  is_null($options['autoclose']) ? $this->defaults['autoclose']    : $options['autoclose'],
+                    'format'        =>  is_null($options['format'])    ? $this->defaults['html5_format'] : $options['format'],
+                    'prepend'       =>  is_null($options['prepend'])   ? $this->defaults['prepend_to']   : $options['prepend'],
+                    'weekstart'     =>  is_null($options['weekstart']) ? $this->defaults['weekstart']    : $options['weekstart'],
+                    'years'         =>  is_null($options['years'])     ? $this->defaults['years']        : $options['years'],
+                );
+            },
+        ));
 
         $resolver->setAllowedValues(array(
-            'input'           =>  array('string'),
-            'widget'          =>  array('datepicker_range'),
-            'weekstart'       =>  range(0, 6),
+            'weekstart'       =>  array_merge(array(null), range(0, 6)),
         ));
 
         $resolver->setAllowedTypes(array(
-            'format'    =>  array('null', 'int', 'string'),
-            'prepend'   =>  array('bool', 'string'),
-            'autoclose' =>  array('bool'),
+            'autoclose'       =>  array('null', 'bool'),
+            'format'          =>  array('null', 'int', 'string'),
+            'prepend'         =>  array('null', 'bool', 'string'),
+            'weekstart'       =>  array('null', 'int'),
+            'years'           =>  array('null', 'array'),
         ));
     }
 
