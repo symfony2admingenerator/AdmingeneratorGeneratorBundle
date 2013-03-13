@@ -16,6 +16,7 @@ class DatepickerRangeType extends AbstractType
             'html5_format'  =>  'yyyy-MM-dd',
             'prepend_from'  =>  'date_range.from.label',
             'prepend_to'    =>  'date_range.to.label',
+            'required'      =>  true,
             'weekstart'     =>  1,
             'years'         =>  range(date('Y'), date('Y') - 120),
         );
@@ -48,6 +49,7 @@ class DatepickerRangeType extends AbstractType
             'autoclose'   =>    null,
             'format'      =>    null,
             'prepend'     =>    null,
+            'required'    =>    null,
             'weekstart'   =>    null,
             'years'       =>    null,
             'widget'      =>    'datepicker_range',
@@ -58,6 +60,7 @@ class DatepickerRangeType extends AbstractType
                     'autoclose'     =>  is_null($options['autoclose']) ? $this->defaults['autoclose']    : $options['autoclose'],
                     'format'        =>  is_null($options['format'])    ? $this->defaults['html5_format'] : $options['format'],
                     'prepend'       =>  is_null($options['prepend'])   ? $this->defaults['prepend_from'] : $options['prepend'],
+                    'required'      =>  is_null($options['required'])  ? $this->defaults['required']     : $options['required'],
                     'weekstart'     =>  is_null($options['weekstart']) ? $this->defaults['weekstart']    : $options['weekstart'],
                     'years'         =>  is_null($options['years'])     ? $this->defaults['years']        : $options['years'],
                 );
@@ -69,6 +72,7 @@ class DatepickerRangeType extends AbstractType
                     'autoclose'     =>  is_null($options['autoclose']) ? $this->defaults['autoclose']    : $options['autoclose'],
                     'format'        =>  is_null($options['format'])    ? $this->defaults['html5_format'] : $options['format'],
                     'prepend'       =>  is_null($options['prepend'])   ? $this->defaults['prepend_to']   : $options['prepend'],
+                    'required'      =>  is_null($options['required'])  ? $this->defaults['required']     : $options['required'],
                     'weekstart'     =>  is_null($options['weekstart']) ? $this->defaults['weekstart']    : $options['weekstart'],
                     'years'         =>  is_null($options['years'])     ? $this->defaults['years']        : $options['years'],
                 );
@@ -83,6 +87,7 @@ class DatepickerRangeType extends AbstractType
             'autoclose'       =>  array('null', 'bool'),
             'format'          =>  array('null', 'int', 'string'),
             'prepend'         =>  array('null', 'bool', 'string'),
+            'required'        =>  array('null', 'bool'),
             'weekstart'       =>  array('null', 'int'),
             'years'           =>  array('null', 'array'),
         ));
