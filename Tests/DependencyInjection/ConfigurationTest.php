@@ -13,7 +13,13 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     public function testDefaultConfig()
     {
         $processor = new Processor();
-        $config = $processor->processConfiguration(new Configuration(), array());
+        $config = $processor->processConfiguration(
+                new Configuration(),
+                array(
+                    'login_path'  => 'required_parameter',
+                    'logout_path' => 'required_parameter'
+                    )
+                );
 
         $this->assertEquals($this->getBundleDefaultConfig(), $config);
     }
@@ -34,6 +40,8 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
             'overwrite_if_exists' => false,
             'base_admin_template' => 'AdmingeneratorGeneratorBundle::base_admin.html.twig',
             'dashboard_welcome_path' => null,
+            'login_path' => 'required_parameter',
+            'logout_path' => 'required_parameter',
             'knp_menu_class'      => 'Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder',
             'thumbnail_generator' => null,
             'twig'         => array(
