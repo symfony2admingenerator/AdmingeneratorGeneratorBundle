@@ -11,7 +11,7 @@ class DatepickerRangeType extends AbstractType
 {
     protected $defaults;
     
-    public function __construct() 
+    public function __construct()
     {
         $this->defaults = array(
             'autoclose'     =>  true,
@@ -49,39 +49,39 @@ class DatepickerRangeType extends AbstractType
     {
         $defaults = $this->defaults;
         $resolver->setDefaults(
-          array(
-              'autoclose'   =>    null,
-              'format'      =>    null,
-              'prepend'     =>    null,
-              'required'    =>    null,
-              'weekstart'   =>    null,
-              'years'       =>    null,
-              'widget'      =>    'datepicker_range',
-              'from'        =>    function (Options $options) use ($defaults) {
-                  return array(
-                      'widget'        =>  'datepicker',
-                      'attr'          =>  array('class' => 'input-small'),
-                      'autoclose'     =>  is_null($options['autoclose']) ? $defaults['autoclose']    : $options['autoclose'],
-                      'format'        =>  is_null($options['format'])    ? $defaults['html5_format'] : $options['format'],
-                      'prepend'       =>  is_null($options['prepend'])   ? $defaults['prepend_from'] : $options['prepend'],
-                      'required'      =>  is_null($options['required'])  ? $defaults['required']     : $options['required'],
-                      'weekstart'     =>  is_null($options['weekstart']) ? $defaults['weekstart']    : $options['weekstart'],
-                      'years'         =>  is_null($options['years'])     ? $defaults['years']        : $options['years'],
-                  );
-              },
-              'to'          =>    function (Options $options) use ($defaults) {
-                  return array(
-                      'widget'        =>  'datepicker',
-                      'attr'          =>  array('class' => 'input-small'),
-                      'autoclose'     =>  is_null($options['autoclose']) ? $defaults['autoclose']    : $options['autoclose'],
-                      'format'        =>  is_null($options['format'])    ? $defaults['html5_format'] : $options['format'],
-                      'prepend'       =>  is_null($options['prepend'])   ? $defaults['prepend_to']   : $options['prepend'],
-                      'required'      =>  is_null($options['required'])  ? $defaults['required']     : $options['required'],
-                      'weekstart'     =>  is_null($options['weekstart']) ? $defaults['weekstart']    : $options['weekstart'],
-                      'years'         =>  is_null($options['years'])     ? $defaults['years']        : $options['years'],
-                  );
-              },
-          )
+            array(
+                'autoclose'   =>    null,
+                'format'      =>    null,
+                'prepend'     =>    null,
+                'required'    =>    null,
+                'weekstart'   =>    null,
+                'years'       =>    null,
+                'widget'      =>    'datepicker_range',
+                'from'        =>    function (Options $options) use ($defaults) {
+                    return array(
+                        'widget'        =>  'datepicker',
+                        'attr'          =>  array('class' => 'input-small'),
+                        'autoclose'     =>  is_null($options['autoclose']) ? $defaults['autoclose']    : $options['autoclose'],
+                        'format'        =>  is_null($options['format'])    ? $defaults['html5_format'] : $options['format'],
+                        'prepend'       =>  is_null($options['prepend'])   ? $defaults['prepend_from'] : $options['prepend'],
+                        'required'      =>  is_null($options['required'])  ? $defaults['required']     : $options['required'],
+                        'weekstart'     =>  is_null($options['weekstart']) ? $defaults['weekstart']    : $options['weekstart'],
+                        'years'         =>  is_null($options['years'])     ? $defaults['years']        : $options['years'],
+                    );
+                },
+                'to'          =>    function (Options $options) use ($defaults) {
+                    return array(
+                        'widget'        =>  'datepicker',
+                        'attr'          =>  array('class' => 'input-small'),
+                        'autoclose'     =>  is_null($options['autoclose']) ? $defaults['autoclose']    : $options['autoclose'],
+                        'format'        =>  is_null($options['format'])    ? $defaults['html5_format'] : $options['format'],
+                        'prepend'       =>  is_null($options['prepend'])   ? $defaults['prepend_to']   : $options['prepend'],
+                        'required'      =>  is_null($options['required'])  ? $defaults['required']     : $options['required'],
+                        'weekstart'     =>  is_null($options['weekstart']) ? $defaults['weekstart']    : $options['weekstart'],
+                        'years'         =>  is_null($options['years'])     ? $defaults['years']        : $options['years'],
+                    );
+                },
+            )
         );
 
         $resolver->setAllowedValues(
