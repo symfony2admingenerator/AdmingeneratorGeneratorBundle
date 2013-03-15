@@ -5,7 +5,7 @@
     <title>{% block title %}Admin{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {% block scripts_head %}        
+    {% block scripts_head %}
         {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/jquery.min.js'
             'bundles/admingeneratorgenerator/js/jquery-1.8.3.min.js'
         %}
@@ -27,14 +27,14 @@
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
-            
+
         {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/bootstrap-responsive.min.css'
             'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-responsive.css'
             'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-responsive-extended.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
-            
+
         {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/admingenerator-login.min.css'
             'bundles/admingeneratorgenerator/css/admingenerator/general.css'
         %}
@@ -71,9 +71,9 @@
               <ul class="nav pull-right">
                 <li><p class="navbar-text" style="padding-right: 10px;">{{ 'profile.welcome'|trans({'%username%': app.user ? app.user : 'anonymous'}, 'Admingenerator')|raw }}</li>
                 {% if app.user %}
-                  <li><button onclick="document.location='{{ path('fos_user_security_logout') }}'" class="btn " title="{{ 'profile.logout'|trans({}, 'Admingenerator') }}"><i class="icon-off"></i> {{ 'profile.logout'|trans({}, 'Admingenerator') }}</button></li>
+                  <li><button onclick="document.location='{{ path(admingenerator_config('logout_path')) }}'" class="btn " title="{{ 'profile.logout'|trans({}, 'Admingenerator') }}"><i class="icon-off"></i> {{ 'profile.logout'|trans({}, 'Admingenerator') }}</button></li>
                 {% else %}
-                  <li><button onclick="document.location='{{ path('fos_user_security_login') }}'" class="btn " title="{{ 'profile.login'|trans({}, 'Admingenerator') }}">{{ 'profile.login'|trans({}, 'Admingenerator') }}</button></li>
+                  <li><button onclick="document.location='{{ path(admingenerator_config('login_path')) }}'" class="btn " title="{{ 'profile.login'|trans({}, 'Admingenerator') }}">{{ 'profile.login'|trans({}, 'Admingenerator') }}</button></li>
                 {% endif %}
               </ul>
             {% endblock %}
@@ -90,21 +90,21 @@
         <div class="row-fluid">
           <form class="form-horizontal">
             <legend>Login form</legend>
-            
+
             <div class="control-group">
               <label class="control-label" for="username">Username</label>
               <div class="controls">
                 <input type="text" id="username" placeholder="Username">
               </div>
             </div>
-            
+
             <div class="control-group">
               <label class="control-label" for="password">Password</label>
               <div class="controls">
                 <input type="password" id="password" placeholder="Password">
               </div>
             </div>
-            
+
             <div class="form-actions">
               <label class="control-label"><input type="checkbox"> Remember me</label>
               <div class="controls">
@@ -114,7 +114,7 @@
           </form>
         </div><!--/.row-fluid -->
       {% endblock %}
-        
+
       {% block footer %}
       <footer>
         <hr>
@@ -122,7 +122,7 @@
       </footer>
       {% endblock %}
     </div> <!--/.container-fluid -->
-    
+
     {% block javascripts %}
         {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/bootstrap.min.js'
             'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-transition.js'
@@ -144,7 +144,7 @@
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        
+
         {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/jquery.spin.min.js'
             'bundles/admingeneratorgenerator/js/spin/jquery.spin.js'
         %}
