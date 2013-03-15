@@ -49,7 +49,10 @@ admingenerator_generator:
     overwrite_if_exists: false
     base_admin_template: AdmingeneratorGeneratorBundle::base_admin.html.twig
     knp_menu_class: Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder
-    thumbnail_generator:  # null
+    thumbnail_generator: ~
+    dashboard_welcome_path: ~
+    login_path: # required: valid route name
+    logout_path: # required: valid route name
     ## Twig and Templates
     twig:
         use_form_resources: true
