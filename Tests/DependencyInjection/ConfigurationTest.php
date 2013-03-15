@@ -15,10 +15,10 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $processor = new Processor();
         $config = $processor->processConfiguration(
             new Configuration(),
-            array(
+            array(array(
                 'login_path'  => 'required_parameter',
                 'logout_path' => 'required_parameter'
-            )
+            ))
         );
 
         $this->assertEquals($this->getBundleDefaultConfig(), $config);
