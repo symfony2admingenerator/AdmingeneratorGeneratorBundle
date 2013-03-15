@@ -59,36 +59,24 @@ class DatepickerRangeType extends AbstractType
                 return array(
                     'widget'        =>  'datepicker',
                     'attr'          =>  array('class' => 'input-small'),
-                    'autoclose'     =>  is_null($options['autoclose']) ? 
-$defaults['autoclose']    : $options['autoclose'],
-                    'format'        =>  is_null($options['format'])    ? 
-$defaults['html5_format'] : $options['format'],
-                    'prepend'       =>  is_null($options['prepend'])   ? 
-$defaults['prepend_from'] : $options['prepend'],
-                    'required'      =>  is_null($options['required'])  ? 
-$defaults['required']     : $options['required'],
-                    'weekstart'     =>  is_null($options['weekstart']) ? 
-$defaults['weekstart']    : $options['weekstart'],
-                    'years'         =>  is_null($options['years'])     ? $defaults['years']        
-: $options['years'],
+                    'autoclose'     =>  is_null($options['autoclose']) ? $defaults['autoclose']    : $options['autoclose'],
+                    'format'        =>  is_null($options['format'])    ? $defaults['html5_format'] : $options['format'],
+                    'prepend'       =>  is_null($options['prepend'])   ? $defaults['prepend_from'] : $options['prepend'],
+                    'required'      =>  is_null($options['required'])  ? $defaults['required']     : $options['required'],
+                    'weekstart'     =>  is_null($options['weekstart']) ? $defaults['weekstart']    : $options['weekstart'],
+                    'years'         =>  is_null($options['years'])     ? $defaults['years']        : $options['years'],
                 );
             },
-            'to'          =>    function (Options $options) use($defaults) {
+            'to'          =>    function (Options $options) use ($defaults) {
                 return array(
                     'widget'        =>  'datepicker',
                     'attr'          =>  array('class' => 'input-small'),
-                    'autoclose'     =>  is_null($options['autoclose']) ? 
-$defaults['autoclose']    : $options['autoclose'],
-                    'format'        =>  is_null($options['format'])    ? 
-$defaults['html5_format'] : $options['format'],
-                    'prepend'       =>  is_null($options['prepend'])   ? 
-$defaults['prepend_to']   : $options['prepend'],
-                    'required'      =>  is_null($options['required'])  ? 
-$defaults['required']     : $options['required'],
-                    'weekstart'     =>  is_null($options['weekstart']) ? 
-$defaults['weekstart']    : $options['weekstart'],
-                    'years'         =>  is_null($options['years'])     ? $defaults['years']        
-: $options['years'],
+                    'autoclose'     =>  is_null($options['autoclose']) ? $defaults['autoclose']    : $options['autoclose'],
+                    'format'        =>  is_null($options['format'])    ? $defaults['html5_format'] : $options['format'],
+                    'prepend'       =>  is_null($options['prepend'])   ? $defaults['prepend_to']   : $options['prepend'],
+                    'required'      =>  is_null($options['required'])  ? $defaults['required']     : $options['required'],
+                    'weekstart'     =>  is_null($options['weekstart']) ? $defaults['weekstart']    : $options['weekstart'],
+                    'years'         =>  is_null($options['years'])     ? $defaults['years']        : $options['years'],
                 );
             },
         ));
