@@ -87,8 +87,7 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('path')->end()
                     ->scalarNode('media')->defaultValue('all')->end()
                 ->end()
-            ->end()
-            ;
+            ->end();
 
         return $node;
     }
@@ -110,8 +109,7 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-            ->end()
-            ;
+            ->end();
 
         return $node;
     }
