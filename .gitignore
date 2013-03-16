@@ -10,3 +10,4 @@ vendor/twig-generator/
 vendor/twig/
 vendor/doctrine-dbal/
 vendor/doctrine/
+/nbproject/private/
