@@ -12,9 +12,9 @@
             $this->process(${{ builder.ModelClass }});
             $this->postRemove(${{ builder.ModelClass }});
 
-            $this->get('session')->setFlash('success', $this->get('translator')->trans("{{ messages.success is defined ? messages.success : "action.batch.delete.success" }}", array(), 'Admingenerator') );
+            $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans("{{ messages.success is defined ? messages.success : "action.batch.delete.success" }}", array(), 'Admingenerator') );
         } catch (\Exception $e) {
-            $this->get('session')->setFlash('error', $this->get('translator')->trans("{{ messages.error is defined ? messages.error : "action.batch.delete.error" }}", array(), 'Admingenerator') );
+            $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans("{{ messages.error is defined ? messages.error : "action.batch.delete.error" }}", array(), 'Admingenerator') );
             $this->onException($e, ${{ builder.ModelClass }});
         }
 

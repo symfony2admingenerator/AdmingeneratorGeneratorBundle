@@ -9,7 +9,7 @@
 {% block saveObject -%}
     protected function saveObject(\{{ model }} ${{ builder.ModelClass }})
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist(${{ builder.ModelClass }});
         $em->flush();
     }
