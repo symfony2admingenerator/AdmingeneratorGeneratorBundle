@@ -1,0 +1,34 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      {% block logo %}
+          {% set brand_path = (admingenerator_config('dashboard_welcome_path') is not null) ? path(admingenerator_config('dashboard_welcome_path')) : '#' %}
+          <a class="brand" href="{{ brand_path }}">{% block brand_text %}{{ 'dashboard.brand'|trans({}, 'Admingenerator') }}{% endblock %}</a>
+      {% endblock %}
+      <div class="nav-collapse collapse">
+        {% block profile %}
+          <ul class="nav pull-right">
+            <li><p class="navbar-text" style="padding-right: 10px;">{{ 'profile.welcome'|trans({'%username%': app.user ? app.user : 'anonymous'}, 'Admingenerator')|raw }}</li>
+            {% if app.user %}
+              {% if admingenerator_config('logout_path') is not none %}
+                <li><button onclick="document.location='{{ path(admingenerator_config('logout_path')) }}'" class="btn " title="{{ 'profile.logout'|trans({}, 'Admingenerator') }}"><i class="icon-off"></i> {{ 'profile.logout'|trans({}, 'Admingenerator') }}</button></li>
+              {% endif %}
+            {% else %}
+              {% if admingenerator_config('login_path') is not none %}
+                <li><button onclick="document.location='{{ path(admingenerator_config('login_path')) }}'" class="btn " title="{{ 'profile.login'|trans({}, 'Admingenerator') }}">{{ 'profile.login'|trans({}, 'Admingenerator') }}</button></li>
+              {% endif %}
+            {% endif %}
+          </ul>
+        {% endblock %}
+        {% block menu %}
+          {{ knp_menu_render('admin') }}
+        {% endblock %}
+      </div><!--/.nav-collapse -->
+    </div><!--/.container -->
+  </div><!--/.navbar-inner -->
+</div><!--/.navbar -->
