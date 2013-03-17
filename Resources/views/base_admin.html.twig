@@ -5,7 +5,7 @@
     <title>{% block title %}Admin{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {% block scripts_head %}        
+    {% block scripts_head %}
         {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/jquery.min.js'
             'bundles/admingeneratorgenerator/js/jquery-1.8.3.min.js'
         %}
@@ -27,14 +27,14 @@
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
-            
+
         {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/bootstrap-responsive.min.css'
             'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-responsive.css'
             'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-responsive-extended.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
-            
+
         {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/admingenerator.min.css'
             'bundles/admingeneratorgenerator/css/admingenerator/general.css'
             'bundles/admingeneratorgenerator/css/admingenerator/nested-list.css'
@@ -60,36 +60,9 @@
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          {% block logo %}
-              {% set brand_path = (admingenerator_config('dashboard_welcome_path') is not null) ? path(admingenerator_config('dashboard_welcome_path')) : '#' %}
-            <a class="brand" href="{{ brand_path }}">{% block brand_text %}{{ 'dashboard.brand'|trans({}, 'Admingenerator') }}{% endblock %}</a>
-          {% endblock %}
-          <div class="nav-collapse collapse">
-            {% block profile %}
-              <ul class="nav pull-right">
-                <li><p class="navbar-text" style="padding-right: 10px;">{{ 'profile.welcome'|trans({'%username%': app.user ? app.user : 'anonymous'}, 'Admingenerator')|raw }}</li>
-                {% if app.user %}
-                  <li><button onclick="document.location='{{ path('fos_user_security_logout') }}'" class="btn " title="{{ 'profile.logout'|trans({}, 'Admingenerator') }}"><i class="icon-off"></i> {{ 'profile.logout'|trans({}, 'Admingenerator') }}</button></li>
-                {% else %}
-                  <li><button onclick="document.location='{{ path('fos_user_security_login') }}'" class="btn " title="{{ 'profile.login'|trans({}, 'Admingenerator') }}">{{ 'profile.login'|trans({}, 'Admingenerator') }}</button></li>
-                {% endif %}
-              </ul>
-            {% endblock %}
-            {% block menu %}
-              {{ knp_menu_render('admin') }}
-            {% endblock %}
-          </div><!--/.nav-collapse -->
-        </div><!--/.container -->
-      </div><!--/.navbar-inner -->
-    </div><!--/.navbar -->
+    {% block navbar %}
+      {{ include('AdmingeneratorGeneratorBundle::base_admin_navbar') }}
+    {% endblock navbar %}
 
     <div class="container-fluid">
       {% block flashes %}
@@ -109,7 +82,7 @@
         <div class="row-fluid">
         </div><!--/.row-fluid -->
       {% endblock %}
-        
+
       {% block footer %}
       <footer>
         <hr>
@@ -139,7 +112,7 @@
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        
+
         {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/jquery-ui.min.js'
             'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.core.js'
             'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.widget.js'
@@ -149,11 +122,11 @@
             'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.sortable.js'
             'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.effect.js'
             'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.effect-slide.js'
-            
+
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        
+
         {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/blueimp.jquery-file-upload.min.js'
             'bundles/admingeneratorgenerator/js/blueimp/blueimp.javascript-templates.min.js'
             'bundles/admingeneratorgenerator/js/blueimp/blueimp.javascript-load-image.min.js'
@@ -165,7 +138,7 @@
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        
+
         {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/jquery.spin.min.js'
             'bundles/admingeneratorgenerator/js/spin/jquery.spin.js'
         %}
