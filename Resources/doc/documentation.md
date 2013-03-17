@@ -98,7 +98,9 @@ Documentation for new form extensions and types:
 ## 7. Cookbook
 
 1. [Controllers Tips and Tricks][cookbook-1]
+2. [How to use a2lixTranslationFormBundle with AdmingeneratorGeneratorBundle][cookbook-2]
 
 [go up][go-up]
 
 [cookbook-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/controllers.md
+[cookbook-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/a2lixTranslationFormBundle-integration.md
