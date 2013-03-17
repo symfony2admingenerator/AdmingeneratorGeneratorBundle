@@ -43,7 +43,7 @@ And add to your **Edit** and **New** form builders **translations** field.
 
 ```yaml
 ...
- new:
+    new:
         params:
             title: Title
             display: [title, description,translations]
@@ -94,7 +94,7 @@ And add to your **Edit** and **New** form builders **translations** field.
 
 ```yaml
 ...
- new:
+    new:
         params:
             title: Title
             display: [title, description,translations]
@@ -111,6 +111,76 @@ And add to your **Edit** and **New** form builders **translations** field.
                 delete: ~
 ```
 
-##### 2.4. Result
+##### 2.4. Full  configuration
+
+```yaml
+generator: admingenerator.generator.doctrine
+params:
+    model: Acme\DemoBundle\Entity\YourModel
+    namespace_prefix: YourPrefix
+    bundle_name: DemoBundle
+    fields:  
+      translations:
+        formType: a2lix_translations
+        addFormOptions:
+         locales: [en, pl]
+         required: false
+         fields: 
+           title:
+             locale_options:
+               en: 
+                 label : Name
+               pl:
+                 label : Nazwa
+           description:
+             locale_options:
+               en: 
+                 label : Descripcion
+               pl:
+                 label : Opis  
+    stylesheets:
+    - bundles/a2lixtranslationform/css/a2lix_translation.css
+    javascripts:
+    - /bundles/a2lixtranslationform/js/a2lix_translation.js
+builders:
+    list:
+        params:
+            title: Title
+            display: [title]
+            actions:
+                new: ~
+            object_actions:
+                edit: ~
+                delete: ~
+                show: ~
+    filters:
+        params:
+            display: ~
+    new:
+        params:
+            title: New
+            display: [title, description,translations]
+            actions:
+                save: ~
+                list: ~
+    edit:
+        params:
+            title: "Edit \"%object%\"|{ %object%: YourModel.title }|"
+            display: [title, description, translations]
+            actions:
+                save: ~
+                list: ~
+                delete: ~
+    show:
+        params:
+            title: "Show  \"%object%\"|{ %object%: YourModel.title }|"
+            display: [title, description]
+            actions:
+                list: ~
+                new: ~
+    delete: ~
+```
+
+##### 2.5. Result
 
 ![i18n form](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/images/a2lix-integrations.png)
