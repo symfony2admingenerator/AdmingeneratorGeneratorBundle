@@ -15,7 +15,7 @@
     protected function buildQuery()
     {
         return $this->getDoctrine()
-                    ->getEntityManager()
+                    ->getManager()
                     ->getRepository('{{ model }}')
                     ->getChildrenQueryBuilder()
                     ->add('orderBy', 'node.root ASC, node.lft ASC')
@@ -39,7 +39,7 @@
             {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
 
         if (isset($filters['{{ filter }}'])) {
-            $this->getDoctrine()->getEntityManager()->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array('id' => $filters['{{ filter }}']->getId()), array());
+            $this->getDoctrine()->getManager()->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array('id' => $filters['{{ filter }}']->getId()), array());
         }
 
             {%- endif %}

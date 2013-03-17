@@ -3,7 +3,7 @@
     protected function getObject($pk)
     {
         ${{ builder.ModelClass }} = $this->getDoctrine()
-             ->getEntityManager()
+             ->getManager()
              ->getRepository('{{ model }}')
              ->find($pk);
 
@@ -16,7 +16,7 @@
 
     protected function process(\{{ model }} ${{ builder.ModelClass }})
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->remove(${{ builder.ModelClass }});
         $em->flush();
         $em->clear();

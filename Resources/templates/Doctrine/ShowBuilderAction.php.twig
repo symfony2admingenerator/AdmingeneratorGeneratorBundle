@@ -3,7 +3,7 @@
     protected function getObject($pk)
     {
         return $this->getDoctrine()
-                    ->getEntityManager()
+                    ->getManager()
                     ->getRepository('{{ model }}')
                     ->find($pk);
     }
