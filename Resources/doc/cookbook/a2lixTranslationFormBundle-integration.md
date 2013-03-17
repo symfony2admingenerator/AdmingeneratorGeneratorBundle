@@ -5,17 +5,19 @@
 
 [back-to-index]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#7-cookbook
 
- `a2lixTranslationFormBundle` give you possibility to easily manage the translatable fields of your entity with a new form type: 'a2lix_translations'.
+ `a2lixTranslationFormBundle` allows you to easily manage translatable fields of your entity with a new form type: 'a2lix_translations'.
 
 ### 1. `a2lixTranslationFormBundle` Installation & Configuration
 
-You can find documentation and example how to make fields translatable in [bundle github page][a2lix-readme] .
+You can find documentation and example how to make fields translatable in [bundle github page][a2lix-readme].
 [a2lix-readme]: https://github.com/a2lix/TranslationFormBundle
 
-### 2. Integration withs `AdmingeneratorGeneratorBundle`
+### 2. Integration with `AdmingeneratorGeneratorBundle`
 
 ##### 2.1. stylesheets and javascripts
-First you  must connect bundle stylesheets and javascripts. In your `YourBundleNameBundle/Resources/config/yourPrefix-generator.yml` :
+
+First you  must add bundle stylesheets and javascripts. 
+In your `YourBundleNameBundle/Resources/config/yourPrefix-generator.yml`:
 
 ```yaml
 ...
@@ -26,9 +28,9 @@ First you  must connect bundle stylesheets and javascripts. In your `YourBundleN
 ...
 ```
 
-##### 2.2. Minimal forrn configurations
+##### 2.2. Minimal form configuration
 
- In your `YourBundleNameBundle/Resources/config/yourPrefix-generator.yml`
+In your `YourBundleNameBundle/Resources/config/yourPrefix-generator.yml`
 
 
 ```yaml
@@ -46,7 +48,7 @@ And add to your **Edit** and **New** form builders **translations** field.
     new:
         params:
             title: Title
-            display: [title, description,translations]
+            display: [title, description, translations]
             actions:
                 save: ~
                 list: ~
@@ -60,7 +62,7 @@ And add to your **Edit** and **New** form builders **translations** field.
                 delete: ~
 ```
 
-##### 2.3. Advanced forrn configurations
+##### 2.3. Advanced form configuration
 
 ```yaml
 ...
@@ -73,7 +75,7 @@ And add to your **Edit** and **New** form builders **translations** field.
          fields: 
            title:
              label : name
-             **OTHER_OPTIONS**       
+             ## OTHER_OPTIONS ##
              locale_options:
                en: 
                  label : Name
@@ -81,7 +83,7 @@ And add to your **Edit** and **New** form builders **translations** field.
                  label : Nazwa
            description:
              type: textarea
-             **OTHER_OPTIONS** 
+             ## OTHER_OPTIONS ##
              locale_options:
                en: 
                  label : Descripcion
@@ -97,7 +99,7 @@ And add to your **Edit** and **New** form builders **translations** field.
     new:
         params:
             title: Title
-            display: [title, description,translations]
+            display: [title, description, translations]
             actions:
                 save: ~
                 list: ~
@@ -159,7 +161,7 @@ builders:
     new:
         params:
             title: New
-            display: [title, description,translations]
+            display: [title, description, translations]
             actions:
                 save: ~
                 list: ~
