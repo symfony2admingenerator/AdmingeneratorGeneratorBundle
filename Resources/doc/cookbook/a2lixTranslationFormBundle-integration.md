@@ -183,4 +183,4 @@ builders:
 
 ##### 2.5. Result
 
-![i18n form](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/images/a2lix-integrations.png)
+![i18n form](https://raw.github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/master/Resources/doc/cookbook/images/a2lix-integrations.png)
