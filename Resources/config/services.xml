@@ -113,7 +113,6 @@
 
         <!-- Admin Menu -->
         <service id="admingenerator.menu_builder" class="%admingenerator.menu_builder.class%">
-            <tag name="knp_menu.menu" alias="admin" />
             <argument type="service" id="knp_menu.factory" />
             <call method="setContainer">
                     <argument type="service" id="service_container" />
@@ -130,7 +129,6 @@
 
         <!-- Dashboard Menu -->
         <service id="admingenerator.menu_builder.dashboard" class="%admingenerator.menu_builder.class%">
-            <tag name="knp_menu.menu" alias="dashboard" />
             <argument type="service" id="knp_menu.factory" />
             <call method="setContainer">
                     <argument type="service" id="service_container" />
