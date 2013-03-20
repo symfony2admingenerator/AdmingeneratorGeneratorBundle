@@ -267,7 +267,7 @@ class PropelORMFieldGuesser
             return $this->cache[$class.'::'.$property] = $table->getColumn($property);
         } else {
             foreach ($table->getColumns() as $column) {
-                if (Inflector::tableize($column->getPhpName()) === $property) {
+                if (Inflector::tableize($column->getPhpName()) === $property || $column->getPhpName() === ucfirst($property)) {
                     return $this->cache[$class.'::'.$property] = $column;
                 }
             }
