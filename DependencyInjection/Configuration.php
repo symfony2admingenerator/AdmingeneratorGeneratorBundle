@@ -33,6 +33,8 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue("AdmingeneratorGeneratorBundle::base_admin.html.twig")
                 ->end()
                 ->scalarNode('dashboard_welcome_path')->defaultNull()->end()
+                ->scalarNode('logout_path')->defaultNull()->end()
+                ->scalarNode('login_path')->defaultNull()->end()
                 ->scalarNode('knp_menu_class')
                     ->defaultValue("Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder")
                 ->end()
@@ -79,8 +81,7 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('path')->end()
                     ->scalarNode('media')->defaultValue('all')->end()
                 ->end()
-            ->end()
-            ;
+            ->end();
 
         return $node;
     }
@@ -102,8 +103,7 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-            ->end()
-            ;
+            ->end();
 
         return $node;
     }

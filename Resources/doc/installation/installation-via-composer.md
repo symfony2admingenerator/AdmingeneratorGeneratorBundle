@@ -86,8 +86,9 @@ If you're useing assetic for asset management dump your assets by running:
 
 `php app/console assetic:dump`
 
-### 5. (Optional) Specify dashboard route
+### 5. Specify routes
 
+#### Dashboard route (Optional)
 By default brand text ("Dashboard") is disabled. To link it with your Dashboard 
 add `dashboard_welcome_path` under `admingenerator_generator` in your `app/config/config.yml`:
 

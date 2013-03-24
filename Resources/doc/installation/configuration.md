@@ -26,15 +26,23 @@ admingenerator_generator:
 
 `use_form_resources`
 
-By default, `AdmingeneratorGeneratorBundle` adds its own form theme to your application based on files `AdmingeneratorGeneratorBundle:Form:fields.html.twig` and `AdmingeneratorGeneratorBundle:Form:widgets.html.twig`. Depending on value of `admingenerator_generator.twig.use_form_resources` parameter and `twig.form.resources` one, you can modify this behavior:
+By default, `AdmingeneratorGeneratorBundle` adds its own form theme to your application based on files 
+`AdmingeneratorGeneratorBundle:Form:fields.html.twig` and `AdmingeneratorGeneratorBundle:Form:widgets.html.twig`. 
+Depending on value of `admingenerator_generator.twig.use_form_resources` parameter and `twig.form.resources` one, 
+you can modify this behavior:
 
-* if `admingenerator_generator.twig.use_form_resources` is false, nothing will be change to `twig.form.resources` value;
-* if `admingenerator_generator.twig.use_form_resources` is true and `twig.form.resources` doesn't contain `AdmingeneratorGeneratorBundle:Form:fields.html.twig`, resources `AdmingeneratorGeneratorBundle:Form:fields.html.twig` and `AdmingeneratorGeneratorBundle:Form:widgets.html.twig` are added into `twig.form.resources` right after `form_div_layout.html.twig`. If `form_div_layout.html.twig` is not in `twig.form.resources` values are unshifted;
-* if `AdmingeneratorGeneratorBundle:Form:fields.html.twig` is already in `twig.form.resources` nothing will be change;
+* if `admingenerator_generator.twig.use_form_resources` is false, nothing will be changed to `twig.form.resources` value;
+* if `admingenerator_generator.twig.use_form_resources` is true and `twig.form.resources` doesn't contain 
+`AdmingeneratorGeneratorBundle:Form:fields.html.twig`, resources `AdmingeneratorGeneratorBundle:Form:fields.html.twig` 
+and `AdmingeneratorGeneratorBundle:Form:widgets.html.twig` will be into `twig.form.resources` right after 
+`form_div_layout.html.twig`. If `form_div_layout.html.twig` is not in `twig.form.resources` values will be unshifted;
+* if `AdmingeneratorGeneratorBundle:Form:fields.html.twig` is already in `twig.form.resources` nothing will be changed;
 
-This permits you to control how `AdmingeneratorGeneratorBundle` modify form theming in your application. If you want to use another bundle for form theming (like `MopaBoostrapBundle`) you should probably define this parameter as false.
+This permits you to control how `AdmingeneratorGeneratorBundle` modify form theming in your application. If you want to 
+use another bundle for form theming (like `MopaBoostrapBundle`) you should probably define this parameter as false.
 
-> **Note:** take care that if you are in this case, don't forget to add `AdmingeneratorGeneratorBundle:Form:widgets.html.twig` if you don't provide your own implementation.
+> **Note:** take care that if you are in this case, don't forget to add `AdmingeneratorGeneratorBundle:Form:widgets.html.twig` 
+if you don't provide your own implementation.
 
 *To complete*
 
@@ -49,7 +57,10 @@ admingenerator_generator:
     overwrite_if_exists: false
     base_admin_template: AdmingeneratorGeneratorBundle::base_admin.html.twig
     knp_menu_class: Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder
-    thumbnail_generator:  # null
+    thumbnail_generator: ~
+    dashboard_welcome_path: ~
+    login_path: ~
+    logout_path: ~
     ## Twig and Templates
     twig:
         use_form_resources: true

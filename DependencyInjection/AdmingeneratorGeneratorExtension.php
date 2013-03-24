@@ -47,6 +47,8 @@ class AdmingeneratorGeneratorExtension extends Extension
         $container->setParameter('admingenerator.overwrite_if_exists', $config['overwrite_if_exists']);
         $container->setParameter('admingenerator.base_admin_template', $config['base_admin_template']);
         $container->setParameter('admingenerator.dashboard_welcome_path', $config['dashboard_welcome_path']);
+        $container->setParameter('admingenerator.login_path', $config['login_path']);
+        $container->setParameter('admingenerator.logout_path', $config['logout_path']);
         $container->setParameter('admingenerator.menu_builder.class', $config['knp_menu_class']);
         $container->setParameter('admingenerator.stylesheets', $config['stylesheets']);
         $container->setParameter('admingenerator.javascripts', $config['javascripts']);
