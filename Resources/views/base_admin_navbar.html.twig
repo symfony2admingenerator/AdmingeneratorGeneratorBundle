@@ -1,11 +1,6 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
       {% block logo %}
           {% set brand_path = (admingenerator_config('dashboard_welcome_path') is not null) ? path(admingenerator_config('dashboard_welcome_path')) : '#' %}
           <a class="brand" href="{{ brand_path }}">{% block brand_text %}{{ 'dashboard.brand'|trans({}, 'Admingenerator') }}{% endblock %}</a>
