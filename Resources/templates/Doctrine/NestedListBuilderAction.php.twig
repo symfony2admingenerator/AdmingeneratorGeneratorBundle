@@ -18,7 +18,6 @@
                     ->getManager()
                     ->getRepository('{{ model }}')
                     ->getChildrenQueryBuilder()
-                    ->add('orderBy', 'node.root ASC, node.lft ASC')
                     ->getQuery();
     }
     
