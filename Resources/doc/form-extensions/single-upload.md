@@ -37,6 +37,7 @@ cover:
   dbType:           string
   addFormOptions:
     nameable:       coverLabel
+    data_class:     Symfony\Component\HttpFoundation\File\File
 ```
 
 ### 4. Options
