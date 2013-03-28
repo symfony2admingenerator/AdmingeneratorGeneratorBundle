@@ -103,36 +103,36 @@ class Image implements FileInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $name;  // used for nameable option
+    protected $name;          // used for nameable option
     
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $description;  // simple editable field
+    protected $description;   // simple editable field
 
     /**
      * @Vich\UploadableField(mapping="product_image", fileNameProperty="path")
      */
-    protected $file; // file container
+    protected $file;          // file container
     
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $path; // used to store file path
+    protected $path;          // used to store file path
     
     /**
      * @Gedmo\SortableGroup
-     * @ORM\ManyToOne(targetEntity="Product", inversedBy="images")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Album", inversedBy="images")
+     * @ORM\JoinColumn(name="album_id", referencedColumnName="id")
      */
-    protected $product;   // here i want to group images per related product, 
-                          // so i use product's ID as unique sortable group
+    protected $album;         // here i want to group images per related gallery album, 
+                              // so i use album's ID as unique sortable group
 
     /**
      * @Gedmo\SortablePosition
      * @ORM\Column(name="position", type="integer")
      */
-    protected $position;  // used to store sortable position
+    protected $position;      // used to store sortable position
     
     // ...
 ```
