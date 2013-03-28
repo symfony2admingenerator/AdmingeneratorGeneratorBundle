@@ -15,11 +15,18 @@ knp_menu:
         template: AdmingeneratorGeneratorBundle:KnpMenu:knp_menu_trans.html.twig
 ```
 
-This is necessary because this template enables
+This is necessary because this template enables:
 
 * prepending menu items with icons
 * appending caret to dropdown menu items
 * translation of menu item labels
+
+
+Then change file namespace so that it will reflect the current location of the file. Your menu class must extends AdmingeneratorMenuBuilder so you must add next line to your file.
+
+```php
+use Admingenerator\GeneratorBundle\Menu\AdmingeneratorMenuBuilder;
+```
 
 ### 2. Installation 
 
@@ -114,9 +121,9 @@ And **full configuration** :
 
     $this->addNavHeader($menu, 'Group 1');
     $this->addNavLinkRoute($menu, 'Item1', 'Your_routeName')->setExtra('icon', 'icon-list');
-    $this->addNavLinkRoute($menu, 'Item2', 'Bastion_BackendRoomBundle_Room_list')->setExtra('icon', 'icon-bullhorn');
-    $this->addNavLinkRoute($menu, 'Item3', 'Bastion_BackendEventBundle_Event_list')->setExtra('icon', 'icon-filter');
-    $this->addNavLinkRoute($menu, 'Item4', 'Bastion_BackendUserEventBundle_UserEvent_list')->setExtra('icon', 'icon-th-large');
+    $this->addNavLinkRoute($menu, 'Item2', 'Your_routeName')->setExtra('icon', 'icon-bullhorn');
+    $this->addNavLinkRoute($menu, 'Item3', 'Your_routeName')->setExtra('icon', 'icon-filter');
+    $this->addNavLinkRoute($menu, 'Item4', 'Your_routeName')->setExtra('icon', 'icon-th-large');
     return $menu;
 }
 ```
