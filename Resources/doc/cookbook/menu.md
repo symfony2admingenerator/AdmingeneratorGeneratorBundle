@@ -31,7 +31,7 @@ use Admingenerator\GeneratorBundle\Menu\AdmingeneratorMenuBuilder;
 
 ### 2. Installation
 
-In `/vendor/cedriclombardot/admingenerator-generator-bundle/Admingenerator/GeneratorBundle/Menu` you can find  `DefaultMenuBuilder.php` . You must copy this file to your bundle and specify it in `/src/app/config/config.yml` :
+In `/vendor/cedriclombardot/admingenerator-generator-bundle/Admingenerator/GeneratorBundle/Menu` you can find  `DefaultMenuBuilder.php` . You must copy this file to your bundle and specify it in `app/config/config.yml` :
 ```yaml
 admingenerator_generator:
   knp_menu_class: Acme\YourBundleName\Menu\DefaultMenuBuilder
@@ -128,7 +128,7 @@ class DashboardController extends Controller
 {% endblock %}
 ```
 
-* Add a new route corresponding to the controller in `/src/config/routing.yml`
+* Add a new route corresponding to the controller in `app/config/routing.yml`
 
 ```yaml
 dashboard_welcome:
@@ -136,7 +136,7 @@ dashboard_welcome:
     defaults: { _controller: AcmeMyDashboardBundle:Dashboard:welcome}
 ```
 
-* Add the new route to the configuration of the Admingenerator so that it will use it as a branding link. This change takes place in `/src/config/config.yml`
+* Add the new route to the configuration of the Admingenerator so that it will use it as a branding link. This change takes place in `app/config/config.yml`
 
 ```yaml
 admingenerator_generator:
