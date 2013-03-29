@@ -15,13 +15,15 @@ knp_menu:
         template: AdmingeneratorGeneratorBundle:KnpMenu:knp_menu_trans.html.twig
 ```
 
-This step is necessary as the template enables:
+This step introduces the following template features: 
 
 * prepending menu items with icons
 * appending caret to dropdown menu items
 * translation of menu item labels
 
-Then change file namespace so that it will reflect the current location of the file. Your menu class extends AdmingeneratorMenuBuilder so you need to add the following line to your file:
+Change the file namespace so that it will reflect the current location of the file.
+
+Your menu class extends AdmingeneratorMenuBuilder so you will also need to add the following line to your file:
 
 ```php
 use Admingenerator\GeneratorBundle\Menu\AdmingeneratorMenuBuilder;
@@ -29,7 +31,7 @@ use Admingenerator\GeneratorBundle\Menu\AdmingeneratorMenuBuilder;
 
 ### 2. Installation
 
-In `/vendor/cedriclombardot/admingenerator-generator-bundle/Admingenerator/GeneratorBundle/Menu` you can find  **DefaultMenuBuilder.php** . You must copy this file in your bundle and in your `config.yml` :
+In `/vendor/cedriclombardot/admingenerator-generator-bundle/Admingenerator/GeneratorBundle/Menu` you can find  `DefaultMenuBuilder.php` . You must copy this file in your bundle and in your `config.yml` :
 ```yaml
 admingenerator_generator:
   knp_menu_class: Acme\YourBundleName\Menu\DefaultMenuBuilder
@@ -39,20 +41,20 @@ admingenerator_generator:
 
 In method `createAdminMenu` you can configure your header menu.
 
-If you want to add an item to menu you just need make:
+If you want to add an item you can do the following:
 
 ```php
 $menu->addChild('News', array('route' => 'Your_RouteName'));
 ```
 
-If you want to create a dropdown menu you just need make:
+This is how you create a dropdown menu: 
 
 ```php
 $dropdownMenu = $this->addDropdownMenu($menu, 'Menu name',true);
 $dropdownMenu->addChild('Item1', array('route' => 'Your_RouteName'));
 $dropdownMenu->addChild('Item2', array('route' => 'Your_RouteName'));
 ```
-You can also add a divider between items in the dropdown menu:
+You can also add a divider between the items:
 
 ```php
 $dropdownMenu = $this->addDropdownMenu($menu, 'Menu name',true);
@@ -83,15 +85,14 @@ public function createAdminMenu(Request $request)
 
 ### 4. Dashboard sidebar menu
 
-There is no longer a default dashboard provided in the bundle. However, it's possible to create your own dashboard and connect it to the dashboard brand link.
+There is no longer a default dashboard provided in the bundle. However, it's possible to create your own dashboard and connect it to the header menu's branding link.
 
-This tutorial shows you how to create and customize your own dashboard with minimum effort.
+This is an example how to create and customize your own dashboard with minimum effort.
 
 * Create a new bundle named `MyDashboardBundle`
-* Create a new controller `DashboardController` and a corresponding action `welcome` as follows: 
+* Create a new controller `DashboardController` and an action called `welcome` as follows: 
 
 ```php
-
 // src/Acme/MyDashboardBundle/Controller/DashboardController.php
 <?php
 
@@ -108,7 +109,7 @@ class DashboardController extends Controller
 }
 ```
 
-* Create a new template for the action defined in `src/AcmeMyDashBoardBundle/views/Dashboard/welcome.html.twig`. You might need to replace `extends('AdmingeneratorGeneratorBundle::base_admin_assetic_less.html.twig')` with `extends('AdmingeneratorGeneratorBundle::base_admin.html.twig')` when you want to use the Assetic-aware configuration.
+* Create a new TWIG template for the action in `src/AcmeMyDashboardBundle/views/Dashboard/welcome.html.twig`. You might need to replace `extends('AdmingeneratorGeneratorBundle::base_admin_assetic_less.html.twig')` with `extends('AdmingeneratorGeneratorBundle::base_admin.html.twig')` in the following code snippet when you want to use the Assetic-aware configuration 
 
 ```php
 {% extends('AdmingeneratorGeneratorBundle::base_admin_assetic_less.html.twig') %}
@@ -132,24 +133,31 @@ class DashboardController extends Controller
 ```yaml
 dashboard_welcome:
     pattern:  /dashboard
-    defaults: { _controller: battikaLocationBundle:Dashboard:welcome}
+    defaults: { _controller: AcmeMyDashboardBundle:Dashboard:welcome}
 ```
 
-* In the file called `DefaultMenuBuilder.php` created at the previous step you can edit the method called `createDashboardMenu` to customize your dashboard menu as follows.
+* Add the new route to the configuration of the Admingenerator so that it will use it as a branding link. This change takes place in `/src/config/config.yml`
 
-For add menu header just make:
+```yaml
+admingenerator_generator:
+    dashboard_welcome_path: dashboard_welcome
+```
+
+* In the previously created file called `DefaultMenuBuilder.php` edit the method called `createDashboardMenu` to customize your dashboard menu as follows
+
+This is how you add a menu group to the dashboard:
 
 ```php
 $this->addNavHeader($menu, 'Group 1');
 ```
 
-And  parent elements:
+Here is how you add a clickable element:
 
 ```php
 $this->addNavLinkRoute($menu, 'Item1', 'Your_routeName');
 ```
 
-You can add icon near menu item:
+You can also add icon next to the menu item:
 
 ```php
 $this->addNavLinkRoute($menu, 'Item1', 'Your_routeName')->setExtra('icon', 'icon-list');
