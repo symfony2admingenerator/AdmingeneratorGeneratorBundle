@@ -126,6 +126,15 @@ class DashboardController extends Controller
 </div><!--/row-->
 {% endblock %}
 ```
+
+* Add a new route corresponding to the controller in `/src/config/routing.yml`
+
+```yaml
+dashboard_welcome:
+    pattern:  /dashboard
+    defaults: { _controller: battikaLocationBundle:Dashboard:welcome}
+```
+
 * In the file called `DefaultMenuBuilder.php` created at the previous step you can edit the method called `createDashboardMenu` to customize your dashboard menu as follows.
 
 For add menu header just make:
