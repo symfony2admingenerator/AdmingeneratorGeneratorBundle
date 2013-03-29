@@ -23,7 +23,7 @@ This step introduces the following template features:
 
 Change the file namespace so that it will reflect the current location of the file.
 
-Your menu class extends AdmingeneratorMenuBuilder so you will also need to add the following line to your file:
+Your menu class extends AdmingeneratorMenuBuilder so you will also need to add the following line:
 
 ```php
 use Admingenerator\GeneratorBundle\Menu\AdmingeneratorMenuBuilder;
@@ -31,7 +31,7 @@ use Admingenerator\GeneratorBundle\Menu\AdmingeneratorMenuBuilder;
 
 ### 2. Installation
 
-In `/vendor/cedriclombardot/admingenerator-generator-bundle/Admingenerator/GeneratorBundle/Menu` you can find  `DefaultMenuBuilder.php` . You must copy this file in your bundle and in your `config.yml` :
+In `/vendor/cedriclombardot/admingenerator-generator-bundle/Admingenerator/GeneratorBundle/Menu` you can find  `DefaultMenuBuilder.php` . You must copy this file to your bundle and specify it in `/src/app/config/config.yml` :
 ```yaml
 admingenerator_generator:
   knp_menu_class: Acme\YourBundleName\Menu\DefaultMenuBuilder
@@ -39,7 +39,7 @@ admingenerator_generator:
 
 ### 3. Header menu
 
-In method `createAdminMenu` you can configure your header menu.
+You can configure your header menu in the `createAdminMenu` method.
 
 If you want to add an item you can do the following:
 
@@ -181,3 +181,5 @@ $this->addNavLinkRoute($menu, 'Item1', 'Your_routeName')->setExtra('icon', 'icon
     return $menu;
 }
 ```
+
+...And that's really it! Enjoy your customized menu structure and your dashboard!
