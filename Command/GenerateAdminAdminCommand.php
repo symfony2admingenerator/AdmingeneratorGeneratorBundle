@@ -160,7 +160,7 @@ EOT
         $dialog->writeGeneratorSummary($output, $errors);
     }
 
-    protected function getGenerator()
+    protected function createGenerator()
     {
         return new BundleGenerator($this->getContainer()->get('filesystem'), __DIR__.'/../Resources/skeleton/bundle');
     }
