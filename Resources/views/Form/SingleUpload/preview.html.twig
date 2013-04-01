@@ -4,7 +4,7 @@
 {% set entity = form.parent.vars.value %}
 {% set property = form.vars.name %}
 
-<div class="{{ id ~ '_preview_image' }} download active">    
+<div class="{{ id ~ '_preview_image' }} download active">
 {% if file|default is not empty %}
     {% if previewImages and downloadType == 'image' %}
         {% if thumbnailGenerator is sameas('avalanche') and thumbnailFilter %}
@@ -12,7 +12,7 @@
         {% else %}
             {% set src = vich_uploader_asset(entity, property) %}
         {% endif %}
-        <img class="img-polaroid" 
+        <img class="img-polaroid"
              src="{{ src }}"
              style="{{- 'max-width:'  ~ maxWidth   ~'px;' -}}
                     {{- 'max-height:' ~ maxHeight  ~'px;' -}}

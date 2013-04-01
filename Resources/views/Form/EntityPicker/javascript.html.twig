@@ -9,7 +9,7 @@
         $('#{{ id ~ '_typeahead' }}').typeahead({
             source: function() {
                 var data = this.$element.data('source');
-                
+
                 {% if form.parent.vars.prototype is defined %}
                     return $(data).filter(function(index, item) {
                         var values = [];
@@ -42,7 +42,7 @@
 
                 return beginswith.concat(caseSensitive, caseInsensitive)
             },
-            highlighter: function (item) {           
+            highlighter: function (item) {
                 var query = this.query.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, '\\$&')
                 var heading = {{ matcher|raw }}.replace(new RegExp('(' + query + ')', 'ig'), function ($1, match) {
                     return '<strong>' + match + '</strong>'
@@ -50,7 +50,7 @@
 
                 var builder = $('<div></div>').addClass('clearfix');
 
-                {% if thumb.src %}                    
+                {% if thumb.src %}
                 var thumb = $('<div></div>').addClass('pull-left')
                     .append($('<img>').addClass('img-polaroid img-rounded')
                     .attr('src', ({{ thumb.src|raw }}))
@@ -61,7 +61,7 @@
                 {% endif %}
 
                 var text = $('<div></div>').addClass('pull-left').append(
-                  $('<blockquote></blockquote>')                 
+                  $('<blockquote></blockquote>')
                       .append($('<p></p>').html(heading))
                       {% for line in description %}
                       .append($('<div></div>')
@@ -70,7 +70,7 @@
                           .html({{ line.content|raw }}))
                       )
                       {% endfor %}
-                );                    
+                );
                 builder.append(text);
 
                 return builder;
@@ -89,7 +89,7 @@
                 return {{ identifier }};
             }
         });
-        
+
         {% if value is defined and value|length > 0 %}
             var data = $('#{{ id ~ '_typeahead' }}').data('source');
             var item = $.grep(data, function(item){

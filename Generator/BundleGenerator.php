@@ -46,8 +46,7 @@ class BundleGenerator extends BaseBundleGenerator
 
         // Retrieves model folder depending of chosen ORM
         $modelFolder = '';
-        switch($generator)
-        {
+        switch ($generator) {
           case 'propel':
             $modelFolder = 'Model';
             break;

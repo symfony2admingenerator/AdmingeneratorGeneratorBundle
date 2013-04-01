@@ -4,8 +4,6 @@ namespace Admingenerator\GeneratorBundle\Form\EventListener;
 
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class SingleUploadNamerListener implements EventSubscriberInterface
@@ -14,7 +12,7 @@ class SingleUploadNamerListener implements EventSubscriberInterface
      * @var string Property edited with SingleUploadType
      */
     protected $propertyName;
-    
+
     /**
      * @var string Nameable property
      */
@@ -24,27 +22,26 @@ class SingleUploadNamerListener implements EventSubscriberInterface
      * @var string Used to revert changes if form is not valid.
      */
     protected $originalName;
-    
+
     /**
      * @var string Captured name
      */
     protected $capturedName;
-    
+
     /**
      * @var bool True if deletable behavior is enabled
      */
     protected $deleteable;
-    
+
     /**
      * @var bool True if delete was clicked
      */
     protected $deleteFlag;
-    
+
     /**
      * @var bool Used to revert changes if form is not valid.
      */
     protected $originalFile;
-
 
     public function __construct($propertyName, $nameable, $deleteable)
     {
@@ -66,35 +63,36 @@ class SingleUploadNamerListener implements EventSubscriberInterface
     public function preBind(FormEvent $event)
     {
         $data = $event->getData();
-        
-        if($this->nameable && array_key_exists($this->propertyName.'_nameable', $data)) {
+
+        if ($this->nameable && array_key_exists($this->propertyName.'_nameable', $data)) {
             // capture name and store it for onBind event
             $this->capturedName = $data[$this->propertyName.'_nameable'];
 
             // unset additional form data to prevent errors
             unset($data[$this->propertyName.'_nameable']);
         }
-        
-        if ($this->deleteable && array_key_exists($this->propertyName.'_delete', $data)) { 
+
+        if ($this->deleteable && array_key_exists($this->propertyName.'_delete', $data)) {
             // capture delete flag and store it for onBind event
-            $this->deleteFlag = $data[$this->propertyName.'_delete']; 
+            $this->deleteFlag = $data[$this->propertyName.'_delete'];
             // unset additional form data to prevent errors
             unset($data[$this->propertyName.'_delete']);
         }
-        
+
         $event->setData($data);
     }
-    
-    public function onBind(FormEvent $event) {
+
+    public function onBind(FormEvent $event)
+    {
         $data = $event->getData();
-        
-        if($this->nameable) {
+
+        if ($this->nameable) {
             $getterName = 'get'.ucfirst($this->nameable);
             $setterName = 'set'.ucfirst($this->nameable);
-            
+
             // save original name for postBind event
             $this->originalName = $data->$getterName();
-            
+
             // set new name
             $data->$setterName($this->capturedName);
         }
@@ -106,14 +104,14 @@ class SingleUploadNamerListener implements EventSubscriberInterface
     {
         $form = $event->getForm();
         $data = $event->getData();
-        
-        if(!$form->isValid()) {     
-            if($this->nameable) {
+
+        if (!$form->isValid()) {
+            if ($this->nameable) {
                 // revert to original name
-                $setter = 'set'.ucfirst($this->nameable);    
+                $setter = 'set'.ucfirst($this->nameable);
                 $data->$setter($this->originalName);
             }
-            
+
             $event->setData($data);
         }
     }

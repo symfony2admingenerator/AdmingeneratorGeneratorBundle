@@ -4,13 +4,13 @@
     <ul class="form_tabs nav nav-tabs">
         {% for name, tab in tabs %}
             <li data-name="{{ name|classify|replace({'.': '_'}) }}">
-              <a data-toggle="tab" href="#" onclick="showFieldsetsForTab('{{ name|classify|replace({'.': '_'}) }}')" 
+              <a data-toggle="tab" href="#" onclick="showFieldsetsForTab('{{ name|classify|replace({'.': '_'}) }}')"
                  data-display="{%- for fieldsetName, fieldset in tab -%}
                 {{ fieldsetName|classify|replace({'.': '_'}) }} {% endfor %}">{{ echo_trans(name,{}, i18n_catalog is defined ? i18n_catalog : "Admin" ) }}</a>
             </li>
         {% endfor %}
     </ul>
-    <script type="text/javascript" src="{{ echo_twig("asset('bundles/admingeneratorgenerator/js/admingenerator/tabs.js')") }}"></script>        
+    <script type="text/javascript" src="{{ echo_twig("asset('bundles/admingeneratorgenerator/js/admingenerator/tabs.js')") }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             {% for name in tabs|keys %}

@@ -4,9 +4,9 @@
     {% set file = form.vars.data %}
     <div class="row-fluid">
         <label>{{ 'singleupload.display.name'|trans({}, 'Admingenerator') }}</label>
-        <input type="text" 
+        <input type="text"
                id="{{ id ~ '_nameable' }}" value="{{ value }}"
-               name="{{ form.parent.vars.full_name ~ '['~name~'_nameable]' }}" 
+               name="{{ form.parent.vars.full_name ~ '['~name~'_nameable]' }}"
                {% if file|default is empty %}disabled="disabled"{% endif %} />
     </div>
 {% endif %}

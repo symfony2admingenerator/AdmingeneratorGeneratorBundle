@@ -22,22 +22,22 @@ class BootstrapCollectionTypeExtension extends AbstractTypeExtension
         $view->vars['widget']           = $form->getConfig()->getAttribute('widget');
         $view->vars['sortable']         = $form->getConfig()->getAttribute('sortable');
         $view->vars['new_label']        = $form->getConfig()->getAttribute('new_label');
-    }    
-    
-    public function setDefaultOptions(OptionsResolverInterface $resolver) {
-      
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
         $resolver->setDefaults(array(
             'widget'            =>  'default',
             'sortable'          =>  null,
             'new_label'         =>  'collection.new_label'
         ));
-        
+
         $resolver->setAllowedTypes(array(
             'widget'            =>  array('string'),
             'sortable'          =>  array('null', 'string'),
             'new_label'         =>  array('string'),
         ));
-        
+
         $resolver->setAllowedValues(array(
             'widget'      =>  array('default', 'fieldset', 'table'),
         ));
@@ -48,4 +48,3 @@ class BootstrapCollectionTypeExtension extends AbstractTypeExtension
         return 'collection';
     }
 }
-?>

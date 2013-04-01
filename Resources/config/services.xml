@@ -59,7 +59,7 @@
             <tag name="pagerfanta.view" alias="admingenerator" />
             <argument type="service" id="translator" />
         </service>
-        
+
         <!-- Validators -->
         <service id="admingenerator.validator.model_class" class="%admingenerator.validator.model_class.class%" public="false">
             <tag name="admingenerator.validator" alias="model_class" />

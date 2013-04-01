@@ -13,7 +13,7 @@ use Doctrine\Common\Util\Inflector;
 class Column
 {
     protected $name;
-    
+
     protected $sortable;
 
     protected $sortOn;

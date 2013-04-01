@@ -16,7 +16,7 @@
     {
         return \{{ model }}Query::create();
     }
-    
+
     protected function getTree()
     {
         return $this->getQuery()->findTree();
@@ -94,14 +94,14 @@
         if(!in_array($action, array('before', 'in', 'after'))) {
             throw new NotFoundHttpException("Unknown action");
         }
-        
+
         $dragged = $this->buildQuery()->findPk($dragged);
         $dropped = $this->buildQuery()->findPk($dropped);
 
         if (!$dragged || !$dropped) {
             throw new NotFoundHttpException("Could not find the nodes");
         }
-        
+
         switch($action) {
           case 'before':
             $dragged->moveToPrevSiblingOf($dropped);
@@ -113,7 +113,7 @@
             $dragged->moveToNextSiblingOf($dropped);
             break;
         }
-        
+
         $dragged->save();
 
         return new Response();

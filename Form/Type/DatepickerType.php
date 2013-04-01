@@ -6,8 +6,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToLocalizedStringTransformer;
-use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer;
-use Symfony\Component\Form\ReversedTransformer;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
@@ -138,13 +136,13 @@ class DatepickerType extends DateType
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         parent::finishView($view, $form, $options);
-            
+
         $view->vars['prepend'] = $options['prepend'];
         $view->vars['format'] = $options['format'];
         $view->vars['weekstart'] = $options['weekstart'];
         $view->vars['autoclose'] = $options['autoclose'] === true ? 'true' : 'false';
     }
-    
+
     /**
      * {@inheritdoc}
      */

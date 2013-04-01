@@ -2,13 +2,12 @@
 
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
-use Symfony\Component\DependencyInjection\Container;
 use Admingenerator\GeneratorBundle\Generator\Column;
 use Admingenerator\GeneratorBundle\Generator\Action;
 
 /**
  * This builder generates php for list actions
- * 
+ *
  * @author cedric Lombardot
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */

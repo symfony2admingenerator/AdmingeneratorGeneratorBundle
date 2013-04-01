@@ -21,7 +21,6 @@ class AdmingeneratorGeneratorExtension extends Extension
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
 
-
         // Fix template_dirs
         $doctrine_template_dirs = $doctrineodm_template_dirs = $propel_template_dirs = array();
         foreach ($config['templates_dirs'] as $dir) {

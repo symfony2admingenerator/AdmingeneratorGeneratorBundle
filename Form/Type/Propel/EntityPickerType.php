@@ -15,12 +15,12 @@ class EntityPickerType extends ModelType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        if($options['primaryKey']) {
+        if ($options['primaryKey']) {
             $options['builder'] = array_merge($options['builder'], array(
                 'primaryKey' => $options['primaryKey'],
             ));
         }
-               
+
         $view->vars['builder']      = $options['builder'];
         $view->vars['matcher']      = $options['matcher'];
         $view->vars['primaryKey']   = $options['primaryKey'];
@@ -34,7 +34,7 @@ class EntityPickerType extends ModelType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         parent::setDefaultOptions($resolver);
-        
+
         $resolver->setDefaults(array(
             'exclude'         => null,  // this option is currently unused, patch coming soon
             'builder'         => array(),
@@ -42,12 +42,12 @@ class EntityPickerType extends ModelType
             'primaryKey'      => null,
             'description'     => array(),
             'thumb'           => array(
-                'src'     => null, 
-                'width'   => '32', 
+                'src'     => null,
+                'width'   => '32',
                 'height'  => '32'
             ),
         ));
-        
+
         $resolver->setAllowedTypes(array(
             'exclude'         => array('null', 'string'),
             'builder'         => array('array'),
@@ -56,12 +56,12 @@ class EntityPickerType extends ModelType
             'description'     => array('array'),
             'thumb'           => array('array'),
         ));
-        
+
         $resolver->setAllowedValues(array(
             'exclude'       => array( null, 'entity', 'collection', 'root' ),
         ));
     }
-    
+
     /**
      * {@inheritdoc}
      */

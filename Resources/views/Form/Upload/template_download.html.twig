@@ -29,7 +29,7 @@
                     {% raw %}
                     <a href="{%=file.url%}">
                     {% endraw %}
-                        <img src="{% raw %}{%=file.thumbnail_url%}{% endraw %}" 
+                        <img src="{% raw %}{%=file.thumbnail_url%}{% endraw %}"
                              width="{{ previewMaxWidth }}" height="{{ previewMaxHeight }}" />
                     </a>
                 {% endif %}
@@ -52,11 +52,11 @@
         <td class="delete">
             <div class="btn-toolbar">
                 <a class="btn btn-info" target="_blank" {% raw %}href="{%=file.url%}"{% endraw %}>
-                    <i class="icon-download icon-white"></i> 
+                    <i class="icon-download icon-white"></i>
                     <span> {{ 'upload.download'|trans({}, 'Admingenerator') }}</span>
                 </a>
                 <button class="btn btn-danger">
-                    <i class="icon-trash icon-white"></i> 
+                    <i class="icon-trash icon-white"></i>
                     <span> {{ 'upload.delete'|trans({}, 'Admingenerator') }}</span>
                 </button>
                 <span class="btn btn-toggle disabled input-append">
