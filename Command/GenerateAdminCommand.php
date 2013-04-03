@@ -145,9 +145,10 @@ EOT
         $generatorName = $input->getOption('generator');
         $modelName = $input->getOption('model-name');
 
-        $generator = $this->getGenerator();
+        $generator = $this->createGenerator();
         $generator->setGenerator($generatorName);
         $generator->setPrefix($input->getOption('prefix'));
+
         $generator->generate($namespace, $bundle, $dir, $format, $structure, $generatorName, $modelName);
 
         $output->writeln('Generating the bundle code: <info>OK</info>');
