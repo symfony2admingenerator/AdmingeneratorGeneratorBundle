@@ -37,6 +37,7 @@
     this.updater = this.options.updater || this.updater
     this.getter = this.options.getter || this.getter
     this.setter = this.options.setter || this.setter
+    this.blur = this.options.blur || this.blur
     this.$menu = $(this.options.menu).appendTo('body')
     this.source = this.options.source
     this.shown = false
