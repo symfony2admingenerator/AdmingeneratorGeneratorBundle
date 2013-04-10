@@ -1,7 +1,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         var fileupload = $('#{{ id ~ '_widget_container' }}');
-        
+
         $.widget('blueimp.fileupload', $.blueimp.fileupload, {
             options: {},
             _hasError: function (file) {
@@ -61,7 +61,7 @@
                 });
             },
         });
-        
+
         $(fileupload).fileupload({
             fileInput:          $('#{{ id }}'),
             replaceFileInput:   false,
@@ -94,7 +94,7 @@
             {% if not previewAsCanvas %}previewAsCanvas: false,{% endif %}
             {% if prependFiles %}prependFiles: true,{% endif %}
         });
-        
+
         // Create JSON array for existing files
         var result = [
             {% for key, item in form.vars.data -%}
@@ -118,8 +118,8 @@
             {%- if not loop.last %},{% endif %}
             {% endfor %}
         ]; // end of JSON array
-        
+
         // Load existing files:
-        $(fileupload).fileupload('option', 'done').call(fileupload, null, {result: result});        
+        $(fileupload).fileupload('option', 'done').call(fileupload, null, {result: result});
     });
 </script>

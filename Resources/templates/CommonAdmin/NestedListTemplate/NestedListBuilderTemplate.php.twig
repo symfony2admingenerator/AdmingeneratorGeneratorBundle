@@ -20,7 +20,7 @@
         var nestedsetStringExpand = '{{ echo_trans('nested.list.expand') }}';
         var nestedsetStringCollapse = '{{ echo_trans('nested.list.collapse') }}';
     </script>
-    
+
     <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/treeTable/jquery.treeTable-extended.js")') }}"></script>
     <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/nestedset.js")') }}"></script>
     <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/general.js")') }}"></script>
@@ -37,7 +37,7 @@
 
     <div class="row-fluid">
         <div class="{% if builder.filterColumns|length == 0 %} span12 {% else %} span9 {% endif %}">
-    
+
             {{ block('list_scopes') -}}
 
             {{- block('list_nbresults') }}
@@ -52,15 +52,15 @@
                   {{ block('list_actions') -}}
                 </div>
             </div>
-        </div>        
+        </div>
         {{ echo_block("filters") }}
             {% if builder.filterColumns|length > 0 %}
-            <div class="span3">                
+            <div class="span3">
                 {{- block('list_filters') -}}
             </div>
             {% endif %}
         {{ echo_endblock() }}
     </div>
-    
+
     {{- block('nestedset_modal') -}}
 {{ echo_endblock() }}

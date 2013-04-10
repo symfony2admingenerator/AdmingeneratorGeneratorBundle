@@ -62,7 +62,7 @@ class EchoExtension extends \Twig_Extension
     public function convertAsForm($options, $formType)
     {
         $options = preg_replace("/'__php\((.+?)\)'/i", '$1', $options, -1, $count);
-        
+
         if ('collection' == $formType || 'upload' == $formType) {
             preg_match("/'type' => '(.+?)'/i", $options, $matches);
 
@@ -70,7 +70,7 @@ class EchoExtension extends \Twig_Extension
                 $pattern_formtype = '/^\\\\+(([a-zA-Z_]\w*\\\\+)*)([a-zA-Z_]\w*)$/';
                 // Sanity check: prepend with "new" and append with "()"
                 // only if type option is a Fully qualified name
-                if(preg_match($pattern_formtype, $matches[1])) {
+                if (preg_match($pattern_formtype, $matches[1])) {
                   $options = str_replace("'type' => '".$matches[1]."'", '\'type\' =>  new '.stripslashes($matches[1]).'()', $options);
                 }
             }
@@ -138,62 +138,62 @@ class EchoExtension extends \Twig_Extension
     {
         return str_replace(array("\n", 'array (', '     '), array('', 'array(', ''), var_export($variable, true));
     }
-    
+
     /**
      * Reads parameters from subject and removes parameter bag from string.
-     * 
+     *
      * @return array
      *   [string] -> string for echo trans
      *   [params] -> parameters for echo trans
-     * 
+     *
      * @return false if subject did not match any of following patterns
-     * 
+     *
      * ##############################
      * Backwards compability pattern:
-     * 
+     *
      * replaces twig tags {{ parameter_name }} with parameters.
-     * 
+     *
      * example: You're editing {{ Book.title }} written by {{ Book.author.name }}!
-     * 
+     *
      * results in:
      *   string -> You're editing %Book.title% written by %Book.author.name%!
-     *   params -> 
+     *   params ->
      *     [Book.title] -> Book.title
      *     [Book.author.name] -> Book.author.name
-     * 
+     *
      * ###################################
      * Feature - key-value syntax pattern:
      * |{ %param_key%: param_value, %param_key2%: param_value2, %param_key3%: param_value3 }|
-     * 
+     *
      * where param_key and param_value consist of any number a-z, A-Z, 0-9 or . (dot) characters
-     * 
+     *
      * example: You're editing %book% written by %author%!|{ %book%: Book.title, %author%: Book.author.name }|
      * results in:
      *   string -> You're editing %book% written by %author%!
      *   params ->
      *     [book] -> Book.title
      *     [author] -> Book.author.name
-     * 
-     * example: book.edit.title|{ %book%: Book.title, %author%: Book.author.name }|     * 
+     *
+     * example: book.edit.title|{ %book%: Book.title, %author%: Book.author.name }|     *
      * results in:
      *   string -> book.edit.title
      *   params ->
      *     [book] -> Book.title
      *     [author] -> Book.author.name
-     * 
+     *
      * ###################################
      * Feature - abbreviated syntax pattern:
      * |{ param_value, param_value2, param_value3 }|
-     * 
+     *
      * where param_value consists of any number a-z, A-Z, 0-9 or . (dot) characters
-     * 
+     *
      * example: You're editing %Book.title% written by %Book.author.name%!|{ Book.title, Book.author.name }|
      * results in:
      *   string -> You're editing %Book.title% written by %Book.author.name%!
      *   params ->
      *     [Book.title] -> Book.title
      *     [Book.author.name] -> Book.author.name
-     * 
+     *
      * example: book.edit.title|{ Book.title, Book.author.name }|
      * results in:
      *   string -> book.edit.title
@@ -201,84 +201,86 @@ class EchoExtension extends \Twig_Extension
      *     [Book.title] -> Book.title
      *     [Book.author.name] -> Book.author.name
      */
-    private function getParameterBag($subject) {      
+    private function getParameterBag($subject)
+    {
       # Backwards compability - replace twig tags with parameters
       $pattern_bc = '/\{\{\s(?<param>[a-zA-Z0-9.]+)\s\}\}+/';
-      
+
       if (preg_match_all($pattern_bc, $subject, $match_params)) {
         $string = preg_filter($pattern_bc, '%\1%', $subject);
 
         $param = array();
-        foreach($match_params['param'] as $value) { $param[$value] = $value; }
+        foreach ($match_params['param'] as $value) { $param[$value] = $value; }
 
         return array(
             'string' => $string,
             'params' => $param
         );
       }
-      
+
       # Feature - read key/value syntax parameters
       $pattern_string = '/^(?<string>[^|]+)(?<parameter_bag>\|\{(\s?%[a-zA-Z0-9.]+%:\s[a-zA-Z0-9.]+,?\s?)+\s?\}\|)\s*$/';
       $pattern_params = '/(?>(?<=(\|\{\s|.,\s))%(?<key>[a-zA-Z0-9.]+)%:\s(?<value>[a-zA-Z0-9.]+)(?=(,\s.|\s\}\|)))+/';
-      
-      if ( preg_match($pattern_string, $subject, $match_string) ) {        
-          $string = $match_string['string']; 
-          $parameter_bag = $match_string['parameter_bag'];  
+
+      if ( preg_match($pattern_string, $subject, $match_string) ) {
+          $string = $match_string['string'];
+          $parameter_bag = $match_string['parameter_bag'];
 
           $param = array();
           preg_match_all($pattern_params, $parameter_bag, $match_params, PREG_SET_ORDER);
 
-          foreach($match_params as $match) { $param[$match['key']] = $match['value']; }
+          foreach ($match_params as $match) { $param[$match['key']] = $match['value']; }
 
           return array(
               'string' => $string,
               'params' => $param
           );
       }
-      
+
       # Feature - read abbreviated syntax parameters
       $abbreviated_pattern_string = '/^(?<string>[^|]+)(?<parameter_bag>\|\{(\s?[a-zA-Z0-9.]+,?\s?)+\s?\}\|)\s*$/';
       $abbreviated_pattern_params = '/(?>(?<=(\|\{\s|.,\s))(?<param>[a-zA-Z0-9.]+)(?=(,\s.|\s\}\|)))+?/';
-      
+
       if ( preg_match($abbreviated_pattern_string, $subject, $match_string)) {
           $string = $match_string['string'];
           $parameter_bag = $match_string['parameter_bag'];
 
           $param = array();
           preg_match_all($abbreviated_pattern_params, $parameter_bag, $match_params);
-          
-          foreach($match_params['param'] as $value) { $param[$value] = $value; }
+
+          foreach ($match_params['param'] as $value) { $param[$value] = $value; }
 
           return array(
               'string' => $string,
               'params' => $param
           );
       }
-      
+
       # If subject does not match any pattern, return false
+
       return false;
     }
-    
+
     public function getEchoTrans($str, array $parameters=array(), $catalog = 'Admingenerator')
-    {        
+    {
         $echo_parameters=NULL;
         $bag_parameters=array();
-        
-        if($parameterBag = $this->getParameterBag($str)) {
+
+        if ($parameterBag = $this->getParameterBag($str)) {
             $str = $parameterBag['string'];
             $bag_parameters = $parameterBag['params'];
         }
-      
+
         if (!empty($parameters) || !empty($bag_parameters)) {
             $echo_parameters="with {";
-            
-            foreach ($parameters as $key => $value) { 
+
+            foreach ($parameters as $key => $value) {
               $echo_parameters.= "'%".$key."%': '".$value."',";
             }
-            foreach ($bag_parameters as $key => $value) { 
+            foreach ($bag_parameters as $key => $value) {
               $echo_parameters.= "'%".$key."%': ".$value.",";
             }
-            
+
             $echo_parameters.="} ";
         }
 

@@ -9,12 +9,12 @@
                 new_item = new_item.replace({{ '/' ~ prototype_name|default('__name__') ~ 'label__/g' }}, "{{ new_label|trans({}, translation_domain) }}");
                 new_item = new_item.replace({{ '/' ~ prototype_name|default('__name__') ~ '/g' }}, nextId);
                 new_item = $(new_item);
-                
+
                 {% if allow_delete %}
                     new_item.find('.delete').click(function(){
                         if(confirm('{{ 'action.object.delete.confirm'|trans({}, 'Admingenerator') }}')) {
                             $(this).closest('.collection-item').remove();
-                
+
                             {% if sortable %}
                             // update sortable positions
                             $('[id^="{{ id }}"][id$="{{ sortable }}"]').each(function(i){
@@ -24,10 +24,10 @@
                         }
                     });
                 {% endif %}
-                
+
                 nextId++;
                 $('#{{ id }} > .collection').append(new_item);
-                
+
                 {% if sortable %}
                 // update sortable positions
                 $('[id^="{{ id }}"][id$="{{ sortable }}"]').each(function(i){
@@ -41,7 +41,7 @@
             $('.{{ id ~ '_actions' }} .delete').click(function(){
                 if(confirm('{{ 'object.delete.confirm'|trans({}, 'Admingenerator') }}')) {
                     $(this).closest('.collection-item').remove();
-                    
+
                     {% if sortable %}
                     // update sortable positions
                     $('[id^="{{ id }}"][id$="{{ sortable }}"]').each(function(i){
@@ -50,7 +50,7 @@
                     {% endif %}
                 }
             });
-            
+
             // select/deselect all
             $('#{{ id ~ '_toolbar' }} > .btn-toggle > input[name="toggle"]').change(function() {
                 if($(this).is(':checked'))
@@ -58,21 +58,21 @@
                 else
                     $('.{{ id ~ '_actions' }} > .btn-toggle > input[name="delete"]').attr('checked', false);
             });
-            
+
             // delete selected
             $('#{{ id ~ '_toolbar' }} > .batch-delete').click(function() {
                 if(confirm('{{ 'action.batch.delete.confirm'|trans({}, 'Admingenerator') }}')) {
                     $('.{{ id ~ '_actions' }} > .btn-toggle > input[name="delete"]:checked').each(function(){
                           $(this).closest('.collection-item').remove();
                     });
-                
+
                     {% if sortable %}
                     // update sortable positions
                     $('[id^="{{ id }}"][id$="{{ sortable }}"]').each(function(i){
                         $(this).val(i);
                     });
                     {% endif %}
-                      
+
                     // uncheck "select all" box
                     $('#{{ id ~ '_toolbar' }} > .btn-toggle > input[name="toggle"]').attr('checked', false);
                 }

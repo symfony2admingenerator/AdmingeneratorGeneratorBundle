@@ -4,7 +4,7 @@
     {% set megabyte = kilobyte * 1024 %}
     {% set gigabyte = megabyte * 1024 %}
     {% set terabyte = gigabyte * 1024 %}
-   
+
     {% if bytes < kilobyte %}
         {{ bytes ~ ' B' }}
     {% elseif bytes < megabyte %}

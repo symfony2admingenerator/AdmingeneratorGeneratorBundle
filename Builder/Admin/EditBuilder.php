@@ -6,7 +6,7 @@ use Admingenerator\GeneratorBundle\Generator\Action;
 
 /**
  * This builder generates php for edit actions
- * 
+ *
  * @author cedric Lombardot
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
@@ -20,7 +20,7 @@ class EditBuilder extends BaseBuilder
     {
         return 'edit';
     }
-    
+
     /**
      * Find form actions
      */

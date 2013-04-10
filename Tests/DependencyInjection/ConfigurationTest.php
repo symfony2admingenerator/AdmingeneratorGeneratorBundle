@@ -22,7 +22,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
      * Get waiting default values from configuration. If $key is not null
      * and is in first level keys, returns value of this specific key only.
      *
-     * @param string $key
+     * @param  string $key
      * @return mixed
      */
     private function getBundleDefaultConfig($key = null)

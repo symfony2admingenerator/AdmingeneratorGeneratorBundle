@@ -7,8 +7,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ConfigExtension extends \Twig_Extension
 {
     protected $container;
- 
-    public function __construct(ContainerInterface $container) 
+
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
@@ -22,14 +22,14 @@ class ConfigExtension extends \Twig_Extension
             'admingenerator_config' => new \Twig_Function_Method($this, 'getAdmingeneratorConfig'),
         );
     }
-    
+
     /**
      * Returns admingenerator parameter
-     * 
-     * @param string $name
+     *
+     * @param  string $name
      * @return string Parameter value
      */
-    function getAdmingeneratorConfig($name)
+    public function getAdmingeneratorConfig($name)
     {
         return $this->container->getParameter('admingenerator.'.$name);
     }

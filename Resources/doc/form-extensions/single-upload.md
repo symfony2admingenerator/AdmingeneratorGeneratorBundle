@@ -1,4 +1,4 @@
-# Upload
+# Single Upload
 ---------------------------------------
 
 [go back to Table of contents][back-to-index]
@@ -37,6 +37,7 @@ cover:
   dbType:           string
   addFormOptions:
     nameable:       coverLabel
+    data_class:     Symfony\Component\HttpFoundation\File\File
 ```
 
 ### 4. Options

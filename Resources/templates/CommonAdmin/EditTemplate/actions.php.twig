@@ -5,7 +5,7 @@
           {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
                 {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials', builder.ModelClass) ) }}
           {% endif %}
-          
+
           {% if action.submit %}
               <button type="submit" name="{{ action.name }}" class="btn {{ action.class|default('') }}"
           {% else %}
@@ -19,7 +19,7 @@
               {%- if action.icon %}<i class="{{ action.icon }}"></i> {% endif -%}
               {{ echo_trans(action.label) -}}
           {% if action.submit %}</button>{% else %}</a>{% endif %}
-              
+
           {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
               {{ echo_endif () }}
           {% endif %}

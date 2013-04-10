@@ -39,7 +39,7 @@
                 {{ block('list_thead') -}}
                 {{- block('list_tbody') }}
             </table>
-          
+
             <div class="form-actions">
                 <div class="btn-toolbar pull-left">
                   {{- block('list_batch_actions') }}
@@ -52,7 +52,7 @@
         </div>
         {{ echo_block("filters") }}
             {% if builder.filterColumns|length > 0 %}
-            <div class="span3">                
+            <div class="span3">
                 {{- block('list_filters') -}}
             </div>
             {% endif %}

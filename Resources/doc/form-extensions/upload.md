@@ -61,9 +61,83 @@ images:
     previewMaxHeight:           100
     previewAsCanvas:            true
     prependFiles:               false
+    allow_add:        true
+    allow_delete:     true
+    error_bubbling:   false
+    options:
+      data_class:     Acme\GalleryBundle\Entity\Image
 ```
 
-### 4. Options
+### 4. Edit your entity class:
+
+* entity class must implement `Fileinterface`
+* if you want sortable behaviour, you must use Gedmo
+* use Vich to handle file uploads and injection
+
+```php
+<?php
+
+namespace Acme\GalleryBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Gedmo\Mapping\Annotation as Gedmo;
+
+use Admingenerator\GeneratorBundle\Model\FileInterface;
+
+/**
+ * @ORM\Table(name="acme_image") 
+ * @ORM\Entity(repositoryClass="Gedmo\Sortable\Entity\Repository\SortableRepository")
+ * @Vich\Uploadable
+ */
+class Image implements FileInterface
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $name;          // used for nameable option
+    
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $description;   // simple editable field
+
+    /**
+     * @Vich\UploadableField(mapping="product_image", fileNameProperty="path")
+     */
+    protected $file;          // file container
+    
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $path;          // used to store file path
+    
+    /**
+     * @Gedmo\SortableGroup
+     * @ORM\ManyToOne(targetEntity="Album", inversedBy="images")
+     * @ORM\JoinColumn(name="album_id", referencedColumnName="id")
+     */
+    protected $album;         // here i want to group images per related gallery album, 
+                              // so i use album's ID as unique sortable group
+
+    /**
+     * @Gedmo\SortablePosition
+     * @ORM\Column(name="position", type="integer")
+     */
+    protected $position;      // used to store sortable position
+    
+    // ...
+```
+
+### 5. Options
 
 #### nameable
 
@@ -167,7 +241,7 @@ Set this option to true, to prepend files instead.
 
 > **Important:** These options are just for User Interface and cannot be considered safe (javascript is client-side). Always validate form input data server-side!
 
-### 5. Use AvalancheImagineBundle to display thumbnails (optional)
+### 6. Use AvalancheImagineBundle to display thumbnails (optional)
 
 To enable useing AvalancheImagineBundle for thumbnail generation just edit `config.yml`:
 
@@ -176,6 +250,6 @@ admingenerator_generator:
     thumbnail_generator:  avalanche  # default null
 ```
 
-### 6. Special thanks
+### 7. Special thanks
 
 Special thanks to [Sebastian Tschan](https://github.com/blueimp)  for `jQuery-File-Upload` licensed under [MIT License](https://github.com/blueimp/jQuery-File-Upload#license).

@@ -6,7 +6,7 @@ use Admingenerator\GeneratorBundle\Generator\Action;
 
 /**
  * This builder generates php for show actions
- * 
+ *
  * @author Eymen Gunay
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
@@ -20,7 +20,7 @@ class ShowBuilder extends BaseBuilder
     {
         return 'show';
     }
-    
+
     /**
      * Find form actions
      */

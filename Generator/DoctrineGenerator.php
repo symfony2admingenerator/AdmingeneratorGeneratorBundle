@@ -38,7 +38,7 @@ class DoctrineGenerator extends Generator
     public function build()
     {
         $this->validateYaml();
-        
+
         $generator = new AdminGenerator($this->cache_dir, $this->getGeneratorYml());
         $generator->setContainer($this->container);
         $generator->setBaseAdminTemplate($generator->getFromYaml('base_admin_template', $this->container->getParameter('admingenerator.base_admin_template')));
@@ -50,10 +50,10 @@ class DoctrineGenerator extends Generator
         ));
         $generator->setBaseController('Admingenerator\GeneratorBundle\Controller\Doctrine\BaseController');
         $generator->setBaseGeneratorName($this->getBaseGeneratorName());
-        
+
         $embed_types = $generator->getFromYaml('params.embed_types', array());
-        
-        foreach($embed_types as $yaml_path) {
+
+        foreach ($embed_types as $yaml_path) {
             $this->prebuildEmbedType($yaml_path, $generator);
         }
 
@@ -86,7 +86,7 @@ class DoctrineGenerator extends Generator
             $generator->addBuilder(new NewBuilderTemplate());
             $generator->addBuilder(new NewBuilderType());
         }
-        
+
         if (array_key_exists('show', $builders)) {
             $generator->addBuilder(new ShowBuilderAction());
             $generator->addBuilder(new ShowBuilderTemplate());
@@ -94,12 +94,12 @@ class DoctrineGenerator extends Generator
 
         $generator->writeOnDisk($this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));
     }
-    
+
     public function prebuildEmbedType($yaml_path, $generator)
-    {   
+    {
         $pattern_string = '/(?<namespace_prefix>(?>.+\:)?.+)\:(?<bundle_name>.+Bundle)\:(?<generator_path>.*?)$/';
-        
-        if(preg_match($pattern_string, $yaml_path, $match_string)) {
+
+        if (preg_match($pattern_string, $yaml_path, $match_string)) {
             $namespace_prefix = $match_string['namespace_prefix'];
             $bundle_name      = $match_string['bundle_name'];
             $generator_path   = $match_string['generator_path'];
@@ -108,20 +108,20 @@ class DoctrineGenerator extends Generator
             $bundle_name      = $generator->getFromYaml('params.bundle_name');
             $generator_path   = $yaml_path;
         }
-        
+
         $dir = $namespace_prefix.'/'.$bundle_name;
         if (is_dir($src = realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$dir.'/Resources/config'))) {
             $namespace_directory = $src;
         } else {
             $namespace_directory = realpath($this->container->getParameter('kernel.root_dir').'/../vendor/bundles/'.$dir.'/Resources/config');
         }
-        
+
         $yaml_file = $namespace_directory.'/'.$generator_path;
-        
-        if(!file_exists($yaml_file)) {
+
+        if (!file_exists($yaml_file)) {
             throw new CantGenerateException("Can't generate embed type for $yaml_file, file not found.");
         }
-        
+
         $embedGenerator = new AdminGenerator($this->cache_dir, $yaml_file);
         $embedGenerator->setContainer($this->container);
         $embedGenerator->setBaseAdminTemplate($embedGenerator->getFromYaml('base_admin_template', $this->container->getParameter('admingenerator.base_admin_template')));
@@ -131,9 +131,9 @@ class DoctrineGenerator extends Generator
             $this->container->getParameter('admingenerator.doctrine_templates_dirs'),
             array(__DIR__.'/../Resources/templates/Doctrine')
         ));
-        
+
         $embedGenerator->addBuilder(new EditBuilderType());
-        
+
         $embedGenerator->writeOnDisk($this->getCachePath($embedGenerator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));
     }
 }

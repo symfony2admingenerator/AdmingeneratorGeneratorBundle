@@ -4,7 +4,6 @@ namespace Admingenerator\GeneratorBundle\Form\EventListener;
 
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -20,7 +19,7 @@ class CaptureUploadListener implements EventSubscriberInterface
      * @var string UploadType data_class
      */
     protected $dataClass;
-    
+
     /**
      * @var string Upload class nameable field
      */
@@ -31,12 +30,12 @@ class CaptureUploadListener implements EventSubscriberInterface
      * @var Doctrine\Common\Collections\Collection Original collection
      */
     protected $originalFiles;
-    
+
     /**
      * @var array Captured upload
      */
     protected $uploads;
-    
+
     public function __construct($propertyName, $dataClass, $nameable)
     {
         $this->propertyName = $propertyName;
@@ -58,46 +57,47 @@ class CaptureUploadListener implements EventSubscriberInterface
     {
         $form = $event->getForm();
         $data = $event->getData();
-        
-        if(array_key_exists($this->propertyName, $data)) {
+
+        if (array_key_exists($this->propertyName, $data)) {
             // capture uploads and store them for onBind event
             $this->uploads = $data[$this->propertyName]['uploads'];
             // unset additional form data to prevent errors
             unset($data[$this->propertyName]['uploads']);
         }
-        
+
         $event->setData($data);
     }
-    
-    public function onBind(FormEvent $event) {
+
+    public function onBind(FormEvent $event)
+    {
         $form = $event->getForm();
         $data = $event->getData();
-        
+
         // save original files collection for postBind event
         $getter = 'get'.ucfirst($this->propertyName);
         $this->originalFiles = $data->$getter();
-        
+
         // create file entites for each file
-        foreach($this->uploads as $upload) {
+        foreach ($this->uploads as $upload) {
             if($upload === null) return;
             $file = new $this->dataClass();
-            
+
             if (!$file instanceof \Admingenerator\GeneratorBundle\Model\FileInterface) {
                 throw new UnexpectedTypeException($file, '\Admingenerator\GeneratorBundle\Model\FileInterface');
             }
-            
+
             $file->setFile($upload);
             $file->setParent($data);
-            
+
             // if nameable field specified - set normalized name
-            if($this->nameable) {                
+            if ($this->nameable) {
                 $setNameable = 'set'.ucfirst($this->nameable);
-                
+
                 // this value is unsafe
                 $name = $upload->getClientOriginalName();
                 // normalize string
                 $safeName = $this->normalizeUtf8String($name);
-                
+
                 $file->$setNameable($safeName);
             }
 
@@ -110,33 +110,33 @@ class CaptureUploadListener implements EventSubscriberInterface
     public function postBind(FormEvent $event)
     {
         $form = $event->getForm();
-        $data = $event->getData();  
-        
+        $data = $event->getData();
+
         $getter = 'get'.ucfirst($this->propertyName);
-        if(!$form->isValid() && $data->$getter() instanceof ArrayCollection) {        
+        if (!$form->isValid() && $data->$getter() instanceof ArrayCollection) {
             // remove files absent in the original collection
             $data->$getter()->clear();
-            
-            foreach($this->originalFiles as $file) {
+
+            foreach ($this->originalFiles as $file) {
                 $data->$getter()->add($file);
             }
             // TODO: find a way to restore $this->uploads to the form
-            
+
             $event->setData($data);
         }
     }
-    
+
     private function normalizeUtf8String($s)
     {
         // save original string
         $original_string = $s;
-        
+
         // Normalizer-class missing!
         if (!class_exists('\Normalizer')) {
             // remove all non-whitelisted characters
-            return  preg_replace( '@[^a-zA-Z0-9._\-\s ]@u' , "", $original_string ); 
+            return  preg_replace( '@[^a-zA-Z0-9._\-\s ]@u' , "", $original_string );
         }
-        
+
         $normalizer = new \Normalizer();
 
         // maps German (umlauts) and other European characters onto two characters before just removing diacritics
@@ -154,7 +154,6 @@ class CaptureUploadListener implements EventSubscriberInterface
         $s = $normalizer->normalize($s, $normalizer::FORM_D);
 
         $s = preg_replace('@\pM@u', "", $s);    // removes diacritics
-
 
         $s = preg_replace('@\x{00df}@u', "ss", $s);    // maps German ß onto ss
         $s = preg_replace('@\x{00c6}@u', "AE", $s);    // Æ => AE
@@ -188,15 +187,15 @@ class CaptureUploadListener implements EventSubscriberInterface
         $s = preg_replace('@\x{0167}@u', "t", $s);    // t => t
 
         // remove all non-ASCii characters
-        $s = preg_replace('@[^\0-\x80]@u', "", $s); 
+        $s = preg_replace('@[^\0-\x80]@u', "", $s);
 
         // possible errors in UTF8-regular-expressions
         if (empty($s)) {
             // remove all non-whitelisted characters
-            return  preg_replace('@[^a-zA-Z0-9._\-\s ]@u' , "", $original_string); 
+            return  preg_replace('@[^a-zA-Z0-9._\-\s ]@u' , "", $original_string);
         }
-        
+
         // return normalized string
-        return $s; 
+        return $s;
     }
 }

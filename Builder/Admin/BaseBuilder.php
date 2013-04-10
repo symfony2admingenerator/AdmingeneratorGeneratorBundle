@@ -9,7 +9,7 @@ use Admingenerator\GeneratorBundle\Generator\Action;
 
 /**
  * Base builder generating php for actions
- * 
+ *
  * @author cedric Lombardot
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
@@ -237,10 +237,10 @@ class BaseBuilder extends GenericBaseBuilder
             $this->addAction($action);
         }
     }
-    
+
     public function findGenericAction($actionName)
     {
-        if(preg_match('/\-/', $actionName)) {
+        if (preg_match('/\-/', $actionName)) {
             $classNameParts = Container::camelize(explode("-", $actionName));
             $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Generic\\'.implode('', $classNameParts).'Action';
         } else {
@@ -249,10 +249,10 @@ class BaseBuilder extends GenericBaseBuilder
 
         return (class_exists($class)) ? new $class($actionName, $this) : false;
     }
-    
+
     public function findObjectAction($actionName)
     {
-        if(preg_match('/\-/', $actionName)) {
+        if (preg_match('/\-/', $actionName)) {
             $classNameParts = Container::camelize(explode("-", $actionName));
             $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Object\\'.implode('', $classNameParts).'Action';
         } else {
@@ -261,10 +261,10 @@ class BaseBuilder extends GenericBaseBuilder
 
         return (class_exists($class)) ? new $class($actionName, $this) : false;
     }
-    
+
     public function findBatchAction($actionName)
     {
-        if(preg_match('/\-/', $actionName)) {
+        if (preg_match('/\-/', $actionName)) {
             $classNameParts = Container::camelize(explode("-", $actionName));
             $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Batch\\'.implode('', $classNameParts).'Action';
         } else {

@@ -2,7 +2,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         {% set collection = '#'~id~' > .collection' %}
-            
+
         $("{{ collection|raw }}").sortable({
             update: function(e, ui) {
                 // update sortable positions

@@ -10,7 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class DatepickerRangeType extends AbstractType
 {
     protected $defaults;
-    
+
     public function __construct()
     {
         $this->defaults = array(
@@ -23,7 +23,7 @@ class DatepickerRangeType extends AbstractType
             'years'         =>  range(date('Y'), date('Y') - 120),
         );
     }
-    
+
     /**
      * {@inheritdoc}
      */

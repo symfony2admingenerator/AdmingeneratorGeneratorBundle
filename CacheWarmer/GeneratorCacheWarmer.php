@@ -50,7 +50,7 @@ class GeneratorCacheWarmer implements CacheWarmerInterface
             }
         }
 
-        /** 
+        /**
          * Load class to avoid problem with other cache warmers
          * like JmsDiExtraBundle
          *

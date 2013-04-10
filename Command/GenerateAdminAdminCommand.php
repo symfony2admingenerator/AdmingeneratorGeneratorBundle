@@ -49,6 +49,7 @@ EOT
             if (!in_array($generator, array('doctrine','doctrine_odm','propel'))) {
               throw new \RuntimeException('Generator to use have to be doctrine, doctrine_odm or propel');
             }
+
             return $generator;
           }, false, $input->getOption('generator')
         );
@@ -65,9 +66,10 @@ EOT
         $modelName = $dialog->askAndValidate($output,
           $dialog->getQuestion('Model name', $input->getOption('model-name')),
           function($modelName) {
-            if(empty($modelName) || preg_match('#[^a-zA-Z0-9]#', $modelName)) {
+            if (empty($modelName) || preg_match('#[^a-zA-Z0-9]#', $modelName)) {
               throw new \RuntimeException('Model name should not contain any special characters nor spaces.');
             }
+
             return $modelName;
           }, false, $input->getOption('model-name')
         );
@@ -144,7 +146,7 @@ EOT
         $generatorName = $input->getOption('generator');
         $modelName = $input->getOption('model-name');
 
-        $generator = $this->getGenerator();
+        $generator = $this->createGenerator();
         $generator->setGenerator($generatorName);
         $generator->setPrefix($input->getOption('prefix'));
         $generator->generate($namespace, $bundle, $dir, $format, $structure, $generatorName, $modelName);
@@ -160,7 +162,7 @@ EOT
         $dialog->writeGeneratorSummary($output, $errors);
     }
 
-    protected function getGenerator()
+    protected function createGenerator()
     {
         return new BundleGenerator($this->getContainer()->get('filesystem'), __DIR__.'/../Resources/skeleton/bundle');
     }

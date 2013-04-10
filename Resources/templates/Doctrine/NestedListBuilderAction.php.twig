@@ -11,7 +11,7 @@
 
         return $query;
     }
-    
+
     protected function buildQuery()
     {
         return $this->getDoctrine()
@@ -20,11 +20,11 @@
                     ->getChildrenQueryBuilder()
                     ->getQuery();
     }
-    
+
     protected function getTree()
-    {  
+    {
         $result = $this->buildQuery()->getResult();
-        
+
         return new \Doctrine\Common\Collections\ArrayCollection($result);
     }
 {% endblock %}
@@ -112,17 +112,17 @@
         if(!in_array($action, array('before', 'in', 'after'))) {
             throw new NotFoundHttpException("Unknown action");
         }
-        
+
         $em = $this->getDoctrine()->getEntityManager();
         $repo = $em->getRepository('{{ model }}');
-        
+
         $dragged = $repo->findOneBy{{ builder.getFieldGuesser().getModelPrimaryKeyName(model)|classify }}($dragged);
         $dropped = $repo->findOneBy{{ builder.getFieldGuesser().getModelPrimaryKeyName(model)|classify }}($dropped);
-        
-        if (!$dragged || !$dropped) {            
+
+        if (!$dragged || !$dropped) {
             throw new NotFoundHttpException("Could not find the nodes");
         }
-        
+
         switch($action) {
           case 'before':
             $repo->persistAsPrevSiblingOf($dragged, $dropped);
@@ -134,7 +134,7 @@
             $repo->persistAsNextSiblingOf($dragged, $dropped);
             break;
         }
-        
+
         $em->flush();
 
         return new Response();
