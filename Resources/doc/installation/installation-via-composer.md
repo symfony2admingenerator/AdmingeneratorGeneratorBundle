@@ -9,16 +9,17 @@
 
 Add Admingenerator to your `composer.json`:
 
-#### 1.1 2.2.X
+#### 1.1   Symfony 2.2.X
 ```json
 "require": {
     "cedriclombardot/admingenerator-generator-bundle": "dev-master"
 },
 ```
-#### 1.1 2.1.X
+#### 1.1   Symfony 2.1.X
 ```json
 "require": {
    "cedriclombardot/admingenerator-generator-bundle": "2.1.*@dev"
+},
 ```
 
 Then run `php composer.phar update` command.
