@@ -60,6 +60,10 @@ upload.errors:
   typeNotAllowed:   Tipo de archivo no permitido.
   maxFileSize:      El archivo es demasiado grande.
   minFileSize:      El archivo es demasiado pequeño.
+  
+# SingleUpload
+singleupload:
+  display.name:     Nombre Mostrado  
 
 # Generic actions
 action.generic:

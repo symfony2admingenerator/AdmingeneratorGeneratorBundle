@@ -1,7 +1,11 @@
 {% block column_datetime %}
     {%- if builder.generator.TwigParams.use_localized_date == true -%}
-        {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|localizeddate("' ~ builder.generator.TwigParams.localized_date_format ~ '", "' ~ builder.generator.TwigParams.localized_datetime_format ~ '")') -}}
+        {{ echo_if (builder.ModelClass ~ '.' ~ column.getter) }}
+            {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|localizeddate("' ~ builder.generator.TwigParams.localized_date_format ~ '", "' ~ builder.generator.TwigParams.localized_datetime_format ~ '")') -}}
+        {{ echo_endif() }}
     {%- else -%}
-        {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|date("' ~ builder.generator.TwigParams.datetime_format ~ '")') -}}
+        {{ echo_if (builder.ModelClass ~ '.' ~ column.getter) }}
+            {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|date("' ~ builder.generator.TwigParams.datetime_format ~ '")') -}}
+        {{ echo_endif() }}
     {%- endif -%}
 {% endblock %}
