@@ -42,7 +42,6 @@ class UploadType extends CollectionType
         $builder->getParent()->addEventSubscriber($captureListener);
 
         $resizeListener = new ResizeFormListener(
-            $builder->getFormFactory(),
             $options['type'],
             $options['options'],
             $options['allow_add'],
