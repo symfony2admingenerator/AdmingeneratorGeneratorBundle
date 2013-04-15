@@ -66,7 +66,7 @@ class SingleUploadType extends FileType
         $view->vars['previewAsCanvas']    =   $options['previewAsCanvas'];
         $view->vars['thumbnailFilter']    =   $options['thumbnailFilter'];
         $view->vars['thumbnailGenerator'] =   $form->getConfig()->getAttribute('thumbnail_generator');
-        $view->vars['downloadType']       =   $this->_checkFileType($view->get('data'));
+        $view->vars['downloadType']       =   $this->_checkFileType(array_key_exists('data', $view->vars)?$view->vars['data']:null);
     }
 
     /**
