@@ -65,9 +65,9 @@ upload.errors:
 action.generic:
   list:   Lista
   new:    Nuovo
-  save:   Salvare
-  save-and-add:   Salvare e Nuovo
-  save-and-list:  Salvare e Lista
+  save:   Salva
+  save-and-add:   Salva e Nuovo
+  save-and-list:  Salva e Lista
 
 # Object actions
 action.object.edit:
