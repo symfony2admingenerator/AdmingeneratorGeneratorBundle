@@ -91,6 +91,7 @@ class DoctrineODMFieldGuesser
                 break;
             case 'int':
             case 'integer':
+            case 'int_id':
             case 'bigint':
             case 'smallint':
                 return 'integer';
