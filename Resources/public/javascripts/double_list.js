@@ -2,9 +2,12 @@ var sfDoubleList =
 {
   init: function(id, className)
   {
+    if(id == null)
+    return;
+    
     form = sfDoubleList.get_current_form(id);
 
-    callback = function() { sfDoubleList.submit(form, className) };
+      callback = function() { sfDoubleList.submit(form, className) };
 
     if (form.addEventListener)
     {
