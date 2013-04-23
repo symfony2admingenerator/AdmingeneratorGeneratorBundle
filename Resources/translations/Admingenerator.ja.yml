@@ -30,13 +30,13 @@ list.header:
 nested.list:
   expand:     見せる
   collapse:   隠す
-  loading:    進行中のロード
+  loading:    読みこみ中…
   success:    要素が正常に移動した
   error:      要素を移動できませんでした
 
 # Profile
 profile:
-  welcome:  <b>歓迎</b>, %username%!</p>
+  welcome:  ようこそ<b> %username%</b></p>
   login:    ログイン
   logout:   ログアウト
 
@@ -56,8 +56,8 @@ upload:
   delete:       削除
   download:     ダウンロード
 upload.errors:
-  maxNumFiles:      ファイルの最大数を超え
-  typeNotAllowed:   許可されていないファイルタイプ
+  maxNumFiles:      ファイルの最大数を超えています
+  typeNotAllowed:   許可されていないファイルタイプです
   maxFileSize:      ファイルが大きすぎます
   minFileSize:      ファイルが小さすぎます
 
@@ -66,8 +66,8 @@ action.generic:
   list:   一覧
   new:    新規作成
   save:   保存
-  save-and-add:   保存して、追加
-  save-and-list:  保存し、リスト
+  save-and-add:   保存して追加
+  save-and-list:  保存して戻る
 
 # Object actions
 action.object.edit:
@@ -76,14 +76,14 @@ action.object.edit:
   error:    データの保存に失敗しました。エラーを確認して再度保存してください。
 action.object.delete:
   label:    削除
-  confirm:  あなたは、この要素を削除してもよろしいですか？
+  confirm:  選択したデータを削除します。よろしいですか?
 action.object.show:
-  label:    見せる
+  label:    表示
 
 # Batch actions
 action.batch.delete:
   label:    削除
-  confirm:  選択したすべてのデータが完全に削除されます。よろしいですか?
+  confirm:  選択したすべてのデータを削除します。よろしいですか?
   success:  データの削除が正常に完了しました。
   error:    データの削除に失敗しました。
 
@@ -95,18 +95,18 @@ batch.list:
 # Layout
 dashboard:
   homepage:   ホームへ
-  brand:      ダッシュ ボード
+  brand:      ダッシュボード
 
 # Filetype icons
 filetype:
   audio:            オーディオ
-  archive:          アーカイブ
+  archive:          圧縮ファイル
   html:             HTML
   image:            イメージ
-  pdf-document:     PDF<br />ドキュメント
-  plain-text:       プレーン テキスト
+  pdf-document:     PDF
+  plain-text:       プレーンテキスト
   presentation:     プレゼンテーション
   spreadsheet:      スプレッドシート
-  text-document:    テキスト ドキュメント
-  unknown:          不明なファイルの種類
+  text-document:    テキストファイル
+  unknown:          不明なファイル
   video:            ビデオ
