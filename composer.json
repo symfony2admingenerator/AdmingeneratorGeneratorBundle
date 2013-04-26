@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "symfony/symfony": ">= 2.1.0",
+        "symfony/symfony": ">= 2.2.0",
         "cedriclombardot/twig-generator": "dev-master",
         "knplabs/knp-menu-bundle": ">1.0,<2.1",
         "white-october/pagerfanta-bundle": "dev-master",
@@ -42,7 +42,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "2.2-dev"
         }
     }
 }
