@@ -31,7 +31,7 @@
         </service>
         <service id="twig.extension.admingenerator.extends" class="Admingenerator\GeneratorBundle\Twig\Extension\ExtendsAdmingeneratedExtension" public="false">
             <tag name="twig.extension" />
-            <argument type="service" id="twig.loader" />
+            <argument type="service" id="twig.loader.filesystem" />
             <call method="addCachePath">
                 <argument type="service" id="service_container" />
             </call>
