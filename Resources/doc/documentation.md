@@ -101,6 +101,7 @@ Documentation for new form extensions and types:
 2. [Templating Tips and Tricks][cookbook-2]
 3. [How to create menu][cookbook-3]
 4. [How to use a2lixTranslationFormBundle with AdmingeneratorGeneratorBundle][cookbook-4]
+5. [Command Line][cookbook-5]
 
 [go up][go-up]
 
@@ -108,4 +109,4 @@ Documentation for new form extensions and types:
 [cookbook-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/templating.md
 [cookbook-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/menu.md
 [cookbook-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/a2lixTranslationFormBundle-integration.md
-
+[cookbook-5]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/commandLine.md
