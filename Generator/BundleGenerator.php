@@ -47,6 +47,9 @@ class BundleGenerator extends BaseBundleGenerator
         //tmp fix
         if(method_exists(__CLASS__, "setSkeletonDirs")) {
             $this->setSkeletonDirs($this->skeletonDir);
+            $symfony22 = false;
+        } else {
+            $symfony22 = true;
         }
 
         // Retrieves model folder depending of chosen ORM
@@ -77,24 +80,50 @@ class BundleGenerator extends BaseBundleGenerator
             'prefix'           => ucfirst($this->prefix),
         );
 
-        if (!file_exists($dir.'/'.$bundle.'.php')) {
-            $this->renderFile($this->skeletonDir, 'Bundle.php', $dir.'/'.$bundle.'.php', $parameters);
-        }
-
-        foreach ($this->actions as $action) {
-            $parameters['action'] = $action;
-            $this->renderFile($this->skeletonDir, 'DefaultController.php', $dir.'/Controller/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$action.'Controller.php', $parameters);
-
-            if ('Delete' !== $action) {
-                $this->renderFile($this->skeletonDir, 'index.html.twig', $dir.'/Resources/views/'.ucfirst($this->prefix).$action.'/index.html.twig', $parameters);
+        if ($symfony22) {
+            // for symfony 2.2 branch
+            if (!file_exists($dir.'/'.$bundle.'.php')) {
+                $this->renderFile($this->skeletonDir, 'Bundle.php', $dir.'/'.$bundle.'.php', $parameters);
             }
-        }
 
-        foreach ($this->forms as $form) {
-            $parameters['form'] = $form;
-            $this->renderFile($this->skeletonDir, 'DefaultType.php', $dir.'/Form/Type/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$form.'Type.php', $parameters);
-        }
+            foreach ($this->actions as $action) {
+                $parameters['action'] = $action;
+                $this->renderFile($this->skeletonDir, 'DefaultController.php', $dir.'/Controller/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$action.'Controller.php', $parameters);
 
-        $this->renderFile($this->skeletonDir, 'generator.yml', $dir.'/Resources/config/'.($this->prefix ? ucfirst($this->prefix).'-' : '').'generator.yml', $parameters);
+                if ('Delete' !== $action) {
+                    $this->renderFile($this->skeletonDir, 'index.html.twig', $dir.'/Resources/views/'.ucfirst($this->prefix).$action.'/index.html.twig', $parameters);
+                }
+            }
+
+            foreach ($this->forms as $form) {
+                $parameters['form'] = $form;
+                $this->renderFile($this->skeletonDir, 'DefaultType.php', $dir.'/Form/Type/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$form.'Type.php', $parameters);
+            }
+
+            $this->renderFile($this->skeletonDir, 'generator.yml', $dir.'/Resources/config/'.($this->prefix ? ucfirst($this->prefix).'-' : '').'generator.yml', $parameters);
+
+        } else {
+            // symfony master
+            if (!file_exists($dir.'/'.$bundle.'.php')) {
+                $this->renderFile('Bundle.php', $dir.'/'.$bundle.'.php', $parameters);
+            }
+
+            foreach ($this->actions as $action) {
+                $parameters['action'] = $action;
+                $this->renderFile('DefaultController.php', $dir.'/Controller/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$action.'Controller.php', $parameters);
+
+                if ('Delete' !== $action) {
+                    $this->renderFile('index.html.twig', $dir.'/Resources/views/'.ucfirst($this->prefix).$action.'/index.html.twig', $parameters);
+                }
+            }
+
+            foreach ($this->forms as $form) {
+                $parameters['form'] = $form;
+                $this->renderFile('DefaultType.php', $dir.'/Form/Type/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$form.'Type.php', $parameters);
+            }
+
+            $this->renderFile('generator.yml', $dir.'/Resources/config/'.($this->prefix ? ucfirst($this->prefix).'-' : '').'generator.yml', $parameters);
+
+        }
     }
 }
