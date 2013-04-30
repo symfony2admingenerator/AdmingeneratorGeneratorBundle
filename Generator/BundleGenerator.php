@@ -44,6 +44,11 @@ class BundleGenerator extends BaseBundleGenerator
     {
         $dir .= '/'.strtr($namespace, '\\', '/');
 
+        //tmp fix
+        if(method_exists(__CLASS__, "setSkeletonDirs")) {
+            $this->setSkeletonDirs($this->skeletonDir);
+        }
+
         // Retrieves model folder depending of chosen ORM
         $modelFolder = '';
         switch ($generator) {
