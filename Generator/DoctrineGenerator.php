@@ -109,14 +109,8 @@ class DoctrineGenerator extends Generator
             $generator_path   = $yaml_path;
         }
 
-        $dir = $namespace_prefix.'/'.$bundle_name;
-        if (is_dir($src = realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$dir.'/Resources/config'))) {
-            $namespace_directory = $src;
-        } else {
-            $namespace_directory = realpath($this->container->getParameter('kernel.root_dir').'/../vendor/bundles/'.$dir.'/Resources/config');
-        }
-
-        $yaml_file = $namespace_directory.'/'.$generator_path;
+        $kernel = $container->getService('kernel');
+        $yaml_file = $kernel->locateResource('@'.$namespace_prefix.$bundle_name.'/Resources/config/'.$generator_path);
 
         if (!file_exists($yaml_file)) {
             throw new CantGenerateException("Can't generate embed type for $yaml_file, file not found.");
