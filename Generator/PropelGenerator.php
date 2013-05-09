@@ -111,7 +111,7 @@ class PropelGenerator extends Generator
             $generator_path   = $yaml_path;
         }
 
-        $kernel = $this->container->getService('kernel');
+        $kernel = $this->container->get('kernel');
         $yaml_file = $kernel->locateResource('@'.$namespace_prefix.$bundle_name.'/Resources/config/'.$generator_path);
 
         if (!file_exists($yaml_file)) {
