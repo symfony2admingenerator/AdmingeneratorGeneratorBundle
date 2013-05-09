@@ -7,36 +7,36 @@
 
     {% block scripts_head %}
         <!-- jquery.min.js -->
-        <script type="text/javascript" src="{{ asset('js/jquery-1.8.3.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/jquery-1.8.3.min.js') }}"></script>
 
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
-            <script src="{{ asset('js/html5shiv/html5.js') }}"></script>
+            <script src="{{ asset('bundles/admingeneratorgenerator/js/html5shiv/html5.js') }}"></script>
         <![endif]-->
     {% endblock %}
 
     {% block stylesheets %}
         <!-- bootstrap.min.css -->
-        <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap-extended.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap-datepicker.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('css/google/prettify.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/bootstrap/bootstrap.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/bootstrap/bootstrap-extended.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/bootstrap/bootstrap-datepicker.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/google/prettify.css') }}" type="text/css" media="all" />
 
         <!-- bootstrap-responsive.min.css -->
-        <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap-responsive.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap-responsive-extended.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/bootstrap/bootstrap-responsive.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/bootstrap/bootstrap-responsive-extended.css') }}" type="text/css" media="all" />
 
         <!-- admingenerator.min.css -->
-        <link rel="stylesheet" href="{{ asset('css/admingenerator/general.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/admingenerator/general.css') }}" type="text/css" media="all" />
     {% endblock %}
 
     {% block icons %}
         <!-- Favicon and touch icons -->
-        <link rel="shortcut icon" href="{{ asset('ico/favicon.ico') }}">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('ico/apple-touch-icon-144-precomposed.png') }}">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('ico/apple-touch-icon-114-precomposed.png') }}">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('ico/apple-touch-icon-72-precomposed.png') }}">
-        <link rel="apple-touch-icon-precomposed" href="{{ asset('ico/apple-touch-icon-57-precomposed.png') }}">
+        <link rel="shortcut icon" href="{{ asset('bundles/admingeneratorgenerator/ico/favicon.ico') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('bundles/admingeneratorgenerator/ico/apple-touch-icon-144-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('bundles/admingeneratorgenerator/ico/apple-touch-icon-114-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('bundles/admingeneratorgenerator/ico/apple-touch-icon-72-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/admingeneratorgenerator/ico/apple-touch-icon-57-precomposed.png') }}">
     {% endblock %}
   </head>
 
@@ -86,25 +86,25 @@
 
     {% block javascripts %}
         <!-- bootstrap.min.js -->
-        <script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-transition.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-alert.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-modal.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-dropdown.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-scrollspy.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-tab.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-tooltip.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-button.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-collapse.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-carousel.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-typeahead-extended.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-affix.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-datepicker.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/bootstrap/locales/bootstrap-datepicker.' ~ app.request.locale ~ '.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/google/prettify.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-transition.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-alert.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-modal.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-dropdown.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-scrollspy.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-tab.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-tooltip.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-popover.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-button.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-collapse.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-carousel.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-typeahead-extended.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-affix.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-datepicker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/locales/bootstrap-datepicker.' ~ app.request.locale ~ '.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/google/prettify.js') }}"></script>
 
         <!-- jquery.spin.min.js  -->
-        <script type="text/javascript" src="{{ asset('js/spin/jquery.spin.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/spin/jquery.spin.js') }}"></script>
     {% endblock %}
 
   </body>
