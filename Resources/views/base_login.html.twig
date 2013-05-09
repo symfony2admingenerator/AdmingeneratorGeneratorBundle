@@ -7,7 +7,7 @@
 
     {% block scripts_head %}
         {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/jquery.min.js'
-            '@AdmingeneratorGeneratorBundle/Resources/public/js/jquery-1.8.3.min.js'
+            'bundles/admingeneratorgenerator/js/jquery-1.8.3.min.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
@@ -20,23 +20,23 @@
 
     {% block stylesheets %}
         {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/bootstrap.min.css'
-            '@AdmingeneratorGeneratorBundle/Resources/public/css/bootstrap/bootstrap.css'
-            '@AdmingeneratorGeneratorBundle/Resources/public/css/bootstrap/bootstrap-extended.css'
-            '@AdmingeneratorGeneratorBundle/Resources/public/css/bootstrap/bootstrap-datepicker.css'
-            '@AdmingeneratorGeneratorBundle/Resources/public/css/google/prettify.css'
+            'bundles/admingeneratorgenerator/css/bootstrap/bootstrap.css'
+            'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-extended.css'
+            'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-datepicker.css'
+            'bundles/admingeneratorgenerator/css/google/prettify.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
 
         {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/bootstrap-responsive.min.css'
-            '@AdmingeneratorGeneratorBundle/Resources/public/css/bootstrap/bootstrap-responsive.css'
-            '@AdmingeneratorGeneratorBundle/Resources/public/css/bootstrap/bootstrap-responsive-extended.css'
+            'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-responsive.css'
+            'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-responsive-extended.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
 
         {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/admingenerator-login.min.css'
-            '@AdmingeneratorGeneratorBundle/Resources/public/css/admingenerator/general.css'
+            'bundles/admingeneratorgenerator/css/admingenerator/general.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
@@ -98,28 +98,28 @@
 
     {% block javascripts %}
         {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/bootstrap.min.js'
-            '@AdmingeneratorGeneratorBundle/Resources/public/js/bootstrap/bootstrap-transition.js'
-            '@AdmingeneratorGeneratorBundle/Resources/public/js/bootstrap/bootstrap-alert.js'
-            '@AdmingeneratorGeneratorBundle/Resources/public/js/bootstrap/bootstrap-modal.js'
-            '@AdmingeneratorGeneratorBundle/Resources/public/js/bootstrap/bootstrap-dropdown.js'
-            '@AdmingeneratorGeneratorBundle/Resources/public/js/bootstrap/bootstrap-scrollspy.js'
-            '@AdmingeneratorGeneratorBundle/Resources/public/js/bootstrap/bootstrap-tab.js'
-            '@AdmingeneratorGeneratorBundle/Resources/public/js/bootstrap/bootstrap-tooltip.js'
-            '@AdmingeneratorGeneratorBundle/Resources/public/js/bootstrap/bootstrap-popover.js'
-            '@AdmingeneratorGeneratorBundle/Resources/public/js/bootstrap/bootstrap-button.js'
-            '@AdmingeneratorGeneratorBundle/Resources/public/js/bootstrap/bootstrap-collapse.js'
-            '@AdmingeneratorGeneratorBundle/Resources/public/js/bootstrap/bootstrap-carousel.js'
-            '@AdmingeneratorGeneratorBundle/Resources/public/js/bootstrap/bootstrap-typeahead-extended.js'
-            '@AdmingeneratorGeneratorBundle/Resources/public/js/bootstrap/bootstrap-affix.js'
-            '@AdmingeneratorGeneratorBundle/Resources/public/js/bootstrap/bootstrap-datepicker.js'
-            '@AdmingeneratorGeneratorBundle/Resources/public/js/bootstrap/locales/*'
-            '@AdmingeneratorGeneratorBundle/Resources/public/js/google/prettify.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-transition.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-alert.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-modal.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-dropdown.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-scrollspy.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-tab.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-tooltip.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-popover.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-button.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-collapse.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-carousel.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-typeahead-extended.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-affix.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-datepicker.js'
+            'bundles/admingeneratorgenerator/js/bootstrap/locales/*'
+            'bundles/admingeneratorgenerator/js/google/prettify.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
         {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/jquery.spin.min.js'
-            '@AdmingeneratorGeneratorBundle/Resources/public/js/spin/jquery.spin.js'
+            'bundles/admingeneratorgenerator/js/spin/jquery.spin.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
