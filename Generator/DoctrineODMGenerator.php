@@ -101,7 +101,7 @@ class DoctrineODMGenerator extends Generator
             $generator_path   = $yaml_path;
         }
 
-        $kernel = $container->getService('kernel');
+        $kernel = $this->container->getService('kernel');
         $yaml_file = $kernel->locateResource('@'.$namespace_prefix.$bundle_name.'/Resources/config/'.$generator_path);
 
         if (!file_exists($yaml_file)) {
