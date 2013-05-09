@@ -1,6 +1,6 @@
 {% block double_list_widget %}
 {% spaceless %}
-    <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/javascripts/double_list.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('@AdmingeneratorGeneratorBundle/Resources/public/javascripts/double_list.js') }}"></script>
     <div class="double_list">
         <div style="float: left">
             {% include "AdmingeneratorGeneratorBundle:Form/DoubleList:unselected_list.html.twig" %}
@@ -83,7 +83,7 @@
 
 {% block single_upload_widget %}
 {% spaceless %}
-    <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/admingenerator/form/single-upload.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('@AdmingeneratorGeneratorBundle/Resources/public/js/admingenerator/form/single-upload.js') }}"></script>
     <div id="{{ id ~ '_widget_container' }}" class="single-upload">
         <div class="btn-toolbar form-actions form-actions-condensed singleupload-buttonbar">
             <span class="btn btn-success fileinput">

@@ -10,7 +10,7 @@
             </li>
         {% endfor %}
     </ul>
-    <script type="text/javascript" src="{{ echo_twig("asset('bundles/admingeneratorgenerator/js/admingenerator/tabs.js')") }}"></script>
+    <script type="text/javascript" src="{{ echo_twig("asset('@AdmingeneratorGeneratorBundle/Resources/public/js/admingenerator/tabs.js')") }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             {% for name in tabs|keys %}
