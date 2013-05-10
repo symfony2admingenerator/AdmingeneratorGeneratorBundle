@@ -44,6 +44,9 @@ class BundleGenerator extends BaseBundleGenerator
     {
         $dir .= '/'.strtr($namespace, '\\', '/');
 
+        //tmp fix
+        $this->setSkeletonDirs($this->skeletonDir);
+
         // Retrieves model folder depending of chosen ORM
         $modelFolder = '';
         switch ($generator) {
@@ -73,23 +76,23 @@ class BundleGenerator extends BaseBundleGenerator
         );
 
         if (!file_exists($dir.'/'.$bundle.'.php')) {
-            $this->renderFile($this->skeletonDir, 'Bundle.php', $dir.'/'.$bundle.'.php', $parameters);
+            $this->renderFile('Bundle.php', $dir.'/'.$bundle.'.php', $parameters);
         }
 
         foreach ($this->actions as $action) {
             $parameters['action'] = $action;
-            $this->renderFile($this->skeletonDir, 'DefaultController.php', $dir.'/Controller/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$action.'Controller.php', $parameters);
+            $this->renderFile('DefaultController.php', $dir.'/Controller/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$action.'Controller.php', $parameters);
 
             if ('Delete' !== $action) {
-                $this->renderFile($this->skeletonDir, 'index.html.twig', $dir.'/Resources/views/'.ucfirst($this->prefix).$action.'/index.html.twig', $parameters);
+                $this->renderFile('index.html.twig', $dir.'/Resources/views/'.ucfirst($this->prefix).$action.'/index.html.twig', $parameters);
             }
         }
 
         foreach ($this->forms as $form) {
             $parameters['form'] = $form;
-            $this->renderFile($this->skeletonDir, 'DefaultType.php', $dir.'/Form/Type/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$form.'Type.php', $parameters);
+            $this->renderFile('DefaultType.php', $dir.'/Form/Type/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$form.'Type.php', $parameters);
         }
 
-        $this->renderFile($this->skeletonDir, 'generator.yml', $dir.'/Resources/config/'.($this->prefix ? ucfirst($this->prefix).'-' : '').'generator.yml', $parameters);
+        $this->renderFile('generator.yml', $dir.'/Resources/config/'.($this->prefix ? ucfirst($this->prefix).'-' : '').'generator.yml', $parameters);
     }
 }
