@@ -139,7 +139,7 @@ class EditType extends BaseEditType
     {
       parent::setDefaultOptions($resolver); 
         $resolver->setDefaults(array(
-            'data_class' => "Ges\CoreBundle\Entity\FicheMedicale" 
+            'data_class' => "Acme\YourOtherBundle\Entity\YourEntity" 
             ));
     }
 
