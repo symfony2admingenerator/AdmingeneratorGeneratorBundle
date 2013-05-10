@@ -137,7 +137,7 @@ class EditType extends BaseEditType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-      parent::setDefaultOptions($resolver); 
+        parent::setDefaultOptions($resolver); 
         $resolver->setDefaults(array(
             'data_class' => "Acme\YourOtherBundle\Entity\YourEntity" 
             ));
