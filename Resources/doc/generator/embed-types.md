@@ -135,11 +135,12 @@ use Admingenerated\AcmeYourOtherBundle\Form\BasePrefixType\EditType as BaseEditT
 class EditType extends BaseEditType
 {
 
-    public function getDefaultOptions(array $options)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        return array(
-            'data_class' => "Acme\YourOtherBundle\Entity\YourOtherEntity" 
-            );
+      parent::setDefaultOptions($resolver); 
+        $resolver->setDefaults(array(
+            'data_class' => "Ges\CoreBundle\Entity\FicheMedicale" 
+            ));
     }
 
   public function getName()
