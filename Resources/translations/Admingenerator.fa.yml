@@ -1,0 +1,116 @@
+# Double list form
+double_list:
+  selected:   انتخاب شده
+  unselected: انتخاب نشده
+
+# Date range form
+date_range:
+  from.label: از
+  to.label:   تا
+
+# Pager
+pagerfanta:
+  previous: قبلی
+  next:     بعدی
+
+# List
+list:
+  no.results: موردی پیدا نشد.
+  filters:    فیلترها
+list.button:
+  filter:     فیلتر
+  reset:      مجدد سازی
+list.display:
+  range:      نمایش <b>%start%</b> - <b>%end%</b> از <b>%count%</b> نتیجه.
+  all:        نمایش همه ی  <b>%count%</b> نتیجه.
+list.header:
+  actions:    اقدام ها
+
+# Nested List
+nested.list:
+  expand:     نمایش
+  collapse:   مخفی کردن
+  loading:    در حال بارگذاری
+  success:    عنصر مورد نظر با موفقیت جابه جا گردید
+  error:      عنصر مورد نظر جا به جا نشد
+
+# Profile
+profile:
+  welcome:  <b>خوش آمدید</b>, %username%!</p>
+  login:    ورود
+  logout:   خروج
+
+# EntityPicker
+entity_picker:
+  placeholder:  جستجو...
+
+# Collection
+collection:
+  add: اضافه کردن
+
+# Upload
+upload:
+  file.add:     فایل جدید...
+  error:        خطا
+  cancel:       لغو کردن
+  delete:       حذف کردن
+  download:     دانلود
+upload.errors:
+  maxNumFiles:      برون روی از بیشترین تعداد فایل اجازه داده شده.
+  typeNotAllowed:   نوع فایل غیرمجاز می باشد.
+  maxFileSize:      اندازه ی فایل زیاد می باشد.
+  minFileSize:      اندازه ی فایل کم می باشد.
+
+# SingleUpload
+singleupload:
+  display.name:     نام نشان داده شده
+
+# Generic actions
+action.generic:
+  list:   لیست
+  new:    جدید
+  save:   ذخیره
+  save-and-add:   ذخیره و اضافه
+  save-and-list:  ذخیره و لیست
+
+# Object actions
+action.object.edit:
+  label:    ویرایش
+  success:  ذخیره سازی با موفقیت انجام پذیرفت.
+  error:    فرم مورد نظر ذخیره نشد. خطاها را بررسی کرده و سپس دوباره امتحان کنید.
+action.object.delete:
+  label:    حذف کردن
+  confirm:  آیا از حذف کردن این عنصر مطمئن می باشید؟
+action.object.show:
+  label:    نمایش
+
+# Batch actions
+action.batch.delete:
+  label:    پاک کردن
+  confirm:  آیا حذف کردن همه ی عناصر انتخاب شده را تایید می نمایید؟
+  success:  عناصر مورد نظر با موفقیت حذف شدند.
+  error:    عملیات حذف عناصر مورد نظر با خطا مواجه شد.
+
+# Batch list
+batch.list:
+  selected:       انتخاب شده
+  none.selected:  شما باید حداقل یک عنصر را انتخاب کنید.
+
+# Layout
+dashboard:
+  homepage:   خانه
+  brand:      داشبورد
+
+# Filetype icons
+filetype:
+  audio:            صوت
+  archive:          آرشیو (فایل فشرده)
+  html:             HTML
+  image:            تصویر
+  pdf-document:     PDF<br />Document
+  plain-text:       متن ساده
+  presentation:     Presentation
+  spreadsheet:      Spreadsheet
+  text-document:    سند متنی
+  unknown:          ناشناخته
+  video:            ویدئو
