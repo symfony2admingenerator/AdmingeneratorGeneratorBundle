@@ -102,3 +102,52 @@ builders:
       title:      ""  # title has to be defined to avoid errors, but is not used
 # other builders are not required
 ```
+
+### 5. Embed your generated form 
+
+You generated two entities, and you want to embed one of them :
+
+You must generate admingenerator files with `php app/console admin:generate-admin` command first. Then edit the generator 
+config:
+```yaml
+generator: admingenerator.generator.doctrine
+params:
+    model: Acme\YourBundle\Entity\YourEntity
+    namespace_prefix: Acme
+    bundle_name: YourBundle
+    embed_types: 
+        # full syntax 
+        - "Acme:YourOtherBundle:prefix-generator.yml"
+    fields: 
+        yourfield:  
+          formType:   \Acme\YourOtherBundle\Form\Type\Prefix\EditType 
+```
+
+Now edit  Acme\YourOtherBundle\Form\Type\Prefix\EditType.php file.
+
+```php
+<?php
+
+namespace Acme\YourOtherBundle\Form\Type\Prefix;
+
+use Admingenerated\AcmeYourOtherBundle\Form\BasePrefixType\EditType as BaseEditType;
+
+class EditType extends BaseEditType
+{
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        parent::setDefaultOptions($resolver); 
+        $resolver->setDefaults(array(
+            'data_class' => "Acme\YourOtherBundle\Entity\YourEntity" 
+            ));
+    }
+
+  public function getName()
+    {
+        return 'yourfield';
+    }
+
+}
+```
+
