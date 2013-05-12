@@ -1,6 +1,7 @@
 {% use '../CommonAdmin/EditAction/index.php.twig' %}
 {% use '../CommonAdmin/EditAction/update.php.twig' %}
 {% use '../CommonAdmin/security_action.php.twig' %}
+{% use '../CommonAdmin/csrf_protection.php.twig' %}
 <?php
 
 namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.generator.GeneratedControllerFolder }};
@@ -12,6 +13,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 {{- block('update_use') -}}
 
+{{- block('csrf_protection_use') -}}
+
 {{- block('security_use') }}
 
 class EditController extends BaseController
@@ -19,6 +22,8 @@ class EditController extends BaseController
     {{- block('index') -}}
 
     {{- block('update') -}}
+
+    {{- block('csrf_check_token') -}}
 
     {{- block('security_check_with_object') }}
 

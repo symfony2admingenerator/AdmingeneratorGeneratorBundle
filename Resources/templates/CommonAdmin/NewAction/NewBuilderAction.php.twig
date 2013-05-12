@@ -1,6 +1,7 @@
 {% use '../CommonAdmin/NewAction/index.php.twig' %}
 {% use '../CommonAdmin/NewAction/create.php.twig' %}
 {% use '../CommonAdmin/security_action.php.twig' %}
+{% use '../CommonAdmin/csrf_protection.php.twig' %}
 <?php
 
 namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.generator.GeneratedControllerFolder }};
@@ -12,6 +13,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 {{- block('create_use') -}}
 
+{{- block('csrf_protection_use') -}}
+
 {{- block('security_use') }}
 
 class NewController extends BaseController
@@ -19,6 +22,8 @@ class NewController extends BaseController
     {{- block('index') -}}
 
     {{- block('create') -}}
+
+    {{- block('csrf_check_token') -}}
 
     {{- block('security_check') }}
 

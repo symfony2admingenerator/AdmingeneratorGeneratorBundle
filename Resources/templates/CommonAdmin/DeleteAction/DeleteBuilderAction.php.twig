@@ -1,5 +1,6 @@
 {% use '../CommonAdmin/DeleteAction/index.php.twig' %}
 {% use '../CommonAdmin/security_action.php.twig' %}
+{% use '../CommonAdmin/csrf_protection.php.twig' %}
 <?php
 
 namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.generator.GeneratedControllerFolder }};
@@ -7,12 +8,16 @@ namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.gene
 use {{ builder.generator.baseController }} as BaseController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+{{ block('csrf_protection_use') }}
+
 {{ block('security_use') }}
 
 class DeleteController extends BaseController
 {
 
     {{- block('index') -}}
+
+    {{- block('csrf_check_token') -}}
 
     {{- block('security_check_with_object') }}
 

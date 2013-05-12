@@ -2,6 +2,7 @@
 {% use '../CommonAdmin/ListAction/filters.php.twig' %}
 {% use '../CommonAdmin/ListAction/scopes.php.twig' %}
 {% use '../CommonAdmin/security_action.php.twig' %}
+{% use '../CommonAdmin/csrf_protection.php.twig' %}
 <?php
 
 namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.generator.GeneratedControllerFolder }};
@@ -28,6 +29,8 @@ class ListController extends BaseController
     {{- block('filters') -}}
 
     {{- block('scopes') -}}
+
+    {{- block('csrf_generate_token') -}}
 
     {{- block('security_check') }}
 
