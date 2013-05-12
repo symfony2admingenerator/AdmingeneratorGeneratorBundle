@@ -3,7 +3,7 @@ $(document).ready(function(){
     $('td.actions button[rel="tooltip"]').tooltip();
     
     // Convert object action buttons into POST requests
-    $("td.actions button").click(function(e) {
+    $("td.actions button, .form-actions .btn-toolbar button").click(function(e) {
         e.preventDefault();
         
         // Create hidden form
