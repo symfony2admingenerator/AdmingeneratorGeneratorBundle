@@ -7,7 +7,7 @@
 
 ### 1. Default protection
 
-Admingenerator protects default actions (New, Edit, Delete) and all batch actions by checking CSRF token. CSRF token variable is added to all list action links.
+Admingenerator protects default actions (New, Edit, Delete, Show) and all batch actions by checking CSRF token. CSRF token variable is added to all list action links.
 
 ### 2. Protect your custom actions
 
