@@ -1,0 +1,41 @@
+{% block csrf_protection_use %}
+use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
+{% endblock %}
+
+{% block csrf_generate_token %}
+    /**
+     * Generate csrf token to protect link actions
+     *
+     * @throw InvalidCsrfTokenException if token is invalid
+     */
+    protected function generateCsrfToken()
+    {
+        $intention = '{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}';
+        $csrf = $this->get('form.csrf_provider');
+        $token = $csrf->generateCsrfToken($intention);
+        
+        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}\CSRFToken', $token);
+        
+        return $token;
+    }
+{% endblock %}
+
+{% block csrf_check_token %}
+    /**
+     * Check crsf token for link action
+     *
+     * @throw InvalidCsrfTokenException if token is invalid
+     */
+    protected function checkCsrfToken()
+    {
+        $token = $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}\CSRFToken', '');
+        
+        if ($token !== $this->getRequest()->query->get('_csrf_token')) {
+            throw new InvalidCsrfTokenException();
+        }
+    }
+{% endblock %}
+    
+{% block csrf_action_check_token %}
+$this->checkCsrfToken();
+{% endblock %}
