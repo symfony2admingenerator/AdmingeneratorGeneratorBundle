@@ -17,6 +17,7 @@ and open a ticket on github.
 5. [Form Extensions][table-of-contents-5]
 6. [Internationalization][table-of-contents-6]
 7. [Cookbook][table-of-contents-7]
+7. [Security][table-of-contents-8]
 
 [go-up]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#table-of-contents
 [table-of-contents-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#1-installation
@@ -26,6 +27,7 @@ and open a ticket on github.
 [table-of-contents-5]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#5-form-extensions
 [table-of-contents-6]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#6-internationalization
 [table-of-contents-7]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#7-cookbook
+[table-of-contents-8]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#8-security
 
 ## 1. Installation
 
@@ -110,3 +112,11 @@ Documentation for new form extensions and types:
 [cookbook-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/menu.md
 [cookbook-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/a2lixTranslationFormBundle-integration.md
 [cookbook-5]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/commandLine.md
+
+## 8. Security
+
+1. [CSRF Protection][security-1]
+
+[go up][go-up]
+
+[security-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/security/csrf-protection.md
