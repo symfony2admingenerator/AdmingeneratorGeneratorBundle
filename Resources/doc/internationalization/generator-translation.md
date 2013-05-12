@@ -29,6 +29,7 @@ Currently supported languages are:
 * (sl) Slovenian
 * (tr) Turkish
 * (uk) Ukrainian
+* (fa) Farsi (Persian)
 
 If your language is not listed above please [contribute][general-1]!
 
