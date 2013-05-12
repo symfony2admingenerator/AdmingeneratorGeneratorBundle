@@ -1,10 +1,28 @@
 $(document).ready(function(){
     // Enable tooltips
-    $('a[rel="tooltip"]').tooltip();
+    $('td.actions button[rel="tooltip"]').tooltip();
     
-    // Enable confirm on object actions
-    $("td.actions a[data-confirm]").click(function(e) {
-        e.preventDefault();        
-    	if(confirm($(this).data('confirm'))) { window.location.href = $(this).attr('href'); }
+    // Convert object action buttons into POST requests
+    $("td.actions button").click(function(e) {
+        e.preventDefault();
+        
+        // Create hidden form
+        var form = $('<form />').attr({
+            method: 'POST',
+            action: $(this).data('action'),
+            style:  'visibility: hidden'
+        }).appendTo($('body'));
+        
+        // Add csrf protection token
+        $('<input />').attr({
+            type:   'hidden',
+            name:   '_csrf_token',
+            value:  admingeneratorCsrfToken
+        }).appendTo(form);
+        
+        // Submit POST request, if required promt for confirmation
+        if(!$(this).data('confirm') || confirm($(this).data('confirm'))) {
+            form.submit();
+        }
     });
 });

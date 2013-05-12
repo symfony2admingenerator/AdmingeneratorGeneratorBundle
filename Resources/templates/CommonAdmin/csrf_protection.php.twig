@@ -30,7 +30,7 @@ use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
     {
         $token = $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}\CSRFToken', '');
         
-        if ($token !== $this->getRequest()->query->get('_csrf_token')) {
+        if ($token !== $this->getRequest()->request->get('_csrf_token')) {
             throw new InvalidCsrfTokenException();
         }
     }
