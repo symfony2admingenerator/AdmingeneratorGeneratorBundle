@@ -1,6 +1,6 @@
 {% block complementary_stylesheets %}
     {{ echo_twig('parent()') }}
     {% for css in builder.getStylesheets() %}
-    <link rel="stylesheet" href="{{ echo_twig("asset('bundles/admingeneratorgenerator/" ~ css.path ~ "')") }}" type="text/css" media="{{ css.media }}" />
+    <link rel="stylesheet" href="{{ echo_twig("asset('" ~ css.path ~ "')") }}" type="text/css" media="{{ css.media }}" />
     {% endfor %}
 {% endblock %}

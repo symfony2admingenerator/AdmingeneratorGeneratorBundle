@@ -1,6 +1,6 @@
 {% block complementary_javascripts %}
     {{ echo_twig('parent()') }}
     {% for js in builder.getJavascripts() %}
-    <script src="{{ echo_twig("asset('bundles/admingeneratorgenerator/" ~ js.path ~ "')") }}" type="text/javascript"></script>
+    <script src="{{ echo_twig("asset('" ~ js.path ~ "')") }}" type="text/javascript"></script>
     {% endfor %}
 {% endblock %}
