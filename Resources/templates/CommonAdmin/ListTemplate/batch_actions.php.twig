@@ -12,7 +12,10 @@
                         {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials')) }}
                     {% endif %}
                     <li>
-                        <a class="{{ action.class|default('') }}" href="#" data-action='{{ action.name }}' {% if action.confirm %}data-confirm='{{ echo_trans(action.confirm) }}'{% endif %}>
+                        {% set actionIntention = (builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ '_' ~ builder.BaseGeneratorName ~ '_' ~ action.name) %}
+                        <a class="{{ action.class|default('') }}" data-action='{{ action.name }}' 
+                          {%- if action.confirm %} data-confirm='{{ echo_trans(action.confirm) }}' {% endif -%}
+                          {%- if action.csrfProtected %} data-csrf-token="{{ echo_twig_filter(actionIntention, ['csrf_token']) }}" {% endif -%} href="#">
                           {% if action.icon %}<i class="{{ action.icon }}"></i> {% endif %}{{ echo_trans(action.label) }}
                         </a>
                     </li>

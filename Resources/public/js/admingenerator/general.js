@@ -13,12 +13,14 @@ $(document).ready(function(){
             style:  'visibility: hidden'
         }).appendTo($('body'));
         
-        // Add csrf protection token
-        $('<input />').attr({
-            type:   'hidden',
-            name:   '_csrf_token',
-            value:  admingeneratorCsrfToken
-        }).appendTo(form);
+        if($(this).data('csrf-token')) {
+            // Add csrf protection token
+            $('<input />').attr({
+                type:   'hidden',
+                name:   '_csrf_token',
+                value:  $(this).data('csrf-token')
+            }).appendTo(form);
+        }
         
         // Submit POST request, if required promt for confirmation
         if(!$(this).data('confirm') || confirm($(this).data('confirm'))) {

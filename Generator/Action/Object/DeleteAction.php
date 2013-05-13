@@ -20,6 +20,7 @@ class DeleteAction extends Action
         $this->setIcon('icon-remove');
         $this->setLabel('action.object.delete.label');
         $this->setConfirm('action.object.delete.confirm');
+        $this->setCsrfProtected(true);
 
         $this->setParams(array(
             'pk' => '{{ '.$builder->getModelClass().'.'.$builder->getModelPrimaryKeyName().' }}',

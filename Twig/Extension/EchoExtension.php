@@ -23,21 +23,22 @@ class EchoExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'echo_twig'       => new \Twig_Function_Method($this, 'getEchoTwig'),
-            'echo_block'      => new \Twig_Function_Method($this, 'getEchoBlock'),
-            'echo_endblock'   => new \Twig_Function_Method($this, 'getEchoEndBlock'),
-            'echo_for'        => new \Twig_Function_Method($this, 'getEchoFor'),
-            'echo_endfor'     => new \Twig_Function_Method($this, 'getEchoEndFor'),
-            'echo_extends'    => new \Twig_Function_Method($this, 'getEchoExtends'),
-            'echo_if'         => new \Twig_Function_Method($this, 'getEchoIf'),
-            'echo_if_granted' => new \Twig_Function_Method($this, 'getEchoIfGranted'),
-            'echo_else'       => new \Twig_Function_Method($this, 'getEchoElse'),
-            'echo_elseif'     => new \Twig_Function_Method($this, 'getEchoElseIf'),
-            'echo_endif'      => new \Twig_Function_Method($this, 'getEchoEndIf'),
-            'echo_path'       => new \Twig_Function_Method($this, 'getEchoPath'),
-            'echo_set'        => new \Twig_Function_Method($this, 'getEchoSet'),
-            'echo_trans'      => new \Twig_Function_Method($this, 'getEchoTrans'),
-            'echo_twig_assoc' => new \Twig_Function_Method($this, 'getEchoTwigAssoc'),
+            'echo_twig'         => new \Twig_Function_Method($this, 'getEchoTwig'),
+            'echo_block'        => new \Twig_Function_Method($this, 'getEchoBlock'),
+            'echo_endblock'     => new \Twig_Function_Method($this, 'getEchoEndBlock'),
+            'echo_for'          => new \Twig_Function_Method($this, 'getEchoFor'),
+            'echo_endfor'       => new \Twig_Function_Method($this, 'getEchoEndFor'),
+            'echo_extends'      => new \Twig_Function_Method($this, 'getEchoExtends'),
+            'echo_if'           => new \Twig_Function_Method($this, 'getEchoIf'),
+            'echo_if_granted'   => new \Twig_Function_Method($this, 'getEchoIfGranted'),
+            'echo_else'         => new \Twig_Function_Method($this, 'getEchoElse'),
+            'echo_elseif'       => new \Twig_Function_Method($this, 'getEchoElseIf'),
+            'echo_endif'        => new \Twig_Function_Method($this, 'getEchoEndIf'),
+            'echo_path'         => new \Twig_Function_Method($this, 'getEchoPath'),
+            'echo_set'          => new \Twig_Function_Method($this, 'getEchoSet'),
+            'echo_trans'        => new \Twig_Function_Method($this, 'getEchoTrans'),
+            'echo_twig_assoc'   => new \Twig_Function_Method($this, 'getEchoTwigAssoc'),
+            'echo_twig_filter'  => new \Twig_Function_Method($this, 'getEchoTwigFilter'),
         );
     }
 
@@ -296,13 +297,17 @@ class EchoExtension extends \Twig_Extension
         }
     }
 
-    public function getEchopath($path, $params = null)
+    public function getEchoPath($path, $params = null, $filters = null)
     {
         if (null === $params) {
-            return strtr('{{ path("%%path%%") }}',array('%%path%%' => $path));
+            return (null === $filters)
+              ? strtr('{{ path("%%path%%") }}', array('%%path%%' => $path))
+              : strtr('{{ path("%%path%%")|%%filters%% }}', array('%%path%%' => $path, '%%filters%%' => (is_array($filters) ? implode('|', $filters) : $filters) ));
         }
 
-        return strtr('{{ path("%%path%%", %%params%%) }}',array('%%path%%' => $path, '%%params%%'=>$params));
+        return (null === $filters)
+          ? strtr('{{ path("%%path%%", %%params%%) }}', array('%%path%%' => $path, '%%params%%' => $params))
+          : strtr('{{ path("%%path%%", %%params%%)|%%filters%% }}', array('%%path%%' => $path, '%%params%%' => $params, '%%filters%%' => (is_array($filters) ? implode('|', $filters) : $filters) ));
     }
 
     public function getEchoIfGranted($credentials, $modelName = null)
@@ -345,6 +350,15 @@ class EchoExtension extends \Twig_Extension
     public function getEchoTwig($str)
     {
         return sprintf('{{ %s }}', $str);
+    }
+
+    public function getEchoTwigFilter($str, $filters = null)
+    {
+        if (null === $filters) {
+            return $this->getEchoTwig($str);
+        }
+        
+        return strtr('{{ %%str%%|%%filters%% }}', array('%%str%%' => $str, '%%filters%%' => (is_array($filters) ? implode('|', $filters) : $filters) ));
     }
 
     public function getEchoBlock($name)

@@ -2,40 +2,30 @@
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 {% endblock %}
 
-{% block csrf_generate_token %}
-    /**
-     * Generate csrf token to protect link actions
-     *
-     * @throw InvalidCsrfTokenException if token is invalid
-     */
-    protected function generateCsrfToken()
-    {
-        $intention = '{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}';
-        $csrf = $this->get('form.csrf_provider');
-        $token = $csrf->generateCsrfToken($intention);
-        
-        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}\CSRFToken', $token);
-        
-        return $token;
-    }
-{% endblock %}
-
 {% block csrf_check_token %}
     /**
-     * Check crsf token for link action
+     * Check crsf token provided for action
      *
      * @throw InvalidCsrfTokenException if token is invalid
      */
-    protected function checkCsrfToken()
+    protected function isCsrfTokenValid($intention)
     {
-        $token = $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}\CSRFToken', '');
+        $token = $this->getRequest()->request->get('_csrf_token');
         
-        if ($token !== $this->getRequest()->request->get('_csrf_token')) {
+        if (!$this->get('form.csrf_provider')->isCsrfTokenValid($intention, $token)) {
             throw new InvalidCsrfTokenException();
         }
     }
 {% endblock %}
     
 {% block csrf_action_check_token %}
-$this->checkCsrfToken();
+// Check CSRF token for action
+$intention = $this->getRequest()->getRequestUri();
+$this->isCsrfTokenValid($intention);
+{% endblock %}
+
+{% block csrf_action_check_batch_token %}
+// Check CSRF token for batch action
+$intention = '{{ namespace_prefix }}_{{ bundle_name }}_{{ builder.BaseGeneratorName }}_'.$this->get('request')->get('action');
+$this->isCsrfTokenValid($intention);
 {% endblock %}

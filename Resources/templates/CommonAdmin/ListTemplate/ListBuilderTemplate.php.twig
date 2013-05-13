@@ -19,7 +19,6 @@
 {{ echo_block("javascripts") }}
     {{- block('complementary_javascripts') -}}
 
-    <script type="text/javascript"> var admingeneratorCsrfToken = '{{ echo_twig('csrfToken') }}'; </script>
     <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/general.js")') }}"></script>
 {{ echo_endblock() }}
 

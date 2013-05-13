@@ -152,18 +152,24 @@ class EchoExtensionTest extends TestCase
        $this->runTwigTests($tpls, $returns);
     }
 
-    public function testGetEchopath()
+    public function testGetEchoPath()
     {
         $tpls = array(
             'string' => '{{ echo_path( "foo" ) }}',
             'variable' => '{{ echo_path( name ) }}',
             'array' => '{{ echo_path( arr.obj ) }}',
+            'string_filtered' => '{{ echo_path( "foo", null, ["foo", "bar"] ) }}',
+            'variable_filtered' => '{{ echo_path( name, null, ["foo", "bar"] ) }}',
+            'array_filtered' => '{{ echo_path( arr.obj, null, ["foo", "bar"] ) }}',
         );
 
         $returns = array(
              'string' => array('{{ path("foo") }}', 'Path return a good Path tag with string elements'),
              'variable' => array('{{ path("cedric") }}', 'Path return a good Path tag with variable'),
              'array' => array('{{ path("val") }}', 'Path return a good Path tag with array element'),
+             'string_filtered' => array('{{ path("foo")|foo|bar }}', 'Path return a good Path tag with string elements and filters'),
+             'variable_filtered' => array('{{ path("cedric")|foo|bar }}', 'Path return a good Path tag with variable and filters'),
+             'array_filtered' => array('{{ path("val")|foo|bar }}', 'Path return a good Path tag with array element and filters'),
         );
 
        $this->runTwigTests($tpls, $returns);
@@ -368,6 +374,23 @@ class EchoExtensionTest extends TestCase
             'incomplete_variables' => array("{ a: '{{ Item.id ' }", 'Variables with unclosed {{ }} are quoted'),
             'complete_valiables' => array("{ a: Item.id }", 'Variables are passed w/o surrounding {{ }}'),
             'mixed_values' => array("{ a: Item.id, b: 'Item.id }}', c: 'abcde' }", 'Several values in the same expression'),
+        );
+
+        $this->runTwigTests($tpls, $returns);
+    }
+    
+    public function testGetEchoTwigFilter()
+    {
+        $tpls = array(
+            'none'   => '{{ echo_twig_filter( "cedric" ) }}',
+            'string' => '{{ echo_twig_filter( "cedric", "foo" ) }}',
+            'array'  => '{{ echo_twig_filter( "cedric", ["foo", "bar"] ) }}',
+        );
+
+        $returns = array(
+             'none'   => array('{{ cedric }}', 'echo return a good echo tag with no filters'),
+             'string' => array('{{ cedric|foo }}', 'echo return a good echo tag one filter'),
+             'array'  => array('{{ cedric|foo|bar }}', 'echo return a good echo tag with multiple filters'),
         );
 
         $this->runTwigTests($tpls, $returns);

@@ -1,5 +1,4 @@
 {% use '../CommonAdmin/security_action.php.twig' %}
-{% use '../CommonAdmin/csrf_protection.php.twig' %}
 {% block index_use %}
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ builder.BaseGeneratorName ? builder.BaseGeneratorName ~ "\\" : "" }}EditType;
@@ -10,8 +9,6 @@ use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ bu
     public function indexAction($pk)
     {
         ${{ builder.ModelClass }} = $this->getObject($pk);
-
-        {{ block('csrf_action_check_token') }}
 
         {{ block('security_action_with_object') }}
 

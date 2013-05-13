@@ -29,6 +29,10 @@
             <tag name="twig.extension" />
             <argument type="service" id="service_container" />
         </service>
+        <service id="twig.extension.admingenerator.csrf" class="Admingenerator\GeneratorBundle\Twig\Extension\CsrfTokenExtension" public="false">
+            <tag name="twig.extension" />
+            <argument type="service" id="service_container" />
+        </service>
         <service id="twig.extension.admingenerator.extends" class="Admingenerator\GeneratorBundle\Twig\Extension\ExtendsAdmingeneratedExtension" public="false">
             <tag name="twig.extension" />
             <argument type="service" id="twig.loader.filesystem" />

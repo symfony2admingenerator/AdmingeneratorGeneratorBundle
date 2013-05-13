@@ -2,11 +2,11 @@
 {% block batch_actions %}
 public function batchAction()
 {
-    {{ block('csrf_action_check_token') }}
-
     if (!$this->get('request')->get('action') || !$this->get('request')->get('ids')) {
         return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
     }
+    
+    {{ block('csrf_action_check_batch_token') }}
 
     $method = 'doBatch'.ucfirst($this->get('request')->get('action'));
     $this->$method($this->get('request')->get('ids'));

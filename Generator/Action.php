@@ -28,6 +28,8 @@ class Action
 
     protected $confirm_message;
 
+    protected $csrf_protected = false;
+
     protected $crendentials;
 
     protected $conditional_function;
@@ -114,6 +116,16 @@ class Action
     public function getConfirm()
     {
         return $this->confirm_message;
+    }
+
+    public function setCsrfProtected($csrf_protected)
+    {
+        $this->csrf_protected = $csrf_protected;
+    }
+
+    public function getCsrfProtected()
+    {
+        return $this->csrf_protected;
     }
 
     public function setCredentials($crendentials)
