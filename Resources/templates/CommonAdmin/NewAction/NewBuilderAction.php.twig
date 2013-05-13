@@ -23,6 +23,8 @@ class NewController extends BaseController
 
     {{- block('create') -}}
 
+    {{- block('csrf_generate_token') -}}
+
     {{- block('csrf_check_token') -}}
 
     {{- block('security_check') }}
