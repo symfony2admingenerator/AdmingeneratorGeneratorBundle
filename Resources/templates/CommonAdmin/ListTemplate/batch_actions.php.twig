@@ -53,7 +53,6 @@
     {{ echo_block("form_batch_actions") }}
     {% if batch_actions is defined and batch_actions|length > 0 %}
         <form method="post" action="{{ echo_path(( builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_batch')) }}">
-            <input type="hidden" name="_csrf_token" value="{{ echo_twig('csrfToken') }}" />
     {% endif %}
     {{ echo_endblock() }}
 {% endblock %}
