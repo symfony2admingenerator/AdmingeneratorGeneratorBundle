@@ -21,7 +21,7 @@
         "symfony/symfony": ">= 2.1.0",
         "cedriclombardot/twig-generator": "dev-master",
         "knplabs/knp-menu-bundle": ">1.0,<2.1",
-        "white-october/pagerfanta-bundle": "dev-master",
+        "white-october/pagerfanta-bundle": "2.1.*@dev",
         "twig/twig": ">= 1.9.0",
         "twig/extensions": "dev-master"
     },
