@@ -17,7 +17,7 @@ and open a ticket on github.
 5. [Form Extensions][table-of-contents-5]
 6. [Internationalization][table-of-contents-6]
 7. [Cookbook][table-of-contents-7]
-7. [Security][table-of-contents-8]
+8. [Security][table-of-contents-8]
 
 [go-up]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#table-of-contents
 [table-of-contents-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#1-installation
