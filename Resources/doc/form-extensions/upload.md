@@ -137,6 +137,73 @@ class Image implements FileInterface
     // ...
 ```
 
+#### 4.1. Implementing functions
+  
+  As you are implementing your class from an interface(FileInterface), you have to implement all abstract
+  functions in that interface which are :
+  
+*  `public function getSize()`
+*  `public function setParent($parent)`
+*  `public function setFile(\Symfony\Component\HttpFoundation\File\File $file)`
+*  `public function getFile()`
+*  `public function getPreview()`
+  
+**What exactly should be in these functions?** The short answer is: that depends.
+  
+  For example in this *Image* class, you can implement them like this :
+  
+```php
+  <?php
+  //...
+
+    /**
+     * Set file
+     *
+     * @param Symfony\Component\HttpFoundation\File\File $file
+     * @return AlbumImage
+     */
+    public function setFile(\Symfony\Component\HttpFoundation\File\File $file)
+    {
+        $this->file = $file;
+        return $this;
+    }
+
+    /**
+     * Get file
+     *
+     * @return string 
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * Get size
+     *
+     * @return string 
+     */
+    public function getSize()
+    {
+        return $this->file->getFileInfo()->getSize();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setParent($parent) {
+        $this->setAlbum($parent);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPreview()
+    {
+        return (preg_match('/image\/.*/i', $this->getMimeType()));
+    }
+```  
+
 ### 5. Options
 
 #### nameable
