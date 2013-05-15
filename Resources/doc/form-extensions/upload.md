@@ -71,9 +71,10 @@ images:
 ### 4. Edit your entity class:
 
 * entity class must implement `Fileinterface`
-* if you want sortable behaviour, you must use Gedmo
+* if you want sortable behaviour, you must use Gedmo [(Gedmo sortable configuration)][Gedmo-config]
 * use Vich to handle file uploads and injection
 
+[Gedmo-config]:https://github.com/l3pp4rd/DoctrineExtensions/blob/master/doc/sortable.md
 ```php
 <?php
 
