@@ -100,7 +100,9 @@
         <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-typeahead-extended.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-affix.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-datepicker.js') }}"></script>
+        {% if app.request.locale is not sameas('en') %}
         <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/locales/bootstrap-datepicker.' ~ app.request.locale ~ '.js') }}"></script>
+        {% endif %}
         <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/google/prettify.js') }}"></script>
 
         <!-- jquery.spin.min.js  -->
