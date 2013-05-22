@@ -23,7 +23,7 @@
         "knplabs/knp-menu-bundle": ">1.0,<2.1",
         "white-october/pagerfanta-bundle": "dev-master",
         "twig/twig": ">= 1.9.0",
-        "twig/extensions": "dev-master"
+        "twig/extensions": "1.0.0"
     },
     "require-dev": {
         "doctrine/common": ">=2.2.3,<2.5-dev",
