@@ -34,6 +34,10 @@ class Column
 
     protected $crendentials;
 
+    protected $localizedDateFormat;
+
+    protected $localizedTimeFormat;
+
     /** For special columns template */
     protected $extras;
 
@@ -167,6 +171,26 @@ class Column
     public function getCredentials()
     {
         return $this->crendentials;
+    }
+
+    public function setLocalizedDateFormat($localizedDateFormat)
+    {
+        $this->localizedDateFormat = $localizedDateFormat;
+    }
+
+    public function getLocalizedDateFormat()
+    {
+        return $this->localizedDateFormat;
+    }
+
+    public function setLocalizedTimeFormat($localizedTimeFormat)
+    {
+        $this->localizedTimeFormat = $localizedTimeFormat;
+    }
+
+    public function getLocalizedTimeFormat()
+    {
+        return $this->localizedTimeFormat;
     }
 
     public function setAddFormOptions(array $complementary_options = array())
