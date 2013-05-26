@@ -1,7 +1,7 @@
 {% block column_date %}
     {%- if builder.generator.TwigParams.use_localized_date == true -%}
         {{ echo_if (builder.ModelClass ~ '.' ~ column.getter) }}
-            {% if column.formOptions.localized_date_format is defined %}
+            {% if column.localized_date_format is defined %}
                 {{ echo_set('localized_date_format', column.formOptions.localized_date_format) }}
             {% else %}
                 {{ echo_set('localized_date_format', builder.generator.TwigParams.localized_date_format) }}
