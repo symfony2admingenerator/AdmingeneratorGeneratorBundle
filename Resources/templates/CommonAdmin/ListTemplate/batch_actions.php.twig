@@ -8,14 +8,19 @@
             </a>
             <ul id="batch_actions_list" class="dropdown-menu">
                 {% for action in builder.BatchActions %}
+                    {##
+                     # Why don't we use a select box?
+                     # With select box we don't need Javascript anymore except to manage
+                     # confirm alert box.
+                     #}
                     {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
                         {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials')) }}
                     {% endif %}
                     <li>
                         {% set actionIntention = ('"' ~ builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ '_' ~ builder.BaseGeneratorName ~ '_' ~ action.name ~ '"') %}
-                        <a class="{{ action.class|default('') }}" data-action='{{ action.name }}' 
+                        <a class="{{ action.class|default('') }}" data-action='{{ action.name }}'
                           {%- if action.confirm %} data-confirm='{{ echo_trans(action.confirm) }}' {% endif -%}
-                          {%- if action.csrfProtected %} data-csrf-token="{{ echo_twig_filter(actionIntention, ['csrf_token']) }}" {% endif -%} href="#">
+{#                           {%- if action.csrfProtected %} data-csrf-token="{{ echo_twig_filter(actionIntention, ['csrf_token']) }}" {% endif -%} href="#"> #}
                           {% if action.icon %}<i class="{{ action.icon }}"></i> {% endif %}{{ echo_trans(action.label) }}
                         </a>
                     </li>
@@ -52,7 +57,9 @@
 {% block form_batch_actions %}
     {{ echo_block("form_batch_actions") }}
     {% if batch_actions is defined and batch_actions|length > 0 %}
-        <form method="post" action="{{ echo_path(( builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_batch')) }}">
+        {% set actionPathName = builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_batch' %}
+        <form method="post" action="{{ echo_path(actionPathName) }}">
+            <input type="hidden" value="{{ echo_path(actionPathName, none , ['csrf_token']) }}" name="_csrf_token" />
     {% endif %}
     {{ echo_endblock() }}
 {% endblock %}
