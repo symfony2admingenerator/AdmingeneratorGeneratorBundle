@@ -1,0 +1,5 @@
+# Boolean filter
+boolean:
+  yes:        Evet
+  no:         Hayır
+  yes_or_no:  Evet veya Hayır

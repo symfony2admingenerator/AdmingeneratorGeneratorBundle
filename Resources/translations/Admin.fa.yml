@@ -1,0 +1,5 @@
+# Boolean filter
+boolean:
+  yes:        بله
+  no:         خیر
+  yes_or_no:  بله یا خیر

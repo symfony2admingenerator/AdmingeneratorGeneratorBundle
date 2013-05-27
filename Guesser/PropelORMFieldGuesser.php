@@ -197,11 +197,11 @@ class PropelORMFieldGuesser
         $options = array('required' => false);
 
         if (\PropelColumnTypes::BOOLEAN == $dbType || \PropelColumnTypes::BOOLEAN_EMU == $dbType) {
-           $options['choices'] = array(
-                    0 => 'No',
-                    1 => 'Yes'
-                    );
-           $options['empty_value'] = 'Yes or No';
+            $options['choices'] = array(
+               0 => 'boolean.no',
+               1 => 'boolean.yes'
+            );
+            $options['empty_value'] = 'boolean.yes_or_no';
         }
 
         if (\PropelColumnTypes::ENUM == $dbType) {

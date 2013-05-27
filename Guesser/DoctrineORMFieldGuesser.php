@@ -176,22 +176,22 @@ class DoctrineORMFieldGuesser
     public function getFilterOptions($formType, $dbType, $ColumnName)
     {
         $options = array('required' => false);
-
+        
         if ('boolean' == $dbType) {
-           $options['choices'] = array(
-                    0 => 'No',
-                    1 => 'Yes'
-                    );
-           $options['empty_value'] = 'Yes or No';
+            $options['choices'] = array(
+               0 => 'boolean.no',
+               1 => 'boolean.yes'
+            );
+            $options['empty_value'] = 'boolean.yes_or_no';
         }
 
-         if ('entity' == $dbType) {
-             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
-         }
+        if ('entity' == $dbType) {
+           return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
+        }
 
         if ('collection' == $dbType) {
-             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
-         }
+           return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
+        }
 
         return $options;
     }

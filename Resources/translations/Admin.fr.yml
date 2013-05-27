@@ -1,0 +1,5 @@
+# Boolean filter
+boolean:
+  yes:        Oui
+  no:         Non
+  yes_or_no:  Oui ou Non

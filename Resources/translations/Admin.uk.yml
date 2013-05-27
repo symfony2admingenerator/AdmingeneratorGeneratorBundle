@@ -1,0 +1,5 @@
+# Boolean filter
+boolean:
+  yes:        Так
+  no:         Ні
+  yes_or_no:  Так чи Ні

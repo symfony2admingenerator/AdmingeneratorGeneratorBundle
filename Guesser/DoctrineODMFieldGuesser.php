@@ -189,15 +189,15 @@ class DoctrineODMFieldGuesser
         $options = array('required' => false);
 
         if ('boolean' == $dbType) {
-           $options['choices'] = array(
-                    0 => 'No',
-                    1 => 'Yes'
-                    );
-           $options['empty_value'] = 'Yes or No';
+            $options['choices'] = array(
+               0 => 'boolean.no',
+               1 => 'boolean.yes'
+            );
+            $options['empty_value'] = 'boolean.yes_or_no';
         }
 
         if ('document' == $dbType) {
-             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
+            return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
         }
 
         if ('collection' == $formType) {
@@ -205,7 +205,7 @@ class DoctrineODMFieldGuesser
         }
 
         if ('collection' == $dbType) {
-             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
+            return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
         }
 
         return $options;
