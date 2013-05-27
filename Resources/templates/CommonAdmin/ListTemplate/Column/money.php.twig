@@ -1,4 +1,4 @@
-{% block column_decimal %}
+{% block column_money %}
     {% set currency   = column.formOptions.currency|default('EUR') %}
     {% set precision  = column.formOptions.precision|default(2) %}
     {% set grouping   = column.formOptions.grouping|default(true) %}
