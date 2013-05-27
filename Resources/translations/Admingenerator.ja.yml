@@ -8,6 +8,12 @@ date_range:
   from.label: から
   to.label:   へ
 
+# Boolean filter
+boolean:
+  yes:        はい
+  no:         ノー
+  yes_or_no:  諾否
+
 # Pager
 pagerfanta:
   previous: 前へ

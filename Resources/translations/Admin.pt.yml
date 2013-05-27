@@ -1,5 +1,0 @@
-# Boolean filter
-boolean:
-  yes:        Sim
-  no:         Não
-  yes_or_no:  Sim ou Não

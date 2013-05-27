@@ -23,6 +23,9 @@ class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
               {% if column.label is defined %}{% set columnOptions = columnOptions|merge({'label': column.label}) %}{% endif %}
               {% if column.help is defined %}{% set columnOptions = columnOptions|merge({'help': column.help}) %}{% endif %}
               {% set columnOptions = columnOptions|merge({'translation_domain': i18n_catalog|default('Admin')}) %}
+              {% if column.dbType is sameas('boolean') and builder.BaseGeneratorName is sameas('Filter') %}
+                  {% set columnOptions = columnOptions|merge({'translation_domain': 'Admingenerator'}) %}
+              {% endif %}
           {% set columnOptions = columnOptions|as_php|convert_as_form(column.formType) %}
 
            $builder->add('{{ column.name }}', {{ columnType }}, {{ columnOptions }});

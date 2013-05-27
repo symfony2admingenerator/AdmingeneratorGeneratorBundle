@@ -8,6 +8,12 @@ date_range:
   from.label: Od
   to.label:   Do
 
+# Boolean filter
+boolean:
+  yes:        Tak
+  no:         Nie
+  yes_or_no:  Tak lub Nie
+
 # Pager
 pagerfanta:
   previous: Poprzednia
