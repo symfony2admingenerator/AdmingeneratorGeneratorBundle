@@ -5,8 +5,9 @@ namespace Admingenerator\GeneratorBundle\Guesser;
 use Admingenerator\GeneratorBundle\Exception\NotImplementedException;
 
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\DependencyInjection\ContainerAware;
 
-class DoctrineORMFieldGuesser
+class DoctrineORMFieldGuesser extends ContainerAware
 {
     private $entityManager;
 
@@ -179,10 +180,10 @@ class DoctrineORMFieldGuesser
         
         if ('boolean' == $dbType) {
             $options['choices'] = array(
-               0 => 'boolean.no',
-               1 => 'boolean.yes'
+               0 => $this->container->get('translator')->trans('boolean.no', array(), 'Admingenerator'),
+               1 => $this->container->get('translator')->trans('boolean.yes', array(), 'Admingenerator')
             );
-            $options['empty_value'] = 'boolean.yes_or_no';
+            $options['empty_value'] = $this->container->get('translator')->trans('boolean.yes_or_no', array(), 'Admingenerator');
         }
 
         if ('entity' == $dbType) {

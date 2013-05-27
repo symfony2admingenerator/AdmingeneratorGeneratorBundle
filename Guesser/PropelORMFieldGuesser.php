@@ -2,11 +2,12 @@
 
 namespace Admingenerator\GeneratorBundle\Guesser;
 
-use Doctrine\Common\Util\Inflector;
-
 use Admingenerator\GeneratorBundle\Exception\NotImplementedException;
 
-class PropelORMFieldGuesser
+use Doctrine\Common\Util\Inflector;
+use Symfony\Component\DependencyInjection\ContainerAware;
+
+class PropelORMFieldGuesser extends ContainerAware
 {
 
     private $cache = array();
@@ -198,10 +199,10 @@ class PropelORMFieldGuesser
 
         if (\PropelColumnTypes::BOOLEAN == $dbType || \PropelColumnTypes::BOOLEAN_EMU == $dbType) {
             $options['choices'] = array(
-               0 => 'boolean.no',
-               1 => 'boolean.yes'
+               0 => $this->container->get('translator')->trans('boolean.no', array(), 'Admingenerator'),
+               1 => $this->container->get('translator')->trans('boolean.yes', array(), 'Admingenerator')
             );
-            $options['empty_value'] = 'boolean.yes_or_no';
+            $options['empty_value'] = $this->container->get('translator')->trans('boolean.yes_or_no', array(), 'Admingenerator');
         }
 
         if (\PropelColumnTypes::ENUM == $dbType) {

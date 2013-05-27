@@ -5,8 +5,9 @@ namespace Admingenerator\GeneratorBundle\Guesser;
 use Admingenerator\GeneratorBundle\Exception\NotImplementedException;
 
 use Doctrine\ODM\MongoDB\DocumentManager;
+use Symfony\Component\DependencyInjection\ContainerAware;
 
-class DoctrineODMFieldGuesser
+class DoctrineODMFieldGuesser extends ContainerAware
 {
     private $documentManager;
 
@@ -190,10 +191,10 @@ class DoctrineODMFieldGuesser
 
         if ('boolean' == $dbType) {
             $options['choices'] = array(
-               0 => 'boolean.no',
-               1 => 'boolean.yes'
+               0 => $this->container->get('translator')->trans('boolean.no', array(), 'Admingenerator'),
+               1 => $this->container->get('translator')->trans('boolean.yes', array(), 'Admingenerator')
             );
-            $options['empty_value'] = 'boolean.yes_or_no';
+            $options['empty_value'] = $this->container->get('translator')->trans('boolean.yes_or_no', array(), 'Admingenerator');
         }
 
         if ('document' == $dbType) {
