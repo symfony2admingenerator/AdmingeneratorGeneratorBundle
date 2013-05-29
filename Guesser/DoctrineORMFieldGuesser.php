@@ -141,7 +141,15 @@ class DoctrineORMFieldGuesser extends ContainerAware
         if ('number' == $formType) {
             $mapping = $this->getMetadatas()->getFieldMapping($columnName);
 
-            return array('precision'=>$mapping['precision'], 'required' => $this->isRequired($columnName));
+            if (isset($mapping['scale']))
+              $precision = $mapping['scale'];
+            if (isset($mapping['precision']))
+              $precision = $mapping['precision'];
+            
+            return array(
+                'precision' => $precision ?: '',
+                'required'  => $this->isRequired($columnName)
+            );
         }
 
         if ('entity' == $formType) {
