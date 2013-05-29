@@ -147,7 +147,7 @@ class DoctrineORMFieldGuesser extends ContainerAware
               $precision = $mapping['precision'];
             
             return array(
-                'precision' => $precision ?: '',
+	        'precision' => isset($precision) ? $precision : '',
                 'required'  => $this->isRequired($columnName)
             );
         }
