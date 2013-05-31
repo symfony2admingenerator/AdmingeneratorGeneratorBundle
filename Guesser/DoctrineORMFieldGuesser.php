@@ -23,7 +23,11 @@ class DoctrineORMFieldGuesser extends ContainerAware
     }
     
     public function setEntityManager($manager){
-        $this->entityManager = $this->doctrine->getEntityManager($manager);
+        return $this->entityManager = $this->doctrine->getManager($manager);
+    }
+    
+    public function getEntityManager(){
+        return $this->entityManager;
     }
 
     protected function getMetadatas($class = null)
