@@ -16,22 +16,19 @@ Multiple Entity Managers are only implemented for **Doctrine ORM**.
 
 ### 3. Syntax
 
+Usage for the default Entity Manager
 ```yaml
 generator:            admingenerator.generator.doctrine
 params:
   model:              Acme\GalleryBundle\Entity\Album
   entity_manager: ~                   # use the default Entity Manager from app/config.yml
-  namespace_prefix:   Acme            # short syntax will use this as namespace
-  bundle_name:        GalleryBundle   # short syntax will use this as bundle name
-  fields: ~
 ```
 
+Usage for an self-defined Entity Manager
 ```yaml
 generator:            admingenerator.generator.doctrine
 params:
   model:              Acme\GalleryBundle\Entity\Album
   entity_manager:     frontend        # use the "frontend" Entity Manager
-  namespace_prefix:   Acme            # short syntax will use this as namespace
-  bundle_name:        GalleryBundle   # short syntax will use this as bundle name
   fields: ~
 ```
