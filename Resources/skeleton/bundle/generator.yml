@@ -2,6 +2,7 @@ generator: {{ generator }}
 params:
     model: {{ namespace }}\{{ model_folder }}\{{ model_name }}
     namespace_prefix: {{ namespace_prefix }}
+    entity_manager: ~
     bundle_name: {{ bundle_name }}
     fields: ~
 

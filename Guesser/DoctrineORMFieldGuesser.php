@@ -4,20 +4,30 @@ namespace Admingenerator\GeneratorBundle\Guesser;
 
 use Admingenerator\GeneratorBundle\Exception\NotImplementedException;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 class DoctrineORMFieldGuesser extends ContainerAware
 {
+    private $doctrine;
+    
     private $entityManager;
 
     private $metadata;
 
     private static $current_class;
 
-    public function __construct(EntityManager $entityManager)
+    public function __construct(Registry $doctrine)
     {
-        $this->entityManager = $entityManager;
+        $this->doctrine = $doctrine;
+    }
+    
+    public function setEntityManager($manager){
+        return $this->entityManager = $this->doctrine->getManager($manager);
+    }
+    
+    public function getEntityManager(){
+        return $this->entityManager;
     }
 
     protected function getMetadatas($class = null)

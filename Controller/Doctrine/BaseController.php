@@ -14,6 +14,6 @@ abstract class BaseController extends Controller
 {
     protected function getEntityManager()
     {
-        return $this->getDoctrine()->getManager();
+        return $this->get('admingenerator.generator.doctrine')->getFieldGuesser()->getEntityManager();
     }
 }

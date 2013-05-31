@@ -3,7 +3,7 @@
     protected function getObject($pk)
     {
         return $this->getDoctrine()
-                    ->getManager()
+                    ->getManager({% if entity_manager is defined %}'{{ entity_manager }}'{% endif %})
                     ->getRepository('{{ model }}')
                     ->find($pk);
     }
@@ -12,7 +12,7 @@
 {% block saveObject -%}
     protected function saveObject(\{{ model }} ${{ builder.ModelClass }})
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager({% if entity_manager is defined %}'{{ entity_manager }}'{% endif %});
         $em->persist(${{ builder.ModelClass }});
         $em->flush();
     }
