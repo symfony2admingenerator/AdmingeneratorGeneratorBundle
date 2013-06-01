@@ -43,6 +43,7 @@ class DoctrineGenerator extends Generator
         $generator->setContainer($this->container);
         $generator->setBaseAdminTemplate($generator->getFromYaml('base_admin_template', $this->container->getParameter('admingenerator.base_admin_template')));
         $generator->setFieldGuesser($this->getFieldGuesser());
+        $generator->fieldGuesser->setEntityManager($generator->getFromYaml('params.entity_manager', null));
         $generator->setMustOverwriteIfExists($this->needToOverwrite($generator));
         $generator->setTemplateDirs(array_merge(
             $this->container->getParameter('admingenerator.doctrine_templates_dirs'),
@@ -120,6 +121,7 @@ class DoctrineGenerator extends Generator
         $embedGenerator->setContainer($this->container);
         $embedGenerator->setBaseAdminTemplate($embedGenerator->getFromYaml('base_admin_template', $this->container->getParameter('admingenerator.base_admin_template')));
         $embedGenerator->setFieldGuesser($this->getFieldGuesser());
+        $embedGenerator->fieldGuesser->setEntityManager($generator->getFromYaml('params.entity_manager', null));
         $embedGenerator->setMustOverwriteIfExists($this->needToOverwrite($embedGenerator));
         $embedGenerator->setTemplateDirs(array_merge(
             $this->container->getParameter('admingenerator.doctrine_templates_dirs'),
