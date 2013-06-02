@@ -51,16 +51,16 @@ class BundleGenerator extends BaseBundleGenerator
         // Retrieves model folder depending of chosen ORM
         $modelFolder = '';
         switch ($generator) {
-          case 'propel':
-            $modelFolder = 'Model';
+            case 'propel':
+                $modelFolder = 'Model';
             break;
 
-          case 'doctrine':
-            $modelFolder = 'Entity';
+            case 'doctrine':
+                $modelFolder = 'Entity';
             break;
 
-          case 'doctrine_orm':
-            $modelFolder = 'Document';
+            case 'doctrine_orm':
+                $modelFolder = 'Document';
             break;
         }
 
@@ -82,19 +82,29 @@ class BundleGenerator extends BaseBundleGenerator
 
         foreach ($this->actions as $action) {
             $parameters['action'] = $action;
-            $this->renderGeneratedFile('DefaultController.php', $dir.'/Controller/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$action.'Controller.php', $parameters);
+            $this->renderGeneratedFile(
+                    'DefaultController.php',
+                    $dir.'/Controller/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$action.'Controller.php',
+                    $parameters);
 
             if ('Delete' !== $action) {
-                $this->renderGeneratedFile('index.html.twig', $dir.'/Resources/views/'.ucfirst($this->prefix).$action.'/index.html.twig', $parameters);
+                $this->renderGeneratedFile(
+                        'index.html.twig',
+                        $dir.'/Resources/views/'.ucfirst($this->prefix).$action.'/index.html.twig',
+                        $parameters);
             }
         }
 
         foreach ($this->forms as $form) {
             $parameters['form'] = $form;
-            $this->renderGeneratedFile('DefaultType.php', $dir.'/Form/Type/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$form.'Type.php', $parameters);
+            $this->renderGeneratedFile('DefaultType.php',
+                    $dir.'/Form/Type/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$form.'Type.php',
+                    $parameters);
         }
 
-        $this->renderGeneratedFile('generator.yml', $dir.'/Resources/config/'.($this->prefix ? ucfirst($this->prefix).'-' : '').'generator.yml', $parameters);
+        $this->renderGeneratedFile('generator.yml',
+                $dir.'/Resources/config/'.($this->prefix ? ucfirst($this->prefix).'-' : '').'generator.yml',
+                $parameters);
     }
 
     protected function renderGeneratedFile($template, $target, array $parameters)
