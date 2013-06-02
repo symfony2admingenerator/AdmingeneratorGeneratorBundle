@@ -1,3 +1,3 @@
 {% block column_decimal %}
-{{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|number_format') -}}
+    {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|number_format') -}}
 {% endblock %}

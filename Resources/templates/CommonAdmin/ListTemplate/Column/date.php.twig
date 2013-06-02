@@ -1,11 +1,23 @@
 {% block column_date %}
     {%- if builder.generator.TwigParams.use_localized_date == true -%}
         {{ echo_if (builder.ModelClass ~ '.' ~ column.getter) }}
-            {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|localizeddate("' ~ builder.generator.TwigParams.localized_date_format ~ '", "none")') -}}
+            {% if column.localized_date_format is defined %}
+                {{ echo_set('localized_date_format', column.formOptions.localized_date_format) }}
+            {% else %}
+                {{ echo_set('localized_date_format', builder.generator.TwigParams.localized_date_format) }}
+            {% endif %}
+
+            {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|localizeddate(localized_date_format, "none")') -}}
         {{ echo_endif() }}
     {%- else -%}
         {{ echo_if (builder.ModelClass ~ '.' ~ column.getter) }}
-            {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|date("' ~ builder.generator.TwigParams.date_format ~ '")') -}}
+            {% if column.formOptions.datetime_format is defined %}
+                {{ echo_set('datetime_format', column.formOptions.datetime_format) }}
+            {% else %}
+                {{ echo_set('datetime_format', builder.generator.TwigParams.datetime_format) }}
+            {% endif %}
+
+            {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|date(datetime_format)') -}}
         {{ echo_endif() }}
     {%- endif -%}
 {% endblock %}

@@ -8,6 +8,12 @@ date_range:
   from.label: از
   to.label:   تا
 
+# Boolean filter
+boolean:
+  yes:        بله
+  no:         خیر
+  yes_or_no:  بله یا خیر
+
 # Pager
 pagerfanta:
   previous: قبلی

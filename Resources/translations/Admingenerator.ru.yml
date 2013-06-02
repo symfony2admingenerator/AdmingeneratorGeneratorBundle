@@ -8,6 +8,12 @@ date_range:
   from.label: С
   to.label:   По
 
+# Boolean filter
+boolean:
+  yes:        Да
+  no:         Нет
+  yes_or_no:  Да или Нет
+
 # Pager
 pagerfanta:
   previous: Пред

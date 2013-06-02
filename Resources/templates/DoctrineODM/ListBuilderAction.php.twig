@@ -41,7 +41,7 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
             {%- if 'document' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
 
         if (isset($filters['{{ filter }}'])) {
-                $filters['{{ filter }}'] = $this->getDoctrine()->getRepository($filters['{{ filter }}']['documentName'])->find($filters['{{ filter }}']['id']);
+                $filters['{{ filter }}'] = $this->getDoctrineMongoDB()->getRepository($filters['{{ filter }}']['documentName'])->find($filters['{{ filter }}']['id']);
         }
 
             {%- endif %}
@@ -189,7 +189,7 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
 {% block doBatchDelete -%}
     protected function doBatchDelete(array $ids)
     {
-        if ($this->getDoctrine()
+        if ($this->getDoctrineMongoDB()
             ->getDocumentManager()
             ->createQuery(sprintf('delete from {{ model }} q where q.{{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} IN (%s)', implode(',', $ids)))
             ->execute()) {

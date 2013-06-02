@@ -213,6 +213,8 @@ class Image implements FileInterface
 
 If specified, normalized filenames will be autoloaded into this property upon upload.
 
+> **Note:** This property must be added to builder in formType and added to **editable** option.
+
 #### sortable
 
 **type:** `string` **default:** `null`

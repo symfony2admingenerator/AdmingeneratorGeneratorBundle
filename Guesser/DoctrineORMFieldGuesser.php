@@ -4,19 +4,30 @@ namespace Admingenerator\GeneratorBundle\Guesser;
 
 use Admingenerator\GeneratorBundle\Exception\NotImplementedException;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\Bundle\DoctrineBundle\Registry;
+use Symfony\Component\DependencyInjection\ContainerAware;
 
-class DoctrineORMFieldGuesser
+class DoctrineORMFieldGuesser extends ContainerAware
 {
+    private $doctrine;
+    
     private $entityManager;
 
     private $metadata;
 
     private static $current_class;
 
-    public function __construct(EntityManager $entityManager)
+    public function __construct(Registry $doctrine)
     {
-        $this->entityManager = $entityManager;
+        $this->doctrine = $doctrine;
+    }
+    
+    public function setEntityManager($manager){
+        return $this->entityManager = $this->doctrine->getManager($manager);
+    }
+    
+    public function getEntityManager(){
+        return $this->entityManager;
     }
 
     protected function getMetadatas($class = null)
@@ -140,7 +151,15 @@ class DoctrineORMFieldGuesser
         if ('number' == $formType) {
             $mapping = $this->getMetadatas()->getFieldMapping($columnName);
 
-            return array('precision'=>$mapping['precision'], 'required' => $this->isRequired($columnName));
+            if (isset($mapping['scale']))
+              $precision = $mapping['scale'];
+            if (isset($mapping['precision']))
+              $precision = $mapping['precision'];
+            
+            return array(
+	        'precision' => isset($precision) ? $precision : '',
+                'required'  => $this->isRequired($columnName)
+            );
         }
 
         if ('entity' == $formType) {
@@ -176,22 +195,22 @@ class DoctrineORMFieldGuesser
     public function getFilterOptions($formType, $dbType, $ColumnName)
     {
         $options = array('required' => false);
-
+        
         if ('boolean' == $dbType) {
-           $options['choices'] = array(
-                    0 => 'No',
-                    1 => 'Yes'
-                    );
-           $options['empty_value'] = 'Yes or No';
+            $options['choices'] = array(
+               0 => $this->container->get('translator')->trans('boolean.no', array(), 'Admingenerator'),
+               1 => $this->container->get('translator')->trans('boolean.yes', array(), 'Admingenerator')
+            );
+            $options['empty_value'] = $this->container->get('translator')->trans('boolean.yes_or_no', array(), 'Admingenerator');
         }
 
-         if ('entity' == $dbType) {
-             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
-         }
+        if ('entity' == $dbType) {
+           return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
+        }
 
         if ('collection' == $dbType) {
-             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
-         }
+           return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
+        }
 
         return $options;
     }

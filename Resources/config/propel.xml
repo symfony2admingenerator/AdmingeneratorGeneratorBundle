@@ -12,6 +12,9 @@
         <!-- Propel -->
         <service id="admingenerator.fieldguesser.propel" class="%admingenerator.fieldguesser.propel.class%"
             public="false">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
         </service>
 
         <service id="admingenerator.generator.propel"

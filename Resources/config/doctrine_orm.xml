@@ -12,7 +12,10 @@
         <!-- Doctine -->
         <service id="admingenerator.fieldguesser.doctrine" class="%admingenerator.fieldguesser.doctrine.class%"
             public="false">
-            <argument type="service" id="doctrine.orm.entity_manager"></argument>
+            <argument type="service" id="doctrine"></argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
         </service>
 
         <service id="admingenerator.generator.doctrine"

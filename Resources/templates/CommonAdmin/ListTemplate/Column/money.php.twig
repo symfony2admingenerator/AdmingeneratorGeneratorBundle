@@ -1,0 +1,9 @@
+{% block column_money %}
+    {% set currency   = column.formOptions.currency|default('EUR') %}
+    {% set precision  = column.formOptions.precision|default(2) %}
+    {% set grouping   = column.formOptions.grouping|default(true) %}
+    {% set divisor    = column.formOptions.divisor|default(1) %}
+
+    {{ echo_set('moneyOptions', '{"currency": "'~ currency ~'", "precision": "'~ precision ~'", "grouping": '~ grouping ~', "divisor": "'~ divisor ~'"}', false) }}
+    {{ echo_twig(builder.ModelClass ~ '.' ~ column.getter ~ '|currency(moneyOptions)') }}
+{% endblock %}

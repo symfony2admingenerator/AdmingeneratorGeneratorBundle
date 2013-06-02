@@ -8,6 +8,12 @@ date_range:
   from.label: Başlangıç
   to.label:   Bitiş
 
+# Boolean filter
+boolean:
+  yes:        Evet
+  no:         Hayır
+  yes_or_no:  Evet veya Hayır
+
 # Pager
 pagerfanta:
   previous: Önceki

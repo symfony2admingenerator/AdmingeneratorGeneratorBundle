@@ -5,8 +5,9 @@ namespace Admingenerator\GeneratorBundle\Guesser;
 use Admingenerator\GeneratorBundle\Exception\NotImplementedException;
 
 use Doctrine\ODM\MongoDB\DocumentManager;
+use Symfony\Component\DependencyInjection\ContainerAware;
 
-class DoctrineODMFieldGuesser
+class DoctrineODMFieldGuesser extends ContainerAware
 {
     private $documentManager;
 
@@ -189,15 +190,15 @@ class DoctrineODMFieldGuesser
         $options = array('required' => false);
 
         if ('boolean' == $dbType) {
-           $options['choices'] = array(
-                    0 => 'No',
-                    1 => 'Yes'
-                    );
-           $options['empty_value'] = 'Yes or No';
+            $options['choices'] = array(
+               0 => $this->container->get('translator')->trans('boolean.no', array(), 'Admingenerator'),
+               1 => $this->container->get('translator')->trans('boolean.yes', array(), 'Admingenerator')
+            );
+            $options['empty_value'] = $this->container->get('translator')->trans('boolean.yes_or_no', array(), 'Admingenerator');
         }
 
         if ('document' == $dbType) {
-             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
+            return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
         }
 
         if ('collection' == $formType) {
@@ -205,7 +206,7 @@ class DoctrineODMFieldGuesser
         }
 
         if ('collection' == $dbType) {
-             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
+            return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
         }
 
         return $options;
