@@ -89,7 +89,8 @@ class BundleGenerator extends BaseBundleGenerator
                 $this->renderGeneratedFile(
                     'index.html.twig',
                     $dir.'/Resources/views/'.ucfirst($this->prefix).$action.'/index.html.twig',
-                    $parameters);
+                    $parameters
+                );
             }
         }
 
