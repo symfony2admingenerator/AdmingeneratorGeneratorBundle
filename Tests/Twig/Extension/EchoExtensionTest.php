@@ -301,7 +301,7 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-             'empty' => array('{% endblock %}', 'endblock return a good endblock tag'),
+             'empty' => array('{% endblock  %}', 'endblock return a good endblock tag'),
         );
 
        $this->runTwigTests($tpls, $returns);
@@ -378,7 +378,7 @@ class EchoExtensionTest extends TestCase
 
         $this->runTwigTests($tpls, $returns);
     }
-    
+
     public function testGetEchoTwigFilter()
     {
         $tpls = array(
