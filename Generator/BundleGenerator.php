@@ -47,18 +47,15 @@ class BundleGenerator extends BaseBundleGenerator
     {
         $dir .= '/'.strtr($namespace, '\\', '/');
 
-
         // Retrieves model folder depending of chosen ORM
         $modelFolder = '';
         switch ($generator) {
             case 'propel':
                 $modelFolder = 'Model';
                 break;
-
             case 'doctrine':
                 $modelFolder = 'Entity';
                 break;
-
             case 'doctrine_orm':
                 $modelFolder = 'Document';
                 break;
@@ -85,7 +82,8 @@ class BundleGenerator extends BaseBundleGenerator
             $this->renderGeneratedFile(
                 'DefaultController.php',
                 $dir.'/Controller/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$action.'Controller.php',
-                $parameters);
+                $parameters
+            );
 
             if ('Delete' !== $action) {
                 $this->renderGeneratedFile(
@@ -97,14 +95,18 @@ class BundleGenerator extends BaseBundleGenerator
 
         foreach ($this->forms as $form) {
             $parameters['form'] = $form;
-            $this->renderGeneratedFile('DefaultType.php',
+            $this->renderGeneratedFile(
+                'DefaultType.php',
                 $dir.'/Form/Type/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$form.'Type.php',
-                $parameters);
+                $parameters
+            );
         }
 
-        $this->renderGeneratedFile('generator.yml',
+        $this->renderGeneratedFile(
+            'generator.yml',
             $dir.'/Resources/config/'.($this->prefix ? ucfirst($this->prefix).'-' : '').'generator.yml',
-            $parameters);
+            $parameters
+        );
     }
 
     protected function renderGeneratedFile($template, $target, array $parameters)
