@@ -29,6 +29,8 @@ class EchoExtension extends \Twig_Extension
             'echo_endblock'     => new \Twig_Function_Method($this, 'getEchoEndBlock'),
             'echo_for'          => new \Twig_Function_Method($this, 'getEchoFor'),
             'echo_endfor'       => new \Twig_Function_Method($this, 'getEchoEndFor'),
+            'echo_raw'          => new \Twig_Function_Method($this, 'getEchoRaw'),
+            'echo_endraw'       => new \Twig_Function_Method($this, 'getEchoEndRaw'),
             'echo_extends'      => new \Twig_Function_Method($this, 'getEchoExtends'),
             'echo_if'           => new \Twig_Function_Method($this, 'getEchoIf'),
             'echo_if_granted'   => new \Twig_Function_Method($this, 'getEchoIfGranted'),
@@ -386,6 +388,16 @@ class EchoExtension extends \Twig_Extension
     public function getEchoEndFor()
     {
         return '{% endfor %}';
+    }
+
+    public function getEchoRaw()
+    {
+        return '{% raw %}';
+    }
+
+    public function getEchoEndRaw()
+    {
+        return '{% endraw %}';
     }
 
     /**
