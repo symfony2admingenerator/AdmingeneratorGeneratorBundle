@@ -14,9 +14,9 @@ the generated form type.
 protected function getAdditionalRenderParameters(); // No parameters
 ```
 
-In *edit*, *show* and *new* controllers (`EditController`, `ShowController` and `NewController`) prototype is:
+Prototype is:
 ```php
-protected function getFormOption($name /\*field name\*/, array $formOptions /\*generated form options\*/);
+protected function getFormOption($name /*field name*/, array $formOptions /*generated form options*/);
 ```
 
 This function **must** return an array.
