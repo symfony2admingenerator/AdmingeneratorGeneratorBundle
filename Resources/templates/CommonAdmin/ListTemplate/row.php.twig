@@ -15,25 +15,25 @@
     {% if column.credentials %}
           {{ echo_if_granted(column.credentials) }}
     {% endif %}
-            <td class="td_{{ column.dbType }} td_{{ column.name }}">
-                    {{ echo_block('list_td_column_' ~ column.name) -}}
-                    {%- if column.dbType|lower == "boolean" -%}
-                        {{- block('column_boolean') -}}
-                    {%- elseif column.dbType|lower == "date" -%}
-                        {{- block('column_date') -}}
-                    {%- elseif (column.dbType|lower == "datetime") or (column.dbType|lower == "timestamp") or (column.dbType|lower == "vardatetime") or (column.dbType|lower == "datetimetz") -%}
-                        {{- block('column_datetime') -}}
-                    {%- elseif column.formType|lower == "money" -%}
-                        {{- block('column_money') -}}
-                    {%- elseif column.dbType|lower == "decimal" -%}
-                        {{- block('column_decimal') -}}
-                    {%- elseif (column.dbType|lower == "array") or (column.dbType|lower == "collection")  -%}
-                        {{- block('column_collection') -}}
-                    {%- else -%}
-                        {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter) -}}
-                    {%- endif -%}
-                    {{- echo_endblock() }}
-                </td>
+          <td class="td_{{ column.dbType }} td_{{ column.name }}">
+              {{ echo_block('list_td_column_' ~ column.name) -}}
+              {%- if column.dbType|lower == "boolean" -%}
+                  {{- block('column_boolean') -}}
+              {%- elseif column.dbType|lower == "date" -%}
+                  {{- block('column_date') -}}
+              {%- elseif (column.dbType|lower == "datetime") or (column.dbType|lower == "timestamp") or (column.dbType|lower == "vardatetime") or (column.dbType|lower == "datetimetz") -%}
+                  {{- block('column_datetime') -}}
+              {%- elseif column.formType|lower == "money" -%}
+                  {{- block('column_money') -}}
+              {%- elseif column.dbType|lower == "decimal" -%}
+                  {{- block('column_decimal') -}}
+              {%- elseif (column.dbType|lower == "array") or (column.dbType|lower == "collection")  -%}
+                  {{- block('column_collection') -}}
+              {%- else -%}
+                  {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter) -}}
+              {%- endif -%}
+              {{- echo_endblock() }}
+          </td>
     {% if column.credentials %}
         {{ echo_endif () }}
     {% endif %}
