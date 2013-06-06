@@ -36,7 +36,7 @@ class Action
 
     protected $conditional_inverse = false;
 
-    protected $params;
+    protected $params = array();
 
     public function __construct($name, $type = 'generic')
     {

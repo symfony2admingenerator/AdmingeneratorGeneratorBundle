@@ -4,7 +4,7 @@
         <td class="actions">
             <div class="btn-group">
             {% for action in builder.ObjectActions %}
-                {{ echo_block('list_object_actions_' ~ action.name) }}
+                {{ echo_block('td_list_object_actions_' ~ action.name) }}
                     {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
                         {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials'), builder.ModelClass ) }}
                     {% endif -%}
@@ -13,23 +13,15 @@
                         {% endif %}
 
                         {% set actionRoute  = action.route ? action.route : (builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_' ~ action.name) %}
-                        {% set actionParams = ("{ 'pk': " ~ builder.ModelClass ~ "." ~ builder.getFieldGuesser().getModelPrimaryKeyName(model) ~ " }") %}
+                        {% set actionParams = action.params ? echo_twig_assoc(action.params) : "{ 'pk': " ~ builder.ModelClass ~ "." ~ builder.getFieldGuesser().getModelPrimaryKeyName(model) ~ " }" %}
 
-                        {% if not action.csrfProtected %}
-                            <a class="{{ action.class | default('btn btn-mini') }}"
-                               href="{{ echo_path(actionRoute, actionParams) }}"
-                               rel="tooltip" data-original-title="{{ echo_trans(action.label) }}">
-                                <i class="{{ action.icon | default('icon-asterisk') }}"></i>
-                            </a>
-                        {% else %}
-                            <button type="submit" name="{{ action.name }}" value="{{ echo_twig(builder.ModelClass ~ "." ~ builder.getFieldGuesser().getModelPrimaryKeyName(model)) }}"
-                                class="{{ action.class|default('btn btn-mini') }}" data-action="{{ echo_path(actionRoute, actionParams) }}"
-                              {%- if action.confirm %} data-confirm="{{ echo_trans(action.confirm) }}" {% endif -%}
-{#                               {%- if action.csrfProtected %} data-csrf-token="{{ echo_path(actionRoute, actionParams, ['csrf_token']) }}" {% endif -%}#}
-                              rel="tooltip" data-original-title="{{ echo_trans(action.label) }}">
-                                <i class="{{ action.icon|default('icon-asterisk') }}"></i>
-                            </button>
-                        {% endif %}
+                        <a class="{{ action.class | default('btn btn-mini') }}"
+                           href="{{ echo_path(actionRoute, actionParams) }}"
+                           {%- if action.confirm %} data-confirm="{{ echo_trans(action.confirm) }}" {% endif -%}
+                           {%- if action.csrfProtected %} data-csrf-token="{{ echo_path(actionRoute, actionParams, ['csrf_token']) }}" {% endif -%}
+                           rel="tooltip" data-original-title="{{ echo_trans(action.label) }}">
+                             <i class="{{ action.icon | default('icon-asterisk') }}"></i>
+                        </a>
 
                         {% if action.conditionalFunction %}
                             {{ echo_endif () }}
@@ -39,7 +31,7 @@
                     {% endif %}
                 {{ echo_endblock() }}
             {% endfor %}
-                {{ echo_block('list_object_actions_customActions') }}{{ echo_endblock() }}
+            {{ echo_block('td_list_object_actions_customActions') }}{{ echo_endblock() }}
             </div>
         </td>
         {% endif -%}

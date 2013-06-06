@@ -355,13 +355,13 @@ class EchoExtension extends \Twig_Extension
         return sprintf('{{ %s }}', $str);
     }
 
-    public function getEchoTwigFilter($str, $filters = null)
+    public function getEchoTwigFilter($str, $filters = null, $asString = false)
     {
         if (null === $filters) {
             return $this->getEchoTwig($str);
         }
 
-        return strtr('{{ %%str%%|%%filters%% }}', array('%%str%%' => $str, '%%filters%%' => (is_array($filters) ? implode('|', $filters) : $filters) ));
+        return strtr('{{ %%str%%|%%filters%% }}', array('%%str%%' => $asString ? '"'.$str.'"' : $str, '%%filters%%' => (is_array($filters) ? implode('|', $filters) : $filters) ));
     }
 
     public function getEchoBlock($name)

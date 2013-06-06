@@ -26,6 +26,6 @@ use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 
 {% block csrf_action_check_batch_token %}
     // Check CSRF token for batch action
-    $intention = '{{ namespace_prefix }}_{{ bundle_name }}_{{ builder.BaseGeneratorName }}_'.$this->get('request')->get('action');
+    $intention = '{{ namespace_prefix }}_{{ bundle_name ~ (builder.BaseGeneratorName ? '_' ~ builder.BaseGeneratorName :'')}}_batch';
     $this->isCsrfTokenValid($intention);
 {% endblock %}

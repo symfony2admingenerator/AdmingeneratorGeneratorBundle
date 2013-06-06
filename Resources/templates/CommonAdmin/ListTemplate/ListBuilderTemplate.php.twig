@@ -43,11 +43,15 @@
             <div class="form-actions">
                 <div class="btn-toolbar pull-left">
                   {{- block('list_batch_actions') }}
-                  {{ block('list_actions') -}}
                 </div>
                 {{- block('list_paginator') -}}
             </div>
 
+            <div class="form-actions">
+                <div class="btn-toolbar">
+                    {{ block('list_actions') -}}
+                </div>
+            </div>
             {{- block('endform_batch_actions') }}
         </div>
         {{ echo_block("filters") }}

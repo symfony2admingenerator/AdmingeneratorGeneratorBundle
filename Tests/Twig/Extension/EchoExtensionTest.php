@@ -383,14 +383,18 @@ class EchoExtensionTest extends TestCase
     {
         $tpls = array(
             'none'   => '{{ echo_twig_filter( "cedric" ) }}',
-            'string' => '{{ echo_twig_filter( "cedric", "foo" ) }}',
-            'array'  => '{{ echo_twig_filter( "cedric", ["foo", "bar"] ) }}',
+            'object_string' => '{{ echo_twig_filter( "cedric", "foo" ) }}',
+            'object_array'  => '{{ echo_twig_filter( "cedric", ["foo", "bar"] ) }}',
+            'string_string' => '{{ echo_twig_filter( "cedric", "foo", true ) }}',
+            'string_array'  => '{{ echo_twig_filter( "cedric", ["foo", "bar"], true ) }}',
         );
 
         $returns = array(
              'none'   => array('{{ cedric }}', 'echo return a good echo tag with no filters'),
-             'string' => array('{{ cedric|foo }}', 'echo return a good echo tag one filter'),
-             'array'  => array('{{ cedric|foo|bar }}', 'echo return a good echo tag with multiple filters'),
+             'object_string' => array('{{ cedric|foo }}', 'echo return a good object echo tag one filter'),
+             'object_array'  => array('{{ cedric|foo|bar }}', 'echo return a good object echo tag with multiple filters'),
+             'string_string' => array('{{ "cedric"|foo }}', 'echo return a good string echo tag one filter'),
+             'string_array'  => array('{{ "cedric"|foo|bar }}', 'echo return a good string echo tag with multiple filters'),
         );
 
         $this->runTwigTests($tpls, $returns);
