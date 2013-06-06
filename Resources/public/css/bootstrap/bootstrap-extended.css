@@ -260,3 +260,50 @@ tbody.files > tr > td > span {
   margin: 0px;
   border: 0 none;
 }
+
+/* Select with btn caret */
+.select-caret {
+    display: inline-block;
+    overflow: hidden;
+    min-width: 60px;
+}
+
+.select-caret > select {
+    border: 0 none;
+    width: 135%;
+    outline-offset: 0 !important;
+    outline: 0 none transparent !important;
+}
+
+.select-caret:after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    height: 0;
+    width: 0;
+    top: 12px;
+    right: 6px;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #000000;
+}
+
+.select-caret.btn {
+    padding: 0px;
+    height: 28px;
+}
+
+/* Reset button styles on input element */
+input.btn.btn-reset, 
+input.btn.btn-reset:hover {
+    display: inline-block;
+    padding: 4px 6px;
+    height: 20px;
+    line-height: 20px;
+    background: #FFFFFF; 
+    box-shadow: none;
+    text-align: left;
+    font-size: 14px;
+    color: #555555;
+    cursor: text;
+}

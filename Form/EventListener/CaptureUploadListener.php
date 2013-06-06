@@ -2,11 +2,11 @@
 
 namespace Admingenerator\GeneratorBundle\Form\EventListener;
 
-use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\Exception\UnexpectedTypeException;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Form\Exception\UnexpectedTypeException;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class CaptureUploadListener implements EventSubscriberInterface
 {

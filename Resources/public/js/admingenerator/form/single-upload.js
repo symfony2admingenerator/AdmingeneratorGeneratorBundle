@@ -5,7 +5,7 @@
  *  License:        MIT
  *  Dependencies: 
  *                  - blueimp / JavaScript Load Image 1.2.3
- *                    https://github.com/blueimp/JavaScript-Load-Image
+ *                    http://github.com/blueimp/JavaScript-Load-Image
  */
 
 // the semi-colon before function invocation is a safety net against concatenated
