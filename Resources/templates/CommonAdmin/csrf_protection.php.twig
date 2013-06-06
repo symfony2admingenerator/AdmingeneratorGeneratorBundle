@@ -3,6 +3,7 @@ use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 {% endblock %}
 
 {% block csrf_check_token %}
+
     /**
      * Check crsf token provided for action
      *
@@ -16,6 +17,7 @@ use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
             throw new InvalidCsrfTokenException();
         }
     }
+    
 {% endblock %}
     
 {% block csrf_action_check_token %}

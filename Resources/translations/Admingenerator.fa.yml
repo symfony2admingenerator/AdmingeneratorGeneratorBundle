@@ -94,13 +94,14 @@ action.object.show:
 action.batch.delete:
   label:    پاک کردن
   confirm:  آیا حذف کردن همه ی عناصر انتخاب شده را تایید می نمایید؟
-  success:  عناصر مورد نظر با موفقیت حذف شدند.
-  error:    عملیات حذف عناصر مورد نظر با خطا مواجه شد.
+  success:  عناصر مورد نظر با موفقیت حذف شدند
+  error:    عملیات حذف عناصر مورد نظر با خطا مواجه شد
 
 # Batch list
 batch.list:
   selected:       انتخاب شده
-  none.selected:  شما باید حداقل یک عنصر را انتخاب کنید.
+  none.selected:  شما باید حداقل یک عنصر را انتخاب کنید
+  warning:        اقدام گروه با توجه به پارامتر های از دست رفته کامل نیست
 
 # Layout
 dashboard:
@@ -113,10 +114,10 @@ filetype:
   archive:          آرشیو (فایل فشرده)
   html:             HTML
   image:            تصویر
-  pdf-document:     PDF<br />Document
+  pdf-document:     متن پی دی اف
   plain-text:       متن ساده
-  presentation:     Presentation
-  spreadsheet:      Spreadsheet
+  presentation:     ارائه
+  spreadsheet:      صفحه گسترده
   text-document:    سند متنی
   unknown:          ناشناخته
   video:            ویدئو

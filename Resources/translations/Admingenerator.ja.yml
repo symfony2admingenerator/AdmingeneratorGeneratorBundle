@@ -97,6 +97,7 @@ action.batch.delete:
 batch.list:
   selected:       選択済み
   none.selected:  1つ以上のデータを選択する必要があります。
+  warning:        により不足しているパラメータをバッチアクションを完了できませんでした
 
 # Layout
 dashboard:

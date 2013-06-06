@@ -4,6 +4,7 @@
 {% use '../CommonAdmin/ListAction/filters.php.twig' %}
 {% use '../CommonAdmin/ListAction/scopes.php.twig' %}
 {% use '../CommonAdmin/ListAction/batch_actions.php.twig' %}
+{% use '../CommonAdmin/csrf_protection.php.twig' %}
 {% use '../CommonAdmin/security_action.php.twig' %}
 <?php
 
@@ -33,6 +34,8 @@ class ListController extends BaseController
     {{- block('filters') -}}
 
     {{- block('scopes') -}}
+
+    {{- block('csrf_check_token') -}}
 
     {{- block('security_check') }}
 

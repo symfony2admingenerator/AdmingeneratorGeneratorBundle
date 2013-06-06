@@ -24,43 +24,22 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    $("ul#batch_actions_list li a").click(function(e) {
-                        e.preventDefault();
-
-                        if ($('input.batch_select_id:checked').length == 0) {
-                            alert('{{ echo_trans("batch.list.none.selected") }}');
-                            return false;
-                        }
-
-                        if ($(this).data('confirm')) {
-                            if(!confirm($(this).data('confirm')))
-                              return false;
-                        }
-
-                        var input = $('<input>').attr('type', 'hidden').attr('name', 'action').val($(this).data('action'));
-                        $(this).closest('form').append($(input)).submit();
-                    });
-                });
-            </script>
         </div>
         {% endif -%}
     {{ echo_endblock() }}
 {% endblock %}
 
-{% block form_batch_actions %}
-    {{ echo_block("form_batch_actions") }}
+{% block batch_actions_script %}
+    {{ echo_block("batch_actions_script") }}
     {% if batch_actions is defined and batch_actions|length > 0 %}
-        <form method="post" action="{{ echo_path(( builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_batch')) }}">
-    {% endif %}
-    {{ echo_endblock() }}
-{% endblock %}
-
-{% block endform_batch_actions %}
-    {{ echo_block("endform_batch_actions") }}
-    {% if batch_actions is defined and batch_actions|length > 0 %}
-        </form>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("ul#batch_actions_list").agen$batchActions({
+                    path: '{{ echo_path(( builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_batch')) }}',
+                    noneSelected: '{{ echo_trans("batch.list.none.selected") }}'
+                });
+            });
+        </script>
     {% endif %}
     {{ echo_endblock() }}
 {% endblock %}

@@ -101,6 +101,7 @@ action.batch.delete:
 batch.list:
   selected:       Seleccionado
   none.selected:  Debe seleccionar al menos un elemento.
+  warning:        No se pudo completar la acción de lote debido a los parámetros que faltan.
 
 # Layout
 dashboard:

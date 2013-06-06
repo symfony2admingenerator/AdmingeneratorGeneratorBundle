@@ -97,6 +97,7 @@ action.batch.delete:
 batch.list:
   selected:       Selecionado
   none.selected:  Você tem que selecionar pelo menos um elemento.
+  warning:        Não foi possível concluir a ação em lote, devido à falta de parâmetros.
 
 # Layout
 dashboard:
