@@ -12,6 +12,7 @@ use Admingenerator\GeneratorBundle\Builder\Doctrine\NestedListBuilderTemplate;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\FiltersBuilderType;
 
 use Admingenerator\GeneratorBundle\Builder\Doctrine\DeleteBuilderAction;
+use Admingenerator\GeneratorBundle\Builder\Doctrine\DeleteBuilderTemplate;
 
 use Admingenerator\GeneratorBundle\Builder\Doctrine\EditBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\EditBuilderTemplate;
@@ -74,6 +75,7 @@ class DoctrineGenerator extends Generator
 
         if (array_key_exists('delete', $builders)) {
             $generator->addBuilder(new DeleteBuilderAction());
+            $generator->addBuilder(new DeleteBuilderTemplate());
         }
 
         if (array_key_exists('edit', $builders)) {

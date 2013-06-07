@@ -1,0 +1,24 @@
+{% use '../CommonAdmin/title.php.twig' %}
+{% use '../CommonAdmin/stylesheets.php.twig' %}
+{% use '../CommonAdmin/javascripts.php.twig' %}
+{% use '../CommonAdmin/DeleteTemplate/form.php.twig' %}
+
+{{ echo_extends( builder.getBaseAdminTemplate ) }}
+
+{{ echo_block("stylesheets") }}
+    {{- block('complementary_stylesheets') -}}
+{{ echo_endblock() }}
+
+{{ echo_block("javascripts") }}
+    {{- block('complementary_javascripts') -}}
+{{ echo_endblock() }}
+
+{{- block('site_title') -}}
+
+{{ echo_block("body") }}
+    {{- block('title') -}}
+
+    <div class="row-fluid">
+        {{ block('form') }}
+    </div>
+{{ echo_endblock() }}
