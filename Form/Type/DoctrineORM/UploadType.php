@@ -39,7 +39,7 @@ class UploadType extends CollectionType
             $options['options']['data_class'],
             $options['nameable']
         );
-        $builder->getParent()->addEventSubscriber($captureListener);
+        $builder->addEventSubscriber($captureListener);
 
         $resizeListener = new ResizeFormListener(
             $options['type'],
