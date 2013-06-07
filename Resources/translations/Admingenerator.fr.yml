@@ -117,3 +117,7 @@ filetype:
   text-document:    Document<br />texte
   unknown:          Type de fichier<br />inconnu
   video:            Vidéo
+
+delete.action:
+  confirm: Oui
+  cancel: Non
