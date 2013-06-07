@@ -184,16 +184,16 @@
 
 
 {% block doBatchDelete -%}
-    protected function doBatchDelete(array $ids)
+    protected function doBatchDelete(array $selected)
     {
-        if ($this->getDoctrine()->getManager({% if entity_manager is defined %}'{{ entity_manager }}'{% endif %})
-            ->createQuery('DELETE {{ model }} m WHERE m.{{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} IN (:ids)')
-    		->setParameter('ids', $ids)
-    		->getResult()) {
+        try {
+            $this->getDoctrine()->getManager({% if entity_manager is defined %}'{{ entity_manager }}'{% endif %})
+                ->createQuery('DELETE {{ model }} m WHERE m.{{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} IN (:selected)')
+    		->setParameter('selected', $selected)
+    		->getResult();
             $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans("{{ "action.batch.delete.success" }}", array(), 'Admingenerator') );
-        } else {
+        } catch (\Exception $e) {
             $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans("{{ "action.batch.delete.error" }}", array(), 'Admingenerator') );
-       }
-
+        }
     }
 {% endblock %}

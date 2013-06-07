@@ -97,6 +97,7 @@ action.batch.delete:
 batch.list:
   selected:       Izbrano
   none.selected:  Izbrati morate vsaj en element.
+  warning:        Ni mogel dokončati serije tožbo zaradi manjkajočih parametrov.
 
 # Layout
 dashboard:

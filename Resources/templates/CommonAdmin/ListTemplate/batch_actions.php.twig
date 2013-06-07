@@ -24,32 +24,6 @@
                 <button type="submit" name="batch" class="btn">{{ echo_trans('batch.list.send') }}</button>
             </div>
         </div>
-        <script type="text/javascript">
-            (function(window, $, undefined){
-                $(function() {
-                    var submitActionner = $('button[name=batch]');
-                    submitActionner.hide();
-                    $("select[name=action]").on('change', function(e) {
-                        if ($(this).val()=='none') {
-                            return false;
-                        }
-
-                        if ($('input.batch_select_id:checked').length == 0) {
-                            alert('{{ echo_trans("batch.list.none.selected") }}');
-                            $(this).val('none');
-                            return false;
-                        }
-
-                        if ($(this).data('confirm') && !confirm($(this).data('confirm'))) {
-                        	$(this).val('none');
-                            return;
-                        }
-
-                        submitActionner.click();
-                    });
-                });
-            })(window, jQuery);
-        </script>
         {% endif -%}
     {{ echo_endblock() }}
 {% endblock %}
@@ -58,7 +32,7 @@
     {{ echo_block("form_batch_actions") }}
     {% if batch_actions is defined and batch_actions|length > 0 %}
         {% set actionPathName = builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_batch' %}
-        <form method="post" action="{{ echo_path(actionPathName) }}">
+        <form id="form-list" method="post" action="{{ echo_path(actionPathName) }}">
             <input type="hidden" value="{{ echo_twig_filter(actionPathName, 'csrf_token', true) }}" name="_csrf_token" />
     {% endif %}
     {{ echo_endblock() }}
@@ -68,6 +42,15 @@
     {{ echo_block("endform_batch_actions") }}
     {% if batch_actions is defined and batch_actions|length > 0 %}
         </form>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#form-list").agen$batchActions({
+                    submitSelector: 'button[name=batch]',
+                    actionsSelector: '#batchActionSelector',
+                    noneSelected: '{{ echo_trans("batch.list.none.selected") }}' {# TODO: escape js with filter escape('js')#}
+                });
+            });
+        </script>
     {% endif %}
     {{ echo_endblock() }}
 {% endblock %}

@@ -4,8 +4,7 @@
             <tr class="list_thead">
                 {% if batch_actions is defined and batch_actions|length > 0 %}
                     <th class="list_thead_batch_action">
-                        <input type="checkbox"
-                            onchange="this.checked ? $('.td_batch_action input').attr('checked', 'checked') : $('.td_batch_action input').removeAttr('checked')" />
+                        <input type="checkbox" name="batchAll" />
                     </th>
                 {% endif %}
                 {% for column in builder.columns -%}

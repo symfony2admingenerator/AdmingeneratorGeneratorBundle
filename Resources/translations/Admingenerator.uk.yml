@@ -97,6 +97,7 @@ action.batch.delete:
 batch.list:
   selected:       Оберіть дію
   none.selected:  Необхідно вибрати не менше одного елемента.
+  warning:        Не вдалося завершити періодичної дії через відсутність параметрів.
 
 # Layout
 dashboard:

@@ -89,6 +89,7 @@ action.batch.delete:
 batch.list:
   selected:       Seçili
   none.selected:  En az bir öğe seçmek zorundasınız.
+  warning:        Nedeniyle kayıp parametreleri için toplu eylem tamamlanamadı.
 
 # Layout
 dashboard:

@@ -97,6 +97,7 @@ action.batch.delete:
 batch.list:
   selected:       Ausgewählte
   none.selected:  Sie müssen mindestens ein Element auswählen.
+  warning:        Konnte nicht abgeschlossen Gruppe Aktion aufgrund fehlenden Parameter.
 
 # Layout
 dashboard:
