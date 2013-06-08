@@ -12,7 +12,7 @@
             $form->bind($this->get('request'));
 
             if ($form->isValid()) {
-                $filters = $form->getClientData();
+                $filters = $form->getViewData();
             }
         }
 
