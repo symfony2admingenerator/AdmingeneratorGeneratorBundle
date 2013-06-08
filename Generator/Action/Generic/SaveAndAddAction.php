@@ -13,7 +13,7 @@ class SaveAndAddAction extends Action
 {
     public function __construct($name, BaseBuilder $builder)
     {
-        parent::__construct($name);
+        parent::__construct($name, $type = 'generic');
 
         $this->setSubmit(true);
         $this->setLabel('action.generic.save-and-add');

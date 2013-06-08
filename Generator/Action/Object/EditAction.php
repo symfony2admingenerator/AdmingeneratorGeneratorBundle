@@ -18,6 +18,7 @@ class EditAction extends Action
 
         $this->setIcon('icon-edit');
         $this->setLabel('action.object.edit.label');
+        $this->setMethod('GET');
 
         $this->setParams(array(
             'pk' => '{{ '.$builder->getModelClass().'.'.$builder->getModelPrimaryKeyName().' }}',

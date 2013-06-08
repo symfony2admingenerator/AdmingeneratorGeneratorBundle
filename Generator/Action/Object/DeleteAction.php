@@ -21,6 +21,7 @@ class DeleteAction extends Action
         $this->setLabel('action.object.delete.label');
         $this->setConfirm('action.object.delete.confirm');
         $this->setCsrfProtected(true);
+        $this->setMethod('POST');
 
         $this->setParams(array(
             'pk' => '{{ '.$builder->getModelClass().'.'.$builder->getModelPrimaryKeyName().' }}',

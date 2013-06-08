@@ -21,6 +21,8 @@ class Action
     protected $icon;
 
     protected $class;
+    
+    protected $method;
 
     protected $route;
 
@@ -38,7 +40,7 @@ class Action
 
     protected $params;
 
-    public function __construct($name, $type = 'generic')
+    public function __construct($name, $type = 'custom')
     {
         $this->name = $name;
         $this->type = $type;
@@ -86,6 +88,24 @@ class Action
     public function getClass()
     {
         return $this->class;
+    }
+
+    public function setMethod($method)
+    {
+        $this->method = $method;
+    }
+
+    /**
+     * If actions is to be CSRF protected, then request method MUST be POST.
+     * 
+     * CSRF tokens in GET requests are potentially leaked at several locations: 
+     * browser history, HTTP log files, network appliances that make a point 
+     * to log the first line of an HTTP request, and Referrer headers if the 
+     * protected site links to an external site. 
+     */
+    public function getMethod()
+    {
+        return $this->getCsrfProtected() ? 'POST' : $this->method;
     }
 
     public function getRoute()

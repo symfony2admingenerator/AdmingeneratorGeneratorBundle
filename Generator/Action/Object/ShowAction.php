@@ -18,6 +18,7 @@ class ShowAction extends Action
 
         $this->setIcon('icon-eye-open');
         $this->setLabel('action.object.show.label');
+        $this->setMethod('GET');
 
         $this->setParams(array(
             'pk' => '{{ '.$builder->getModelClass().'.'.$builder->getModelPrimaryKeyName().' }}',

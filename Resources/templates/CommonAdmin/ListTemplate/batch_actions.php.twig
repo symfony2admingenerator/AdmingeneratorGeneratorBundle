@@ -32,14 +32,15 @@
 {% block batch_actions_script %}
     {{ echo_block("batch_actions_script") }}
     {% if batch_actions is defined and batch_actions|length > 0 %}
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $("ul#batch_actions_list").agen$batchActions({
-                    path: '{{ echo_path(( builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_batch')) }}',
-                    noneSelected: '{{ echo_trans("batch.list.none.selected") }}'
-                });
+    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/batch-actions.js")') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#list_table").agen$batchActions({
+                path: '{{ echo_path(( builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_batch')) }}',
+                noneSelected: '{{ echo_trans("batch.list.none.selected") }}'
             });
-        </script>
+        });
+    </script>
     {% endif %}
     {{ echo_endblock() }}
 {% endblock %}

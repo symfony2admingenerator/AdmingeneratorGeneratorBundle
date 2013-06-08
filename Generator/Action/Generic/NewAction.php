@@ -14,10 +14,11 @@ class NewAction extends Action
 {
     public function __construct($name, BaseBuilder $builder)
     {
-        parent::__construct($name);
+        parent::__construct($name, $type = 'generic');
 
         $this->setClass('btn-primary');
         $this->setIcon('icon-white icon-plus');
         $this->setLabel('action.generic.new');
+        $this->setMethod('GET');
     }
 }

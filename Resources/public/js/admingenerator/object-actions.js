@@ -1,6 +1,6 @@
-/*
+ /*
  *  Project:        Symfony2Admingenerator
- *  Description:    jQuery plugin for List Batch actions
+ *  Description:    jQuery plugin for List Object actions
  *  Author:         loostro <loostro@gmail.com>
  *  License:        MIT
  */
@@ -19,12 +19,9 @@
     // minified (especially when both are regularly referenced in your plugin).
 
     // Create the defaults once
-    var pluginName = 'agen$batchActions',
+    var pluginName = 'agen$objectActions',
         document = window.document,
-        defaults = {
-            path: null,
-            noneSelected: "You have to select at least one element."
-        };
+        defaults = {};
 
     // The actual plugin constructor
     function Plugin( element, options ) {
@@ -48,77 +45,48 @@
             // Plugin-scope helper
             var that = this;
             
-            // Sanity check
-            if (that.options.path === null) {
-                console.log('[Admingenerator] Fatal Error: batch actions path is null!');
-                return false;
-            }
-            
             // Select container
-            var $batch    = $(that.element).find('input[name="selected[]"]');
-            var $batchAll = $(that.element).find('input[name="batchAll"]');
-            var $actions  = $(that.element).find('#batch_actions_list li a');
+            var $actions  = $(that.element).find('[id^="object_action_form"]');
             
-            // Grant plugin-scope access to selectors
-            that.$batch  = $batch;
+            // Enable tooltips
+            $actions.tooltip();
             
-            // bind onSelect to button click event
+            // bind onClick to form click event
             $actions.click(function(e){
-                e.preventDefault();
-                that._onSelect(that, $(e.target));
+                that._onClick(that, e, $(this));
             });
             
-            // bind onChange to button click event
-            $batchAll.on('change', function(e){
-                that._onSelectAll(that, $(e.target));
+            // bind onMouseDown to form mousedown event
+            $actions.on('mousedown', function(e){
+                that._onMouseDown(that, e, $(this));
             });
         },
                 
-        _onSelectAll: function(that, $button) {
-            if ($button.is(':checked')) {
-                $button.removeAttr('checked');
-                that.$batch.removeAttr('checked');
-            } else {
-                $button.attr('checked', 'checked');
-                that.$batch.attr('checked', 'checked');
+        _onMouseDown: function(that, e, $form) {
+            if(e.which == 2) {
+                $form.on('mouseup', function() {
+                    that._onMouseUp(that, e, $form);
+                });
             }
         },
-
-        _onSelect: function(that, $button) {
-            // Alert if none selected
-            if (that.$batch.filter(':checked').length == 0) {
-                alert(that.options.noneSelected);
-                return false;
-            }
+                
+        _onMouseUp: function(that, e, $form) {
+            $form.attr('target', '_blank');
+            that._onClick(that, e, $form);
+            $form.off('mouseup');
+            $form.removeAttr('target');
+        },
+                
+        _onClick: function(that, e, $form) {
+            e.preventDefault();
             
             // Confirm action
-            if ($button.data('confirm') && !confirm($button.data('confirm'))) {
+            if ($form.data('confirm') && !confirm($form.data('confirm'))) {
                 return false;
             }
             
-            var $action = $('<input/>').attr({
-                type:   'hidden',
-                name:   'action',
-                value:  $button.data('action')
-            });
-            
-            var $token  = $('<input/>').attr({
-                type:   'hidden',
-                name:   '_csrf_token',
-                value:  $button.data('csrf-token')
-            });
-            
-            var $form = $('<form/>').attr({
-                action: that.options.path,
-                method: 'POST'
-            }).css({'visibility': 'hidden'})
-              .append($action, $token);
-            
-            that.$batch.filter(':checked').each(function(){
-                $(this).clone().appendTo($form);
-            });
-            
-            $form.appendTo('body').submit();
+            // Submit form
+            $form.submit();
         }
     };
 

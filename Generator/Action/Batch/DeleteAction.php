@@ -20,5 +20,6 @@ class DeleteAction extends Action
         $this->setLabel('action.batch.delete.label');
         $this->setConfirm('action.batch.delete.confirm');
         $this->setCsrfProtected(true);
+        $this->setMethod('POST');
     }
 }
