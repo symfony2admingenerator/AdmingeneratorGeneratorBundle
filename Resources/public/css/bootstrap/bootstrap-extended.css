@@ -312,3 +312,10 @@ input.btn.btn-reset:hover {
 .btn [class^="icon-"] {
     line-height: 20px;
 }
+
+/* Fix elusive icons size inside buttons */
+.btn [class^="icon-"],
+.btn-small [class^="icon-"],
+.btn-mini [class^="icon-"] {
+    font-size: 14px;
+}
