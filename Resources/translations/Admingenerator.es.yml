@@ -45,6 +45,7 @@ profile:
   welcome:  <b>Bienvenido</b>, %username%!
   login:    Iniciar sesión
   logout:   Cerrar sesión
+  exit:     Salga del modo de suplantación
 
 # EntityPicker
 entity_picker:

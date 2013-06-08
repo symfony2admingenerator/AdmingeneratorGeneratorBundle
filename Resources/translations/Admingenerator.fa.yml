@@ -45,6 +45,7 @@ profile:
   welcome:  <b>خوش آمدید</b>, %username%!
   login:    ورود
   logout:   خروج
+  exit:     خروج از حالت جعل هویت
 
 # EntityPicker
 entity_picker:

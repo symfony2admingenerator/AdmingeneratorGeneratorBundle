@@ -45,6 +45,7 @@ profile:
   welcome:  <b>Witaj</b>, %username%!
   login:    Zaloguj
   logout:   Wyloguj
+  exit:     Wyjście z trybu personifikacji
 
 # EntityPicker
 entity_picker:

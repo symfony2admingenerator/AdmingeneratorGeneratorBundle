@@ -45,6 +45,7 @@ profile:
   welcome:  <b>Welcome</b>, %username%!
   login:    Login
   logout:   Log out
+  exit:     Exit impersonation mode
 
 # EntityPicker
 entity_picker:

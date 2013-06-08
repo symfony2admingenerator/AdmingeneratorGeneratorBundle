@@ -45,6 +45,7 @@ profile:
   welcome:  <b>Bienvenue</b>, %username%!
   login:    Connexion
   logout:   Déconnexion
+  exit:     Quittez le mode usurpation d'identité
 
 # EntityPicker
 entity_picker:

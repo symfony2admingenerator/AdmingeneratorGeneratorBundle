@@ -45,6 +45,7 @@ profile:
   welcome:  <b>ようこそ</b> %username%
   login:    ログイン
   logout:   ログアウト
+  exit:     偽装モードを終了
 
 # EntityPicker
 entity_picker:

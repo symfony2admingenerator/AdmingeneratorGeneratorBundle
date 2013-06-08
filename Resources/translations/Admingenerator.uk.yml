@@ -45,6 +45,7 @@ profile:
   welcome:  <b>Привіт</b>, %username%!
   login:    Увійти
   logout:   Вийти
+  exit:     Вихід уособлення режиму
 
 # EntityPicker
 entity_picker:

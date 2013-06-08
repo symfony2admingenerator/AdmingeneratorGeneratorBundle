@@ -45,6 +45,7 @@ profile:
   welcome:  <b>Bem-vindo</b>, %username%!
   login:    Iniciar sessão
   logout:   Sair
+  exit:     Sair do modo de representação
 
 # EntityPicker
 entity_picker:
