@@ -314,8 +314,14 @@ input.btn.btn-reset:hover {
 }
 
 /* Fix elusive icons size inside buttons */
-.btn [class^="icon-"],
-.btn-small [class^="icon-"],
+.btn [class^="icon-"] {
+    font-size: 13px;
+}
+
+.btn-small [class^="icon-"] {
+    font-size: 11px;
+}
+
 .btn-mini [class^="icon-"] {
-    font-size: 14px;
+    font-size: 10px;
 }
