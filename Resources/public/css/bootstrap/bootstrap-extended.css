@@ -307,3 +307,8 @@ input.btn.btn-reset:hover {
     color: #555555;
     cursor: text;
 }
+
+/* Fix elusive icons line-height inside buttons */
+.btn [class^="icon-"] {
+    line-height: 20px;
+}
