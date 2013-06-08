@@ -96,7 +96,7 @@ class Action
     }
 
     /**
-     * If actions is to be CSRF protected, then request method MUST be POST.
+     * If action is to be CSRF protected, then request method MUST be POST.
      * 
      * CSRF tokens in GET requests are potentially leaked at several locations: 
      * browser history, HTTP log files, network appliances that make a point 
