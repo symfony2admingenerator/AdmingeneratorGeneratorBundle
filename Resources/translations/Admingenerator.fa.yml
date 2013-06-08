@@ -42,7 +42,7 @@ nested.list:
 
 # Profile
 profile:
-  welcome:  <b>خوش آمدید</b>, %username%!</p>
+  welcome:  <b>خوش آمدید</b>, %username%!
   login:    ورود
   logout:   خروج
 

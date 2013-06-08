@@ -1,0 +1,50 @@
+/* Profile styles
+-------------------------------------------------- */
+
+/* Invert profile colors */
+.profile {
+    padding-left: 15px; 
+    padding-right: 15px; 
+    background-color: #f5f5f5;
+}
+
+.profile .navbar-text {
+    color: #0B6CBC;
+    text-shadow: 0 1px 0 #FFFFFF;
+    margin-right: 10px;
+}
+
+.navbar .profile .btn-group .btn-mini {
+    margin-top: 2px;
+}
+
+.btn-profile {
+    color: #ffffff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color: #62A8D1;
+    background-image: -moz-linear-gradient(top, #438EB9, #62A8D1);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#438EB9), to(#62A8D1));
+    background-image: -webkit-linear-gradient(top, #438EB9, #62A8D1);
+    background-image: -o-linear-gradient(top, #438EB9, #62A8D1);
+    background-image: linear-gradient(to bottom, #438EB9, #62A8D1);
+    background-repeat: repeat-x;
+    border-color: #0B6CBC #0B6CBC #1f6377;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff438EB9', endColorstr='#ff62A8D1', GradientType=0);
+    filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+
+.btn.btn-profile:hover,
+.btn.btn-profile:focus,
+.btn.btn-profile:active,
+.btn.btn-profile.active,
+.btn.btn-profile.disabled,
+.btn.btn-profile[disabled] {
+    color: #ffffff;
+    background-color: #62A8D1;
+}
+
+.btn-profile:active,
+.btn-profile.active {
+    background-color: #3983C2 \9;
+}

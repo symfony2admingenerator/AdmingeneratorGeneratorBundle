@@ -1,4 +1,4 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-blue navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -12,15 +12,28 @@
       {% endblock %}
       <div class="nav-collapse collapse">
         {% block profile %}
-          <ul class="nav pull-right">
-            <li><p class="navbar-text" style="padding-right: 10px;">{{ 'profile.welcome'|trans({'%username%': app.user ? app.user : 'anonymous'}, 'Admingenerator')|raw }}</li>
+          <ul class="nav pull-right profile">
+            <li><p class="navbar-text">{{ 'profile.welcome'|trans({'%username%': app.user ? app.user : 'anonymous'}, 'Admingenerator')|raw }}</p></li>
             {% if app.user %}
-              {% if admingenerator_config('logout_path') is not none %}
-                <li><button onclick="document.location='{{ path(admingenerator_config('logout_path')) }}'" class="btn " title="{{ 'profile.logout'|trans({}, 'Admingenerator') }}"><i class="icon-off"></i> {{ 'profile.logout'|trans({}, 'Admingenerator') }}</button></li>
+              {% if admingenerator_config('logout_path') is not null %}
+                <li class="btn-group">
+                    {% if admingenerator_config('exit_path') is not null and is_granted('ROLE_PREVIOUS_ADMIN') %}
+                        <button id="button-exit" class="btn btn-mini" title="{{ 'profile.exit' }}">
+                            <i class="icon-return-key"></i>
+                        </button>
+                    {% endif %}
+                    <button id="button-logout" class="btn btn-mini btn-profile" title="{{ 'profile.logout'|trans({}, 'Admingenerator') }}">
+                        <i class="icon-off icon-white"></i>
+                    </button>
+                </li>
               {% endif %}
             {% else %}
-              {% if admingenerator_config('login_path') is not none %}
-                <li><button onclick="document.location='{{ path(admingenerator_config('login_path')) }}'" class="btn " title="{{ 'profile.login'|trans({}, 'Admingenerator') }}">{{ 'profile.login'|trans({}, 'Admingenerator') }}</button></li>
+              {% if admingenerator_config('login_path') is not null %}
+                <li class="btn-group">
+                    <button id="button-login" class="btn btn-mini btn-profile" title="{{ 'profile.login'|trans({}, 'Admingenerator') }}">
+                      <i class="icon-user icon-white"></i>
+                    </button>
+                </li>
               {% endif %}
             {% endif %}
           </ul>
@@ -32,3 +45,27 @@
     </div><!--/.container -->
   </div><!--/.navbar-inner -->
 </div><!--/.navbar -->
+
+{% block login_script_block %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        {% if admingenerator_config('login_path') is not null %}
+        $('#button-login').click(function(){
+            document.location = "{{ path(admingenerator_config('login_path')) }}";
+        });
+        {% endif %}
+        
+        {% if admingenerator_config('exit_path') is not null %}
+        $('#button-exit').click(function(){
+            document.location = "{{ path(admingenerator_config('exit_path')) ~ '?_switch_user=_exit' }}";
+        });
+        {% endif %}
+        
+        {% if admingenerator_config('logout_path') is not null %}
+        $('#button-logout').click(function(){
+            document.location = "{{ path(admingenerator_config('logout_path')) }}";
+        });
+        {% endif %}
+    });
+</script>
+{% endblock %}
