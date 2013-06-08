@@ -32,9 +32,11 @@ Don't miss any updates from **Symfony2 Admin Generator**! Join Twitter today and
 
 ## This bundle in pictures
 
-![Preview of list](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/raw/master/Resources/old-doc/doc_list.png)
+![Preview of list](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/raw/master/Resources/preview/list-preview.png)
 
-![Preview of edit](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/raw/master/Resources/old-doc/doc_edit.png)
+![Preview of edit](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/raw/master/Resources/preview/edit-preview.png)
+
+![Preview of dashboard](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/raw/master/Resources/preview/dashboard-welcome-preview.png)
 
 # Important note
 
