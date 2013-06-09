@@ -19,7 +19,6 @@
 {% endblock %}
 
 {% block generic_action_block %}
-    {{ echo_block("generic_action_block") }}
     {% set actionRoute  = action.route ? action.route : (builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_' ~ action.name) %}
     {% set actionParams = '{}' %}
     {% set translationDomain = action.type is sameas('custom') ? (i18n_catalog is defined ? i18n_catalog : "Admin") : 'Admingenerator' %}
@@ -39,7 +38,6 @@
         {% endif %}
         {% if action.icon %}<i class="{{ action.icon }}"></i>{% endif %} {{ echo_trans(action.label, {}, translationDomain) }}
     </form>
-    {{ echo_endblock() }}
     {{ echo_endblock() }}
 {% endblock %}
 
