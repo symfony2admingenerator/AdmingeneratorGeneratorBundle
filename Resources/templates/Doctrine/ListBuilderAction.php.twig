@@ -64,7 +64,7 @@
     protected function buildQuery()
     {
         return $this->getDoctrine()
-                    ->getManager({% if entity_manager is defined %}'{{ entity_manager }}'{% endif %})
+                    ->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %})
                     ->getRepository('{{ model }}')
                     ->createQueryBuilder('q');
     }
@@ -94,7 +94,7 @@
             {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
 
         if (isset($filters['{{ filter }}'])) {
-            $this->getDoctrine()->getManager({% if entity_manager is defined %}'{{ entity_manager }}'{% endif %})->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array('id' => $filters['{{ filter }}']->getId()), array());
+            $this->getDoctrine()->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %})->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array('id' => $filters['{{ filter }}']->getId()), array());
         }
 
             {%- endif %}
@@ -187,7 +187,7 @@
     protected function doBatchDelete(array $selected)
     {
         try {
-            $this->getDoctrine()->getManager({% if entity_manager is defined %}'{{ entity_manager }}'{% endif %})
+            $this->getDoctrine()->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %})
                 ->createQuery('DELETE {{ model }} m WHERE m.{{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} IN (:selected)')
     		->setParameter('selected', $selected)
     		->getResult();
