@@ -7,10 +7,11 @@
 
 ### 1. Adding log in/log out button in navbar
 
-If you want to automatically add a "Log in" / "Log out" button in your navbar, you have to specify route names under `admingenerator_generator`:
+If you want to automatically add a "Log in" / "Log out" / "Exit impersonation mode" button in your navbar, you have to specify route names under `admingenerator_generator`:
 ```yaml
 admingenerator_generator:
     login_path: MyLogin_path
-    logout_path: MyLogout_pat
+    logout_path: MyLogout_path
+    exit_path: MyExit_path
 ```
 
