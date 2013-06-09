@@ -3,7 +3,7 @@
     protected function getObject($pk)
     {
         ${{ builder.ModelClass }} = $this->getDoctrine()
-             ->getManager({% if entity_manager is defined %}'{{ entity_manager }}'{% endif %})
+             ->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %})
              ->getRepository('{{ model }}')
              ->find($pk);
 
@@ -16,7 +16,7 @@
 
     protected function process(\{{ model }} ${{ builder.ModelClass }})
     {
-        $em = $this->getDoctrine()->getManager({% if entity_manager is defined %}'{{ entity_manager }}'{% endif %});
+        $em = $this->getDoctrine()->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %});
         $em->remove(${{ builder.ModelClass }});
         $em->flush();
         $em->clear();
