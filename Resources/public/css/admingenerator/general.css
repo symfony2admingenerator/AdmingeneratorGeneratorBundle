@@ -28,6 +28,16 @@ body {
 .navbar-blue .brand {
     color: #FFFFFF;
     text-shadow: 0 1px 0 #777777;
+    
+    -webkit-transition: all 0.35s ease-in;
+    -moz-transition: all 0.35s ease-in;
+    -ms-transition: all 0.35s ease-in;
+    -o-transition: all 0.35s ease-in;
+    transition: all 0.35s ease-in;
+}
+
+.navbar-blue .brand:hover {
+    text-shadow: 0 1px 10px #FFFFFF, 0px 1px 15px rgb(255, 255, 255);
 }
 
 .navbar-blue .nav > li > a {
