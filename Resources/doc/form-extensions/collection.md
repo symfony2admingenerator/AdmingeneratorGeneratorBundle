@@ -15,7 +15,7 @@ It introduces new option `widget` which can be set to *default*, *fieldset* or *
 
 ### 2. Support
 
-Collection supports **Doctrine ORM**, **Doctrine ODM** and **Propel**.
+Collection widget is avaliable for **Doctrine ORM**, **Doctrine ODM** and **Propel**.
 
 ### 3. Configuration
 
