@@ -36,6 +36,8 @@ class Action
 
     protected $conditional_function;
 
+    protected $conditional_parameters = array();
+
     protected $conditional_inverse = false;
 
     protected $params;
@@ -187,6 +189,10 @@ class Action
 
         $this->conditional_function = $condition['function'];
 
+        if (isset($condition['parameters'])) {
+            $this->conditional_parameters = (array) $condition['parameters'];
+        }
+
         if (isset($condition['inverse'])) {
             $this->conditional_inverse = (boolean) $condition['inverse'];
         }
@@ -195,6 +201,11 @@ class Action
     public function getConditionalFunction()
     {
         return $this->conditional_function;
+    }
+
+    public function getConditionalParameters()
+    {
+        return $this->conditional_parameters;
     }
 
     public function getConditionalInverse()
