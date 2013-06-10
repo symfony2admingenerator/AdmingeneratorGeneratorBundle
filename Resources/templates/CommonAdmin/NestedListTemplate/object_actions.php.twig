@@ -1,0 +1,64 @@
+{% block list_object_actions %}
+    {{ echo_block("list_object_actions") }}
+        {% if object_actions is defined  and object_actions|length > 0 %}
+        <td class="actions">
+            <div class="btn-group">
+            {% for action in builder.ObjectActions %}
+                {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
+                    {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials'), builder.ModelClass ) }}
+                {% endif -%}
+                    {% if action.conditionalFunction %}
+                        {{ echo_if ((action.conditionalInverse == 'true' ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction) }}
+                    {% endif %}
+                    
+                    {{ block('object_action_block') }}
+                
+                    {% if action.conditionalFunction %}
+                        {{ echo_endif () }}
+                    {% endif %}
+                {%- if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
+                    {{ echo_endif () }}
+                {% endif %}
+            {% endfor %}
+            </div>
+        </td>
+        {% endif -%}
+    {{ echo_endblock() }}
+{% endblock %}
+
+{% block object_actions_script %}
+    {{ echo_block("object_actions_script") }}
+    {% if object_actions is defined and object_actions|length > 0 %}
+    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/object-actions.js")') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#tree-table").agen$objectActions();
+        });
+    </script>
+    {% endif %}
+    {{ echo_endblock() }}
+{% endblock %}
+    
+{% block object_action_block %}
+    {% set actionRoute  = action.route ? action.route : (builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_' ~ action.name) %}
+    {% set objectPK     = builder.ModelClass ~ "." ~ builder.getFieldGuesser().getModelPrimaryKeyName(model) %}
+    {% set actionParams = '{}' %}
+    {% set translationDomain = action.type is sameas('custom') ? (i18n_catalog is defined ? i18n_catalog : "Admin") : 'Admingenerator' %}
+    {% for key, value in action.params %}
+        {% if loop.first %}{% set actionParams = '{' %}{% endif %}
+        {% if not loop.last %}
+            {% set actionParams = actionParams ~ ' "' ~ key ~ '": ' ~ value ~ ', ' %}
+        {% else %}
+            {% set actionParams = actionParams ~ ' "' ~ key ~ '": ' ~ value ~ ' }' %}
+        {% endif %}
+    {% endfor %}
+
+    {{ echo_block("list_object_action_" ~ action.name) }}
+    <form id="object_action_form_{{ echo_twig(objectPK) }}" class="{{ action.class|default('btn btn-mini') }}" action="{{ echo_path(actionRoute, actionParams) }}" method="{{ action.method }}" rel="tooltip" data-title="{{ echo_trans(action.label, {}, translationDomain) }}"  {% if action.confirm %}data-confirm="{{ echo_trans(action.confirm, {}, translationDomain) }}"{% endif %}>
+        {% if action.csrfProtected %}
+            <input type="hidden" name="_csrf_token" value="{{ echo_path(actionRoute, actionParams, ['csrf_token']) }}">
+        {% endif %}
+        <i class="{{ action.icon|default('icon-asterisk') }}"></i>
+    </form>
+    {{ echo_endblock() }}
+{% endblock %}

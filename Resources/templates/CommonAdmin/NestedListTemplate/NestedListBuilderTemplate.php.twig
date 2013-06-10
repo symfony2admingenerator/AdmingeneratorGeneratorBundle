@@ -14,6 +14,9 @@
 {{ echo_block("javascripts") }}
     {{- block('complementary_javascripts') -}}
 
+
+ {{- block('batch_actions_script') -}}
+    {{- block('object_actions_script') -}}
     <script type="text/javascript">
         {% set admingeneratorNestedRoute=builder.routePrefixWithSubfolder ~ "_" ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_nested_move" %}
         var admingeneratorNestedUrl = '{{ echo_path( admingeneratorNestedRoute, "{ 'dragged': '|dragged|', 'action': '|action|', 'dropped': '|dropped|' }") }}';
@@ -47,11 +50,17 @@
                 {{- block('list_tbody') }}
             </table>
 
-            <div class="form-actions">
+        
+            
+            
+              <div id="list_toolbar" class="form-actions">
                 <div class="btn-toolbar pull-left">
-                  {{ block('list_actions') -}}
+                  {{ block('list_batch_actions') }}
+                  {{ block('list_actions') }}
                 </div>
             </div>
+            
+            
         </div>
         {{ echo_block("filters") }}
             {% if builder.filterColumns|length > 0 %}
