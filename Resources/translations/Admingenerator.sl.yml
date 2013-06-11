@@ -42,9 +42,10 @@ nested.list:
 
 # Profile
 profile:
-  welcome:  <b>Dobrodošli</b>, %username%!</p>
+  welcome:  <b>Dobrodošli</b>, %username%!
   login:    Prijava
   logout:   Odjava
+  exit:     Izhod iz lažnem
 
 # EntityPicker
 entity_picker:

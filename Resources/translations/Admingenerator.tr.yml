@@ -34,9 +34,10 @@ list.header:
 
 # Profile
 profile:
-  welcome:  <b>Merhaba</b>, %username%!</p>
+  welcome:  <b>Merhaba</b>, %username%!
   login:    Giriş
   logout:   Çıkış
+  exit:     Kimliğe bürünme modundan çıkın
 
 # EntityPicker
 entity_picker:

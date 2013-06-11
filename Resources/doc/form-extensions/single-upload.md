@@ -20,11 +20,11 @@ SingleUpload is a widget for [file](http://symfony.com/doc/current/reference/for
 #### Requirements:
 
 * [VichUploaderBundle](https://github.com/dustin10/VichUploaderBundle)
-* (Optional) [AvalancheImagineBundle](https://github.com/avalanche123/AvalancheImagineBundle)
+* ~~(Optional)~~ [AvalancheImagineBundle](https://github.com/avalanche123/AvalancheImagineBundle)
 
 ### 2. Support
 
-Upload supports **Doctrine ORM** and *may* support (untested) Doctrine ODM and Propel.
+Single Upload widget is avaliable for **Doctrine ORM**, **Doctrine ODM** and **Propel**.
 
 ### 3. Configuration
 

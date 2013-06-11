@@ -33,7 +33,7 @@ class SingleUploadType extends FileType
             $options['nameable'],
             $options['deleteable']
         );
-        $builder->getParent()->addEventSubscriber($singleUploadNamerListener);
+        $builder->addEventSubscriber($singleUploadNamerListener);
 
         $builder->setAttribute('thumbnail_generator', $this->container->getParameter('admingenerator.thumbnail_generator'));
     }

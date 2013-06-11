@@ -106,6 +106,8 @@ Documentation for new form extensions and types:
 3. [How to create menu][cookbook-3]
 4. [How to use a2lixTranslationFormBundle with AdmingeneratorGeneratorBundle][cookbook-4]
 5. [Command Line][cookbook-5]
+6. [Form types][cookbook-6]
+7. [Conditional actions][cookbook-7]
 
 [go up][go-up]
 
@@ -114,6 +116,8 @@ Documentation for new form extensions and types:
 [cookbook-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/menu.md
 [cookbook-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/a2lixTranslationFormBundle-integration.md
 [cookbook-5]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/commandLine.md
+[cookbook-6]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/formTypes.md
+[cookbook-7]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/conditional-actions.md
 
 ## 8. Security
 

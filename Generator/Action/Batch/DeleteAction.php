@@ -14,7 +14,7 @@ class DeleteAction extends Action
 {
     public function __construct($name, BaseBuilder $builder)
     {
-        parent::__construct($name, $type = 'batch');
+        parent::__construct($name, 'batch');
 
         $this->setIcon('icon-remove');
         $this->setLabel('action.batch.delete.label');

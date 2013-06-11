@@ -42,9 +42,10 @@ nested.list:
 
 # Profile
 profile:
-  welcome:  <b>Benvenuto</b>, %username%!</p>
+  welcome:  <b>Benvenuto</b>, %username%!
   login:    Accedi
   logout:   Esci
+  exit:     Uscire dalla modalità di rappresentazione
 
 # EntityPicker
 entity_picker:

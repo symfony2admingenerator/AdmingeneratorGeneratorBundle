@@ -7,6 +7,8 @@
 
 ### 1. Usage
 
-      fields: 
-        created: 
-           formType: \Admingenerator\GeneratorBundle\Form\Type\DatePickerType
+```yaml
+fields: 
+  createdAt: 
+     formType: datepicker
+```

@@ -1,7 +1,7 @@
 {% block list_object_actions %}
     {{ echo_block("list_object_actions") }}
-        {% if object_actions|length > 0 %}
-        <td class="actions">
+        {% if object_actions is defined  and object_actions|length > 0 %}
+        <td class="object_actions">
             <div class="btn-group">
             {% for action in builder.ObjectActions %}
                 {{ echo_block('td_list_object_actions_' ~ action.name) }}
@@ -9,18 +9,11 @@
                         {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials'), builder.ModelClass ) }}
                     {% endif -%}
                         {% if action.conditionalFunction %}
-                            {{ echo_if ((action.conditionalInverse == 'true' ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction) }}
+                            {{ echo_if ((action.conditionalInverse == 'true' ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')') }}
                         {% endif %}
 
-                        {% set actionRoute  = action.route ? action.route : (builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_' ~ action.name) %}
-                        {% set actionParams = action.params ? echo_twig_assoc(action.params) : "{ 'pk': " ~ builder.ModelClass ~ "." ~ builder.getFieldGuesser().getModelPrimaryKeyName(model) ~ " }" %}
-                        <a class="{{ action.class | default('btn btn-mini') }}"
-                           href="{{ echo_path(actionRoute, actionParams) }}"
-                           {%- if action.confirm %} data-confirm="{{ echo_trans(action.confirm) }}" {% endif -%}
-                           {%- if action.csrfProtected %} data-csrf-token="{{ echo_path(actionRoute, actionParams, ['csrf_token']) }}" {% endif -%}
-                           rel="tooltip" data-original-title="{{ echo_trans(action.label) }}">
-                             <i class="{{ action.icon | default('icon-asterisk') }}"></i>
-                        </a>
+                        {{ block('object_action_block') }}
+
                         {% if action.conditionalFunction %}
                             {{ echo_endif () }}
                         {% endif %}
@@ -34,4 +27,32 @@
         </td>
         {% endif -%}
     {{ echo_endblock() }}
+{% endblock %}
+
+{% block object_actions_script %}
+    {{ echo_block("object_actions_script") }}
+    {% if object_actions is defined and object_actions|length > 0 %}
+    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/object-actions.js")') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#form-list").agen$objectActions({
+            	actionsSelector: '.object_actions a'
+            });
+        });
+    </script>
+    {% endif %}
+    {{ echo_endblock() }}
+{% endblock %}
+
+{% block object_action_block %}
+    {% set actionRoute  = action.route ? action.route : (builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_' ~ action.name) %}
+    {% set actionParams = action.params ? echo_twig_assoc(action.params) : "{ 'pk': " ~ builder.ModelClass ~ "." ~ builder.getFieldGuesser().getModelPrimaryKeyName(model) ~ " }" %}
+    {% set translationDomain = action.type is sameas('custom') ? (i18n_catalog is defined ? i18n_catalog : "Admin") : 'Admingenerator' %}
+    <a class="btn btn-mini {{ action.class | default('') }}"
+        href="{{ echo_path(actionRoute, actionParams) }}"
+        {%- if action.confirm %} data-confirm="{{ echo_trans(action.confirm, {}, translationDomain) }}" {% endif -%}
+        {%- if action.csrfProtected %} data-csrf-token="{{ echo_path(actionRoute, actionParams, ['csrf_token']) }}" {% endif -%}
+        rel="tooltip" data-original-title="{{ echo_trans(action.label, {}, translationDomain) }}">
+            <i class="{{ action.icon | default('icon-asterisk') }}"></i>
+    </a>
 {% endblock %}

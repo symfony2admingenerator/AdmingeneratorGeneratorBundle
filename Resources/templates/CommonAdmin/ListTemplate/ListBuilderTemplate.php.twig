@@ -19,8 +19,10 @@
 {{ echo_block("javascripts") }}
     {{- block('complementary_javascripts') -}}
 
+    {{- block('batch_actions_script') -}}
+    {{- block('object_actions_script') -}}
+
     <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/general.js")') }}"></script>
-    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/batch-actions.js")') }}"></script>
 {{ echo_endblock() }}
 
 {{- block('site_title') -}}
@@ -36,23 +38,23 @@
             {{- block('list_nbresults') -}}
 
             {{- block('form_batch_actions') }}
-            <table class="table table-striped table-hover table-condensed">
-                {{ block('list_thead') -}}
-                {{- block('list_tbody') }}
-            </table>
+                <table class="table table-striped table-hover table-condensed">
+                    {{ block('list_thead') -}}
+                    {{- block('list_tbody') }}
+                </table>
 
-            <div class="form-actions">
-                <div class="btn-toolbar pull-left">
-                  {{- block('list_batch_actions') }}
+                <div id="list_toolbar" class="form-actions">
+                    <div class="btn-toolbar pull-left">
+                      {{- block('list_batch_actions') }}
+                    </div>
+                    {{- block('list_paginator') -}}
                 </div>
-                {{- block('list_paginator') -}}
-            </div>
 
-            <div class="form-actions">
-                <div class="btn-toolbar">
-                    {{ block('list_actions') -}}
+                <div id="generic_actions" class="form-actions">
+                    <div class="btn-toolbar">
+                        {{ block('list_actions') -}}
+                    </div>
                 </div>
-            </div>
             {{- block('endform_batch_actions') }}
         </div>
         {{ echo_block("filters") }}

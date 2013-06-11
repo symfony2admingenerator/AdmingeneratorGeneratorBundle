@@ -36,6 +36,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
             'dashboard_welcome_path' => null,
             'login_path' => null,
             'logout_path' => null,
+            'exit_path' => null,
             'knp_menu_class'      => 'Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder',
             'thumbnail_generator' => null,
             'twig'         => array(

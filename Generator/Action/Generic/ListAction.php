@@ -14,7 +14,7 @@ class ListAction extends Action
 {
     public function __construct($name, BaseBuilder $builder)
     {
-        parent::__construct($name);
+        parent::__construct($name, 'generic');
 
         $this->setIcon('icon-list-alt');
         $this->setLabel('action.generic.list');

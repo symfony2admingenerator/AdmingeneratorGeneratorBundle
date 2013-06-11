@@ -3,6 +3,7 @@
 {% use '../CommonAdmin/javascripts.php.twig' %}
 {% use '../CommonAdmin/ShowTemplate/tabs.php.twig' %}
 {% use '../CommonAdmin/ShowTemplate/show.php.twig' %}
+{% use '../CommonAdmin/ShowTemplate/actions.php.twig' %}
 {{ echo_extends( builder.getBaseAdminTemplate ) }}
 
 {{ echo_block("stylesheets") }}
@@ -12,7 +13,10 @@
 {{ echo_block("javascripts") }}
     {{- block('complementary_javascripts') -}}
 
+    {{- block('batch_actions_script') -}}
+
     <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/general.js")') }}"></script>
+
 {{ echo_endblock() }}
 
 {{- block('site_title') -}}

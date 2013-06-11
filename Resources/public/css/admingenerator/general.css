@@ -11,3 +11,80 @@ body {
     padding-top: 60px;
     padding-bottom: 40px;
 }
+
+/* Navbar styles */
+.navbar-blue .navbar-inner {
+    background-color: #438EB9;
+    background-image: -moz-linear-gradient(top, #438EB9, #62A8D1);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#438EB9), to(#62A8D1));
+    background-image: -webkit-linear-gradient(top, #438EB9, #62A8D1);
+    background-image: -o-linear-gradient(top, #438EB9, #62A8D1);
+    background-image: linear-gradient(to bottom, #438EB9, #62A8D1);
+    background-repeat: repeat-x;
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff438EB9', endColorstr='#ff62A8D1', GradientType=0);
+    border-color: #0B6CBC;
+}
+
+.navbar-blue .brand {
+    color: #FFFFFF;
+    text-shadow: 0 1px 0 #777777;
+    
+    -webkit-transition: all 0.35s ease-in;
+    -moz-transition: all 0.35s ease-in;
+    -ms-transition: all 0.35s ease-in;
+    -o-transition: all 0.35s ease-in;
+    transition: all 0.35s ease-in;
+}
+
+.navbar-blue .brand:hover {
+    text-shadow: 0 1px 10px #FFFFFF, 0px 1px 15px rgb(255, 255, 255);
+}
+
+.navbar-blue .nav > li > a {
+    color: #F5F5F5;
+    text-shadow: 0 1px 0 #777777;
+}
+
+.navbar-blue .nav li.dropdown > .dropdown-toggle .caret {
+    border-top-color: #F5F5F5;
+    border-bottom-color: #F5F5F5;
+}
+
+.navbar-blue .nav > li > a:focus,
+.navbar-blue .nav > li > a:hover {
+    color: #FFFFFF;
+    background-color: #62A8D1;
+}
+
+.navbar-blue .nav li.dropdown > .dropdown-toggle:focus .caret, 
+.navbar-blue .nav li.dropdown > .dropdown-toggle:hover .caret {
+    border-top-color: #FFFFFF;
+    border-bottom-color: #FFFFFF;
+}
+
+.navbar-blue .nav li.dropdown.open > .dropdown-toggle,
+.navbar-blue .nav li.dropdown.active > .dropdown-toggle,
+.navbar-blue .nav li.dropdown.open.active > .dropdown-toggle {
+    color: #FFFFFF;
+    background-color: #62A8D1;
+}
+
+.navbar-blue .nav li.dropdown.open > .dropdown-toggle .caret,
+.navbar-blue .nav li.dropdown.active > .dropdown-toggle .caret,
+.navbar-blue .nav li.dropdown.open.active > .dropdown-toggle .caret {
+    border-top-color: #FFFFFF;
+    border-bottom-color: #FFFFFF;
+}
+
+.navbar-blue .dropdown-menu li > a:hover,
+.navbar-blue .dropdown-menu li > a:focus,
+.navbar-blue .dropdown-submenu:hover > a {
+    background-color: #438EB9;
+    background-image: -moz-linear-gradient(top, #438EB9, #62A8D1);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#438EB9), to(#62A8D1));
+    background-image: -webkit-linear-gradient(top, #438EB9, #62A8D1);
+    background-image: -o-linear-gradient(top, #438EB9, #62A8D1);
+    background-image: linear-gradient(to bottom, #438EB9, #62A8D1);
+    background-repeat: repeat-x;
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff438EB9', endColorstr='#ff62A8D1', GradientType=0);
+}

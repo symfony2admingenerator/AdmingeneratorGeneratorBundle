@@ -12,9 +12,10 @@
                         {% endif %}
                         <option
                             value="{{ action.name }}"
-                            {%- if action.confirm %} data-confirm='{{ echo_trans(action.confirm) }}' {% endif -%}
+                            {%- if action.confirm %} data-confirm='{{ echo_trans(action.confirm, {}, translationDomain) }}' {% endif -%}
                         >
-                              {% if action.icon %}<i class="{{ action.icon }}"></i> {% endif %}{{ echo_trans(action.label) }}
+                              {%- set translationDomain = action.type is sameas('custom') ? (i18n_catalog is defined ? i18n_catalog : "Admin") : 'Admingenerator' -%}
+                              {% if action.icon %}<i class="{{ action.icon }}"></i> {% endif %}{{ echo_trans(action.label, {}, translationDomain) }}
                         </option>
                         {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
                             {{ echo_endif () }}
@@ -42,6 +43,7 @@
     {{ echo_block("endform_batch_actions") }}
     {% if batch_actions is defined and batch_actions|length > 0 %}
         </form>
+        <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/batch-actions.js")') }}"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 $("#form-list").agen$batchActions({

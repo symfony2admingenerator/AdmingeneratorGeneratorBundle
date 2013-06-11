@@ -14,7 +14,7 @@ class ShowAction extends Action
 {
     public function __construct($name, BaseBuilder $builder)
     {
-        parent::__construct($name, $type = 'object');
+        parent::__construct($name, 'object');
 
         $this->setIcon('icon-eye-open');
         $this->setLabel('action.object.show.label');

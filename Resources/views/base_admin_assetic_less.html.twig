@@ -15,6 +15,9 @@
         <!--[if lt IE 9]>
             <script src="{{ asset('bundles/admingeneratorgenerator/js/html5shiv/html5.js') }}"></script>
         <![endif]-->
+        <!--[if lte IE 7]>
+            <script src="{{ asset('bundles/admingeneratorgenerator/js/elusive-iconfont/lte-ie7.js') }}"></script>
+        <![endif]-->
     {% endblock %}
 
     {% block stylesheets %}
@@ -28,8 +31,12 @@
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/bootstrap/bootstrap-responsive.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/bootstrap/bootstrap-responsive-extended.css') }}" type="text/css" media="all" />
 
+        <!-- elusive-iconfont.min.css -->
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/elusive-iconfont/elusive-webfont.css') }}" type="text/css" media="all" />
+        
         <!-- admingenerator.min.css -->
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/admingenerator/general.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/admingenerator/profile.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/admingenerator/nested-list.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/admingenerator/collection.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/admingenerator/upload.css') }}" type="text/css" media="all" />

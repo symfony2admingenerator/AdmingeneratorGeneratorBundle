@@ -18,6 +18,9 @@
         <!--[if lt IE 9]>
             <script src="{{ asset('bundles/admingeneratorgenerator/js/html5shiv/html5.js') }}"></script>
         <![endif]-->
+        <!--[if lte IE 7]>
+            <script src="{{ asset('bundles/admingeneratorgenerator/js/elusive-iconfont/lte-ie7.js') }}"></script>
+        <![endif]-->
     {% endblock %}
 
     {% block stylesheets %}
@@ -37,8 +40,15 @@
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
 
+        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/elusive-iconfont.min.css'
+            'bundles/admingeneratorgenerator/css/elusive-iconfont/elusive-webfont.css'
+        %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
+        {% endstylesheets %}
+
         {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/admingenerator.min.css'
             'bundles/admingeneratorgenerator/css/admingenerator/general.css'
+            'bundles/admingeneratorgenerator/css/admingenerator/profile.css'
             'bundles/admingeneratorgenerator/css/admingenerator/nested-list.css'
             'bundles/admingeneratorgenerator/css/admingenerator/collection.css'
             'bundles/admingeneratorgenerator/css/admingenerator/upload.css'

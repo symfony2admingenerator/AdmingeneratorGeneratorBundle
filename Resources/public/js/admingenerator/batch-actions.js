@@ -48,25 +48,19 @@
         _init: function() {
             // Plugin-scope helper
             var that = this;
-            
-            // Sanity check
-            if (that.options.path === null) {
-                console.log('[Admingenerator] Fatal Error: batch actions path is null!');
-                return false;
-            }
+
+            // Hide submit button
+            $(that.element).find(that.options.submitSelector).hide();
             
             // Select container
-            var $batch    = $('input[name="selected[]"]');
-            var $batchAll = $('input[name="batchAll"]');
+            var $batch    = $(that.element).find('input[name="selected[]"]');
+            var $batchAll = $(that.element).find('input[name="batchAll"]');
             
             // Grant plugin-scope access to selectors
             that.$batch  = $batch;
             
-            // hide submit button. Submit is auto managed when JS is available
-            $(this.options.submitSelector).hide();
-            
             // bind onSelect to button click event
-            $(that.options.actionsSelector).on('change', function(e){
+            $(that.element).find(that.options.actionsSelector).on('change', function(e){
                 e.preventDefault();
                 that._onSelect(that, $(e.target));
             });
@@ -104,7 +98,7 @@
             	return false;
             }
             
-            $(this.options.submitSelector).click();
+            $(that.element).find(that.options.submitSelector).click();
         }
     };
 
