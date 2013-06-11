@@ -99,6 +99,8 @@ batch.list:
   selected:       Choisir
   none.selected:  Vous devez sélectionner au moins un élément.
   warning:        Impossible de terminer l'action du lot en raison de paramètres manquants.
+  selector:       Pour la sélection :
+  send:           Exécuter
 
 # Layout
 dashboard:
