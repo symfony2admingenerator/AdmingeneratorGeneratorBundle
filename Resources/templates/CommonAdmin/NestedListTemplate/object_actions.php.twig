@@ -42,16 +42,8 @@
 {% block object_action_block %}
     {% set actionRoute  = action.route ? action.route : (builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_' ~ action.name) %}
     {% set objectPK     = builder.ModelClass ~ "." ~ builder.getFieldGuesser().getModelPrimaryKeyName(model) %}
-    {% set actionParams = '{}' %}
+    {% set actionParams = action.params ? echo_twig_assoc(action.params) : '{}' %}
     {% set translationDomain = action.type is sameas('custom') ? (i18n_catalog is defined ? i18n_catalog : "Admin") : 'Admingenerator' %}
-    {% for key, value in action.params %}
-        {% if loop.first %}{% set actionParams = '{' %}{% endif %}
-        {% if not loop.last %}
-            {% set actionParams = actionParams ~ ' "' ~ key ~ '": ' ~ value ~ ', ' %}
-        {% else %}
-            {% set actionParams = actionParams ~ ' "' ~ key ~ '": ' ~ value ~ ' }' %}
-        {% endif %}
-    {% endfor %}
 
     {{ echo_block("list_object_action_" ~ action.name) }}
     <form id="object_action_form_{{ echo_twig(objectPK) }}" class="{{ action.class|default('btn btn-mini') }}" action="{{ echo_path(actionRoute, actionParams) }}" method="{{ action.method }}" rel="tooltip" data-title="{{ echo_trans(action.label, {}, translationDomain) }}"  {% if action.confirm %}data-confirm="{{ echo_trans(action.confirm, {}, translationDomain) }}"{% endif %}>
