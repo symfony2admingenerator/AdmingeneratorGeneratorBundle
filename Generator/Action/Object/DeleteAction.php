@@ -15,13 +15,12 @@ class DeleteAction extends Action
 {
     public function __construct($name, BaseBuilder $builder)
     {
-        parent::__construct($name, $type = 'object');
+        parent::__construct($name, 'object');
 
         $this->setIcon('icon-remove');
         $this->setLabel('action.object.delete.label');
         $this->setConfirm('action.object.delete.confirm');
         $this->setCsrfProtected(true);
-        $this->setMethod('POST');
 
         $this->setParams(array(
             'pk' => '{{ '.$builder->getModelClass().'.'.$builder->getModelPrimaryKeyName().' }}',

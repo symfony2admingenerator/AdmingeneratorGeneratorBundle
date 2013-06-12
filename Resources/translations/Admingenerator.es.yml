@@ -122,3 +122,7 @@ filetype:
   text-document:    Documento<br />de texto
   unknown:          Tipo de archivo<br />desconocido
   video:            Video
+
+delete.action:
+  confirm: Si
+  cancel: No

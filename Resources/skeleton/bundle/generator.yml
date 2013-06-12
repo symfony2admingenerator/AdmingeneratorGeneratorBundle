@@ -40,4 +40,6 @@ builders:
             actions:
                 list: ~
                 new: ~
-    delete: ~
+    delete:
+        params:
+            title: "Are you sure you want to delete the object \"%object%\"?|{ %object%: YourModel.title }|"

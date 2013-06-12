@@ -6,6 +6,7 @@ class EchoExtension extends \Twig_Extension
 {
     protected $loader;
     protected $controller;
+    protected $blockNames = array();
 
     public function __construct(\Twig_LoaderInterface $loader)
     {
@@ -356,17 +357,18 @@ class EchoExtension extends \Twig_Extension
         return sprintf('{{ %s }}', $str);
     }
 
-    public function getEchoTwigFilter($str, $filters = null)
+    public function getEchoTwigFilter($str, $filters = null, $asString = false)
     {
         if (null === $filters) {
             return $this->getEchoTwig($str);
         }
-        
-        return strtr('{{ %%str%%|%%filters%% }}', array('%%str%%' => $str, '%%filters%%' => (is_array($filters) ? implode('|', $filters) : $filters) ));
+
+        return strtr('{{ %%str%%|%%filters%% }}', array('%%str%%' => $asString ? '"'.$str.'"' : $str, '%%filters%%' => (is_array($filters) ? implode('|', $filters) : $filters) ));
     }
 
     public function getEchoBlock($name)
     {
+        $this->blockNames[] = $name;
         return str_replace('%%name%%', $name, '{% block %%name%% %}');
     }
 
@@ -377,7 +379,7 @@ class EchoExtension extends \Twig_Extension
 
     public function getEchoEndBlock()
     {
-        return '{% endblock %}';
+        return str_replace('%%name%%', array_pop($this->blockNames), '{% endblock %%name%% %}');
     }
 
     public function getEchoFor($object, $in)

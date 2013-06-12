@@ -28,4 +28,14 @@ class DeleteController extends BaseController
     }
     {% endblock %}
 
+    /**
+     * Get additional parameters for rendering.
+     *
+     * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
+     * return array
+     **/
+    protected function getAdditionalRenderParameters(\{{ model }} ${{ builder.ModelClass }})
+    {
+        return array();
+    }
 }

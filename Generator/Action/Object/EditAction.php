@@ -14,11 +14,10 @@ class EditAction extends Action
 {
     public function __construct($name, BaseBuilder $builder)
     {
-        parent::__construct($name, $type = 'object');
+        parent::__construct($name, 'object');
 
         $this->setIcon('icon-edit');
         $this->setLabel('action.object.edit.label');
-        $this->setMethod('GET');
 
         $this->setParams(array(
             'pk' => '{{ '.$builder->getModelClass().'.'.$builder->getModelPrimaryKeyName().' }}',

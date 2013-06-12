@@ -21,7 +21,9 @@
     // Create the defaults once
     var pluginName = 'agen$genericActions',
         document = window.document,
-        defaults = {};
+        defaults = {
+    		actionsSelector: 'a'
+    	};
 
     // The actual plugin constructor
     function Plugin( element, options ) {
@@ -46,44 +48,38 @@
             var that = this;
             
             // Select container
-            var $actions  = $(that.element).find('[id^="generic_action_form"]');
+            var $actions  = $(that.element).find(this.options.actionsSelector);
             
             // bind onClick to form click event
             $actions.click(function(e){
                 that._onClick(that, e, $(this));
             });
-            
-            // bind onMouseDown to form mousedown event
-            $actions.on('mousedown', function(e){
-                that._onMouseDown(that, e, $(this));
-            });
         },
                 
-        _onMouseDown: function(that, e, $form) {
-            if(e.which == 2) {
-                $form.on('mouseup', function() {
-                    that._onMouseUp(that, e, $form);
-                });
-            }
-        },
-                
-        _onMouseUp: function(that, e, $form) {
-            $form.attr('target', '_blank');
-            that._onClick(that, e, $form);
-            $form.off('mouseup');
-            $form.removeAttr('target');
-        },
-                
-        _onClick: function(that, e, $form) {
-            e.preventDefault();
-            
-            // Confirm action
-            if ($form.data('confirm') && !confirm($form.data('confirm'))) {
-                return false;
+        _onClick: function(that, e, $element) {
+        	// Confirm action
+            if ($element.data('confirm') && !confirm($element.data('confirm'))) {
+            	e.preventDefault();
+                return;
             }
             
-            // Submit form
-            $form.submit();
+        	if ($element.data('csrf-token')) {
+        		e.preventDefault();
+        		// Transform in POST request
+                var form = $('<form />').attr({
+                    method: 'POST',
+                    action: $element.attr('href'),
+                    style:  'visibility: hidden'
+                }).appendTo($('body'));
+                // Add csrf protection token
+                $('<input />').attr({
+                    type:   'hidden',
+                    name:   '_csrf_token',
+                    value:  $element.data('csrf-token')
+                }).appendTo(form);
+                // Send action
+                form.submit();
+        	}
         }
     };
 

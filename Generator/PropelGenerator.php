@@ -12,6 +12,7 @@ use Admingenerator\GeneratorBundle\Builder\Propel\NestedListBuilderTemplate;
 use Admingenerator\GeneratorBundle\Builder\Propel\FiltersBuilderType;
 
 use Admingenerator\GeneratorBundle\Builder\Propel\DeleteBuilderAction;
+use Admingenerator\GeneratorBundle\Builder\Propel\DeleteBuilderTemplate;
 
 use Admingenerator\GeneratorBundle\Builder\Propel\EditBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\Propel\EditBuilderTemplate;
@@ -75,6 +76,7 @@ class PropelGenerator extends Generator
 
         if (array_key_exists('delete', $builders)) {
             $generator->addBuilder(new DeleteBuilderAction());
+            $generator->addBuilder(new DeleteBuilderTemplate());
         }
 
         if (array_key_exists('edit', $builders)) {
