@@ -1,6 +1,10 @@
 # Submitting issues
 ---------------------------------------
 
+[go back to Table of contents][back-to-index]
+
+[back-to-index]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#2-support-and-contribution
+
 Before you submit an issue [make sure][docs-features] the feature you're haveing 
 trouble with is supported for your model manager.
 
