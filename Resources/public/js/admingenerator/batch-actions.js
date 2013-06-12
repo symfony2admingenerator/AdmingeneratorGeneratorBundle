@@ -58,47 +58,48 @@
             
             // Grant plugin-scope access to selectors
             that.$batch  = $batch;
+            that.$selector = $(that.element).find(that.options.actionsSelector); 
             
             // bind onSelect to button click event
-            $(that.element).find(that.options.actionsSelector).on('change', function(e){
+            that.$selector.on('change', function(e){
                 e.preventDefault();
-                that._onSelect(that, $(e.target));
+                that._onSelect();
             });
             
             // bind onChange to button click event
             $batchAll.on('change', function(e){
-                that._onSelectAll(that, $(e.target));
+                that._onSelectAll($(e.target));
             });
         },
                 
-        _onSelectAll: function(that, $button) {
+        _onSelectAll: function($button) {
             if ($button.is(':checked')) {
                 $button.removeAttr('checked');
-                that.$batch.removeAttr('checked');
+                this.$batch.removeAttr('checked');
             } else {
                 $button.attr('checked', 'checked');
-                that.$batch.attr('checked', 'checked');
+                this.$batch.attr('checked', 'checked');
             }
         },
 
-        _onSelect: function(that, $selector) {
-        	if ($selector.val()=='none') {
+        _onSelect: function() {
+        	if (this.$selector.val()=='none') {
         		return false;
         	}
             // Alert if none selected
-            if (that.$batch.filter(':checked').length == 0) {
-                alert(that.options.noneSelected);
-                $selector.val('none');
+            if (this.$batch.filter(':checked').length == 0) {
+                alert(this.options.noneSelected);
+                this.$selector.val('none');
                 return false;
             }
             
             // Confirm action
-            if ($selector.data('confirm') && !confirm($selector.data('confirm'))) {
-            	$selector.val('none');
+            if (this.$selector.data('confirm') && !confirm(this.$selector.data('confirm'))) {
+            	this.$selector.val('none');
             	return false;
             }
             
-            $(that.element).find(that.options.submitSelector).click();
+            $(this.element).find(this.options.submitSelector).click();
         }
     };
 

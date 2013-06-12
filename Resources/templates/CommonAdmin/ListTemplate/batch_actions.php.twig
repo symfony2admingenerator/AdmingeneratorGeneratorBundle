@@ -5,7 +5,7 @@
             <label class="control-label" for="batchActionSelector">{{ echo_trans('batch.list.selector') }}</label>
             <div class="controls">
                 <select id="batchActionSelector" name="action">
-                    <option value="none">{{ echo_trans('batch.list.selected') }}</option>
+                    <option selected="selected" value="none">{{ echo_trans('batch.list.selected') }}</option>
                     {% for action in builder.BatchActions %}
                         {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
                             {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials')) }}
