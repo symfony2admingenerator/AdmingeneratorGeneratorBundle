@@ -11,7 +11,7 @@ and open a ticket on github.
 ## Table of contents
 
 1. [Installation][table-of-contents-1]
-2. [Support][table-of-contents-2]
+2. [Support and Contribution][table-of-contents-2]
 3. [Features][table-of-contents-3]
 4. [Generator][table-of-contents-4]
 5. [Form Extensions][table-of-contents-5]
@@ -21,7 +21,7 @@ and open a ticket on github.
 
 [go-up]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#table-of-contents
 [table-of-contents-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#1-installation
-[table-of-contents-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#2-support
+[table-of-contents-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#2-support-and-contribution
 [table-of-contents-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#3-features
 [table-of-contents-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#4-generator
 [table-of-contents-5]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#5-form-extensions
@@ -41,13 +41,15 @@ and open a ticket on github.
 [installation-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/installation/installation-via-composer.md
 [installation-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/installation/configuration.md
 
-## 2. Support
+## 2. Support and Contribution
 
-1. [Submitting issues][support-1]
+1. [Submitting issues][support-and-contribution-1]
+1. [Contributing][support-and-contribution-2]
 
 [go up][go-up]
 
-[support-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support/submitting-issues.md
+[support-and-contribution-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support-and-contribution/submitting-issues.md
+[support-and-contribution-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support-and-contribution/contributing.md
 
 ## 3. Features
 
@@ -59,9 +61,9 @@ List of supported features for each model manager:
 
 [go up][go-up]
 
-[features-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support/doctrine-orm-features.md
-[features-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support/doctrine-odm-features.md
-[features-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support/propel-features.md
+[features-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/features/doctrine-orm-features.md
+[features-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/features/doctrine-odm-features.md
+[features-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/features/propel-features.md
 
 ## 4. Generator
 
