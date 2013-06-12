@@ -45,8 +45,10 @@
         {{ echo_endblock() }}
 
         {{ echo_block('form_buttons') }}
-            <div class="form-actions">
-                {{ block("form_actions") }}
+            <div id="show-actions" class="form-actions">
+                <div class="btn-toolbar">
+                    {{ block("form_actions") }}
+                </div>
             </div>
         {{ echo_endblock() }}
     {{ echo_endblock() }}

@@ -85,13 +85,11 @@ class BundleGenerator extends BaseBundleGenerator
                 $parameters
             );
 
-            if ('Delete' !== $action) {
-                $this->renderGeneratedFile(
-                    'index.html.twig',
-                    $dir.'/Resources/views/'.ucfirst($this->prefix).$action.'/index.html.twig',
-                    $parameters
-                );
-            }
+            $this->renderGeneratedFile(
+                'index.html.twig',
+                $dir.'/Resources/views/'.ucfirst($this->prefix).$action.'/index.html.twig',
+                $parameters
+            );
         }
 
         foreach ($this->forms as $form) {

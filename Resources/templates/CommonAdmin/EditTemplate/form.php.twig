@@ -20,8 +20,10 @@
         {{ echo_twig("form_rest(form)") }}
 
         {{ echo_block("form_buttons") }}
-            <div class="form-actions">
-                {{ block("form_actions") }}
+            <div id="edit-actions" class="form-actions">
+                <div class="btn-toolbar">
+                    {{ block("form_actions") }}
+                </div>
             </div>
         {{ echo_endblock() }}
     </form>

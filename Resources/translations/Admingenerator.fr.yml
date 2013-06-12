@@ -99,6 +99,8 @@ batch.list:
   selected:       Choisir
   none.selected:  Vous devez sélectionner au moins un élément.
   warning:        Impossible de terminer l'action du lot en raison de paramètres manquants.
+  selector:       Pour la sélection :
+  send:           Exécuter
 
 # Layout
 dashboard:
@@ -118,3 +120,7 @@ filetype:
   text-document:    Document<br />texte
   unknown:          Type de fichier<br />inconnu
   video:            Vidéo
+
+delete.action:
+  confirm: Oui
+  cancel: Non

@@ -6,6 +6,7 @@
 {% use '../CommonAdmin/ListAction/batch_actions.php.twig' %}
 {% use '../CommonAdmin/csrf_protection.php.twig' %}
 {% use '../CommonAdmin/security_action.php.twig' %}
+{% use '../CommonAdmin/csrf_protection.php.twig' %}
 <?php
 
 namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.generator.GeneratedControllerFolder }};
@@ -13,6 +14,8 @@ namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.gene
 {{ block('index_use') -}}
 
 {{- block('security_use') }}
+
+{{- block('csrf_protection_use') }}
 
 use {{ builder.generator.baseController }} as BaseController;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,8 +37,6 @@ class ListController extends BaseController
     {{- block('filters') -}}
 
     {{- block('scopes') -}}
-
-    {{- block('csrf_check_token') -}}
 
     {{- block('security_check') }}
 
@@ -90,6 +91,8 @@ class ListController extends BaseController
         // ORM JOB
     }
     {% endblock %}
+
+    {{ block('csrf_check_token') }}
 
     {{ block('batch_actions') }}
 

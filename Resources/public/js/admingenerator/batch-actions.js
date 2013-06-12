@@ -22,7 +22,8 @@
     var pluginName = 'agen$batchActions',
         document = window.document,
         defaults = {
-            path: null,
+            submitSelector: 'input[type=submit]',
+            actionsSelector: 'select[name=action]',
             noneSelected: "You have to select at least one element."
         };
 
@@ -47,78 +48,58 @@
         _init: function() {
             // Plugin-scope helper
             var that = this;
-            
-            // Sanity check
-            if (that.options.path === null) {
-                console.log('[Admingenerator] Fatal Error: batch actions path is null!');
-                return false;
-            }
+
+            // Hide submit button
+            $(that.element).find(that.options.submitSelector).hide();
             
             // Select container
             var $batch    = $(that.element).find('input[name="selected[]"]');
             var $batchAll = $(that.element).find('input[name="batchAll"]');
-            var $actions  = $(that.element).find('#batch_actions_list li a');
             
             // Grant plugin-scope access to selectors
             that.$batch  = $batch;
+            that.$selector = $(that.element).find(that.options.actionsSelector); 
             
             // bind onSelect to button click event
-            $actions.click(function(e){
+            that.$selector.on('change', function(e){
                 e.preventDefault();
-                that._onSelect(that, $(e.target));
+                that._onSelect();
             });
             
             // bind onChange to button click event
             $batchAll.on('change', function(e){
-                that._onSelectAll(that, $(e.target));
+                that._onSelectAll($(e.target));
             });
         },
                 
-        _onSelectAll: function(that, $button) {
+        _onSelectAll: function($button) {
             if ($button.is(':checked')) {
                 $button.removeAttr('checked');
-                that.$batch.removeAttr('checked');
+                this.$batch.removeAttr('checked');
             } else {
                 $button.attr('checked', 'checked');
-                that.$batch.attr('checked', 'checked');
+                this.$batch.attr('checked', 'checked');
             }
         },
 
-        _onSelect: function(that, $button) {
+        _onSelect: function() {
+        	if (this.$selector.val()=='none') {
+        		return false;
+        	}
             // Alert if none selected
-            if (that.$batch.filter(':checked').length == 0) {
-                alert(that.options.noneSelected);
+            if (this.$batch.filter(':checked').length == 0) {
+                alert(this.options.noneSelected);
+                this.$selector.val('none');
                 return false;
             }
             
             // Confirm action
-            if ($button.data('confirm') && !confirm($button.data('confirm'))) {
-                return false;
+            if (this.$selector.data('confirm') && !confirm(this.$selector.data('confirm'))) {
+            	this.$selector.val('none');
+            	return false;
             }
             
-            var $action = $('<input/>').attr({
-                type:   'hidden',
-                name:   'action',
-                value:  $button.data('action')
-            });
-            
-            var $token  = $('<input/>').attr({
-                type:   'hidden',
-                name:   '_csrf_token',
-                value:  $button.data('csrf-token')
-            });
-            
-            var $form = $('<form/>').attr({
-                action: that.options.path,
-                method: 'POST'
-            }).css({'visibility': 'hidden'})
-              .append($action, $token);
-            
-            that.$batch.filter(':checked').each(function(){
-                $(this).clone().appendTo($form);
-            });
-            
-            $form.appendTo('body').submit();
+            $(this.element).find(this.options.submitSelector).click();
         }
     };
 

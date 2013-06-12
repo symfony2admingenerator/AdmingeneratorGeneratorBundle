@@ -103,6 +103,9 @@ batch.list:
   selected:       Selected
   none.selected:  You have to select at least one element.
   warning:        Could not complete batch action due to missing parameters.
+  selector:       Choose an action for selection
+  send:           Execute
+  
 
 # Layout
 dashboard:
@@ -122,3 +125,7 @@ filetype:
   text-document:    Text<br />Document
   unknown:          Unknown<br />Filetype
   video:            Video
+
+delete.action:
+  confirm: Yes
+  cancel: No

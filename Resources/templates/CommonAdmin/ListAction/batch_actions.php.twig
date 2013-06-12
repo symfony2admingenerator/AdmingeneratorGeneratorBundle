@@ -7,7 +7,7 @@ public function batchAction()
         
         return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
     }
-    
+
     {{ block('csrf_action_check_batch_token') }}
 
     $method = 'doBatch'.ucfirst($this->get('request')->get('action'));
