@@ -18,7 +18,7 @@
                     ->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %})
                     ->getRepository('{{ model }}')
                     ->getChildrenQueryBuilder()
-                    ->add('orderBy', 'node.root ASC, node.lft ASC')
+                    ->add('orderBy', 'node.{{ builder.treeConfiguration.root }} ASC, node.{{ builder.treeConfiguration.left }} ASC')
                     ->getQuery();
     }
 
