@@ -73,13 +73,7 @@
         },
                 
         _onSelectAll: function($button) {
-            if ($button.is(':checked')) {
-                $button.removeAttr('checked');
-                this.$batch.removeAttr('checked');
-            } else {
-                $button.attr('checked', 'checked');
-                this.$batch.attr('checked', 'checked');
-            }
+            this.$batch.prop('checked', $button.is(':checked'));
         },
 
         _onSelect: function() {

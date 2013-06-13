@@ -1,6 +1,7 @@
 {% use '../CommonAdmin/NestedListAction/index.php.twig' %}
 {% use '../CommonAdmin/ListAction/filters.php.twig' %}
 {% use '../CommonAdmin/ListAction/scopes.php.twig' %}
+{% use '../CommonAdmin/ListAction/batch_actions.php.twig' %}
 {% use '../CommonAdmin/security_action.php.twig' %}
 {% use '../CommonAdmin/csrf_protection.php.twig' %}
 <?php
@@ -85,4 +86,8 @@ class ListController extends BaseController
         // ORM JOB
     }
     {% endblock %}
+
+    {{ block('csrf_check_token') }}
+
+    {{ block('batch_actions') }}
 }

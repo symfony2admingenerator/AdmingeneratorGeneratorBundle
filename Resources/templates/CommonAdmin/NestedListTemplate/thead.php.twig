@@ -2,6 +2,11 @@
 {{ echo_block("list_thead") }}
         <thead>
             <tr class="list_thead">
+                {% if batch_actions is defined and batch_actions|length > 0 %}
+                    <th class="list_thead_batch_action">
+                        <input type="checkbox" name="batchAll" />
+                    </th>
+                {% endif %}
                 {% for column in builder.columns -%}
                 {% if column.credentials %}
                       {{ echo_if_granted(column.credentials) }}
