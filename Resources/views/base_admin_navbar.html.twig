@@ -18,11 +18,11 @@
               {% if admingenerator_config('logout_path') is not null %}
                 <li class="btn-group">
                     {% if admingenerator_config('exit_path') is not null and is_granted('ROLE_PREVIOUS_ADMIN') %}
-                        <button id="button-exit" class="btn btn-mini" title="{{ 'profile.exit'|trans({}, 'Admingenerator') }}">
+                        <button id="button-exit" class="btn btn-small btn-success" title="{{ 'profile.exit'|trans({}, 'Admingenerator') }}">
                             <i class="icon-return-key"></i>
                         </button>
                     {% endif %}
-                    <button id="button-logout" class="btn btn-mini btn-profile" title="{{ 'profile.logout'|trans({}, 'Admingenerator') }}">
+                    <button id="button-logout" class="btn btn-small btn-profile" title="{{ 'profile.logout'|trans({}, 'Admingenerator') }}">
                         <i class="icon-off icon-white"></i>
                     </button>
                 </li>
@@ -30,7 +30,7 @@
             {% else %}
               {% if admingenerator_config('login_path') is not null %}
                 <li class="btn-group">
-                    <button id="button-login" class="btn btn-mini btn-profile" title="{{ 'profile.login'|trans({}, 'Admingenerator') }}">
+                    <button id="button-login" class="btn btn-small btn-profile" title="{{ 'profile.login'|trans({}, 'Admingenerator') }}">
                       <i class="icon-user icon-white"></i>
                     </button>
                 </li>
