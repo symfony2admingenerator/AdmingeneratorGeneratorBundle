@@ -4,7 +4,7 @@
     {# Nestedset requiers a fake root node, which is hidden in the result table. See documentation. #}
     {{ echo_set("count",  builder.ModelClass ~ "s.count - 1", false ) }}
 
-    {{ echo_trans("Display all <b>%count%</b> results") }}
+    {{ echo_trans("list.display.all|{ count }|") }}
 </div>
 {{ echo_endblock() }}
 {% endblock %}
