@@ -21,10 +21,11 @@ class NestedListBuilder extends ListBuilder
 
     /**
      * Returns tree configuration, an array containing nested tree fields identifiers:
-     *  array:
-     *    root => root field
-     *    left => left field
-     *    right => right field
+     * array:
+     *    root   => root field
+     *    left   => left field
+     *    right  => right field
+     *    parent => parent field
      *
      * @return array
      */
@@ -41,9 +42,10 @@ class NestedListBuilder extends ListBuilder
      * Extract tree configuration from generator.
      * If none defined, default is:
      * array:
-     *     root => root
-     *     left => lft
-     *     right => rgt
+     *     root   => root
+     *     left   => lft
+     *     right  => rgt
+     *     parent => parent
      */
     protected function findTreeConfiguration()
     {
