@@ -32,9 +32,11 @@ function nestedsetTreeTable() {
         initialIndent: -19,
         onNodeInit: function(node, expandable, isRootNode) {
             (isRootNode) ? node.addClass('ui-helper-hidden') : '';
-            var cell = $(node).children().first();
-            var expander = $('<i />').addClass('icon-expander');
-            cell.prepend(expander);
+            if (expandable) {
+	            var cell = $(node).children().first();
+	            var expander = $('<i />').addClass('icon-expander');
+	            cell.append(expander);
+        	}
         },
         onNodeReinit: function(node, expandable, isRootNode) {
             $(node).find('.icon-expander').remove();

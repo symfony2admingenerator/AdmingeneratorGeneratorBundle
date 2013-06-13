@@ -3,23 +3,24 @@
 
 /* NonExpandable nodes have no icon */
 .treeTable tbody tr .icon-expander {
-    visibility: hidden;
-    -moz-user-select: none; 
-    -khtml-user-select: none; 
-    -webkit-user-select: none; 
-    -o-user-select: none; 
+    font-family: 'Elusive-Icons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased; 
 }
 
-/* Collapsed branch: icon-chevron-right */
-.treeTable tbody tr.parent.collapsed .icon-expander {
-    background-position: -456px -72px;
-    visibility: visible;
+/* Collapsed branch: icon-caret-right */
+.treeTable tbody tr.parent.collapsed .icon-expander:before {
+    content: "\e118";
 }
 
-/* Expanded branch: icon-chevron-down */
-.treeTable tbody tr.parent.expanded .icon-expander {
-    background-position: -313px -119px;
-    visibility: visible;
+/* Expanded branch: icon-caret-down */
+.treeTable tbody tr.parent.expanded .icon-expander:before {
+    content: "\e11a";
 }
 
 /* Non-transparent  helper row backgrounds
