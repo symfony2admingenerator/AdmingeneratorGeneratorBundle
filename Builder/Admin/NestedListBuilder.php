@@ -48,7 +48,12 @@ class NestedListBuilder extends ListBuilder
     protected function findTreeConfiguration()
     {
         if (!is_null($treeConfiguration = $this->getGenerator()->getFromYaml('builders.nested_list.tree'))) {
-            $this->treeConfiguration = array_merge(array('root' => 'root', 'left' => 'lft', 'right' => 'rgt'), $treeConfiguration);
+            $this->treeConfiguration = array_merge(array(
+                'root'   => 'root',
+                'left'   => 'lft',
+                'right'  => 'rgt',
+                'parent' => 'parent'
+            ), $treeConfiguration);
         }
     }
 }

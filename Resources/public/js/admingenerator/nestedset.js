@@ -35,7 +35,7 @@ function nestedsetTreeTable() {
             if (expandable) {
 	            var cell = $(node).children().first();
 	            var expander = $('<i />').addClass('icon-expander');
-	            cell.prepend(expander);
+	            cell.append(expander);
         	}
         },
         onNodeReinit: function(node, expandable, isRootNode) {
