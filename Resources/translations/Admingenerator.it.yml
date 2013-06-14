@@ -99,6 +99,8 @@ batch.list:
   selected:       Selezionati
   none.selected:  È necessario selezionare alemeno uno elemento.
   warning:        Impossibile completare l'azione partita a causa di parametri mancanti.
+  selector:       Choose an action for selection
+  send:           Eseguire
 
 # Layout
 dashboard:

@@ -99,6 +99,7 @@ batch.list:
   selected:       選択済み
   none.selected:  1つ以上のデータを選択する必要があります。
   warning:        により不足しているパラメータをバッチアクションを完了できませんでした
+  send:           成し遂げる
 
 # Layout
 dashboard:

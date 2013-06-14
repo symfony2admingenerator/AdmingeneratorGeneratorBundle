@@ -102,8 +102,7 @@ action.batch.delete:
 batch.list:
   selected:       Selected
   none.selected:  You have to select at least one element.
-  warning:        Could not complete batch action due to missing parameters.
-  selector:       Choose an action for selection
+  warning:        Could not complete batch action due to missing parameters
   send:           Execute
   
 

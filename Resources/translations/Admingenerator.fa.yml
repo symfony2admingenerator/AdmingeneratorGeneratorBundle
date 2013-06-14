@@ -103,6 +103,7 @@ batch.list:
   selected:       انتخاب شده
   none.selected:  شما باید حداقل یک عنصر را انتخاب کنید
   warning:        اقدام گروه با توجه به پارامتر های از دست رفته کامل نیست
+  send:           اجرا کردن
 
 # Layout
 dashboard:
