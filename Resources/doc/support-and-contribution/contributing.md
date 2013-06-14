@@ -82,3 +82,53 @@ The only difference it's the `:` to say delete.
 
 If you want to change default branch, it's so easy with github, in your fork go 
 into Admin and in the drop-down list default branch choose what you want.
+
+## 2. Stashing local changes
+
+Sometimes you are in the middle of something, and suddenly you are notified with 
+a bug report that needs to be fixed as soon as possible. You are not ready to 
+commit your changes, because you your tests don’t pass yet.
+
+You could throw away your current changes to make the patch or checkout 
+a clean copy of your project to make the changes.. but wait! You can just stash your 
+changes away, and make the patch! Afterward you grab your changes back and continue work.
+
+### Stash your current changes :
+
+```console
+$ git stash save <description_of_stashed_changes>
+```
+
+### List current stashes :
+
+```console
+$ git stash list
+```
+
+### Apply a stash :
+
+```console
+git stash apply <stash_name>
+```
+
+Stash names look like **stash@{0}** where 0 is stash index number. You may notice 
+the stash is still there after you have applied it. You can drop it if you don’t 
+need it any more.
+
+### Drop a stash :
+
+```console
+git stash drop <stash_name>
+```
+
+Or, because the stash acts like a stack, you can pop off the last stash you saved:
+
+```console
+git stash pop
+```
+
+### Clear all stashed changes :
+
+```console
+$ git stash clear
+```
