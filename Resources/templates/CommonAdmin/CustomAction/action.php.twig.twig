@@ -1,0 +1,41 @@
+{% use '../CommonAdmin/security_action.php.twig' %}
+{% use '../CommonAdmin/csrf_protection.php.twig' %}
+{% block action %}
+
+    public function {{ action.name|lower }}Action($pk)
+    {
+        try {
+            ${{ builder.ModelClass }} = $this->getObject($pk);
+
+            {{ block('security_action_with_object') }}
+
+            if ('POST' == $this->get('request')->getMethod()) {
+                {{ block('csrf_action_check_token') }}
+            
+                {{ echo_block("custom_action_" ~ action.name) }}
+                    // customize what this action actually does
+                {{ echo_endblock() }}
+            
+                $this->get('session')->getFlashBag()->add('success', 
+                    $this->get('translator')->trans(
+                    "{{ action.options.success|default("action.options.success") }}", array('%name%' => '{{ action.name }}'), '{{ action.options.i18n|default('Admingenerator') }}') );
+                    
+                return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
+            }
+        } catch (AccessDeniedException $e) {
+            throw $e;
+        } catch (\Exception $e) {
+            $this->get('session')->getFlashBag()->add('error', 
+                $this->get('translator')->trans(
+                "{{ action.options.error|default("action.options.error") }}", array('%name%' => '{{ action.name }}'), '{{ action.options.i18n|default('Admingenerator') }}') );
+            
+            return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
+        }
+
+        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Custom:index.html.twig', $this->getAdditionalRenderParameters(${{ builder.ModelClass }}) + array(
+            "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
+            "title" =>  $this->get('translator')->trans(
+                        "{{ action.options.title|default("action.options.title") }}", array('%name%' => '{{ action.name }}'), '{{ action.options.i18n|default('Admingenerator') }}')
+        ));
+    }
+{% endblock %}

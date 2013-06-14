@@ -53,6 +53,8 @@ class ControllerListener
                 $this->container->get('twig')->getExtension('core')->setNumberFormat($twig_params['number_format']['decimal'], $twig_params['number_format']['decimal_point'], $twig_params['number_format']['thousand_separator']);
             }
         }
+        
+        $this->rewriteCustomActionController($event->getRequest());
     }
 
     protected function getGenerator($generatorYaml)
@@ -112,6 +114,23 @@ class ControllerListener
         }
 
         throw new NotAdminGeneratedException;
+    }
+    
+    /**
+     * Rewrites custom actions controller
+     */
+    private function rewriteCustomActionController($request)
+    {
+        $controller   = $request->attributes->get('_controller');
+        $pattern      = "/Custom:custom$/";
+        $replacement  = "Custom:".$request->query->get('action');
+        
+        if (preg_match($pattern, $controller)) {
+            $rewritten = preg_replace($pattern, $replacement, $controller);
+            $request->attributes->set('_controller', $rewritten);
+        }
+        
+        return $request;
     }
 
 }

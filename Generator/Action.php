@@ -22,9 +22,13 @@ class Action
 
     protected $class;
 
-    protected $route;
+    protected $options = array();
 
     protected $submit;
+
+    protected $route;
+
+    protected $params = array();
 
     protected $confirm_message;
 
@@ -38,12 +42,16 @@ class Action
 
     protected $conditional_inverse = false;
 
-    protected $params = array();
-
     public function __construct($name, $type = 'custom')
     {
         $this->name = $name;
         $this->type = $type;
+    }
+
+    public function setProperty($option, $value)
+    {
+        $option = Inflector::classify($option);
+        call_user_func_array(array($this, 'set'.$option), array($value));
     }
 
     public function getName()
@@ -63,7 +71,7 @@ class Action
 
     public function getLabel()
     {
-        if ( isset ($this->label) ) {
+        if (isset($this->label)) {
             return $this->label;
         }
 
@@ -90,6 +98,11 @@ class Action
         return $this->class;
     }
 
+    public function setRoute($route)
+    {
+        $this->route = $route;
+    }
+
     public function getRoute()
     {
         return $this->route;
@@ -100,7 +113,7 @@ class Action
         $this->submit = (bool) $submit;
     }
 
-    public function isSubmit()
+    public function getSubmit()
     {
         return $this->submit;
     }
@@ -140,12 +153,6 @@ class Action
         return $this->crendentials;
     }
 
-    public function setOption($option, $value)
-    {
-        $option = Inflector::classify($option);
-        call_user_func_array(array($this, 'set'.$option), array($value));
-    }
-
     public function getParams()
     {
         return $this->params;
@@ -154,11 +161,6 @@ class Action
     public function setParams(array $params)
     {
         $this->params = $params;
-    }
-
-    public function setRoute($route)
-    {
-        $this->route = $route;
     }
 
     public function setCondition(array $condition)
@@ -191,5 +193,15 @@ class Action
     public function getConditionalInverse()
     {
         return $this->conditional_inverse;
+    }
+
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    public function setOptions(array $options)
+    {
+        $this->options = $options;
     }
 }

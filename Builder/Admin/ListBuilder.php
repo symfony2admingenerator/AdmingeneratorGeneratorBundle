@@ -94,7 +94,7 @@ class ListBuilder extends BaseBuilder
 
         if (null !== $options) {
             foreach ($options as $option => $value) {
-                $action->setOption($option, $value);
+                $action->setProperty($option, $value);
             }
         }
     }
@@ -134,7 +134,7 @@ class ListBuilder extends BaseBuilder
 
         if (null !== $options) {
             foreach ($options as $option => $value) {
-                $action->setOption($option, $value);
+                $action->setProperty($option, $value);
             }
         }
     }

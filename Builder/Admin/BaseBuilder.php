@@ -83,7 +83,7 @@ class BaseBuilder extends GenericBaseBuilder
         $options = $this->getVariable(sprintf('fields[%s]', $column->getName()),array(), true);
 
         foreach ($options as $option => $value) {
-            $column->setOption($option, $value);
+            $column->setProperty($option, $value);
         }
     }
 
@@ -217,7 +217,7 @@ class BaseBuilder extends GenericBaseBuilder
 
         if (null !== $options) {
             foreach ($options as $option => $value) {
-                $action->setOption($option, $value);
+                $action->setProperty($option, $value);
             }
         }
     }
