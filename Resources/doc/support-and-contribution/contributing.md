@@ -108,7 +108,7 @@ $ git stash list
 Which will show:
 
 ```console
-stash@{0}: On feature_acl: ACL feature WIP
+stash@{0}: WIP on default_save_styles: e7f4318 Add default styles
 ```
 
 ### Apply a stash:
