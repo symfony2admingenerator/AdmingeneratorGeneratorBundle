@@ -103,6 +103,7 @@ batch.list:
   selected:       Zaznaczone
   none.selected:  Musisz zaznaczyć co najmniej jeden element.
   warning:        Nie można było ukończyć grupowej akcji ze względu na brakujące parametry.
+  send:           Wykonaj
 
 # Layout
 dashboard:
