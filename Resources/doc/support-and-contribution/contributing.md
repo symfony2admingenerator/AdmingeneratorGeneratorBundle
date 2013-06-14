@@ -47,32 +47,32 @@ $ git branch
 Which will show:
 
 ```console
-* approval_messages
+* documentation_update
+  feature_sortable
   master
-  master_clean
 ```
 
 Current branch is marked by `*`.
 
-### Add a new remote for you branch :
+### Add a new remote for you branch:
 
 ```console
 $ git remote add <name_of_your_remote> <url>
 ```
 
-### Push changes from your commit into your branch :
+### Push changes from your commit into your branch:
 
 ```console
 $ git push origin <name_of_your_remote>
 ```
 
-### Delete a branch on your local filesytem :
+### Delete a branch on your local filesytem:
 
 ```console
 $ git branch -d <name_of_your_new_branch>
 ```
 
-### Delete the branch on github :
+### Delete the branch on github:
 
 ```console
 $ git push origin :<name_of_your_new_branch>
@@ -93,19 +93,25 @@ You could throw away your current changes to make the patch or checkout
 a clean copy of your project to make the changes.. but wait! You can just stash your 
 changes away, and make the patch! Afterward you grab your changes back and continue work.
 
-### Stash your current changes :
+### Stash your current changes:
 
 ```console
 $ git stash save <description_of_stashed_changes>
 ```
 
-### List current stashes :
+### List current stashes:
 
 ```console
 $ git stash list
 ```
 
-### Apply a stash :
+Which will show:
+
+```console
+stash@{0}: On feature_acl: ACL feature WIP
+```
+
+### Apply a stash:
 
 ```console
 $ git stash apply <stash_name>
@@ -115,7 +121,7 @@ Stash names look like **stash@{0}** where 0 is stash index number. You may notic
 the stash is still there after you have applied it. You can drop it if you don’t 
 need it any more.
 
-### Drop a stash :
+### Drop a stash:
 
 ```console
 $ git stash drop <stash_name>
@@ -127,7 +133,7 @@ Or, because the stash acts like a stack, you can pop off the last stash you save
 $ git stash pop
 ```
 
-### Clear all stashed changes :
+### Clear all stashed changes:
 
 ```console
 $ git stash clear
