@@ -35,7 +35,7 @@
     <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/object-actions.js")') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#form-list").agen$objectActions({
+            $("#table-list-{{ builder.ModelClass }}").agen$objectActions({
             	actionsSelector: '.object_actions a'
             });
         });

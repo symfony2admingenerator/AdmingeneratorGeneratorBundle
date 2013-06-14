@@ -38,7 +38,7 @@
             {{- block('list_nbresults') -}}
 
             {{- block('form_batch_actions') }}
-                <table class="table table-striped table-hover table-condensed">
+                <table id="table-list-{{ builder.ModelClass }}" class="table table-striped table-hover table-condensed">
                     {{ block('list_thead') -}}
                     {{- block('list_tbody') }}
                 </table>

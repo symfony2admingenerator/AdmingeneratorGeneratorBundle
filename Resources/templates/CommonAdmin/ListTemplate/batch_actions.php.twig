@@ -33,7 +33,7 @@
     {{ echo_block("form_batch_actions") }}
     {% if batch_actions is defined and batch_actions|length > 0 %}
         {% set actionPathName = builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_batch' %}
-        <form id="form-list" method="post" action="{{ echo_path(actionPathName) }}">
+        <form id="form-list-{{ builder.ModelClass }}" method="post" action="{{ echo_path(actionPathName) }}">
             <input type="hidden" value="{{ echo_twig_filter(actionPathName, 'csrf_token', true) }}" name="_csrf_token" />
     {% endif %}
     {{ echo_endblock() }}
@@ -46,7 +46,7 @@
         <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/batch-actions.js")') }}"></script>
         <script type="text/javascript">
             $(document).ready(function(){
-                $("#form-list").agen$batchActions({
+                $("#form-list-{{ builder.ModelClass }}").agen$batchActions({
                     submitSelector: 'button[name=batch]',
                     actionsSelector: '#batchActionSelector',
                     noneSelected: '{{ echo_trans("batch.list.none.selected") }}' {# TODO: escape js with filter escape('js')#}
