@@ -27,7 +27,7 @@ class AdmingeneratorView implements ViewInterface
             'next_message'       => $this->translator->trans('pagerfanta.next', array(), 'Admingenerator'),
             'css_disabled_class' => 'disabled',
             'css_dots_class'     => 'dots',
-            'css_current_class'  => 'current',
+            'css_current_class'  => 'active',
         ), $options);
 
         $currentPage = $pagerfanta->getCurrentPage();
@@ -66,7 +66,7 @@ class AdmingeneratorView implements ViewInterface
         // pages
         for ($page = $startPage; $page <= $endPage; $page++) {
             if ($page == $currentPage) {
-                $pages[] = sprintf('<li><a href="#" class="number %s">%s</a></li>', $options['css_current_class'], $page);
+                $pages[] = sprintf('<li class="%s"><a href="#" class="number">%s</a></li>', $options['css_current_class'], $page);
             } else {
                 $pages[] = array($page, $page);
             }
