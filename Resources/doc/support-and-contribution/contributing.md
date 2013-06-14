@@ -108,7 +108,7 @@ $ git stash list
 ### Apply a stash :
 
 ```console
-git stash apply <stash_name>
+$ git stash apply <stash_name>
 ```
 
 Stash names look like **stash@{0}** where 0 is stash index number. You may notice 
@@ -118,13 +118,13 @@ need it any more.
 ### Drop a stash :
 
 ```console
-git stash drop <stash_name>
+$ git stash drop <stash_name>
 ```
 
 Or, because the stash acts like a stack, you can pop off the last stash you saved:
 
 ```console
-git stash pop
+$ git stash pop
 ```
 
 ### Clear all stashed changes :
