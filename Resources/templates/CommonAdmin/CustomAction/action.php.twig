@@ -30,6 +30,9 @@
         } catch (\Exception $e) {
             return $this->error{{ action.name|capitalize }}(${{ builder.ModelClass }}, $e);
         }
+        
+        {% set actionRoute  = builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_custom_' ~ action.name %}
+        {% set actionParams = "{ 'pk': " ~ builder.ModelClass ~ "." ~ builder.getFieldGuesser().getModelPrimaryKeyName(model) ~ " }" %}
 
         return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Custom:index.html.twig', $this->getAdditionalRenderParameters(${{ builder.ModelClass }}) + array(
             "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
@@ -37,7 +40,9 @@
                 "{{ action.options.title|default("action.options.title") }}", 
                 array('%name%' => '{{ action.name }}'), 
                 '{{ action.options.i18n|default('Admingenerator') }}'
-            )
+            ),
+            "actionRoute" => "{{ actionRoute }}",
+            "actionParams" => "{{ actionParams }}"
         ));
     }
 {% endblock %}

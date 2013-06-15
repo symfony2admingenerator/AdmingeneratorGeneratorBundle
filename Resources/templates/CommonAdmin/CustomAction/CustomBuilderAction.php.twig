@@ -1,4 +1,3 @@
-{% use '../CommonAdmin/CustomAction/custom.php.twig' %}
 {% use '../CommonAdmin/CustomAction/action.php.twig' %}
 {% use '../CommonAdmin/security_action.php.twig' %}
 {% use '../CommonAdmin/csrf_protection.php.twig' %}
@@ -20,7 +19,7 @@ class CustomController extends BaseController
      */
     public function customAction($pk, $action)
     {
-        $methodName = ucfirst(strtolower($action));
+        $methodName = 'attempt'.ucfirst(strtolower($action));
         return $this->$methodName($pk);
     }
 

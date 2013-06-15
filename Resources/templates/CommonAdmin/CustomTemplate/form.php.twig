@@ -1,12 +1,9 @@
 {% use "../CommonAdmin/CustomTemplate/actions.php.twig" %}
 {% block form %}
     <div class="span12">
-        {% set actionRoute  = builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_custom_' ~ action.name %}
-        {% set actionParams = "{ 'pk': " ~ builder.ModelClass ~ "." ~ builder.getFieldGuesser().getModelPrimaryKeyName(model) ~ " }" %}
-
         {{ echo_block('form') }}
-            <form action="{{ echo_path(actionRoute, actionParams) }}" method="post" class="admin_form">
-                <input type="hidden" name="_csrf_token" value="{{ echo_path(actionRoute, actionParams, ['csrf_token']) }}"/>
+            <form action="{{ echo_path('actionRoute', 'actionParams') }}" method="post" class="admin_form">
+                <input type="hidden" name="_csrf_token" value="{{ echo_path('actionRoute', 'actionParams', ['csrf_token']) }}"/>
                 {{ echo_block("form_buttons") }}
                     <div class="form-actions">
                         {{ block("form_actions") }}
