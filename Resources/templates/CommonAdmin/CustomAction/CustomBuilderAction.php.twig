@@ -37,6 +37,13 @@ class CustomController extends BaseController
 
     {{- block('security_check_with_object') }}
 
+    {% block getObject -%}
+    protected function getObject($pk)
+    {
+        //The orm replace this method
+    }
+    {% endblock %}
+
     /**
      * Get additional parameters for rendering.
      *

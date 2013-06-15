@@ -1,5 +1,6 @@
 {% extends '../CommonAdmin/CustomAction/CustomBuilderAction.php.twig' %}
-{% block process -%}
+
+{% block getObject -%}
     protected function getObject($pk)
     {
         ${{ builder.ModelClass }} = $this->getDoctrine()

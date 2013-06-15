@@ -1,16 +1,2 @@
 {% extends '../CommonAdmin/CustomTemplate/CustomBuilderTemplate.php.twig' %}
-{% block process -%}
-    protected function getObject($pk)
-    {
-        ${{ builder.ModelClass }} = $this->getDocumentManager()
-             ->getRepository('{{ model }}')
-             ->find($pk);
-
-        if (!${{ builder.ModelClass }}) {
-            throw new \InvalidArgumentException("No {{ model }} found on {{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} : $pk");
-        }
-
-        return ${{ builder.ModelClass }};
-    }
-{% endblock %}
 
