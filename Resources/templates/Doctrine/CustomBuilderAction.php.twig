@@ -1,1 +1,16 @@
 {% extends '../CommonAdmin/CustomAction/CustomBuilderAction.php.twig' %}
+{% block process -%}
+    protected function getObject($pk)
+    {
+        ${{ builder.ModelClass }} = $this->getDoctrine()
+             ->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %})
+             ->getRepository('{{ model }}')
+             ->find($pk);
+
+        if (!${{ builder.ModelClass }}) {
+            throw new \InvalidArgumentException("No {{ model }} found on {{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} : $pk");
+        }
+
+        return ${{ builder.ModelClass }};
+    }
+{% endblock %}
