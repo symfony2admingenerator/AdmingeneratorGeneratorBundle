@@ -36,15 +36,16 @@
             return $this->error{{ action.name|capitalize }}(${{ builder.ModelClass }}, $e);
         }
 
-        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Custom:index.html.twig', $this->getAdditionalRenderParameters(${{ builder.ModelClass }}) + array(
-            "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
-            "title" => $this->get('translator')->trans(
-                "{{ action.options.title|default("action.custom.title") }}", 
-                array('%name%' => '{{ action.name }}'), 
-                '{{ action.options.i18n|default('Admingenerator') }}'
-            ),
-            "actionRoute" => "{{ builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_custom' }}",
-            "actionParams" => "{ 'pk': ".$pk.", 'name': '{{ action.name }}' }"
+        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Custom:index.html.twig', 
+            $this->getAdditionalRenderParameters(${{ builder.ModelClass }}, '{{ action.name }}') + array(
+                "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
+                "title" => $this->get('translator')->trans(
+                    "{{ action.options.title|default("action.custom.title") }}", 
+                    array('%name%' => '{{ action.name }}'), 
+                    '{{ action.options.i18n|default('Admingenerator') }}'
+                ),
+                "actionRoute" => "{{ builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_custom' }}",
+                "actionParams" => "{ 'pk': ".$pk.", 'name': '{{ action.name }}' }"
         ));
     }
     
