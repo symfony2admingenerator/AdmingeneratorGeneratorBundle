@@ -106,7 +106,7 @@ class ListBuilder extends BaseBuilder
 
     protected function findObjectActions()
     {
-        foreach ($this->getVariable('object_actions') as $actionName => $actionParams) {
+        foreach ($this->getVariable('object_actions', array()) as $actionName => $actionParams) {
             $action = $this->findObjectAction($actionName);
             if(!$action) $action = new Action($actionName);
 
