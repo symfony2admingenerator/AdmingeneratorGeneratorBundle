@@ -93,6 +93,14 @@ action.batch.delete:
   confirm:  Ali lahko potrdite brisanje vseh izbranih elementov?
   success:  Predmet je bil uspešno izbrisan.
   error:    Predmet ni bil izbrisan.
+  
+# Custom actions
+action.custom:
+  title:    Ali ste prepričani, da želite izvršiti %name% ukrepanje?
+  success:  Akcija %name% je bila uspešno izvedena.
+  error:    Ni mogoče izvesti %name% ukrepanje.
+  confirm:  Potrdite
+  cancel:   Prekliči
 
 # Batch list
 batch.list:

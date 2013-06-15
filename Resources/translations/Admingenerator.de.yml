@@ -93,6 +93,14 @@ action.batch.delete:
   confirm:  Sie bestätigen das Löschen aller ausgewählten Elemente?
   success:  Die Eintrage wurden erfolgreich gelöscht.
   error:    Die Eintrage können nicht gelöscht werden.
+  
+# Custom actions
+action.custom:
+  title:    Sind Sie sicher, dass Sie %name% Aktion auszuführen?
+  success:  Die %name% Aktion wurde erfolgreich ausgeführt.
+  error:    Konnte nicht %name% Aktion ausgeführen.
+  confirm:  Bestätigen
+  cancel:   Stornieren
 
 # Batch list
 batch.list:

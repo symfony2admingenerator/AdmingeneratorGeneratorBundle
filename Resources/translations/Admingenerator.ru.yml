@@ -93,6 +93,14 @@ action.batch.delete:
   confirm:  Вы подтверждаете удаление выбранных элементов?
   success:  Материалы были успешно удалены.
   error:    Невозможно удалить материалы.
+  
+# Custom actions
+action.custom:
+  title:    Вы уверены, что хотите выполнить действие %name%?
+  success:  Действие %name% успешно выполнено.
+  error:    Не удалось выполнить %name% действиям.
+  confirm:  Подтверждать
+  cancel:   Отменить
 
 # Batch list
 batch.list:

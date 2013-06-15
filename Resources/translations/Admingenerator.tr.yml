@@ -85,6 +85,14 @@ action.batch.delete:
   confirm:  Seçili tüm öğeleri silmek istediğinize emin misiniz?
   success:  Öğeler başarıyla silindi.
   error:    Öğeler silinirken bir hata oluştu.
+  
+# Custom actions
+action.custom:
+  title:    Eğer %name% eylem yürütmek istediğinizden emin misiniz?
+  success:  Eylem %name% başarıyla idam edildi.
+  error:    Eylem %name% yürütmek olamazdı.
+  confirm:  Onaylamak
+  cancel:   Iptal
 
 # Batch list
 batch.list:

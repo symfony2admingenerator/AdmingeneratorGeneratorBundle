@@ -45,7 +45,7 @@
                     '{{ action.options.i18n|default('Admingenerator') }}'
                 ),
                 "actionRoute" => "{{ builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_custom' }}",
-                "actionParams" => "{ 'pk': ".$pk.", 'name': '{{ action.name }}' }"
+                "actionParams" => array("pk" => $pk, "action" => "{{ action.name }}")
         ));
     }
     

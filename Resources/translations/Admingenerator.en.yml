@@ -97,6 +97,14 @@ action.batch.delete:
   confirm:  Do you confirm deletion of all selected elements?
   success:  Records have been successfully deleted.
   error:    Records can't be deleted.
+  
+# Custom actions
+action.custom:
+  title:    Are you sure you want to execute %name% action?
+  success:  The %name% action was successfully executed.
+  error:    Could not execute %name% action.
+  confirm:  Confirm
+  cancel:   Cancel
 
 # Batch list
 batch.list:
