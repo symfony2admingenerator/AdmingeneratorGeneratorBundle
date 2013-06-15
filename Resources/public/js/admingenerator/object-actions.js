@@ -22,7 +22,7 @@
     var pluginName = 'agen$objectActions',
         document = window.document,
         defaults = {
-    		actionsSelector: '.object_actions a'
+            actionsSelector: '.object_actions a'
     	};
 
     // The actual plugin constructor
@@ -60,15 +60,15 @@
         },
                 
         _onClick: function(that, e, $element) {
-        	// Confirm action
+            // Confirm action
             if ($element.data('confirm') && !confirm($element.data('confirm'))) {
             	e.preventDefault();
                 return;
             }
             
-        	if ($element.data('csrf-token')) {
-        		e.preventDefault();
-        		// Transform in POST request
+            if ($element.data('csrf-token')) {
+                e.preventDefault();
+                // Transform in POST request
                 var form = $('<form />').attr({
                     method: 'POST',
                     action: $element.attr('href'),
@@ -82,7 +82,7 @@
                 }).appendTo(form);
                 // Send action
                 form.submit();
-        	}
+            }
         }
     };
 

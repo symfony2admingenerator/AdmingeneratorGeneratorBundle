@@ -23,7 +23,7 @@ class CustomController extends BaseController
         return $this->$methodName($pk);
     }
 
-    {% for action in builder.Actions %}
+    {% for action in builder.ObjectActions %}
         {{- block('attemptAction') -}}
     
         {{- block('executeAction') -}}
