@@ -1,3 +1,4 @@
+{% use '../CommonAdmin/CustomAction/custom.php.twig' %}
 {% use '../CommonAdmin/CustomAction/action.php.twig' %}
 {% use '../CommonAdmin/security_action.php.twig' %}
 {% use '../CommonAdmin/csrf_protection.php.twig' %}
@@ -14,8 +15,23 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class CustomController extends BaseController
 {
+    /**
+     * Call custom action based on $action parameter
+     */
+    public function customAction($pk, $action)
+    {
+        $methodName = ucfirst(strtolower($action));
+        return $this->$methodName($pk);
+    }
+
     {% for action in builder.Actions %}
-        {{- block('action') -}}
+        {{- block('attemptAction') -}}
+    
+        {{- block('executeAction') -}}
+    
+        {{- block('successAction') -}}
+    
+        {{- block('errorAction') -}}    
     {% endfor %}
 
     {{- block('csrf_check_token') -}}
@@ -25,10 +41,11 @@ class CustomController extends BaseController
     /**
      * Get additional parameters for rendering.
      *
-     * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
-     * return array
-     **/
-    protected function getAdditionalRenderParameters(\{{ model }} ${{ builder.ModelClass }})
+     * @param \{{ model }} ${{ builder.ModelClass }} Your \{{ model }} object
+     * @param string $action Action
+     * @return array Additional render parameters
+     */
+    protected function getAdditionalRenderParameters(\{{ model }} ${{ builder.ModelClass }}, $action)
     {
         return array();
     }
