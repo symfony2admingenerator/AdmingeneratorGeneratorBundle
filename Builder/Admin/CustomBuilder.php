@@ -8,6 +8,8 @@ namespace Admingenerator\GeneratorBundle\Builder\Admin;
  */
 class CustomBuilder extends BaseBuilder
 {
+    protected $object_actions;
+    
     /**
      * (non-PHPdoc)
      * @see Admingenerator\GeneratorBundle\Builder.BaseBuilder::getYamlKey()
