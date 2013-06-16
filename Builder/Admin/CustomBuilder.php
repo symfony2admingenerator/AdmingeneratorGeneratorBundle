@@ -36,7 +36,10 @@ class CustomBuilder extends BaseBuilder
     
     protected function setUserObjectActionConfiguration(Action $action)
     {
-        $options = $this->getVariable(sprintf('object_actions[%s]', $action->getName()),array(), true);
+        $options = $this->getVariable(
+            sprintf('object_actions[%s]', $action->getName()), 
+            array(), true
+        );
 
         if (null !== $options) {
             foreach ($options as $option => $value) {
@@ -52,7 +55,9 @@ class CustomBuilder extends BaseBuilder
 
     protected function findObjectActions()
     {
-        foreach ($this->getVariable('object_actions', array()) as $actionName => $actionParams) {
+        $objectActions = $this->getVariable('object_actions', array());
+        
+        foreach ($objectActions as $actionName => $actionParams) {
             $action = $this->findObjectAction($actionName);
             if(!$action) $action = new Action($actionName);
 
