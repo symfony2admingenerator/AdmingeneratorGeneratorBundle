@@ -2,8 +2,7 @@
 {{ echo_block("list_paginator") }}
     {{ echo_block('list_paginator_perpage') }}
     <div class="pull-right">
-    {{ echo_if( 'not ' ~ builder.ModelClass ~ "s.haveToPaginate") }}
-    {{ echo_set("count",  builder.ModelClass ~ "s.nbResults", false ) }}
+    {{ echo_if( builder.ModelClass ~ "s.haveToPaginate") }}
     <span class="inline">{{ echo_trans('paginator.list.maxPerPage') }}</span>
     <div class="btn-group inline">
         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
