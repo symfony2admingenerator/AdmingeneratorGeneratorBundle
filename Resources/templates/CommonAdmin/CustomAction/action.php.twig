@@ -21,38 +21,38 @@
             {%- if action.csrfProtected %}
             if ('POST' == $this->get('request')->getMethod()) {
                 {{ block('csrf_action_check_token') }}
-            
+
                 $this->execute{{ action.name|capitalize }}(${{ builder.ModelClass }});
-            
+
                 return $this->success{{ action.name|capitalize }}(${{ builder.ModelClass }});
             }
-            {% else %}            
+            {% else %}
             $this->execute{{ action.name|capitalize }}(${{ builder.ModelClass }});
 
             return $this->success{{ action.name|capitalize }}(${{ builder.ModelClass }});
             {%- endif %}
-            
+
         } catch (\Exception $e) {
             return $this->error{{ action.name|capitalize }}(${{ builder.ModelClass }}, $e);
         }
 
-        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Custom:index.html.twig', 
+        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Custom:index.html.twig',
             $this->getAdditionalRenderParameters(${{ builder.ModelClass }}, '{{ action.name }}') + array(
                 "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
                 "title" => $this->get('translator')->trans(
-                    "{{ action.options.title|default("action.custom.title") }}", 
-                    array('%name%' => '{{ action.name }}'), 
+                    "{{ action.options.title|default("action.custom.title") }}",
+                    array('%name%' => '{{ action.name }}'),
                     '{{ action.options.i18n|default('Admingenerator') }}'
                 ),
                 "actionRoute" => "{{ builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_custom' }}",
                 "actionParams" => array("pk" => $pk, "action" => "{{ action.name }}")
         ));
     }
-    
+
 {% endblock %}
-    
+
 {% block executeAction %}
-    
+
     /**
      * This function is for you to customize what action actually does
      */
@@ -61,11 +61,11 @@
         // By default action does nothing
         // Overwrite this function!
     }
-    
+
 {% endblock %}
-    
+
 {% block successAction %}
-    
+
     /**
      * This is called when action is successfull
      * Default behavior is redirecting to list with success message
@@ -75,20 +75,20 @@
      */
     public function success{{ action.name|capitalize }}(${{ builder.ModelClass }})
     {
-        $this->get('session')->getFlashBag()->add('success', 
+        $this->get('session')->getFlashBag()->add('success',
             $this->get('translator')->trans(
-                "{{ action.options.success|default("action.custom.success") }}", 
-                array('%name%' => '{{ action.name }}'), 
+                "{{ action.options.success|default("action.custom.success") }}",
+                array('%name%' => '{{ action.name }}'),
                 '{{ action.options.i18n|default('Admingenerator') }}'
         ));
 
         return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
     }
-    
+
 {% endblock %}
-    
+
 {% block errorAction %}
-    
+
     /**
      * This is called when action throws an exception
      * Default behavior is redirecting to list with error message
@@ -99,14 +99,14 @@
      */
     public function error{{ action.name|capitalize }}(${{ builder.ModelClass }}, $e)
     {
-        $this->get('session')->getFlashBag()->add('error', 
+        $this->get('session')->getFlashBag()->add('error',
             $this->get('translator')->trans(
-                "{{ action.options.error|default("action.custom.error") }}", 
-                array('%name%' => '{{ action.name }}'), 
+                "{{ action.options.error|default("action.custom.error") }}",
+                array('%name%' => '{{ action.name }}'),
                 '{{ action.options.i18n|default('Admingenerator') }}'
         ));
 
         return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
     }
-    
+
 {% endblock %}

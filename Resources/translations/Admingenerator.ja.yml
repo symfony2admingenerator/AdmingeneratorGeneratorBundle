@@ -93,7 +93,7 @@ action.batch.delete:
   confirm:  選択したすべてのデータを削除します。よろしいですか?
   success:  データの削除が正常に完了しました。
   error:    データの削除に失敗しました。
-  
+
 # Custom actions
 action.custom:
   title:    あなたはの%name%のアクションを実行してもよろしいですか？

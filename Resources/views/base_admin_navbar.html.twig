@@ -54,13 +54,13 @@
             document.location = "{{ path(admingenerator_config('login_path')) }}";
         });
         {% endif %}
-        
+
         {% if admingenerator_config('exit_path') is not null %}
         $('#button-exit').click(function(){
             document.location = "{{ path(admingenerator_config('exit_path')) ~ '?_switch_user=_exit' }}";
         });
         {% endif %}
-        
+
         {% if admingenerator_config('logout_path') is not null %}
         $('#button-logout').click(function(){
             document.location = "{{ path(admingenerator_config('logout_path')) }}";

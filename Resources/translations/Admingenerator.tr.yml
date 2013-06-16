@@ -85,7 +85,7 @@ action.batch.delete:
   confirm:  Seçili tüm öğeleri silmek istediğinize emin misiniz?
   success:  Öğeler başarıyla silindi.
   error:    Öğeler silinirken bir hata oluştu.
-  
+
 # Custom actions
 action.custom:
   title:    Eğer %name% eylem yürütmek istediğinizden emin misiniz?

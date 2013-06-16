@@ -97,7 +97,7 @@ action.batch.delete:
   confirm:  Czy potwierdzasz usunięcie wszystkich zaznaczonych elementów?
   success:  Usunięto wskazane elementy.
   error:    Zaznaczone elementy nie mogły zostać usunięte.
-  
+
 # Custom actions
 action.custom:
   title:    Czy na pewno chcesz wykonać akcję %name%?

@@ -97,7 +97,7 @@ action.batch.delete:
   confirm:  Do you confirm deletion of all selected elements?
   success:  Records have been successfully deleted.
   error:    Records can't be deleted.
-  
+
 # Custom actions
 action.custom:
   title:    Are you sure you want to execute %name% action?
@@ -112,7 +112,7 @@ batch.list:
   none.selected:  You have to select at least one element.
   warning:        Could not complete batch action due to missing parameters
   send:           Execute
-  
+
 
 # Layout
 dashboard:

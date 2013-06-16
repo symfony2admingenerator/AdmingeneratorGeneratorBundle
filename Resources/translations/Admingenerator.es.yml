@@ -67,10 +67,10 @@ upload.errors:
   typeNotAllowed:   Tipo de archivo no permitido.
   maxFileSize:      El archivo es demasiado grande.
   minFileSize:      El archivo es demasiado pequeño.
-  
+
 # SingleUpload
 singleupload:
-  display.name:     Nombre Mostrado  
+  display.name:     Nombre Mostrado
 
 # Generic actions
 action.generic:
@@ -97,7 +97,7 @@ action.batch.delete:
   confirm:  ¿Te confirmar la eliminación de todos los elementos seleccionados?
   success:  El registro ha sido borrado correctamente.
   error:    Este registro no puede ser borrado.
-  
+
 # Custom actions
 action.custom:
   title:    ¿Está seguro de que desea ejecutar la acción %name%?

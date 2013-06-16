@@ -48,28 +48,28 @@ class BaseBuilder extends GenericBaseBuilder
     {
         foreach ($this->getDisplayAsColumns() as $columnName) {
             $column = new $this->columnClass($columnName);
-            
+
             $column->setDbType($this->getFieldOption(
-                $column, 'dbType', 
+                $column, 'dbType',
                 $this->getFieldGuesser()->getDbType(
                     $this->getVariable('model'), $columnName
                 )
             ));
 
             if ($this->getYamlKey() != 'list' && $this->getYamlKey() != 'nested_list') {
-              
+
                 $column->setFormType(
-                    $this->getFieldOption($column, 'formType', 
+                    $this->getFieldOption($column, 'formType',
                     $this->getFieldGuesser()->getFormType(
                         $column->getDbType(), $columnName
                     )
                 ));
-                
+
                 $column->setFormOptions($this->getFieldOption(
-                    $column, 'formOptions', 
+                    $column, 'formOptions',
                     $this->getFieldGuesser()->getFormOptions(
-                        $column->getFormType(), 
-                        $column->getDbType(), 
+                        $column->getFormType(),
+                        $column->getDbType(),
                         $columnName
                     )
                 ));
@@ -94,7 +94,7 @@ class BaseBuilder extends GenericBaseBuilder
     protected function getFieldOption(Column $column, $optionName, $default = null)
     {
         $options = $this->getVariable(
-            sprintf('fields[%s]', $column->getName()), 
+            sprintf('fields[%s]', $column->getName()),
             array(), true
         );
 
@@ -104,7 +104,7 @@ class BaseBuilder extends GenericBaseBuilder
     protected function setUserColumnConfiguration(Column $column)
     {
         $options = $this->getVariable(
-            sprintf('fields[%s]', $column->getName()), 
+            sprintf('fields[%s]', $column->getName()),
             array(), true
         );
 
@@ -260,7 +260,7 @@ class BaseBuilder extends GenericBaseBuilder
     {
         foreach ($this->getVariable('actions', array()) as $actionName => $actionParams) {
             $action = $this->findGenericAction($actionName);
-            if(!$action) {
+            if (!$action) {
                 $action = new Action($actionName);
             }
 

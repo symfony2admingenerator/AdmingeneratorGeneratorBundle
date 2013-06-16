@@ -4,7 +4,7 @@ public function batchAction()
 {
     if (!$this->get('request')->get('action') || !$this->get('request')->get('selected')) {
         $this->get('session')->getFlashBag()->add('warning', $this->get('translator')->trans("{{ "action.batch.warning" }}", array(), 'Admingenerator') );
-        
+
         return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
     }
 

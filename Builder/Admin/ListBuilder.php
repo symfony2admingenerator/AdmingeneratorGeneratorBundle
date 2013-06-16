@@ -64,19 +64,19 @@ class ListBuilder extends BaseBuilder
 
         foreach ($filters['display'] as $columnName) {
             $column = new Column($columnName);
-            
+
             $column->setDbType($this->getFieldOption(
                 $column, 'dbType', $this->getFieldGuesser()->getDbType(
                     $this->getVariable('model'), $columnName
                 )
             ));
-            
+
             $column->setFormType($this->getFieldOption(
                 $column, 'filterType', $this->getFieldGuesser()->getFilterType(
                     $column->getDbType(), $columnName
                 )
             ));
-            
+
             $column->setFormOptions($this->getFieldOption(
                 $column, 'filterOptions', $this->getFieldGuesser()->getFilterOptions(
                     $column->getFormType(), $column->getDbType(), $columnName
@@ -106,7 +106,7 @@ class ListBuilder extends BaseBuilder
     protected function setUserObjectActionConfiguration(Action $action)
     {
         $options = $this->getVariable(
-            sprintf('object_actions[%s]', $action->getName()), 
+            sprintf('object_actions[%s]', $action->getName()),
             array(), true
         );
 
@@ -125,10 +125,10 @@ class ListBuilder extends BaseBuilder
     protected function findObjectActions()
     {
         $objectActions = $this->getVariable('object_actions', array());
-        
+
         foreach ($objectActions as $actionName => $actionParams) {
             $action = $this->findObjectAction($actionName);
-            if(!$action) {
+            if (!$action) {
                 $action = new Action($actionName);
             }
 
@@ -172,10 +172,10 @@ class ListBuilder extends BaseBuilder
     protected function findBatchActions()
     {
         $batchActions = $this->getVariable('batch_actions', array());
-        
+
         foreach ($batchActions as $actionName => $actionParams) {
             $action = $this->findBatchAction($actionName);
-            if(!$action) {
+            if (!$action) {
                 $action = new Action($actionName);
             }
 

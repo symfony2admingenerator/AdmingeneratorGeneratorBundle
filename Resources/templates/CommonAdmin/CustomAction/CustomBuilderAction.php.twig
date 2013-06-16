@@ -25,12 +25,12 @@ class CustomController extends BaseController
 
     {% for action in builder.ObjectActions %}
         {{- block('attemptAction') -}}
-    
+
         {{- block('executeAction') -}}
-    
+
         {{- block('successAction') -}}
-    
-        {{- block('errorAction') -}}    
+
+        {{- block('errorAction') -}}
     {% endfor %}
 
     {{- block('csrf_check_token') -}}

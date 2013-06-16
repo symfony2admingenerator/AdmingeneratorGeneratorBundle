@@ -3,7 +3,6 @@
 namespace Admingenerator\GeneratorBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Process\Exception\LogicException;
 
 class CsrfTokenExtension extends \Twig_Extension
 {

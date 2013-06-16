@@ -93,7 +93,7 @@ action.batch.delete:
   confirm:  Confermi l'eliminazione di tutti gli elementi selezionati?
   success:  I dati sono stati correttamente eliminati.
   error:    I dati non possono essere eliminati.
-  
+
 # Custom actions
 action.custom:
   title:    Sei sicuro che si desidera eseguire l'azione %name%?

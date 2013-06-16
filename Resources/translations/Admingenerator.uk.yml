@@ -93,7 +93,7 @@ action.batch.delete:
   confirm:  Ви підтверджуєте видалення обраних елементів?
   success:  Записи успішно видалені.
   error:    Неможливо видалити записи.
-  
+
 # Custom actions
 action.custom:
   title:    Ви впевнені, що хочете виконати дію %name%?

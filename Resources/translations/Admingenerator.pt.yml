@@ -93,7 +93,7 @@ action.batch.delete:
   confirm:  Você confirmar a eliminação de todos os elementos selecionados?
   success:  Registros foram apagados com sucesso.
   error:    Os registros não podem ser apagados.
-  
+
 # Custom actions
 action.custom:
   title:    Tem certeza de que deseja executar a ação %name%?

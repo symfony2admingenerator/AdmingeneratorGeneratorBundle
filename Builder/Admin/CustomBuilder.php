@@ -11,7 +11,7 @@ use Admingenerator\GeneratorBundle\Generator\Action;
 class CustomBuilder extends BaseBuilder
 {
     protected $object_actions;
-    
+
     /**
      * (non-PHPdoc)
      * @see Admingenerator\GeneratorBundle\Builder.BaseBuilder::getYamlKey()
@@ -33,11 +33,11 @@ class CustomBuilder extends BaseBuilder
 
         return $this->object_actions;
     }
-    
+
     protected function setUserObjectActionConfiguration(Action $action)
     {
         $options = $this->getVariable(
-            sprintf('object_actions[%s]', $action->getName()), 
+            sprintf('object_actions[%s]', $action->getName()),
             array(), true
         );
 
@@ -56,10 +56,10 @@ class CustomBuilder extends BaseBuilder
     protected function findObjectActions()
     {
         $objectActions = $this->getVariable('object_actions', array());
-        
+
         foreach ($objectActions as $actionName => $actionParams) {
             $action = $this->findObjectAction($actionName);
-            if(!$action) {
+            if (!$action) {
                 $action = new Action($actionName);
             }
 

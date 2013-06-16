@@ -27,7 +27,7 @@ class NewBuilder extends BaseBuilder
     protected function findActions()
     {
         $actions = $this->getVariable('actions', array());
-        
+
         foreach ($actions as $actionName => $actionParams) {
             $action = $this->findGenericAction($actionName);
             if(!$action) $action = $this->findObjectAction($actionName);

@@ -35,17 +35,17 @@ class FiltersBuilder extends BaseBuilder
 
         foreach ($display as $columnName) {
             $column = new Column($columnName);
-            
+
             $column->setDbType($this->getFieldOption(
                 $column, 'dbType', $this->getFieldGuesser()->getDbType(
                     $this->getVariable('model'), $columnName
                 )
             ));
-            
+
             $column->setFormType($this->getFieldGuesser()->getFilterType(
                 $column->getDbType(), $columnName
             ));
-            
+
             $column->setFormOptions($this->getFieldGuesser()->getFilterOptions(
                 $column->getFormType(), $column->getDbType(), $columnName
             ));
