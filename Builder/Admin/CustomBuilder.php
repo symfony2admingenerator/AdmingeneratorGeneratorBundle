@@ -59,7 +59,9 @@ class CustomBuilder extends BaseBuilder
         
         foreach ($objectActions as $actionName => $actionParams) {
             $action = $this->findObjectAction($actionName);
-            if(!$action) $action = new Action($actionName);
+            if(!$action) {
+                $action = new Action($actionName);
+            }
 
             $this->setUserObjectActionConfiguration($action);
             $this->addObjectAction($action);

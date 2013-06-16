@@ -128,7 +128,9 @@ class ListBuilder extends BaseBuilder
         
         foreach ($objectActions as $actionName => $actionParams) {
             $action = $this->findObjectAction($actionName);
-            if(!$action) $action = new Action($actionName);
+            if(!$action) {
+                $action = new Action($actionName);
+            }
 
             $this->setUserObjectActionConfiguration($action);
             $this->addObjectAction($action);
@@ -173,7 +175,9 @@ class ListBuilder extends BaseBuilder
         
         foreach ($batchActions as $actionName => $actionParams) {
             $action = $this->findBatchAction($actionName);
-            if(!$action) $action = new Action($actionName);
+            if(!$action) {
+                $action = new Action($actionName);
+            }
 
             $this->setUserBatchActionConfiguration($action);
             $this->addBatchAction($action);
