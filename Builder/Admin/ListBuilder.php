@@ -66,20 +66,30 @@ class ListBuilder extends BaseBuilder
             $column = new Column($columnName);
             
             $column->setDbType($this->getFieldOption(
-                $column, 'dbType', $this->getFieldGuesser()->getDbType(
-                    $this->getVariable('model'), $columnName
+                $column, 
+                'dbType', 
+                $this->getFieldGuesser()->getDbType(
+                    $this->getVariable('model'), 
+                    $columnName
                 )
             ));
             
             $column->setFormType($this->getFieldOption(
-                $column, 'filterType', $this->getFieldGuesser()->getFilterType(
-                    $column->getDbType(), $columnName
+                $column, 
+                'filterType', 
+                $this->getFieldGuesser()->getFilterType(
+                    $column->getDbType(), 
+                    $columnName
                 )
             ));
             
             $column->setFormOptions($this->getFieldOption(
-                $column, 'filterOptions', $this->getFieldGuesser()->getFilterOptions(
-                    $column->getFormType(), $column->getDbType(), $columnName
+                $column, 
+                'filterOptions', 
+                $this->getFieldGuesser()->getFilterOptions(
+                    $column->getFormType(), 
+                    $column->getDbType(), 
+                    $columnName
                 )
             ));
 
@@ -107,11 +117,13 @@ class ListBuilder extends BaseBuilder
     {
         $builderOptions = $this->getVariable(
             sprintf('object_actions[%s]', $action->getName()), 
-            array(), true
+            array(), 
+            true
         );
         
         $globalOptions = $this->getGenerator()->getFromYaml(
-            'params.object_actions.'.$action->getName(), array()
+            'params.object_actions.'.$action->getName(), 
+            array()
         );
 
         if (null !== $builderOptions) {
@@ -162,7 +174,8 @@ class ListBuilder extends BaseBuilder
     {
         $options = $this->getVariable(
             sprintf('batch_actions[%s]', $action->getName()),
-            array(), true
+            array(), 
+            true
         );
 
         if (null !== $options) {

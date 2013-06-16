@@ -50,7 +50,8 @@ class BaseBuilder extends GenericBaseBuilder
             $column = new $this->columnClass($columnName);
 
             $column->setDbType($this->getFieldOption(
-                $column, 'dbType',
+                $column, 
+                'dbType',
                 $this->getFieldGuesser()->getDbType(
                     $this->getVariable('model'), $columnName
                 )
@@ -58,15 +59,18 @@ class BaseBuilder extends GenericBaseBuilder
 
             if ($this->getYamlKey() != 'list' && $this->getYamlKey() != 'nested_list') {
 
-                $column->setFormType(
-                    $this->getFieldOption($column, 'formType',
+                $column->setFormType($this->getFieldOption(
+                    $column, 
+                    'formType',
                     $this->getFieldGuesser()->getFormType(
-                        $column->getDbType(), $columnName
+                        $column->getDbType(), 
+                        $columnName
                     )
                 ));
 
                 $column->setFormOptions($this->getFieldOption(
-                    $column, 'formOptions',
+                    $column, 
+                    'formOptions',
                     $this->getFieldGuesser()->getFormOptions(
                         $column->getFormType(),
                         $column->getDbType(),
@@ -95,7 +99,8 @@ class BaseBuilder extends GenericBaseBuilder
     {
         $options = $this->getVariable(
             sprintf('fields[%s]', $column->getName()),
-            array(), true
+            array(), 
+            true
         );
 
         return isset($options[$optionName]) ? $options[$optionName] : $default;
@@ -105,7 +110,8 @@ class BaseBuilder extends GenericBaseBuilder
     {
         $options = $this->getVariable(
             sprintf('fields[%s]', $column->getName()),
-            array(), true
+            array(), 
+            true
         );
 
         foreach ($options as $option => $value) {
@@ -241,7 +247,8 @@ class BaseBuilder extends GenericBaseBuilder
     {
         $options = $this->getVariable(
             sprintf('actions[%s]', $action->getName()),
-            array(), true
+            array(), 
+            true
         );
 
         if (null !== $options) {
@@ -260,6 +267,7 @@ class BaseBuilder extends GenericBaseBuilder
     {
         foreach ($this->getVariable('actions', array()) as $actionName => $actionParams) {
             $action = $this->findGenericAction($actionName);
+            
             if (!$action) {
                 $action = new Action($actionName);
             }
@@ -371,7 +379,7 @@ class BaseBuilder extends GenericBaseBuilder
      */
     public function getStylesheets()
     {
-        $parse_stylesheets = function($params, $stylesheets) {
+        $parse_stylesheets = function ($params, $stylesheets) {
             foreach ($params as $css) {
                 if (is_string($css)) {
                     $css = array(
@@ -415,7 +423,7 @@ class BaseBuilder extends GenericBaseBuilder
     public function getJavascripts()
     {
         $self = $this;
-        $parse_javascripts = function($params, $javascripts) use ($self) {
+        $parse_javascripts = function ($params, $javascripts) use ($self) {
             foreach ($params as $js) {
 
                 if (is_string($js)) {
