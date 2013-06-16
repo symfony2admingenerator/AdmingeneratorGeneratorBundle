@@ -2,6 +2,8 @@
 
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
+use Admingenerator\GeneratorBundle\Generator\Action;
+
 /**
  * This builder generates php for custom actions
  * @author Piotr Gołębiewski <loostro@gmail.com>
