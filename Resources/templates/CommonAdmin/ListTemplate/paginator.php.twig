@@ -11,8 +11,7 @@
             <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-            {# @TODO: make perPage configurable ??? #}
-            {{ echo_for('perPage', '[10, 25, 50, 100, 250, 500]') }}
+            {{ echo_for('perPage', '[10, 25, 50, 75, 100]') }}
             <li>
                 <a href="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_list', '{perPage: perPage}') }}">{{ echo_twig('perPage') }}</a>
             </li>
