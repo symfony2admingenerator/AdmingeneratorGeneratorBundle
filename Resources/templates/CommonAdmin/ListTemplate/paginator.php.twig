@@ -1,7 +1,29 @@
 {% block list_paginator %}
 {{ echo_block("list_paginator") }}
-    <div class="pagination pagination-right">
+    {{ echo_block('list_paginator_perpage') }}
+    <div class="pull-right">
+    {{ echo_if( builder.ModelClass ~ "s.haveToPaginate") }}
+    <span class="inline">{{ echo_trans('paginator.list.maxPerPage') }}</span>
+    <div class="btn-group inline">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+            {{ echo_twig( builder.ModelClass ~ 's.maxPerPage') }}
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            {{ echo_for('perPage', '[10, 25, 50, 75, 100]') }}
+            <li>
+                <a href="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_list', '{perPage: perPage}') }}">{{ echo_twig('perPage') }}</a>
+            </li>
+            {{ echo_endfor() }}
+        </ul>
+    </div>
+    {{ echo_endif() }}
+    </div>
+    {{ echo_endblock() }}
+    {{ echo_block('list_paginator_pages') }}
+    <div class="pagination pagination-centered">
         {{ echo_twig("pagerfanta(" ~ builder.ModelClass ~ "s, 'admingenerator')") }}
     </div>
+    {{ echo_endblock() }}
 {{ echo_endblock() }}
 {% endblock %}
