@@ -16,6 +16,7 @@ class RoutingLoader extends FileLoader
                     'pattern'      => '/',
                     'defaults'     => array(),
                     'requirements' => array(),
+                    'methods'      => array(),
                 ),
         'batch' => array(
                     'pattern'      => '/batch',
@@ -23,56 +24,73 @@ class RoutingLoader extends FileLoader
                     'requirements' => array(
                         '_method' => 'POST'
                     ),
+                    'methods'      => array(),
                     'controller'   => 'list',
                 ),
         'delete' => array(
                     'pattern'      => '/{pk}/delete',
                     'defaults'     => array(),
                     'requirements' => array(),
+                    'methods'      => array(),
                 ),
         'edit' => array(
                     'pattern'      => '/{pk}/edit',
                     'defaults'     => array(),
                     'requirements' => array(),
+                    'methods'      => array(),
                 ),
         'update' => array(
                     'pattern'      => '/{pk}/update',
                     'defaults'     => array(),
                     'requirements' => array(),
+                    'methods'      => array('POST'),
                     'controller'   => 'edit',
                 ),
         'show' => array(
                     'pattern'      => '/{pk}/show',
                     'defaults'     => array(),
-                    'requirements' => array()
+                    'requirements' => array(),
+                    'methods'      => array(),
                 ),
-        'custom' => array(
+        'custom_object' => array(
                     'pattern'      => '/{pk}/do/{action}',
                     'defaults'     => array(),
                     'requirements' => array(),
-                    'controller'   => 'custom',
+                    'methods'      => array(),
+                    'controller'   => 'customObject',
+                ),
+        'custom_batch' => array(
+                    'pattern'      => '/do/{action}',
+                    'defaults'     => array(),
+                    'requirements' => array(),
+                    'methods'      => array('POST'),
+                    'controller'   => 'customBatch',
                 ),
         'new' => array(
                     'pattern'      => '/new',
                     'defaults'     => array(),
                     'requirements' => array(),
+                    'methods'      => array(),
                 ),
         'create' => array(
                     'pattern'      => '/create',
                     'defaults'     => array(),
                     'requirements' => array(),
+                    'methods'      => array('POST'),
                     'controller'   => 'new',
                 ),
         'filters' => array(
                     'pattern'      => '/filter',
                     'defaults'     => array(),
                     'requirements' => array(),
+                    'methods'      => array(),
                     'controller'   => 'list',
                 ),
         'scopes' => array(
                     'pattern'      => '/scope/{group}/{scope}',
                     'defaults'     => array(),
                     'requirements' => array(),
+                    'methods'      => array(),
                     'controller'   => 'list',
                 ),
     );
@@ -113,7 +131,7 @@ class RoutingLoader extends FileLoader
                             . $bundle_name . ':'
                             . ucfirst($controller) . ':' . $action;
                 }
-                $route = new Route($datas['pattern'], $datas['defaults'], $datas['requirements']);
+                $route = new Route($datas['pattern'], $datas['defaults'], $datas['requirements'], array(), '', array(), $datas['methods']);
                 $collection->add($route_name, $route);
                 $collection->addResource(new FileResource($controllerName));
             }

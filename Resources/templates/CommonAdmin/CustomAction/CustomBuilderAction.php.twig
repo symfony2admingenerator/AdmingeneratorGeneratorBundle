@@ -1,4 +1,5 @@
 {% use '../CommonAdmin/CustomAction/object_action.php.twig' %}
+{% use '../CommonAdmin/CustomAction/batch_action.php.twig' %}
 {% use '../CommonAdmin/security_action.php.twig' %}
 {% use '../CommonAdmin/csrf_protection.php.twig' %}
 <?php
@@ -7,6 +8,7 @@ namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.gene
 
 use {{ builder.generator.baseController }} as BaseController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 
 {{ block('csrf_protection_use') }}
 
@@ -15,22 +17,41 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class CustomController extends BaseController
 {
     /**
-     * Call custom action based on $action parameter
+     * Call custom object action based on $action parameter
      */
-    public function customAction($pk, $action)
+    public function customObjectAction($pk, $action)
     {
-        $methodName = 'attempt'.ucfirst(strtolower($action));
+        $methodName = 'attemptObject'.ucfirst(strtolower($action));
         return $this->$methodName($pk);
+    }
+    
+    /**
+     * Call custom batch action based on $action parameter
+     */
+    public function customObjectAction($action)
+    {
+        $methodName = 'attemptBatch'.ucfirst(strtolower($action));
+        return $this->$methodName();
     }
 
     {% for action in builder.ObjectActions %}
-        {{- block('attemptAction') -}}
+        {{- block('attemptObjectAction') -}}
 
-        {{- block('executeAction') -}}
+        {{- block('executeObjectAction') -}}
 
-        {{- block('successAction') -}}
+        {{- block('successObjectAction') -}}
 
-        {{- block('errorAction') -}}
+        {{- block('errorObjectAction') -}}
+    {% endfor %}
+
+    {% for action in builder.BatchActions %}
+        {{- block('attemptBatchAction') -}}
+
+        {{- block('executeBatchAction') -}}
+
+        {{- block('successBatchAction') -}}
+
+        {{- block('errorBatchAction') -}}
     {% endfor %}
 
     {{- block('csrf_check_token') -}}

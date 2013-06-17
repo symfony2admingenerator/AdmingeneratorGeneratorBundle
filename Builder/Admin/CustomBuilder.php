@@ -11,6 +11,8 @@ use Admingenerator\GeneratorBundle\Generator\Action;
 class CustomBuilder extends BaseBuilder
 {
     protected $object_actions;
+
+    protected $batch_actions;
     
     /**
      * (non-PHPdoc)
@@ -73,6 +75,64 @@ class CustomBuilder extends BaseBuilder
 
             $this->setUserObjectActionConfiguration($action);
             $this->addObjectAction($action);
+        }
+    }
+    
+    
+
+    /**
+     * Return a list of batch action from list.batch_actions
+     * @return array
+     */
+    public function getBatchActions()
+    {
+        if (0 === count($this->batch_actions)) {
+            $this->findBatchActions();
+        }
+
+        return $this->batch_actions;
+    }
+
+    protected function setUserBatchActionConfiguration(Action $action)
+    {
+        $builderOptions = $this->getVariable(
+            sprintf('batch_actions[%s]', $action->getName()),
+            array(), 
+            true
+        );
+        
+        $globalOptions = $this->getGenerator()->getFromYaml(
+            'params.batch_actions.'.$action->getName(), array()
+        );
+
+        if (null !== $builderOptions) {
+            foreach ($builderOptions as $option => $value) {
+                $action->setProperty($option, $value);
+            }
+        } elseif (null !== $globalOptions) {
+            foreach ($globalOptions as $option => $value) {
+                $action->setProperty($option, $value);
+            }
+        }
+    }
+
+    protected function addBatchAction(Action $action)
+    {
+        $this->batch_actions[$action->getName()] = $action;
+    }
+
+    protected function findBatchActions()
+    {
+        $batchActions = $this->getVariable('batch_actions', array());
+        
+        foreach ($batchActions as $actionName => $actionParams) {
+            $action = $this->findBatchAction($actionName);
+            if(!$action) {
+                $action = new Action($actionName);
+            }
+
+            $this->setUserBatchActionConfiguration($action);
+            $this->addBatchAction($action);
         }
     }
 }

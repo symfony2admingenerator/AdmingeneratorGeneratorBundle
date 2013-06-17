@@ -1,17 +1,17 @@
 {% use '../CommonAdmin/security_action.php.twig' %}
 {% use '../CommonAdmin/csrf_protection.php.twig' %}
-{% block attemptAction %}
+{% block attemptObjectAction %}
 
     /**
-     * This function handles common actions behaviour like
+     * This function handles common object actions behaviour like
      * checking CSRF protection token or credentials.
      *
      * To customize your action look into:
-     * execute{{ action.name|capitalize }}() - holds action logic
-     * success{{ action.name|capitalize }}() - called if action was successfull
-     * error{{ action.name|capitalize }}()   - called if action errored
+     * executeObject{{ action.name|capitalize }}() - holds action logic
+     * successObject{{ action.name|capitalize }}() - called if action was successfull
+     * errorObject{{ action.name|capitalize }}()   - called if action errored
      */
-    public function attempt{{ action.name|capitalize }}($pk)
+    public function attemptObject{{ action.name|capitalize }}($pk)
     {
         try {
             ${{ builder.ModelClass }} = $this->getObject($pk);
@@ -22,18 +22,18 @@
             if ('POST' == $this->get('request')->getMethod()) {
                 {{ block('csrf_action_check_token') }}
 
-                $this->execute{{ action.name|capitalize }}(${{ builder.ModelClass }});
+                $this->executeObject{{ action.name|capitalize }}(${{ builder.ModelClass }});
 
-                return $this->success{{ action.name|capitalize }}(${{ builder.ModelClass }});
+                return $this->successObject{{ action.name|capitalize }}(${{ builder.ModelClass }});
             }
             {% else %}
-            $this->execute{{ action.name|capitalize }}(${{ builder.ModelClass }});
+            $this->executeObject{{ action.name|capitalize }}(${{ builder.ModelClass }});
 
-            return $this->success{{ action.name|capitalize }}(${{ builder.ModelClass }});
+            return $this->successObject{{ action.name|capitalize }}(${{ builder.ModelClass }});
             {%- endif %}
 
         } catch (\Exception $e) {
-            return $this->error{{ action.name|capitalize }}($e, ${{ builder.ModelClass }});
+            return $this->errorObject{{ action.name|capitalize }}($e, ${{ builder.ModelClass }});
         }
 
         return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Custom:index.html.twig',
@@ -51,12 +51,12 @@
 
 {% endblock %}
 
-{% block executeAction %}
+{% block executeObjectAction %}
 
     /**
      * This function is for you to customize what action actually does
      */
-    public function execute{{ action.name|capitalize }}(${{ builder.ModelClass }})
+    public function executeObject{{ action.name|capitalize }}(${{ builder.ModelClass }})
     {
         // By default action does nothing
         // Overwrite this function!
@@ -64,7 +64,7 @@
 
 {% endblock %}
 
-{% block successAction %}
+{% block successObjectAction %}
 
     /**
      * This is called when action is successfull
@@ -73,7 +73,7 @@
      * @param \{{ model }} ${{ builder.ModelClass }} Your \{{ model }} object
      * @return Response Must return a response!
      */
-    public function success{{ action.name|capitalize }}(${{ builder.ModelClass }})
+    public function successObject{{ action.name|capitalize }}(${{ builder.ModelClass }})
     {
         $this->get('session')->getFlashBag()->add('success',
             $this->get('translator')->trans(
@@ -87,7 +87,7 @@
 
 {% endblock %}
 
-{% block errorAction %}
+{% block errorObjectAction %}
 
     /**
      * This is called when action throws an exception
@@ -97,7 +97,7 @@
      * @param \{{ model }} ${{ builder.ModelClass }} Your \{{ model }} object
      * @return Response Must return a response!
      */
-    public function error{{ action.name|capitalize }}(\Exception $e, ${{ builder.ModelClass }} = null)
+    public function errorObject{{ action.name|capitalize }}(\Exception $e, ${{ builder.ModelClass }} = null)
     {
         $this->get('session')->getFlashBag()->add('error',
             $this->get('translator')->trans(
