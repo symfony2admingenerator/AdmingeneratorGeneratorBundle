@@ -17,8 +17,6 @@
                 $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans("{{ messages.success is defined ? messages.success : "action.batch.delete.success" }}", array(), 'Admingenerator') );
                 return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
             }
-        } catch (AccessDeniedException $e) {
-            throw $e;
         } catch (\Exception $e) {
             $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans("{{ messages.error is defined ? messages.error : "action.batch.delete.error" }}", array(), 'Admingenerator') );
             $this->onException($e, ${{ builder.ModelClass }});
@@ -36,7 +34,7 @@
     * @param \Exception $exception throwed exception
     * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
     */
-    public function onException(\Exception $exception, \{{ model }} ${{ builder.ModelClass }})
+    public function onException(\Exception $exception, \{{ model }} ${{ builder.ModelClass }} = null)
     {
     }
 

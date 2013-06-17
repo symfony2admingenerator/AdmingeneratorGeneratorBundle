@@ -12,6 +12,6 @@
             throw new \InvalidArgumentException("No {{ model }} found on {{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} : $pk");
         }
 
-        return ${{ builder.ModelClass }};
+        return ${{ builder.ModelClass }} ?: null;
     }
 {% endblock %}

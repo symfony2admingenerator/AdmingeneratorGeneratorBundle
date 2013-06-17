@@ -33,7 +33,7 @@
             {%- endif %}
 
         } catch (\Exception $e) {
-            return $this->error{{ action.name|capitalize }}(${{ builder.ModelClass }}, $e);
+            return $this->error{{ action.name|capitalize }}($e, ${{ builder.ModelClass }});
         }
 
         return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Custom:index.html.twig',
@@ -93,11 +93,11 @@
      * This is called when action throws an exception
      * Default behavior is redirecting to list with error message
      *
-     * @param \{{ model }} ${{ builder.ModelClass }} Your \{{ model }} object
      * @param \Exception $e Exception
+     * @param \{{ model }} ${{ builder.ModelClass }} Your \{{ model }} object
      * @return Response Must return a response!
      */
-    public function error{{ action.name|capitalize }}(${{ builder.ModelClass }}, $e)
+    public function error{{ action.name|capitalize }}(\Exception $e, ${{ builder.ModelClass }} = null)
     {
         $this->get('session')->getFlashBag()->add('error',
             $this->get('translator')->trans(
