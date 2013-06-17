@@ -123,3 +123,6 @@ filetype:
 delete.action:
   confirm: Oui
   cancel: Non
+
+paginator.list:
+  maxPerPage: Nombre max par page

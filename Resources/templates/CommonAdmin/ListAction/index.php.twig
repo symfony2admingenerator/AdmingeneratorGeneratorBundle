@@ -13,6 +13,11 @@ use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ bu
           $this->setPage($this->get('request')->query->get('page'));
         }
 
+        if ($this->get('request')->query->get('perPage'))
+        {
+          $this->setPerPage($this->get('request')->query->get('perPage'));
+        }
+
         if ($this->get('request')->query->get('sort'))
         {
           $this->setSort($this->get('request')->query->get('sort'), $this->get('request')->query->get('order_by','ASC'));

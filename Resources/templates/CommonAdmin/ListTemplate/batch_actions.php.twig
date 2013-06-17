@@ -1,7 +1,7 @@
 {% block list_batch_actions %}
     {{ echo_block("list_batch_actions") }}
         {% if batch_actions is defined and batch_actions|length > 0 %}
-        <div class="control-group form-horizontal">
+        <div class="control-group">
             <div class="controls">
                 <select id="batchActionSelector" name="action">
                     <option selected="selected" value="none">{{ echo_trans('batch.list.selected') }}</option>
