@@ -196,9 +196,9 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
                 ->field('_id')->in($selected)
                 ->getQuery()
                 ->execute();
-            $this->get('session')->setFlash('success', $this->get('translator')->trans("batch.deleted.success", array(), 'Admingenerator') );
+            $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans("batch.deleted.success", array(), 'Admingenerator') );
         } catch (\Exception $e) {
-            $this->get('session')->setFlash('error', $this->get('translator')->trans("batch.deleted.error", array(), 'Admingenerator') );
+            $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans("batch.deleted.error", array(), 'Admingenerator') );
         }
     }
     }
