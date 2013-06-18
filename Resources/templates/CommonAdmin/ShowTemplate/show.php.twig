@@ -8,40 +8,54 @@
 {% block show %}
     {{ echo_block('show') }}
         {{ echo_block('object') }}
-            <table class="table table-striped table-hover table-condensed">
-            {% for column in builder.columns %}
-                {% if column.credentials %}
-                      {{ echo_if_granted(column.credentials) }}
-                {% endif %}
-                    <tr class="list_trow">
-                        <td class="td_{{ column.dbType }}_label td_{{ column.name }}_label">
-                            {{ echo_block('show_column_label_' ~ column.name) -}}
-                                <strong>{{ echo_twig("'" ~ column.label|addslashes ~ "'|trans({}, '" ~ (i18n_catalog is defined ? i18n_catalog : "Admin") ~ "')") }}</strong>
-                            {{- echo_endblock() }}
-                        </td>
-                        <td class="td_{{ column.dbType }} td_{{ column.name }}">
-                            {{ echo_block('show_column_' ~ column.name) -}}
-                                {%- if column.dbType|lower == "boolean" -%}
-                                    {{- block('column_boolean') -}}
-                                {%- elseif column.dbType|lower == "date" -%}
-                                    {{- block('column_date') -}}
-                                {%- elseif (column.dbType|lower == "datetime") or (column.dbType|lower == "timestamp") or (column.dbType|lower == "vardatetime") or (column.dbType|lower == "datetimetz") -%}
-                                    {{- block('column_datetime') -}}
-                                {%- elseif column.dbType|lower == "decimal" -%}
-                                    {{- block('column_decimal') -}}
-                                {%- elseif (column.dbType|lower == "array") or (column.dbType|lower == "collection")  -%}
-                                    {{- block('column_collection') -}}
-                                {%- else -%}
-                                    {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter) -}}
-                                {%- endif -%}
-                            {{- echo_endblock() }}
-                        </td>
-                    </tr>
-                {% if column.credentials %}
-                    {{ echo_endif () }}
-                {% endif %}
+            {% for fieldset in builder.fieldsets|keys %}
+                <fieldset class="form_block form_fieldset_{{ fieldset|classify|replace({'.': '_'}) }} fieldset_tabbable">
+                    {% if "NONE" != fieldset[:4] %}
+                    <legend><span>{{ echo_trans(fieldset,{}, i18n_catalog is defined ? i18n_catalog : "Admin" ) }}</span></legend>
+                    {% endif %}
+
+                    {% for rows in builder.fieldsets[fieldset] %}
+                    <div class="row-fluid">
+                        {% for field in rows %}
+                            {% set column = builder.Columns[field] %}
+                            {% if column.credentials %}
+                                  {{ echo_if_granted(column.credentials, builder.ModelClass) }}
+                            {% endif %}
+
+                            <div class="span2 text-right">
+                                {{ echo_block('show_column_label_' ~ column.name) -}}
+                                    <strong>{{ echo_twig("'" ~ column.label|addslashes ~ "'|trans({}, '" ~ (i18n_catalog is defined ? i18n_catalog : "Admin") ~ "')") }}</strong>
+                                {{- echo_endblock() }}
+                            </div>
+
+                            <div class="span2">
+                                
+                                <div class="control-group form_field field_{{ field }}">
+                                    {{ echo_block('show_column_' ~ column.name) -}}
+                                        {%- if column.dbType|lower == "boolean" -%}
+                                            {{- block('column_boolean') -}}
+                                        {%- elseif column.dbType|lower == "date" -%}
+                                            {{- block('column_date') -}}
+                                        {%- elseif (column.dbType|lower == "datetime") or (column.dbType|lower == "timestamp") or (column.dbType|lower == "vardatetime") or (column.dbType|lower == "datetimetz") -%}
+                                            {{- block('column_datetime') -}}
+                                        {%- elseif column.dbType|lower == "decimal" -%}
+                                            {{- block('column_decimal') -}}
+                                        {%- elseif (column.dbType|lower == "array") or (column.dbType|lower == "collection")  -%}
+                                            {{- block('column_collection') -}}
+                                        {%- else -%}
+                                            {{- echo_twig(builder.ModelClass ~ '.' ~ column.getter) -}}
+                                        {%- endif -%}
+                                    {{- echo_endblock() }}
+                                </div>
+                            </div>
+                            {% if column.credentials %}
+                                {{ echo_endif () }}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </fieldset>
             {% endfor %}
-            </table>
         {{ echo_endblock() }}
 
         {{ echo_block('form_buttons') }}
