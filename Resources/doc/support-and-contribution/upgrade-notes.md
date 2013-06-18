@@ -16,7 +16,7 @@ project.
 #### Description:
 
 This PR introduces a new builder called `actions` which is used to generate 
-stubs for custom actions.
+stubs for custom actions. For more info visit documentation.
 
 #### B/C breaks:
 
@@ -61,7 +61,9 @@ Generate `Actions` builder bundle structure:
 
 1. Run `php app/console admin:generate-admin` and re-create bundle structure.
 2. Copy any custom changes from old files
+3. Remove unnecessary copies
 
 > **Note:** When generating bundle structure, if a file already exists, it will be
-renamed to `oldname~` before new file is generated.
+renamed to `oldname~` before new file is generated. If a copy already exists, an 
+incrementing number will be appended to new copy's name (e.g. `oldname~1`).
 
