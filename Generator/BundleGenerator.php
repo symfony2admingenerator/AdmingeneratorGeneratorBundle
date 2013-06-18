@@ -143,7 +143,7 @@ class BundleGenerator extends BaseBundleGenerator
             }
 
             // Create new copy
-            rename($filename, $newname);
+            rename($oldname, $newname);
         }
     }
 }
