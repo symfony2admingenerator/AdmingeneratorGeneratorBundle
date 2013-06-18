@@ -45,11 +45,13 @@ and open a ticket on github.
 
 1. [Submitting issues][support-and-contribution-1]
 1. [Contributing][support-and-contribution-2]
+1. [Upgrade notes][support-and-contribution-3]
 
 [go up][go-up]
 
 [support-and-contribution-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support-and-contribution/submitting-issues.md
 [support-and-contribution-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support-and-contribution/contributing.md
+[support-and-contribution-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support-and-contribution/upgrade-notes.md
 
 ## 3. Features
 
