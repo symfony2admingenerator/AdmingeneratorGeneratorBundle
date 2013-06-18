@@ -32,6 +32,18 @@
     
 {% endblock %}
 
+{% block executeBatchDelete %}
+
+    /**
+     * This function is for you to customize what action actually does
+     */
+    public function executeBatchDelete(array $selected)
+    {
+        //The orm replace this method
+    }
+
+{% endblock %}
+
 {% block successBatchDelete %}
     
     /**
