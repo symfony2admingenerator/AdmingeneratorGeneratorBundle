@@ -20,7 +20,7 @@ class BundleGenerator extends BaseBundleGenerator
 
     protected $prefix;
 
-    protected $actions = array('New', 'List', 'Edit', 'Delete', 'Show');
+    protected $actions = array('New', 'List', 'Edit', 'Delete', 'Show', 'Actions');
 
     protected $forms = array('New', 'Filters', 'Edit');
 
