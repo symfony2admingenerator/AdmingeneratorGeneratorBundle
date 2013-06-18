@@ -59,7 +59,7 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
     */
     public function getCachePath($namespace, $bundle_name)
     {
-       return $this->cache_dir.'/Admingenerated/'.$namespace.$bundle_name;
+       return $this->cache_dir.'/Admingenerated/'.str_replace('\\', DIRECTORY_SEPARATOR, $namespace).$bundle_name;
     }
 
     /**
