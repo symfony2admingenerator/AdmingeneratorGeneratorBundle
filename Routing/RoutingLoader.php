@@ -6,6 +6,7 @@ use Symfony\Component\Config\Loader\FileLoader;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Route;
+use Symfony\Component\Finder\Finder;
 
 class RoutingLoader extends FileLoader
 {
@@ -85,6 +86,7 @@ class RoutingLoader extends FileLoader
 
         $resource = str_replace('\\', '/', $resource);
         $namespace = $this->getNamespaceFromResource($resource);
+        $fullBundleName = $this->getFullBundleNameFromResource($resource);
         $bundle_name = $this->getBundleNameFromResource($resource);
 
         foreach ($this->actions as $controller => $datas) {
@@ -115,6 +117,7 @@ class RoutingLoader extends FileLoader
                             . $bundle_name . ':'
                             . ucfirst($controller) . ':' . $action;
                 }
+
                 $route = new Route($datas['pattern'], $datas['defaults'], $datas['requirements']);
                 $collection->add($route_name, $route);
                 $collection->addResource(new FileResource($controllerName));
@@ -123,7 +126,7 @@ class RoutingLoader extends FileLoader
 
         // Import other routes from a controller directory (@Route annotation)
         if ($controller_folder) {
-            $annotationRouteName = '@' . $namespace . $bundle_name . '/Controller/' . $controller_folder . '/';
+            $annotationRouteName = '@' . $fullBundleName . '/Controller/' . $controller_folder . '/';
             $collection->addCollection($this->import($annotationRouteName, 'annotation'));
         }
 
@@ -142,6 +145,20 @@ class RoutingLoader extends FileLoader
         return $matches[1];
     }
 
+    protected function getFullBundleNameFromResource($resource)
+    {
+        // Find the *Bundle.php
+        $finder = Finder::create()
+            ->name('*Bundle.php')
+            ->depth(0)
+            ->in(realpath($resource.'/../../')) // ressource is controller folder
+            ->getIterator();
+
+        foreach ($finder as $file) {
+            return $file->getBasename('.'.$file->getExtension());
+        }
+    }
+
     protected function getBundleNameFromResource($resource)
     {
         preg_match('#.+/(.+Bundle)/Controller?/(.*?)/?$#', $resource, $matches);
@@ -151,8 +168,17 @@ class RoutingLoader extends FileLoader
 
     protected function getNamespaceFromResource($resource)
     {
-        preg_match('#.+/(.+)/(.+Bundle)/Controller?/(.*?)/?$#', $resource, $matches);
+        $finder = Finder::create()
+            ->name('*Bundle.php')
+            ->depth(0)
+            ->in(realpath($resource.'/../../')) // ressource is controller folder
+            ->getIterator();
 
-        return str_replace('/', '\\', $matches[1]);
+        foreach ($finder as $file) {
+            preg_match('/namespace (.+);/', file_get_contents($file->getRealPath()), $matches);
+
+            return implode('\\', explode('\\', $matches[1], -1)); // Remove the short bundle name
+        }
+
     }
 }

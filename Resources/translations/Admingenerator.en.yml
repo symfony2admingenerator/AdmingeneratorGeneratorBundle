@@ -136,3 +136,6 @@ filetype:
 delete.action:
   confirm: Yes
   cancel: No
+  
+paginator.list:
+  maxPerPage: Max elements per page

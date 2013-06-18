@@ -19,10 +19,30 @@
         return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\Page', 1);
     }
 
+    /**
+     * Store in the session service the perPage
+     *
+     * @param integer $perPage The perPage number
+     */
+    protected function setPerPage($perPage)
+    {
+        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\PerPage', $perPage);
+    }
+
+    /**
+     * Return the stored perPage
+     *
+     * @return integer $perPage The perPage number
+     */
+    protected function getPerPage()
+    {
+        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}List\PerPage', {{ max_per_page is defined ? max_per_page : 10 }});
+    }
+
     protected function getPager()
     {
         $paginator = new Pagerfanta(new PagerAdapter($this->getQuery()));
-        $paginator->setMaxPerPage({{ max_per_page is defined ? max_per_page : 10 }});
+        $paginator->setMaxPerPage($this->getPerPage());
         $paginator->setCurrentPage($this->getPage(), false, true);
 
         return $paginator;

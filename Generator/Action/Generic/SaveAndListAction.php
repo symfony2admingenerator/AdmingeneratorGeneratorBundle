@@ -16,6 +16,8 @@ class SaveAndListAction extends Action
         parent::__construct($name, $type = 'generic');
 
         $this->setSubmit(true);
+        $this->setClass('btn-info');
+        $this->setIcon('icon-list-alt icon-white');
         $this->setLabel('action.generic.save-and-list');
     }
 }

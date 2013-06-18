@@ -48,35 +48,11 @@ class BaseBuilder extends GenericBaseBuilder
     {
         foreach ($this->getDisplayAsColumns() as $columnName) {
             $column = new $this->columnClass($columnName);
-
-            $column->setDbType($this->getFieldOption(
-                $column, 
-                'dbType',
-                $this->getFieldGuesser()->getDbType(
-                    $this->getVariable('model'), $columnName
-                )
-            ));
+            $column->setDbType($this->getFieldOption($column, 'dbType', $this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName)));
 
             if ($this->getYamlKey() != 'list' && $this->getYamlKey() != 'nested_list') {
-
-                $column->setFormType($this->getFieldOption(
-                    $column, 
-                    'formType',
-                    $this->getFieldGuesser()->getFormType(
-                        $column->getDbType(), 
-                        $columnName
-                    )
-                ));
-
-                $column->setFormOptions($this->getFieldOption(
-                    $column, 
-                    'formOptions',
-                    $this->getFieldGuesser()->getFormOptions(
-                        $column->getFormType(),
-                        $column->getDbType(),
-                        $columnName
-                    )
-                ));
+              $column->setFormType($this->getFieldOption($column, 'formType', $this->getFieldGuesser()->getFormType($column->getDbType(), $columnName)));
+              $column->setFormOptions($this->getFieldOption($column, 'formOptions', $this->getFieldGuesser()->getFormOptions($column->getFormType(), $column->getDbType(), $columnName)));
             }
             //Set the user parameters
             $this->setUserColumnConfiguration($column);
@@ -97,25 +73,17 @@ class BaseBuilder extends GenericBaseBuilder
 
     protected function getFieldOption(Column $column, $optionName, $default = null)
     {
-        $options = $this->getVariable(
-            sprintf('fields[%s]', $column->getName()),
-            array(), 
-            true
-        );
+        $options = $this->getVariable(sprintf('fields[%s]', $column->getName()),array(), true);
 
         return isset($options[$optionName]) ? $options[$optionName] : $default;
     }
 
     protected function setUserColumnConfiguration(Column $column)
     {
-        $options = $this->getVariable(
-            sprintf('fields[%s]', $column->getName()),
-            array(), 
-            true
-        );
+        $options = $this->getVariable(sprintf('fields[%s]', $column->getName()),array(), true);
 
         foreach ($options as $option => $value) {
-            $column->setProperty($option, $value);
+            $column->setOption($option, $value);
         }
     }
 
@@ -245,15 +213,11 @@ class BaseBuilder extends GenericBaseBuilder
 
     protected function setUserActionConfiguration(Action $action)
     {
-        $options = $this->getVariable(
-            sprintf('actions[%s]', $action->getName()),
-            array(), 
-            true
-        );
+        $options = $this->getVariable(sprintf('actions[%s]', $action->getName()),array(), true);
 
         if (null !== $options) {
             foreach ($options as $option => $value) {
-                $action->setProperty($option, $value);
+                $action->setOption($option, $value);
             }
         }
     }
@@ -267,10 +231,7 @@ class BaseBuilder extends GenericBaseBuilder
     {
         foreach ($this->getVariable('actions', array()) as $actionName => $actionParams) {
             $action = $this->findGenericAction($actionName);
-            
-            if (!$action) {
-                $action = new Action($actionName);
-            }
+            if(!$action) $action = new Action($actionName);
 
             $this->setUserActionConfiguration($action);
             $this->addAction($action);
@@ -281,11 +242,9 @@ class BaseBuilder extends GenericBaseBuilder
     {
         if (preg_match('/\-/', $actionName)) {
             $classNameParts = Container::camelize(explode("-", $actionName));
-            $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Generic\\'
-                      .implode('', $classNameParts).'Action';
+            $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Generic\\'.implode('', $classNameParts).'Action';
         } else {
-            $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Generic\\'
-                      .Container::camelize($actionName.'Action');
+            $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Generic\\'.Container::camelize($actionName.'Action');
         }
 
         return (class_exists($class)) ? new $class($actionName, $this) : false;
@@ -295,11 +254,9 @@ class BaseBuilder extends GenericBaseBuilder
     {
         if (preg_match('/\-/', $actionName)) {
             $classNameParts = Container::camelize(explode("-", $actionName));
-            $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Object\\'
-                      .implode('', $classNameParts).'Action';
+            $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Object\\'.implode('', $classNameParts).'Action';
         } else {
-            $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Object\\'
-                      .Container::camelize($actionName.'Action');
+            $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Object\\'.Container::camelize($actionName.'Action');
         }
 
         return (class_exists($class)) ? new $class($actionName, $this) : false;
@@ -309,11 +266,9 @@ class BaseBuilder extends GenericBaseBuilder
     {
         if (preg_match('/\-/', $actionName)) {
             $classNameParts = Container::camelize(explode("-", $actionName));
-            $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Batch\\'
-                      .implode('', $classNameParts).'Action';
+            $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Batch\\'.implode('', $classNameParts).'Action';
         } else {
-            $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Batch\\'
-                      .Container::camelize($actionName.'Action');
+            $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Batch\\'.Container::camelize($actionName.'Action');
         }
 
         return (class_exists($class)) ? new $class($actionName, $this) : false;
@@ -346,22 +301,17 @@ class BaseBuilder extends GenericBaseBuilder
 
     public function getNamespacePrefixWithSubfolder()
     {
-        return $this->getVariable('namespace_prefix')
-               .($this->hasVariable('subfolder') ? '\\'.$this->getVariable('subfolder') : '');
+        return $this->getVariable('namespace_prefix') . ($this->hasVariable('subfolder') ? '\\' . $this->getVariable('subfolder') : '');
     }
 
     public function getRoutePrefixWithSubfolder()
     {
-        return $this->getVariable('namespace_prefix')
-               .($this->hasVariable('subfolder') ? '_'.$this->getVariable('subfolder') : '');
+        return str_replace('\\', '_', $this->getVariable('namespace_prefix')) . ($this->hasVariable('subfolder') ? '_' . $this->getVariable('subfolder') : '');
     }
-    
-    public function getObjectActionsRoute()
+
+    public function getNamespacePrefixForTemplate()
     {
-        return $this->getVariable('namespace_prefix').'_'
-               .$this->getVariable('bundle_name').'_'
-               .preg_match('%\w+$%', $this->getVariable('model'))
-               .'_object';
+        return str_replace('\\', '', $this->getVariable('namespace_prefix'));
     }
 
     /**
@@ -387,7 +337,7 @@ class BaseBuilder extends GenericBaseBuilder
      */
     public function getStylesheets()
     {
-        $parse_stylesheets = function ($params, $stylesheets) {
+        $parse_stylesheets = function($params, $stylesheets) {
             foreach ($params as $css) {
                 if (is_string($css)) {
                     $css = array(
@@ -403,15 +353,10 @@ class BaseBuilder extends GenericBaseBuilder
         };
 
         // From config.yml
-        $stylesheets = $parse_stylesheets(
-            $this->getGenerator()->getContainer()
-                 ->getParameter('admingenerator.stylesheets', array()), array()
-        );
+        $stylesheets = $parse_stylesheets($this->getGenerator()->getContainer()->getParameter('admingenerator.stylesheets', array()), array());
 
         // From generator.yml
-        $stylesheets = $parse_stylesheets(
-            $this->getVariable('stylesheets', array()), $stylesheets
-        );
+        $stylesheets = $parse_stylesheets($this->getVariable('stylesheets', array()), $stylesheets);
 
         return $stylesheets;
     }
@@ -431,7 +376,7 @@ class BaseBuilder extends GenericBaseBuilder
     public function getJavascripts()
     {
         $self = $this;
-        $parse_javascripts = function ($params, $javascripts) use ($self) {
+        $parse_javascripts = function($params, $javascripts) use ($self) {
             foreach ($params as $js) {
 
                 if (is_string($js)) {
@@ -454,15 +399,10 @@ class BaseBuilder extends GenericBaseBuilder
         };
 
         // From config.yml
-        $javascripts = $parse_javascripts(
-            $this->getGenerator()->getContainer()
-                 ->getParameter('admingenerator.javascripts', array()), array()
-        );
+        $javascripts = $parse_javascripts($this->getGenerator()->getContainer()->getParameter('admingenerator.javascripts', array()), array());
 
         // From generator.yml
-        $javascripts = $parse_javascripts(
-            $this->getVariable('javascripts', array()), $javascripts
-        );
+        $javascripts = $parse_javascripts($this->getVariable('javascripts', array()), $javascripts);
 
         return $javascripts;
     }

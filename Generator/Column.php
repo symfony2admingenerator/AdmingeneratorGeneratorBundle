@@ -130,7 +130,7 @@ class Column
 
     private function humanize($text)
     {
-        return ucfirst(strtolower(str_replace('_', ' ', $text)));
+        return ucfirst(str_replace('_', ' ', $text));
     }
 
     public function setDbType($dbType)
