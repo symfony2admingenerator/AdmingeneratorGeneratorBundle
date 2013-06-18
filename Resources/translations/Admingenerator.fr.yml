@@ -96,7 +96,7 @@ action.batch.delete:
 
 # Custom actions
 action.custom:
-  title:    Etes-vous sûr que vous voulez exécuter une action de %name%?
+  title:    Êtes-vous sûr de vouloir exécuter l'action %name%?
   success:  L'action %name% a été exécutée avec succès.
   error:    Impossible d'exécuter l'action %name%.
   confirm:  Confirmer
