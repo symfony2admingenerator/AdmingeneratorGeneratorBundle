@@ -1,5 +1,6 @@
 {% use '../CommonAdmin/security_action.php.twig' %}
 {% use '../CommonAdmin/csrf_protection.php.twig' %}
+
 {% block attemptObjectAction %}
 
     /**
@@ -48,7 +49,7 @@
                         '{{ action.options.i18n|default('Admingenerator') }}'
                     ),
                     "actionRoute" => "{{ builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_object' }}",
-                    "actionParams" => array("pk" => $pk, "action" => "{{ action.name }}"
+                    "actionParams" => array("pk" => $pk, "action" => "{{ action.name }}")
                 )
             )
         );
