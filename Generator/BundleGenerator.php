@@ -127,16 +127,23 @@ class BundleGenerator extends BaseBundleGenerator
         }
     }
     
-    protected function copyPreviousFile($filename)
+    protected function copyPreviousFile($oldname)
     {
-        if(file_exists($filename)) {
-            // Remove previous copy
-            if(file_exists($filename.'~')) {
-                unlink ($filename.'~');
+        if(file_exists($oldname)) {
+            $newname = $oldname.'~';
+            
+            // Find unused copy name
+            if(file_exists($newname)) {
+                $key = 0;
+                do {
+                    $key++;
+                } while (file_exists($oldname.'~'.$key));
+                
+                $newname = $oldname.'~'.$key;
             }
 
             // Create new copy
-            rename($filename, $filename.'~');
+            rename($filename, $newname);
         }
     }
 }

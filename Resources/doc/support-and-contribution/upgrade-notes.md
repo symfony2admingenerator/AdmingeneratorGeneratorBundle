@@ -52,3 +52,16 @@ builders:
           batch_actions:
               delete: ~
 ```
+
+> **Note:** This tells actions builder to generate code for `delete` object and 
+batch action. You don't need to add any options as `delete` actions are configured
+by default.
+
+Generate `Actions` builder bundle structure:
+
+1. Run `php app/console admin:generate-admin` and re-create bundle structure.
+2. Copy any custom changes from old files
+
+> **Note:** When generating bundle structure, if a file already exists, it will be
+renamed to `oldname~` before new file is generated.
+
