@@ -21,9 +21,17 @@ class DeleteAction extends Action
         $this->setLabel('action.object.delete.label');
         $this->setConfirm('action.object.delete.confirm');
         $this->setCsrfProtected(true);
+        
+        $this->setRoute($builder->getObjectActionsRoute());
 
         $this->setParams(array(
             'pk' => '{{ '.$builder->getModelClass().'.'.$builder->getModelPrimaryKeyName().' }}',
+            'action' => 'delete'
+        ));
+        
+        $this->setOptions(array(
+            'title' => 'action.object.delete.confirm',
+            'i18n' => 'Admingenerator'
         ));
     }
 }

@@ -17,12 +17,6 @@ class RoutingLoader extends FileLoader
                     'defaults'     => array(),
                     'requirements' => array(),
                 ),
-        'delete' => array(
-                    'pattern'      => '/{pk}/delete',
-                    'defaults'     => array(),
-                    'requirements' => array(),
-                    'methods'      => array(),
-                ),
         'edit' => array(
                     'pattern'      => '/{pk}/edit',
                     'defaults'     => array(),

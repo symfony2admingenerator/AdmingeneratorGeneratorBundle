@@ -15,6 +15,15 @@
     
 {% endblock %}
 
+{% block executeObjectDelete %}
+    
+    protected function executeObjectDelete(\{{ model }} ${{ builder.ModelClass }})
+    {
+        ${{ builder.ModelClass }}->delete();
+    }
+    
+{% endblock %}
+
 {% block executeBatchDelete %}
     
     protected function executeBatchDelete(array $selected)

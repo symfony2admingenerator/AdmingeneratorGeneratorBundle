@@ -1,6 +1,0 @@
-{% block form_actions %}
-    <button type="submit" class="btn btn-primary">{{ echo_trans('delete.action.confirm') }}</button>
-    <a
-        href="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_list') }}"
-        class="btn">{{ echo_trans('delete.action.cancel') }}</a>
-{% endblock %}

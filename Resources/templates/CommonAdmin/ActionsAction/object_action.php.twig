@@ -37,7 +37,7 @@
         }
 
         return $this->render(
-            '{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Custom:index.html.twig',
+            '{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Actions:index.html.twig',
             $this->getAdditionalRenderParameters(
                 ${{ builder.ModelClass }}, 
                 '{{ action.name }}') + array(
@@ -47,7 +47,7 @@
                         array('%name%' => '{{ action.name }}'),
                         '{{ action.options.i18n|default('Admingenerator') }}'
                     ),
-                    "actionRoute" => "{{ builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_custom' }}",
+                    "actionRoute" => "{{ builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_object' }}",
                     "actionParams" => array("pk" => $pk, "action" => "{{ action.name }}"
                 )
             )

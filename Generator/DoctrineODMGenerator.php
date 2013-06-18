@@ -9,9 +9,6 @@ use Admingenerator\GeneratorBundle\Builder\DoctrineODM\ListBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\DoctrineODM\ListBuilderTemplate;
 use Admingenerator\GeneratorBundle\Builder\DoctrineODM\FiltersBuilderType;
 
-use Admingenerator\GeneratorBundle\Builder\DoctrineODM\DeleteBuilderAction;
-use Admingenerator\GeneratorBundle\Builder\DoctrineODM\DeleteBuilderTemplate;
-
 use Admingenerator\GeneratorBundle\Builder\DoctrineODM\EditBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\DoctrineODM\EditBuilderTemplate;
 use Admingenerator\GeneratorBundle\Builder\DoctrineODM\EditBuilderType;
@@ -65,11 +62,6 @@ class DoctrineODMGenerator extends Generator
             $generator->addBuilder(new ListBuilderAction());
             $generator->addBuilder(new ListBuilderTemplate());
             $generator->addBuilder(new FiltersBuilderType());
-        }
-
-        if (array_key_exists('delete', $builders)) {
-            $generator->addBuilder(new DeleteBuilderAction());
-            $generator->addBuilder(new DeleteBuilderTemplate());
         }
 
         if (array_key_exists('edit', $builders)) {

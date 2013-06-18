@@ -5,7 +5,10 @@ params:
     entity_manager: ~
     bundle_name: {{ bundle_name }}
     fields: ~
-
+    object_actions:
+        delete: ~
+    batch_actions:
+        delete: ~
 builders:
     list:
         params:
@@ -40,6 +43,9 @@ builders:
             actions:
                 list: ~
                 new: ~
-    delete:
+    actions:
         params:
-            title: "Are you sure you want to delete the object \"%object%\"?|{ %object%: YourModel.title }|"
+            object_actions:
+                delete: ~
+            batch_actions:
+                delete: ~

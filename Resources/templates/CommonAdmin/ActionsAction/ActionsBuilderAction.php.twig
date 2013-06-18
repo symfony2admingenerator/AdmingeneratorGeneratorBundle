@@ -51,23 +51,31 @@ class ActionsController extends BaseController
     }
 
     {% for action in builder.ObjectActions %}
-        {{- block('attemptObjectAction') -}}
-
-        {{- block('executeObjectAction') -}}
-
-        {{- block('successObjectAction') -}}
-
-        {{- block('errorObjectAction') -}}
+        {% if action is sameas('delete') %}
+            {{- block('attemptObjectDelete') -}}
+            {{- block('executeObjectDelete') -}}
+            {{- block('successObjectDelete') -}}
+            {{- block('errorObjectDelete') -}}
+        {% else %}
+            {{- block('attemptObjectAction') -}}
+            {{- block('executeObjectAction') -}}
+            {{- block('successObjectAction') -}}
+            {{- block('errorObjectAction') -}}
+        {% endif %}
     {% endfor %}
 
     {% for action in builder.BatchActions %}
-        {{- block('attemptBatchAction') -}}
-
-        {{- block('executeBatchAction') -}}
-
-        {{- block('successBatchAction') -}}
-
-        {{- block('errorBatchAction') -}}
+        {% if action is sameas('delete') %}
+            {{- block('attemptBatchDelete') -}}
+            {{- block('executeBatchDelete') -}}
+            {{- block('successBatchDelete') -}}
+            {{- block('errorBatchDelete') -}}
+        {% else %}
+            {{- block('attemptBatchAction') -}}
+            {{- block('executeBatchAction') -}}
+            {{- block('successBatchAction') -}}
+            {{- block('errorBatchAction') -}}
+        {% endif %}
     {% endfor %}
 
     {{- block('csrf_check_token') -}}
@@ -80,19 +88,6 @@ class ActionsController extends BaseController
         //The orm replace this method
     }
     {% endblock %}
-    
-    {{- block('attemptBatchDelete') -}}
-
-    {% block executeBatchDelete %}
-    protected function executeBatchDelete(array $selected)
-    {
-        //The orm replace this method
-    }
-    {% endblock %}
-
-    {{- block('successBatchDelete') -}}
-
-    {{- block('errorBatchDelete') -}}
 
     /**
      * Get additional parameters for rendering.

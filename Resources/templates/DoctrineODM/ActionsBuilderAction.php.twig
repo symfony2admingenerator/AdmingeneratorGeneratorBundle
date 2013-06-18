@@ -17,6 +17,18 @@
     
 {% endblock %}
 
+{% block executeObjectDelete %}
+    
+    protected function executeObjectDelete(\{{ model }} ${{ builder.ModelClass }})
+    {
+        $dm = $this->getDocumentManager();
+        $dm->remove(${{ builder.ModelClass }});
+        $dm->flush();
+        $dm->clear();
+    }
+    
+{% endblock %}
+
 {% block executeBatchDelete %}
     
     protected function executeBatchDelete(array $selected)

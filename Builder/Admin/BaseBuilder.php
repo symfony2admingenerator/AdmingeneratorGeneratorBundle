@@ -355,6 +355,14 @@ class BaseBuilder extends GenericBaseBuilder
         return $this->getVariable('namespace_prefix')
                .($this->hasVariable('subfolder') ? '_'.$this->getVariable('subfolder') : '');
     }
+    
+    public function getObjectActionsRoute()
+    {
+        return $this->getVariable('namespace_prefix').'_'
+               .$this->getVariable('bundle_name').'_'
+               .preg_match('%\w+$%', $this->getVariable('model'))
+               .'_object';
+    }
 
     /**
      * Get the PK column name
