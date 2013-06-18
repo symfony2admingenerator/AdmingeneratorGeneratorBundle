@@ -25,8 +25,8 @@ use Admingenerator\GeneratorBundle\Builder\Propel\NewBuilderType;
 use Admingenerator\GeneratorBundle\Builder\Propel\ShowBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\Propel\ShowBuilderTemplate;
 
-use Admingenerator\GeneratorBundle\Builder\Propel\CustomBuilderAction;
-use Admingenerator\GeneratorBundle\Builder\Propel\CustomBuilderTemplate;
+use Admingenerator\GeneratorBundle\Builder\Propel\ActionsBuilderAction;
+use Admingenerator\GeneratorBundle\Builder\Propel\ActionsBuilderTemplate;
 
 class PropelGenerator extends Generator
 {
@@ -99,9 +99,9 @@ class PropelGenerator extends Generator
             $generator->addBuilder(new ShowBuilderTemplate());
         }
 
-        if (array_key_exists('custom', $builders)) {
-            $generator->addBuilder(new CustomBuilderAction());
-            $generator->addBuilder(new CustomBuilderTemplate());
+        if (array_key_exists('actions', $builders)) {
+            $generator->addBuilder(new ActionsBuilderAction());
+            $generator->addBuilder(new ActionsBuilderTemplate());
         }
 
         $generator->writeOnDisk($this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));

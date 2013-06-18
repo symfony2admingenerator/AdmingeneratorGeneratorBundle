@@ -8,7 +8,7 @@ use Admingenerator\GeneratorBundle\Generator\Action;
  * This builder generates php for custom actions
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
-class CustomBuilder extends BaseBuilder
+class ActionsBuilder extends BaseBuilder
 {
     protected $object_actions;
 
@@ -20,7 +20,7 @@ class CustomBuilder extends BaseBuilder
      */
     public function getYamlKey()
     {
-        return 'custom';
+        return 'actions';
     }
 
     /**

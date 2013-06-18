@@ -1,6 +1,6 @@
-{% use '../CommonAdmin/CustomAction/object_action.php.twig' %}
-{% use '../CommonAdmin/CustomAction/batch_action.php.twig' %}
-{% use '../CommonAdmin/CustomAction/default_batch.php.twig' %}
+{% use '../CommonAdmin/ActionsAction/object_action.php.twig' %}
+{% use '../CommonAdmin/ActionsAction/batch_action.php.twig' %}
+{% use '../CommonAdmin/ActionsAction/default_batch.php.twig' %}
 {% use '../CommonAdmin/security_action.php.twig' %}
 {% use '../CommonAdmin/csrf_protection.php.twig' %}
 <?php
@@ -14,12 +14,12 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 {{ block('security_use') }}
 
-class CustomController extends BaseController
+class ActionsController extends BaseController
 {
     /**
      * Call custom object action based on $action parameter
      */
-    public function customObjectAction($pk, $action)
+    public function objectAction($pk, $action)
     {
         $methodName = 'attemptObject'.ucfirst(strtolower($action));
         return $this->$methodName($pk);
@@ -28,7 +28,7 @@ class CustomController extends BaseController
     /**
      * Call custom batch action based on $action parameter
      */
-    public function customBatchAction()
+    public function batchAction()
     {
         $action = $this->get('request')->get('action');
         $selected = $this->get('request')->get('selected');

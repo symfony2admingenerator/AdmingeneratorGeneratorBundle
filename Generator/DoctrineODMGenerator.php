@@ -23,8 +23,8 @@ use Admingenerator\GeneratorBundle\Builder\DoctrineODM\NewBuilderType;
 use Admingenerator\GeneratorBundle\Builder\DoctrineODM\ShowBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\DoctrineODM\ShowBuilderTemplate;
 
-use Admingenerator\GeneratorBundle\Builder\DoctrineODM\CustomBuilderAction;
-use Admingenerator\GeneratorBundle\Builder\DoctrineODM\CustomBuilderTemplate;
+use Admingenerator\GeneratorBundle\Builder\DoctrineODM\ActionsBuilderAction;
+use Admingenerator\GeneratorBundle\Builder\DoctrineODM\ActionsBuilderTemplate;
 
 class DoctrineODMGenerator extends Generator
 {
@@ -89,9 +89,9 @@ class DoctrineODMGenerator extends Generator
             $generator->addBuilder(new ShowBuilderTemplate());
         }
 
-        if (array_key_exists('custom', $builders)) {
-            $generator->addBuilder(new CustomBuilderAction());
-            $generator->addBuilder(new CustomBuilderTemplate());
+        if (array_key_exists('actions', $builders)) {
+            $generator->addBuilder(new ActionsBuilderAction());
+            $generator->addBuilder(new ActionsBuilderTemplate());
         }
 
         $generator->writeOnDisk($this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));

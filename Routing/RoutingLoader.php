@@ -16,16 +16,6 @@ class RoutingLoader extends FileLoader
                     'pattern'      => '/',
                     'defaults'     => array(),
                     'requirements' => array(),
-                    'methods'      => array(),
-                ),
-        'batch' => array(
-                    'pattern'      => '/batch',
-                    'defaults'     => array(),
-                    'requirements' => array(
-                        '_method' => 'POST'
-                    ),
-                    'methods'      => array(),
-                    'controller'   => 'list',
                 ),
         'delete' => array(
                     'pattern'      => '/{pk}/delete',
@@ -37,34 +27,35 @@ class RoutingLoader extends FileLoader
                     'pattern'      => '/{pk}/edit',
                     'defaults'     => array(),
                     'requirements' => array(),
-                    'methods'      => array(),
                 ),
         'update' => array(
                     'pattern'      => '/{pk}/update',
                     'defaults'     => array(),
-                    'requirements' => array(),
-                    'methods'      => array('POST'),
+                    'requirements' => array(
+                        '_method' => 'POST'
+                    ),
                     'controller'   => 'edit',
                 ),
         'show' => array(
                     'pattern'      => '/{pk}/show',
                     'defaults'     => array(),
                     'requirements' => array(),
-                    'methods'      => array(),
                 ),
-        'custom_object' => array(
-                    'pattern'      => '/{pk}/do/{action}',
+        'object' => array(
+                    'pattern'      => '/{pk}/{action}',
                     'defaults'     => array(),
-                    'requirements' => array(),
-                    'methods'      => array(),
-                    'controller'   => 'customObject',
+                    'requirements' => array(
+                        '_method' => 'POST'
+                    ),
+                    'controller'   => 'actions',
                 ),
-        'custom_batch' => array(
+        'batch' => array(
                     'pattern'      => '/batch',
                     'defaults'     => array(),
-                    'requirements' => array(),
-                    'methods'      => array('POST'),
-                    'controller'   => 'customBatch',
+                    'requirements' => array(
+                        '_method' => 'POST'
+                    ),
+                    'controller'   => 'actions',
                 ),
         'new' => array(
                     'pattern'      => '/new',
@@ -75,22 +66,21 @@ class RoutingLoader extends FileLoader
         'create' => array(
                     'pattern'      => '/create',
                     'defaults'     => array(),
-                    'requirements' => array(),
-                    'methods'      => array('POST'),
+                    'requirements' => array(
+                        '_method' => 'POST'
+                    ),
                     'controller'   => 'new',
                 ),
         'filters' => array(
                     'pattern'      => '/filter',
                     'defaults'     => array(),
                     'requirements' => array(),
-                    'methods'      => array(),
                     'controller'   => 'list',
                 ),
         'scopes' => array(
                     'pattern'      => '/scope/{group}/{scope}',
                     'defaults'     => array(),
                     'requirements' => array(),
-                    'methods'      => array(),
                     'controller'   => 'list',
                 ),
     );
@@ -131,7 +121,7 @@ class RoutingLoader extends FileLoader
                             . $bundle_name . ':'
                             . ucfirst($controller) . ':' . $action;
                 }
-                $route = new Route($datas['pattern'], $datas['defaults'], $datas['requirements'], array(), '', array(), $datas['methods']);
+                $route = new Route($datas['pattern'], $datas['defaults'], $datas['requirements']);
                 $collection->add($route_name, $route);
                 $collection->addResource(new FileResource($controllerName));
             }
