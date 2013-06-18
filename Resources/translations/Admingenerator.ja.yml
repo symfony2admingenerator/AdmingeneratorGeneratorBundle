@@ -84,6 +84,8 @@ action.object.edit:
 action.object.delete:
   label:    削除
   confirm:  選択したデータを削除します。よろしいですか?
+  success:  要素が正常に削除されています。
+  error:    要素を削除することはできません。
 action.object.show:
   label:    表示
 

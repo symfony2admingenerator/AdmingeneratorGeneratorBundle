@@ -88,6 +88,8 @@ action.object.edit:
 action.object.delete:
   label:    حذف کردن
   confirm:  آیا از حذف کردن این عنصر مطمئن می باشید؟
+  success:  عنصر با موفقیت حذف شده است.
+  error:    عنصر نمی تواند حذف شود.
 action.object.show:
   label:    نمایش
 

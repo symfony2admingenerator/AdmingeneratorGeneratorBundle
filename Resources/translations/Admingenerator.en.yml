@@ -88,6 +88,8 @@ action.object.edit:
 action.object.delete:
   label:    Delete
   confirm:  Are you sure you want to delete this element?
+  success:  Element has been successfully deleted.
+  error:    Element can't be deleted.
 action.object.show:
   label:    Show
 

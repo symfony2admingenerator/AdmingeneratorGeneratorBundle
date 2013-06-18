@@ -52,7 +52,7 @@ class ActionsController extends BaseController
     }
 
     {% for action in builder.ObjectActions %}
-        {% if action is sameas('delete') %}
+        {% if action.name is sameas('delete') %}
             {{- block('attemptObjectDelete') -}}
             {{- block('executeObjectDelete') -}}
             {{- block('successObjectDelete') -}}
@@ -66,7 +66,7 @@ class ActionsController extends BaseController
     {% endfor %}
 
     {% for action in builder.BatchActions %}
-        {% if action is sameas('delete') %}
+        {% if action.name is sameas('delete') %}
             {{- block('attemptBatchDelete') -}}
             {{- block('executeBatchDelete') -}}
             {{- block('successBatchDelete') -}}

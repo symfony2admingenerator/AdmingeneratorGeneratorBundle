@@ -84,6 +84,8 @@ action.object.edit:
 action.object.delete:
   label:    Видалити
   confirm:  Ви дійсно хочете видалити цей елемент?
+  success:  Елемент успішно видалено.
+  error:    Елемент не може бути видалений.
 action.object.show:
   label:    Переглянути
 

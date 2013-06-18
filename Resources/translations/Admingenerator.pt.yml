@@ -84,6 +84,8 @@ action.object.edit:
 action.object.delete:
   label:    Excluir
   confirm:  Tem certeza de que deseja excluir este elemento?
+  success:  Elemento foi excluído com sucesso.
+  error:    Elemento não pode ser excluído.
 action.object.show:
   label:    Mostrar
 

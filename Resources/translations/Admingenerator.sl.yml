@@ -84,6 +84,8 @@ action.object.edit:
 action.object.delete:
   label:    Izbriši
   confirm:  Ali ste prepričani, da želite izbrisati ta element?
+  success:  Element je bil uspešno izbrisan.
+  error:    Element, ki ga ni mogoče izbrisati.
 action.object.show:
   label:    Prikaži
 

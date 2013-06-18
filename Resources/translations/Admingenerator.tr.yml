@@ -76,6 +76,8 @@ action.object.edit:
 action.object.delete:
   label:    Sil
   confirm:  Bu öğeyi silmek istediğinize emin misiniz?
+  success:  Eleman başarıyla silindi.
+  error:    Eleman silinemez.
 action.object.show:
   label:    Göster
 

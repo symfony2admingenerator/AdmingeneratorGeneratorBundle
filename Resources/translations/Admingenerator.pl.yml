@@ -88,6 +88,8 @@ action.object.edit:
 action.object.delete:
   label:    Usuń
   confirm:  Czy potwierdzasz usunięcie elementu?
+  success:  Usunięto wskazany element.
+  error:    Element nie mógł zostać usunięty.
 action.object.show:
   label:    Pokaż
 

@@ -84,6 +84,8 @@ action.object.edit:
 action.object.delete:
   label:    Удалять
   confirm:  Вы действительно хотите удалить этот элемент?
+  success:  Элемент успешно удалены.
+  error:    Элемент не может быть удален.
 action.object.show:
   label:    Показывать
 
