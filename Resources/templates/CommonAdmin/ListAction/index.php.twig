@@ -25,7 +25,7 @@ use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ bu
 
         $form = $this->getFilterForm();
 
-        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}List:index.html.twig', $this->getAdditionalRenderParameters() + array(
+        return $this->render('{{ builder.namespacePrefixForTemplate }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}List:index.html.twig', $this->getAdditionalRenderParameters() + array(
             '{{ builder.ModelClass }}s' => $this->getPager(),
             'form'                      => $form->createView(),
             'sortColumn'                => $this->getSortColumn(),
