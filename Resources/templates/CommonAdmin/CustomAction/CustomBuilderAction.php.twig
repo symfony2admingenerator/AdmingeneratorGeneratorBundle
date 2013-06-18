@@ -9,7 +9,6 @@ namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.gene
 
 use {{ builder.generator.baseController }} as BaseController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 
 {{ block('csrf_protection_use') }}
 
@@ -29,10 +28,26 @@ class CustomController extends BaseController
     /**
      * Call custom batch action based on $action parameter
      */
-    public function customBatchAction($action)
+    public function customBatchAction()
     {
+        $action = $this->get('request')->get('action');
+        $selected = $this->get('request')->get('selected');
+            
+        if (!$selected || !$action) {
+            $this->get('session')->getFlashBag()->add(
+                'warning', 
+                $this->get('translator')->trans(
+                    "action.batch.warning", 
+                    array(), 
+                    'Admingenerator'
+                )
+            );
+
+            return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
+        }
+        
         $methodName = 'attemptBatch'.ucfirst(strtolower($action));
-        return $this->$methodName();
+        return $this->$methodName($selected);
     }
 
     {% for action in builder.ObjectActions %}

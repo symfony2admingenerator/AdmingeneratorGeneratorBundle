@@ -60,7 +60,7 @@ class RoutingLoader extends FileLoader
                     'controller'   => 'customObject',
                 ),
         'custom_batch' => array(
-                    'pattern'      => '/do/{action}',
+                    'pattern'      => '/batch',
                     'defaults'     => array(),
                     'requirements' => array(),
                     'methods'      => array('POST'),

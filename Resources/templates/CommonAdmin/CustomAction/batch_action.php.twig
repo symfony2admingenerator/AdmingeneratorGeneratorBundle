@@ -7,6 +7,8 @@
      * This function handles common batch actions behaviour like
      * checking CSRF protection token or credentials.
      *
+     * @param array $selected Selected \{{ model }} primary keys
+     *
      * To customize your action look into:
      * executeBatch{{ action.name|capitalize }}() - holds action logic
      * successBatch{{ action.name|capitalize }}() - called if action was successfull
@@ -16,23 +18,8 @@
     {
         try {
             {{ block('security_action') -}}
-
-            if ('POST' !== $this->get('request')->getMethod()) {
-                throw new MethodNotAllowedException();
-            }
             
             {{ block('csrf_action_check_batch_token') }}
-            
-            $selected = $this->get('request')->get('selected');
-            
-            if (!$selected) {
-                $this->get('session')->getFlashBag()->add(
-                    'warning', 
-                    $this->get('translator')->trans("action.batch.warning", array(), 'Admingenerator')
-                );
-
-                return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
-            }
 
             $this->executeBatch{{ action.name|capitalize }}($selected);
 
