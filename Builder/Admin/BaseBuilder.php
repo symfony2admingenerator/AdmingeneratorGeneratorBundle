@@ -363,8 +363,10 @@ class BaseBuilder extends GenericBaseBuilder
     
     public function getObjectActionsRoute()
     {
+        $model_name = preg_replace('%^.+?\\\(\w+)$%', '$1',  $this->getVariable('model'));
+        
         return $this->getVariable('namespace_prefix').'_'.$this->getVariable('bundle_name').'_'
-               .preg_match('%\w+$%', $this->getVariable('model')).'_object';
+               .$model_name.'_object';
     }
 
     /**
