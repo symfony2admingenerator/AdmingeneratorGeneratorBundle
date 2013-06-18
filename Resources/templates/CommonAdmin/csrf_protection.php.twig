@@ -20,13 +20,13 @@ use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 {% endblock %}
 
 {% block csrf_action_check_token %}
-    // Check CSRF token for action
-    $intention = $this->getRequest()->getRequestUri();
-    $this->isCsrfTokenValid($intention);
+// Check CSRF token for action
+$intention = $this->getRequest()->getRequestUri();
+$this->isCsrfTokenValid($intention);
 {% endblock %}
 
 {% block csrf_action_check_batch_token %}
-    // Check CSRF token for batch action
-    $intention = '{{ namespace_prefix }}_{{ bundle_name ~ (builder.BaseGeneratorName ? '_' ~ builder.BaseGeneratorName :'')}}_batch';
-    $this->isCsrfTokenValid($intention);
+// Check CSRF token for batch action
+$intention = '{{ namespace_prefix }}_{{ bundle_name ~ (builder.BaseGeneratorName ? '_' ~ builder.BaseGeneratorName :'')}}_batch';
+$this->isCsrfTokenValid($intention);
 {% endblock %}
