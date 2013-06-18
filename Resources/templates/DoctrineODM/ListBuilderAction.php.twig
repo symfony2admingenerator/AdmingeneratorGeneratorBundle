@@ -190,7 +190,7 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
     protected function doBatchDelete(array $selected)
     {
         try {
-            $delete = $this->getDocumentManager()
+            $this->getDocumentManager()
                 ->createQueryBuilder('{{ model }}')
                 ->remove()
                 ->field('_id')->in($selected)
