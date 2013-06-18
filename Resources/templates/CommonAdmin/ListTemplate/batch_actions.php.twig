@@ -32,7 +32,7 @@
 {% block form_batch_actions %}
     {{ echo_block("form_batch_actions") }}
     {% if batch_actions is defined and batch_actions|length > 0 %}
-        {% set actionPathName = builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_batch' %}
+        {% set actionPathName = builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_custom_batch' %}
         <form id="form-list" method="post" action="{{ echo_path(actionPathName) }}">
             <input type="hidden" value="{{ echo_twig_filter(actionPathName, 'csrf_token', true) }}" name="_csrf_token" />
     {% endif %}

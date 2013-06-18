@@ -36,17 +36,22 @@
             return $this->errorObject{{ action.name|capitalize }}($e, ${{ builder.ModelClass }});
         }
 
-        return $this->render('{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Custom:index.html.twig',
-            $this->getAdditionalRenderParameters(${{ builder.ModelClass }}, '{{ action.name }}') + array(
-                "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
-                "title" => $this->get('translator')->trans(
-                    "{{ action.options.title|default("action.custom.title") }}",
-                    array('%name%' => '{{ action.name }}'),
-                    '{{ action.options.i18n|default('Admingenerator') }}'
-                ),
-                "actionRoute" => "{{ builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_custom' }}",
-                "actionParams" => array("pk" => $pk, "action" => "{{ action.name }}")
-        ));
+        return $this->render(
+            '{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Custom:index.html.twig',
+            $this->getAdditionalRenderParameters(
+                ${{ builder.ModelClass }}, 
+                '{{ action.name }}') + array(
+                    "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
+                    "title" => $this->get('translator')->trans(
+                        "{{ action.options.title|default("action.custom.title") }}",
+                        array('%name%' => '{{ action.name }}'),
+                        '{{ action.options.i18n|default('Admingenerator') }}'
+                    ),
+                    "actionRoute" => "{{ builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_custom' }}",
+                    "actionParams" => array("pk" => $pk, "action" => "{{ action.name }}"
+                )
+            )
+        );
     }
 
 {% endblock %}
@@ -75,12 +80,14 @@
      */
     public function successObject{{ action.name|capitalize }}(${{ builder.ModelClass }})
     {
-        $this->get('session')->getFlashBag()->add('success',
+        $this->get('session')->getFlashBag()->add(
+            'success',
             $this->get('translator')->trans(
                 "{{ action.options.success|default("action.custom.success") }}",
                 array('%name%' => '{{ action.name }}'),
                 '{{ action.options.i18n|default('Admingenerator') }}'
-        ));
+            )
+        );
 
         return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
     }
@@ -99,12 +106,14 @@
      */
     public function errorObject{{ action.name|capitalize }}(\Exception $e, ${{ builder.ModelClass }} = null)
     {
-        $this->get('session')->getFlashBag()->add('error',
+        $this->get('session')->getFlashBag()->add(
+            'error',
             $this->get('translator')->trans(
                 "{{ action.options.error|default("action.custom.error") }}",
                 array('%name%' => '{{ action.name }}'),
                 '{{ action.options.i18n|default('Admingenerator') }}'
-        ));
+            )
+        );
 
         return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
     }

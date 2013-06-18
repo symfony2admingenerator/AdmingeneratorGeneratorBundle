@@ -1,6 +1,7 @@
 {% extends '../CommonAdmin/CustomAction/CustomBuilderAction.php.twig' %}
 
-{% block getObject -%}
+{% block getObject %}
+
     protected function getObject($pk)
     {
         ${{ builder.ModelClass }} = \{{ model }}Query::create()->findPk($pk);
@@ -11,4 +12,16 @@
 
         return ${{ builder.ModelClass }} ?: null;
     }
+    
+{% endblock %}
+
+{% block executeBatchDelete %}
+    
+    protected function executeBatchDelete(array $selected)
+    {
+        \{{ model }}Query::create()
+            ->filterByPrimaryKeys($selected)
+            ->delete();
+    }
+    
 {% endblock %}

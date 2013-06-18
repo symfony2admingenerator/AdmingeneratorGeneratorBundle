@@ -1,6 +1,7 @@
 {% extends '../CommonAdmin/CustomAction/CustomBuilderAction.php.twig' %}
 
-{% block getObject -%}
+{% block getObject %}
+
     protected function getObject($pk)
     {
         ${{ builder.ModelClass }} = $this->getDocumentManager()
@@ -13,4 +14,17 @@
 
         return ${{ builder.ModelClass }} ?: null;
     }
+    
+{% endblock %}
+
+{% block executeBatchDelete %}
+    
+    protected function executeBatchDelete(array $selected)
+    {
+        $this->getDoctrineMongoDB()
+            ->getDocumentManager()
+            ->createQuery(sprintf('delete from {{ model }} q where q.{{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} IN (%s)', implode(',', $selected)))
+            ->execute();
+    }
+    
 {% endblock %}

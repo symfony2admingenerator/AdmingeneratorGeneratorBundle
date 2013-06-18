@@ -1,5 +1,6 @@
 {% use '../CommonAdmin/CustomAction/object_action.php.twig' %}
 {% use '../CommonAdmin/CustomAction/batch_action.php.twig' %}
+{% use '../CommonAdmin/CustomAction/default_batch.php.twig' %}
 {% use '../CommonAdmin/security_action.php.twig' %}
 {% use '../CommonAdmin/csrf_protection.php.twig' %}
 <?php
@@ -28,7 +29,7 @@ class CustomController extends BaseController
     /**
      * Call custom batch action based on $action parameter
      */
-    public function customObjectAction($action)
+    public function customBatchAction($action)
     {
         $methodName = 'attemptBatch'.ucfirst(strtolower($action));
         return $this->$methodName();
@@ -58,12 +59,25 @@ class CustomController extends BaseController
 
     {{- block('security_check_with_object') }}
 
-    {% block getObject -%}
+    {% block getObject %}
     protected function getObject($pk)
     {
         //The orm replace this method
     }
     {% endblock %}
+    
+    {{- block('attemptBatchDelete') -}}
+
+    {% block executeBatchDelete %}
+    protected function executeBatchDelete(array $selected)
+    {
+        //The orm replace this method
+    }
+    {% endblock %}
+
+    {{- block('successBatchDelete') -}}
+
+    {{- block('errorBatchDelete') -}}
 
     /**
      * Get additional parameters for rendering.

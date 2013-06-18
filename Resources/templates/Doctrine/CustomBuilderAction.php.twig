@@ -1,6 +1,7 @@
 {% extends '../CommonAdmin/CustomAction/CustomBuilderAction.php.twig' %}
 
-{% block getObject -%}
+{% block getObject %}
+
     protected function getObject($pk)
     {
         ${{ builder.ModelClass }} = $this->getDoctrine()
@@ -14,4 +15,17 @@
 
         return ${{ builder.ModelClass }} ?: null;
     }
+    
+{% endblock %}
+
+{% block executeBatchDelete %}
+    
+    protected function executeBatchDelete(array $selected)
+    {
+        $this->getDoctrine()->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %})
+            ->createQuery('DELETE {{ model }} m WHERE m.{{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} IN (:selected)')
+            ->setParameter('selected', $selected)
+            ->getResult();
+    }
+    
 {% endblock %}
