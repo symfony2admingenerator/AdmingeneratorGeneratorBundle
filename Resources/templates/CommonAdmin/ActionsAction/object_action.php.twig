@@ -12,7 +12,7 @@
      * successObject{{ action.name|capitalize }}() - called if action was successfull
      * errorObject{{ action.name|capitalize }}()   - called if action errored
      */
-    public function attemptObject{{ action.name|capitalize }}($pk)
+    protected function attemptObject{{ action.name|capitalize }}($pk)
     {
         try {
             ${{ builder.ModelClass }} = $this->getObject($pk);
@@ -59,7 +59,7 @@
     /**
      * This function is for you to customize what action actually does
      */
-    public function executeObject{{ action.name|capitalize }}(${{ builder.ModelClass }})
+    protected function executeObject{{ action.name|capitalize }}(\{{ model }} ${{ builder.ModelClass }})
     {
         // By default action does nothing
         // Overwrite this function!
@@ -76,7 +76,7 @@
      * @param \{{ model }} ${{ builder.ModelClass }} Your \{{ model }} object
      * @return Response Must return a response!
      */
-    public function successObject{{ action.name|capitalize }}(${{ builder.ModelClass }})
+    protected function successObject{{ action.name|capitalize }}(\{{ model }} ${{ builder.ModelClass }})
     {
         $this->get('session')->getFlashBag()->add(
             'success',
@@ -102,7 +102,7 @@
      * @param \{{ model }} ${{ builder.ModelClass }} Your \{{ model }} object
      * @return Response Must return a response!
      */
-    public function errorObject{{ action.name|capitalize }}(\Exception $e, ${{ builder.ModelClass }} = null)
+    protected function errorObject{{ action.name|capitalize }}(\Exception $e, \{{ model }} ${{ builder.ModelClass }} = null)
     {
         $this->get('session')->getFlashBag()->add(
             'error',
