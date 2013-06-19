@@ -128,3 +128,6 @@ filetype:
 delete.action:
   confirm: Si
   cancel: No
+
+paginator.list:
+  maxPerPage: Elementos por página
