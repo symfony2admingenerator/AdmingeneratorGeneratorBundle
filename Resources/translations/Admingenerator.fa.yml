@@ -18,6 +18,8 @@ boolean:
 pagerfanta:
   previous: قبلی
   next:     بعدی
+  view.perpage:   نمایش
+  num.elements:   %number% عناصر
 
 # List
 list:

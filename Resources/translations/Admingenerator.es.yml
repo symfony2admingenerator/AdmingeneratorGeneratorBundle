@@ -16,8 +16,10 @@ boolean:
 
 # Pager
 pagerfanta:
-  previous: Anterior
-  next:     Siguiente
+  previous:       Anterior
+  next:           Siguiente
+  view.perpage:   Mostrar
+  num.elements:   %number% elementos
 
 # List
 list:
@@ -134,7 +136,3 @@ filetype:
   text-document:    Documento<br />de texto
   unknown:          Tipo de archivo<br />desconocido
   video:            Video
-
-delete.action:
-  confirm: Si
-  cancel: No
