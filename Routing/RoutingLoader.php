@@ -39,9 +39,7 @@ class RoutingLoader extends FileLoader
         'object' => array(
                     'pattern'      => '/{pk}/{action}',
                     'defaults'     => array(),
-                    'requirements' => array(
-                        '_method' => 'POST'
-                    ),
+                    'requirements' => array(),
                     'controller'   => 'actions',
                 ),
         'batch' => array(
