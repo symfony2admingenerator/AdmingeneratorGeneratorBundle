@@ -1,4 +1,3 @@
-{% use '../CommonAdmin/security_action.php.twig' %}
 {% use '../CommonAdmin/csrf_protection.php.twig' %}
 
 {% block attemptBatchAction %}
@@ -17,8 +16,6 @@
     public function attemptBatch{{ action.name|capitalize }}(array $selected)
     {
         try {
-            {{ block('security_action') -}}
-            
             {{ block('csrf_action_check_batch_token') }}
 
             $this->executeBatch{{ action.name|capitalize }}($selected);
