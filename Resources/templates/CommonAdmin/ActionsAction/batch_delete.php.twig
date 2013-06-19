@@ -1,3 +1,4 @@
+{% use '../CommonAdmin/security_action.php.twig' %}
 {% use '../CommonAdmin/csrf_protection.php.twig' %}
 
 {% block attemptBatchDelete %}
@@ -16,6 +17,8 @@
     public function attemptBatchDelete(array $selected)
     {
         try {
+            {{ block('security_action') }}
+            
             {{ block('csrf_action_check_batch_token') }}
 
             $this->executeBatchDelete($selected);

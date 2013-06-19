@@ -83,6 +83,8 @@ class ActionsController extends BaseController
 
     {{- block('security_check_with_object') }}
 
+    {{- block('security_check') }}
+
     {% block getObject %}
     protected function getObject($pk)
     {
