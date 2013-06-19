@@ -21,11 +21,22 @@
 /* List pagination styles */
 
 .pagination {
-    margin: 0;
+   margin: 0px;
+   font-size: 14px;
 }
 
-.btn-toolbar + .pagination {
-   margin-top: 5px;
+.pagination .perpage {
+    min-width: 50px;
+}
+
+/* List actions bar styles */
+
+.form-actions.list-actions {
+  padding: 9px 20px 0px;
+}
+
+.list-actions > .btn-toolbar + .btn-toolbar {
+   margin-left: 10px;
 }
 
 /* Fieldset styles */
@@ -294,6 +305,8 @@ tbody.files > tr > td > span {
 }
 
 /* Reset button styles on input element */
+.btn.btn-reset, 
+.btn.btn-reset:hover,
 input.btn.btn-reset, 
 input.btn.btn-reset:hover {
     display: inline-block;

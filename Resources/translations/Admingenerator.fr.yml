@@ -18,6 +18,8 @@ boolean:
 pagerfanta:
   previous: Précédent
   next:     Suivant
+  view.perpage:   Montrer
+  num.elements:   %number% éléments
 
 # List
 list:
@@ -129,10 +131,3 @@ filetype:
   text-document:    Document<br />texte
   unknown:          Type de fichier<br />inconnu
   video:            Vidéo
-
-delete.action:
-  confirm: Oui
-  cancel: Non
-
-paginator.list:
-  maxPerPage: Nombre max par page

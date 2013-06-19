@@ -43,16 +43,21 @@
                     {{- block('list_tbody') }}
                 </table>
 
-                <div id="list_toolbar" class="form-actions">
-                    <div class="pull-left">
-                      {{- block('list_batch_actions') }}
+                <div class="form-actions list-actions">
+                    <div id="batch_actions" class="pull-left btn-toolbar">
+                        {{ block('list_batch_actions') }}
                     </div>
-                    {{- block('list_paginator') -}}
-                </div>
-
-                <div id="generic_actions" class="form-actions">
-                    <div class="btn-toolbar">
+                    
+                    <div id="generic_actions" class="pull-left btn-toolbar">
                         {{ block('list_actions') -}}
+                    </div>
+          
+                    <div class="pull-right btn-toolbar">
+                        {{- block('list_paginator_perpage') -}}
+                    </div>
+                    
+                    <div class="pull-right btn-toolbar">
+                        {{- block('list_paginator_pages') -}}
                     </div>
                 </div>
             {{- block('endform_batch_actions') }}

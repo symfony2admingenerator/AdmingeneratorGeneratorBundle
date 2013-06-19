@@ -1,21 +1,21 @@
 {% block list_actions %}
 {{ echo_block("list_actions") }}
     {% if builder.Actions|length > 0 %}
-          {% for action in builder.Actions %}
-              {{ echo_block("list_object_action_" ~ action.name) }}
-              {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
-                  {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') ) }}
-              {% endif %}
+        {% for action in builder.Actions %}
+            {{ echo_block("list_object_action_" ~ action.name) }}
+            {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
+                {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') ) }}
+            {% endif %}
 
-              {{ block('generic_action_block') }}
+            {{ block('generic_action_block') }}
 
-              {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
-                  {{ echo_endif () }}
-              {% endif %}
-              {{ echo_endblock() }}
-          {% endfor %}
+            {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
+                {{ echo_endif () }}
+            {% endif %}
+            {{ echo_endblock() }}
+        {% endfor %}
 
-          {{ block('generic_actions_script') }}
+        {{ block('generic_actions_script') }}
     {% endif %}
 {{ echo_endblock() }}
 {% endblock %}
