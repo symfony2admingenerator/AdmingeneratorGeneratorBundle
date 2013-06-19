@@ -17,7 +17,7 @@ project.
 
 This PR introduces a new builder called `actions` which is used to generate 
 stubs for custom actions. For more information on actions builder read actions builder 
-[documentation][https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/builders/actions-builder.md].
+[documentation](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/builders/actions-builder.md).
 
 #### B/C breaks:
 
