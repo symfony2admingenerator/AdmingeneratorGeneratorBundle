@@ -232,7 +232,7 @@ actually does. In our example we can do that by editing
         // In this example I use Doctrine ORM
         $em = $this->getDoctrine()->getManager();
         // Lock users
-        $em->createQuery('UPDATE User u SET u.locked = :locked WHERE u.id IN (:selected)')
+        $em->createQuery('UPDATE Acme\SecurityBundle\Entity\User u SET u.locked = :locked WHERE u.id IN (:selected)')
            ->setParameter('locked', true)
            ->setParameter('selected', $selected)
            ->getResult();
