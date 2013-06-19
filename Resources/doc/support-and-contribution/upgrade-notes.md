@@ -16,7 +16,8 @@ project.
 #### Description:
 
 This PR introduces a new builder called `actions` which is used to generate 
-stubs for custom actions. For more info visit documentation.
+stubs for custom actions. For more information on actions builder read actions builder 
+[documentation][https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/builders/actions-builder.md].
 
 #### B/C breaks:
 
@@ -66,4 +67,3 @@ Generate `Actions` builder bundle structure:
 > **Note:** When generating bundle structure, if a file already exists, it will be
 renamed to `oldname~` before new file is generated. If a copy already exists, an 
 incrementing number will be appended to new copy's name (e.g. `oldname~1`).
-
