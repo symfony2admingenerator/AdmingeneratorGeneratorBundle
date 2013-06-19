@@ -33,10 +33,12 @@
     
     protected function executeBatchDelete(array $selected)
     {
-        $this->getDoctrineMongoDB()
-            ->getDocumentManager()
-            ->createQuery(sprintf('delete from {{ model }} q where q.{{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} IN (%s)', implode(',', $selected)))
-            ->execute();
+        $this->getDocumentManager()
+             ->createQueryBuilder('{{ model }}')
+             ->remove()
+             ->field('_id')->in($selected)
+             ->getQuery()
+             ->execute();
     }
     
 {% endblock %}
