@@ -64,31 +64,31 @@ class ListBuilder extends BaseBuilder
 
         foreach ($filters['display'] as $columnName) {
             $column = new Column($columnName);
-            
+
             $column->setDbType($this->getFieldOption(
-                $column, 
-                'dbType', 
+                $column,
+                'dbType',
                 $this->getFieldGuesser()->getDbType(
-                    $this->getVariable('model'), 
+                    $this->getVariable('model'),
                     $columnName
                 )
             ));
-            
+
             $column->setFormType($this->getFieldOption(
-                $column, 
-                'filterType', 
+                $column,
+                'filterType',
                 $this->getFieldGuesser()->getFilterType(
-                    $column->getDbType(), 
+                    $column->getDbType(),
                     $columnName
                 )
             ));
-            
+
             $column->setFormOptions($this->getFieldOption(
-                $column, 
-                'filterOptions', 
+                $column,
+                'filterOptions',
                 $this->getFieldGuesser()->getFilterOptions(
-                    $column->getFormType(), 
-                    $column->getDbType(), 
+                    $column->getFormType(),
+                    $column->getDbType(),
                     $columnName
                 )
             ));
@@ -116,13 +116,13 @@ class ListBuilder extends BaseBuilder
     protected function setUserObjectActionConfiguration(Action $action)
     {
         $builderOptions = $this->getVariable(
-            sprintf('object_actions[%s]', $action->getName()), 
-            array(), 
+            sprintf('object_actions[%s]', $action->getName()),
+            array(),
             true
         );
-        
+
         $globalOptions = $this->getGenerator()->getFromYaml(
-            'params.object_actions.'.$action->getName(), 
+            'params.object_actions.'.$action->getName(),
             array()
         );
 
@@ -145,7 +145,7 @@ class ListBuilder extends BaseBuilder
     protected function findObjectActions()
     {
         $objectActions = $this->getVariable('object_actions', array());
-        
+
         foreach ($objectActions as $actionName => $actionParams) {
             $action = $this->findObjectAction($actionName);
             if(!$action) {
@@ -174,10 +174,10 @@ class ListBuilder extends BaseBuilder
     {
         $builderOptions = $this->getVariable(
             sprintf('batch_actions[%s]', $action->getName()),
-            array(), 
+            array(),
             true
         );
-        
+
         $globalOptions = $this->getGenerator()->getFromYaml(
             'params.batch_actions.'.$action->getName(), array()
         );
@@ -201,7 +201,7 @@ class ListBuilder extends BaseBuilder
     protected function findBatchActions()
     {
         $batchActions = $this->getVariable('batch_actions', array());
-        
+
         foreach ($batchActions as $actionName => $actionParams) {
             $action = $this->findBatchAction($actionName);
             if(!$action) {

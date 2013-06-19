@@ -35,10 +35,76 @@ abstract class BaseBuilder extends GenericBaseBuilder
         'Admingenerator\GeneratorBundle\Twig\Extension\EchoExtension',
     );
 
+    /**
+     * @var array
+     */
+    protected $templatesToGenerate = array();
+
     public function __construct()
     {
         parent::__construct();
         $this->variables = new ParameterBag(array());
+    }
+
+    /**
+     * Set files to generate
+     *
+     * @param array $templatesToGenerate
+     *     key:   template file
+     *     value: output file name
+     */
+    public function setTemplatesToGenerate(array $templatesToGenerate)
+    {
+        $this->templatesToGenerate = $templatesToGenerate;
+    }
+
+    /**
+     * Add a file to generate
+     *
+     * @param string $template
+     * @param string $outputName
+     */
+    public function addTemplateToGenerate($template, $outputName)
+    {
+        $this->templatesToGenerate[$template] = $outputName;
+    }
+
+    /**
+     * Retrieve files to generate.
+     *
+     * @return array
+     */
+    public function getTemplatesToGenerate()
+    {
+        return $this->templatesToGenerate;
+    }
+
+    /**
+     * Check if builder must generate multiple files
+     * based on templatesToGenerate property.
+     *
+     * @return boolean
+     */
+    public function isMultiTemplatesBuilder()
+    {
+        return !empty($this->templatesToGenerate);
+    }
+
+    /**
+     * (non-PHPdoc)
+     * @see \TwigGenerator\Builder\BaseBuilder::writeOnDisk()
+     */
+    public function writeOnDisk($outputDirectory)
+    {
+        if ($this->isMultiTemplatesBuilder()) {
+            foreach ($this->getTemplatesToGenerate() as $templateName => $outputName) {
+                $this->setOutputName($outputName);
+                $this->setTemplateName($templateName);
+                parent::writeOnDisk($outputDirectory);
+            }
+        } else {
+            parent::writeOnDisk($outputDirectory);
+        }
     }
 
     /**

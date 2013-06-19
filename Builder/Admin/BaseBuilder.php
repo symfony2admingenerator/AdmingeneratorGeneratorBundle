@@ -50,7 +50,7 @@ class BaseBuilder extends GenericBaseBuilder
             $column = new $this->columnClass($columnName);
 
             $column->setDbType($this->getFieldOption(
-                $column, 
+                $column,
                 'dbType',
                 $this->getFieldGuesser()->getDbType(
                     $this->getVariable('model'), $columnName
@@ -60,16 +60,16 @@ class BaseBuilder extends GenericBaseBuilder
             if ($this->getYamlKey() != 'list' && $this->getYamlKey() != 'nested_list') {
 
                 $column->setFormType($this->getFieldOption(
-                    $column, 
+                    $column,
                     'formType',
                     $this->getFieldGuesser()->getFormType(
-                        $column->getDbType(), 
+                        $column->getDbType(),
                         $columnName
                     )
                 ));
 
                 $column->setFormOptions($this->getFieldOption(
-                    $column, 
+                    $column,
                     'formOptions',
                     $this->getFieldGuesser()->getFormOptions(
                         $column->getFormType(),
@@ -99,7 +99,7 @@ class BaseBuilder extends GenericBaseBuilder
     {
         $options = $this->getVariable(
             sprintf('fields[%s]', $column->getName()),
-            array(), 
+            array(),
             true
         );
 
@@ -110,7 +110,7 @@ class BaseBuilder extends GenericBaseBuilder
     {
         $options = $this->getVariable(
             sprintf('fields[%s]', $column->getName()),
-            array(), 
+            array(),
             true
         );
 
@@ -247,7 +247,7 @@ class BaseBuilder extends GenericBaseBuilder
     {
         $options = $this->getVariable(
             sprintf('actions[%s]', $action->getName()),
-            array(), 
+            array(),
             true
         );
 
@@ -267,7 +267,7 @@ class BaseBuilder extends GenericBaseBuilder
     {
         foreach ($this->getVariable('actions', array()) as $actionName => $actionParams) {
             $action = $this->findGenericAction($actionName);
-            
+
             if (!$action) {
                 $action = new Action($actionName);
             }
@@ -321,6 +321,7 @@ class BaseBuilder extends GenericBaseBuilder
 
     /**
      * Parse a little template with twig for yaml options
+     * From @sescandell: is this function still used????
      */
     public function parseStringWithTwig($template, $options = array())
     {
@@ -360,7 +361,7 @@ class BaseBuilder extends GenericBaseBuilder
     {
         return str_replace('\\', '', $this->getVariable('namespace_prefix'));
     }
-    
+
     public function getObjectActionsRoute()
     {
         return $this->getVariable('namespace_prefix').'_'.$this->getVariable('bundle_name').'_'
