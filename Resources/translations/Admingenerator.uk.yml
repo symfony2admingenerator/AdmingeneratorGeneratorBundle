@@ -16,8 +16,10 @@ boolean:
 
 # Pager
 pagerfanta:
-  previous: Поп
-  next:     Наст
+  previous:       Поп
+  next:           Наст
+  view.perpage:   Показати 
+  num.elements:   %number% елементів
 
 # List
 list:

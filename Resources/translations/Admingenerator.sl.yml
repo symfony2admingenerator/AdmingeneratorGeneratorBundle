@@ -16,8 +16,10 @@ boolean:
 
 # Pager
 pagerfanta:
-  previous: Nazaj
-  next:     Naprej
+  previous:       Nazaj
+  next:           Naprej
+  view.perpage:   Prikazal
+  num.elements:   %number% elementov
 
 # List
 list:

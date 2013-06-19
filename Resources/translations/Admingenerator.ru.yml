@@ -16,9 +16,11 @@ boolean:
 
 # Pager
 pagerfanta:
-  previous: Пред
-  next:     След
-
+  previous:       Пред
+  next:           След
+  view.perpage:   Показать 
+  num.elements:   %number% элементов
+  
 # List
 list:
   no.results: Нет записей.

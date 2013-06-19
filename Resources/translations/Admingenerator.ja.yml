@@ -16,8 +16,10 @@ boolean:
 
 # Pager
 pagerfanta:
-  previous: 前へ
-  next:     次へ
+  previous:       前へ
+  next:           次へ
+  view.perpage:   を表示する
+  num.elements:   %number%つの要素
 
 # List
 list:
