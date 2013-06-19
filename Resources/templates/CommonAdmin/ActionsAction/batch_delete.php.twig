@@ -1,0 +1,90 @@
+{% use '../CommonAdmin/security_action.php.twig' %}
+{% use '../CommonAdmin/csrf_protection.php.twig' %}
+
+{% block attemptBatchDelete %}
+    
+    /**
+     * This function handles common batch actions behaviour like
+     * checking CSRF protection token or credentials.
+     *
+     * @param array $selected Selected \{{ model }} primary keys
+     *
+     * To customize your action look into:
+     * executeBatchDelete() - holds action logic
+     * successBatchDelete() - called if action was successfull
+     * errorBatchDelete()   - called if action errored
+     */
+    public function attemptBatchDelete(array $selected)
+    {
+        try {
+            {{ block('security_action') }}
+            
+            {{ block('csrf_action_check_batch_token') }}
+
+            $this->executeBatchDelete($selected);
+
+            return $this->successBatchDelete();
+
+        } catch (\Exception $e) {
+            return $this->errorBatchDelete($e);
+        }
+    }
+    
+{% endblock %}
+
+{% block executeBatchDelete %}
+
+    /**
+     * This function is for you to customize what action actually does
+     */
+    public function executeBatchDelete(array $selected)
+    {
+        //The orm replace this method
+    }
+
+{% endblock %}
+
+{% block successBatchDelete %}
+    
+    /**
+     * This is called when batch action is successfull
+     * Default behavior is redirecting to list with success message
+     *
+     * @return Response Must return a response!
+     */
+    public function successBatchDelete()
+    {
+        $this->get('session')->getFlashBag()->add(
+            'success',
+            $this->get('translator')->trans(
+                "action.batch.delete.success", array(), 'Admingenerator'
+            )
+        );
+
+        return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
+    }
+    
+{% endblock %}
+            
+{% block errorBatchDelete %}
+
+    /**
+     * This is called when batch action throws an exception
+     * Default behavior is redirecting to list with error message
+     *
+     * @param \Exception $e Exception
+     * @return Response Must return a response!
+     */
+    public function errorBatchDelete(\Exception $e)
+    {
+        $this->get('session')->getFlashBag()->add(
+            'error',
+            $this->get('translator')->trans(
+                "action.batch.delete.error", array(), 'Admingenerator'
+            )
+        );
+
+        return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
+    }
+    
+{% endblock %}

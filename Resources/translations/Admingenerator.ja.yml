@@ -84,6 +84,8 @@ action.object.edit:
 action.object.delete:
   label:    削除
   confirm:  選択したデータを削除します。よろしいですか?
+  success:  要素が正常に削除されています。
+  error:    要素を削除することはできません。
 action.object.show:
   label:    表示
 
@@ -93,6 +95,14 @@ action.batch.delete:
   confirm:  選択したすべてのデータを削除します。よろしいですか?
   success:  データの削除が正常に完了しました。
   error:    データの削除に失敗しました。
+
+# Custom actions
+action.custom:
+  title:    あなたはの%name%のアクションを実行してもよろしいですか？
+  success:  の%name%のアクションは正常に実行されました。
+  error:    の%name%のアクションを実行できませんでした。
+  confirm:  確認する
+  cancel:   キャンセル
 
 # Batch list
 batch.list:

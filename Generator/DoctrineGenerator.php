@@ -11,9 +11,6 @@ use Admingenerator\GeneratorBundle\Builder\Doctrine\NestedListBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\NestedListBuilderTemplate;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\FiltersBuilderType;
 
-use Admingenerator\GeneratorBundle\Builder\Doctrine\DeleteBuilderAction;
-use Admingenerator\GeneratorBundle\Builder\Doctrine\DeleteBuilderTemplate;
-
 use Admingenerator\GeneratorBundle\Builder\Doctrine\EditBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\EditBuilderTemplate;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\EditBuilderType;
@@ -24,6 +21,9 @@ use Admingenerator\GeneratorBundle\Builder\Doctrine\NewBuilderType;
 
 use Admingenerator\GeneratorBundle\Builder\Doctrine\ShowBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\ShowBuilderTemplate;
+
+use Admingenerator\GeneratorBundle\Builder\Doctrine\ActionsBuilderAction;
+use Admingenerator\GeneratorBundle\Builder\Doctrine\ActionsBuilderTemplate;
 
 class DoctrineGenerator extends Generator
 {
@@ -73,11 +73,6 @@ class DoctrineGenerator extends Generator
             $generator->addBuilder(new FiltersBuilderType());
         }
 
-        if (array_key_exists('delete', $builders)) {
-            $generator->addBuilder(new DeleteBuilderAction());
-            $generator->addBuilder(new DeleteBuilderTemplate());
-        }
-
         if (array_key_exists('edit', $builders)) {
             $generator->addBuilder(new EditBuilderAction());
             $generator->addBuilder(new EditBuilderTemplate());
@@ -93,6 +88,11 @@ class DoctrineGenerator extends Generator
         if (array_key_exists('show', $builders)) {
             $generator->addBuilder(new ShowBuilderAction());
             $generator->addBuilder(new ShowBuilderTemplate());
+        }
+
+        if (array_key_exists('actions', $builders)) {
+            $generator->addBuilder(new ActionsBuilderAction());
+            $generator->addBuilder(new ActionsBuilderTemplate());
         }
 
         $generator->writeOnDisk($this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));

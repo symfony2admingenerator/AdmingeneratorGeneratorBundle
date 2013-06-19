@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 class DoctrineORMFieldGuesser extends ContainerAware
 {
     private $doctrine;
-    
+
     private $entityManager;
 
     private $metadata;
@@ -21,12 +21,12 @@ class DoctrineORMFieldGuesser extends ContainerAware
     {
         $this->doctrine = $doctrine;
     }
-    
+
     public function setEntityManager($manager = null)
     {
         $this->entityManager = $this->doctrine->getManager($manager);
     }
-    
+
     public function getEntityManager()
     {
         return $this->entityManager;
@@ -157,9 +157,9 @@ class DoctrineORMFieldGuesser extends ContainerAware
               $precision = $mapping['scale'];
             if (isset($mapping['precision']))
               $precision = $mapping['precision'];
-            
+
             return array(
-	        'precision' => isset($precision) ? $precision : '',
+            'precision' => isset($precision) ? $precision : '',
                 'required'  => $this->isRequired($columnName)
             );
         }
@@ -197,7 +197,7 @@ class DoctrineORMFieldGuesser extends ContainerAware
     public function getFilterOptions($formType, $dbType, $ColumnName)
     {
         $options = array('required' => false);
-        
+
         if ('boolean' == $dbType) {
             $options['choices'] = array(
                0 => $this->container->get('translator')->trans('boolean.no', array(), 'Admingenerator'),

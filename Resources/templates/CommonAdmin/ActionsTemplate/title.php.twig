@@ -1,0 +1,13 @@
+{% block title %}
+    {{ echo_block("page_title") }}
+        <header>
+            <h1>{{ echo_twig('title') }}</h1>
+        </header>
+    {{ echo_endblock() }}
+{% endblock %}
+
+{% block site_title %}
+    {{ echo_block("title") }}
+        {{ echo_twig('parent()') }} - {{ echo_twig('title') }}
+    {{ echo_endblock() }}
+{% endblock %}

@@ -20,7 +20,7 @@ class BundleGenerator extends BaseBundleGenerator
 
     protected $prefix;
 
-    protected $actions = array('New', 'List', 'Edit', 'Delete', 'Show');
+    protected $actions = array('New', 'List', 'Edit', 'Show', 'Actions');
 
     protected $forms = array('New', 'Filters', 'Edit');
 
@@ -79,31 +79,41 @@ class BundleGenerator extends BaseBundleGenerator
 
         foreach ($this->actions as $action) {
             $parameters['action'] = $action;
+            
+            $controllerFile = $dir.'/Controller/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$action.'Controller.php';
+            $this->copyPreviousFile($controllerFile);
             $this->renderGeneratedFile(
                 'DefaultController.php',
-                $dir.'/Controller/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$action.'Controller.php',
+                $controllerFile,
                 $parameters
             );
 
+            $templateFile = $dir.'/Resources/views/'.ucfirst($this->prefix).$action.'/index.html.twig';
+            $this->copyPreviousFile($templateFile);
             $this->renderGeneratedFile(
                 'index.html.twig',
-                $dir.'/Resources/views/'.ucfirst($this->prefix).$action.'/index.html.twig',
+                $templateFile,
                 $parameters
             );
         }
 
         foreach ($this->forms as $form) {
             $parameters['form'] = $form;
+            
+            $formFile = $dir.'/Form/Type/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$form.'Type.php';
+            $this->copyPreviousFile($formFile);
             $this->renderGeneratedFile(
                 'DefaultType.php',
-                $dir.'/Form/Type/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$form.'Type.php',
+                $formFile,
                 $parameters
             );
         }
 
+        $generatorFile = $dir.'/Resources/config/'.($this->prefix ? ucfirst($this->prefix).'-' : '').'generator.yml';
+        $this->copyPreviousFile($generatorFile);
         $this->renderGeneratedFile(
             'generator.yml',
-            $dir.'/Resources/config/'.($this->prefix ? ucfirst($this->prefix).'-' : '').'generator.yml',
+            $generatorFile,
             $parameters
         );
     }
@@ -114,6 +124,26 @@ class BundleGenerator extends BaseBundleGenerator
             $this->renderFile($template, $target, $parameters);
         } else {
             $this->renderFile($this->skeletonDir, $template, $target, $parameters);
+        }
+    }
+    
+    protected function copyPreviousFile($oldname)
+    {
+        if(file_exists($oldname)) {
+            $newname = $oldname.'~';
+            
+            // Find unused copy name
+            if(file_exists($newname)) {
+                $key = 0;
+                do {
+                    $key++;
+                } while (file_exists($oldname.'~'.$key));
+                
+                $newname = $oldname.'~'.$key;
+            }
+
+            // Create new copy
+            rename($oldname, $newname);
         }
     }
 }

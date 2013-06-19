@@ -88,6 +88,8 @@ action.object.edit:
 action.object.delete:
   label:    حذف کردن
   confirm:  آیا از حذف کردن این عنصر مطمئن می باشید؟
+  success:  عنصر با موفقیت حذف شده است.
+  error:    عنصر نمی تواند حذف شود.
 action.object.show:
   label:    نمایش
 
@@ -97,6 +99,14 @@ action.batch.delete:
   confirm:  آیا حذف کردن همه ی عناصر انتخاب شده را تایید می نمایید؟
   success:  عناصر مورد نظر با موفقیت حذف شدند
   error:    عملیات حذف عناصر مورد نظر با خطا مواجه شد
+
+# Custom actions
+action.custom:
+  title:    آیا شما مطمئن هستید که میخواهید%name% اقدام به اجرای؟
+  success:  %name% عمل با موفقیت اجرا شد.
+  error:    %name% عمل اجرا نیست.
+  confirm:  تکرار
+  cancel:   لغو کردن
 
 # Batch list
 batch.list:

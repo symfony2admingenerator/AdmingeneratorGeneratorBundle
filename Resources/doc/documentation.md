@@ -14,20 +14,22 @@ and open a ticket on github.
 2. [Support and Contribution][table-of-contents-2]
 3. [Features][table-of-contents-3]
 4. [Generator][table-of-contents-4]
-5. [Form Extensions][table-of-contents-5]
-6. [Internationalization][table-of-contents-6]
-7. [Cookbook][table-of-contents-7]
-8. [Security][table-of-contents-8]
+5. [Builders][table-of-contents-5]
+6. [Form Extensions][table-of-contents-6]
+7. [Internationalization][table-of-contents-7]
+8. [Cookbook][table-of-contents-8]
+9. [Security][table-of-contents-9]
 
 [go-up]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#table-of-contents
 [table-of-contents-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#1-installation
 [table-of-contents-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#2-support-and-contribution
 [table-of-contents-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#3-features
 [table-of-contents-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#4-generator
-[table-of-contents-5]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#5-form-extensions
-[table-of-contents-6]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#6-internationalization
-[table-of-contents-7]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#7-cookbook
-[table-of-contents-8]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#8-security
+[table-of-contents-5]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#5-builders
+[table-of-contents-6]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#6-form-extensions
+[table-of-contents-7]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#7-internationalization
+[table-of-contents-8]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#8-cookbook
+[table-of-contents-9]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#9-security
 
 ## 1. Installation
 
@@ -45,11 +47,13 @@ and open a ticket on github.
 
 1. [Submitting issues][support-and-contribution-1]
 1. [Contributing][support-and-contribution-2]
+1. [Upgrade notes][support-and-contribution-3]
 
 [go up][go-up]
 
 [support-and-contribution-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support-and-contribution/submitting-issues.md
 [support-and-contribution-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support-and-contribution/contributing.md
+[support-and-contribution-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support-and-contribution/upgrade-notes.md
 
 ## 3. Features
 
@@ -75,7 +79,17 @@ List of supported features for each model manager:
 
 [go up][go-up]
 
-## 5. Form Extensions
+## 5. Builders
+
+1. [Actions builder][builders-1]
+2. [List builder][builders-2]
+
+[builders-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/builders/actions-builder.md
+[builders-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/builders/list-builder.md
+
+[go up][go-up]
+
+## 6. Form Extensions
 
 Documentation for new form extensions and types:
 
@@ -93,7 +107,7 @@ Documentation for new form extensions and types:
 [form-extensions-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/single-upload.md
 [form-extensions-5]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/collection.md
 
-## 6. Internationalization
+## 7. Internationalization
 
 1. [Generator translation][internationalization-1]
 
@@ -101,7 +115,7 @@ Documentation for new form extensions and types:
 
 [internationalization-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/internationalization/generator-translation.md
 
-## 7. Cookbook
+## 8. Cookbook
 
 1. [Controllers Tips and Tricks][cookbook-1]
 2. [Templating Tips and Tricks][cookbook-2]
@@ -121,7 +135,7 @@ Documentation for new form extensions and types:
 [cookbook-6]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/formTypes.md
 [cookbook-7]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/conditional-actions.md
 
-## 8. Security
+## 9. Security
 
 1. [CSRF Protection][security-1]
 

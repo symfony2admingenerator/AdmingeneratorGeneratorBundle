@@ -13,7 +13,7 @@ use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
      * @param \{{ model }} ${{ builder.ModelClass }}
      * @throw AccessDeniedException if is not allowed
      */
-    protected function checkCredentials(\{{ model }} ${{ builder.ModelClass }})
+    protected function checkCredentialsWithObject(\{{ model }} ${{ builder.ModelClass }})
     {
         $securityContext = $this->get('security.context');
 
@@ -44,12 +44,12 @@ use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 
 {% block security_action %}
 {% if credentials is defined %}
-    $this->checkCredentials();
+$this->checkCredentials();
 {% endif %}
 {% endblock %}
 
 {% block security_action_with_object %}
 {% if credentials is defined %}
-    $this->checkCredentials(${{ builder.ModelClass }});
+$this->checkCredentialsWithObject(${{ builder.ModelClass }});
 {% endif %}
 {% endblock %}

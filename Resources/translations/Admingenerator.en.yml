@@ -88,6 +88,8 @@ action.object.edit:
 action.object.delete:
   label:    Delete
   confirm:  Are you sure you want to delete this element?
+  success:  Element has been successfully deleted.
+  error:    Element can't be deleted.
 action.object.show:
   label:    Show
 
@@ -98,13 +100,21 @@ action.batch.delete:
   success:  Records have been successfully deleted.
   error:    Records can't be deleted.
 
+# Custom actions
+action.custom:
+  title:    Are you sure you want to execute %name% action?
+  success:  The %name% action was successfully executed.
+  error:    Could not execute %name% action.
+  confirm:  Confirm
+  cancel:   Cancel
+
 # Batch list
 batch.list:
   selected:       Selected
   none.selected:  You have to select at least one element.
   warning:        Could not complete batch action due to missing parameters
   send:           Execute
-  
+
 
 # Layout
 dashboard:

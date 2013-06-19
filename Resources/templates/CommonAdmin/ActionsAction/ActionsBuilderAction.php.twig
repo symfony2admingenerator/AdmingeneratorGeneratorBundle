@@ -1,0 +1,106 @@
+{% use '../CommonAdmin/ActionsAction/object_action.php.twig' %}
+{% use '../CommonAdmin/ActionsAction/batch_action.php.twig' %}
+{% use '../CommonAdmin/ActionsAction/object_delete.php.twig' %}
+{% use '../CommonAdmin/ActionsAction/batch_delete.php.twig' %}
+{% use '../CommonAdmin/security_action.php.twig' %}
+{% use '../CommonAdmin/csrf_protection.php.twig' %}
+<?php
+
+namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.generator.GeneratedControllerFolder }};
+
+use {{ builder.generator.baseController }} as BaseController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+{{ block('csrf_protection_use') }}
+
+{{ block('security_use') }}
+
+class ActionsController extends BaseController
+{
+    /**
+     * Call custom object action based on $action parameter
+     */
+    public function objectAction($pk, $action)
+    {
+        $methodName = 'attemptObject'.ucfirst(strtolower($action));
+        return $this->$methodName($pk);
+    }
+    
+    /**
+     * Call custom batch action based on $action parameter
+     */
+    public function batchAction()
+    {
+        $action = $this->get('request')->get('action');
+        $selected = $this->get('request')->get('selected');
+            
+        if (!$selected || !$action) {
+            $this->get('session')->getFlashBag()->add(
+                'warning', 
+                $this->get('translator')->trans(
+                    "action.batch.warning", 
+                    array(), 
+                    'Admingenerator'
+                )
+            );
+
+            return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
+        }
+        
+        $methodName = 'attemptBatch'.ucfirst(strtolower($action));
+        return $this->$methodName($selected);
+    }
+
+    {% for action in builder.ObjectActions %}
+        {% if action.name is sameas('delete') %}
+            {{- block('attemptObjectDelete') -}}
+            {{- block('executeObjectDelete') -}}
+            {{- block('successObjectDelete') -}}
+            {{- block('errorObjectDelete') -}}
+        {% else %}
+            {{- block('attemptObjectAction') -}}
+            {{- block('executeObjectAction') -}}
+            {{- block('successObjectAction') -}}
+            {{- block('errorObjectAction') -}}
+        {% endif %}
+    {% endfor %}
+
+    {% for action in builder.BatchActions %}
+        {% if action.name is sameas('delete') %}
+            {{- block('attemptBatchDelete') -}}
+            {{- block('executeBatchDelete') -}}
+            {{- block('successBatchDelete') -}}
+            {{- block('errorBatchDelete') -}}
+        {% else %}
+            {{- block('attemptBatchAction') -}}
+            {{- block('executeBatchAction') -}}
+            {{- block('successBatchAction') -}}
+            {{- block('errorBatchAction') -}}
+        {% endif %}
+    {% endfor %}
+
+    {{- block('csrf_check_token') -}}
+
+    {{- block('security_check_with_object') }}
+
+    {{- block('security_check') }}
+
+    {% block getObject %}
+    protected function getObject($pk)
+    {
+        //The orm replace this method
+    }
+    {% endblock %}
+
+    /**
+     * Get additional parameters for rendering.
+     *
+     * @param \{{ model }} ${{ builder.ModelClass }} Your \{{ model }} object
+     * @param string $action Action
+     * @return array Additional render parameters
+     */
+    protected function getAdditionalRenderParameters(\{{ model }} ${{ builder.ModelClass }}, $action)
+    {
+        return array();
+    }
+}
