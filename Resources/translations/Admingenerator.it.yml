@@ -84,6 +84,8 @@ action.object.edit:
 action.object.delete:
   label:    Cancellare
   confirm:  Sei sicuro di voler eliminare questo elemento?
+  success:  Elemento è stato eliminato con successo.
+  error:    Elemento non può essere eliminato.
 action.object.show:
   label:    Mostra
 
@@ -93,6 +95,14 @@ action.batch.delete:
   confirm:  Confermi l'eliminazione di tutti gli elementi selezionati?
   success:  I dati sono stati correttamente eliminati.
   error:    I dati non possono essere eliminati.
+
+# Custom actions
+action.custom:
+  title:    Sei sicuro che si desidera eseguire l'azione %name%?
+  success:  L'azione %name% è stato eseguito con successo.
+  error:    Impossibile eseguire l'azione %name%.
+  confirm:  Confermare
+  cancel:   Annullare
 
 # Batch list
 batch.list:

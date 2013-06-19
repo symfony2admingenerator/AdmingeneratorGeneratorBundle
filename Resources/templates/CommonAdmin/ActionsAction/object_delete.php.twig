@@ -1,0 +1,112 @@
+{% use '../CommonAdmin/security_action.php.twig' %}
+{% use '../CommonAdmin/csrf_protection.php.twig' %}
+
+{% block attemptObjectDelete %}
+
+    /**
+     * This function handles common object actions behaviour like
+     * checking CSRF protection token or credentials.
+     *
+     * To customize your action look into:
+     * executeObjectDelete() - holds action logic
+     * successObjectDelete() - called if action was successfull
+     * errorObjectDelete()   - called if action errored
+     */
+    public function attemptObjectDelete($pk)
+    {
+        try {
+            ${{ builder.ModelClass }} = $this->getObject($pk);
+
+            {{ block('security_action_with_object') -}}
+
+            if ('POST' == $this->get('request')->getMethod()) {
+                {{ block('csrf_action_check_token') }}
+
+                $this->executeObjectDelete(${{ builder.ModelClass }});
+
+                return $this->successObjectDelete(${{ builder.ModelClass }});
+            }
+
+        } catch (\Exception $e) {
+            return $this->errorObjectDelete($e, ${{ builder.ModelClass }});
+        }
+
+        return $this->render(
+            '{{ namespace_prefix }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Actions:index.html.twig',
+            $this->getAdditionalRenderParameters(${{ builder.ModelClass }}, '{{ action.name }}') + array(
+                "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
+                "title" => $this->get('translator')->trans(
+                    "{{ action.options.title|default("action.custom.title") }}",
+                    array('%name%' => '{{ action.name }}'),
+                    '{{ action.options.i18n|default('Admingenerator') }}'
+                ),
+                "actionRoute" => "{{ builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_object' }}",
+                "actionParams" => array("pk" => $pk, "action" => "delete")
+            )
+        );
+    }
+
+{% endblock %}
+
+{% block executeObjectDelete %}
+
+    /**
+     * This function is for you to customize what action actually does
+     */
+    public function executeObjectDelete(${{ builder.ModelClass }})
+    {
+        //The orm replace this method
+    }
+
+{% endblock %}
+
+{% block successObjectDelete %}
+
+    /**
+     * This is called when action is successfull
+     * Default behavior is redirecting to list with success message
+     *
+     * @param \{{ model }} ${{ builder.ModelClass }} Your \{{ model }} object
+     * @return Response Must return a response!
+     */
+    public function successObjectDelete(${{ builder.ModelClass }})
+    {
+        $this->get('session')->getFlashBag()->add(
+            'success',
+            $this->get('translator')->trans(
+                "{{ action.options.success|default("action.custom.success") }}",
+                array('%name%' => '{{ action.name }}'),
+                '{{ action.options.i18n|default('Admingenerator') }}'
+            )
+        );
+
+        return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
+    }
+
+{% endblock %}
+
+{% block errorObjectDelete %}
+
+    /**
+     * This is called when action throws an exception
+     * Default behavior is redirecting to list with error message
+     *
+     * @param \Exception $e Exception
+     * @param \{{ model }} ${{ builder.ModelClass }} Your \{{ model }} object
+     * @return Response Must return a response!
+     */
+    public function errorObjectDelete(\Exception $e, ${{ builder.ModelClass }} = null)
+    {
+        $this->get('session')->getFlashBag()->add(
+            'error',
+            $this->get('translator')->trans(
+                "{{ action.options.error|default("action.custom.error") }}",
+                array('%name%' => '{{ action.name }}'),
+                '{{ action.options.i18n|default('Admingenerator') }}'
+            )
+        );
+
+        return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
+    }
+
+{% endblock %}

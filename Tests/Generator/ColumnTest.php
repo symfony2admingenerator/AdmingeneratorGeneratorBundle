@@ -41,7 +41,7 @@ class ColumnTest extends TestCase
         $this->checkColumn($from_to_array, 'getLabel');
     }
 
-    public function testSetOption()
+    public function testSetProperty()
     {
         $from_to_array = array(
             'name' => 'Name',
@@ -61,7 +61,7 @@ class ColumnTest extends TestCase
         $column = new Column($from_to_array);
 
         foreach ($options as $option => $value) {
-            $column->setOption($option, $value);
+            $column->setProperty($option, $value);
             $this->assertEquals($value, call_user_func_array(array($column, 'get'.Inflector::classify($option)), array()));
         }
     }

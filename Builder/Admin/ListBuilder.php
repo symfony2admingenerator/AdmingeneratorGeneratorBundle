@@ -64,9 +64,34 @@ class ListBuilder extends BaseBuilder
 
         foreach ($filters['display'] as $columnName) {
             $column = new Column($columnName);
-            $column->setDbType($this->getFieldOption($column, 'dbType', $this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName)));
-            $column->setFormType($this->getFieldOption($column, 'filterType', $this->getFieldGuesser()->getFilterType($column->getDbType(), $columnName)));
-            $column->setFormOptions($this->getFieldOption($column, 'filterOptions', $this->getFieldGuesser()->getFilterOptions($column->getFormType(), $column->getDbType(), $columnName)));
+            
+            $column->setDbType($this->getFieldOption(
+                $column, 
+                'dbType', 
+                $this->getFieldGuesser()->getDbType(
+                    $this->getVariable('model'), 
+                    $columnName
+                )
+            ));
+            
+            $column->setFormType($this->getFieldOption(
+                $column, 
+                'filterType', 
+                $this->getFieldGuesser()->getFilterType(
+                    $column->getDbType(), 
+                    $columnName
+                )
+            ));
+            
+            $column->setFormOptions($this->getFieldOption(
+                $column, 
+                'filterOptions', 
+                $this->getFieldGuesser()->getFilterOptions(
+                    $column->getFormType(), 
+                    $column->getDbType(), 
+                    $columnName
+                )
+            ));
 
             //Set the user parameters
             $this->setUserColumnConfiguration($column);
@@ -90,11 +115,24 @@ class ListBuilder extends BaseBuilder
 
     protected function setUserObjectActionConfiguration(Action $action)
     {
-        $options = $this->getVariable(sprintf('object_actions[%s]', $action->getName()),array(), true);
+        $builderOptions = $this->getVariable(
+            sprintf('object_actions[%s]', $action->getName()), 
+            array(), 
+            true
+        );
+        
+        $globalOptions = $this->getGenerator()->getFromYaml(
+            'params.object_actions.'.$action->getName(), 
+            array()
+        );
 
-        if (null !== $options) {
-            foreach ($options as $option => $value) {
-                $action->setOption($option, $value);
+        if (null !== $builderOptions) {
+            foreach ($builderOptions as $option => $value) {
+                $action->setProperty($option, $value);
+            }
+        } elseif (null !== $globalOptions) {
+            foreach ($globalOptions as $option => $value) {
+                $action->setProperty($option, $value);
             }
         }
     }
@@ -106,9 +144,13 @@ class ListBuilder extends BaseBuilder
 
     protected function findObjectActions()
     {
-        foreach ($this->getVariable('object_actions') as $actionName => $actionParams) {
+        $objectActions = $this->getVariable('object_actions', array());
+        
+        foreach ($objectActions as $actionName => $actionParams) {
             $action = $this->findObjectAction($actionName);
-            if(!$action) $action = new Action($actionName);
+            if(!$action) {
+                $action = new Action($actionName);
+            }
 
             $this->setUserObjectActionConfiguration($action);
             $this->addObjectAction($action);
@@ -130,11 +172,23 @@ class ListBuilder extends BaseBuilder
 
     protected function setUserBatchActionConfiguration(Action $action)
     {
-        $options = $this->getVariable(sprintf('batch_actions[%s]', $action->getName()),array(), true);
+        $builderOptions = $this->getVariable(
+            sprintf('batch_actions[%s]', $action->getName()),
+            array(), 
+            true
+        );
+        
+        $globalOptions = $this->getGenerator()->getFromYaml(
+            'params.batch_actions.'.$action->getName(), array()
+        );
 
-        if (null !== $options) {
-            foreach ($options as $option => $value) {
-                $action->setOption($option, $value);
+        if (null !== $builderOptions) {
+            foreach ($builderOptions as $option => $value) {
+                $action->setProperty($option, $value);
+            }
+        } elseif (null !== $globalOptions) {
+            foreach ($globalOptions as $option => $value) {
+                $action->setProperty($option, $value);
             }
         }
     }
@@ -146,9 +200,13 @@ class ListBuilder extends BaseBuilder
 
     protected function findBatchActions()
     {
-        foreach ($this->getVariable('batch_actions', array()) as $actionName => $actionParams) {
+        $batchActions = $this->getVariable('batch_actions', array());
+        
+        foreach ($batchActions as $actionName => $actionParams) {
             $action = $this->findBatchAction($actionName);
-            if(!$action) $action = new Action($actionName);
+            if(!$action) {
+                $action = new Action($actionName);
+            }
 
             $this->setUserBatchActionConfiguration($action);
             $this->addBatchAction($action);

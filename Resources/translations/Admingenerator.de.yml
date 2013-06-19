@@ -7,7 +7,7 @@ double_list:
 date_range:
   from.label: Von
   to.label:   Bis
-  
+
 # Boolean filter
 boolean:
   yes:        Ja
@@ -84,6 +84,8 @@ action.object.edit:
 action.object.delete:
   label:    Löschen
   confirm:  Sind Sie sicher, dass Sie dieses Element löschen?
+  success:  Element wurde erfolgreich gelöscht.
+  error:    Element kann nicht gelöscht werden.
 action.object.show:
   label:    Zeigen
 
@@ -93,6 +95,14 @@ action.batch.delete:
   confirm:  Sie bestätigen das Löschen aller ausgewählten Elemente?
   success:  Die Eintrage wurden erfolgreich gelöscht.
   error:    Die Eintrage können nicht gelöscht werden.
+
+# Custom actions
+action.custom:
+  title:    Sind Sie sicher, dass Sie %name% Aktion auszuführen?
+  success:  Die %name% Aktion wurde erfolgreich ausgeführt.
+  error:    Konnte nicht %name% Aktion ausgeführen.
+  confirm:  Bestätigen
+  cancel:   Stornieren
 
 # Batch list
 batch.list:

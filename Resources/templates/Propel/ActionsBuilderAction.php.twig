@@ -1,0 +1,36 @@
+{% extends '../CommonAdmin/ActionsAction/ActionsBuilderAction.php.twig' %}
+
+{% block getObject %}
+
+    protected function getObject($pk)
+    {
+        ${{ builder.ModelClass }} = \{{ model }}Query::create()->findPk($pk);
+
+        if (!${{ builder.ModelClass }}) {
+            throw new \InvalidArgumentException("No {{ model }} found on {{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} : $pk");
+        }
+
+        return ${{ builder.ModelClass }} ?: null;
+    }
+    
+{% endblock %}
+
+{% block executeObjectDelete %}
+    
+    protected function executeObjectDelete(\{{ model }} ${{ builder.ModelClass }})
+    {
+        ${{ builder.ModelClass }}->delete();
+    }
+    
+{% endblock %}
+
+{% block executeBatchDelete %}
+    
+    protected function executeBatchDelete(array $selected)
+    {
+        \{{ model }}Query::create()
+            ->filterByPrimaryKeys($selected)
+            ->delete();
+    }
+    
+{% endblock %}

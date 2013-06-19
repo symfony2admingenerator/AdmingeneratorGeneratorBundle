@@ -67,10 +67,10 @@ upload.errors:
   typeNotAllowed:   Tipo de archivo no permitido.
   maxFileSize:      El archivo es demasiado grande.
   minFileSize:      El archivo es demasiado pequeño.
-  
+
 # SingleUpload
 singleupload:
-  display.name:     Nombre Mostrado  
+  display.name:     Nombre Mostrado
 
 # Generic actions
 action.generic:
@@ -88,6 +88,8 @@ action.object.edit:
 action.object.delete:
   label:    Borrar
   confirm:  ¿Está seguro que desea eliminar este elemento?
+  success:  Element se ha eliminado correctamente.
+  error:    El elemento no se puede eliminar.
 action.object.show:
   label:    Mostrar
 
@@ -97,6 +99,14 @@ action.batch.delete:
   confirm:  ¿Te confirmar la eliminación de todos los elementos seleccionados?
   success:  El registro ha sido borrado correctamente.
   error:    Este registro no puede ser borrado.
+
+# Custom actions
+action.custom:
+  title:    ¿Está seguro de que desea ejecutar la acción %name%?
+  success:  La acción %name% se ejecutó con éxito.
+  error:    No se pudo ejecutar la acción %name%.
+  confirm:  Confirmar
+  cancel:   Cancelar
 
 # Batch list
 batch.list:

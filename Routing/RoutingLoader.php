@@ -18,19 +18,6 @@ class RoutingLoader extends FileLoader
                     'defaults'     => array(),
                     'requirements' => array(),
                 ),
-        'batch' => array(
-                    'pattern'      => '/batch',
-                    'defaults'     => array(),
-                    'requirements' => array(
-                        '_method' => 'POST'
-                    ),
-                    'controller'   => 'list',
-                ),
-        'delete' => array(
-                    'pattern'      => '/{pk}/delete',
-                    'defaults'     => array(),
-                    'requirements' => array(),
-                ),
         'edit' => array(
                     'pattern'      => '/{pk}/edit',
                     'defaults'     => array(),
@@ -39,23 +26,44 @@ class RoutingLoader extends FileLoader
         'update' => array(
                     'pattern'      => '/{pk}/update',
                     'defaults'     => array(),
-                    'requirements' => array(),
+                    'requirements' => array(
+                        '_method' => 'POST'
+                    ),
                     'controller'   => 'edit',
                 ),
         'show' => array(
                     'pattern'      => '/{pk}/show',
                     'defaults'     => array(),
-                    'requirements' => array()
+                    'requirements' => array(),
+                ),
+        'object' => array(
+                    'pattern'      => '/{pk}/{action}',
+                    'defaults'     => array(),
+                    'requirements' => array(
+                        '_method' => 'POST'
+                    ),
+                    'controller'   => 'actions',
+                ),
+        'batch' => array(
+                    'pattern'      => '/batch',
+                    'defaults'     => array(),
+                    'requirements' => array(
+                        '_method' => 'POST'
+                    ),
+                    'controller'   => 'actions',
                 ),
         'new' => array(
                     'pattern'      => '/new',
                     'defaults'     => array(),
                     'requirements' => array(),
+                    'methods'      => array(),
                 ),
         'create' => array(
                     'pattern'      => '/create',
                     'defaults'     => array(),
-                    'requirements' => array(),
+                    'requirements' => array(
+                        '_method' => 'POST'
+                    ),
                     'controller'   => 'new',
                 ),
         'filters' => array(

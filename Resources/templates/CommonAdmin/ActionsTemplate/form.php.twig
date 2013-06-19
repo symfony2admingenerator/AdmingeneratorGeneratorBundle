@@ -1,0 +1,16 @@
+{% use "../CommonAdmin/ActionsTemplate/actions.php.twig" %}
+
+{% block form %}
+    <div class="span12">
+        {{ echo_block('form') }}
+            <form action="{{ echo_twig('path(actionRoute, actionParams)') }}" method="post" class="admin_form">
+                <input type="hidden" name="_csrf_token" value="{{ echo_twig('path(actionRoute, actionParams)|csrf_token') }}"/>
+                {{ echo_block("form_buttons") }}
+                    <div class="form-actions">
+                        {{ block("form_actions") }}
+                    </div>
+                {{ echo_endblock() }}
+            </form>
+        {{ echo_endblock() }}
+    </div>
+{% endblock %}

@@ -307,9 +307,9 @@ class EchoExtension extends \Twig_Extension
               ? strtr('{{ path("%%path%%") }}', array('%%path%%' => $path))
               : strtr('{{ path("%%path%%")|%%filters%% }}', array('%%path%%' => $path, '%%filters%%' => (is_array($filters) ? implode('|', $filters) : $filters) ));
         }
-        
-        $params = preg_replace('/\{\{\s+?([\w\.]+)\s+?\}\}/i', '$1', $params);        
-        
+
+        $params = preg_replace('/\{\{\s+?([\w\.]+)\s+?\}\}/i', '$1', $params);
+
         return (null === $filters)
           ? strtr('{{ path("%%path%%", %%params%%) }}', array('%%path%%' => $path, '%%params%%' => $params))
           : strtr('{{ path("%%path%%", %%params%%)|%%filters%% }}', array('%%path%%' => $path, '%%params%%' => $params, '%%filters%%' => (is_array($filters) ? implode('|', $filters) : $filters) ));
@@ -369,6 +369,7 @@ class EchoExtension extends \Twig_Extension
     public function getEchoBlock($name)
     {
         $this->blockNames[] = $name;
+
         return str_replace('%%name%%', $name, '{% block %%name%% %}');
     }
 

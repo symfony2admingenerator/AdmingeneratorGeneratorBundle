@@ -1,0 +1,97 @@
+{% use '../CommonAdmin/security_action.php.twig' %}
+{% use '../CommonAdmin/csrf_protection.php.twig' %}
+
+{% block attemptBatchAction %}
+
+    /**
+     * This function handles common batch actions behaviour like
+     * checking CSRF protection token or credentials.
+     *
+     * @param array $selected Selected \{{ model }} primary keys
+     *
+     * To customize your action look into:
+     * executeBatch{{ action.name|capitalize }}() - holds action logic
+     * successBatch{{ action.name|capitalize }}() - called if action was successfull
+     * errorBatch{{ action.name|capitalize }}()   - called if action errored
+     */
+    public function attemptBatch{{ action.name|capitalize }}(array $selected)
+    {
+        try {
+            {{ block('security_action') }}
+            
+            {{ block('csrf_action_check_batch_token') }}
+
+            $this->executeBatch{{ action.name|capitalize }}($selected);
+
+            return $this->successBatch{{ action.name|capitalize }}();
+
+        } catch (\Exception $e) {
+            return $this->errorBatch{{ action.name|capitalize }}($e);
+        }
+    }
+
+{% endblock %}
+
+{% block executeBatchAction %}
+
+    /**
+     * This function is for you to customize what batch action actually does
+     *
+     * @param array $selected Selected \{{ model }} primary keys
+     */
+    public function executeBatch{{ action.name|capitalize }}(array $selected)
+    {
+        // By default action does nothing
+        // Overwrite this function!
+    }
+
+{% endblock %}
+
+{% block successBatchAction %}
+
+    /**
+     * This is called when batch action is successfull
+     * Default behavior is redirecting to list with success message
+     *
+     * @return Response Must return a response!
+     */
+    public function successBatch{{ action.name|capitalize }}()
+    {
+        $this->get('session')->getFlashBag()->add(
+            'success',
+            $this->get('translator')->trans(
+                "{{ action.options.success|default("action.custom.success") }}",
+                array('%name%' => '{{ action.name }}'),
+                '{{ action.options.i18n|default('Admingenerator') }}'
+            )
+        );
+
+        return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
+    }
+
+{% endblock %}
+
+{% block errorBatchAction %}
+
+    /**
+     * This is called when batch action throws an exception
+     * Default behavior is redirecting to list with error message
+     *
+     * @param \Exception $e Exception
+     * @return Response Must return a response!
+     */
+    public function errorBatch{{ action.name|capitalize }}(\Exception $e)
+    {
+        $this->get('session')->getFlashBag()->add(
+            'error',
+            $this->get('translator')->trans(
+                "{{ action.options.error|default("action.custom.error") }}",
+                array('%name%' => '{{ action.name }}'),
+                '{{ action.options.i18n|default('Admingenerator') }}'
+            )
+        );
+
+        return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
+    }
+
+{% endblock %}

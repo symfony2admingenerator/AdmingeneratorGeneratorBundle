@@ -26,10 +26,18 @@ class NewBuilder extends BaseBuilder
      */
     protected function findActions()
     {
-        foreach ($this->getVariable('actions', array()) as $actionName => $actionParams) {
+        $actions = $this->getVariable('actions', array());
+
+        foreach ($actions as $actionName => $actionParams) {
             $action = $this->findGenericAction($actionName);
-            if(!$action) $action = $this->findObjectAction($actionName);
-            if(!$action) $action = new Action($actionName);
+            
+            if(!$action) {
+                $action = $this->findObjectAction($actionName);
+            }
+            
+            if(!$action) {
+                $action = new Action($actionName);
+            }
 
             $this->setUserActionConfiguration($action);
             $this->addAction($action);

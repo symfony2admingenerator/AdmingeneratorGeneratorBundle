@@ -11,6 +11,7 @@ use Admingenerator\GeneratorBundle\Generator\Column;
 class FiltersBuilder extends BaseBuilder
 {
 
+    // TODO: why is this here? IMO (@loostro) should be removed
     protected $object_actions;
 
     protected $actions;
@@ -29,14 +30,31 @@ class FiltersBuilder extends BaseBuilder
         $display = $this->getVariable('display');
 
         if (null == $display) {
-           $display = $this->getAllFields();
+            $display = $this->getAllFields();
         }
 
         foreach ($display as $columnName) {
             $column = new Column($columnName);
-            $column->setDbType($this->getFieldOption($column, 'dbType', $this->getFieldGuesser()->getDbType($this->getVariable('model'), $columnName)));
-            $column->setFormType($this->getFieldGuesser()->getFilterType($column->getDbType(), $columnName));
-            $column->setFormOptions($this->getFieldGuesser()->getFilterOptions($column->getFormType(), $column->getDbType(), $columnName));
+
+            $column->setDbType($this->getFieldOption(
+                $column, 
+                'dbType', 
+                $this->getFieldGuesser()->getDbType(
+                    $this->getVariable('model'), 
+                    $columnName
+                )
+            ));
+
+            $column->setFormType($this->getFieldGuesser()->getFilterType(
+                $column->getDbType(), 
+                $columnName
+            ));
+
+            $column->setFormOptions($this->getFieldGuesser()->getFilterOptions(
+                $column->getFormType(), 
+                $column->getDbType(), 
+                $columnName
+            ));
 
             //Set the user parameters
             $this->setUserColumnConfiguration($column);
