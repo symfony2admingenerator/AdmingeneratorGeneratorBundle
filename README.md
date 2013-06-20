@@ -58,7 +58,7 @@ The documentation for this bundle is located in `Resources/doc` directory. Start
 
 ## Support
 
-If you're haveing trouble or you found an error feel free to open a github ticket, but first please read [submitting issues](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support/submitting-issues.md).
+If you're haveing trouble or you found an error feel free to open a github ticket, but first please read [submitting issues](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/support-and-contribution/submitting-issues.md).
 
 ## Sensio Connect
 
