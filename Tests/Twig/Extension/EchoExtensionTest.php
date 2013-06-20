@@ -85,7 +85,7 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-            'string' => array("'cedricisvalid'", 'Php name format well the string'),
+            'string' => array("cedricisvalid", 'Php name format well the string'),
         );
 
        $this->runTwigTests($tpls, $returns);
