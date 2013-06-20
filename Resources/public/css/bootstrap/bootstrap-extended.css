@@ -338,3 +338,7 @@ input.btn.btn-reset:hover {
 .btn-mini [class^="icon-"] {
     font-size: 10px;
 }
+
+.list_scope_group .btn [class^="icon-"] {
+    font-size: 12px;
+}
