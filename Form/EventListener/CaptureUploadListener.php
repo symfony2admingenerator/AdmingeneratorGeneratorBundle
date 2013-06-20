@@ -47,13 +47,13 @@ class CaptureUploadListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            FormEvents::PRE_BIND => array('preBind', 0),
-            FormEvents::BIND => array('onBind', 0),
-            FormEvents::POST_BIND => array('postBind', 0),
+            FormEvents::PRE_SUBMIT => array('preSubmit', 0),
+            FormEvents::SUBMIT => array('onSubmit', 0),
+            FormEvents::POST_SUBMIT => array('postSubmit', 0),
         );
     }
 
-    public function preBind(FormEvent $event)
+    public function preSubmit(FormEvent $event)
     {
         $form = $event->getForm();
         $data = $event->getData();
@@ -68,7 +68,7 @@ class CaptureUploadListener implements EventSubscriberInterface
         $event->setData($data);
     }
 
-    public function onBind(FormEvent $event)
+    public function onSubmit(FormEvent $event)
     {
         $form = $event->getForm();
         $data = $event->getData();
@@ -107,7 +107,7 @@ class CaptureUploadListener implements EventSubscriberInterface
         $event->setData($data);
     }
 
-    public function postBind(FormEvent $event)
+    public function postSubmit(FormEvent $event)
     {
         $form = $event->getForm();
         $data = $event->getData();
