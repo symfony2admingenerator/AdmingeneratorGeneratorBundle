@@ -6,7 +6,7 @@
         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
             {{ echo_twig('"pagerfanta.num.elements"|trans({"%number%": '~ builder.ModelClass ~ 's.maxPerPage}, "Admingenerator")') }} <span class="caret"></span>
         </a>
-        <ul class="dropdown-menu pull-right" style="min-width: 60px;">
+        <ul class="dropdown-menu pull-right">
             {{ echo_for('perPage', '[10, 25, 50, 75, 100]') }}
             <li>
                 <a href="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_list', '{perPage: perPage}') }}">
