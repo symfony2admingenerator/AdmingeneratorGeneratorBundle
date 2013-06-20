@@ -14,7 +14,7 @@
      * successBatch{{ action.name|php_name|capitalize }}() - called if action was successfull
      * errorBatch{{ action.name|php_name|capitalize }}()   - called if action errored
      */
-    protected function attemptBatch{{ action.name|capitalize }}(array $selected)
+    protected function attemptBatch{{ action.name|php_name|capitalize }}(array $selected)
     {
         try {
             {{ block('security_action') }}
