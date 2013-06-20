@@ -8,11 +8,11 @@
      * checking CSRF protection token or credentials.
      *
      * To customize your action look into:
-     * executeObject{{ action.name|capitalize }}() - holds action logic
-     * successObject{{ action.name|capitalize }}() - called if action was successfull
-     * errorObject{{ action.name|capitalize }}()   - called if action errored
+     * executeObject{{ action.name|php_name|capitalize }}() - holds action logic
+     * successObject{{ action.name|php_name|capitalize }}() - called if action was successfull
+     * errorObject{{ action.name|php_name|capitalize }}()   - called if action errored
      */
-    public function attemptObject{{ action.name|capitalize }}($pk)
+    protected function attemptObject{{ action.name|php_name|capitalize }}($pk)
     {
         try {
             ${{ builder.ModelClass }} = $this->getObject($pk);
@@ -23,18 +23,18 @@
             if ('POST' == $this->get('request')->getMethod()) {
                 {{ block('csrf_action_check_token') }}
 
-                $this->executeObject{{ action.name|capitalize }}(${{ builder.ModelClass }});
+                $this->executeObject{{ action.name|php_name|capitalize }}(${{ builder.ModelClass }});
 
-                return $this->successObject{{ action.name|capitalize }}(${{ builder.ModelClass }});
+                return $this->successObject{{ action.name|php_name|capitalize }}(${{ builder.ModelClass }});
             }
             {% else %}
-            $this->executeObject{{ action.name|capitalize }}(${{ builder.ModelClass }});
+            $this->executeObject{{ action.name|php_name|capitalize }}(${{ builder.ModelClass }});
 
-            return $this->successObject{{ action.name|capitalize }}(${{ builder.ModelClass }});
+            return $this->successObject{{ action.name|php_name|capitalize }}(${{ builder.ModelClass }});
             {%- endif %}
 
         } catch (\Exception $e) {
-            return $this->errorObject{{ action.name|capitalize }}($e, ${{ builder.ModelClass }});
+            return $this->errorObject{{ action.name|php_name|capitalize }}($e, ${{ builder.ModelClass }});
         }
 
         return $this->render(
@@ -59,7 +59,7 @@
     /**
      * This function is for you to customize what action actually does
      */
-    public function executeObject{{ action.name|capitalize }}(${{ builder.ModelClass }})
+    protected function executeObject{{ action.name|php_name|capitalize }}(\{{ model }} ${{ builder.ModelClass }})
     {
         // By default action does nothing
         // Overwrite this function!
@@ -76,7 +76,7 @@
      * @param \{{ model }} ${{ builder.ModelClass }} Your \{{ model }} object
      * @return Response Must return a response!
      */
-    public function successObject{{ action.name|capitalize }}(${{ builder.ModelClass }})
+    protected function successObject{{ action.name|php_name|capitalize }}(\{{ model }} ${{ builder.ModelClass }})
     {
         $this->get('session')->getFlashBag()->add(
             'success',
@@ -102,7 +102,7 @@
      * @param \{{ model }} ${{ builder.ModelClass }} Your \{{ model }} object
      * @return Response Must return a response!
      */
-    public function errorObject{{ action.name|capitalize }}(\Exception $e, ${{ builder.ModelClass }} = null)
+    protected function errorObject{{ action.name|php_name|capitalize }}(\Exception $e, \{{ model }} ${{ builder.ModelClass }} = null)
     {
         $this->get('session')->getFlashBag()->add(
             'error',

@@ -22,10 +22,10 @@ class ActionsController extends BaseController
      */
     public function objectAction($pk, $action)
     {
-        $methodName = 'attemptObject'.ucfirst(strtolower($action));
+        $methodName = 'attemptObject'.ucfirst(strtolower($this->cleanMethodName($action)));
         return $this->$methodName($pk);
     }
-    
+
     /**
      * Call custom batch action based on $action parameter
      */
@@ -33,21 +33,21 @@ class ActionsController extends BaseController
     {
         $action = $this->get('request')->get('action');
         $selected = $this->get('request')->get('selected');
-            
+
         if (!$selected || !$action) {
             $this->get('session')->getFlashBag()->add(
-                'warning', 
+                'warning',
                 $this->get('translator')->trans(
-                    "action.batch.warning", 
-                    array(), 
+                    "action.batch.warning",
+                    array(),
                     'Admingenerator'
                 )
             );
 
             return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
         }
-        
-        $methodName = 'attemptBatch'.ucfirst(strtolower($action));
+
+        $methodName = 'attemptBatch'.ucfirst(strtolower($this->cleanMethodName($action)));
         return $this->$methodName($selected);
     }
 
@@ -102,5 +102,15 @@ class ActionsController extends BaseController
     protected function getAdditionalRenderParameters(\{{ model }} ${{ builder.ModelClass }}, $action)
     {
         return array();
+    }
+
+    /**
+     * Remove invalid characters for method name.
+     *
+     * @return string
+     */
+    protected function cleanMethodName($method)
+    {
+        return preg_replace('/[^\w]+/', '', $method);
     }
 }
