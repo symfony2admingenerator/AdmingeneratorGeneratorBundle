@@ -14,7 +14,7 @@
      * successBatchDelete() - called if action was successfull
      * errorBatchDelete()   - called if action errored
      */
-    public function attemptBatchDelete(array $selected)
+    protected function attemptBatchDelete(array $selected)
     {
         try {
             {{ block('security_action') }}
@@ -37,7 +37,7 @@
     /**
      * This function is for you to customize what action actually does
      */
-    public function executeBatchDelete(array $selected)
+    protected function executeBatchDelete(array $selected)
     {
         //The orm replace this method
     }
@@ -52,7 +52,7 @@
      *
      * @return Response Must return a response!
      */
-    public function successBatchDelete()
+    protected function successBatchDelete()
     {
         $this->get('session')->getFlashBag()->add(
             'success',
@@ -75,7 +75,7 @@
      * @param \Exception $e Exception
      * @return Response Must return a response!
      */
-    public function errorBatchDelete(\Exception $e)
+    protected function errorBatchDelete(\Exception $e)
     {
         $this->get('session')->getFlashBag()->add(
             'error',
