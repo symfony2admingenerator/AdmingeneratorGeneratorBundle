@@ -10,7 +10,7 @@
                       {{ echo_if_granted(builder.filterColumns[field.name].credentials) }}
                 {% endif %}
                 <div class="control-group">
-                    {{ echo_twig("form_label(form['" ~ field.name ~ "'], '" ~ builder.FilterColumns[field.name].label|addslashes ~ "'|trans({}, '" ~ (i18n_catalog is defined ? i18n_catalog : "Admin") ~ "'))") }}
+                    {{ echo_twig("form_label(form['" ~ field.name ~ "'], '" ~ builder.FilterColumns[field.name].label|addslashes ~ "'|trans({}, '" ~ i18n_catalog|default("Admin") ~ "'))") }}
                     <div class="controls">
                         {{ echo_twig("form_widget(form['" ~ field.name ~ "'])") }}
                     </div>

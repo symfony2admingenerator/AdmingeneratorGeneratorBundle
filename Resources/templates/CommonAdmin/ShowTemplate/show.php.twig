@@ -24,7 +24,7 @@
 
                             <div class="span2 text-right">
                                 {{ echo_block('show_column_label_' ~ column.name) -}}
-                                    <strong>{{ echo_twig("'" ~ column.label|addslashes ~ "'|trans({}, '" ~ (i18n_catalog is defined ? i18n_catalog : "Admin") ~ "')") }}</strong>
+                                    <strong>{{ echo_twig("'" ~ column.label|addslashes ~ "'|trans({}, '" ~ i18n_catalog|default("Admin") ~ "')") }}</strong>
                                 {{- echo_endblock() }}
                             </div>
 

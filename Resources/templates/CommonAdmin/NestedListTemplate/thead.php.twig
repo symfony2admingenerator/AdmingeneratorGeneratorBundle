@@ -12,7 +12,7 @@
                       {{ echo_if_granted(column.credentials) }}
                 {% endif %}
                 <th class="list_thead_column">
-                   {{ echo_twig("'" ~ column.label|addslashes ~ "'|trans({}, '" ~ (i18n_catalog is defined ? i18n_catalog : "Admin") ~ "')") }}
+                   {{ echo_twig("'" ~ column.label|addslashes ~ "'|trans({}, '" ~ i18n_catalog|default("Admin") ~ "')") }}
                 </th>
                 {% if column.credentials %}
                     {{ echo_endif () }}
