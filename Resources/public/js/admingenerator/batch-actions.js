@@ -93,7 +93,7 @@
             	return false;
             }
             
-            $(this.element).submit();
+            $(this.$selector).closest('form').submit();
         }
     };
 
