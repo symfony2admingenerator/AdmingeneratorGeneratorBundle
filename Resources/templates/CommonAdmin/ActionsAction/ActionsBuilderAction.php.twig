@@ -22,10 +22,10 @@ class ActionsController extends BaseController
      */
     public function objectAction($pk, $action)
     {
-        $methodName = 'attemptObject'.ucfirst(strtolower($action));
+        $methodName = preg_replace('/[^\w]+/', '', 'attemptObject'.ucfirst(strtolower($action)));
         return $this->$methodName($pk);
     }
-    
+
     /**
      * Call custom batch action based on $action parameter
      */
@@ -33,20 +33,20 @@ class ActionsController extends BaseController
     {
         $action = $this->get('request')->get('action');
         $selected = $this->get('request')->get('selected');
-            
+
         if (!$selected || !$action) {
             $this->get('session')->getFlashBag()->add(
-                'warning', 
+                'warning',
                 $this->get('translator')->trans(
-                    "action.batch.warning", 
-                    array(), 
+                    "action.batch.warning",
+                    array(),
                     'Admingenerator'
                 )
             );
 
             return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
         }
-        
+
         $methodName = 'attemptBatch'.ucfirst(strtolower($action));
         return $this->$methodName($selected);
     }
