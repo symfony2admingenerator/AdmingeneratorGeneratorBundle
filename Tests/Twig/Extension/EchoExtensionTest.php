@@ -78,6 +78,19 @@ class EchoExtensionTest extends TestCase
        $this->runTwigTests($tpls, $returns);
     }
 
+    public function testPhpName()
+    {
+        $tpls = array(
+            'string' => '{{ "cedric-is-valid"|php_name }}',
+        );
+
+        $returns = array(
+            'string' => array("'cedricisvalid'", 'Php name format well the string'),
+        );
+
+       $this->runTwigTests($tpls, $returns);
+    }
+
     public function testGetEchoTrans()
     {
         $tpls = array(

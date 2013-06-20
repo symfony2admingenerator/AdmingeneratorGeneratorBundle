@@ -50,6 +50,7 @@ class EchoExtension extends \Twig_Extension
         return array(
             'as_php'          => new \Twig_Filter_Method($this, 'asPhp'),
             'convert_as_form' => new \Twig_Filter_Method($this, 'convertAsForm'),
+            'php_name'          => new \Twig_Filter_Method($this, 'phpName'),
         );
     }
 
@@ -136,6 +137,19 @@ class EchoExtension extends \Twig_Extension
 
        return $str;
 
+    }
+
+    /**
+     * Converts string into valid PHP function name
+     * 
+     * @param string $str
+     * @return string
+     */
+    public function phpName($str)
+    {
+        $str = preg_replace('/[^\w]+/', '', $str);
+
+        return $str;
     }
 
     public function export($variable)
