@@ -260,12 +260,12 @@ Any non-word character will be removed from generated function name, e.g. object
 generate functions:
 
 ```php
-<?php
-    protected function attemptObjectToggleisvalid() { ... }
+
+protected function attemptObjectToggleisvalid() { ... }
     
-    protected function executeObjectToggleisvalid() { ... }
+protected function executeObjectToggleisvalid() { ... }
     
-    protected function successObjectToggleisvalid() { ... }
+protected function successObjectToggleisvalid() { ... }
     
-    protected function errorObjectToggleisvalid() { ... }
+protected function errorObjectToggleisvalid() { ... }
 ```
