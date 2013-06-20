@@ -44,7 +44,7 @@ class DoctrineQueryFilter extends BaseQueryFilter
         }
 
         $this->query->leftJoin('q.'.$table, $table);
-        $this->query->groupBy('q.id');
+        $this->query->groupBy('q');
         $this->query->andWhere(sprintf('%s.%s IN (:%s)',$table, $field, $table.'_'.$field));
         $this->query->setParameter($table.'_'.$field, $value);
 
