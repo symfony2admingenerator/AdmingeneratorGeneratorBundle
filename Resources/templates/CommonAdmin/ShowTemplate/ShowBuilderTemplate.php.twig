@@ -26,12 +26,12 @@
     {{- block('title') -}}
 
     <div class="row-fluid">
-        {% if sidebar  %}
+        {% if sidebar is defined and sidebar|length > 0 %}
             <div class="span8">
         {% endif %}
                 {{- block('show_tabs') }}
                 {{- block('show') -}}
-        {% if sidebar %}
+        {% if sidebar is defined and sidebar|length > 0 %}
             </div>
             <div class="span4">
                 {{- block('show_sidebar') -}}
