@@ -51,13 +51,10 @@
 
     {% spaceless %}
     {{ echo_spaceless() }}
-    <a  class="btn btn-mini {{ action.class|default('') }}" 
-        href="{{ echo_path(actionRoute, actionParams) }}" 
-        data-original-title="{{ echo_trans(action.label, {}, translationDomain) }}" 
-        rel="tooltip" 
+    <a  class="btn btn-mini {{ action.class|default('') }}" href="{{ echo_path(actionRoute, actionParams) }}" 
+        data-original-title="{{ echo_trans(action.label, {}, translationDomain) }}" rel="tooltip" 
         {%- if action.confirm %} data-confirm="{{ echo_trans(action.confirm, {}, translationDomain) }}" {% endif -%}
-        {%- if action.csrfProtected %} data-csrf-token="{{ echo_path(actionRoute, actionParams, ['csrf_token']) }}" {% endif -%}
-    >
+        {%- if action.csrfProtected %} data-csrf-token="{{ echo_path(actionRoute, actionParams, ['csrf_token']) }}" {% endif -%}>
             <i class="{{ action.icon|default('icon-asterisk') }}"></i>
     </a>
     {{ echo_endspaceless() }}
