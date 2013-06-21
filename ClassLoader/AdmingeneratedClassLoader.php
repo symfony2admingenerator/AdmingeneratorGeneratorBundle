@@ -51,18 +51,23 @@ class AdmingeneratedClassLoader
     {
         $generator = new EmptyGenerator($this->base_path);
 
-        list($admingenerated, $bundle, $baseController, $controllerName) = explode('\\',$class);
+        $parts = explode('\\',$class);
+        $controllerName = $parts[count($parts) - 1];
+        unset($parts[count($parts) - 1]);
+
+        $namespace = implode('\\', $parts);
+        $fileName = str_replace('\\', DIRECTORY_SEPARATOR, $class);
 
         $builder = new EmptyBuilderAction();
         $generator->addBuilder($builder);
-        $builder->setOutputName($baseController.'/'.$controllerName.'.php');
+        $builder->setOutputName($fileName.'.php');
+
         $builder->setVariables(array(
             'controllerName' => $controllerName,
-            'bundle'         => $bundle,
-            'base_controller' => $baseController,
+            'namespace'      => $namespace,
         ));
 
-        $generator->writeOnDisk($this->base_path."/$admingenerated/$bundle");
+        $generator->writeOnDisk($this->base_path);
     }
 
 }
