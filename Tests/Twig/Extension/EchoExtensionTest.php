@@ -413,6 +413,34 @@ class EchoExtensionTest extends TestCase
         $this->runTwigTests($tpls, $returns);
     }
 
+    public function testGetEchoInclude()
+    {
+        $tpls = array(
+            'string' => '{{ echo_include( "::base.htmlm.twig" ) }}',
+        );
+
+        $returns = array(
+            'string' => array('{% include "::base.htmlm.twig" %}', 'include return a good include tag with string elements'),
+        );
+
+       $this->runTwigTests($tpls, $returns);
+    }
+
+    public function testGetEchoRender()
+    {
+        $tpls = array(
+            'controller'  => '{{ echo_render( "MyController" ) }}',
+            'with_params' => '{{ echo_render( "MyController", {"hello": name } ) }}',
+        );
+
+        $returns = array(
+            'controller' => array('{% render(controller("MyController", {  })) %}', 'controller return a good controller tag'),
+            'with_params' => array('{% render(controller("MyController", { hello: \'cedric\' })) %}', 'controller return a good controller tag'),
+        );
+
+       $this->runTwigTests($tpls, $returns);
+    }
+
     protected function runTwigTests($tpls, $returns)
     {
         $twig = $this->getEnvironment(false, array(), $tpls);
