@@ -361,11 +361,16 @@ class BaseBuilder extends GenericBaseBuilder
     {
         return str_replace('\\', '', $this->getVariable('namespace_prefix'));
     }
-
+    
+    public function getBaseActionsRoute()
+    {
+        return str_replace('\\', '_', $this->getVariable('namespace_prefix').'_'.$this->getVariable('bundle_name').'_'
+               .$this->getBaseGeneratorName());
+    }
+    
     public function getObjectActionsRoute()
     {
-        return $this->getVariable('namespace_prefix').'_'.$this->getVariable('bundle_name').'_'
-               .$this->getBaseGeneratorName().'_object';
+        return $this->getBaseActionsRoute().'_object';
     }
 
     /**

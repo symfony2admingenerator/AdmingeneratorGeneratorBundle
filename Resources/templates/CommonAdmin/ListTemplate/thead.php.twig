@@ -20,7 +20,7 @@
                         {{ echo_endif () }}
                     {%- endif -%}
 
-                                {{ echo_twig("'" ~ column.label|addslashes ~ "'|trans({}, '" ~ (i18n_catalog is defined ? i18n_catalog : "Admin") ~ "')") }}
+                                {{ echo_twig("'" ~ column.label|addslashes ~ "'|trans({}, '" ~ i18n_catalog|default("Admin") ~ "')") }}
                     {%- if column.isSortable -%}
                               </a>
                         {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "'") }}

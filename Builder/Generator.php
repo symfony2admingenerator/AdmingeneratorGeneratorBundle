@@ -60,6 +60,7 @@ class Generator extends TwigGeneratorGenerator
     {
         parent::addBuilder($builder);
         $vars = array_replace_recursive(
+            $this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array()),
             $this->getFromYaml('params', array()),
             $this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array())
         );

@@ -4,6 +4,7 @@
 {% use '../CommonAdmin/ShowTemplate/tabs.php.twig' %}
 {% use '../CommonAdmin/ShowTemplate/show.php.twig' %}
 {% use '../CommonAdmin/ShowTemplate/actions.php.twig' %}
+{% use '../CommonAdmin/ShowTemplate/sidebar.php.twig' %}
 {{ echo_extends( builder.getBaseAdminTemplate ) }}
 
 {{ echo_block("stylesheets") }}
@@ -25,7 +26,16 @@
     {{- block('title') -}}
 
     <div class="row-fluid">
-        {{- block('show_tabs') }}
-        {{- block('show') -}}
+        {% if sidebar is defined and sidebar|length > 0 %}
+            <div class="span8">
+        {% endif %}
+                {{- block('show_tabs') }}
+                {{- block('show') -}}
+        {% if sidebar is defined and sidebar|length > 0 %}
+            </div>
+            <div class="span4">
+                {{- block('show_sidebar') -}}
+            </div>
+        {% endif %}
     </div>
 {{ echo_endblock() }}

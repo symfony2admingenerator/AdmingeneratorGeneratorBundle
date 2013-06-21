@@ -136,7 +136,7 @@ actually does. In our example we can do that by editing
     /**
      * This function is for you to customize what action actually does
      */
-    public function executeObjectLock($User)
+    protected function executeObjectLock($User)
     {
         // In this example I use Doctrine ORM
         $em = $this->getDoctrine()->getManager();
@@ -227,7 +227,7 @@ actually does. In our example we can do that by editing
     /**
      * This function is for you to customize what action actually does
      */
-    public function executeBatchLock($selected)
+    protected function executeBatchLock($selected)
     {
         // In this example I use Doctrine ORM
         $em = $this->getDoctrine()->getManager();
@@ -249,3 +249,23 @@ checking CSRF protection token or credentials
 * `errorBatch{{ ActionName }}` - called if action errored
 
 > **Note:** The only method you **have to** overwrite is `executeBatch{{ ActionName }}`
+
+### 5. Valid action names
+
+Becouse admingenerator generates functions based on action name, action names must be validated. 
+Actions names cannot contain characters like `!@#$%^&*;:"',.()[]{}`, they may contain only word-characters 
+and dashes.
+
+Any non-word character will be removed from generated function name, e.g. object action `toggle-is-valid` will 
+generate functions:
+
+```php
+
+protected function attemptObjectToggleisvalid() { ... }
+    
+protected function executeObjectToggleisvalid() { ... }
+    
+protected function successObjectToggleisvalid() { ... }
+    
+protected function errorObjectToggleisvalid() { ... }
+```

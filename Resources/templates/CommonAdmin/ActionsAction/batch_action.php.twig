@@ -10,23 +10,23 @@
      * @param array $selected Selected \{{ model }} primary keys
      *
      * To customize your action look into:
-     * executeBatch{{ action.name|capitalize }}() - holds action logic
-     * successBatch{{ action.name|capitalize }}() - called if action was successfull
-     * errorBatch{{ action.name|capitalize }}()   - called if action errored
+     * executeBatch{{ action.name|php_name|capitalize }}() - holds action logic
+     * successBatch{{ action.name|php_name|capitalize }}() - called if action was successfull
+     * errorBatch{{ action.name|php_name|capitalize }}()   - called if action errored
      */
-    public function attemptBatch{{ action.name|capitalize }}(array $selected)
+    protected function attemptBatch{{ action.name|php_name|capitalize }}(array $selected)
     {
         try {
             {{ block('security_action') }}
-            
+
             {{ block('csrf_action_check_batch_token') }}
 
-            $this->executeBatch{{ action.name|capitalize }}($selected);
+            $this->executeBatch{{ action.name|php_name|capitalize }}($selected);
 
-            return $this->successBatch{{ action.name|capitalize }}();
+            return $this->successBatch{{ action.name|php_name|capitalize }}();
 
         } catch (\Exception $e) {
-            return $this->errorBatch{{ action.name|capitalize }}($e);
+            return $this->errorBatch{{ action.name|php_name|capitalize }}($e);
         }
     }
 
@@ -39,7 +39,7 @@
      *
      * @param array $selected Selected \{{ model }} primary keys
      */
-    public function executeBatch{{ action.name|capitalize }}(array $selected)
+    protected function executeBatch{{ action.name|php_name|capitalize }}(array $selected)
     {
         // By default action does nothing
         // Overwrite this function!
@@ -55,7 +55,7 @@
      *
      * @return Response Must return a response!
      */
-    public function successBatch{{ action.name|capitalize }}()
+    protected function successBatch{{ action.name|php_name|capitalize }}()
     {
         $this->get('session')->getFlashBag()->add(
             'success',
@@ -80,7 +80,7 @@
      * @param \Exception $e Exception
      * @return Response Must return a response!
      */
-    public function errorBatch{{ action.name|capitalize }}(\Exception $e)
+    protected function errorBatch{{ action.name|php_name|capitalize }}(\Exception $e)
     {
         $this->get('session')->getFlashBag()->add(
             'error',

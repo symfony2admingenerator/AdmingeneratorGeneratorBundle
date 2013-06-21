@@ -6,7 +6,7 @@
                 <select id="batchActionSelector" name="action">
                     <option selected="selected" value="none">{{ echo_trans('batch.list.selected') }}</option>
                     {% for action in builder.BatchActions %}
-                        {% set translationDomain = action.type is sameas('custom') ? (i18n_catalog is defined ? i18n_catalog : "Admin") : 'Admingenerator' %}
+                        {% set translationDomain = action.type is sameas('custom') ? i18n_catalog|default("Admin") : 'Admingenerator' %}
                         {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
                             {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials')) }}
                         {% endif %}
@@ -14,7 +14,7 @@
                             value="{{ action.name }}"
                             {%- if action.confirm %} data-confirm='{{ echo_trans(action.confirm, {}, translationDomain) }}' {% endif -%}
                         >
-                              {%- set translationDomain = action.type is sameas('custom') ? (i18n_catalog is defined ? i18n_catalog : "Admin") : 'Admingenerator' -%}
+                              {%- set translationDomain = action.type is sameas('custom') ? i18n_catalog|default("Admin") : 'Admingenerator' -%}
                               {% if action.icon %}<i class="{{ action.icon }}"></i> {% endif %}{{ echo_trans(action.label, {}, translationDomain) }}
                         </option>
                         {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}

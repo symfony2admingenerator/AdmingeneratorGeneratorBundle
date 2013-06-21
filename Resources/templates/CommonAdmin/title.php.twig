@@ -1,13 +1,13 @@
 {% block title %}
     {{ echo_block("page_title") }}
         <header>
-            <h1>{{ echo_trans(title,{}, i18n_catalog is defined ? i18n_catalog : "Admin" ) }}</h1>
+            <h1>{{ echo_trans(title,{}, i18n_catalog|default("Admin") ) }}</h1>
         </header>
     {{ echo_endblock() }}
 {% endblock %}
 
 {% block site_title %}
     {{ echo_block("title") }}
-        {{ echo_twig('parent()') }} - {{ echo_trans(title,{}, i18n_catalog is defined ? i18n_catalog : "Admin" ) }}
+        {{ echo_twig('parent()') }} - {{ echo_trans(title,{}, i18n_catalog|default("Admin") ) }}
     {{ echo_endblock() }}
 {% endblock %}
