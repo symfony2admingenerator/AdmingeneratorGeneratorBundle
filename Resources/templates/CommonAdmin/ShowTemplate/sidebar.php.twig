@@ -1,0 +1,20 @@
+{% block show_sidebar %}
+{{ echo_block("show_sidebar") }}
+    {% for name, widget in sidebar %}
+        {% if widget.credentials is defined %}
+            {{ echo_if_granted(widget.credentials, builder.ModelClass) }}
+        {% endif %}
+        <div class="row-fluid">
+            <h2>{{ echo_trans(name,{}, i18n_catalog is defined ? i18n_catalog : "Admin" ) }}</h2>
+            {% if widget.partial %}
+                {{ echo_include(widget.partial) }}
+            {% elseif widget.render %}
+                {{ echo_render(widget.render is iterable ?  widget.render.controller : widget.render, widget.render is iterable ? widget.render.params : {}) }}
+            {% endif %}
+        </div>
+        {% if widget.credentials is defined %}
+            {{ echo_endif () }}
+        {% endif %}
+    {% endfor %}
+{{ echo_endblock() }}
+{% endblock %}

@@ -42,6 +42,8 @@ class EchoExtension extends \Twig_Extension
             'echo_trans'        => new \Twig_Function_Method($this, 'getEchoTrans'),
             'echo_twig_assoc'   => new \Twig_Function_Method($this, 'getEchoTwigAssoc'),
             'echo_twig_filter'  => new \Twig_Function_Method($this, 'getEchoTwigFilter'),
+            'echo_include'      => new \Twig_Function_Method($this, 'getEchoInclude'),
+            'echo_render'       => new \Twig_Function_Method($this, 'getEchoRender'),
         );
     }
 
@@ -450,6 +452,18 @@ class EchoExtension extends \Twig_Extension
         }
 
         return '{ ' . implode(', ', $contents) . ' }';
+    }
+
+    public function getEchoInclude($twig)
+    {
+        return '{% include "'.$twig.'" %}';
+    }
+
+    public function getEchoRender($controller, array $params = array())
+    {
+        $params = $this->getEchoTwigAssoc($params);
+
+        return '{% render(controller("'.$controller.'", '.$params.')) %}';
     }
 
     /**
