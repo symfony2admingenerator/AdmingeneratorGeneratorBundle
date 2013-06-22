@@ -59,13 +59,30 @@ class Generator extends TwigGeneratorGenerator
     public function addBuilder(BuilderInterface $builder)
     {
         parent::addBuilder($builder);
-        $vars = array_replace_recursive(
-            $this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array()),
-            $this->getFromYaml('params', array()),
-            $this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array())
-        );
-        $builder->setVariables($vars);
+        
+        $builder->setVariables($this->getOrderedVarsForBuilder($builder));
         $builder->setColumnClass($this->getColumnClass());
+    }
+    
+    protected function getOrderedVarsForBuilder(BuilderInterface $builder)
+    {
+        $local = $this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array());
+        $global = $this->getFromYaml('params', array());
+        
+        /* Recursive array intersect keys function */
+        $key_intrs_rec = function (array $array1, array $array2) use (&$key_intrs_rec) {
+            $array1 = array_intersect_key($array1, $array2);
+            foreach ($array1 as $key => &$value) {
+                if (is_array($value))  {
+                    $value = is_array($array2[$key]) ? $key_intrs_rec($value, $array2[$key]) : $value;
+                }
+            }
+            return $array1;
+        };
+        
+        $intersect = $key_intrs_rec($global, $local);
+        
+        return array_replace_recursive($intersect, $global, $local);
     }
 
     protected function getColumnClass()
