@@ -5,13 +5,34 @@ use Doctrine\DBAL\LockMode;
 {% endblock %}
 
 {% block getObject -%}
-    protected function getObject($pk, $version = null)
+    protected function getObject($pk)
     {
         return $this->getDoctrine()
-                    ->getManager({{ entity_manager|default('')|enquote }})
-                    ->getRepository('{{ model }}')
-                    ->find($pk, {{ lock_mode|default('LockMode::NONE') }}, $version);
+            ->getManager({{ entity_manager|default('')|wrap('"') }})
+            ->getRepository('{{ model }}')
+            ->find($pk);
     }
+{% endblock %}
+
+{% block getLockedObject -%}
+    
+    protected function getLockedObject($pk)
+    {
+        $object = $this->getObject($pk);
+        $versions = $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}Edit\Versions', array());
+
+        try {
+            $em = $this->getDoctrine()
+                ->getManager({{ entity_manager|default('')|wrap('"') }});
+                
+            $em->lock($object, {{ lock_mode|default('LockMode::NONE') }}, $versions[$pk]);
+            
+            return $object;
+        } catch(OptimisticLockException $e) {
+            echo "Sorry, but someone else has already changed this entity. Please apply the changes again!";
+        }
+    }
+    
 {% endblock %}
 
 {% block saveObject -%}

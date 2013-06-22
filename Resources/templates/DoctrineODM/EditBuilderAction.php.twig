@@ -5,7 +5,7 @@ use Doctrine\ODM\MongoDB\LockMode;
 {% endblock %}
 
 {% block getObject -%}
-    protected function getObject($pk, $version = null)
+    protected function getObject($pk)
     {
         $pk = is_numeric($pk) ? intval($pk) : $pk;
 

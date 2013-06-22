@@ -1,6 +1,7 @@
 {% use '../CommonAdmin/EditAction/index.php.twig' %}
 {% use '../CommonAdmin/EditAction/update.php.twig' %}
 {% use '../CommonAdmin/security_action.php.twig' %}
+{% use '../CommonAdmin/version_lock.php.twig' %}
 <?php
 
 namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.generator.GeneratedControllerFolder }};
@@ -57,4 +58,23 @@ class EditController extends BaseController
         //ORM do JOB
     }
     {% endblock %}
+    
+
+    protected function getObjectVersions()
+    {
+        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}Edit\Versions', array());
+    }
+
+    protected function setObjectVersions($versions = array())
+    {
+        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}Edit\Versions', $versions);
+    }
+    
+    protected function lockObjectVersion($pk, $version)
+    {
+        $versions = $this->getObjectVersions();
+        $versions[$pk] = $version;
+        $this->setObjectVersions($versions);
+    }
+
 }

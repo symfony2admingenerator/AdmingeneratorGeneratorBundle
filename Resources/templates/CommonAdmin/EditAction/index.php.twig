@@ -1,9 +1,9 @@
 {% use '../CommonAdmin/security_action.php.twig' %}
 {% block index_use %}
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ builder.BaseGeneratorName ? builder.BaseGeneratorName ~ "\\" : "" }}EditType;
-
+use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ builder.BaseGeneratorName ? builder.BaseGeneratorName ~ chars(47, 47) : "" }}EditType;
 {% endblock %}
+
 {% block index %}
 
     public function indexAction($pk)
