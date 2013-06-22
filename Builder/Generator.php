@@ -90,7 +90,6 @@ class Generator extends TwigGeneratorGenerator
             $yaml
         );
     }
-    }
 
     /**
      * @param $yaml_path string with point for levels
