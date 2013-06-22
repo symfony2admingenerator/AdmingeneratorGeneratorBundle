@@ -83,7 +83,7 @@
             $this->get('translator')->trans(
                 "{{ action.options.success|default("action.custom.success") }}",
                 array('%name%' => '{{ action.label }}'),
-                '{{ action.options.success ? i18n_catalog|default("Admin") : 'Admingenerator' }}'
+                '{{ action.options.success is defined ? i18n_catalog|default("Admin") : 'Admingenerator' }}'
             )
         );
 
@@ -109,7 +109,7 @@
             $this->get('translator')->trans(
                 "{{ action.options.error|default("action.custom.error") }}",
                 array('%name%' => '{{ action.label }}'),
-                '{{ action.options.success ? i18n_catalog|default("Admin") : 'Admingenerator' }}'
+                '{{ action.options.error is defined ? i18n_catalog|default("Admin") : 'Admingenerator' }}'
             )
         );
 
