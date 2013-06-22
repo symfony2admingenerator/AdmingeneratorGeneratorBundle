@@ -3,7 +3,7 @@
 {% block orm_use %}{% endblock %}
 
 {% block getObject -%}
-    protected function getObject($pk)
+    protected function getObject($pk, $version = null)
     {
         return \{{ model }}Query::create()->findPk($pk);
     }

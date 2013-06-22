@@ -8,7 +8,7 @@ use Doctrine\DBAL\LockMode;
     protected function getObject($pk, $version = null)
     {
         return $this->getDoctrine()
-                    ->getManager({{ entity_manager|enquote|default('') }})
+                    ->getManager({{ entity_manager|default('')|enquote }})
                     ->getRepository('{{ model }}')
                     ->find($pk, {{ lock_mode|default('LockMode::NONE') }}, $version);
     }
@@ -17,7 +17,7 @@ use Doctrine\DBAL\LockMode;
 {% block saveObject -%}
     protected function saveObject(\{{ model }} ${{ builder.ModelClass }})
     {
-        $em = $this->getDoctrine()->getManager({{ entity_manager|enquote|default('') }});
+        $em = $this->getDoctrine()->getManager({{ entity_manager|default('')|enquote }});
         $em->persist(${{ builder.ModelClass }});
         $em->flush();
     }

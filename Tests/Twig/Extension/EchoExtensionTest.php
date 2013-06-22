@@ -91,6 +91,21 @@ class EchoExtensionTest extends TestCase
        $this->runTwigTests($tpls, $returns);
     }
 
+    public function testEnquote()
+    {
+        $tpls = array(
+            'string' => '{{ "cedric"|enquote }}',
+            'empty' => '{{ ""|enquote }}',
+        );
+
+        $returns = array(
+            'string' => array('"cedric"', 'Enquote format well the string'),
+            'empty' => array("", 'Enquote format well empty string'),
+        );
+
+       $this->runTwigTests($tpls, $returns);
+    }
+
     public function testGetEchoTrans()
     {
         $tpls = array(
