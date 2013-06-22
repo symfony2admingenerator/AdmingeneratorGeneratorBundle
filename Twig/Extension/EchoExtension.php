@@ -186,6 +186,8 @@ class EchoExtension extends \Twig_Extension
      */
     public function char()
     {
+        $str = '';
+        
         foreach(func_get_args() as $char) {
             if (is_int($char)) {
                 $str .= chr($char);
