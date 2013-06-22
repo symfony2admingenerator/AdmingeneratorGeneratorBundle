@@ -54,7 +54,8 @@ class EchoExtension extends \Twig_Extension
         return array(
             'as_php'          => new \Twig_Filter_Method($this, 'asPhp'),
             'convert_as_form' => new \Twig_Filter_Method($this, 'convertAsForm'),
-            'php_name'          => new \Twig_Filter_Method($this, 'phpName'),
+            'php_name'        => new \Twig_Filter_Method($this, 'phpName'),
+            'enquote'         => new \Twig_Filter_Method($this, 'enquote'),
         );
     }
 
@@ -154,6 +155,17 @@ class EchoExtension extends \Twig_Extension
         $str = preg_replace('/[^\w]+/', '', $str);
 
         return $str;
+    }
+
+    /**
+     * Adds quotes around string if its not empty
+     * 
+     * @param string $str
+     * @return string
+     */
+    public function enquote($str)
+    {
+        return (is_string($str) && $str !== '') ? '"'.$str.'"' : $str;
     }
 
     public function export($variable)

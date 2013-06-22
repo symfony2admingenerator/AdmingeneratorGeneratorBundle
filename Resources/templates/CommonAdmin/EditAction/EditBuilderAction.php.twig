@@ -8,6 +8,8 @@ namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.gene
 use {{ builder.generator.baseController }} as BaseController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+{% block orm_use %}{% endblock %}
+
 {{- block('index_use') -}}
 
 {{- block('update_use') -}}
