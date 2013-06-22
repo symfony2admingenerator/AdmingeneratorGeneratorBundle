@@ -79,12 +79,16 @@ class Generator extends TwigGeneratorGenerator
     }
 
     /**
-     * Set the yaml to pass all the vars to the builders
+     * Set the yaml merged with defaults to pass all the vars to the builders
+     * 
      * @param Yaml $yaml
      */
     protected function setYamlConfig(array $yaml)
     {
-        $this->yaml = $yaml;
+        $this->yaml = array_merge_recursive(
+            Yaml::parse(__DIR__.'/../Resources/config/default.yml'), 
+            $yaml
+        );
     }
 
     /**

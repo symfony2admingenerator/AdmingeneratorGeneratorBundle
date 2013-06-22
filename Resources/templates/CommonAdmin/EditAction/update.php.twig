@@ -5,8 +5,12 @@
 
     public function updateAction($pk)
     {
+        {% if lock_mode -%}
+        ${{ builder.ModelClass }} = $this->getLockedObject($pk);
+        {%- else -%}
         ${{ builder.ModelClass }} = $this->getObject($pk);
-
+        {%- endif %}
+        
         {{ block('security_action_with_object') }}
 
         if (!${{ builder.ModelClass }}) {
