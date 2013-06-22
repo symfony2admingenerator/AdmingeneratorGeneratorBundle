@@ -1,6 +1,8 @@
 {% extends '../CommonAdmin/EditAction/EditBuilderAction.php.twig' %}
 
-{% block orm_use %}{% endblock %}
+{% block orm_use %}
+use \PropelException;
+{% endblock %}
 
 {% block getObject -%}
     protected function getObject($pk, $version = null)
@@ -15,3 +17,15 @@
         ${{ builder.ModelClass }}->save();
     }
 {% endblock %}
+
+{% block checkObjectLock -%}
+{% if lock_mode is not null -%}
+    $versions = $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}Edit\Versions', array());
+    /* TODO: I could not find a propel equivalent of Doctrine's lock */
+    if ($object->getCurrentVersion !== $versions[$pk]) {
+        throw new PropelException();
+    }
+{%- endif %}
+{% endblock %}
+
+{% block lockException %}PropelException{% endblock %}

@@ -2,6 +2,7 @@
 
 {% block orm_use %}
 use Doctrine\ODM\MongoDB\LockMode;
+use Doctrine\ODM\MongoDB\LockException;
 {% endblock %}
 
 {% block getObject -%}
@@ -11,7 +12,7 @@ use Doctrine\ODM\MongoDB\LockMode;
 
         return $this->getDocumentManager()
                     ->getRepository('{{ model }}')
-                    ->find($pk, {{ lock_mode|default('LockMode::NONE') }}, $version);
+                    ->find($pk);
     }
 {% endblock %}
 
@@ -23,3 +24,12 @@ use Doctrine\ODM\MongoDB\LockMode;
         $dm->flush();
     }
 {% endblock %}
+
+{% block checkObjectLock -%}
+{% if lock_mode is not null -%}
+    $versions = $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}Edit\Versions', array());
+    $this->getDocumentManager()->lock($object, {{ lock_mode|default('LockMode::NONE') }}, $versions[$pk]);
+{%- endif %}
+{% endblock %}
+
+{% block lockException %}LockException{% endblock %}
