@@ -64,6 +64,13 @@ class Generator extends TwigGeneratorGenerator
         $builder->setColumnClass($this->getColumnClass());
     }
     
+    /**
+     * This function returns ordered variables for builder
+     * 
+     * First it calculates intersection between global and local vars
+     * Then it recursively replaces intersection array with global vars
+     * Finally it recursively replaces resulting array with local vars
+     */
     protected function getOrderedVarsForBuilder(BuilderInterface $builder)
     {
         $local = $this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array());
@@ -80,7 +87,7 @@ class Generator extends TwigGeneratorGenerator
             return $array1;
         };
         
-        $intersect = $key_intrs_rec($global, $local);
+        $intersect = $key_intrs_rec($local, $global);
         
         return array_replace_recursive($intersect, $global, $local);
     }
