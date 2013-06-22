@@ -21,9 +21,10 @@ use \PropelException;
 {% block checkObjectLock -%}
 {% if lock_mode is not null -%}
     $versions = $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}Edit\Versions', array());
-    /* TODO: I could not find a propel equivalent of Doctrine's lock */
+    
+    /* TODO: Propel has no locking mechanism so we'll implement a simple check */
     if ($object->getCurrentVersion !== $versions[$pk]) {
-        throw new PropelException();
+        throw new PropelException('Cannot write to outdated object version.');
     }
 {%- endif %}
 {% endblock %}
