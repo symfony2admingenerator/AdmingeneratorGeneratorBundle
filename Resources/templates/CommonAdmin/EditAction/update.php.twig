@@ -5,7 +5,7 @@
 
     public function updateAction($pk)
     {
-        {% if lock_mode -%}
+        {% if lock_mode is not null -%}
         ${{ builder.ModelClass }} = $this->getLockedObject($pk);
         {%- else -%}
         ${{ builder.ModelClass }} = $this->getObject($pk);
