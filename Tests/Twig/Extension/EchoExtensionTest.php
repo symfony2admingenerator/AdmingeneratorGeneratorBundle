@@ -91,6 +91,36 @@ class EchoExtensionTest extends TestCase
        $this->runTwigTests($tpls, $returns);
     }
 
+    public function testWrap()
+    {
+        $tpls = array(
+            'string' => '{{ "cedric"|wrap("&") }}',
+            'empty' => '{{ ""|wrap("&") }}',
+        );
+
+        $returns = array(
+            'string' => array('&cedric&', 'Wrap format well string'),
+            'empty' => array("", 'Wrap format well empty string'),
+        );
+
+       $this->runTwigTests($tpls, $returns);
+    }
+
+    public function testChar()
+    {
+        $tpls = array(
+            'single' => '{{ char(33) }}',
+            'multiple' => '{{ char(33, 35, 35) }}',
+        );
+
+        $returns = array(
+            'single' => array('!', 'Char return well for single argument'),
+            'multiple' => array('!##', 'Char return well for multiple arguments'),
+        );
+
+       $this->runTwigTests($tpls, $returns);
+    }
+
     public function testGetEchoTrans()
     {
         $tpls = array(

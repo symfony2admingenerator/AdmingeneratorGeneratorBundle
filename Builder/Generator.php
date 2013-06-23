@@ -59,14 +59,39 @@ class Generator extends TwigGeneratorGenerator
     public function addBuilder(BuilderInterface $builder)
     {
         parent::addBuilder($builder);
-        $vars = array_replace_recursive(
-            $this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array()),
-            $this->getFromYaml('params', array()),
-            $this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array())
+        
+        $builder->setVariables(
+            $this->recursiveReplace(
+                $this->getFromYaml('params', array()),
+                $this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array())
+            )
         );
-        $builder->setVariables($vars);
         $builder->setColumnClass($this->getColumnClass());
     }
+    
+    /**
+     * Recursively replaces Base array values with Replacedement array values
+     * while keeping indexes of Replacement array
+     * 
+     * @param array $base Base array
+     * @param array $replacement Replacement array
+     */
+    protected function recursiveReplace($base, $replacement)
+    {
+        $replace_values_recursive = function (array $array, array $order) use (&$replace_values_recursive) {
+            $array = array_replace($order, array_replace($array, $order));
+
+            foreach ($array as $key => &$value) {
+                if (is_array($value))  {
+                    $value = (array_key_exists($key, $order) && is_array($order[$key])) ? $replace_values_recursive($value, $order[$key]) : $value;
+                }
+            }
+            return $array;
+        };
+        
+        return $replace_values_recursive($base, $replacement);
+    }
+
 
     protected function getColumnClass()
     {
@@ -80,11 +105,15 @@ class Generator extends TwigGeneratorGenerator
 
     /**
      * Set the yaml to pass all the vars to the builders
+     * 
      * @param Yaml $yaml
      */
     protected function setYamlConfig(array $yaml)
     {
-        $this->yaml = $yaml;
+        $this->yaml = array_replace_recursive(
+            Yaml::parse(__DIR__.'/../Resources/config/default.yml'), 
+            $yaml
+        );
     }
 
     /**

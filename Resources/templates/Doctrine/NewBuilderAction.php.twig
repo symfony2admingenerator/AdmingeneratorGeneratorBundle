@@ -9,7 +9,7 @@
 {% block saveObject -%}
     protected function saveObject(\{{ model }} ${{ builder.ModelClass }})
     {
-        $em = $this->getDoctrine()->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %});
+        $em = $this->getDoctrine()->getManager({{ entity_manager|default('')|wrap('"') }});
         $em->persist(${{ builder.ModelClass }});
         $em->flush();
     }
