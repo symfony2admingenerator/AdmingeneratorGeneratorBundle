@@ -3,7 +3,7 @@ params:
     model: ~
     namespace_prefix: ~
     entity_manager: ~
-    concurrency_lock: false
+    concurrency_lock: ~
     bundle_name: ~
     fields: ~
     object_actions: ~
