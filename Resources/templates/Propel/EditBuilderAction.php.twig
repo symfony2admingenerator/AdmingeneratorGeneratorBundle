@@ -17,21 +17,12 @@ use \PropelException;
         ${{ builder.ModelClass }}->save();
     }
 {% endblock %}
-    
-{% block getVersions %}{% endblock %}
-{% block setVersions %}{% endblock %}
-{% block saveVersion %}
-    protected function saveVersion($pk, $version)
-    {
-        // Propel does not need saveing versions in session
-        // as it has isLastVersion() check
-    }
-{% endblock %}
 
 {% block checkObjectLock -%}
 {% if lock_mode is not null -%}
-    if ($object->isLastVersion()) {
-        throw new PropelException('Cannot write to outdated object version.');
+    $versions = $this->getVersions();
+    if ($object->getVersion() !== $versions[$pk]) {
+        throw new PropelException("The lock failed, version ".$versions[$pk]." was expected, but is actually ".$object->getVersion());
     }
 {%- endif %}
 {% endblock %}

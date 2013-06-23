@@ -61,22 +61,23 @@ class EditController extends BaseController
     {% block getVersions %}
     protected function getVersions()
     {
-        //ORM do JOB
+        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}Edit\Versions', array());
     }
     {% endblock %}
 
     {% block setVersions %}
     protected function setVersions($versions = array())
     {
-        //ORM do JOB
+        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}Edit\Versions', $versions);
     }
     {% endblock %}
-    
-    
+
     {% block saveVersion %}
     protected function saveVersion($pk, $version)
     {
-        //ORM do JOB
+        $versions = $this->getVersions();
+        $versions[$pk] = $version;
+        $this->setVersions($versions);
     }
     {% endblock %}
 
