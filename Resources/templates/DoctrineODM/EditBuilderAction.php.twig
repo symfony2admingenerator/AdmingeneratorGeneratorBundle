@@ -26,11 +26,7 @@ use Doctrine\ODM\MongoDB\LockException;
 {% endblock %}
 
 {% block checkVersion -%}
-    protected function checkVersion($pk, \{{ model }} ${{ builder.ModelClass }})
-    {
-        $versions = $this->getVersions();
-        $this->getDocumentManager()->lock(${{ builder.ModelClass }}, LockMode::OPTIMISTIC, $versions[$pk]);
-    }    
+    $this->getDocumentManager()->lock(${{ builder.ModelClass }}, LockMode::OPTIMISTIC, $versions[$pk]);
 {% endblock %}
 
 {% block lockException %}LockException{% endblock %}

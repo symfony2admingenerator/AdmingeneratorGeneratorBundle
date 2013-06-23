@@ -22,7 +22,8 @@
         if ($form->isValid()) {
             try {
                 {% if concurrency_lock -%}
-                $this->checkVersion($pk, ${{ builder.ModelClass }});
+                $versions = $this->getVersions();
+                {% block checkVersion %}// ORM job{% endblock %}
                 {%- endif %}
                 
                 $this->preSave($form, ${{ builder.ModelClass }});

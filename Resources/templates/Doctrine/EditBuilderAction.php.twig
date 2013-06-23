@@ -2,7 +2,7 @@
 
 {% block orm_use %}
 use Doctrine\DBAL\LockMode;
-use Doctrine\ORM\ORMException;
+use Doctrine\ORM\OptimisticLockException;
 {% endblock %}
 
 {% block getObject -%}
@@ -25,11 +25,7 @@ use Doctrine\ORM\ORMException;
 {% endblock %}
 
 {% block checkVersion -%}
-    protected function checkVersion($pk, \{{ model }} ${{ builder.ModelClass }})
-    {
-        $versions = $this->getVersions();
-        $this->getDoctrine()->getManager({{ entity_manager|default('')|wrap('"') }})->lock(${{ builder.ModelClass }}, LockMode::OPTIMISTIC, $versions[$pk]);
-    }    
+    $this->getDoctrine()->getManager({{ entity_manager|default('')|wrap('"') }})->lock(${{ builder.ModelClass }}, LockMode::OPTIMISTIC, $versions[$pk]);
 {% endblock %}
 
-{% block lockException %}ORMException{% endblock %}
+{% block lockException %}OptimisticLockException{% endblock %}
