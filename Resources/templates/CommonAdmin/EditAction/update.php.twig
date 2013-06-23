@@ -36,7 +36,7 @@
                 else
                   return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_edit", array('pk' => $pk) ));
                 
-            {% if if concurrency_lock -%}
+            {% if concurrency_lock -%}
             } catch({% block lockException %}// ORM job{% endblock %} $e) {
                 $this->get('session')->getFlashBag()->add('warning',  $this->get('translator')->trans("{{ messages.locked is defined ? messages.locked : "action.object.edit.locked" }}", array(), 'Admingenerator') );
                 $this->onException($e, $form, ${{ builder.ModelClass }});
