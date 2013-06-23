@@ -20,7 +20,13 @@ use \PropelException;
     
 {% block getVersions %}{% endblock %}
 {% block setVersions %}{% endblock %}
-{% block saveVersion %}{% endblock %}
+{% block saveVersion %}
+    protected function saveVersion($pk, $version)
+    {
+        // Propel does not need saveing versions in session
+        // as it has isLastVersion() check
+    }
+{% endblock %}
 
 {% block checkObjectLock -%}
 {% if lock_mode is not null -%}

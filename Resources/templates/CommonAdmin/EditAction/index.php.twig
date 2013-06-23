@@ -11,7 +11,7 @@ use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ bu
         ${{ builder.ModelClass }} = $this->getObject($pk);
 
         {% if lock_mode is not null -%}
-        $this->lockObjectVersion($pk, ${{ builder.ModelClass }}->getCurrentVersion());
+        $this->saveVersion($pk, ${{ builder.ModelClass }}->getVersion());
         {%- endif %}
         
         {{ block('security_action_with_object') }}
