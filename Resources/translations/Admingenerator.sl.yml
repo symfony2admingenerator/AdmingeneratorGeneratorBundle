@@ -85,8 +85,7 @@ action.object.edit:
   error:    Predmet ni bil shranjen. Preverite napake in poskusite ponovno.
   locked:   |
               Oprosti, ampak nekdo drug je že spremenil ta objekt.<br />
-              <a class="btn btn-small btn-info" href="%path%" target="_blank">
-              <i class="icon-eye-open icon-white"> Kliknite tukaj</a>, da si 
+              <a href="%path%" target="_blank">Kliknite tukaj</a>, da si 
               ogledate spremembe v novem zavihku ali znova predložiti obrazec 
               uporablja vaše spremembe!
 action.object.delete:

@@ -90,8 +90,7 @@ action.object.edit:
   locked:   |
               با عرض پوزش، اما شخص دیگری در حال حاضر این شیء تغییر کرده است.<br />
               تغییرات خود را!
-              <a class="btn btn-small btn-info" href="%path%" target="_blank">
-              <i class="icon-eye-open icon-white"> اینجا را کلیک کنید</a>
+              <a href="%path%" target="_blank">اینجا را کلیک کنید</a>
               برای مشاهده تغییرات در یک تب جدید یا دوباره فرم به درخواست
 action.object.delete:
   label:    حذف کردن

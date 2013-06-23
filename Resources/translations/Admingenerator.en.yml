@@ -89,8 +89,7 @@ action.object.edit:
   error:    The form can't be saved. Check errors and try to resubmit.
   locked:   |
               Sorry, but someone else has already changed this object.<br />
-              <a class="btn btn-small btn-info" href="%path%" target="_blank">
-              <i class="icon-eye-open icon-white"> Click here</a> to view 
+              <a href="%path%" target="_blank">Click here</a> to view 
               changes in a new tab or submit the form again to apply your 
               changes!
 action.object.delete:

@@ -85,8 +85,7 @@ action.object.edit:
   error:    Форма не сохранена. Исправьте ошибки и попробуйте еще раз.
   locked:   |
               Извините, но кто-то уже изменил этот объект.<br />
-              <a class="btn btn-small btn-info" href="%path%" target="_blank">
-              <i class="icon-eye-open icon-white"> Щелкните здесь</a>
+              <a href="%path%" target="_blank">Щелкните здесь</a>
               для просмотра изменений в новой вкладке или отправить форму еще 
               раз для изменения изменения!
 action.object.delete:

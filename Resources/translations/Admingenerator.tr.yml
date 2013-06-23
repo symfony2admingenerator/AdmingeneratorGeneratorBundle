@@ -79,8 +79,7 @@ action.object.edit:
               Üzgünüz, ama başkası zaten bu nesne değişti.<br />
               Yeni bir sekmede değişiklikleri görüntülemek veya uygulamak için 
               tekrar formu göndermek 
-              <a class="btn btn-small btn-info" href="%path%" target="_blank">
-              <i class="icon-eye-open icon-white"> için tıklayınız</a> 
+              <a href="%path%" target="_blank">için tıklayınız</a> 
               Yaptığınız değişiklikleri!
 action.object.delete:
   label:    Sil

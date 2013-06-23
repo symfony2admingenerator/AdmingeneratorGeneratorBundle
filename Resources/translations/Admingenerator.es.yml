@@ -91,8 +91,7 @@ action.object.edit:
               vuelve a intentarlo.
   locked:   |
               Lo sentimos, pero alguien ya ha cambiado este objeto.<br />
-              <a class="btn btn-small btn-info" href="%path%" target="_blank">
-              <i class="icon-eye-open icon-white"> Haz clic aquí</a> para ver 
+              <a href="%path%" target="_blank">Haz clic aquí</a> para ver 
               los cambios en una nueva pestaña o enviar el formulario de nuevo 
               para aplicar los cambios! 
 action.object.delete:

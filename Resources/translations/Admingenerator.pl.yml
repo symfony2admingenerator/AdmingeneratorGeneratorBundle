@@ -89,8 +89,7 @@ action.object.edit:
   error:    Zmiany nie mogły zostać zapisane. Sprawdź błędy i spróbuj ponownie.
   locked:   |
               Przepraszam, ale ktoś inny już zmienił ten obiekt.<br />
-              <a class="btn btn-small btn-info" href="%path%" target="_blank">
-              <i class="icon-eye-open icon-white"> Kliknij tutaj</a>, aby 
+              <a href="%path%" target="_blank">Kliknij tutaj</a>, aby 
               zobaczyć zmiany na nowej zakładce lub wyślij formularz ponownie,
               aby zastosować twoje zmiany!
 action.object.delete:

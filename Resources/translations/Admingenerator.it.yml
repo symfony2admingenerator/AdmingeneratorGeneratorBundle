@@ -88,8 +88,7 @@ action.object.edit:
   locked:   |
               Siamo spiacenti, ma qualcun altro ha già cambiato questo 
               oggetto.<br />
-              <a class="btn btn-small btn-info" href="%path%" target="_blank">
-              <i class="icon-eye-open icon-white"> Clicca qui</a> per 
+              <a href="%path%" target="_blank">Clicca qui</a> per 
               visualizzare le modifiche in una nuova scheda o inviare 
               nuovamente il form di applicare le modifiche!
 action.object.delete:

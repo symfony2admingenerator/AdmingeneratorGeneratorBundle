@@ -85,8 +85,7 @@ action.object.edit:
   error:    Неможливо зберегти об'єкт. Форма не збережена. Виправте помилки і спробуйте ще раз.
   locked:   |
               Вибачте, але хтось вже змінив цей об'єкт.<br />
-              <a class="btn btn-small btn-info" href="%path%" target="_blank">
-              <i class="icon-eye-open icon-white"> Клацніть для</a> перегляду 
+              <a href="%path%" target="_blank">Клацніть для</a> перегляду 
               змін у новій вкладці або відправити форму ще раз для зміни зміни!
 action.object.delete:
   label:    Видалити

@@ -85,8 +85,7 @@ action.object.edit:
   error:    データの保存に失敗しました。エラーを確認して再度保存してください。
   locked:   |
               申し訳ありませんが、他の誰かがすでにこのオブジェクトを変更しました。<br />
-              <a class="btn btn-small btn-info" href="%path%" target="_blank">
-              <i class="icon-eye-open icon-white"> ここをクリック</a>
+              <a href="%path%" target="_blank">ここをクリック</a>
               新しいタブで変更を表示したり、変更を適用するには、もう一度フォームを送信します！
 action.object.delete:
   label:    削除
