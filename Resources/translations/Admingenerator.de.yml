@@ -82,13 +82,16 @@ action.generic:
 action.object.edit:
   label:    Bearbeiten
   success:  Das Objekt wurde erfolgreich gespeichert.
-  error:    Das Formular konnte nicht gespeichert werden. Bitte Fehler prüfen und erneut versuchen.
+  error:    |
+              Das Formular konnte nicht gespeichert werden. Bitte Fehler prüfen 
+              und erneut versuchen.
   locked:   |
-              Sie versuchen, um veraltete Version dieses Objekt zu bearbeiten. 
-              Mittel klicken Sie <a class="btn btn-small btn-info" href="%path%">
-              <i class="icon-eye-open icon-white"> Zeigen </ a>
-              Aktion, um Änderungen in einem neuen Tab zu sehen. <br />
-              Senden Sie das Formular erneut, um Ihre Änderungen zu speichern.
+              Entschuldigung, aber jemand anderes hat bereits verändert dieser 
+              Objekt.<br />
+              <a class="btn btn-small btn-info" href="%path%" target="_blank">
+              <i class="icon-eye-open icon-white"> Klicken Sie hier</a> um
+              Änderungen in einem neuen Tab zu sehen oder senden Sie das Formular 
+              erneut zu bewerben die Änderungen!
 action.object.delete:
   label:    Löschen
   confirm:  Sind Sie sicher, dass Sie dieses Element löschen?

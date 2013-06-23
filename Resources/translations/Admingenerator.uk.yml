@@ -84,11 +84,10 @@ action.object.edit:
   success:  Об'єкт був успішно збережений.
   error:    Неможливо зберегти об'єкт. Форма не збережена. Виправте помилки і спробуйте ще раз.
   locked:   |
-              You're trying to edit outdated version of this object. Middle 
-              click <a class="btn btn-small btn-info" href="%path%">
-              <i class="icon-eye-open icon-white"> show</a>
-              action to view changes in a new tab.<br />
-              Submit the form again to save your changes.
+              Вибачте, але хтось вже змінив цей об'єкт.<br />
+              <a class="btn btn-small btn-info" href="%path%" target="_blank">
+              <i class="icon-eye-open icon-white"> Клацніть для</a> перегляду 
+              змін у новій вкладці або відправити форму ще раз для зміни зміни!
 action.object.delete:
   label:    Видалити
   confirm:  Ви дійсно хочете видалити цей елемент?

@@ -88,12 +88,11 @@ action.object.edit:
   success:  The object was successfully saved.
   error:    The form can't be saved. Check errors and try to resubmit.
   locked:   |
-              You're trying to edit outdated version of this object. Middle 
-              click <a class="btn btn-small btn-info" href="%path%">
-              <i class="icon-eye-open icon-white"> show</a>
-              action to view changes in a new tab.<br />
-              Submit the form again to save your changes.
-      
+              Sorry, but someone else has already changed this object.<br />
+              <a class="btn btn-small btn-info" href="%path%" target="_blank">
+              <i class="icon-eye-open icon-white"> Click here</a> to view 
+              changes in a new tab or submit the form again to apply your 
+              changes!
 action.object.delete:
   label:    Delete
   confirm:  Are you sure you want to delete this element?

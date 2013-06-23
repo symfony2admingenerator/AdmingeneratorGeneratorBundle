@@ -84,11 +84,10 @@ action.object.edit:
   success:  データの保存が正常に完了しました。
   error:    データの保存に失敗しました。エラーを確認して再度保存してください。
   locked:   |
-              You're trying to edit outdated version of this object. Middle 
-              click <a class="btn btn-small btn-info" href="%path%">
-              <i class="icon-eye-open icon-white"> show</a>
-              action to view changes in a new tab.<br />
-              Submit the form again to save your changes.
+              申し訳ありませんが、他の誰かがすでにこのオブジェクトを変更しました。<br />
+              <a class="btn btn-small btn-info" href="%path%" target="_blank">
+              <i class="icon-eye-open icon-white"> ここをクリック</a>
+              新しいタブで変更を表示したり、変更を適用するには、もう一度フォームを送信します！
 action.object.delete:
   label:    削除
   confirm:  選択したデータを削除します。よろしいですか?

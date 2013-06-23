@@ -84,11 +84,11 @@ action.object.edit:
   success:  Predmet je bil uspešno shranjen.
   error:    Predmet ni bil shranjen. Preverite napake in poskusite ponovno.
   locked:   |
-              You're trying to edit outdated version of this object. Middle 
-              click <a class="btn btn-small btn-info" href="%path%">
-              <i class="icon-eye-open icon-white"> show</a>
-              action to view changes in a new tab.<br />
-              Submit the form again to save your changes.
+              Oprosti, ampak nekdo drug je že spremenil ta objekt.<br />
+              <a class="btn btn-small btn-info" href="%path%" target="_blank">
+              <i class="icon-eye-open icon-white"> Kliknite tukaj</a>, da si 
+              ogledate spremembe v novem zavihku ali znova predložiti obrazec 
+              uporablja vaše spremembe!
 action.object.delete:
   label:    Izbriši
   confirm:  Ali ste prepričani, da želite izbrisati ta element?
