@@ -60,36 +60,36 @@ class Generator extends TwigGeneratorGenerator
     {
         parent::addBuilder($builder);
         
-        $builder->setVariables($this->getOrderedVarsForBuilder($builder));
+        $builder->setVariables(
+            $this->recursiveReplace(
+                $this->getFromYaml('params', array()),
+                $this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array())
+            )
+        );
         $builder->setColumnClass($this->getColumnClass());
     }
     
     /**
-     * This function returns ordered variables for builder
+     * Recursively replaces Base array values with Replacedement array values
+     * while keeping indexes of Replacement array
      * 
-     * First it calculates intersection between global and local vars
-     * Then it recursively replaces intersection array with global vars
-     * Finally it recursively replaces resulting array with local vars
+     * @param array $base Base array
+     * @param array $replacement Replacement array
      */
-    protected function getOrderedVarsForBuilder(BuilderInterface $builder)
+    protected function recursiveReplace($base, $replacement)
     {
-        $local = $this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array());
-        $global = $this->getFromYaml('params', array());
-        
-        /* Recursive array intersect keys function */
-        $key_intrs_rec = function (array $array1, array $array2) use (&$key_intrs_rec) {
-            $array1 = array_intersect_key($array1, $array2);
-            foreach ($array1 as $key => &$value) {
+        $replace_values_recursive = function (array $array, array $order) use (&$replace_values_recursive) {
+            $array = array_replace($order, array_replace($array, $order));
+
+            foreach ($array as $key => &$value) {
                 if (is_array($value))  {
-                    $value = is_array($array2[$key]) ? $key_intrs_rec($value, $array2[$key]) : $value;
+                    $value = is_array($order[$key]) ? $replace_values_recursive($value, $order[$key]) : $value;
                 }
             }
-            return $array1;
+            return $array;
         };
         
-        $intersect = $key_intrs_rec($local, $global);
-        
-        return array_replace_recursive($intersect, $global, $local);
+        return $replace_values_recursive($base, $replacement);
     }
 
     protected function getColumnClass()
