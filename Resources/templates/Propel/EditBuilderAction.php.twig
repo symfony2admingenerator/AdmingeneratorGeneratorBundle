@@ -19,7 +19,7 @@ use \PropelException;
 {% endblock %}
 
 {% block checkObjectLock -%}
-{% if lock_mode is not null -%}
+{% if if concurrency_lock is true -%}
     $versions = $this->getVersions();
     if ($object->getVersion() !== $versions[$pk]) {
         throw new PropelException("The lock failed, version ".$versions[$pk]." was expected, but is actually ".$object->getVersion());

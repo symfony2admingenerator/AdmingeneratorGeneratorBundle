@@ -10,7 +10,7 @@ use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ bu
     {
         ${{ builder.ModelClass }} = $this->getObject($pk);
 
-        {% if lock_mode is not null -%}
+        {% if concurrency_lock is true -%}
         $this->saveVersion($pk, ${{ builder.ModelClass }}->getVersion());
         {%- endif %}
         

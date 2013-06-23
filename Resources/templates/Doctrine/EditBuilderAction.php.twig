@@ -25,9 +25,9 @@ use Doctrine\ORM\ORMException;
 {% endblock %}
 
 {% block checkObjectLock -%}
-{% if lock_mode is not null -%}
+{% if if concurrency_lock is true -%}
     $versions = $this->getVersions();
-    $this->getDoctrine()->getManager({{ entity_manager|default('')|wrap('"') }})->lock($object, {{ lock_mode|default('LockMode::NONE') }}, $versions[$pk]);
+    $this->getDoctrine()->getManager({{ entity_manager|default('')|wrap('"') }})->lock($object, 'LockMode::OPTIMISTIC', $versions[$pk]);
 {%- endif %}
 {% endblock %}
 
