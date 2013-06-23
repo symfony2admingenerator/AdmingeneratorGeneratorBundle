@@ -87,7 +87,8 @@ abstract class BaseBuilder extends GenericBaseBuilder
      */
     public function isMultiTemplatesBuilder()
     {
-        return !empty($this->templatesToGenerate);
+        $tmp = $this->getTemplatesToGenerate();
+        return !empty($tmp);
     }
 
     /**

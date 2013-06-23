@@ -145,7 +145,7 @@ class EchoExtension extends \Twig_Extension
 
     /**
      * Converts string into valid PHP function name
-     * 
+     *
      * @param string $str
      * @return string
      */
@@ -466,16 +466,16 @@ class EchoExtension extends \Twig_Extension
         return '{ ' . implode(', ', $contents) . ' }';
     }
 
-    public function getEchoInclude($twig)
+    public function getEchoInclude($twig, array $params = array(), $paramsOnly = false)
     {
-        return '{% include "'.$twig.'" %}';
+        return sprintf('{%% include "%s" with %s %s%%}', $twig, $this->getEchoTwigAssoc($params), $paramsOnly?'only ':'');
     }
 
     public function getEchoRender($controller, array $params = array())
     {
         $params = $this->getEchoTwigAssoc($params);
 
-        return '{% render(controller("'.$controller.'", '.$params.')) %}';
+        return '{{ render(controller("'.$controller.'", '.$params.')) }}';
     }
 
     /**
