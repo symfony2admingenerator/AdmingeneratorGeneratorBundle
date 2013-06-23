@@ -83,7 +83,7 @@ class Generator extends TwigGeneratorGenerator
 
             foreach ($array as $key => &$value) {
                 if (is_array($value))  {
-                    $value = is_array($order[$key]) ? $replace_values_recursive($value, $order[$key]) : $value;
+                    $value = (array_key_exists($key, $order) && is_array($order[$key])) ? $replace_values_recursive($value, $order[$key]) : $value;
                 }
             }
             return $array;
@@ -91,6 +91,7 @@ class Generator extends TwigGeneratorGenerator
         
         return $replace_values_recursive($base, $replacement);
     }
+
 
     protected function getColumnClass()
     {
