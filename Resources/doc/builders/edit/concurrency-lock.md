@@ -35,6 +35,16 @@ class Foo
     // ...
     /** @Version @Column(type="integer") */
     private $version;
+
+    /**
+     * Get version
+     *
+     * @return integer
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
     // ...
 }
 ```
