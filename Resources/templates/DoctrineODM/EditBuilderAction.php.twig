@@ -26,7 +26,7 @@ use Doctrine\ODM\MongoDB\LockException;
 {% endblock %}
 
 {% block checkObjectLock -%}
-{% if concurrency_lock is true -%}
+{% if concurrency_lock -%}
     $versions = $this->getVersions();
     $this->getDocumentManager()->lock($object, 'LockMode::OPTIMISTIC', $versions[$pk]);
 {%- endif %}
