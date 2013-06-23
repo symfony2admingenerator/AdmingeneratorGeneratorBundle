@@ -8,6 +8,8 @@ namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.gene
 use {{ builder.generator.baseController }} as BaseController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+{% block orm_use %}{% endblock %}
+
 {{- block('index_use') -}}
 
 {{- block('update_use') -}}
@@ -55,4 +57,28 @@ class EditController extends BaseController
         //ORM do JOB
     }
     {% endblock %}
+
+    {% block getVersions %}
+    protected function getVersions()
+    {
+        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}Edit\Versions', array());
+    }
+    {% endblock %}
+
+    {% block setVersions %}
+    protected function setVersions($versions = array())
+    {
+        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}Edit\Versions', $versions);
+    }
+    {% endblock %}
+
+    {% block saveVersion %}
+    protected function saveVersion($pk, $version)
+    {
+        $versions = $this->getVersions();
+        $versions[$pk] = $version;
+        $this->setVersions($versions);
+    }
+    {% endblock %}
+
 }

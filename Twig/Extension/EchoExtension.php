@@ -46,6 +46,7 @@ class EchoExtension extends \Twig_Extension
             'echo_twig_filter'  => new \Twig_Function_Method($this, 'getEchoTwigFilter'),
             'echo_include'      => new \Twig_Function_Method($this, 'getEchoInclude'),
             'echo_render'       => new \Twig_Function_Method($this, 'getEchoRender'),
+            'char'              => new \Twig_Function_Method($this, 'char'),
         );
     }
 
@@ -54,7 +55,8 @@ class EchoExtension extends \Twig_Extension
         return array(
             'as_php'          => new \Twig_Filter_Method($this, 'asPhp'),
             'convert_as_form' => new \Twig_Filter_Method($this, 'convertAsForm'),
-            'php_name'          => new \Twig_Filter_Method($this, 'phpName'),
+            'php_name'        => new \Twig_Filter_Method($this, 'phpName'),
+            'wrap'            => new \Twig_Filter_Method($this, 'wrap'),
         );
     }
 
@@ -156,9 +158,43 @@ class EchoExtension extends \Twig_Extension
         return $str;
     }
 
+    /**
+     * Wrap string around with given string only if string is not empty
+     * 
+     * @param string $str
+     * @param string $wrap
+     * @return string
+     */
+    public function wrap($str, $wrap)
+    {
+        return (is_string($str) && $str !== '') ? $wrap.$str.$wrap : $str;
+    }
+
     public function export($variable)
     {
         return str_replace(array("\n", 'array (', '     '), array('', 'array(', ''), var_export($variable, true));
+    }
+
+    /**
+     * Get characters by code
+     * 
+     * Note: if the code is higher than 256, it will return the code mod 256.
+     * For example: chr(321)=A because A=65(256)
+     * 
+     * @params integer Any number of integer codes
+     * @return string
+     */
+    public function char()
+    {
+        $str = '';
+        
+        foreach(func_get_args() as $char) {
+            if (is_int($char)) {
+                $str .= chr($char);
+            }
+        }
+        
+        return $str;
     }
 
     /**

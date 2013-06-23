@@ -86,7 +86,14 @@ action.generic:
 action.object.edit:
   label:    Editar
   success:  El objeto fue guardado satisfactoriamente.
-  error:    El formulario no pudo ser guardado. comprueba los errores y vuelve a intentarlo.
+  error:    |
+              El formulario no pudo ser guardado. comprueba los errores y 
+              vuelve a intentarlo.
+  locked:   |
+              Lo sentimos, pero alguien ya ha cambiado este objeto.<br />
+              <a href="%path%" target="_blank">Haz clic aquí</a> para ver 
+              los cambios en una nueva pestaña o enviar el formulario de nuevo 
+              para aplicar los cambios! 
 action.object.delete:
   label:    Borrar
   confirm:  ¿Está seguro que desea eliminar este elemento?
@@ -114,7 +121,9 @@ action.custom:
 batch.list:
   selected:       Seleccionado
   none.selected:  Debe seleccionar al menos un elemento.
-  warning:        No se pudo completar la acción de lote debido a los parámetros que faltan.
+  warning:        |
+                    No se pudo completar la acción de lote debido a los 
+                    parámetros que faltan.
   selector:       Choose an action for selection
   send:           Ejecutar
 

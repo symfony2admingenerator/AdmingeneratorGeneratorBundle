@@ -82,7 +82,14 @@ action.generic:
 action.object.edit:
   label:    Editar
   success:  O objeto foi salvo com sucesso.
-  error:    O formulário não pode ser salvo. Verifique os erros e tente novamente.
+  error:    |
+              O formulário não pode ser salvo. Verifique os erros e tente 
+              novamente.
+  locked:   |
+              Desculpe, mas alguém já mudou este objeto.<br />
+              <a href="%path%" target="_blank">Clique aqui</a> para ver as 
+              mudanças em uma nova aba ou enviar o formulário novamente para 
+              aplicar as alterações!
 action.object.delete:
   label:    Excluir
   confirm:  Tem certeza de que deseja excluir este elemento?

@@ -83,9 +83,11 @@ List of supported features for each model manager:
 
 1. [Actions builder][builders-1]
 2. [List builder][builders-2]
+3. [Edit builder][builders-3]
 
 [builders-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/builders/actions-builder.md
 [builders-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/builders/list-builder.md
+[builders-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/builders/edit-builder.md
 
 [go up][go-up]
 
