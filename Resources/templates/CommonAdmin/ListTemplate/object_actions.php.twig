@@ -48,11 +48,15 @@
     {% set actionRoute  = action.route ? action.route : (builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_object') %}
     {% set actionParams = action.params ? echo_twig_assoc(action.params) : "{ 'pk': " ~ builder.ModelClass ~ "." ~ builder.getFieldGuesser().getModelPrimaryKeyName(model) ~ ", action: '" ~ action.name ~ "' }" %}
     {% set translationDomain = action.type is sameas('custom') ? i18n_catalog|default("Admin") : 'Admingenerator' %}
-    <a class="btn btn-mini {{ action.class | default('') }}"
-        href="{{ echo_path(actionRoute, actionParams) }}"
+
+    {% spaceless %}
+    {{ echo_spaceless() }}
+    <a  class="btn btn-mini {{ action.class|default('') }}" href="{{ echo_path(actionRoute, actionParams) }}" 
+        data-original-title="{{ echo_trans(action.label, {}, translationDomain) }}" rel="tooltip" 
         {%- if action.confirm %} data-confirm="{{ echo_trans(action.confirm, {}, translationDomain) }}" {% endif -%}
-        {%- if action.csrfProtected %} data-csrf-token="{{ echo_path(actionRoute, actionParams, ['csrf_token']) }}" {% endif -%}
-        rel="tooltip" data-original-title="{{ echo_trans(action.label, {}, translationDomain) }}">
-            <i class="{{ action.icon | default('icon-asterisk') }}"></i>
+        {%- if action.csrfProtected %} data-csrf-token="{{ echo_path(actionRoute, actionParams, ['csrf_token']) }}" {% endif -%}>
+            <i class="{{ action.icon|default('icon-asterisk') }}"></i>
     </a>
+    {{ echo_endspaceless() }}
+    {% endspaceless %}
 {% endblock %}

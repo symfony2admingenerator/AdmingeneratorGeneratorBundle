@@ -31,6 +31,8 @@ class EchoExtension extends \Twig_Extension
             'echo_endfor'       => new \Twig_Function_Method($this, 'getEchoEndFor'),
             'echo_raw'          => new \Twig_Function_Method($this, 'getEchoRaw'),
             'echo_endraw'       => new \Twig_Function_Method($this, 'getEchoEndRaw'),
+            'echo_spaceless'    => new \Twig_Function_Method($this, 'getEchoSpaceless'),
+            'echo_endspaceless' => new \Twig_Function_Method($this, 'getEchoEndSpaceless'),
             'echo_extends'      => new \Twig_Function_Method($this, 'getEchoExtends'),
             'echo_if'           => new \Twig_Function_Method($this, 'getEchoIf'),
             'echo_if_granted'   => new \Twig_Function_Method($this, 'getEchoIfGranted'),
@@ -417,6 +419,16 @@ class EchoExtension extends \Twig_Extension
     public function getEchoEndRaw()
     {
         return '{% endraw %}';
+    }
+
+    public function getEchoSpaceless()
+    {
+        return '{% spaceless %}';
+    }
+
+    public function getEchoEndSpaceless()
+    {
+        return '{% endspaceless %}';
     }
 
     /**

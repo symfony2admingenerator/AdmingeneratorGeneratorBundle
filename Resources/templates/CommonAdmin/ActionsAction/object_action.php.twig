@@ -44,7 +44,7 @@
                 "title" => $this->get('translator')->trans(
                     "{{ action.options.title|default("action.custom.title") }}",
                     array('%name%' => '{{ action.name }}'),
-                    '{{ action.options.i18n|default('Admingenerator') }}'
+                    '{{ i18n_catalog|default("Admin") }}'
                 ),
                 "actionRoute" => "{{ builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_object' }}",
                 "actionParams" => array("pk" => $pk, "action" => "{{ action.name }}")
@@ -82,8 +82,8 @@
             'success',
             $this->get('translator')->trans(
                 "{{ action.options.success|default("action.custom.success") }}",
-                array('%name%' => '{{ action.name }}'),
-                '{{ action.options.i18n|default('Admingenerator') }}'
+                array('%name%' => '{{ action.label }}'),
+                '{{ action.options.success is defined ? i18n_catalog|default("Admin") : 'Admingenerator' }}'
             )
         );
 
@@ -108,8 +108,8 @@
             'error',
             $this->get('translator')->trans(
                 "{{ action.options.error|default("action.custom.error") }}",
-                array('%name%' => '{{ action.name }}'),
-                '{{ action.options.i18n|default('Admingenerator') }}'
+                array('%name%' => '{{ action.label }}'),
+                '{{ action.options.error is defined ? i18n_catalog|default("Admin") : 'Admingenerator' }}'
             )
         );
 
