@@ -1,4 +1,10 @@
 {% extends '../CommonAdmin/EditAction/EditBuilderAction.php.twig' %}
+
+{% block orm_use %}
+use Doctrine\ODM\MongoDB\LockMode;
+use Doctrine\ODM\MongoDB\LockException;
+{% endblock %}
+
 {% block getObject -%}
     protected function getObject($pk)
     {
@@ -18,3 +24,9 @@
         $dm->flush();
     }
 {% endblock %}
+
+{% block checkVersion -%}
+    $this->getDocumentManager()->lock(${{ builder.ModelClass }}, LockMode::OPTIMISTIC, $versions[$pk]);
+{% endblock %}
+
+{% block lockException %}LockException{% endblock %}

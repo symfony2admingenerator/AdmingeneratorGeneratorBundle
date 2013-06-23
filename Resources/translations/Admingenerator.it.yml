@@ -82,7 +82,15 @@ action.generic:
 action.object.edit:
   label:    Modifica
   success:  L'oggetto è stato salvato con successo.
-  error:    Non è stato possibile salvare il form. Controlla gli errori e reinvia il form.
+  error:    |
+              Non è stato possibile salvare il form. Controlla gli errori e 
+              reinvia il form.
+  locked:   |
+              Siamo spiacenti, ma qualcun altro ha già cambiato questo 
+              oggetto.<br />
+              <a href="%path%" target="_blank">Clicca qui</a> per 
+              visualizzare le modifiche in una nuova scheda o inviare 
+              nuovamente il form di applicare le modifiche!
 action.object.delete:
   label:    Cancellare
   confirm:  Sei sicuro di voler eliminare questo elemento?

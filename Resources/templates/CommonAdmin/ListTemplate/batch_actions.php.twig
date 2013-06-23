@@ -49,7 +49,7 @@
                 $("#form-list-{{ builder.ModelClass }}").agen$batchActions({
                     submitSelector: 'button[name=batch]',
                     actionsSelector: '#batchActionSelector',
-                    noneSelected: '{{ echo_trans("batch.list.none.selected") }}' {# TODO: escape js with filter escape('js')#}
+                    noneSelected: '{{ echo_trans("batch.list.none.selected") }}'
                 });
             });
         </script>

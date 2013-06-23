@@ -82,7 +82,15 @@ action.generic:
 action.object.edit:
   label:    Bearbeiten
   success:  Das Objekt wurde erfolgreich gespeichert.
-  error:    Das Formular konnte nicht gespeichert werden. Bitte Fehler prüfen und erneut versuchen.
+  error:    |
+              Das Formular konnte nicht gespeichert werden. Bitte Fehler prüfen 
+              und erneut versuchen.
+  locked:   |
+              Entschuldigung, aber jemand anderes hat bereits verändert dieser 
+              Objekt.<br />
+              <a href="%path%" target="_blank">Klicken Sie hier</a> um
+              Änderungen in einem neuen Tab zu sehen oder senden Sie das Formular 
+              erneut zu bewerben die Änderungen!
 action.object.delete:
   label:    Löschen
   confirm:  Sind Sie sicher, dass Sie dieses Element löschen?
