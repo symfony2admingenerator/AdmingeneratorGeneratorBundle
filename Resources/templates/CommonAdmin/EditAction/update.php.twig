@@ -40,11 +40,11 @@
                   return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_edit", array('pk' => $pk) ));
                 
             {% if concurrency_lock -%}
-            } catch({% block lockException %}// ORM job{% endblock %} $e) {
+            } catch ({% block lockException %}// ORM job{% endblock %} $e) {
                 $this->get('session')->getFlashBag()->add('warning',  $this->get('translator')->trans("{{ messages.locked is defined ? messages.locked : "action.object.edit.locked" }}", array(), 'Admingenerator') );
                 $this->onException($e, $form, ${{ builder.ModelClass }});
                 $this->saveVersion($pk, ${{ builder.ModelClass }}->getVersion());
-            {%- endif %}
+            {% endif %}
             } catch (\Exception $e) {
                 $this->get('session')->getFlashBag()->add('error',  $this->get('translator')->trans("{{ messages.error is defined ? messages.error : "action.object.edit.error" }}", array(), 'Admingenerator') );
                 $this->onException($e, $form, ${{ builder.ModelClass }});
