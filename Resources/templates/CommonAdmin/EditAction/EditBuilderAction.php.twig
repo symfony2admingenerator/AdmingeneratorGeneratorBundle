@@ -57,23 +57,27 @@ class EditController extends BaseController
         //ORM do JOB
     }
     {% endblock %}
-    
 
-    protected function getObjectVersions()
+    {% block getVersions %}
+    protected function getVersions()
     {
-        return $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}Edit\Versions', array());
+        //ORM do JOB
     }
+    {% endblock %}
 
-    protected function setObjectVersions($versions = array())
+    {% block setVersions %}
+    protected function setVersions($versions = array())
     {
-        $this->get('session')->set('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}Edit\Versions', $versions);
+        //ORM do JOB
     }
+    {% endblock %}
     
-    protected function lockObjectVersion($pk, $version)
+    
+    {% block saveVersion %}
+    protected function saveVersion($pk, $version)
     {
-        $versions = $this->getObjectVersions();
-        $versions[$pk] = $version;
-        $this->setObjectVersions($versions);
+        //ORM do JOB
     }
+    {% endblock %}
 
 }

@@ -17,13 +17,14 @@ use \PropelException;
         ${{ builder.ModelClass }}->save();
     }
 {% endblock %}
+    
+{% block getVersions %}{% endblock %}
+{% block setVersions %}{% endblock %}
+{% block saveVersion %}{% endblock %}
 
 {% block checkObjectLock -%}
 {% if lock_mode is not null -%}
-    $versions = $this->get('session')->get('{{ namespace_prefix }}\{{ bundle_name }}\{{ builder.BaseGeneratorName }}Edit\Versions', array());
-    
-    /* TODO: Propel has no locking mechanism so we'll implement a simple check */
-    if ($object->getCurrentVersion !== $versions[$pk]) {
+    if ($object->isLastVersion()) {
         throw new PropelException('Cannot write to outdated object version.');
     }
 {%- endif %}
