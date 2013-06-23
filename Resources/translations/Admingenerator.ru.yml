@@ -83,6 +83,12 @@ action.object.edit:
   label:    Редактировать
   success:  Материал успешно сохранен.
   error:    Форма не сохранена. Исправьте ошибки и попробуйте еще раз.
+  locked:   |
+              You're trying to edit outdated version of this object. Middle 
+              click <a class="btn btn-small btn-info" href="%path%">
+              <i class="icon-eye-open icon-white"> show</a>
+              action to view changes in a new tab.<br />
+              Submit the form again to save your changes.
 action.object.delete:
   label:    Удалять
   confirm:  Вы действительно хотите удалить этот элемент?

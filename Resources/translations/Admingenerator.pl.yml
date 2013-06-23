@@ -87,6 +87,12 @@ action.object.edit:
   label:    Edytuj
   success:  Zapisano zmiany.
   error:    Zmiany nie mogły zostać zapisane. Sprawdź błędy i spróbuj ponownie.
+  locked:   |
+              Próbujesz edytować nieaktualną wersję tego obiektu. Kliknij środkowym
+              przyciskiem myszy na akcji <a class="btn btn-small btn-info" href="%path%">
+              <i class="icon-eye-open icon-white"> Podgląd</a>, aby obejrzeć 
+              zmiany na nowej zakładce.<br />
+              Wyślij formularz ponownie, aby zapisać swoje zmiany.
 action.object.delete:
   label:    Usuń
   confirm:  Czy potwierdzasz usunięcie elementu?

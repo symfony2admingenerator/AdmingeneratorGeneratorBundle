@@ -83,6 +83,12 @@ action.object.edit:
   label:    Editar
   success:  O objeto foi salvo com sucesso.
   error:    O formulário não pode ser salvo. Verifique os erros e tente novamente.
+  locked:   |
+              You're trying to edit outdated version of this object. Middle 
+              click <a class="btn btn-small btn-info" href="%path%">
+              <i class="icon-eye-open icon-white"> show</a>
+              action to view changes in a new tab.<br />
+              Submit the form again to save your changes.
 action.object.delete:
   label:    Excluir
   confirm:  Tem certeza de que deseja excluir este elemento?

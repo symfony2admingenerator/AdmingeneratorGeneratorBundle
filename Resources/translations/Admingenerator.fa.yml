@@ -87,6 +87,12 @@ action.object.edit:
   label:    ویرایش
   success:  ذخیره سازی با موفقیت انجام پذیرفت.
   error:    فرم مورد نظر ذخیره نشد. خطاها را بررسی کرده و سپس دوباره امتحان کنید.
+  locked:   |
+              You're trying to edit outdated version of this object. Middle 
+              click <a class="btn btn-small btn-info" href="%path%">
+              <i class="icon-eye-open icon-white"> show</a>
+              action to view changes in a new tab.<br />
+              Submit the form again to save your changes.
 action.object.delete:
   label:    حذف کردن
   confirm:  آیا از حذف کردن این عنصر مطمئن می باشید؟

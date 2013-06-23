@@ -75,6 +75,12 @@ action.object.edit:
   label:    Düzenle
   success:  Nesne başarıyla kaydedildi.
   error:    Form kaydı yapılamadı. Hataları düzeltip tekrar deneyin.
+  locked:   |
+              You're trying to edit outdated version of this object. Middle 
+              click <a class="btn btn-small btn-info" href="%path%">
+              <i class="icon-eye-open icon-white"> show</a>
+              action to view changes in a new tab.<br />
+              Submit the form again to save your changes.
 action.object.delete:
   label:    Sil
   confirm:  Bu öğeyi silmek istediğinize emin misiniz?
