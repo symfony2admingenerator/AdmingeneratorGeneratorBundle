@@ -25,11 +25,12 @@ use Doctrine\ODM\MongoDB\LockException;
     }
 {% endblock %}
 
-{% block checkObjectLock -%}
-{% if concurrency_lock -%}
-    $versions = $this->getVersions();
-    $this->getDocumentManager()->lock($object, 'LockMode::OPTIMISTIC', $versions[$pk]);
-{%- endif %}
+{% block checkVersion -%}
+    protected function checkVersion($pk, \{{ model }} ${{ builder.ModelClass }})
+    {
+        $versions = $this->getVersions();
+        $this->getDocumentManager()->lock(${{ builder.ModelClass }}, LockMode::OPTIMISTIC, $versions[$pk]);
+    }    
 {% endblock %}
 
 {% block lockException %}LockException{% endblock %}

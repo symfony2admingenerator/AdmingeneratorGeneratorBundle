@@ -18,13 +18,14 @@ use \PropelException;
     }
 {% endblock %}
 
-{% block checkObjectLock -%}
-{% if concurrency_lock -%}
-    $versions = $this->getVersions();
-    if ($object->getVersion() !== $versions[$pk]) {
-        throw new PropelException("The lock failed, version ".$versions[$pk]." was expected, but is actually ".$object->getVersion());
-    }
-{%- endif %}
+{% block checkVersion -%}
+    protected function checkVersion($pk, \{{ model }} ${{ builder.ModelClass }})
+    {
+        $versions = $this->getVersions();
+        if (${{ builder.ModelClass }}->getVersion() !== $versions[$pk]) {
+            throw new PropelException("The lock failed, version ".$versions[$pk]." was expected, but is actually ".${{ builder.ModelClass }}->getVersion());
+        }
+    }    
 {% endblock %}
 
 {% block lockException %}PropelException{% endblock %}
