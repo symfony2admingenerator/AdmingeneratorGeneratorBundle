@@ -181,7 +181,7 @@ class EchoExtension extends \Twig_Extension
      * Note: if the code is higher than 256, it will return the code mod 256.
      * For example: chr(321)=A because A=65(256)
      * 
-     * @params integer Any number of integer codes
+     * @param integer Any number of integer codes
      * @return string
      */
     public function char()
