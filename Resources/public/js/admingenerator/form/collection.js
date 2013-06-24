@@ -22,15 +22,15 @@
     var pluginName = 'agen$collection',
         document = window.document,
         defaults = {
-            'allow_add':        false,
-            'allow_delete':     false,
-            'sortable':         false,
-            'sortable_field':   'position',
-            'prototype_name':   '__name__',
-            'trans': {
-                'new_label':      'New item',
-                'confirm':        'Are you sure you want to delete this element?',
-                'confirm_batch':  'Are you sure you want to delete all selected elements?'
+            allow_add:        false,
+            allow_delete:     false,
+            sortable:         false,
+            sortable_field:   'position',
+            prototype_name:   '__name__',
+            trans: {
+                new_label:      'New item',
+                confirm:        'Are you sure you want to delete this element?',
+                confirm_batch:  'Are you sure you want to delete all selected elements?'
             }
         };
 
@@ -90,6 +90,7 @@
 
                 // delete selected
                 $('#'+ this.element.id + '_toolbar > .batch-delete').click(function() {
+                    this._onDeleteAll();
                 });
             }
             
@@ -107,24 +108,25 @@
             var new_item = $('#'+ this.element.id).data('prototype');
             new_item = new_item.replace('/' + this.options.prototype_name + 'label__/g', this.options.trans.new_label);
             new_item = new_item.replace('/' + this.options.prototype_name + '/g', this.nextId);
-            new_item = $(new_item);
+            $new_item = $(new_item);
 
             if (this.options.allow_delete) {
-                new_item.find('.delete').click(function(){
+                $new_item.find('.delete').click(function(){
+                    that._onDelete(this);
                 });
             }
 
             this.nextId++;
-            $('#'+ this.element.id +' > .collection').append(new_item);
+            $('#'+ this.element.id +' > .collection').append($new_item);
 
             if (this.options.sortable) {
                 this._onChange();
             }
         },
                 
-        _onDelete: function() {
+        _onDelete: function(button) {
             if (confirm(this.options.trans.confirm)) {
-                $(this).closest('.collection-item').remove();
+                $(button).closest('.collection-item').remove();
 
                 if (this.options.sortable) {
                     this._onChange();
