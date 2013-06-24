@@ -56,10 +56,6 @@
             // Plugin-scope helper
             var that = this;
             
-            // Select container
-            var $batch    = $(that.element).find('input[name="selected[]"]');
-            var $batchAll = $(that.element).find('input[name="batchAll"]');
-            
             // Configure allow add
             if (this.options.allow_add) {
                 this.$new   = $('#'+ this.element.id +'_toolbar > .new');
@@ -106,11 +102,13 @@
                 
         _onAdd: function() {
             var new_item = $('#'+ this.element.id).data('prototype');
+            var new_id = this.nextId;
             new_item = new_item.replace('/' + this.options.prototype_name + 'label__/g', this.options.trans.new_label);
-            new_item = new_item.replace('/' + this.options.prototype_name + '/g', this.nextId);
+            new_item = new_item.replace('/' + this.options.prototype_name + '/g', new_id);
             $new_item = $(new_item);
 
             if (this.options.allow_delete) {
+                var that = this;
                 $new_item.find('.delete').click(function(){
                     that._onDelete(this);
                 });
@@ -118,6 +116,8 @@
 
             this.nextId++;
             $('#'+ this.element.id +' > .collection').append($new_item);
+            
+            console.log('here we should enable any javascript for the new field');
 
             if (this.options.sortable) {
                 this._onChange();
