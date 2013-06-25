@@ -1,12 +1,12 @@
 {% block security_use %}
-{% if credentials is defined and credentials %}
+{% if credentials %}
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 {% endif %}
 {% endblock %}
 
 {% block security_check_with_object %}
-{% if credentials is defined and credentials %}
+{% if credentials %}
     /**
      * Check user credentials
      *
@@ -25,7 +25,7 @@ use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 {% endblock %}
 
 {% block security_check %}
-{% if credentials is defined and credentials %}
+{% if credentials %}
     /**
      * Check user credentials
      *
@@ -47,7 +47,7 @@ use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
     {% if action is defined and action.credentials %}
     $this->checkCredentials('{{ action.credentials }}');
     {% endif %}
-{% elseif credentials is defined %}
+{% elseif credentials %}
     $this->checkCredentials('{{ credentials }}');
 {% endif %}
 {% endblock %}
@@ -57,7 +57,7 @@ use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
     {% if action is defined and action.credentials %}
     $this->checkCredentialsWithObject('{{ action.credentials }}', ${{ builder.ModelClass }});
     {% endif %}
-{% elseif credentials is defined %}
+{% elseif credentials %}
     $this->checkCredentialsWithObject('{{ credentials }}', ${{ builder.ModelClass }});
 {% endif %}
 {% endblock %}

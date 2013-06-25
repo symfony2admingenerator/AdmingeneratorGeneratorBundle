@@ -35,7 +35,9 @@ class ActionsBuilder extends BaseBuilder
      */
     public function getVariables()
     {
-        if (!$this->hasVariable('credentials')) {
+        // If credentials are not globally defined,
+        // check if an action have credentials
+        if (null === $this->getVariable('credentials')) {
             $this->variables->set('credentials', false);
             foreach (array_merge($this->getObjectActions(), $this->getBatchActions()) as $action) {
                 if ($action->getCredentials()) {
@@ -63,6 +65,12 @@ class ActionsBuilder extends BaseBuilder
 
     protected function setUserObjectActionConfiguration(Action $action)
     {
+        if ($globalCredentials = $this->getGenerator()->getFromYaml('params.credentials')) {
+            // If generator is globally protected by credentials
+            // object actions are also protected
+            $action->setCredentials($globalCredentials);
+        }
+
         $builderOptions = $this->getVariable(
             sprintf('object_actions[%s]', $action->getName()),
             array(), true
@@ -98,11 +106,6 @@ class ActionsBuilder extends BaseBuilder
                 $action = new Action($actionName);
             }
 
-            if ($globalCredentials = $this->getGenerator()->getFromYaml('params.credentials')) {
-                // If generator is globally protected by credentials
-                // object actions are also protected
-                $action->setCredentials($globalCredentials);
-            }
             $this->setUserObjectActionConfiguration($action);
             $this->addObjectAction($action);
         }
@@ -125,6 +128,12 @@ class ActionsBuilder extends BaseBuilder
 
     protected function setUserBatchActionConfiguration(Action $action)
     {
+        if ($globalCredentials = $this->getGenerator()->getFromYaml('params.credentials')) {
+            // If generator is globally protected by credentials
+            // batch actions are also protected
+            $action->setCredentials($globalCredentials);
+        }
+
         $builderOptions = $this->getVariable(
             sprintf('batch_actions[%s]', $action->getName()),
             array(),
@@ -161,11 +170,6 @@ class ActionsBuilder extends BaseBuilder
                 $action = new Action($actionName);
             }
 
-            if ($globalCredentials = $this->getGenerator()->getFromYaml('params.credentials')) {
-                // If generator is globally protected by credentials
-                // batch actions are also protected
-                $action->setCredentials($globalCredentials);
-            }
             $this->setUserBatchActionConfiguration($action);
             $this->addBatchAction($action);
         }

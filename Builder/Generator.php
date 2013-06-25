@@ -59,7 +59,7 @@ class Generator extends TwigGeneratorGenerator
     public function addBuilder(BuilderInterface $builder)
     {
         parent::addBuilder($builder);
-        
+
         $builder->setVariables(
             $this->recursiveReplace(
                 $this->getFromYaml('params', array()),
@@ -68,11 +68,11 @@ class Generator extends TwigGeneratorGenerator
         );
         $builder->setColumnClass($this->getColumnClass());
     }
-    
+
     /**
-     * Recursively replaces Base array values with Replacedement array values
+     * Recursively replaces Base array values with Replacement array values
      * while keeping indexes of Replacement array
-     * 
+     *
      * @param array $base Base array
      * @param array $replacement Replacement array
      */
@@ -88,7 +88,7 @@ class Generator extends TwigGeneratorGenerator
             }
             return $array;
         };
-        
+
         return $replace_values_recursive($base, $replacement);
     }
 
@@ -105,13 +105,13 @@ class Generator extends TwigGeneratorGenerator
 
     /**
      * Set the yaml to pass all the vars to the builders
-     * 
+     *
      * @param Yaml $yaml
      */
     protected function setYamlConfig(array $yaml)
     {
         $this->yaml = array_replace_recursive(
-            Yaml::parse(__DIR__.'/../Resources/config/default.yml'), 
+            Yaml::parse(__DIR__.'/../Resources/config/default.yml'),
             $yaml
         );
     }
