@@ -83,6 +83,11 @@ action.object.edit:
   label:    Urejanje
   success:  Predmet je bil uspešno shranjen.
   error:    Predmet ni bil shranjen. Preverite napake in poskusite ponovno.
+  locked:   |
+              Oprosti, ampak nekdo drug je že spremenil ta objekt.<br />
+              <a href="%path%" target="_blank">Kliknite tukaj</a>, da si 
+              ogledate spremembe v novem zavihku ali znova predložiti obrazec 
+              uporablja vaše spremembe!
 action.object.delete:
   label:    Izbriši
   confirm:  Ali ste prepričani, da želite izbrisati ta element?

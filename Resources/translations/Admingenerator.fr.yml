@@ -82,7 +82,14 @@ action.generic:
 action.object.edit:
   label:    Éditer
   success:  L'enregistrement a été effectué avec succès.
-  error:    Le formulaire n'a pas pu être sauvegardé. Vérifiez les erreurs et essayez de soumettre à nouveau.
+  error:    |
+              Le formulaire n'a pas pu être sauvegardé. Vérifiez les erreurs et 
+              essayez de soumettre à nouveau.
+  locked:   |
+              Désolé, mais quelqu'un d'autre a déjà changé cet objet.<br />
+              <a href="%path%" target="_blank">Cliquez ici</a> pour voir les 
+              changements dans un nouvel onglet ou soumettre à nouveau le 
+              formulaire de demande vos modifications!
 action.object.delete:
   label:    Effacer
   confirm:  Etes-vous sur de vouloir supprimer cet élement?

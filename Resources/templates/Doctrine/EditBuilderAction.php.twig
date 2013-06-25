@@ -1,9 +1,15 @@
 {% extends '../CommonAdmin/EditAction/EditBuilderAction.php.twig' %}
+
+{% block orm_use %}
+use Doctrine\DBAL\LockMode;
+use Doctrine\ORM\OptimisticLockException;
+{% endblock %}
+
 {% block getObject -%}
     protected function getObject($pk)
     {
         return $this->getDoctrine()
-                    ->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %})
+                    ->getManager({{ entity_manager|default('')|wrap('"') }})
                     ->getRepository('{{ model }}')
                     ->find($pk);
     }
@@ -12,8 +18,14 @@
 {% block saveObject -%}
     protected function saveObject(\{{ model }} ${{ builder.ModelClass }})
     {
-        $em = $this->getDoctrine()->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %});
+        $em = $this->getDoctrine()->getManager({{ entity_manager|default('')|wrap('"') }});
         $em->persist(${{ builder.ModelClass }});
         $em->flush();
     }
 {% endblock %}
+
+{% block checkVersion -%}
+    $this->getDoctrine()->getManager({{ entity_manager|default('')|wrap('"') }})->lock(${{ builder.ModelClass }}, LockMode::OPTIMISTIC, $versions[$pk]);
+{% endblock %}
+
+{% block lockException %}OptimisticLockException{% endblock %}

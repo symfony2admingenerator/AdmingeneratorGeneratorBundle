@@ -87,6 +87,11 @@ action.object.edit:
   label:    Edytuj
   success:  Zapisano zmiany.
   error:    Zmiany nie mogły zostać zapisane. Sprawdź błędy i spróbuj ponownie.
+  locked:   |
+              Przepraszam, ale ktoś inny już zmienił ten obiekt.<br />
+              <a href="%path%" target="_blank">Kliknij tutaj</a>, aby 
+              zobaczyć zmiany na nowej zakładce lub wyślij formularz ponownie,
+              aby zastosować twoje zmiany!
 action.object.delete:
   label:    Usuń
   confirm:  Czy potwierdzasz usunięcie elementu?
