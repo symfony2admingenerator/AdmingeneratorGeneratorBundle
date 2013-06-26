@@ -73,9 +73,11 @@ List of supported features for each model manager:
 
 1. [Embed form types][generator-1]
 2. [Entity manager][generator-2]
+3. [Primary Key requirement][generator-3]
 
 [generator-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/generator/embed-types.md
 [generator-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/generator/entity-manager.md
+[generator-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/generator/pk-requirement.md
 
 [go up][go-up]
 
