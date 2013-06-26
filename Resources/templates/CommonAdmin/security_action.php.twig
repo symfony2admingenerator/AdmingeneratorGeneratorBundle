@@ -1,41 +1,24 @@
 {% block security_use %}
-{% if credentials is defined %}
+{% if credentials %}
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 {% endif %}
 {% endblock %}
 
-{% block security_check_with_object %}
-{% if credentials is defined %}
+{% block security_check %}
+{% if credentials %}
     /**
-     * Check user credentials {{ credentials }}
+     * Check user credentials
      *
+     * @param string $credentials
      * @param \{{ model }} ${{ builder.ModelClass }}
      * @throw AccessDeniedException if is not allowed
      */
-    protected function checkCredentialsWithObject(\{{ model }} ${{ builder.ModelClass }})
+    protected function checkCredentials($credentials, \{{ model }} ${{ builder.ModelClass }} = null)
     {
         $securityContext = $this->get('security.context');
 
-        if (false === $securityContext->isGranted(array(new Expression('{{ credentials }}')), ${{ builder.ModelClass }})) {
-            throw new AccessDeniedException();
-        }
-    }
-{% endif %}
-{% endblock %}
-
-{% block security_check %}
-{% if credentials is defined %}
-    /**
-     * Check user credentials {{ credentials }}
-     *
-     * @throw AccessDeniedException if is not allowed
-     */
-    protected function checkCredentials()
-    {
-        $securityContext = $this->get('security.context');
-
-        if (false === $securityContext->isGranted(array(new Expression('{{ credentials }}')))) {
+        if (false === $securityContext->isGranted(array(new Expression($credentials)), ${{ builder.ModelClass }})) {
             throw new AccessDeniedException();
         }
     }
@@ -43,13 +26,21 @@ use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 {% endblock %}
 
 {% block security_action %}
-{% if credentials is defined %}
-$this->checkCredentials();
+{% if builder.yamlKey is sameas('actions')  %}
+    {% if action is defined and action.credentials %}
+    $this->checkCredentials('{{ action.credentials }}');
+    {% endif %}
+{% elseif credentials %}
+    $this->checkCredentials('{{ credentials }}');
 {% endif %}
 {% endblock %}
 
 {% block security_action_with_object %}
-{% if credentials is defined %}
-$this->checkCredentialsWithObject(${{ builder.ModelClass }});
+{% if builder.yamlKey is sameas('actions') %}
+    {% if action is defined and action.credentials %}
+    $this->checkCredentials('{{ action.credentials }}', ${{ builder.ModelClass }});
+    {% endif %}
+{% elseif credentials %}
+    $this->checkCredentials('{{ credentials }}', ${{ builder.ModelClass }});
 {% endif %}
 {% endblock %}
