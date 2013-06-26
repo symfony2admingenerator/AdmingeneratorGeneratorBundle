@@ -118,7 +118,6 @@
 
 {% block fieldset_collection_widget %}
 {% spaceless %}
-    {% include "AdmingeneratorGeneratorBundle:Form/Collection:sortable-css.html.twig" %}
     {% if prototype is defined %}
         {% set item = prototype %}
         {% set attr = attr|merge({'data-prototype': block('fieldset_collection_item_widget') }) %}
@@ -139,7 +138,6 @@
         </div>
         {{ form_rest(form) }}
     </div>
-    {% include "AdmingeneratorGeneratorBundle:Form/Collection:javascript.html.twig" %}
 {% endspaceless %}
 {% endblock fieldset_collection_widget %}
 
@@ -156,7 +154,6 @@
 
 {% block table_collection_widget %}
 {% spaceless %}
-    {% include "AdmingeneratorGeneratorBundle:Form/Collection:sortable-css.html.twig" %}
     {% if prototype is defined %}
         {% set item = prototype %}
         {% set attr = attr|merge({'data-prototype': block('table_collection_item_widget') }) %}
@@ -182,7 +179,6 @@
             {% endfor %}
         </tbody>
     </table>
-    {% include "AdmingeneratorGeneratorBundle:Form/Collection:javascript.html.twig" %}
 {% endspaceless %}
 {% endblock table_collection_widget %}
 

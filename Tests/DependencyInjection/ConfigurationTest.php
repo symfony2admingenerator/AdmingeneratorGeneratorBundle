@@ -39,6 +39,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
             'exit_path' => null,
             'knp_menu_class'      => 'Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder',
             'thumbnail_generator' => null,
+            'use_genemu_form_fallback' => true,
             'twig'         => array(
                 'use_form_resources' => true,
                 'use_localized_date' => false,
