@@ -6,6 +6,6 @@ params:
     concurrency_lock: ~
     bundle_name: ~
     fields: ~
-    object_actions: ~
-    batch_actions: ~
-    pk_requirement: ~
+    credentials: ~
+    object_actions: []
+    batch_actions: []
