@@ -151,7 +151,7 @@
         },
                 
         _onUnselectAll: function() {
-            $('#'+ this.element.id + '_toolbar > .btn-toggle > input[name="toggle"]').attr('checked', false);
+            $('.'+ this.element.id + '_toolbar > .btn-toggle > input[name="toggle"]').attr('checked', false);
         },
                 
         _onDeleteAll: function() {

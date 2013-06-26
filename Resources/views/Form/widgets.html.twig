@@ -185,10 +185,26 @@
 {% block table_collection_item_widget %}
 {% spaceless %}
     <tr class="collection-item">
-        <th class="new-label">{{ form_label(item) }}</th>
-        <td>{{ form_widget(item) }}</td>
-        <td>{{ form_errors(item) }}</td>
-        <td class="{{ id ~ '_actions' }}">{% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_delete.html.twig" %}</td>
+        <td>
+            <div class="accordion" id="{{ 'accordion_' ~ item.vars.id }}">
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="{{ '#accordion_' ~ item.vars.id }}" href="{{ '#accordion_body_' ~ item.vars.id }}">
+                            <i class="icon-chevron-down"></i>
+                            <i class="icon-chevron-right"></i>
+                            {{ form_label(item) }}
+                        </a>
+                        {% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_delete.html.twig" %}
+                    </div>
+                    <div id="{{ 'accordion_body_' ~ item.vars.id }}" class="accordion-body collapse in">
+                        <div class="accordion-inner">
+                        {{ form_errors(item) }}
+                        {{ form_widget(item, { 'attr': {'class': 'form-horizontal'} }) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
     </tr>
 {% endspaceless %}
 {% endblock table_collection_item_widget %}
