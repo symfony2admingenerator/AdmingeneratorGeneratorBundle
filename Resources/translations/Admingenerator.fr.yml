@@ -93,8 +93,8 @@ action.object.edit:
 action.object.delete:
   label:    Effacer
   confirm:  Etes-vous sur de vouloir supprimer cet élement?
-  success:  Élément a été supprimé avec succès.
-  error:    Élément ne peut pas être supprimé.
+  success:  L'élément sélectionné a été supprimé.
+  error:    L'élément sélectionné ne peut pas être supprimé.
 action.object.show:
   label:    Montrer
 
