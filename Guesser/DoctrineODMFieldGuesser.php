@@ -118,10 +118,10 @@ class DoctrineODMFieldGuesser extends ContainerAware
                 return 'collection';
                 break;
             case 'virtual':
-                throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented (column "'.$columnName.'") ');
+                throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
                 break;
             default:
-                throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'")');
+                throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
                 break;
         }
     }
