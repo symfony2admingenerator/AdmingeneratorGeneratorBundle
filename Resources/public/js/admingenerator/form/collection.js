@@ -87,7 +87,7 @@
 
                 // delete selected
                 $('#'+ this.element.id + '_toolbar > .batch-delete').click(function() {
-                    this._onDeleteAll();
+                    that._onDeleteAll();
                 });
             }
             

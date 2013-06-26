@@ -62,7 +62,7 @@ tr.collection-item .accordion-heading .accordion-toggle.collapsed .icon-chevron-
     display: inline;
 }
 
-tr.collection-item .collection-item-actions {
+tr.collection-item .collection-item-compound .collection-item-actions {
     position: absolute;
     top: 3px;
     right: 5px;
@@ -86,6 +86,20 @@ tr.collection-item .collection-item-actions > .btn-toggle {
 
 tr.collection-item > td > fieldset:last-child {
     margin-bottom: 20px;
+}
+
+/* Simple table collection */
+tr.collection-item .collection-item-simple {
+    line-height: 0;
+}
+
+tr.collection-item .collection-item-simple .control-group {
+    margin-bottom: 0;
+}
+
+tr.collection-item .collection-item-simple .collection-item-actions {
+    float: right;
+    white-space: nowrap;
 }
 
 /* Fieldset collection styles */

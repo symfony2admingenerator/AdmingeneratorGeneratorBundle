@@ -185,7 +185,8 @@
 {% block table_collection_item_widget %}
 {% spaceless %}
     <tr class="collection-item">
-        <td>
+        {% if item.vars.compound %}
+        <td class="collection-item-compound">
             <div class="accordion" id="{{ 'accordion_' ~ item.vars.id }}">
                 <div class="accordion-group">
                     <div class="accordion-heading">
@@ -205,6 +206,22 @@
                 </div>
             </div>
         </td>
+        {% else %}
+        <td class="collection-item-simple">
+            <div class="form-horizontal">
+                {% include "AdmingeneratorGeneratorBundle:Form/Collection:collection_delete.html.twig" %}
+                <div class="control-group">
+                    {{ form_label(item) }}
+                    <div class="controls">
+                        {{ form_widget(item) }}
+                    </div>
+                    <span class="help-inline">
+                        {{ form_errors(item) }}
+                    </span>
+                </div>
+            </div>
+        </td>
+        {% endif %}
     </tr>
 {% endspaceless %}
 {% endblock table_collection_item_widget %}
