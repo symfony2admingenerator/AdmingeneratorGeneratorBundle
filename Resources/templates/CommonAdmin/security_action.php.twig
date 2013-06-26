@@ -5,37 +5,20 @@ use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 {% endif %}
 {% endblock %}
 
-{% block security_check_with_object %}
-{% if credentials %}
-    /**
-     * Check user credentials
-     *
-     * @param \{{ model }} ${{ builder.ModelClass }}
-     * @throw AccessDeniedException if is not allowed
-     */
-    protected function checkCredentialsWithObject($credentials, \{{ model }} ${{ builder.ModelClass }})
-    {
-        $securityContext = $this->get('security.context');
-
-        if (false === $securityContext->isGranted(array(new Expression($credentials)), ${{ builder.ModelClass }})) {
-            throw new AccessDeniedException();
-        }
-    }
-{% endif %}
-{% endblock %}
-
 {% block security_check %}
 {% if credentials %}
     /**
      * Check user credentials
      *
+     * @param string $credentials
+     * @param \{{ model }} ${{ builder.ModelClass }}
      * @throw AccessDeniedException if is not allowed
      */
-    protected function checkCredentials($credentials)
+    protected function checkCredentials($credentials, \{{ model }} ${{ builder.ModelClass }} = null)
     {
         $securityContext = $this->get('security.context');
 
-        if (false === $securityContext->isGranted(array(new Expression($credentials)))) {
+        if (false === $securityContext->isGranted(array(new Expression($credentials)), ${{ builder.ModelClass }})) {
             throw new AccessDeniedException();
         }
     }
@@ -55,9 +38,9 @@ use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 {% block security_action_with_object %}
 {% if builder.yamlKey is sameas('actions') %}
     {% if action is defined and action.credentials %}
-    $this->checkCredentialsWithObject('{{ action.credentials }}', ${{ builder.ModelClass }});
+    $this->checkCredentials('{{ action.credentials }}', ${{ builder.ModelClass }});
     {% endif %}
 {% elseif credentials %}
-    $this->checkCredentialsWithObject('{{ credentials }}', ${{ builder.ModelClass }});
+    $this->checkCredentials('{{ credentials }}', ${{ builder.ModelClass }});
 {% endif %}
 {% endblock %}
