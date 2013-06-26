@@ -61,12 +61,112 @@ class Generator extends TwigGeneratorGenerator
         parent::addBuilder($builder);
 
         $builder->setVariables(
-            $this->recursiveReplace(
+            $this->mergeParameters(
                 $this->getFromYaml('params', array()),
                 $this->getFromYaml(sprintf('builders.%s.params', $builder->getYamlKey()), array())
             )
         );
         $builder->setColumnClass($this->getColumnClass());
+    }
+    
+    /**
+     * Merge parameters from global definition with builder definition
+     * Fields and actions have special behaviors:
+     *     - fields are merged and all global fields are still available 
+     *     from a builder
+     *     - actions depend of builder. List of available actions come
+     *     from builder, configuration is a merge between builder configuration
+     *     and global configuration
+     *     
+     * @param array $global
+     * @param array $builder
+     * @return array
+     */
+    protected function mergeParameters(array $global, array $builder)
+    {
+        foreach ($global as $param => &$value) {
+            if (array_key_exists($param, $builder)) {
+                if ('fields' == $param) {
+                    // We keep all fields available, but simply merge field
+                    // configuration from builder to global
+                    // Builder configuration is more important than global one
+                    foreach ($builder['fields'] as $fieldName => $builderFieldConfiguration) {
+                        if (is_array($builderFieldConfiguration)) {
+                            $value[$fieldName] = $this->mergeConfiguration($value[$fieldName], $builderFieldConfiguration);
+                        } elseif (!is_null($builderFieldConfiguration)) {
+                            throw new \InvalidArgumentException(sprintf('Invalid "%s" field definition', $fieldName));
+                        }
+                    }
+                } elseif (in_array($param, array('object_actions', 'batch_actions'))) { // Shouldn't we manage "actions" as the same way?
+                    // Available actions are defined from builder, but all
+                    // global action configuration stay available
+                    $actions = array();
+                    foreach ($builder[$param] as $actionName => $builderActionConfiguration) {
+                        if (is_array($builderActionConfiguration)) {
+                            if (array_key_exists($actionName, $value)) {
+                                // Overriding some parameters of the action... like label for example
+                                $actions[$actionName] = $this->mergeConfiguration($value[$actionName], $builderActionConfiguration);
+                            } else {
+                                // user defined action... don't know if this is really a good idea
+                                $actions[$actionName] = $builderActionConfiguration;
+                            }
+                        } elseif (is_null($builderActionConfiguration)) {
+                            // Use default configuration
+                            if (array_key_exists($actionName, $value)) {
+                                $actions[$actionName] = $value[$actionName];
+                            } else {
+                                $actions[$actionName] = null; // edit, show, ...
+                            }
+                        } else {
+                            throw new \InvalidArgumentException(sprintf('Invalid "%s" action definition', $actionName));
+                        }
+                    }
+
+                    $value = $actions;
+                } else {
+                    if (is_array($value)) {
+                        $value = $this->recursiveReplace($value, $builder[$param]);
+                    } else {
+                        $value = $builder[$param];
+                    }
+                }
+            }
+        }
+        
+        // If builder doesn't have object|batc_actions remove it from merge.
+        $global['object_actions'] = array_key_exists('object_actions', $builder) ? $global['object_actions'] : array();
+        $global['batch_actions'] = array_key_exists('batch_actions', $builder) ? $global['batch_actions'] : array();
+
+        return array_merge($global, array_diff_key($builder, $global));
+    }
+    
+    /**
+     * Merge configuration on a single level
+     * 
+     * @param array $global
+     * @param array $builder
+     * @return array
+     */
+    protected function mergeConfiguration(array $global, array $builder)
+    {
+        foreach ($global as $name => &$value) {
+            if (array_key_exists($name, $builder)) {
+                if (is_null($builder[$name])) {
+                    continue;
+                }
+                
+                if (is_array($value)) {
+                    if (!is_array($builder[$name])) {
+                        throw new \InvalidArgumentException('Invalid generator');
+                    }
+                    $value = array_replace($value, $builder[$name]);
+                } else {
+                    $value = $builder[$name];
+                }
+            }
+        }
+
+        return array_merge($global, array_diff_key($builder, $global));
     }
 
     /**
