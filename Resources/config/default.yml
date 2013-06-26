@@ -8,3 +8,4 @@ params:
     fields: ~
     object_actions: ~
     batch_actions: ~
+    pk_requirement: ~

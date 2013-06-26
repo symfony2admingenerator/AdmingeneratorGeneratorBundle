@@ -7,6 +7,7 @@ use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Yaml\Yaml;
 
 class RoutingLoader extends FileLoader
 {
@@ -77,16 +78,20 @@ class RoutingLoader extends FileLoader
                     'controller'   => 'list',
                 ),
     );
+    
+    protected $yaml = array();
 
     public function load($resource, $type = null)
     {
         $collection = new RouteCollection();
 
         $resource = str_replace('\\', '/', $resource);
+        $this->yaml = Yaml::parse($this->getGeneratorFilePath($resource));
+        
         $namespace = $this->getNamespaceFromResource($resource);
         $fullBundleName = $this->getFullBundleNameFromResource($resource);
         $bundle_name = $this->getBundleNameFromResource($resource);
-
+        
         foreach ($this->actions as $controller => $datas) {
             $action = 'index';
 
@@ -95,6 +100,13 @@ class RoutingLoader extends FileLoader
                 $route_name = $loweredNamespace . '_' . $bundle_name . '_' . $controller_folder . '_' . $controller;
             } else {
                 $route_name = $loweredNamespace . '_' . $bundle_name . '_' . $controller;
+            }
+            
+            if (in_array($controller, array('edit', 'update', 'object', 'show')) &&
+                null !== $pk_requirement = $this->getFromYaml('params.pk_requirement', null)) {
+                $datas['requirements'] = array_merge($datas['requirements'], array(
+                    'pk' => $pk_requirement
+                ));
             }
 
             if (isset($datas['controller'])) {
@@ -177,6 +189,36 @@ class RoutingLoader extends FileLoader
 
             return implode('\\', explode('\\', $matches[1], -1)); // Remove the short bundle name
         }
+    }
 
+    protected function getGeneratorFilePath($resource)
+    {
+        // Find the *-generator.yml
+        $finder = Finder::create()
+            ->name($this->getControllerFolder($resource).'-generator.yml')
+            ->depth(0)
+            ->in(realpath($resource.'/../../Resources/config/'))
+            ->getIterator();
+
+        foreach ($finder as $file) {
+            return $file->getRealPath();
+        }
+    }
+
+    /**
+     * @param $yaml_path string with point for levels
+     */
+    public function getFromYaml($yaml_path, $default = null)
+    {
+        $search_in = $this->yaml;
+        $yaml_path = explode('.',$yaml_path);
+        foreach ($yaml_path as $key) {
+            if (!isset($search_in[$key])) {
+                return $default;
+            }
+            $search_in = $search_in[$key];
+        }
+
+        return $search_in;
     }
 }
