@@ -5,6 +5,7 @@ params:
     entity_manager: ~
     concurrency_lock: ~
     bundle_name: {{ bundle_name }}
+    pk_requirement: ~
     fields: ~
     object_actions:
         delete: ~
