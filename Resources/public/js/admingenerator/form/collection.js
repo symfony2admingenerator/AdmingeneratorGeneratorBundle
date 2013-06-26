@@ -73,7 +73,7 @@
                 // remove item
                 $('.'+ this.element.id + '_actions .delete').click(function(e){
                     e.preventDefault();
-                    that._onDelete();
+                    that._onDelete(this);
                 });
                 
                 // select/deselect all
