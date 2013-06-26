@@ -101,18 +101,19 @@ class Generator extends TwigGeneratorGenerator
                     // Available actions are defined from builder, but all
                     // global action configuration stay available
                     $actions = array();
+
                     foreach ($builder[$param] as $actionName => $builderActionConfiguration) {
                         if (is_array($builderActionConfiguration)) {
-                            if (array_key_exists($actionName, $value)) {
+                            if (!is_null($value) && array_key_exists($actionName, $value)) {
                                 // Overriding some parameters of the action... like label for example
                                 $actions[$actionName] = $this->mergeConfiguration($value[$actionName], $builderActionConfiguration);
                             } else {
-                                // user defined action... don't know if this is really a good idea
+                                // user defined action
                                 $actions[$actionName] = $builderActionConfiguration;
                             }
                         } elseif (is_null($builderActionConfiguration)) {
                             // Use default configuration
-                            if (array_key_exists($actionName, $value)) {
+                            if (!is_null($value) && array_key_exists($actionName, $value)) {
                                 $actions[$actionName] = $value[$actionName];
                             } else {
                                 $actions[$actionName] = null; // edit, show, ...
