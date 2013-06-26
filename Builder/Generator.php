@@ -68,16 +68,16 @@ class Generator extends TwigGeneratorGenerator
         );
         $builder->setColumnClass($this->getColumnClass());
     }
-    
+
     /**
      * Merge parameters from global definition with builder definition
      * Fields and actions have special behaviors:
-     *     - fields are merged and all global fields are still available 
+     *     - fields are merged and all global fields are still available
      *     from a builder
      *     - actions depend of builder. List of available actions come
      *     from builder, configuration is a merge between builder configuration
      *     and global configuration
-     *     
+     *
      * @param array $global
      * @param array $builder
      * @return array
@@ -93,7 +93,7 @@ class Generator extends TwigGeneratorGenerator
                     foreach ($builder['fields'] as $fieldName => $builderFieldConfiguration) {
                         if (is_array($builderFieldConfiguration)) {
                             $value[$fieldName] = $this->mergeConfiguration($value[$fieldName], $builderFieldConfiguration);
-                        } elseif (!is_null($builderFieldConfiguration)) {
+                        } else {
                             throw new \InvalidArgumentException(sprintf('Invalid "%s" field definition', $fieldName));
                         }
                     }
@@ -132,17 +132,17 @@ class Generator extends TwigGeneratorGenerator
                 }
             }
         }
-        
+
         // If builder doesn't have object|batc_actions remove it from merge.
         $global['object_actions'] = array_key_exists('object_actions', $builder) ? $global['object_actions'] : array();
         $global['batch_actions'] = array_key_exists('batch_actions', $builder) ? $global['batch_actions'] : array();
 
         return array_merge($global, array_diff_key($builder, $global));
     }
-    
+
     /**
      * Merge configuration on a single level
-     * 
+     *
      * @param array $global
      * @param array $builder
      * @return array
@@ -154,7 +154,7 @@ class Generator extends TwigGeneratorGenerator
                 if (is_null($builder[$name])) {
                     continue;
                 }
-                
+
                 if (is_array($value)) {
                     if (!is_array($builder[$name])) {
                         throw new \InvalidArgumentException('Invalid generator');
