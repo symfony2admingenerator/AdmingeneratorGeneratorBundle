@@ -100,11 +100,9 @@ class Generator extends TwigGeneratorGenerator
                                 $configurations[$name] = $configuration;
                             }
                         } else {
-                            throw new \InvalidArgumentException(sprintf(
-                                'Invalid %s "%s" builder definition',
-                                $param,
-                                $name
-                            ));
+                            throw new \InvalidArgumentException(
+                                sprintf('Invalid %s "%s" builder definition', $param, $name)
+                            );
                         }
                     }
 
