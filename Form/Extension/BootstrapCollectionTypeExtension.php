@@ -28,13 +28,13 @@ class BootstrapCollectionTypeExtension extends AbstractTypeExtension
     {
         $resolver->setDefaults(array(
             'widget'            =>  'default',
-            'sortable'          =>  null,
+            'sortable'          =>  false,
             'new_label'         =>  'collection.new_label'
         ));
 
         $resolver->setAllowedTypes(array(
             'widget'            =>  array('string'),
-            'sortable'          =>  array('null', 'string'),
+            'sortable'          =>  array('bool', 'string'),
             'new_label'         =>  array('string'),
         ));
 
