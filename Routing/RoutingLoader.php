@@ -104,9 +104,10 @@ class RoutingLoader extends FileLoader
             
             if (in_array($controller, array('edit', 'update', 'object', 'show')) &&
                 null !== $pk_requirement = $this->getFromYaml('params.pk_requirement', null)) {
-                $datas['requirements'] = array_merge($datas['requirements'], array(
-                    'pk' => $pk_requirement
-                ));
+                $datas['requirements'] = array_merge(
+                    $datas['requirements'], 
+                    array('pk' => $pk_requirement)
+                );
             }
 
             if (isset($datas['controller'])) {
