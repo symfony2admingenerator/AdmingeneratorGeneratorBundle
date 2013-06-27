@@ -17,9 +17,9 @@ class AdmingeneratorGeneratorExtension extends Extension implements PrependExten
     {
         // get all Bundles
         $bundles = $container->getParameter('kernel.bundles');
-        // determine if AcmeGoodbyeBundle is registered
+        // determine if GenemuFormBundle is registered
         if (isset($bundles['GenemuFormBundle'])) {
-            // disable AcmeGoodbyeBundle in Bundles
+            // disable the fallback
             $config = array('use_genemu_form_fallback' => false);
             foreach ($container->getExtensions() as $name => $extension) {
                 switch ($name) {
