@@ -40,6 +40,7 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue("Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder")
                 ->end()
                 ->scalarNode('thumbnail_generator')->defaultNull()->end()
+                ->booleanNode('use_genemu_form_fallback')->defaultTrue()->end()
                 ->arrayNode('twig')
                     ->addDefaultsIfNotSet()
                     ->children()

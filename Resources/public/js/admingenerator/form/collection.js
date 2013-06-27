@@ -31,7 +31,8 @@
                 new_label:      'New item',
                 confirm:        'Are you sure you want to delete this element?',
                 confirm_batch:  'Are you sure you want to delete all selected elements?'
-            }
+            },
+            javascript: function(id) {}
         };
 
     // The actual plugin constructor
@@ -86,7 +87,7 @@
 
                 // delete selected
                 $('#'+ this.element.id + '_toolbar > .batch-delete').click(function() {
-                    this._onDeleteAll();
+                    that._onDeleteAll();
                 });
             }
             
@@ -103,8 +104,8 @@
         _onAdd: function() {
             var new_item = $('#'+ this.element.id).data('prototype');
             var new_id = this.nextId;
-            new_item = new_item.replace('/' + this.options.prototype_name + 'label__/g', this.options.trans.new_label);
-            new_item = new_item.replace('/' + this.options.prototype_name + '/g', new_id);
+            new_item = new_item.replace(new RegExp('label__', 'g'), this.options.trans.new_label);
+            new_item = new_item.replace(new RegExp(this.options.prototype_name, 'g'), new_id);
             $new_item = $(new_item);
 
             if (this.options.allow_delete) {
@@ -117,7 +118,7 @@
             this.nextId++;
             $('#'+ this.element.id +' > .collection').append($new_item);
             
-            console.log('here we should enable any javascript for the new field');
+            this.options.javascript.call(window, this.element.id + '_' + new_id);
 
             if (this.options.sortable) {
                 this._onChange();
@@ -127,7 +128,7 @@
         _onDelete: function(button) {
             if (confirm(this.options.trans.confirm)) {
                 $(button).closest('.collection-item').remove();
-
+                
                 if (this.options.sortable) {
                     this._onChange();
                 }
@@ -150,7 +151,7 @@
         },
                 
         _onUnselectAll: function() {
-            $('#'+ this.element.id + '_toolbar > .btn-toggle > input[name="toggle"]').attr('checked', false);
+            $('.'+ this.element.id + '_toolbar > .btn-toggle > input[name="toggle"]').attr('checked', false);
         },
                 
         _onDeleteAll: function() {
