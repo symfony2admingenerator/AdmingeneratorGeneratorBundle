@@ -152,6 +152,12 @@ class ListBuilder extends BaseBuilder
                 $action = new Action($actionName);
             }
 
+            if ($globalCredentials = $this->getGenerator()->getFromYaml('params.credentials')) {
+                // If generator is globally protected by credentials
+                // object actions are also protected
+                $action->setCredentials($globalCredentials);
+            }
+
             $this->setUserObjectActionConfiguration($action);
             $this->addObjectAction($action);
         }
@@ -206,6 +212,12 @@ class ListBuilder extends BaseBuilder
             $action = $this->findBatchAction($actionName);
             if(!$action) {
                 $action = new Action($actionName);
+            }
+
+            if ($globalCredentials = $this->getGenerator()->getFromYaml('params.credentials')) {
+                // If generator is globally protected by credentials
+                // batch actions are also protected
+                $action->setCredentials($globalCredentials);
             }
 
             $this->setUserBatchActionConfiguration($action);

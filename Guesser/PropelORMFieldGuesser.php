@@ -111,7 +111,7 @@ class PropelORMFieldGuesser extends ContainerAware
             case 'collection':
                 return 'double_list';
             default:
-                throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'")');
+                throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
         }
     }
 

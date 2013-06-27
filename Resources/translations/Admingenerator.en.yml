@@ -103,7 +103,7 @@ action.object.show:
 # Batch actions
 action.batch.delete:
   label:    Delete
-  confirm:  Do you confirm deletion of all selected elements?
+  confirm:  Are you sure you want to delete all selected elements?
   success:  Records have been successfully deleted.
   error:    Records can't be deleted.
 
