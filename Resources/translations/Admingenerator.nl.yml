@@ -1,0 +1,142 @@
+# Double list form
+double_list:
+  selected:   Geselecteerd
+  unselected: Gedeselecteerd
+
+# Date range form
+date_range:
+  from.label: Van
+  to.label:   Tot
+
+# Boolean filter
+boolean:
+  yes:        Ja
+  no:         Nee
+  yes_or_no:  Ja of Nee
+
+# Pager
+pagerfanta:
+  previous:       Vorige
+  next:           Volgende
+  view.perpage:   Weergeven
+  num.elements:   %number% elementen
+
+# List
+list:
+  no.results: Er zijn geen resultaten.
+  filters:    Filters
+list.button:
+  filter:     Filter
+  reset:      Reset
+list.display:
+  range:      Geef <b>%start%</b> - <b>%end%</b> of <b>%count%</b> resultaten weer.
+  all:        Geef alle <b>%count%</b> resultaten weer.
+list.header:
+  actions:    Acties
+
+# Nested List
+nested.list:
+  expand:     Weergeven
+  collapse:   Verbergen
+  loading:    Aan het laden
+  success:    Het element is successvol verplaatst.
+  error:      Kan element niet verplaatsen.
+
+# Profile
+profile:
+  welcome:  <b>Welkom</b>, %username%!
+  login:    Inloggen
+  logout:   Uitloggen
+  exit:     Verlaat impersonatie mode
+
+# EntityPicker
+entity_picker:
+  placeholder:  Zoeken...
+
+# Collection
+collection:
+  add: Toevoegen
+
+# Upload
+upload:
+  file.add:     Bestand toevoegen...
+  error:        Fout
+  cancel:       Annuleren
+  delete:       Verwijderen
+  download:     Download
+upload.errors:
+  maxNumFiles:      Maximum aantal bestanden overschreden.
+  typeNotAllowed:   Bestandstype niet toegestaan.
+  maxFileSize:      Bestand is te groot.
+  minFileSize:      Bestand is te klein.
+
+# SingleUpload
+singleupload:
+  display.name:     Weergegeven naam
+
+# Generic actions
+action.generic:
+  list:   Lijst
+  new:    Nieuw
+  save:   Opslaan
+  save-and-add:   Opslaan en naar toevoegen
+  save-and-list:  Opslaan en naar lijst
+
+# Object actions
+action.object.edit:
+  label:    Bewerken
+  success:  Het object is succesvol opgeslagen.
+  error:    Het formulier kna niet worden opgeslagen. Controleer op fouten en probeer opnieuw.
+  locked:   |
+              Helaas heeft iemand anders dit object al gewijzigd.<br />
+              <a href="%path%" target="_blank">Klik hier</a> om de wijzigingen in een nieuwe tab te bekijken 
+              of verstuur het formulier opnieuw om uw wijzigingen toe te passen!
+action.object.delete:
+  label:    Verwijderen
+  confirm:  Weet u zeker dat u dit element wilt verwijderen?
+  success:  Element is succesvol verwijderd.
+  error:    Element kan niet verwijderd worden.
+action.object.show:
+  label:    Tonen
+
+# Batch actions
+action.batch.delete:
+  label:    Verwijderen
+  confirm:  Weet u zeker dat u alle geselecteerde elementen wilt verwijderen?
+  success:  Records zijn succesvol verwijderd.
+  error:    Records kunnen niet verwijderd worden.
+
+# Custom actions
+action.custom:
+  title:    Weet u zeker dat u %name% wilt uitvoeren?
+  success:  De %name% actie is succesvol uitgevoerd.
+  error:    Kon %name% actie niet uitvoeren.
+  confirm:  Bevestigen
+  cancel:   Annuleren
+
+# Batch list
+batch.list:
+  selected:       Geselecteerd
+  none.selected:  U moet minstens 1 element selecteren.
+  warning:        Kon batch actie niet uitvoeren vanwege ontbrekende parameters
+  send:           Uitvoeren
+
+
+# Layout
+dashboard:
+  homepage:   Homepage
+  brand:      Dashboard
+
+# Filetype icons
+filetype:
+  audio:            Audio
+  archive:          Archief
+  html:             HTML
+  image:            Afbeelding
+  pdf-document:     PDF<br />Document
+  plain-text:       Platte<br />Text
+  presentation:     Presentatie
+  spreadsheet:      Spreadsheet
+  text-document:    Text<br />Document
+  unknown:          Onbekend<br />Bestandstype
+  video:            Video
