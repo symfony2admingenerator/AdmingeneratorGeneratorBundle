@@ -100,7 +100,11 @@ class Generator extends TwigGeneratorGenerator
                                 $configurations[$name] = $configuration;
                             }
                         } else {
-                            throw new \InvalidArgumentException(sprintf('Invalid %s "%s" builder definition', $param, $name));
+                            throw new \InvalidArgumentException(sprintf(
+                                'Invalid %s "%s" builder definition',
+                                $param,
+                                $name
+                            ));
                         }
                     }
 
@@ -170,8 +174,11 @@ class Generator extends TwigGeneratorGenerator
             $array = array_replace($order, array_replace($array, $order));
 
             foreach ($array as $key => &$value) {
-                if (is_array($value))  {
-                    $value = (array_key_exists($key, $order) && is_array($order[$key])) ? $replace_values_recursive($value, $order[$key]) : $value;
+                if (is_array($value)) {
+                    $value = (array_key_exists($key, $order) && is_array($order[$key]))
+                        ? $replace_values_recursive($value, $order[$key])
+                        : $value
+                    ;
                 }
             }
             return $array;
@@ -210,7 +217,7 @@ class Generator extends TwigGeneratorGenerator
     public function getFromYaml($yaml_path, $default = null)
     {
         $search_in = $this->yaml;
-        $yaml_path = explode('.',$yaml_path);
+        $yaml_path = explode('.', $yaml_path);
         foreach ($yaml_path as $key) {
             if (!isset($search_in[$key])) {
                 return $default;
