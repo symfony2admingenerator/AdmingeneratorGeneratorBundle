@@ -33,6 +33,7 @@
                 confirm_batch:  '{{ 'action.batch.delete.confirm'|trans({}, 'Admingenerator') }}'
             },
             javascript: function(id) {
+            {% if prototype is defined %}
                 {% if prototype.vars.compound %}
                     {% for child in prototype %}
                         $field = $('#' + id + '_{{ child.vars.name }}');
@@ -42,6 +43,7 @@
                     $field = $('#' + id);
                     {{ form_javascript(prototype, true) }}
                 {% endif %}
+            {% endif %}
             }
         });
         {% endblock %}
