@@ -163,18 +163,17 @@ class RoutingLoader extends FileLoader
             ->depth(0)
             ->in(realpath($resource.'/../../')) // ressource is controller folder
             ->getIterator();
-
         $finder->rewind();
         $file = $finder->current();
-
+        
         if ($file) {
             if (PHP_VERSION_ID >= 50306) {
-                return $file->getBasename('.'.$file->getExtension());
+                return $file->getBasename('.' . $file->getExtension());
             }
-
-            return $file->getBasename('.'. pathinfo($file->getFilename(), PATHINFO_EXTENSION));
+            
+            return $file->getBasename('.' . pathinfo($file->getFilename(), PATHINFO_EXTENSION));
         }
-
+        
         return null;
     }
 
