@@ -164,13 +164,18 @@ class RoutingLoader extends FileLoader
             ->in(realpath($resource.'/../../')) // ressource is controller folder
             ->getIterator();
 
-        foreach ($finder as $file) {
+        $finder->rewind();
+        $file = $finder->current();
+
+        if ($file) {
             if (PHP_VERSION_ID >= 50306) {
                 return $file->getBasename('.'.$file->getExtension());
-            } else {
-                return $file->getBasename('.'. pathinfo($file, PATHINFO_EXTENSION));
             }
+
+            return $file->getBasename('.'. pathinfo($file->getFilename(), PATHINFO_EXTENSION));
         }
+
+        return null;
     }
 
     protected function getBundleNameFromResource($resource)
