@@ -43,6 +43,10 @@
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/admingenerator/filetypeicons.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/admingenerator/form/datepicker.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/admingenerator/form/single-upload.css') }}" type="text/css" media="all" />
+        
+        {% if form is defined %}
+            {{ form_stylesheet(form) }}
+        {% endif %}
     {% endblock %}
 
     {% block icons %}
@@ -136,6 +140,10 @@
         
         <!-- admingenerator-forms.min.js -->
         <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/admingenerator/form/collection.js') }}"></script>
+        
+        {% if form is defined %}
+            {{ form_javascript(form) }}
+        {% endif %}
     {% endblock %}
 
   </body>

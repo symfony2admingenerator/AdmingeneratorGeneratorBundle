@@ -6,3 +6,140 @@ tbody.collection > tr,
 div.collection > fieldset {
     background-color: #fff;
 }
+
+/* Table collection styles */
+
+tr.collection-item th.new-label {
+    white-space: nowrap;
+    padding-right: 20px;
+}
+
+tr.collection-item > td {
+    width: 100%;
+}
+
+tr.collection-item > td .accordion {
+    margin: 0;
+}
+
+tr.collection-item .accordion-heading {
+    position: relative;
+}
+
+tr.collection-item .accordion-heading label.control-label {
+    margin: 0;
+    display: inline;
+    margin-left: 5px;
+}
+
+tr.collection-item .accordion-heading .accordion-toggle:hover,
+tr.collection-item .accordion-heading .accordion-toggle:hover,
+tr.collection-item .accordion-heading .accordion-toggle:focus,
+tr.collection-item .accordion-heading .accordion-toggle:focus {
+    text-decoration: none;
+}
+
+tr.collection-item .accordion-heading .accordion-toggle:hover label.control-label,
+tr.collection-item .accordion-heading .accordion-toggle:hover label.control-label,
+tr.collection-item .accordion-heading .accordion-toggle:focus label.control-label,
+tr.collection-item .accordion-heading .accordion-toggle:focus label.control-label {
+    text-decoration: underline;
+}
+
+tr.collection-item .accordion-heading .accordion-toggle .icon-chevron-right {
+    display: none;
+}
+
+tr.collection-item .accordion-heading .accordion-toggle .icon-chevron-down {
+    display: inline;
+}
+
+tr.collection-item .accordion-heading .accordion-toggle.collapsed .icon-chevron-down {
+    display: none;
+}
+
+tr.collection-item .accordion-heading .accordion-toggle.collapsed .icon-chevron-right {
+    display: inline;
+}
+
+tr.collection-item .collection-item-compound .collection-item-actions {
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    white-space: nowrap;
+}
+
+tr.collection-item .collection-item-actions > .delete {
+    padding: 3px 6px;
+    -webkit-border-radius: 40px;
+       -moz-border-radius: 40px;
+            border-radius: 40px;
+}
+
+tr.collection-item .collection-item-actions > .delete {
+    margin-left: 5px;
+}
+
+tr.collection-item .collection-item-actions > .btn-toggle {
+    margin-left: 20px;
+}
+
+tr.collection-item > td > fieldset:last-child {
+    margin-bottom: 20px;
+}
+
+/* Simple table collection */
+tr.collection-item .collection-item-simple {
+    line-height: 0;
+}
+
+tr.collection-item .collection-item-simple .control-group {
+    margin-bottom: 0;
+}
+
+tr.collection-item .collection-item-simple .collection-item-actions {
+    float: right;
+    white-space: nowrap;
+}
+
+/* Fieldset collection styles */
+
+fieldset.collection-item {
+    position: relative;
+    padding-bottom: 20px;
+    margin-right: 30px;
+    display: inline-block;
+    vertical-align: top
+}
+
+fieldset.collection-item > legend > label {
+    display: inline;
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+fieldset.collection-item > .delete {
+    position: absolute;
+    top: 5px;
+    right: -15px;
+    padding: 3px 6px;
+    -webkit-border-radius: 40px;
+       -moz-border-radius: 40px;
+            border-radius: 40px;
+}
+
+fieldset.collection-item > .btn-toggle {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    padding: 3px 6px;
+    opacity: 1;
+    background-color: #efefef;
+    border-color: #d9d9d9;
+}
+
+fieldset.collection-item > .btn-toggle > input[type="checkbox"] {
+    opacity: 0.65;
+}

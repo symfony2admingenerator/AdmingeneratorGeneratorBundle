@@ -32,6 +32,7 @@
     },
     "suggest": {
         "cedriclombardot/admingenerator-user-bundle": "Help you to overwrite the base layout of FOSUserBundle or others giving a parameter key of the container",
+        "genemu/form-bundle": "Additional forms for Symfony",
         "avalanche123/imagine-bundle": "Image manipulation using Imagine and Twig Filters"
     },
     "target-dir": "Admingenerator/GeneratorBundle",
