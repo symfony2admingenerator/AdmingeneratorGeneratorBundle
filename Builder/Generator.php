@@ -111,7 +111,7 @@ class Generator extends TwigGeneratorGenerator
                         $value = $configurations;
                     } else {
                         // All fields are still available in a builder
-                        $value = array_merge($value, $configurations);
+                        $value = array_merge($value ?:array(), $configurations);
                     }
                 } else {
                     if (is_array($value)) {
