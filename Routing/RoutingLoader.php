@@ -219,7 +219,7 @@ class RoutingLoader extends FileLoader
     public function getFromYaml($yaml_path, $default = null)
     {
         $search_in = $this->yaml;
-        $yaml_path = explode('.',$yaml_path);
+        $yaml_path = explode('.', $yaml_path);
         foreach ($yaml_path as $key) {
             if (!isset($search_in[$key])) {
                 return $default;
