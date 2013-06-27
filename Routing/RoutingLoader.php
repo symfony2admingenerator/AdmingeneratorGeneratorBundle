@@ -165,7 +165,11 @@ class RoutingLoader extends FileLoader
             ->getIterator();
 
         foreach ($finder as $file) {
-            return $file->getBasename('.'.$file->getExtension());
+            if (PHP_VERSION_ID >= 50306) {
+                return $file->getBasename('.'.$file->getExtension());
+            } else {
+                return $file->getBasename('.'. pathinfo($file, PATHINFO_EXTENSION));
+            }
         }
     }
 
