@@ -74,7 +74,7 @@ class EchoExtension extends \Twig_Extension
     {
         $options = preg_replace("/'__php\((.+?)\)'/i", '$1', $options, -1, $count);
 
-        if ('collection' == $formType || 'upload' == $formType) {
+        if ('collection' == substr($formType, 0, 10) || 'upload' == $formType) {
             preg_match("/'type' => '(.+?)'/i", $options, $matches);
 
             if (count($matches) > 0) {
