@@ -26,7 +26,7 @@ class BundleGenerator extends BaseBundleGenerator
             'index',
             'results',
             'filters',
-            'form'
+            'row'
         )),
         'Edit' => array('views' => array('index')),
         'Show' => array('views' => array('index')),
