@@ -58,11 +58,11 @@ class CaptureUploadListener implements EventSubscriberInterface
         $form = $event->getForm();
         $data = $event->getData();
 
-        if (array_key_exists($this->propertyName, $data)) {
+        if (array_key_exists('uploads', $data)) {
             // capture uploads and store them for onBind event
-            $this->uploads = $data[$this->propertyName]['uploads'];
+            $this->uploads = $data['uploads'];
             // unset additional form data to prevent errors
-            unset($data[$this->propertyName]['uploads']);
+            unset($data['uploads']);
         }
 
         $event->setData($data);
@@ -71,7 +71,7 @@ class CaptureUploadListener implements EventSubscriberInterface
     public function onSubmit(FormEvent $event)
     {
         $form = $event->getForm();
-        $data = $event->getData();
+        $data = $form->getParent()->getData();
 
         // save original files collection for postBind event
         $getter = 'get'.ucfirst($this->propertyName);
@@ -80,8 +80,8 @@ class CaptureUploadListener implements EventSubscriberInterface
         // create file entites for each file
         foreach ($this->uploads as $upload) {
             if($upload === null) return;
-            $file = new $this->dataClass();
 
+            $file = new $this->dataClass();
             if (!$file instanceof \Admingenerator\GeneratorBundle\Model\FileInterface) {
                 throw new UnexpectedTypeException($file, '\Admingenerator\GeneratorBundle\Model\FileInterface');
             }
@@ -100,17 +100,16 @@ class CaptureUploadListener implements EventSubscriberInterface
 
                 $file->$setNameable($safeName);
             }
-
             $data->$getter()->add($file);
         }
 
-        $event->setData($data);
+        $event->setData($data->$getter());
     }
 
     public function postSubmit(FormEvent $event)
     {
         $form = $event->getForm();
-        $data = $event->getData();
+        $data = $form->getParent()->getData();
 
         $getter = 'get'.ucfirst($this->propertyName);
         if (!$form->isValid() && $data->$getter() instanceof ArrayCollection) {
@@ -121,8 +120,7 @@ class CaptureUploadListener implements EventSubscriberInterface
                 $data->$getter()->add($file);
             }
             // TODO: find a way to restore $this->uploads to the form
-
-            $event->setData($data);
+            $event->setData($data->$getter());
         }
     }
 

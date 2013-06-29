@@ -104,9 +104,10 @@ class RoutingLoader extends FileLoader
             
             if (in_array($controller, array('edit', 'update', 'object', 'show')) &&
                 null !== $pk_requirement = $this->getFromYaml('params.pk_requirement', null)) {
-                $datas['requirements'] = array_merge($datas['requirements'], array(
-                    'pk' => $pk_requirement
-                ));
+                $datas['requirements'] = array_merge(
+                    $datas['requirements'],
+                    array('pk' => $pk_requirement)
+                );
             }
 
             if (isset($datas['controller'])) {
@@ -163,10 +164,18 @@ class RoutingLoader extends FileLoader
             ->depth(0)
             ->in(realpath($resource.'/../../')) // ressource is controller folder
             ->getIterator();
-
-        foreach ($finder as $file) {
-            return $file->getBasename('.'.$file->getExtension());
+        $finder->rewind();
+        $file = $finder->current();
+        
+        if ($file) {
+            if (PHP_VERSION_ID >= 50306) {
+                return $file->getBasename('.' . $file->getExtension());
+            }
+            
+            return $file->getBasename('.' . pathinfo($file->getFilename(), PATHINFO_EXTENSION));
         }
+        
+        return null;
     }
 
     protected function getBundleNameFromResource($resource)
@@ -211,7 +220,7 @@ class RoutingLoader extends FileLoader
     public function getFromYaml($yaml_path, $default = null)
     {
         $search_in = $this->yaml;
-        $yaml_path = explode('.',$yaml_path);
+        $yaml_path = explode('.', $yaml_path);
         foreach ($yaml_path as $key) {
             if (!isset($search_in[$key])) {
                 return $default;
