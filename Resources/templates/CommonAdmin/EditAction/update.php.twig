@@ -17,7 +17,7 @@
 
         $this->preBindRequest(${{ builder.ModelClass }});
         $form = $this->createForm($this->getEditType(), ${{ builder.ModelClass }});
-        $form->submit($this->get('request'));
+        $form->handleRequest($this->get('request'));
 
         if ($form->isValid()) {
             try {
@@ -59,7 +59,7 @@
                 $this->onException($e, $form, ${{ builder.ModelClass }});
             }
 
-        } else {
+        } elseif ($form->isSubmitted()) {
             $this->get('session')->getFlashBag()->add('error',  $this->get('translator')->trans("{{ messages.error|default("action.object.edit.error") }}", array(), 'Admingenerator') );
         }
 
