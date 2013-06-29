@@ -11,7 +11,7 @@
 
         $this->preBindRequest(${{ builder.ModelClass }});
         $form = $this->createForm($this->getNewType(), ${{ builder.ModelClass }});
-        $form->bind($this->get('request'));
+        $form->submit($this->get('request'));
 
         if ($form->isValid()) {
             try {
