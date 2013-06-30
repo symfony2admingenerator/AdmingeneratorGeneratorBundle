@@ -41,28 +41,6 @@ class EchoExtensionTest extends TestCase
         );
     }
 
-    public function testConvertAsForm()
-    {
-
-        $tpls = array(
-            'options_form_collection_type_class' => '{{ options_form_collection_type_class|convert_as_form("collection") }}',
-            'options_form_collection_type_name' => '{{ options_form_collection_type_name|convert_as_form("collection") }}',
-            'options_form_model' => '{{ options_form_model|convert_as_form("model") }}',
-            'options_form_choice_method' => '{{ options_form_choice_method|convert_as_form("choice") }}',
-            'options_form_choice_array' => '{{ options_form_choice_array|convert_as_form("choice") }}',
-        );
-
-        $returns = array(
-            'options_form_collection_type_class' => array("array( 'allow_add' => true, 'allow_delete' => true, 'by_reference' => false, 'type' =>  new \Admingenerator\PropelDemoBundle\Form\Type\ActorType(),)", 'convert as form can convert the type option for the collection type'),
-            'options_form_collection_type_name' => array("array( 'allow_add' => true, 'allow_delete' => true, 'by_reference' => false, 'type' => 'my_formType_name',)", 'convert as form can convert the type option for the collection type'),
-            'options_form_model' => array("array( 'query' => \Admingenerator\PropelDemoBundle\Model\ActorQuery::create()->orderById(),)", 'convert as form can convert the query option for the model type'),
-            'options_form_choice_method' => array("array( 'choices' => \Admingenerator\PropelDemoBundle\Model\ActorQuery::getMyCustoms(),)", 'convert as form can convert the choices option for the choice type'),
-            'options_form_choice_array' => array("array( 'choices' => array('a' => 'b'),)", 'convert as form can convert the choices option for the choice type'),
-        );
-
-       $this->runTwigTests($tpls, $returns);
-    }
-
     public function testAsPhp()
     {
         $tpls = array(

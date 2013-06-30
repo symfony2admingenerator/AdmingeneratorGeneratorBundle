@@ -90,10 +90,6 @@
             <tag name="form.type_extension" alias="form" />
         </service>
 
-        <service id="form.type_extension.collection" class="Admingenerator\GeneratorBundle\Form\Extension\BootstrapCollectionTypeExtension">
-            <tag name="form.type_extension" alias="collection" />
-        </service>
-
         <service id="form.type_extension.help_message" class="Admingenerator\GeneratorBundle\Form\Extension\HelpMessageTypeExtension">
             <tag name="form.type_extension" alias="form" />
         </service>
