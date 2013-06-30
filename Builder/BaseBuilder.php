@@ -88,6 +88,7 @@ abstract class BaseBuilder extends GenericBaseBuilder
     public function isMultiTemplatesBuilder()
     {
         $tmp = $this->getTemplatesToGenerate();
+
         return !empty($tmp);
     }
 
@@ -117,12 +118,15 @@ abstract class BaseBuilder extends GenericBaseBuilder
         $locator = new TemplateLocator(new FileLocator($this->getTemplateDirs()));
         $templateNameParser = new TemplateNameParser();
         $loader = new FilesystemLoader($locator, $templateNameParser);
-        $twig = new \Twig_Environment($loader, array(
-            'autoescape' => false,
-            'strict_variables' => true,
-            'debug' => true,
-            'cache' => $this->getGenerator()->getTempDir(),
-        ));
+        $twig = new \Twig_Environment(
+            $loader,
+            array(
+                'autoescape' => false,
+                'strict_variables' => true,
+                'debug' => true,
+                'cache' => $this->getGenerator()->getTempDir(),
+            )
+        );
 
         $this->addTwigExtensions($twig, $loader);
         $this->addTwigFilters($twig);
@@ -183,5 +187,4 @@ abstract class BaseBuilder extends GenericBaseBuilder
     {
         return $this->getSimpleClassName($this->getVariable('model'));
     }
-
 }

@@ -97,7 +97,8 @@ class BundleGenerator extends BaseBundleGenerator
         foreach ($this->actions as $action => $actionProperties) {
             $parameters['action'] = $action;
 
-            $controllerFile = $dir.'/Controller/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$action.'Controller.php';
+            $controllerFile = $dir.'/Controller/'
+                    .($this->prefix ? ucfirst($this->prefix).'/' : '').$action.'Controller.php';
             $this->copyPreviousFile($controllerFile);
             $this->renderGeneratedFile(
                 'DefaultController.php',
@@ -109,9 +110,9 @@ class BundleGenerator extends BaseBundleGenerator
                 $templateFile = $dir.'/Resources/views/'.ucfirst($this->prefix).$action.'/'.$templateName.'.html.twig';
                 $this->copyPreviousFile($templateFile);
                 $this->renderGeneratedFile(
-                        'default_view.html.twig',
-                        $templateFile,
-                        $parameters + array('view' => $templateName)
+                    'default_view.html.twig',
+                    $templateFile,
+                    $parameters + array('view' => $templateName)
                 );
             }
         }
@@ -148,11 +149,11 @@ class BundleGenerator extends BaseBundleGenerator
 
     protected function copyPreviousFile($oldname)
     {
-        if(file_exists($oldname)) {
+        if (file_exists($oldname)) {
             $newname = $oldname.'~';
 
             // Find unused copy name
-            if(file_exists($newname)) {
+            if (file_exists($newname)) {
                 $key = 0;
                 do {
                     $key++;

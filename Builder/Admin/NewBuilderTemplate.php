@@ -15,8 +15,10 @@ class NewBuilderTemplate extends NewBuilder
     public function getTemplatesToGenerate()
     {
         return parent::getTemplatesToGenerate() + array(
-                'EditBuilderTemplate'.self::TWIG_EXTENSION => 'Resources/views/'.$this->getBaseGeneratorName().'New/index.html.twig',
-                'Edit/FormBuilderTemplate'.self::TWIG_EXTENSION => 'Resources/views/'.$this->getBaseGeneratorName().'New/form.html.twig',
+            'EditBuilderTemplate'.self::TWIG_EXTENSION
+                => 'Resources/views/'.$this->getBaseGeneratorName().'New/index.html.twig',
+            'Edit/FormBuilderTemplate'.self::TWIG_EXTENSION
+                => 'Resources/views/'.$this->getBaseGeneratorName().'New/form.html.twig',
         );
     }
 }

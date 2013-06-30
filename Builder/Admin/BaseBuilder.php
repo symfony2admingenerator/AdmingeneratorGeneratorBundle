@@ -49,34 +49,41 @@ class BaseBuilder extends GenericBaseBuilder
         foreach ($this->getDisplayAsColumns() as $columnName) {
             $column = new $this->columnClass($columnName);
 
-            $column->setDbType($this->getFieldOption(
-                $column,
-                'dbType',
-                $this->getFieldGuesser()->getDbType(
-                    $this->getVariable('model'), $columnName
+            $column->setDbType(
+                $this->getFieldOption(
+                    $column,
+                    'dbType',
+                    $this->getFieldGuesser()->getDbType(
+                        $this->getVariable('model'),
+                        $columnName
+                    )
                 )
-            ));
+            );
 
             if ($this->getYamlKey() != 'list' && $this->getYamlKey() != 'nested_list') {
 
-                $column->setFormType($this->getFieldOption(
-                    $column,
-                    'formType',
-                    $this->getFieldGuesser()->getFormType(
-                        $column->getDbType(),
-                        $columnName
+                $column->setFormType(
+                    $this->getFieldOption(
+                        $column,
+                        'formType',
+                        $this->getFieldGuesser()->getFormType(
+                            $column->getDbType(),
+                            $columnName
+                        )
                     )
-                ));
+                );
 
-                $column->setFormOptions($this->getFieldOption(
-                    $column,
-                    'formOptions',
-                    $this->getFieldGuesser()->getFormOptions(
-                        $column->getFormType(),
-                        $column->getDbType(),
-                        $columnName
+                $column->setFormOptions(
+                    $this->getFieldOption(
+                        $column,
+                        'formOptions',
+                        $this->getFieldGuesser()->getFormOptions(
+                            $column->getFormType(),
+                            $column->getDbType(),
+                            $columnName
+                        )
                     )
-                ));
+                );
             }
             //Set the user parameters
             $this->setUserColumnConfiguration($column);
@@ -147,7 +154,7 @@ class BaseBuilder extends GenericBaseBuilder
         }
 
         if (null == $display || 0 == sizeof($display)) {
-           return $this->getAllFields();
+            return $this->getAllFields();
         }
 
         if (isset($display[0])) {
@@ -201,7 +208,7 @@ class BaseBuilder extends GenericBaseBuilder
         }
 
         if (null == $display || 0 == sizeof($display)) {
-           $display = $this->getAllFields();
+            $display = $this->getAllFields();
         }
 
         if (isset($display[0])) {
@@ -326,12 +333,15 @@ class BaseBuilder extends GenericBaseBuilder
     public function parseStringWithTwig($template, $options = array())
     {
         $loader = new \Twig_Loader_String();
-        $twig = new \Twig_Environment($loader, array(
-            'autoescape' => false,
-            'strict_variables' => true,
-            'debug' => true,
-            'cache' => $this->getGenerator()->getTempDir(),
-        ));
+        $twig = new \Twig_Environment(
+            $loader,
+            array(
+                'autoescape' => false,
+                'strict_variables' => true,
+                'debug' => true,
+                'cache' => $this->getGenerator()->getTempDir(),
+            )
+        );
         $this->addTwigExtensions($twig, $loader);
         $this->addTwigFilters($twig);
 
@@ -361,13 +371,18 @@ class BaseBuilder extends GenericBaseBuilder
     {
         return str_replace('\\', '', $this->getVariable('namespace_prefix'));
     }
-    
+
     public function getBaseActionsRoute()
     {
-        return str_replace('\\', '_', $this->getVariable('namespace_prefix').'_'.$this->getVariable('bundle_name').'_'
-               .$this->getBaseGeneratorName());
+        return str_replace(
+            '\\',
+            '_',
+            $this->getVariable('namespace_prefix').'_'
+                .$this->getVariable('bundle_name').'_'
+                .$this->getBaseGeneratorName()
+        );
     }
-    
+
     public function getObjectActionsRoute()
     {
         return $this->getBaseActionsRoute().'_object';
@@ -475,5 +490,4 @@ class BaseBuilder extends GenericBaseBuilder
 
         return $javascripts;
     }
-
 }
