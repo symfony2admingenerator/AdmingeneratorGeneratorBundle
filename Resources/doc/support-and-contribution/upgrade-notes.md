@@ -25,7 +25,6 @@ but most important to know about it is that generated views files are now splitt
 
 #### B/C breaks:
 
- - No more compatible with Symfony <= 2.2
  - New files are required in your code source
  - Some blocks (in views) have been moved to different files
  - ``ListController`` organization has changed
