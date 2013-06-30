@@ -20,8 +20,9 @@ options like query_builder in embed forms to access the securityContext.
 
 #### B/C breaks:
 
-The securityContext is passed down in form type constructor as its first argument,
-so it forces you to add a constructor for all your types.
+The securityContext and object are passed down to form type constructor as 
+its first and second argument. Since this commit your embed types must have 
+a constructor able to fetch these.
 
 #### Upgrade notes:
 
@@ -38,10 +39,13 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 class YourType extends AbstractType
 {
     protected $securityContext;
+
+    protected $object;
     
-    public function __construct(SecurityContextInterface $securityContext)
+    public function __construct(SecurityContextInterface $securityContext, $object)
     {
         $this->securityContext = $securityContext;
+        $this->object = $object;
     }
 // ...
 ```

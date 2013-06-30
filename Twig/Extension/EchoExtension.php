@@ -82,7 +82,7 @@ class EchoExtension extends \Twig_Extension
                 // Sanity check: prepend with "new" and append with "()"
                 // only if type option is a Fully qualified name
                 if (preg_match($pattern_formtype, $matches[1])) {
-                    $options = str_replace("'type' => '".$matches[1]."'", '\'type\' =>  new '.stripslashes($matches[1]).'($securityContext)', $options);
+                    $options = str_replace("'type' => '".$matches[1]."'", '\'type\' =>  new '.stripslashes($matches[1]).'($securityContext, $object)', $options);
                 }
             }
         }

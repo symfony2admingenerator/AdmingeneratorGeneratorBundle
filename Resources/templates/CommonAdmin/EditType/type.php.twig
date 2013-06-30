@@ -12,15 +12,23 @@ class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
 {
     protected $securityContext;
     
-    public function __construct(SecurityContextInterface $securityContext)
+    /**
+     * Form's top level object. Can be used to customize some form type options,
+     * e.g. narrow down choices list in query_builder based on some value.
+     */
+    protected $object;
+    
+    public function __construct(SecurityContextInterface $securityContext, $object)
     {
         $this->securityContext = $securityContext;
+        $this->object = $object;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // Required to pass securityContext to embed forms and closures
+        // Required to pass $securityContext and $object to embed forms and closures
         $securityContext = $this->securityContext;
+        $object = $this->object;
         
         {% for column in builder.columns %}
         {%- if column.credentials -%}
