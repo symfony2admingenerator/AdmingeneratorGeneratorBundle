@@ -34,11 +34,11 @@
     {% if object_actions is defined and object_actions|length > 0 %}
     <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/object-actions.js")') }}"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $("#table-list-{{ builder.ModelClass }}").agen$objectActions({
+        ;(function(window, $, undefined){
+        	$("#table-list-{{ builder.ModelClass }}").agen$objectActions({
             	actionsSelector: '.object_actions a'
             });
-        });
+        })(this, jQuery);
     </script>
     {% endif %}
     {{ echo_endblock() }}
@@ -51,8 +51,8 @@
 
     {% spaceless %}
     {{ echo_spaceless() }}
-    <a  class="btn btn-mini {{ action.class|default('') }}" href="{{ echo_path(actionRoute, actionParams) }}" 
-        data-original-title="{{ echo_trans(action.label, {}, translationDomain) }}" rel="tooltip" 
+    <a  class="btn btn-mini {{ action.class|default('') }}" href="{{ echo_path(actionRoute, actionParams) }}"
+        data-original-title="{{ echo_trans(action.label, {}, translationDomain) }}" rel="tooltip"
         {%- if action.confirm %} data-confirm="{{ echo_trans(action.confirm, {}, translationDomain) }}" {% endif -%}
         {%- if action.csrfProtected %} data-csrf-token="{{ echo_path(actionRoute, actionParams, ['csrf_token']) }}" {% endif -%}>
             <i class="{{ action.icon|default('icon-asterisk') }}"></i>

@@ -14,8 +14,6 @@
             {% endif %}
             {{ echo_endblock() }}
         {% endfor %}
-
-        {{ block('generic_actions_script') }}
     {% endif %}
 {{ echo_endblock() }}
 {% endblock %}
@@ -37,11 +35,11 @@
     {% if builder.Actions is defined and builder.Actions|length > 0 %}
     <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/generic-actions.js")') }}"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
+        ;(function(window, $, undefined) {
             $("#generic_actions").agen$genericActions({
             	actionsSelector: 'a.btn'
             });
-        });
+        })(this, jQuery);
     </script>
     {% endif %}
     {{ echo_endblock() }}

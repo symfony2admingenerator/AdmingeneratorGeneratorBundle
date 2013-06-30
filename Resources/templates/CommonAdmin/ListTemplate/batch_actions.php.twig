@@ -45,13 +45,13 @@
         </form>
         <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/batch-actions.js")') }}"></script>
         <script type="text/javascript">
-            $(document).ready(function(){
-                $("#form-list-{{ builder.ModelClass }}").agen$batchActions({
+            ;(function(window, $, undefined) {
+            	$("#form-list-{{ builder.ModelClass }}").agen$batchActions({
                     submitSelector: 'button[name=batch]',
                     actionsSelector: '#batchActionSelector',
                     noneSelected: '{{ echo_trans("batch.list.none.selected") }}'
                 });
-            });
+            })(this, jQuery);
         </script>
     {% endif %}
     {{ echo_endblock() }}

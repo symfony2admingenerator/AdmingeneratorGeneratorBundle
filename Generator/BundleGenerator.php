@@ -20,7 +20,24 @@ class BundleGenerator extends BaseBundleGenerator
 
     protected $prefix;
 
-    protected $actions = array('New', 'List', 'Edit', 'Show', 'Actions');
+    protected $actions = array(
+        'New'  => array('views' => array(
+            'index',
+            'form',
+        )),
+        'List' => array('views' => array(
+            'index',
+            'results',
+            'filters',
+            'row'
+        )),
+        'Edit' => array('views' => array(
+            'index',
+            'form',
+        )),
+        'Show' => array('views' => array('index')),
+        'Actions' => array('views' => array('index'))
+    );
 
     protected $forms = array('New', 'Filters', 'Edit');
 
@@ -77,9 +94,9 @@ class BundleGenerator extends BaseBundleGenerator
             $this->renderGeneratedFile('Bundle.php', $dir.'/'.$bundle.'.php', $parameters);
         }
 
-        foreach ($this->actions as $action) {
+        foreach ($this->actions as $action => $actionProperties) {
             $parameters['action'] = $action;
-            
+
             $controllerFile = $dir.'/Controller/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$action.'Controller.php';
             $this->copyPreviousFile($controllerFile);
             $this->renderGeneratedFile(
@@ -88,18 +105,20 @@ class BundleGenerator extends BaseBundleGenerator
                 $parameters
             );
 
-            $templateFile = $dir.'/Resources/views/'.ucfirst($this->prefix).$action.'/index.html.twig';
-            $this->copyPreviousFile($templateFile);
-            $this->renderGeneratedFile(
-                'index.html.twig',
-                $templateFile,
-                $parameters
-            );
+            foreach ($actionProperties['views'] as $templateName) {
+                $templateFile = $dir.'/Resources/views/'.ucfirst($this->prefix).$action.'/'.$templateName.'.html.twig';
+                $this->copyPreviousFile($templateFile);
+                $this->renderGeneratedFile(
+                        'default_view.html.twig',
+                        $templateFile,
+                        $parameters + array('view' => $templateName)
+                );
+            }
         }
 
         foreach ($this->forms as $form) {
             $parameters['form'] = $form;
-            
+
             $formFile = $dir.'/Form/Type/'.($this->prefix ? ucfirst($this->prefix).'/' : '').$form.'Type.php';
             $this->copyPreviousFile($formFile);
             $this->renderGeneratedFile(
@@ -126,19 +145,19 @@ class BundleGenerator extends BaseBundleGenerator
             $this->renderFile($this->skeletonDir, $template, $target, $parameters);
         }
     }
-    
+
     protected function copyPreviousFile($oldname)
     {
         if(file_exists($oldname)) {
             $newname = $oldname.'~';
-            
+
             // Find unused copy name
             if(file_exists($newname)) {
                 $key = 0;
                 do {
                     $key++;
                 } while (file_exists($oldname.'~'.$key));
-                
+
                 $newname = $oldname.'~'.$key;
             }
 

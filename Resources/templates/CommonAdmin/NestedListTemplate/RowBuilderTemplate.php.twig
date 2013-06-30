@@ -1,0 +1,13 @@
+{% use '../CommonAdmin/ListTemplate/row.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/object_actions.php.twig' %}
+
+{% block list_row %}
+{{ echo_block('list_row') }}
+<tr id="node-{{ echo_twig(builder.ModelClass ~ "." ~ builder.getFieldGuesser().getModelPrimaryKeyName(model)) }}"
+    class="list_trow {{ echo_twig(builder.ModelClass ~ "." ~ builder.treeConfiguration.parent ~ "() ? 'child-of-node-' ~ " ~ builder.ModelClass ~ "." ~ builder.treeConfiguration.parent ~ "." ~ builder.getFieldGuesser().getModelPrimaryKeyName(model) ~ ": ''"  ) }}">
+    {{- block('list_row_content') -}}
+
+    {{- block('list_object_actions') }}
+</tr>
+{{ echo_endblock() }}
+{% endblock list_row %}
