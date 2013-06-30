@@ -111,7 +111,7 @@ class BundleGenerator extends BaseBundleGenerator
                 $this->renderGeneratedFile(
                         'default_view.html.twig',
                         $templateFile,
-                        $parameters + array('view_name' => $templateName)
+                        $parameters + array('view' => $templateName)
                 );
             }
         }
