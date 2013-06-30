@@ -16,10 +16,14 @@ project.
 #### Description:
 
 This PR introduces a new file generation stragegy. See discussion [#515][pr515] for more information,
-but most important to know about it is that generated views files are now splitted in 4 files for ``Lists``.
+but most important to know about it is that generated views files are now splitted in:
+
+ - 4 files for ``Lists``
+ - 2 files for ``New`` and ``Edit``
 
 #### B/C breaks:
 
+ - No more compatible with Symfony < 2.2
  - New files are required in your code source
  - Some blocks (in views) have been moved to different files
  - ``ListController`` organization has changed
@@ -29,12 +33,11 @@ but most important to know about it is that generated views files are now splitt
 For all your generators, you have to generate these new views files. You can do it manually creating
 files:
 
- - index.html.twig (normally already existing)
- - filters.html.twig
- - results.html.twig
- - row.html.twig
-
-in all your ``xxxBundle/Resources/views/yyyList/`` directories.
+ - filters.html.twig in all your ``xxxBundle/Resources/views/yyyList/`` directories
+ - results.html.twig in all your ``xxxBundle/Resources/views/yyyList/`` directories
+ - row.html.twig in all your ``xxxBundle/Resources/views/yyyList/`` directories
+ - form.html.twig in all your ``xxxBundle/Resources/views/yyyNew/``
+ and ``xxxBundle/Resources/views/yyyEdit/`` directories.
 
 or you can also regenerate all files thanks to the Symfony command:
 
@@ -49,20 +52,22 @@ incrementing number will be appended to new copy's name (e.g. `oldname~1`).
 
 Second thing to know is that block names have moved:
  
- - ``list_td_column_xxxx`` must be in ``row.html.twig`` file
- - object actions are now in ``row.html.twig`` file
- - ``list_thead`` is now in ``results.html.twig`` file
- - form, batch actions and paginator are in ``results.html.twig`` file
- - filters related blocks must be in ``filters.html.twig`` file
+ - ``list_td_column_xxxx`` are in ``xxxList/row.html.twig`` file
+ - object actions are now in ``xxxList/row.html.twig`` file
+ - ``list_thead`` is now in ``xxxList/results.html.twig`` file
+ - list form, batch actions and paginator are in ``xxxList/results.html.twig`` file
+ - filters related blocks must be in ``xxxList/filters.html.twig`` file
+ - new and edit forms have moved to a dedicated view in ``xxx[Edit|New]/form.html.twig``
  
 Of course, you can still have a look on the generated files (in ``app/cache/env/admingenerated`` directory) to find
- your blocks (very few block names have changed).
+your blocks (very few block names have changed).
 
-To finish with views, if you have a custom version of ``ListBuilderTemplate`` or ``NestedListBuilderTemplate`` have 
+To finish with views, if you have a custom version of ``XxxxBuilderTemplate`` have 
 a look of the new ones, changes are important (based on includes).
 
 Last thing to merge (only if you overrided default behaviors) is your ``ListController``s:
  - ``indexAction`` has changed: paginator management is now in a new separated function
+ if you never change anything about that, you have nothing to merge.
 
 
 

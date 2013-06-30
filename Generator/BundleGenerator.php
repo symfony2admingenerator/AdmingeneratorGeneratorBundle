@@ -21,14 +21,20 @@ class BundleGenerator extends BaseBundleGenerator
     protected $prefix;
 
     protected $actions = array(
-        'New'  => array('views' => array('index')),
+        'New'  => array('views' => array(
+            'index',
+            'form',
+        )),
         'List' => array('views' => array(
             'index',
             'results',
             'filters',
             'row'
         )),
-        'Edit' => array('views' => array('index')),
+        'Edit' => array('views' => array(
+            'index',
+            'form',
+        )),
         'Show' => array('views' => array('index')),
         'Actions' => array('views' => array('index'))
     );
