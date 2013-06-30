@@ -9,14 +9,16 @@ This file lists B/C breaking PRs in reverse chronological order. Each PR contain
 description explaining nature of changes and upgrade notes to help you upgrade your 
 project.
 
-## Commit [0eeb9035e7][commit0eeb9035e7]
+## Commit [0eeb9035e7][commit0eeb9035e7] and [f2228bf939][commitf2228bf939]
 
 [commit0eeb9035e7]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/commit/0eeb9035e74291692513873fd67e8eb60b315e02
+[commitf2228bf939]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/commit/f2228bf93940b9d7834ecba14c2ae33f4a16df34
 
 #### Description:
 
-This commit introduces passing securityContext to embed form types thus allowing 
-options like query_builder in embed forms to access the securityContext.
+These commits introduce passing securityContext and top level object to 
+nested form types thus allowing options like query_builder in nested forms 
+to access the securityContext or the object.
 
 #### B/C breaks:
 
