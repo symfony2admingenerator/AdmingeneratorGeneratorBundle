@@ -35,8 +35,7 @@ class NewController extends BaseController
 
     protected function getNewType()
     {
-        $type = new NewType();
-        $type->setSecurityContext($this->get('security.context'));
+        $type = new NewType($this->get('security.context'));
 
         return $type;
     }
