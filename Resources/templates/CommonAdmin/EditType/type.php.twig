@@ -13,6 +13,8 @@ class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $securityContext = $this->securityContext;
+        
         {% for column in builder.columns %}
         {%- if column.credentials -%}
         if (false !== $this->securityContext->isGranted(array(new Expression('{{ column.credentials }}')), $builder->getData())) {
