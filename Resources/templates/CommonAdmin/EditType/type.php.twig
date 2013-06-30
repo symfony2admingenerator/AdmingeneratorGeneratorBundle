@@ -5,14 +5,23 @@ namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\Form\Base{{ bui
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Security\Core\SecurityContextInterface; 
 use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 
 class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
 {
     protected $securityContext;
+    
+    public function __construct(SecurityContextInterface $securityContext)
+    {
+        $this->securityContext = $securityContext;
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        // Required to pass securityContext to embed forms and closures
+        $securityContext = $this->securityContext;
+        
         {% for column in builder.columns %}
         {%- if column.credentials -%}
         if (false !== $this->securityContext->isGranted(array(new Expression('{{ column.credentials }}')), $builder->getData())) {
@@ -47,11 +56,6 @@ class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
     public function getName()
     {
         return '{{ builder.YamlKey }}_{{ builder.ModelClass|lower }}';
-    }
-
-    public function setSecurityContext($securityContext)
-    {
-        $this->securityContext = $securityContext;
     }
 
 }
