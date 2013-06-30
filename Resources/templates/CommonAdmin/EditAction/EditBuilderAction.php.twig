@@ -24,23 +24,28 @@ class EditController extends BaseController
 
     {{- block('security_check') }}
 
-    protected function getEditType()
-    {
-        $type = new EditType($this->get('security.context'));
-
-        return $type;
-    }
-
-
     /**
      * Get additional parameters for rendering.
      *
      * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
      * return array
-     **/
+     */
     protected function getAdditionalRenderParameters(\{{ model }} ${{ builder.ModelClass }})
     {
         return array();
+    }
+    
+    /**
+     * Get form type
+     *
+     * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
+     * return array
+     */
+    protected function getEditType(\{{ model }} ${{ builder.ModelClass }})
+    {
+        $type = new EditType($this->get('security.context'), ${{ builder.ModelClass }});
+
+        return $type;
     }
 
     {% block getObject -%}
