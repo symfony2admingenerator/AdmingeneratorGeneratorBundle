@@ -2,7 +2,7 @@
 {% use '../CommonAdmin/stylesheets.php.twig' %}
 {% use '../CommonAdmin/javascripts.php.twig' %}
 {% use '../CommonAdmin/EditTemplate/tabs.php.twig' %}
-{% use '../CommonAdmin/EditTemplate/form.php.twig' %}
+
 {{ echo_extends( builder.getBaseAdminTemplate ) }}
 
 {{ echo_block("stylesheets") }}
@@ -21,7 +21,7 @@
 
     <div class="row-fluid">
         {{- block('form_tabs') }}
-        {{- block('form') -}}
+        {{ echo_include(builder.namespacePrefixForTemplate ~ bundle_name ~ ':' ~ builder.BaseGeneratorName ~ (builder.yamlKey | capitalize) ~ ':form.html.twig') }}
     </div>
 
 {{ echo_endblock() }}

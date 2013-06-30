@@ -1,0 +1,46 @@
+{% use '../CommonAdmin/NestedListTemplate/nbresults.php.twig' %}
+{% use '../CommonAdmin/NestedListTemplate/thead.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/tbody.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/batch_actions.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/actions.php.twig' %}
+
+{% block list_results %}
+<div class="results-list">
+    {{- block('list_nbresults') }}
+
+    {{- block('form_batch_actions') }}
+        <table id="table-list-{{ builder.ModelClass }}" class="table table-striped table-hover table-condensed">
+            {{ block('list_thead') -}}
+            {{- block('list_tbody') }}
+        </table>
+
+        <div id="list_toolbar" class="form-actions">
+          <div class="btn-toolbar pull-left">
+            {{ block('list_batch_actions') }}
+          </div>
+        </div>
+
+        <div id="generic_actions" class="form-actions">
+            <div class="btn-toolbar">
+                {{ block('list_actions') }}
+            </div>
+        </div>
+        {{ block('generic_actions_script') }}
+    {{- block('endform_batch_actions') -}}
+</div>
+<script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/nestedset.js")') }}"></script>
+{% set admingeneratorNestedRoute=builder.routePrefixWithSubfolder ~ "_" ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_nested_move" %}
+<script type="text/javascript">
+    ;(function(window, $, undefined){
+        $('#table-list-{{ builder.ModelClass }}').agen$nestedTree({
+            urls: {
+                move: '{{ echo_path( admingeneratorNestedRoute, "{ 'dragged': '|dragged|', 'action': '|action|', 'dropped': '|dropped|' }") }}'
+            },
+            labels: {
+                expand: '{{ echo_trans('nested.list.expand') }}',
+                collapse: '{{ echo_trans('nested.list.collapse') }}'
+            }
+        });
+    })(this, jQuery);
+</script>
+{% endblock list_results %}
