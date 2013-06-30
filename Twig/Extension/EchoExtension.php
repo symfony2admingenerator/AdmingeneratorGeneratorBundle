@@ -82,12 +82,21 @@ class EchoExtension extends \Twig_Extension
                 // Sanity check: prepend with "new" and append with "()"
                 // only if type option is a Fully qualified name
                 if (preg_match($pattern_formtype, $matches[1])) {
-                  $options = str_replace("'type' => '".$matches[1]."'", '\'type\' =>  new '.stripslashes($matches[1]).'()', $options);
+                    $options = str_replace("'type' => '".$matches[1]."'", '\'type\' =>  new '.stripslashes($matches[1]).'($securityContext)', $options);
                 }
             }
         }
 
-        if ('model' == $formType) {
+        if (preg_match("#^entity#i", $formType) || preg_match("#entity$#i", $formType) ||
+            preg_match("#^document#i", $formType) || preg_match("#document$#i", $formType)) {
+            preg_match("/'query_builder' => '(.+?)',/i", $options, $matches);
+
+            if (count($matches) > 0) {
+                $options = str_replace("'query_builder' => '".$matches[1]."'", '\'query_builder\' => '.stripslashes($matches[1]), $options);
+            }
+        }
+
+        if (preg_match("#^model#i", $formType) || preg_match("#model$#i", $formType)) {
             preg_match("/'query' => '(.+?)',/i", $options, $matches);
 
             if (count($matches) > 0) {
