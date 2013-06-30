@@ -27,21 +27,16 @@ class NewController extends BaseController
      *
      * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
      * return array
-     */
+     **/
     protected function getAdditionalRenderParameters(\{{ model }} ${{ builder.ModelClass }})
     {
         return array();
     }
-    
-    /**
-     * Get form type
-     *
-     * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
-     * return array
-     */
-    protected function getNewType(\{{ model }} ${{ builder.ModelClass }})
+
+    protected function getNewType()
     {
-        $type = new NewType($this->get('security.context'), ${{ builder.ModelClass }});
+        $type = new NewType();
+        $type->setSecurityContext($this->get('security.context'));
 
         return $type;
     }
