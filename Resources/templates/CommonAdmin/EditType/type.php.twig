@@ -5,31 +5,14 @@ namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\Form\Base{{ bui
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface; 
 use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 
 class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
 {
     protected $securityContext;
-    
-    /**
-     * Form's top level object. Can be used to customize some form type options,
-     * e.g. narrow down choices list in query_builder based on some value.
-     */
-    protected $object;
-    
-    public function __construct(SecurityContextInterface $securityContext, $object)
-    {
-        $this->securityContext = $securityContext;
-        $this->object = $object;
-    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // Required to pass $securityContext and $object to embed forms and closures
-        $securityContext = $this->securityContext;
-        $object = $this->object;
-        
         {% for column in builder.columns %}
         {%- if column.credentials -%}
         if (false !== $this->securityContext->isGranted(array(new Expression('{{ column.credentials }}')), $builder->getData())) {
@@ -64,6 +47,11 @@ class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
     public function getName()
     {
         return '{{ builder.YamlKey }}_{{ builder.ModelClass|lower }}';
+    }
+
+    public function setSecurityContext($securityContext)
+    {
+        $this->securityContext = $securityContext;
     }
 
 }
