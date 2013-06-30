@@ -9,21 +9,23 @@ This file lists B/C breaking PRs in reverse chronological order. Each PR contain
 description explaining nature of changes and upgrade notes to help you upgrade your 
 project.
 
-## PR [#515][pr515] Reorganizing views
+## PR [#552][pr552] [BC Break][Feature] Generated views are splitted in several files
 
-[pr515]: [https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/issue/515]
+[pr552]: [https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/pull/552]
 
 #### Description:
 
-This PR introduces a new file generation stragegy. See discussion [#515][pr515] for more information,
+This PR introduces a new file generation stragegy. See discussion [#515][issue515] for more information,
 but most important to know about it is that generated views files are now splitted in:
 
  - 4 files for ``Lists``
  - 2 files for ``New`` and ``Edit``
+ 
+ [issue515]: [https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/issue/515]
 
 #### B/C breaks:
 
- - No more compatible with Symfony < 2.2
+ - No more compatible with Symfony <= 2.2
  - New files are required in your code source
  - Some blocks (in views) have been moved to different files
  - ``ListController`` organization has changed
