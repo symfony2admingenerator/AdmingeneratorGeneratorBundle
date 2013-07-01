@@ -21,11 +21,10 @@
         <!-- HTML5 shiv, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
         {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/html5shiv.min.js'
-            'bundles/admingeneratorgenerator/html5shiv/html5.js'
+            'bundles/admingeneratorgenerator/html5shiv/html5shiv.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-            <script src="{{ asset('') }}"></script>
         <![endif]-->
         <!--[if lte IE 7]>
         {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/elusive-iconfont.min.js'
@@ -56,13 +55,10 @@
             'bundles/admingeneratorgenerator/css/admingenerator/filetypeicons.css'
             'bundles/admingeneratorgenerator/css/admingenerator/form/datepicker.css'
             'bundles/admingeneratorgenerator/css/admingenerator/form/single-upload.css'
+            'bundles/admingeneratorgenerator/css/admingenerator/bootstrap-extended.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
-        
-        {% if form is defined %}
-            {{ form_stylesheet(form) }}
-        {% endif %}
     {% endblock %}
 
     {% block icons %}
@@ -109,36 +105,17 @@
     </div> <!--/.container-fluid -->
 
     {% block javascripts %}
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/bootstrap.min.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-transition.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-alert.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-modal.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-dropdown.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-scrollspy.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-tab.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-tooltip.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-popover.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-button.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-collapse.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-carousel.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-typeahead-extended.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-affix.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-datepicker.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/locales/*'
-            'bundles/admingeneratorgenerator/js/google/prettify.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/bootstrap-2.3.2.min.js'
+            'bundles/admingeneratorgenerator/bootstrap/js/bootstrap-2.3.2.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/jquery.spin.min.js'
-            'bundles/admingeneratorgenerator/js/spin/jquery.spin.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/spin.min.js'
+            'bundles/admingeneratorgenerator/spin/spin.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        
-        {% if form is defined %}
-            {{ form_javascript(form) }}
-        {% endif %}
     {% endblock %}
 
   </body>

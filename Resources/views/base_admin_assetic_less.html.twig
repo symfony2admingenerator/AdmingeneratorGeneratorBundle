@@ -9,20 +9,18 @@
         <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/jquery/jquery-1.10.1.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/jquery-ui/js/jquery-ui-1.10.3.min.js') }}"></script>
 
-        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!-- HTML5 shiv, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
-            <script src="{{ asset('bundles/admingeneratorgenerator/js/html5shiv/html5.js') }}"></script>
+            <script src="{{ asset('bundles/admingeneratorgenerator/html5shiv/html5shiv.min.js') }}"></script>
         <![endif]-->
         <!--[if lte IE 7]>
-            <script src="{{ asset('bundles/admingeneratorgenerator/elusive-iconfont/js/lte-ie7.js') }}"></script>
+            <script src="{{ asset('bundles/admingeneratorgenerator/elusive-iconfont/js/lte-ie7.min.js') }}"></script>
         <![endif]-->
     {% endblock %}
 
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/bootstrap/css/bootstrap-2.3.2.min.css') }}" type="text/css" media="all" />
-      
-        <!-- elusive-iconfont.min.css -->
-        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/elusive-iconfont/elusive-webfont.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/elusive-iconfont/css/elusive-webfont.min.css') }}" type="text/css" media="all" />
 
         <!-- admingenerator.min.css -->
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/admingenerator/general.css') }}" type="text/css" media="all" />
@@ -31,10 +29,8 @@
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/admingenerator/filetypeicons.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/admingenerator/form/datepicker.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/admingenerator/form/single-upload.css') }}" type="text/css" media="all" />
-        
-        {% if form is defined %}
-            {{ form_stylesheet(form) }}
-        {% endif %}
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/admingenerator/bootstrap-extended.css') }}" type="text/css" media="all" />
+
     {% endblock %}
 
     {% block icons %}
@@ -81,28 +77,8 @@
     </div> <!--/.container-fluid -->
 
     {% block javascripts %}
-        <!-- bootstrap.min.js -->
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-transition.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-alert.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-modal.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-dropdown.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-scrollspy.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-tab.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-tooltip.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-popover.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-button.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-collapse.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-carousel.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-typeahead-extended.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-affix.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/bootstrap-datepicker.js') }}"></script>
-        {% if app.request.locale is not sameas('en') %}
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/bootstrap/locales/bootstrap-datepicker.' ~ app.request.locale ~ '.js') }}"></script>
-        {% endif %}
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/google/prettify.js') }}"></script>
-
-        <!-- jquery.spin.min.js  -->
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/spin/jquery.spin.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/bootstrap/js/bootstrap-2.3.2.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/spin/spin.min.js') }}"></script>
     {% endblock %}
 
   </body>
