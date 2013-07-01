@@ -4,7 +4,7 @@
         <td class="object_actions">
             <div class="btn-group">
             {% for action in builder.ObjectActions %}
-                {{ echo_block('td_list_object_actions_' ~ action.name) }}
+                {{ echo_block('td_list_object_actions_' ~ action.twigName) }}
                     {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
                         {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials'), builder.ModelClass ) }}
                     {% endif -%}
