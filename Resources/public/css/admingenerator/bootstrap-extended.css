@@ -266,3 +266,8 @@ input.btn.btn-reset:hover {
 .list_scope_group .btn [class^="icon-"] {
     font-size: 12px;
 }
+
+/* Bootstrap CSS fixes */
+.btn-group > .btn + div.tooltip + .btn {
+    margin-left: -1px;
+}
