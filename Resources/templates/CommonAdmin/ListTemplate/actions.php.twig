@@ -4,21 +4,21 @@
         {% for action in builder.Actions %}
             {{ echo_block("list_object_action_" ~ action.twigName) }}
             {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
-                {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') ) }}
+                {{ echo_if_granted(action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') ) }}
             {% endif %}
 
                 {% if action.conditionalFunction %}
-                    {{ echo_if ((action.conditionalInverse ? 'not ' : '') ~ builder.ModelClass ~ "." action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')') }}
+                    {{ echo_if((action.conditionalInverse ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')') }}
                 {% endif %}
 
                 {{ block('generic_action_block') }}
 
                 {% if action.conditionalFunction %}
-                    {{ echo_endif () }}
+                    {{ echo_endif() }}
                 {% endif %}
 
             {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
-                {{ echo_endif () }}
+                {{ echo_endif() }}
             {% endif %}
             {{ echo_endblock() }}
         {% endfor %}
