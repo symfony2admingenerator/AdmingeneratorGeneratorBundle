@@ -10,7 +10,7 @@
                     {% endif -%}
                 
                         {% if action.conditionalFunction %}
-                            {{ echo_if ((action.conditionalInverse == 'true' ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction) }}
+                            {{ echo_if ((action.conditionalInverse ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction) }}
                         {% endif %}
 
                         {{ block('object_action_block') }}

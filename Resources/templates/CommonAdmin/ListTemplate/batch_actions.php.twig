@@ -13,7 +13,7 @@
                             {% endif %}
 
                                 {% if action.conditionalFunction %}
-                                    {{ echo_if ((action.conditionalInverse == 'true' ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')') }}
+                                    {{ echo_if ((action.conditionalInverse ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')') }}
                                 {% endif %}
 
                                 {{ block('batch_action_block') }}
@@ -45,12 +45,14 @@
 
 {% block if_any_conditional %}
 {% spaceless %}
-{{ '{% if ' -}}
+{{ '{% if (false or' -}}
 {%- for action in builder.BatchActions -%}
-    {%- if not loop.first %}{{ ' or ' }}{% endif -%}
-    {{- (action.conditionalInverse == 'true' ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')' -}}
+    {% if action.conditionalFunction %}
+        {%- if not loop.first %}{{ ' or ' }}{% endif -%}
+        {{- (action.conditionalInverse ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')' -}}
+    {% endif %}
 {%- endfor -%}
-{{- '%}' }}
+{{- ') %}' }}
 {% endspaceless %}
 {% endblock %}
 
