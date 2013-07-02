@@ -8,7 +8,7 @@
             {% endif %}
 
                 {% if action.conditionalFunction %}
-                    {{ echo_if ((action.conditionalInverse ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')') }}
+                    {{ echo_if ((action.conditionalInverse ? 'not ' : '') ~ "Prototype." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')') }}
                 {% endif %}
 
                 {{ block('generic_action_block') }}

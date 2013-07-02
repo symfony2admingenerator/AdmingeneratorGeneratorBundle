@@ -1,6 +1,6 @@
 {% use '../CommonAdmin/security_action.php.twig' %}
 {% block index_use %}
-use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ builder.BaseGeneratorName ? builder.BaseGeneratorName ~ "\\" : "" }}FiltersType;
+use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ builder.BaseGeneratorName ? builder.BaseGeneratorName ~ char(92) : "" }}FiltersType;
 {% endblock %}
 {% block index %}
 
@@ -31,6 +31,7 @@ use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ bu
             'sortColumn'                => $this->getSortColumn(),
             'sortOrder'                 => $this->getSortOrder(),
             'scopes'                    => $this->getScopes(),
+            'Prototype'                 => $this->getPrototypeObject(),
         ));
     }
 {% endblock %}
