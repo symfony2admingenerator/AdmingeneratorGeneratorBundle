@@ -44,20 +44,21 @@
 {% endblock %}
 
 {% block if_any_conditional %}
-{% spaceless %}
-{{ '{% if (false or' -}}
-{%- for action in builder.BatchActions -%}
-    {% if action.conditionalFunction %}
-        {%- if not loop.first %}{{ ' or ' }}{% endif -%}
-        {{- (action.conditionalInverse ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')' -}}
-    {% endif %}
-{%- endfor -%}
-{{- ') %}' }}
-{% endspaceless %}
+{% if batch_actions is defined and batch_actions|length > 0 %}
+    {{ '{% if (false' -}}
+    {%- for action in builder.BatchActions -%}
+    {%- if action.conditionalFunction -%}
+        {{- ' or ' ~ (action.conditionalInverse ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')' -}}
+    {%- endif -%}
+    {%- endfor -%}
+    {{- ') %}' }}
+{% endif %}
 {% endblock %}
 
 {% block endif_any_conditional %}
-{{ '{% endif %}' }}
+{% if batch_actions is defined and batch_actions|length > 0 %}
+    {{ '{% endif %}' }}
+{% endif %}
 {% endblock %}
 
 {% block form_batch_actions %}
