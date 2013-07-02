@@ -1,7 +1,5 @@
 {% block list_batch_actions %}
 {{ echo_block("list_batch_actions") }}
-    {% if batch_actions is defined and batch_actions|length > 0 %}
-        {{ block('if_any_conditional') }}
 
             <div class="btn-group">
                 <div class="btn select-caret">
@@ -31,8 +29,6 @@
                 <button type="submit" name="batch" class="btn">{{ echo_trans('batch.list.send') }}</button>
             </div>
 
-        {{ block('endif_any_conditional') }}
-    {% endif -%}
 {{ echo_endblock() }}
 {% endblock %}
 
