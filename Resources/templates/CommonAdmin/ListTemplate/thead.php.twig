@@ -5,11 +5,11 @@
         <thead>
             <tr class="list_thead">
                 {% if batch_actions is defined and batch_actions|length > 0 %}
-                    {{ block('if_any_conditional') }}
+                    {{ block('if_any_batch_conditional') }}
                         <th class="list_thead_batch_action">
                             <input type="checkbox" name="batchAll" />
                         </th>
-                    {{ block('endif_any_conditional') }}
+                    {{ block('endif_any_batch_conditional') }}
                 {% endif %}
             {% for column in builder.columns -%}
                 {% if column.credentials %}

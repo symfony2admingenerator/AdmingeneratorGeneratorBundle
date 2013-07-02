@@ -54,3 +54,19 @@
     {% endif %}
     {{ echo_endblock() }}
 {% endblock %}
+
+{% block if_any_generic_conditional %}
+{% spaceless %}
+    {{ '{% if (false' -}}
+    {%- for action in builder.Actions -%}
+    {%- if action.conditionalFunction -%}
+        {{- ' or ' ~ (action.conditionalInverse ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')' -}}
+    {%- endif -%}
+    {%- endfor -%}
+    {{- ') %}' }}
+{% endspaceless %}
+{% endblock %}
+
+{% block endif_any_generic_conditional %}
+    {{ '{% endif %}' }}
+{% endblock %}

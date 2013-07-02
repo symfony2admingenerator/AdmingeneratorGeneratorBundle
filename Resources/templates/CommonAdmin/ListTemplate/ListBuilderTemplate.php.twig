@@ -46,19 +46,23 @@
                 <div class="form-actions list-actions">
                   
                 {% if batch_actions is defined and batch_actions|length > 0 %}
-                {{ block('if_any_conditional') }}
+                {{ block('if_any_batch_conditional') }}
                     
                     <div id="batch_actions" class="pull-left btn-toolbar">
                         {{ block('list_batch_actions') }}
                     </div>
                     
-                {{ block('endif_any_conditional') }}
+                {{ block('endif_any_batch_conditional') }}
                 {% endif -%}
-                    
+                  
+                {% if actions is defined and actions|length > 0 %}
+                {{ block('if_any_generic_conditional') }}
                     <div id="generic_actions" class="pull-left btn-toolbar">
                         {{ block('list_actions') -}}
                     </div>
-          
+                {{ block('endif_any_generic_conditional') }}
+                {% endif -%}
+                  
                     <div class="pull-right btn-toolbar">
                         {{- block('list_paginator_perpage') -}}
                     </div>
