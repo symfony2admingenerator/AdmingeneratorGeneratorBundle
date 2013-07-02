@@ -44,7 +44,7 @@
 {% endblock %}
 
 {% block if_any_conditional %}
-{% if batch_actions is defined and batch_actions|length > 0 %}
+{% spaceless %}
     {{ '{% if (false' -}}
     {%- for action in builder.BatchActions -%}
     {%- if action.conditionalFunction -%}
@@ -52,13 +52,11 @@
     {%- endif -%}
     {%- endfor -%}
     {{- ') %}' }}
-{% endif %}
+{% endspaceless %}
 {% endblock %}
 
 {% block endif_any_conditional %}
-{% if batch_actions is defined and batch_actions|length > 0 %}
     {{ '{% endif %}' }}
-{% endif %}
 {% endblock %}
 
 {% block form_batch_actions %}
