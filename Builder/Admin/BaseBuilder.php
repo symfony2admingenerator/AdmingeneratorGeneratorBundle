@@ -245,14 +245,23 @@ class BaseBuilder extends GenericBaseBuilder
 
     protected function setUserActionConfiguration(Action $action)
     {
-        $options = $this->getVariable(
+        $builderOptions = $this->getVariable(
             sprintf('actions[%s]', $action->getName()),
-            array(), 
+            array(),
             true
         );
 
-        if (null !== $options) {
-            foreach ($options as $option => $value) {
+        $globalOptions = $this->getGenerator()->getFromYaml(
+            'params.actions.'.$action->getName(),
+            array()
+        );
+
+        if (null !== $builderOptions) {
+            foreach ($builderOptions as $option => $value) {
+                $action->setProperty($option, $value);
+            }
+        } elseif (null !== $globalOptions) {
+            foreach ($globalOptions as $option => $value) {
                 $action->setProperty($option, $value);
             }
         }
@@ -270,6 +279,12 @@ class BaseBuilder extends GenericBaseBuilder
             
             if (!$action) {
                 $action = new Action($actionName);
+            }
+
+            if ($globalCredentials = $this->getGenerator()->getFromYaml('params.credentials')) {
+                // If generator is globally protected by credentials
+                // actions are also protected
+                $action->setCredentials($globalCredentials);
             }
 
             $this->setUserActionConfiguration($action);

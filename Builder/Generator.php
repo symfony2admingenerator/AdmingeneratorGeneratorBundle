@@ -86,7 +86,7 @@ class Generator extends TwigGeneratorGenerator
     {
         foreach ($global as $param => &$value) {
             if (array_key_exists($param, $builder)) {
-                if (in_array($param, array('fields', 'object_actions', 'batch_actions'))) {
+                if (in_array($param, array('fields', 'actions', 'object_actions', 'batch_actions'))) {
                     $configurations = array();
                     foreach ($builder[$param] as $name => $configuration) {
                         if (is_array($configuration) || is_null($configuration)) {
@@ -106,7 +106,7 @@ class Generator extends TwigGeneratorGenerator
                         }
                     }
 
-                    if (in_array($param, array('object_actions', 'batch_actions'))) {
+                    if (in_array($param, array('actions', 'object_actions', 'batch_actions'))) {
                         // Actions list comes from builder
                         $value = $configurations;
                     } else {
@@ -123,7 +123,8 @@ class Generator extends TwigGeneratorGenerator
             }
         }
 
-        // If builder doesn't have object|batc_actions remove it from merge.
+        // If builder doesn't have actions/object_actions/batch_actions remove it from merge.
+        $global['actions'] = array_key_exists('actions', $builder) ? $global['actions'] : array();
         $global['object_actions'] = array_key_exists('object_actions', $builder) ? $global['object_actions'] : array();
         $global['batch_actions'] = array_key_exists('batch_actions', $builder) ? $global['batch_actions'] : array();
 
