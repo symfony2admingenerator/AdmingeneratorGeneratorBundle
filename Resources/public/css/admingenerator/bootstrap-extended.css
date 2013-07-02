@@ -39,6 +39,10 @@
    margin-left: 10px;
 }
 
+.list-actions > .btn-toolbar.pull-right + .btn-toolbar {
+   margin-right: 10px;
+}
+
 /* Fieldset styles */
 
 .row-fluid > .form_field {
