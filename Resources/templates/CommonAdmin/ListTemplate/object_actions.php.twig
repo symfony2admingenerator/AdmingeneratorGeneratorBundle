@@ -8,6 +8,7 @@
                     {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
                         {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials'), builder.ModelClass ) }}
                     {% endif -%}
+                
                         {% if action.conditionalFunction %}
                             {{ echo_if ((action.conditionalInverse == 'true' ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')') }}
                         {% endif %}
@@ -17,6 +18,7 @@
                         {% if action.conditionalFunction %}
                             {{ echo_endif () }}
                         {% endif %}
+                
                     {%- if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
                         {{ echo_endif () }}
                     {% endif %}
