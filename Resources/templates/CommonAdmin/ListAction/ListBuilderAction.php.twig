@@ -42,10 +42,19 @@ class ListController extends BaseController
      * Get additional parameters for rendering.
      *
      * return array
-     **/
+     */
     protected function getAdditionalRenderParameters()
     {
         return array();
+    }
+    
+    /**
+     * This function is for your convinience. Overwrite it if you need to
+     * process the query.
+     */
+    protected function processQuery($query)
+    {
+        return $query;
     }
 
     {% block getQuery -%}
