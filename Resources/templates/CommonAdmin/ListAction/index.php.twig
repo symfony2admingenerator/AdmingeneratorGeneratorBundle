@@ -31,7 +31,8 @@ use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ bu
             'sortColumn'                => $this->getSortColumn(),
             'sortOrder'                 => $this->getSortOrder(),
             'scopes'                    => $this->getScopes(),
-            'Prototype'                 => $this->getPrototypeObject(),
+            // used for generic and batch actions conditional functions
+            '{{ builder.ModelClass }}'  => $this->getPrototypeObject(),
         ));
     }
 {% endblock %}
