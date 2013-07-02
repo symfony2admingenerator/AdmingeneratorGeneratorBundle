@@ -4,12 +4,18 @@
 {% use '../CommonAdmin/ListTemplate/Column/money.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/Column/decimal.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/Column/collection.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/batch_actions.php.twig' %}
+
 {% block list_row %}
 {{ echo_block("list_row") }}
     {% if batch_actions is defined and batch_actions|length > 0 %}
-        <td class="td_batch_action">
-            <input type="checkbox" name="selected[]" class="batch_select_id" value="{{- echo_twig(builder.ModelClass ~ '.' ~ builder.getFieldGuesser().getModelPrimaryKeyName(model)) -}}" />
-        </td>
+        {{ block('if_any_conditional') }}
+
+            <td class="td_batch_action">
+                <input type="checkbox" name="selected[]" class="batch_select_id" value="{{- echo_twig(builder.ModelClass ~ '.' ~ builder.getFieldGuesser().getModelPrimaryKeyName(model)) -}}" />
+            </td>
+            
+        {{ block('endif_any_conditional') }}
     {% endif %}
     {% for column in builder.columns %}
     {% if column.credentials %}
