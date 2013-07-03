@@ -49,14 +49,14 @@ class AdmingeneratorGeneratorExtension extends Extension
         $container->setParameter('admingenerator.login_path', $config['login_path']);
         $container->setParameter('admingenerator.logout_path', $config['logout_path']);
         $container->setParameter('admingenerator.exit_path', $config['exit_path']);
-        $container->setParameter('admingenerator.menu_builder.class', $config['knp_menu_class']);
         $container->setParameter('admingenerator.stylesheets', $config['stylesheets']);
         $container->setParameter('admingenerator.javascripts', $config['javascripts']);
 
         $date_type = array(
-                'class' => 'Admingenerator\GeneratorBundle\Form\Type\DateType',
-                'tags' => array('name' => 'form.type', 'alias' => 'date'),
-            );
+            'class' => 'Admingenerator\GeneratorBundle\Form\Type\DateType',
+            'tags' => array('name' => 'form.type', 'alias' => 'date'),
+        );
+        
         $container->setParameter('services.form.type.date', $date_type);
 
         $container->setParameter('admingenerator.twig', $config['twig']);

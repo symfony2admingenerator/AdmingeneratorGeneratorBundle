@@ -2,67 +2,20 @@
 
 namespace Admingenerator\GeneratorBundle\Menu;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Router;
-use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
+use Symfony\Component\DependencyInjection\ContainerAware;
 
 class AdmingeneratorMenuBuilder extends ContainerAware
 {
-    protected $factory;
-
-    /* used to store existing divider names */
-    protected $dividers;
+    protected $dividers = array();
 
     /**
-     * @param \Knp\Menu\FactoryInterface $factory
+     * Creates header element and adds it to menu
+     * 
+     * @param \Knp\Menu\ItemInterface $menu
+     * @param string $label Header label
+     * @return ItemInterface Header element
      */
-    public function __construct(FactoryInterface $factory)
-    {
-        $this->factory = $factory;
-        $this->dividers = array();
-    }
-
-    /**
-     * @param Request $request
-     * @param Router  $router
-     */
-    public function createAdminMenu(Request $request)
-    {
-        $menu = $this->factory->createItem('root');
-        $menu->setChildrenAttributes(array('id' => 'main_navigation', 'class' => 'nav'));
-
-        return $menu;
-    }
-
-    /**
-     * Example dashboard menu
-     *
-     * @param Request $request
-     * @param Router  $router
-     */
-    public function createDashboardMenu(Request $request)
-    {
-        $menu = $this->factory->createItem('root');
-
-        $menu->setChildrenAttributes(array('id' => 'dashboard_sidebar', 'class' => 'nav nav-list'));
-        $menu->setExtra('request_uri', $this->container->get('request')->getRequestUri());
-        $menu->setExtra('translation_domain', 'Admingenerator');
-
-        $this->addNavHeader($menu, 'Overview');
-        $this->addNavLinkRoute($menu, 'Dashboard', 'AdmingeneratorDashboard_welcome')->setExtra('icon', 'icon-home');
-        $this->addNavHeader($menu, 'Features');
-        $this->addNavLinkRoute($menu, 'Commands', 'AdmingeneratorDashboard_documentation', array('document' => 'commands'))->setExtra('icon', 'icon-bullhorn');
-        $this->addNavLinkRoute($menu, 'Filters', 'AdmingeneratorDashboard_documentation', array('document' => 'filters'))->setExtra('icon', 'icon-filter');
-        $this->addNavLinkRoute($menu, 'Routing', 'AdmingeneratorDashboard_documentation', array('document' => 'routing'))->setExtra('icon', 'icon-globe');
-        $this->addNavLinkRoute($menu, 'Forms', 'AdmingeneratorDashboard_documentation', array('document' => 'forms'))->setExtra('icon', 'icon-list');
-        $this->addNavLinkRoute($menu, 'Templates', 'AdmingeneratorDashboard_documentation', array('document' => 'templates'))->setExtra('icon', 'icon-th-large');
-        $this->addNavLinkRoute($menu, 'Model manager', 'AdmingeneratorDashboard_documentation', array('document' => 'orm'))->setExtra('icon', 'icon-random');
-
-        return $menu;
-    }
-
     protected function addNavHeader(ItemInterface $menu, $label)
     {
         $item = $menu->addChild($label);
@@ -73,6 +26,14 @@ class AdmingeneratorMenuBuilder extends ContainerAware
         return $item;
     }
 
+    /**
+     * Creates link to uri element and adds it to menu
+     * 
+     * @param \Knp\Menu\ItemInterface $menu
+     * @param string $label Link label
+     * @param string $route Link uri
+     * @return ItemInterface Link element
+     */
     protected function addNavLinkURI(ItemInterface $menu, $label, $uri)
     {
         $item = $menu->addChild($label, array('uri' => $uri));
@@ -86,6 +47,15 @@ class AdmingeneratorMenuBuilder extends ContainerAware
         return $item;
     }
 
+    /**
+     * Creates link to route element and adds it to menu
+     * 
+     * @param \Knp\Menu\ItemInterface $menu
+     * @param string $label Link label
+     * @param string $route Link route
+     * @param array $routeParameters Route parameters
+     * @return ItemInterface Link element
+     */
     protected function addNavLinkRoute(ItemInterface $menu, $label, $route, $routeParameters = array())
     {
         $item = $menu->addChild($label, array('route' => $route, 'routeParameters' => $routeParameters));
@@ -99,6 +69,14 @@ class AdmingeneratorMenuBuilder extends ContainerAware
         return $item;
     }
 
+    /**
+     * Creates dropdown menu element and adds it to menu
+     * 
+     * @param \Knp\Menu\ItemInterface $menu
+     * @param string $label Dropdown label
+     * @param bool $caret Wheather or not append caret
+     * @return ItemInterface Dropdown element
+     */
     protected function addDropdownMenu(ItemInterface $menu, $label, $caret = true)
     {
         $item = $this->addNavLinkURI($menu, $label, '#');
@@ -112,9 +90,14 @@ class AdmingeneratorMenuBuilder extends ContainerAware
         return $item;
     }
 
+    /**
+     * Creates divider element and adds it to menu
+     * 
+     * @param \Knp\Menu\ItemInterface $menu
+     * @return ItemInterface Divider element
+     */
     protected function addDivider(ItemInterface $menu)
     {
-        // generate unique divider name
         do {
             $name = 'divider'.mt_rand();
         } while (in_array($name, $this->dividers));
