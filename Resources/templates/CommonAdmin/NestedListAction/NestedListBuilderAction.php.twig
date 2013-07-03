@@ -33,11 +33,6 @@ class ListController extends BaseController
     {{- block('csrf_generate_token') -}}
 
     {{- block('security_check') }}
-    
-    protected function getPrototypeObject()
-    {
-        return new \{{ model }};
-    }
 
     /**
      * Get additional parameters for rendering.

@@ -37,11 +37,6 @@ class ListController extends BaseController
     {{- block('scopes') -}}
 
     {{- block('security_check') }}
-    
-    protected function getPrototypeObject()
-    {
-        return new \{{ model }};
-    }
 
     /**
      * Get additional parameters for rendering.

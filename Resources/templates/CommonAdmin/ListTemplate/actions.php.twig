@@ -41,8 +41,8 @@
 {% endblock %}
 
 {% block generic_actions_script %}
-    {{ echo_block("generic_actions_script") }}
-    {% if builder.Actions is defined and builder.Actions|length > 0 %}
+{{ echo_block("generic_actions_script") }}
+{% if builder.Actions is defined and builder.Actions|length > 0 %}
     <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/generic-actions.js")') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -51,22 +51,6 @@
             });
         });
     </script>
-    {% endif %}
-    {{ echo_endblock() }}
-{% endblock %}
-
-{% block if_any_generic_conditional %}
-{% spaceless %}
-    {{ '{% if (false' -}}
-    {%- for action in builder.Actions -%}
-    {%- if action.conditionalFunction -%}
-        {{- ' or ' ~ (action.conditionalInverse ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')' -}}
-    {%- endif -%}
-    {%- endfor -%}
-    {{- ') %}' }}
-{% endspaceless %}
-{% endblock %}
-
-{% block endif_any_generic_conditional %}
-    {{ '{% endif %}' }}
+{% endif %}
+{{ echo_endblock() }}
 {% endblock %}

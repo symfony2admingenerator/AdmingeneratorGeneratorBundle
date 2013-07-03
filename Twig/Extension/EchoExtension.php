@@ -47,6 +47,10 @@ class EchoExtension extends \Twig_Extension
             'echo_include'      => new \Twig_Function_Method($this, 'getEchoInclude'),
             'echo_render'       => new \Twig_Function_Method($this, 'getEchoRender'),
             'char'              => new \Twig_Function_Method($this, 'char'),
+            'if_any_generic'    => new \Twig_Function_Method($this, 'getIfAnyGeneric'),
+            'endif_any_generic' => new \Twig_Function_Method($this, 'getEndIfGeneric'),
+            'if_any_batch'      => new \Twig_Function_Method($this, 'getIfAnyBatch'),
+            'endif_any_batch'   => new \Twig_Function_Method($this, 'getEndIfAnyBatch'),
         );
     }
 
@@ -411,7 +415,34 @@ class EchoExtension extends \Twig_Extension
     {
         return '{% endspaceless %}';
     }
+    
+    public function getIfAnyGeneric($actions)
+    {
+      
+     foreach($actions as $name => $action) {
+        if ($conditional = call_user_func(array($action, 'getConditionalFunction'))) {
+            
+        }
+        //{{- ' or ' ~ (action.conditionalInverse ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')' -}}
 
+        return '{% if (false) %}';
+    }
+    
+    public function getEndIfAnyGeneric()
+    {
+        return '{% endspaceless %}';
+    }
+    
+    public function getIfAnyBatch($actions)
+    {
+        return '{% endspaceless %}';
+    }
+    
+    public function getEndIfAnyBatch()
+    {
+        return '{% endspaceless %}';
+    }
+    
     /**
      * Converts an assoc array to a twig array expression (string) .
      * Only in case a value contains '{{' and '}}' the value won't be
