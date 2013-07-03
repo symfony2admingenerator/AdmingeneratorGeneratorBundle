@@ -8,6 +8,8 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 class AdmingeneratorMenuBuilder extends ContainerAware
 {
     protected $dividers = array();
+    
+    protected $translation_domain = 'Admin';
 
     /**
      * Creates header element and adds it to menu
@@ -16,12 +18,11 @@ class AdmingeneratorMenuBuilder extends ContainerAware
      * @param string $label Header label
      * @return ItemInterface Header element
      */
-    protected function addNavHeader(ItemInterface $menu, $label)
+    protected function addHeader(ItemInterface $menu, $label)
     {
         $item = $menu->addChild($label);
         $item->setAttribute('class', 'nav-header');
-        $item->setExtra('translation_domain', $menu->getExtra('translation_domain'));
-        $menu->setExtra('request_uri', $menu->getExtra('request_uri'));
+        $item->setExtra('translation_domain', $this->translation_domain);
 
         return $item;
     }
@@ -34,14 +35,13 @@ class AdmingeneratorMenuBuilder extends ContainerAware
      * @param string $route Link uri
      * @return ItemInterface Link element
      */
-    protected function addNavLinkURI(ItemInterface $menu, $label, $uri)
+    protected function addLinkURI(ItemInterface $menu, $label, $uri)
     {
         $item = $menu->addChild($label, array('uri' => $uri));
-        $item->setExtra('translation_domain', $menu->getExtra('translation_domain'));
-        $menu->setExtra('request_uri', $menu->getExtra('request_uri'));
+        $item->setExtra('translation_domain', $this->translation_domain);
 
-        if ($item->getUri() == $menu->getExtra('request_uri')) {
-          $item->setAttribute('class', 'active');
+        if ($item->getUri() == $this->container->get('request')->getRequestUri()) {
+            $item->setAttribute('class', 'active');
         }
 
         return $item;
@@ -56,14 +56,13 @@ class AdmingeneratorMenuBuilder extends ContainerAware
      * @param array $routeParameters Route parameters
      * @return ItemInterface Link element
      */
-    protected function addNavLinkRoute(ItemInterface $menu, $label, $route, $routeParameters = array())
+    protected function addLinkRoute(ItemInterface $menu, $label, $route, $routeParameters = array())
     {
         $item = $menu->addChild($label, array('route' => $route, 'routeParameters' => $routeParameters));
-        $item->setExtra('translation_domain', $menu->getExtra('translation_domain'));
-        $menu->setExtra('request_uri', $menu->getExtra('request_uri'));
+        $item->setExtra('translation_domain', $this->translation_domain);
 
-        if ($item->getUri() == $menu->getExtra('request_uri')) {
-          $item->setAttribute('class', 'active');
+        if ($item->getUri() == $this->container->get('request')->getRequestUri()) {
+            $item->setAttribute('class', 'active');
         }
 
         return $item;
@@ -77,15 +76,13 @@ class AdmingeneratorMenuBuilder extends ContainerAware
      * @param bool $caret Wheather or not append caret
      * @return ItemInterface Dropdown element
      */
-    protected function addDropdownMenu(ItemInterface $menu, $label, $caret = true)
+    protected function addDropdown(ItemInterface $menu, $label, $caret = true)
     {
-        $item = $this->addNavLinkURI($menu, $label, '#');
+        $item = $this->addLinkURI($menu, $label, '#');
         $item->setLinkAttributes(array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'));
         $item->setChildrenAttributes(array('class' => 'dropdown-menu'));
         $item->setAttributes(array('class' => 'dropdown'));
-        $item->setExtra('translation_domain', $menu->getExtra('translation_domain'));
         $item->setExtra('caret', $caret);
-        $menu->setExtra('request_uri', $menu->getExtra('request_uri'));
 
         return $item;
     }

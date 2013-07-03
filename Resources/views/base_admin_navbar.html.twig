@@ -38,27 +38,7 @@
           {% endif %}
           </ul>
           {% endblock %}
-          {% block menu %}
-          <ul class="nav" id="main_navigation">
-              <li class="dropdown first last">
-                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                      <i class="icon-random"></i> Replace this menu <b class="caret"></b>
-                  </a>
-                  <ul class="dropdown-menu menu_level_1">
-                      <li class="first">
-                          <a href="https://github.com/KnpLabs/KnpMenuBundle/blob/master/Resources/doc/index.md#method-a-the-easy-way-yay">
-                              <i class="icon-wrench"></i> Create menu builder for <b>KnpMenuBundle</b>
-                          </a>        
-                      </li>
-                      <li class="last">
-                          <a href="#">
-                              <i class="icon-fork"></i> Extend <b>menu</b> block and render your menu</a>  
-                          </a>        
-                      </li>
-                  </ul>
-              </li>
-          </ul>
-          {% endblock %}
+          {% block menu %}{{ knp_menu_render('AdmingeneratorGeneratorBundle:DefaultMenu:navbarMenu') }}{% endblock %}
       </div><!--/.nav-collapse -->
     </div><!--/.container -->
   </div><!--/.navbar-inner -->
