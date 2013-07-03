@@ -24,33 +24,29 @@ class EchoExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'echo_twig'         => new \Twig_Function_Method($this, 'getEchoTwig'),
-            'echo_block'        => new \Twig_Function_Method($this, 'getEchoBlock'),
-            'echo_endblock'     => new \Twig_Function_Method($this, 'getEchoEndBlock'),
-            'echo_for'          => new \Twig_Function_Method($this, 'getEchoFor'),
-            'echo_endfor'       => new \Twig_Function_Method($this, 'getEchoEndFor'),
-            'echo_raw'          => new \Twig_Function_Method($this, 'getEchoRaw'),
-            'echo_endraw'       => new \Twig_Function_Method($this, 'getEchoEndRaw'),
-            'echo_spaceless'    => new \Twig_Function_Method($this, 'getEchoSpaceless'),
-            'echo_endspaceless' => new \Twig_Function_Method($this, 'getEchoEndSpaceless'),
-            'echo_extends'      => new \Twig_Function_Method($this, 'getEchoExtends'),
-            'echo_if'           => new \Twig_Function_Method($this, 'getEchoIf'),
-            'echo_if_granted'   => new \Twig_Function_Method($this, 'getEchoIfGranted'),
-            'echo_else'         => new \Twig_Function_Method($this, 'getEchoElse'),
-            'echo_elseif'       => new \Twig_Function_Method($this, 'getEchoElseIf'),
-            'echo_endif'        => new \Twig_Function_Method($this, 'getEchoEndIf'),
-            'echo_path'         => new \Twig_Function_Method($this, 'getEchoPath'),
-            'echo_set'          => new \Twig_Function_Method($this, 'getEchoSet'),
-            'echo_trans'        => new \Twig_Function_Method($this, 'getEchoTrans'),
-            'echo_twig_assoc'   => new \Twig_Function_Method($this, 'getEchoTwigAssoc'),
-            'echo_twig_filter'  => new \Twig_Function_Method($this, 'getEchoTwigFilter'),
-            'echo_include'      => new \Twig_Function_Method($this, 'getEchoInclude'),
-            'echo_render'       => new \Twig_Function_Method($this, 'getEchoRender'),
-            'char'              => new \Twig_Function_Method($this, 'char'),
-            'if_any_generic'    => new \Twig_Function_Method($this, 'getIfAnyGeneric'),
-            'endif_any_generic' => new \Twig_Function_Method($this, 'getEndIfGeneric'),
-            'if_any_batch'      => new \Twig_Function_Method($this, 'getIfAnyBatch'),
-            'endif_any_batch'   => new \Twig_Function_Method($this, 'getEndIfAnyBatch'),
+            'echo_twig'           => new \Twig_Function_Method($this, 'getEchoTwig'),
+            'echo_block'          => new \Twig_Function_Method($this, 'getEchoBlock'),
+            'echo_endblock'       => new \Twig_Function_Method($this, 'getEchoEndBlock'),
+            'echo_for'            => new \Twig_Function_Method($this, 'getEchoFor'),
+            'echo_endfor'         => new \Twig_Function_Method($this, 'getEchoEndFor'),
+            'echo_raw'            => new \Twig_Function_Method($this, 'getEchoRaw'),
+            'echo_endraw'         => new \Twig_Function_Method($this, 'getEchoEndRaw'),
+            'echo_spaceless'      => new \Twig_Function_Method($this, 'getEchoSpaceless'),
+            'echo_endspaceless'   => new \Twig_Function_Method($this, 'getEchoEndSpaceless'),
+            'echo_extends'        => new \Twig_Function_Method($this, 'getEchoExtends'),
+            'echo_if'             => new \Twig_Function_Method($this, 'getEchoIf'),
+            'echo_if_granted'     => new \Twig_Function_Method($this, 'getEchoIfGranted'),
+            'echo_else'           => new \Twig_Function_Method($this, 'getEchoElse'),
+            'echo_elseif'         => new \Twig_Function_Method($this, 'getEchoElseIf'),
+            'echo_endif'          => new \Twig_Function_Method($this, 'getEchoEndIf'),
+            'echo_path'           => new \Twig_Function_Method($this, 'getEchoPath'),
+            'echo_set'            => new \Twig_Function_Method($this, 'getEchoSet'),
+            'echo_trans'          => new \Twig_Function_Method($this, 'getEchoTrans'),
+            'echo_twig_assoc'     => new \Twig_Function_Method($this, 'getEchoTwigAssoc'),
+            'echo_twig_filter'    => new \Twig_Function_Method($this, 'getEchoTwigFilter'),
+            'echo_include'        => new \Twig_Function_Method($this, 'getEchoInclude'),
+            'echo_render'         => new \Twig_Function_Method($this, 'getEchoRender'),
+            'char'                => new \Twig_Function_Method($this, 'char'),
         );
     }
 
@@ -412,33 +408,6 @@ class EchoExtension extends \Twig_Extension
     }
 
     public function getEchoEndSpaceless()
-    {
-        return '{% endspaceless %}';
-    }
-    
-    public function getIfAnyGeneric($actions)
-    {
-      
-     foreach($actions as $name => $action) {
-        if ($conditional = call_user_func(array($action, 'getConditionalFunction'))) {
-            
-        }
-        //{{- ' or ' ~ (action.conditionalInverse ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')' -}}
-
-        return '{% if (false) %}';
-    }
-    
-    public function getEndIfAnyGeneric()
-    {
-        return '{% endspaceless %}';
-    }
-    
-    public function getIfAnyBatch($actions)
-    {
-        return '{% endspaceless %}';
-    }
-    
-    public function getEndIfAnyBatch()
     {
         return '{% endspaceless %}';
     }
