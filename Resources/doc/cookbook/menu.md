@@ -65,6 +65,19 @@ your custom base template!
 
 ### 3. Example
 
+#### Example override in your custom base_admin template
+
+```html+django
+{% block navbar %}
+{% embed 'AdmingeneratorGeneratorBundle::base_admin_navbar.html.twig' %}
+    {% block menu %}{{ knp_menu_render('AcmeDemoBundle:MyBuilder:navbarMenu') }}{% endblock %}
+{% endembed %}
+{% endblock navbar %}
+
+```
+
+#### Example menu in builder class
+
 ```php
 public function navbarMenu(FactoryInterface $factory, array $options)
 {
