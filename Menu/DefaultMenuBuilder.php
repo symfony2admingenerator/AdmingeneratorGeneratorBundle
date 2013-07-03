@@ -5,7 +5,7 @@ namespace Admingenerator\GeneratorBundle\Menu;
 use Admingenerator\GeneratorBundle\Menu\AdmingeneratorMenuBuilder;
 use Knp\Menu\FactoryInterface;
 
-class IntranetMenu extends ContainerAware
+class DefaultMenuBuilder extends AdmingeneratorMenuBuilder
 {
     protected $translation_domain = 'Admin';
     
