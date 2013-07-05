@@ -8,7 +8,7 @@
     public function updateAction($pk)
     {
         ${{ builder.ModelClass }} = $this->getObject($pk);
-        
+
         {{ block('security_action_with_object') }}
 
         if (!${{ builder.ModelClass }}) {
@@ -25,7 +25,7 @@
                 $versions = $this->getVersions();
                 {% block checkVersion %}// ORM job{% endblock %}
                 {%- endif %}
-                
+
                 $this->preSave($form, ${{ builder.ModelClass }});
                 $this->saveObject(${{ builder.ModelClass }});
                 $this->postSave($form, ${{ builder.ModelClass }});
@@ -38,16 +38,16 @@
                   return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list" ));
                 else
                   return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_edit", array('pk' => $pk) ));
-                
+
             {% if concurrency_lock -%}
             } catch ({% block lockException %}// ORM job{% endblock %} $e) {
                 $this->get('session')->getFlashBag()->add(
-                    'warning', 
+                    'warning',
                     $this->get('translator')->trans(
-                        "{{ messages.locked|default("action.object.edit.locked") }}", 
+                        "{{ messages.locked|default("action.object.edit.locked") }}",
                         array(
                             '%path%' => $this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_show", array('pk' => $pk) )
-                        ), 
+                        ),
                         'Admingenerator'
                     )
                 );

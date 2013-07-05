@@ -1,5 +1,27 @@
 {% block pager %}
     /**
+     * Check if request contains pager parameters and
+     * persist them in session if any.
+     */
+    protected function parseRequestForPager()
+    {
+        if ($this->get('request')->query->get('page'))
+        {
+          $this->setPage($this->get('request')->query->get('page'));
+        }
+
+        if ($this->get('request')->query->get('perPage'))
+        {
+          $this->setPerPage($this->get('request')->query->get('perPage'));
+        }
+
+        if ($this->get('request')->query->get('sort'))
+        {
+          $this->setSort($this->get('request')->query->get('sort'), $this->get('request')->query->get('order_by','ASC'));
+        }
+    }
+
+    /**
      * Store in the session service the current page
      *
      * @param integer $page The page number
