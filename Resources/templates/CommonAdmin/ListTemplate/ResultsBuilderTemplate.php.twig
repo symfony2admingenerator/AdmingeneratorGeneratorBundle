@@ -1,0 +1,42 @@
+{% use '../CommonAdmin/ListTemplate/nbresults.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/thead.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/tbody.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/paginator.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/actions.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/batch_actions.php.twig' %}
+
+{% block list_results %}
+<div class="results-list">
+    {{- block('list_nbresults') -}}
+
+    {{- block('form_batch_actions') }}
+
+        <table id="table-list-{{ builder.ModelClass }}" class="table table-striped table-hover table-condensed">
+            {{ block('list_thead') -}}
+            {{- block('list_tbody') }}
+        </table>
+
+        <div class="form-actions list-actions">
+        {% if batch_actions is defined and batch_actions|length > 0 %}
+            <div id="batch_actions" class="pull-left btn-toolbar">
+                {{ block('list_batch_actions') }}
+            </div>
+        {% endif -%}
+
+        {% if actions is defined and actions|length > 0 %}
+            <div id="generic_actions" class="pull-left btn-toolbar">
+                {{ block('list_actions') -}}
+            </div>
+        {% endif -%}
+
+            <div class="pull-right btn-toolbar">
+                {{- block('list_paginator_perpage') -}}
+            </div>
+
+            <div class="pull-right btn-toolbar">
+                {{- block('list_paginator_pages') -}}
+            </div>
+        </div>
+    {{- block('endform_batch_actions') }}
+</div>
+{% endblock list_results %}

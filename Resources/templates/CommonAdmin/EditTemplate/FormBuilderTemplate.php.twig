@@ -1,7 +1,7 @@
-{% use "../CommonAdmin/EditTemplate/actions.php.twig" %}
+{% use '../CommonAdmin/ListTemplate/actions.php.twig' %}
 {% use "../CommonAdmin/EditTemplate/fieldset.php.twig" %}
-{% block form %}
 
+{% block form %}
     {{ echo_block('form') }}
     <form class="admin_form"
         {{ echo_if (builder.ModelClass ~ "." ~ builder.getFieldGuesser().getModelPrimaryKeyName(model) ) }}
@@ -20,11 +20,11 @@
         {{ echo_twig("form_rest(form)") }}
 
         {{ echo_block("form_buttons") }}
-            <div id="edit-actions" class="form-actions">
-                <div class="btn-toolbar">
-                    {{ block("form_actions") }}
-                </div>
+        <div id="edit-actions" class="form-actions">
+            <div class="btn-toolbar">
+                {{ block("form_actions") }}
             </div>
+        </div>
         {{ echo_endblock() }}
     </form>
     {{ echo_endblock() }}

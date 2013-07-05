@@ -425,10 +425,16 @@ class EchoExtensionTest extends TestCase
     {
         $tpls = array(
             'string' => '{{ echo_include( "::base.htmlm.twig" ) }}',
+            'with_params' => '{{ echo_include( "::base.htmlm.twig", {"hello": name} ) }}',
+            'with_empty_params' => '{{ echo_include( "::base.htmlm.twig", {} ) }}',
+            'with_params_only' => '{{ echo_include( "::base.htmlm.twig", {"hello": name}, true ) }}',
         );
 
         $returns = array(
-            'string' => array('{% include "::base.htmlm.twig" %}', 'include return a good include tag with string elements'),
+            'string' => array('{% include "::base.htmlm.twig" with {  } %}', 'include return a good include tag with string elements'),
+            'with_params' => array('{% include "::base.htmlm.twig" with { hello: \'cedric\' } %}', 'include return a good include tag with string elements and params'),
+            'with_empty_params' => array('{% include "::base.htmlm.twig" with {  } %}', 'include return a good include tag with string elements and empty params'),
+            'with_params_only' => array('{% include "::base.htmlm.twig" with { hello: \'cedric\' } only %}', 'include return a good include tag with string elements and params only'),
         );
 
        $this->runTwigTests($tpls, $returns);
@@ -442,8 +448,8 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-            'controller' => array('{% render(controller("MyController", {  })) %}', 'controller return a good controller tag'),
-            'with_params' => array('{% render(controller("MyController", { hello: \'cedric\' })) %}', 'controller return a good controller tag'),
+            'controller' => array('{{ render(controller("MyController", {  })) }}', 'controller return a good controller tag'),
+            'with_params' => array('{{ render(controller("MyController", { hello: \'cedric\' })) }}', 'controller return a good controller tag'),
         );
 
        $this->runTwigTests($tpls, $returns);

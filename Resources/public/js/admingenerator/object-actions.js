@@ -50,9 +50,6 @@
             // Select container
             var $actions  = $(that.element).find(this.options.actionsSelector);
             
-            // Enable tooltips
-            $actions.tooltip();
-            
             // bind onClick to form click event
             $actions.on('click', function(e){
                 that._onClick(that, e, $(this));
