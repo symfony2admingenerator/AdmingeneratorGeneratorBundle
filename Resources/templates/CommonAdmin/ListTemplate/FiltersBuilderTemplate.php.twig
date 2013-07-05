@@ -1,6 +1,6 @@
 {% block list_filters %}
 {{ echo_block('list_filters') }}
-<div class="row-fluid">
+<div class="row-fluid filters-list">
     <form action="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_filters" ) }}" method="post" {{ echo_twig("form_enctype(form)") }}>
         <legend>{{ echo_trans('list.filters') }}</legend>
         <fieldset class="form_block form_fieldset_NONE">
@@ -29,4 +29,4 @@
     </form>
 </div>
 {{ echo_endblock() }}
-{% endblock %}
+{% endblock list_filters %}

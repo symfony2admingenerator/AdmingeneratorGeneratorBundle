@@ -1,4 +1,3 @@
-{% use '../CommonAdmin/ListTemplate/row.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/object_actions.php.twig' %}
 
 {% block list_tbody %}
@@ -7,12 +6,10 @@
         {{ echo_if (builder.ModelClass ~ "s|length > 0") }}
 
         {{ echo_for(builder.ModelClass, builder.ModelClass ~ "s" ) }}
-        <tr class="list_trow">
-            {{- block('list_row') -}}
-
-            {{- block('list_object_actions') }}
-        </tr>
+            {{ echo_include(builder.namespacePrefixForTemplate ~ bundle_name ~ ':' ~ builder.BaseGeneratorName ~ 'List:row.html.twig') }}
         {{ echo_endfor() }}
+
+        {{- block('object_actions_script') -}}
 
         {{ echo_else() }}
         <tr class="list_trow no_results_row">
