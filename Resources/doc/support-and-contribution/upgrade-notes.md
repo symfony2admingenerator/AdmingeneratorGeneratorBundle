@@ -9,36 +9,85 @@ This file lists B/C breaking PRs in reverse chronological order. Each PR contain
 description explaining nature of changes and upgrade notes to help you upgrade your 
 project.
 
+## PR [#564][pr564] Forms refactoring and menu refactoring
+
+[pr564]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/pull/564
+
+#### Description:
+
+This PR removes all form types from Admingenerator project. The forms have been moved to
+[avocode/FormExtensions](https://github.com/avocode/FormExtensions) bundle and will be 
+developed there. This loosens Admingenerator's dependency and makes it easier to use
+diffrent forms.
+
+This PR also changes the way admingenerator deals with menu. Creating and customizing 
+menus will be easier now. For details visit the 
+[cookbook](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/menu.md) 
+entry.
+
+#### B/C breaks:
+
+ - All form types are removed from the bundle
+ - Base MenuBuilder has changed (renamed methods)
+
+#### Upgrade notes
+
+For form types add this to your `composer.json` and then run `composer update`:
+
+```json
+    "require": {
+        // ...
+        "avocode/form-extensions-bundle": "dev-master"
+    }
+```
+
+> **Note:** collection `table` and `fieldset` widgets have become standalone form types
+`collection_table` and `collection_fieldset`. If you used these, simply change the 
+form type to new name, and remove the option `widget`.
+
+> **Note:** `upload` widget has been renamed to `collection_upload`
+ 
+If you used Admingenerator's base menu builder note that method names have changed:
+
+- `addNavHeader` changed to `addHeader`
+- `addNavLinkURI` changed to `addLinkURI`
+- `addNavLinkRoute` changed to `addLinkRoute`
+- `addDropdownMenu` changed to `addDropdown`
+
+you'll need to adapt your code. Note also that base menu builder no longer requires 
+`Knp\Menu\FactoryInterface` injected into constructor and translation domain instead 
+of being passed down the menu tree is being held in protected class property `$translation_domain`.
+
 ## PR [#562][pr562] Generated views are splitted in several files
 
 [pr562]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/pull/562
 
 #### Description:
 
-This PR introduces a new file generation stragegy. See discussion [#515][issue515] for more information,
-but most important to know about it is that generated views files are now splitted in:
+This PR introduces a new file generation stragegy. See discussion 
+[#515](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/issue/515) 
+for more information, but most important to know about it is that generated views 
+files are now splitted in:
 
- - 4 files for ``Lists``
- - 2 files for ``New`` and ``Edit``
- 
- [issue515]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/issue/515
+ - 4 files for `Lists`
+ - 2 files for `New` and `Edit`
 
 #### B/C breaks:
 
  - New files are required in your code source
  - Some blocks (in views) have been moved to different files
- - ``ListController`` organization has changed
+ - `ListController` organization has changed
 
 #### Upgrade notes
  
 For all your generators, you have to generate these new views files. You can do it manually creating
 files:
 
- - filters.html.twig in all your ``xxxBundle/Resources/views/yyyList/`` directories
- - results.html.twig in all your ``xxxBundle/Resources/views/yyyList/`` directories
- - row.html.twig in all your ``xxxBundle/Resources/views/yyyList/`` directories
- - form.html.twig in all your ``xxxBundle/Resources/views/yyyNew/``
- and ``xxxBundle/Resources/views/yyyEdit/`` directories.
+ - filters.html.twig in all your `xxxBundle/Resources/views/yyyList/` directories
+ - results.html.twig in all your `xxxBundle/Resources/views/yyyList/` directories
+ - row.html.twig in all your `xxxBundle/Resources/views/yyyList/` directories
+ - form.html.twig in all your `xxxBundle/Resources/views/yyyNew/`
+ and `xxxBundle/Resources/views/yyyEdit/` directories.
 
 or you can also regenerate all files thanks to the Symfony command:
 
@@ -52,21 +101,21 @@ incrementing number will be appended to new copy's name (e.g. `oldname~1`).
 
 Second thing to know is that block names have moved:
  
- - ``list_td_column_xxxx`` are in ``xxxList/row.html.twig`` file
- - object actions are now in ``xxxList/row.html.twig`` file
- - ``list_thead`` is now in ``xxxList/results.html.twig`` file
- - list form, batch actions and paginator are in ``xxxList/results.html.twig`` file
- - filters related blocks must be in ``xxxList/filters.html.twig`` file
- - new and edit forms have moved to a dedicated view in ``xxx[Edit|New]/form.html.twig``
+ - `list_td_column_xxxx` are in `xxxList/row.html.twig` file
+ - object actions are now in `xxxList/row.html.twig` file
+ - `list_thead` is now in `xxxList/results.html.twig` file
+ - list form, batch actions and paginator are in `xxxList/results.html.twig` file
+ - filters related blocks must be in `xxxList/filters.html.twig` file
+ - new and edit forms have moved to a dedicated view in `xxx[Edit|New]/form.html.twig`
  
-Of course, you can still have a look on the generated files (in ``app/cache/env/admingenerated`` directory) to find
+Of course, you can still have a look on the generated files (in `app/cache/env/admingenerated` directory) to find
 your blocks (very few block names have changed).
 
-To finish with views, if you have a custom version of ``XxxxBuilderTemplate`` have 
+To finish with views, if you have a custom version of `XxxxBuilderTemplate` have 
 a look of the new ones, changes are important (based on includes).
 
-Last thing to merge (only if you overrided default behaviors) is your ``ListController``s:
- - ``indexAction`` has changed: paginator management is now in a new separated function
+Last thing to merge (only if you overrided default behaviors) is your `ListController`'s:
+ - `indexAction` has changed: paginator management is now in a new separated function
  if you never change anything about that, you have nothing to merge.
 
 ## PR [#508][pr508] Custom object actions stub generator
