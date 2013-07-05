@@ -9,9 +9,9 @@ This file lists B/C breaking PRs in reverse chronological order. Each PR contain
 description explaining nature of changes and upgrade notes to help you upgrade your 
 project.
 
-## PR [#552][pr552] [BC Break][Feature] Generated views are splitted in several files
+## PR [#562][pr562] Generated views are splitted in several files
 
-[pr552]: [https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/pull/552]
+[pr562]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/pull/562
 
 #### Description:
 
@@ -21,7 +21,7 @@ but most important to know about it is that generated views files are now splitt
  - 4 files for ``Lists``
  - 2 files for ``New`` and ``Edit``
  
- [issue515]: [https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/issue/515]
+ [issue515]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/issue/515
 
 #### B/C breaks:
 
@@ -50,7 +50,6 @@ or you can also regenerate all files thanks to the Symfony command:
 renamed to `oldname~` before new file is generated. If a copy already exists, an 
 incrementing number will be appended to new copy's name (e.g. `oldname~1`).
 
-
 Second thing to know is that block names have moved:
  
  - ``list_td_column_xxxx`` are in ``xxxList/row.html.twig`` file
@@ -70,12 +69,9 @@ Last thing to merge (only if you overrided default behaviors) is your ``ListCont
  - ``indexAction`` has changed: paginator management is now in a new separated function
  if you never change anything about that, you have nothing to merge.
 
-
-
-
 ## PR [#508][pr508] Custom object actions stub generator
 
-[pr508]: [https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/pull/508]
+[pr508]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/pull/508
 
 #### Description:
 
