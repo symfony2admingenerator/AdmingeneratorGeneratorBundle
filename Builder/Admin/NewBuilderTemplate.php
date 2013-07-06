@@ -8,13 +8,17 @@ namespace Admingenerator\GeneratorBundle\Builder\Admin;
  */
 class NewBuilderTemplate extends NewBuilder
 {
-    public function getOutputName()
+    /**
+     * (non-PHPdoc)
+     * @see \Admingenerator\GeneratorBundle\Builder\BaseBuilder::getTemplatesToGenerate()
+     */
+    public function getTemplatesToGenerate()
     {
-        return 'Resources/views/'.$this->getBaseGeneratorName().'New/index.html.twig';
-    }
-
-    public function getTemplateName()
-    {
-        return 'EditBuilderTemplate' . self::TWIG_EXTENSION;
+        return parent::getTemplatesToGenerate() + array(
+            'EditBuilderTemplate'.self::TWIG_EXTENSION
+                => 'Resources/views/'.$this->getBaseGeneratorName().'New/index.html.twig',
+            'Edit/FormBuilderTemplate'.self::TWIG_EXTENSION
+                => 'Resources/views/'.$this->getBaseGeneratorName().'New/form.html.twig',
+        );
     }
 }

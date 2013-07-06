@@ -1,13 +1,6 @@
 {% use '../CommonAdmin/title.php.twig' %}
 {% use '../CommonAdmin/stylesheets.php.twig' %}
 {% use '../CommonAdmin/javascripts.php.twig' %}
-{% use '../CommonAdmin/ListTemplate/nbresults.php.twig' %}
-{% use '../CommonAdmin/ListTemplate/thead.php.twig' %}
-{% use '../CommonAdmin/ListTemplate/tbody.php.twig' %}
-{% use '../CommonAdmin/ListTemplate/paginator.php.twig' %}
-{% use '../CommonAdmin/ListTemplate/actions.php.twig' %}
-{% use '../CommonAdmin/ListTemplate/batch_actions.php.twig' %}
-{% use '../CommonAdmin/ListTemplate/filters.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/scopes.php.twig' %}
 
 {{ echo_extends( builder.getBaseAdminTemplate ) }}
@@ -18,10 +11,6 @@
 
 {{ echo_block("javascripts") }}
     {{- block('complementary_javascripts') -}}
-
-    {{- block('batch_actions_script') -}}
-    {{- block('object_actions_script') -}}
-
     <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/general.js")') }}"></script>
 {{ echo_endblock() }}
 
@@ -32,42 +21,17 @@
 
     <div class="row-fluid">
         <div class="{% if builder.filterColumns|length == 0 %} span12 {% else %} span9 {% endif %}">
+            {{- block('list_scopes') -}}
 
-            {{ block('list_scopes') -}}
-
-            {{- block('list_nbresults') -}}
-
-            {{- block('form_batch_actions') }}
-                <table id="table-list-{{ builder.ModelClass }}" class="table table-striped table-hover table-condensed">
-                    {{ block('list_thead') -}}
-                    {{- block('list_tbody') }}
-                </table>
-
-                <div class="form-actions list-actions">
-                    <div id="batch_actions" class="pull-left btn-toolbar">
-                        {{ block('list_batch_actions') }}
-                    </div>
-
-                    <div id="generic_actions" class="pull-left btn-toolbar">
-                        {{ block('list_actions') -}}
-                    </div>
-
-                    <div class="pull-right btn-toolbar">
-                        {{- block('list_paginator_perpage') -}}
-                    </div>
-
-                    <div class="pull-right btn-toolbar">
-                        {{- block('list_paginator_pages') -}}
-                    </div>
-                </div>
-            {{- block('endform_batch_actions') }}
+            {{ echo_include(builder.namespacePrefixForTemplate ~ bundle_name ~ ':' ~ builder.BaseGeneratorName ~ 'List:results.html.twig') }}
         </div>
         {{ echo_block("filters") }}
             {% if builder.filterColumns|length > 0 %}
             <div class="span3">
-                {{- block('list_filters') -}}
+                {{ echo_include(builder.namespacePrefixForTemplate ~ bundle_name ~ ':' ~ builder.BaseGeneratorName ~ 'List:filters.html.twig') }}
             </div>
             {% endif %}
         {{ echo_endblock() }}
+
     </div>
 {{ echo_endblock() }}

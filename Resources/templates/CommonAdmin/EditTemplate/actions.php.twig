@@ -36,11 +36,11 @@
     {% if builder.Actions is defined and builder.Actions|length > 0 %}
     <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/object-actions.js")') }}"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
+        ;(function(window, $, undefined) {
             $("#edit-actions").agen$objectActions({
             	actionsSelector: 'a.btn'
             });
-        });
+        })(this, jQuery);
     </script>
     {% endif %}
     {{ echo_endblock() }}
