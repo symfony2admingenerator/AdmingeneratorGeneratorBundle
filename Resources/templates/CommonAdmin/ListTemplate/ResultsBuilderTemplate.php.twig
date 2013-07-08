@@ -17,14 +17,17 @@
         </table>
 
         <div class="form-actions list-actions">
+        {% if batch_actions is defined and batch_actions|length > 0 %}
             <div id="batch_actions" class="pull-left btn-toolbar">
-                {{ block('list_batch_actions') }}
+                {{ block('batch_actions') }}
             </div>
+        {% endif -%}
 
+        {% if actions is defined and actions|length > 0 %}
             <div id="generic_actions" class="pull-left btn-toolbar">
-                {{ block('list_actions') -}}
+                {{ block('generic_actions') -}}
             </div>
-            {{ block('generic_actions_script') }}
+        {% endif -%}
 
             <div class="pull-right btn-toolbar">
                 {{- block('list_paginator_perpage') -}}

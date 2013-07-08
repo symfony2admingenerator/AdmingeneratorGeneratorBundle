@@ -19,17 +19,13 @@ class FormCompilerPass implements CompilerPassInterface
                 if (($key = array_search('form_div_layout.html.twig', $resources)) !== false) {
                     array_splice($resources, ++$key, 0, array(
                         'AdmingeneratorGeneratorBundle:Form:fields.html.twig', 
-                        'AdmingeneratorGeneratorBundle:Form:widgets.html.twig', 
-                        'AdmingeneratorGeneratorBundle:Form:javascripts.html.twig', 
-                        'AdmingeneratorGeneratorBundle:Form:stylesheets.html.twig'
+                        'AdmingeneratorGeneratorBundle:Form:widgets.html.twig'
                         ));
                 } else {
                     // Put it in first position
                     array_unshift($resources, array(
                         'AdmingeneratorGeneratorBundle:Form:fields.html.twig', 
-                        'AdmingeneratorGeneratorBundle:Form:widgets.html.twig', 
-                        'AdmingeneratorGeneratorBundle:Form:javascripts.html.twig', 
-                        'AdmingeneratorGeneratorBundle:Form:stylesheets.html.twig'
+                        'AdmingeneratorGeneratorBundle:Form:widgets.html.twig'
                     ));
                 }
 

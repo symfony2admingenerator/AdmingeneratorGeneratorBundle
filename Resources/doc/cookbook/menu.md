@@ -31,155 +31,68 @@ use Admingenerator\GeneratorBundle\Menu\AdmingeneratorMenuBuilder;
 
 ### 2. Installation
 
-In `/vendor/cedriclombardot/admingenerator-generator-bundle/Admingenerator/GeneratorBundle/Menu` you can find  `DefaultMenuBuilder.php` . You must copy this file to your bundle and specify it in `app/config/config.yml` :
-```yaml
-admingenerator_generator:
-  knp_menu_class: Acme\YourBundleName\Menu\DefaultMenuBuilder
+By default Admingenerator base templates render the [default menu][default-builder].
+
+This is done in `Resources\base_admin_navbar.html.twig` in **menu** block:
+
+```html+django
+{% block menu %}{{ knp_menu_render('AdmingeneratorGeneratorBundle:DefaultMenu:navbarMenu') }}{% endblock %}
 ```
 
-### 3. Header menu
+#### Create new menu builder
 
-You can configure your header menu in the `createAdminMenu` method.
+To overwrite this, you need to [create][create-builder] a new menu builder class. To make things 
+easier Admingenerator ships a [base][extend-builder] class which you can extend (see 
+[default][default-builder] menu builder to an example).
 
-If you want to add an item you can do the following:
+[create-builder]: https://github.com/KnpLabs/KnpMenuBundle/blob/master/Resources/doc/index.md#method-a-the-easy-way-yay
+[extend-builder]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Menu/AdmingeneratorMenuBuilder.php
+[default-builder]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Menu/DefaultMenuBuilder.php
 
-```php
-$menu->addChild('News', array('route' => 'Your_RouteName'));
+#### Overwrite menu block
+
+When you have your builder class ready, simply overwrite the **menu** block to render your class:
+
+```html+django
+{% block menu %}{{ knp_menu_render('AcmeDemoBundle:MyBuilder:myMenu') }}{% endblock %}
 ```
 
-This is how you create a dropdown menu: 
+> **Note**: `Resources\base_admin_navbar.html.twig` template is included by `base_admin` and 
+`base_login` templates. To overwrite **menu** block simply create a new base template that
+extends default admingenerator base template and in there customize your **menu** block.
+Remember to change the `admingenerator_generator.base_admin_template` parameter to use
+your custom base template!
+
+### 3. Example
 
 ```php
-$dropdownMenu = $this->addDropdownMenu($menu, 'Menu name',true);
-$dropdownMenu->addChild('Item1', array('route' => 'Your_RouteName'));
-$dropdownMenu->addChild('Item2', array('route' => 'Your_RouteName'));
-```
-You can also add a divider between the items:
-
-```php
-$dropdownMenu = $this->addDropdownMenu($menu, 'Menu name',true);
-
-$dropdownMenu->addChild('Item1', array('route' => 'Your_RouteName'));
-$this->addDivider($dropdownMenu);
-$dropdownMenu->addChild('Item2', array('route' => 'Your_RouteName'));
-```
-
-**Full configuration**
-
-```php
-public function createAdminMenu(Request $request)
+public function navbarMenu(FactoryInterface $factory, array $options)
 {
-    $menu = parent::createAdminMenu($request);
+    // create root item
+    $menu = $factory->createItem('root');
+    // set id for root item, and class for nice twitter bootstrap style
+    $menu->setChildrenAttributes(array('id' => 'main_navigation', 'class' => 'nav'));
 
-    $menu->addChild('News', array('route' => 'Your_RouteName'));
-    $menu->addChild('Article', array('route' => 'Your_RouteName'));
+    // add links $menu
+    $this->addLinkURI($menu, 'Item1', 'http://www.google.com');
+    $this->addLinkRoute($menu, 'Item2', 'Your_RouteName');
 
-    $dropdownMenu = $this->addDropdownMenu($menu, 'Menu name',true);
-    $dropdownMenu->addChild('Item1', array('route' => 'Your_RouteName'));
-    $this->addDivider($dropdownMenu);
-    $dropdownMenu->addChild('Item2', array('route' => 'Your_RouteName'));
+    // add dropdown to $menu
+    $dropdown = $this->addDropdown($menu, 'Item 3', true);
+
+    // add header to $dropdown
+    $this->addHeader($dropdown, 'Heading');
+
+    // add links to $dropdown
+    $this->addLinkRoute($dropdown, 'Subitem 3.1', 'Your_RouteName');
+    $this->addLinkURI($dropdown, 'Subitem 3.2', 'http://www.google.com');
+    
+    // add divider to $dropdown
+    $this->addDivider($dropdown);
+
+    // add more links to $dropdown
+    $this->addLinkRoute($dropdown, 'Subitem 3.3', 'Your_RouteName');
 
     return $menu;
 }
 ```
-
-### 4. Dashboard sidebar menu
-
-There is no longer a default dashboard provided in the bundle. However, it's possible to create your own dashboard and connect it to the header menu's branding link.
-
-This is an example how to create and customize your own dashboard with minimum effort.
-
-* Create a new bundle named `MyDashboardBundle`
-* Create a new controller `DashboardController` and an action called `welcome` as follows: 
-
-```php
-// src/Acme/MyDashboardBundle/Controller/DashboardController.php
-<?php
-
-namespace Acme\MyDashboardBundle\Controller;
-
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-class DashboardController extends Controller
-{
-    public function welcomeAction()
-    {
-        return $this->render('AcmeMyDashboardBundle:Dashboard:welcome.html.twig', array());
-    }
-}
-```
-
-* Create a new TWIG template for the action in `src/AcmeMyDashboardBundle/views/Dashboard/welcome.html.twig`. You might need to replace `extends('AdmingeneratorGeneratorBundle::base_admin_assetic_less.html.twig')` with `extends('AdmingeneratorGeneratorBundle::base_admin.html.twig')` in the following code snippet when you want to use the Assetic-aware configuration 
-
-```php
-{% extends('AdmingeneratorGeneratorBundle::base_admin_assetic_less.html.twig') %}
-{% block body %}
-<div class="row-fluid">
-      <div class="span3">
-        <div class="well sidebar-nav">
-          {{ knp_menu_render('dashboard') }}
-        </div><!--/.well -->
-      </div><!--/span-->
-      <div id="dashboard-content" class="span9">
-          {% block content %}
-          {% endblock %}
-      </div><!--/span-->
-</div><!--/row-->
-{% endblock %}
-```
-
-* Add a new route corresponding to the controller in `app/config/routing.yml`
-
-```yaml
-dashboard_welcome:
-    pattern:  /dashboard
-    defaults: { _controller: AcmeMyDashboardBundle:Dashboard:welcome}
-```
-
-* Add the new route to the configuration of the Admingenerator so that it will use it as a branding link. This change takes place in `app/config/config.yml`
-
-```yaml
-admingenerator_generator:
-    dashboard_welcome_path: dashboard_welcome
-```
-
-* In the previously created file called `DefaultMenuBuilder.php` edit the method called `createDashboardMenu` to customize your dashboard menu as follows
-
-This is how you add a menu group to the dashboard:
-
-```php
-$this->addNavHeader($menu, 'Group 1');
-```
-
-Here is how you add a clickable element:
-
-```php
-$this->addNavLinkRoute($menu, 'Item1', 'Your_routeName');
-```
-
-You can also add icon next to the menu item:
-
-```php
-$this->addNavLinkRoute($menu, 'Item1', 'Your_routeName')->setExtra('icon', 'icon-list');
-```
-
-**Full configuration**
-
-```php
- public function createDashboardMenu(Request $request)
- {
-    $menu = $this->factory->createItem('root');
-    $menu->setChildrenAttributes(array('id' => 'dashboard_sidebar', 'class' => 'nav nav-list'));
-    $menu->setExtra('request_uri', $this->container->get('request')->getRequestUri());
-    $menu->setExtra('translation_domain', 'Admingenerator');
-
-    $this->addNavHeader($menu, 'Group 1');
-    $this->addNavLinkRoute($menu, 'Item1', 'Your_routeName')->setExtra('icon', 'icon-list');
-    $this->addNavLinkRoute($menu, 'Item2', 'Your_routeName')->setExtra('icon', 'icon-bullhorn');
-    $this->addNavLinkRoute($menu, 'Item3', 'Your_routeName')->setExtra('icon', 'icon-filter');
-    $this->addNavLinkRoute($menu, 'Item4', 'Your_routeName')->setExtra('icon', 'icon-th-large');
-    return $menu;
-}
-```
-
-...And that's really it! Enjoy your customized menu structure and your dashboard!

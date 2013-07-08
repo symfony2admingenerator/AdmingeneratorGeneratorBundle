@@ -1,8 +1,0 @@
-{% if sortable is not null %}
-<style type="text/css">
-/* Hide sortable field */
-{{ ('#'~id~' > .collection > .collection-item > div > div.control-group.'~sortable)|raw }},
-{{ ('#'~id~' > .collection > .collection-item > td > div > div.control-group.'~sortable)|raw }}
-{ visibility: hidden; position: absolute; }
-</style>
-{% endif %}

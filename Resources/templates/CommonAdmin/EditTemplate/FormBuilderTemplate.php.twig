@@ -1,4 +1,4 @@
-{% use "../CommonAdmin/EditTemplate/actions.php.twig" %}
+{% use '../CommonAdmin/ListTemplate/actions.php.twig' %}
 {% use "../CommonAdmin/EditTemplate/fieldset.php.twig" %}
 
 {% block form %}
@@ -20,12 +20,11 @@
         {{ echo_twig("form_rest(form)") }}
 
         {{ echo_block("form_buttons") }}
-            <div id="edit-actions" class="form-actions">
-                <div class="btn-toolbar">
-                    {{ block("form_actions") }}
-                </div>
+        <div id="edit-actions" class="form-actions">
+            <div class="btn-toolbar">
+                {{ block("generic_actions") }}
             </div>
-            {{ block('edit_actions_script') }}
+        </div>
         {{ echo_endblock() }}
     </form>
     {{ echo_endblock() }}

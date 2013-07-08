@@ -1,3 +1,4 @@
+{% use '../CommonAdmin/ListTemplate/batch_actions.php.twig' %}
 {% use '../CommonAdmin/ListTemplate/object_actions.php.twig' %}
 
 {% block list_tbody %}
@@ -13,11 +14,11 @@
 
         {{ echo_else() }}
         <tr class="list_trow no_results_row">
-            {% if batch_actions is defined and batch_actions|length > 0 %}
-                <td colspan="{{ (object_actions|length > 0) ? (builder.columns|length + 2) : builder.columns|length+1 }}">{{ echo_trans('list.no.results') }}</td>
-            {% else %}
-                <td colspan="{{ (object_actions|length > 0) ? (builder.columns|length + 1) : builder.columns|length }}">{{ echo_trans('list.no.results') }}</td>
-            {% endif %}
+        {% if batch_actions is defined and batch_actions|length > 0 %}
+            <td colspan="{{ (object_actions|length > 0) ? (builder.columns|length + 2) : builder.columns|length+1 }}">{{ echo_trans('list.no.results') }}</td>
+        {% else %}
+            <td colspan="{{ (object_actions|length > 0) ? (builder.columns|length + 1) : builder.columns|length }}">{{ echo_trans('list.no.results') }}</td>
+        {% endif %}
         </tr>
         {{ echo_endif () }}
     </tbody>

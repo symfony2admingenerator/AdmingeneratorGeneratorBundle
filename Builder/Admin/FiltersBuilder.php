@@ -10,10 +10,6 @@ use Admingenerator\GeneratorBundle\Generator\Column;
  */
 class FiltersBuilder extends BaseBuilder
 {
-
-    // TODO: why is this here? IMO (@loostro) should be removed
-    protected $object_actions;
-
     protected $actions;
 
     /**

@@ -1,15 +1,16 @@
-{% block list_object_actions %}
-    {{ echo_block("list_object_actions") }}
+{% block object_actions %}
+    {{ echo_block("object_actions") }}
         {% if object_actions is defined  and object_actions|length > 0 %}
         <td class="object_actions">
             <div class="btn-group">
             {% for action in builder.ObjectActions %}
-                {{ echo_block('td_list_object_actions_' ~ action.name) }}
+                {{ echo_block('td_list_object_action_' ~ action.twigName) }}
                     {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
                         {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials'), builder.ModelClass ) }}
                     {% endif -%}
+                
                         {% if action.conditionalFunction %}
-                            {{ echo_if ((action.conditionalInverse == 'true' ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')') }}
+                            {{ echo_if((action.conditionalInverse ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')') }}
                         {% endif %}
 
                         {{ block('object_action_block') }}
@@ -17,6 +18,7 @@
                         {% if action.conditionalFunction %}
                             {{ echo_endif () }}
                         {% endif %}
+                
                     {%- if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
                         {{ echo_endif () }}
                     {% endif %}
