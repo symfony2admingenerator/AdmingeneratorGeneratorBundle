@@ -33,11 +33,18 @@
     {% set actionParams = action.params ? echo_twig_assoc(action.params) : "{}" %}
     {% set translationDomain = action.type is sameas('custom') ? i18n_catalog|default("Admin") : 'Admingenerator' %}
 
-    <a class="btn {{ action.class|default('') }}" href="{{ echo_path(actionRoute, actionParams) }}"
-      {%- if action.confirm %} data-confirm="{{ echo_trans(action.confirm, {}, translationDomain) }}"{% endif %}
-      {%- if action.csrfProtected %} data-csrf-token="{{ echo_path(actionRoute, actionParams, ['csrf_token']) }}" {% endif -%}>
-      {%- if action.icon %}<i class="{{ action.icon }}"></i> {% endif %}{{ echo_trans(action.label, {}, translationDomain) }}
-    </a>
+    {% if action.submit %}
+        <button type="submit" name="{{ action.name }}" class="btn {{ action.class|default('') }}"
+          {%- if action.confirm %} data-confirm="{{ echo_trans(action.confirm, {}, translationDomain) }}"{% endif %}>
+          {%- if action.icon %}<i class="{{ action.icon }}"></i> {% endif %}{{ echo_trans(action.label, {}, translationDomain) }}
+        </button>
+    {% else %}
+        <a class="btn {{ action.class|default('') }}" href="{{ echo_path(actionRoute, actionParams) }}"
+          {%- if action.confirm %} data-confirm="{{ echo_trans(action.confirm, {}, translationDomain) }}"{% endif %}
+          {%- if action.csrfProtected %} data-csrf-token="{{ echo_path(actionRoute, actionParams, ['csrf_token']) }}" {% endif -%}>
+          {%- if action.icon %}<i class="{{ action.icon }}"></i> {% endif %}{{ echo_trans(action.label, {}, translationDomain) }}
+        </a>
+    {% endif %}
 {% endblock %}
     
 {% block generic_actions_script %}
