@@ -7,7 +7,7 @@
     class="list_trow {{ echo_twig(builder.ModelClass ~ "." ~ builder.treeConfiguration.parent ~ "() ? 'child-of-node-' ~ " ~ builder.ModelClass ~ "." ~ builder.treeConfiguration.parent ~ "." ~ builder.getFieldGuesser().getModelPrimaryKeyName(model) ~ ": ''"  ) }}">
     {{- block('list_row_content') -}}
 
-    {{- block('list_object_actions') }}
+    {{- block('object_actions') }}
 </tr>
 {{ echo_endblock() }}
 {% endblock list_row %}

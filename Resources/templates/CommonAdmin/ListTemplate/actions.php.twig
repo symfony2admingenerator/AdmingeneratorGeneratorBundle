@@ -1,5 +1,5 @@
-{% block list_actions %}
-{{ echo_block("list_actions") }}
+{% block generic_actions %}
+{{ echo_block("generic_actions") }}
     {% if builder.Actions|length > 0 %}
         {% for action in builder.Actions %}
             {{ echo_block("list_generic_action_" ~ action.twigName) }}
