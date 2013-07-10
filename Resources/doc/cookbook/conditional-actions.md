@@ -1,9 +1,30 @@
 # Conditional actions
 ---------------------------------------
 
+### 0. Deprecated parameter
+
+> **Note:** deprecated method, use `Expressions` from JMSDiExtraBundle instead. You can easily migrate your conditions
+using this logic:
+
+```yaml
+    # Before
+    params:
+        fields:
+            condition:
+                function: canDelete
+                parameters: [ app.user ]
+                inverse: true
+   
+   # After
+   params:
+        fields:
+            credentials: !object.canDelete(user)
+```
+
 [go back to Table of contents][back-to-index]
 
 [back-to-index]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#8-cookbook
+
 
 ### 1. Usage
 
