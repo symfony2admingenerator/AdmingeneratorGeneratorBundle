@@ -1,6 +1,6 @@
 {% block form_fieldset %}
 {{ echo_block("form_fieldset_" ~ fieldset|classify|replace({'.': '_'})) }}
-    <fieldset class="form_block form_fieldset_{{ fieldset|classify|replace({'.': '_'}) }} fieldset_tabbable">
+    <fieldset class="form_block form_fieldset_{{ fieldset|classify|replace({'.': '_'}) }} tab-pane">
         {% if "NONE" != fieldset[:4] %}
         <legend><span>{{ echo_trans(fieldset,{}, i18n_catalog|default("Admin") ) }}</span></legend>
         {% endif %}

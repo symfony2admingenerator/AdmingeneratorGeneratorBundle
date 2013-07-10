@@ -12,10 +12,15 @@
         method="post" {{ echo_twig("form_enctype(form)") }}>
 
         {{ echo_twig("form_errors(form)") }}
-
+        {% if tabs is defined and tabs|length > 0 %}
+        <div class="tab-content">
+        {% endif %}
         {% for fieldset in builder.fieldsets|keys %}
             {{- block('form_fieldset') }}
         {% endfor -%}
+        {% if tabs is defined and tabs|length > 0 %}
+        </div>
+        {% endif %}
 
         {{ echo_twig("form_rest(form)") }}
 
