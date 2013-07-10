@@ -36,6 +36,10 @@
         <service id="twig.extension.admingenerator.localized_money" class="Admingenerator\GeneratorBundle\Twig\Extension\LocalizedMoneyExtension" public="false">
             <tag name="twig.extension" />
         </service>
+        <service id="twig.extension.admingenerator.service_callable" class="Admingenerator\GeneratorBundle\Twig\Extension\ServiceCallableExtension" public="false">
+            <tag name="twig.extension" />
+            <argument type="service" id="service_container" />
+        </service>
         <service id="twig.extension.admingenerator.extends" class="Admingenerator\GeneratorBundle\Twig\Extension\ExtendsAdmingeneratedExtension" public="false">
             <tag name="twig.extension" />
             <argument type="service" id="twig.loader.filesystem" />

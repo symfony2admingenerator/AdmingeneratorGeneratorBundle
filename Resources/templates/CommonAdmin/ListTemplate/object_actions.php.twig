@@ -8,15 +8,31 @@
                     {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
                         {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials'), builder.ModelClass ) }}
                     {% endif -%}
-                        {% if action.conditionalFunction %}
-                            {{ echo_if ((action.conditionalInverse == 'true' ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')') }}
+                        {# We can't import a macro from a "used" twig... so... let's repeat the test #}
+                        {% if action.isConditional %}
+                            {% if action.conditionalService %}
+                                {{ echo_if (
+                                    (action.conditionalInverse == 'true' ? 'not ' : '')
+                                    ~ "service_call('"
+                                        ~ action.conditionalService ~ "', '"
+                                        ~ action.conditionalFunction ~ "', ["
+                                        ~ action.conditionalParameters|join(',') ~'])'
+                                ) }}
+                            {% else %}
+                                {# No BC Break #}
+                                {{ echo_if (
+                                    (action.conditionalInverse == 'true' ? 'not ' : '')
+                                    ~ builder.ModelClass ~ "."
+                                    ~ action.conditionalFunction ~ '('
+                                    ~ action.conditionalParameters|join(',') ~')'
+                                ) }}
+                            {% endif %}
+                        {% endif %}
+                            {{ block('object_action_block') }}
+                        {% if action.isConditional %}
+                            {{ echo_endif() }}
                         {% endif %}
 
-                        {{ block('object_action_block') }}
-
-                        {% if action.conditionalFunction %}
-                            {{ echo_endif () }}
-                        {% endif %}
                     {%- if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
                         {{ echo_endif () }}
                     {% endif %}

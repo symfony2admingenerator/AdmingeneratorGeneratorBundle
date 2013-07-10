@@ -36,11 +36,7 @@ class Action
 
     protected $crendentials;
 
-    protected $conditional_function;
-
-    protected $conditional_parameters = array();
-
-    protected $conditional_inverse = false;
+    protected $condition = array();
 
     public function __construct($name, $type = 'custom')
     {
@@ -165,34 +161,59 @@ class Action
 
     public function setCondition(array $condition)
     {
-        if (!isset($condition['function'])) {
-            return false;
+        if (!is_array($condition)) {
+            throw new \InvalidArgumentException(
+                    sprintf(
+                            'Invalid condition definition for "%s" action.',
+                            $this->name
+                    )
+            );
         }
 
-        $this->conditional_function = $condition['function'];
-
-        if (isset($condition['parameters'])) {
-            $this->conditional_parameters = (array) $condition['parameters'];
+        if (!array_key_exists('function', $condition)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'You should define a "function" for "%s" action definition',
+                    $this->name
+                )
+            );
         }
 
-        if (isset($condition['inverse'])) {
-            $this->conditional_inverse = (boolean) $condition['inverse'];
-        }
+        $this->condition = array_merge(
+            array(
+                'parameters' => array(),
+                'inverse' => false
+            ),
+            $condition
+        );
+    }
+
+    public function isConditional()
+    {
+        return isset($this->condition['function']);
+    }
+
+    public function getConditionalService()
+    {
+        return array_key_exists('service', $this->condition) ? $this->condition['service'] : null;
     }
 
     public function getConditionalFunction()
     {
-        return $this->conditional_function;
+        // No BC Break
+        return array_key_exists('function', $this->condition) ? $this->condition['function'] : null;
     }
 
     public function getConditionalParameters()
     {
-        return $this->conditional_parameters;
+        // No BC Break
+        return array_key_exists('parameters', $this->condition) ? $this->condition['parameters'] : array();
     }
 
     public function getConditionalInverse()
     {
-        return $this->conditional_inverse;
+        // No BC Break
+        return array_key_exists('inverse', $this->condition) ? $this->condition['inverse'] : false;
     }
 
     public function getOptions()

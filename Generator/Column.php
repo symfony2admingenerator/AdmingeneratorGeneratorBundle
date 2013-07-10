@@ -34,6 +34,8 @@ class Column
 
     protected $crendentials;
 
+    protected $condition = array();
+
     protected $localizedDateFormat;
 
     protected $localizedTimeFormat;
@@ -206,6 +208,60 @@ class Column
 
             $this->formOptions[$option] = $value;
         }
+    }
+
+    public function setCondition(array $condition)
+    {
+        if (!is_array($condition)) {
+            throw new \InvalidArgumentException(
+                    sprintf(
+                            'Invalid condition definition for "%s" column.',
+                            $this->name
+                    )
+            );
+        }
+
+        if (!array_key_exists('function', $condition)) {
+            throw new \InvalidArgumentException(
+                    sprintf(
+                            'You should define a "function" for "%s" column definition',
+                            $this->name
+                    )
+            );
+        }
+
+        $this->condition = array_merge(
+                array(
+                        'parameters' => array(),
+                        'inverse' => false
+                ),
+                $condition
+        );
+    }
+
+    public function isConditional()
+    {
+        return isset($this->condition['function']);
+    }
+
+    public function getConditionalService()
+    {
+        return array_key_exists('service', $this->condition) ? $this->condition['service'] : null;
+    }
+
+    public function getConditionalFunction()
+    {
+        return array_key_exists('function', $this->condition) ? $this->condition['function'] : null;
+    }
+
+    public function getConditionalParameters()
+    {
+        return array_key_exists('parameters', $this->condition) ? $this->condition['parameters'] : array();
+    }
+
+    public function getConditionalInverse()
+    {
+        return array_key_exists('inverse', $this->condition) ? $this->condition['inverse'] : false;
     }
 
     public function setExtras(array $values)
