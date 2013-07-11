@@ -1,0 +1,23 @@
+{% block tabs %}
+{{ echo_block("form_tabs") }}
+{% if tabs is defined and tabs|length > 0 %}
+    <ul class="form_tabs nav nav-tabs">
+        {% for name, tab in tabs %}
+            <li>
+              <a data-toggle="tab" href="#"
+                 data-target="{%- for fieldsetName, fieldset in tab -%}{{ '.form_fieldset_'~fieldsetName|classify|replace({'.': '_'}) }}{%if not loop.last%},{% endif %}{% endfor %}">
+                 {{ echo_trans(name,{}, i18n_catalog|default("Admin") ) }}
+              </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <script type="text/javascript">
+        ;(function(window, $, undefined){
+            $(function() {
+                $('.form_tabs.nav.nav-tabs a:first').tab('show');
+            });
+        })(this, jQuery);
+    </script>
+{% endif %}
+{{ echo_endblock() }}
+{% endblock %}
