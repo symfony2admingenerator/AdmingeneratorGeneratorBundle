@@ -10,10 +10,6 @@
 If you need to customize your form options using some PHP logic, you have to overwrite function `getFormOption` in
 the generated form type.
 
-```php
-protected function getAdditionalRenderParameters(); // No parameters
-```
-
 Prototype is:
 ```php
 protected function getFormOption($name /*field name*/, array $formOptions /*generated form options*/);

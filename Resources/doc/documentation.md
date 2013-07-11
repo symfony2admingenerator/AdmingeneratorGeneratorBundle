@@ -127,7 +127,7 @@ Documentation for new form extensions and types:
 4. [How to use a2lixTranslationFormBundle with AdmingeneratorGeneratorBundle][cookbook-4]
 5. [Command Line][cookbook-5]
 6. [Form types][cookbook-6]
-7. [Conditional actions][cookbook-7]
+7. [Conditional actions (deprecated)][cookbook-7]
 
 [go up][go-up]
 
@@ -141,8 +141,10 @@ Documentation for new form extensions and types:
 
 ## 9. Security
 
-1. [CSRF Protection][security-1]
+1. [Credentials][security-1]
+2. [CSRF Protection][security-2]
 
 [go up][go-up]
 
-[security-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/security/csrf-protection.md
+[security-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/security/credentials.md
+[security-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/security/csrf-protection.md
