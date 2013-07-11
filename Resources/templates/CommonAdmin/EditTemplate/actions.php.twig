@@ -6,8 +6,8 @@
                 {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials', builder.ModelClass) ) }}
           {% endif %}
 
-          {% set actionRoute  = action.route ? action.route : (builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_' ~ action.name) %}
-          {% set actionParams = action.params ? echo_twig_assoc(action.params) : '{}' %}
+          {% set actionRoute  = action.route ? action.route : (builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_object') %}
+          {% set actionParams = action.params ? echo_twig_assoc(action.params) : "{ 'pk': " ~ builder.ModelClass ~ "." ~ builder.getFieldGuesser().getModelPrimaryKeyName(model) ~ ", action: '" ~ action.name ~ "' }" %}
           {% set translationDomain = action.type is sameas('custom') ? i18n_catalog|default("Admin") : 'Admingenerator' %}
 
           {% if action.submit %}
