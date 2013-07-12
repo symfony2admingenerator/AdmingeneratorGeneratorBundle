@@ -53,7 +53,7 @@
  * Modified 2013, loostro:
  * Released under the MIT license.
  */
-(function($) {
+;(function($) {
   // Helps to make options available to all functions
   // TODO: This gives problems when there are both expandable and non-expandable
   // trees on a page. The options shouldn't be global to all these instances!
