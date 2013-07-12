@@ -40,6 +40,17 @@
         "avocode/form-extensions-bundle": "Symfony2 form extensions for Admingenerator",
         "cedriclombardot/admingenerator-user-bundle": "Help you to overwrite the base layout of FOSUserBundle or others giving a parameter key of the container"
     },
+    "target-dir": "Admingenerator/GeneratorBundle",
+    "autoload": {
+        "psr-0": {
+            "Admingenerator\\GeneratorBundle": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.3-dev"
+        }
+    },
     "repositories": [
         {
             "type": "package",
@@ -61,23 +72,12 @@
                         "scripts": [
                             "dist/html5shiv.js"
                         ]
-                    },
+                    }
                 },
                 "require": {
                     "robloach/component-installer": "*"
                 }
             }
         }
-    ],
-    "target-dir": "Admingenerator/GeneratorBundle",
-    "autoload": {
-        "psr-0": {
-            "Admingenerator\\GeneratorBundle": ""
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.3-dev"
-        }
-    }
+    ]
 }
