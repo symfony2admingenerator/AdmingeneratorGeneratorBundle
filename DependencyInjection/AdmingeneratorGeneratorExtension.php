@@ -48,7 +48,6 @@ class AdmingeneratorGeneratorExtension extends Extension
             throw new ModelManagerNotSelectedException();
         }
 
-        $container->setParameter('admingenerator.thumbnail_generator', $config['thumbnail_generator']);
         $container->setParameter('admingenerator.overwrite_if_exists', $config['overwrite_if_exists']);
         $container->setParameter('admingenerator.base_admin_template', $config['base_admin_template']);
         $container->setParameter('admingenerator.dashboard_welcome_path', $config['dashboard_welcome_path']);
