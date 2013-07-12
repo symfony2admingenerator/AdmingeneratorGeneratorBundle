@@ -25,9 +25,9 @@
                     </a>
                 {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "'") }}
                     {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }}
-                        <span class="sorted-asc"></span>
+                        <i class="icon-sort-by-alphabet"></i><i class="icon-sort-by-order"></i>
                     {{ echo_else() }}
-                        <span class="sorted-desc"></span>
+                        <i class="icon-sort-by-alphabet-alt"></i><i class="icon-sort-by-order-alt"></i>
                     {{ echo_endif () }}
                 {{ echo_endif () }}
             {% endif -%}
