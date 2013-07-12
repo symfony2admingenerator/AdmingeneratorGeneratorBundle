@@ -23,7 +23,10 @@
         "knplabs/knp-menu-bundle": ">1.0,<2.1",
         "white-october/pagerfanta-bundle": "1.0.*@dev",
         "twig/twig": ">= 1.9.0",
-        "twig/extensions": "1.0.*"
+        "twig/extensions": "1.0.*",
+        "components/jquery": ">= 1.9.0",
+        "components/jqueryui": ">= 1.9.0",
+        "twitter/bootstrap": ">= 2.0.0"
     },
     "require-dev": {
         "doctrine/common": ">=2.2.3,<2.5-dev",
