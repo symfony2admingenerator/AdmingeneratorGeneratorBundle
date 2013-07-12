@@ -36,6 +36,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('login_path')->defaultNull()->end()
                 ->scalarNode('logout_path')->defaultNull()->end()
                 ->scalarNode('exit_path')->defaultNull()->end()
+                ->scalarNode('components_dir')->defaultValue('web/components')->end()
                 ->arrayNode('twig')
                     ->addDefaultsIfNotSet()
                     ->children()
