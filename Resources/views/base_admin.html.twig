@@ -142,6 +142,12 @@
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
+        
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/jquery-tree-table-extended.min.js'
+            'bundles/admingeneratorgenerator/js/treeTable/jquery.treeTable-extended.js'
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
 
         {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/blueimp.jquery-file-upload.min.js'
             'bundles/admingeneratorgenerator/js/blueimp/blueimp.javascript-templates.min.js'
