@@ -19,7 +19,7 @@
               <li class="btn-group">
                   {% if admingenerator_config('exit_path') is not null and is_granted('ROLE_PREVIOUS_ADMIN') %}
                       <button id="button-exit" class="btn btn-small btn-success" title="{{ 'profile.exit'|trans({}, 'Admingenerator') }}">
-                          <i class="icon-return-key"></i>
+                          <i class="icon-level-down icon-rotate-90"></i>
                       </button>
                   {% endif %}
                   <button id="button-logout" class="btn btn-small btn-profile" title="{{ 'profile.logout'|trans({}, 'Admingenerator') }}">

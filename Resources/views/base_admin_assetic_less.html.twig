@@ -8,18 +8,18 @@
     {% block scripts_head %}
         <script type="text/javascript" src="{{ asset('components/jquery/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('components/jquery-ui/ui/jquery-ui.min.js') }}"></script>
-
-        <!-- HTML5 shiv, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
-            <script src="{{ asset('components/html5shiv/src/html5shiv.js') }}"></script>
+            <script src="{{ asset('components/html5shiv/dist/html5shiv.js') }}"></script>
         <![endif]-->
     {% endblock %}
 
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('components/bootstrap/css/bootstrap.min.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('components/bootstrap/css/bootstrap-responsive.min.css') }}" type="text/css" media="all" />
-
-        <!-- admingenerator.min.css -->
+        <link rel="stylesheet" href="{{ asset('components/font-awesome/css/font-awesome.min.css') }}" type="text/css" media="all" />
+        <!--[if lt IE 7]>
+            <link rel="stylesheet" href="{{ asset('components/font-awesome/css/font-awesome-ie7.min') }}" type="text/css" media="all" />
+        <![endif]-->        
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/admingenerator/general.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/admingenerator/profile.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/admingenerator/nested-list.css') }}" type="text/css" media="all" />
