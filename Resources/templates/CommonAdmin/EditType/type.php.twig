@@ -13,29 +13,22 @@ class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        {% for column in builder.columns %}
-        {%- if column.credentials -%}
+    {% for column in builder.columns %}
+    {%- if column.credentials -%}
         if (false !== $this->securityContext->isGranted(array(new Expression('{{ column.credentials }}')), $builder->getData())) {
-        {%- endif %}
+    {%- endif %}
 
-          {% set columnType = column.formType|as_php|convert_as_form('form_widget') %}
-          {% set columnOptions = column.formOptions %}
-              {% if column.label is defined %}{% set columnOptions = columnOptions|merge({'label': column.label}) %}{% endif %}
-              {% if column.help is defined %}{% set columnOptions = columnOptions|merge({'help': column.help}) %}{% endif %}
-              {% set columnOptions = columnOptions|merge({'translation_domain': i18n_catalog|default('Admin')}) %}
-              {% if column.dbType is sameas('boolean') and builder.BaseGeneratorName is sameas('Filter') %}
-                  {% set columnOptions = columnOptions|merge({'translation_domain': 'Admingenerator'}) %}
-              {% endif %}
-          {% set columnOptions = columnOptions|as_php|convert_as_form(column.formType) %}
+        $formOptions = $this->getFormOption('{{ column.name }}', {{ column.formOptions|merge({
+            'label': column.label,
+            'help': column.help|default(''),
+            'translation_domain': i18n_catalog|default('Admin')
+        })|as_php }});
+        $builder->add('{{ column.name }}', {{ column.formType|as_php }}, $formOptions);
 
-           $formOptions = $this->getFormOption('{{ column.name }}', {{ columnOptions }});
-           $builder->add('{{ column.name }}', {{ columnType }}, $formOptions);
-
-        {% if column.credentials %}
+    {% if column.credentials %}
         }
-
-        {%- endif -%}
-        {%- endfor %}
+    {%- endif -%}
+    {%- endfor %}
 
     }
 

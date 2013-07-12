@@ -121,6 +121,7 @@ class DoctrineODMGenerator extends Generator
         ));
 
         $embedGenerator->addBuilder(new EditBuilderType());
+        $embedGenerator->addBuilder(new NewBuilderType());
 
         $embedGenerator->writeOnDisk($this->getCachePath($embedGenerator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));
     }

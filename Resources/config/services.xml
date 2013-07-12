@@ -11,7 +11,6 @@
         <parameter key="admingenerator.cache_warmer.class">Admingenerator\GeneratorBundle\CacheWarmer\GeneratorCacheWarmer</parameter>
         <parameter key="admingenerator.finder.class">Admingenerator\GeneratorBundle\CacheWarmer\GeneratorFinder</parameter>
         <parameter key="form.type_guesser.admingenerator.class">Admingenerator\GeneratorBundle\Validator\ValidatorTypeGuesser</parameter>
-        <parameter key="admingenerator.menu_builder.class">Admingenerator\GeneratorBundle\Menu\DefaultMenuBuilder</parameter>
         <parameter key="admingenerator.pagination.class">Admingenerator\GeneratorBundle\Pagerfanta\View\AdmingeneratorView</parameter>
         <parameter key="admingenerator.base_admin_template">AdmingeneratorOldThemeBundle::base_admin.html.twig</parameter>
         <parameter key="admingenerator.overwrite_if_exists">false</parameter>
@@ -90,10 +89,6 @@
             <tag name="form.type_extension" alias="form" />
         </service>
 
-        <service id="form.type_extension.collection" class="Admingenerator\GeneratorBundle\Form\Extension\BootstrapCollectionTypeExtension">
-            <tag name="form.type_extension" alias="collection" />
-        </service>
-
         <service id="form.type_extension.help_message" class="Admingenerator\GeneratorBundle\Form\Extension\HelpMessageTypeExtension">
             <tag name="form.type_extension" alias="form" />
         </service>
@@ -116,38 +111,6 @@
             <tag name="kernel.cache_warmer" priority="100" />
             <argument type="service" id="service_container" />
             <argument type="service" id="admingenerator.finder" />
-        </service>
-
-        <!-- Admin Menu -->
-        <service id="admingenerator.menu_builder" class="%admingenerator.menu_builder.class%">
-            <argument type="service" id="knp_menu.factory" />
-            <call method="setContainer">
-                    <argument type="service" id="service_container" />
-            </call>
-        </service>
-
-        <service id="admingenerator.menu.admin" class="%admingenerator.menu_builder.class%"
-             factory-service="admingenerator.menu_builder"
-             factory-method="createAdminMenu"
-             scope="request">
-            <tag name="knp_menu.menu" alias="admin" />
-            <argument type="service" id="request" />
-        </service>
-
-        <!-- Dashboard Menu -->
-        <service id="admingenerator.menu_builder.dashboard" class="%admingenerator.menu_builder.class%">
-            <argument type="service" id="knp_menu.factory" />
-            <call method="setContainer">
-                    <argument type="service" id="service_container" />
-            </call>
-        </service>
-
-        <service id="admingenerator.menu.dashboard" class="%admingenerator.menu_builder.class%"
-             factory-service="admingenerator.menu_builder.dashboard"
-             factory-method="createDashboardMenu"
-             scope="request">
-            <tag name="knp_menu.menu" alias="dashboard" />
-            <argument type="service" id="request" />
         </service>
     </services>
 </container>
