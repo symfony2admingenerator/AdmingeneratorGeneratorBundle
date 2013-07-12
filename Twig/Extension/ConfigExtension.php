@@ -4,6 +4,9 @@ namespace Admingenerator\GeneratorBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * @author Piotr Gołębiewski <loostro@gmail.com>
+ */
 class ConfigExtension extends \Twig_Extension
 {
     protected $container;

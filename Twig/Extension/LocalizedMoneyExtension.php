@@ -4,6 +4,9 @@ namespace Admingenerator\GeneratorBundle\Twig\Extension;
 
 use Symfony\Component\Form\Extension\Core\DataTransformer\MoneyToLocalizedStringTransformer;
 
+/**
+ * @author Piotr Gołębiewski <loostro@gmail.com>
+ */
 class LocalizedMoneyExtension extends \Twig_Extension
 {
     public function getFunctions()

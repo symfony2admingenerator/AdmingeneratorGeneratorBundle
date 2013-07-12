@@ -272,6 +272,7 @@ input.btn.btn-reset:hover {
 }
 
 /* Bootstrap CSS fixes */
+.btn-group > .btn + div.tooltip,
 .btn-group > .btn + div.tooltip + .btn {
     margin-left: -1px;
 }
