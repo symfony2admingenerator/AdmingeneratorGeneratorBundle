@@ -25,7 +25,7 @@
         "twig/twig": ">= 1.9.0",
         "twig/extensions": "1.0.*",
         "robloach/component-installer": ">= 0.0.11",
-        "afarkas/html5shiv": "dev-master",
+        "afarkas/html5shiv": "3.6.*",
         "components/jquery": ">= 1.9.0, < 2.0.0",
         "components/jqueryui": ">= 1.9.0",
         "components/bootstrap": ">= 2.3.1",
@@ -50,5 +50,34 @@
         "branch-alias": {
             "dev-master": "2.3-dev"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "afarkas/html5shiv",
+                "type": "component",
+                "version": "3.6.2",
+                "dist": {
+                    "url": "https://github.com/aFarkas/html5shiv/archive/3.6.2.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/aFarkas/html5shiv.git",
+                    "type": "git",
+                    "reference": "3.6.2"
+                },
+                "extra": {
+                    "component": {
+                        "scripts": [
+                            "dist/html5shiv.js"
+                        ]
+                    },
+                },
+                "require": {
+                    "robloach/component-installer": "*"
+                }
+            }
+        }
+    ]
 }

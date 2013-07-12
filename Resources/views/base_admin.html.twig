@@ -6,26 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {% block scripts_head %}
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/jquery-1.10.1.min.js'
-            'bundles/admingeneratorgenerator/jquery/jquery-1.10.1.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/components/jquery.min.js'
+            'components/jquery/jquery.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/jquery-ui-1.10.3.min.js'
-            'bundles/admingeneratorgenerator/jquery-ui/js/jquery-ui-1.10.3.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/components/jquery-ui.min.js'
+            'components/jquery-ui/ui/jquery-ui.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
-        <!-- HTML5 shiv, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/html5shiv.min.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/components/html5shiv.min.js'
             'bundles/admingeneratorgenerator/html5shiv/html5shiv.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
         <![endif]-->
+        
         <!--[if lte IE 7]>
         {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/elusive-iconfont.min.js'
             'bundles/admingeneratorgenerator/elusive-iconfont/js/lte-ie7.js'
