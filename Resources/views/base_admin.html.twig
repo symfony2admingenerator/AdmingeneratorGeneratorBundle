@@ -20,15 +20,7 @@
 
         <!--[if lt IE 9]>
         {% javascripts filter='?yui_js' output='assetic/js/compiled/components/html5shiv.min.js'
-            'bundles/admingeneratorgenerator/html5shiv/html5shiv.js'
-        %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-        <![endif]-->
-        
-        <!--[if lte IE 7]>
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/elusive-iconfont.min.js'
-            'bundles/admingeneratorgenerator/elusive-iconfont/js/lte-ie7.js'
+            'components/html5shiv/src/html5shiv.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
@@ -36,14 +28,14 @@
     {% endblock %}
 
     {% block stylesheets %}
-        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/bootstrap-2.3.2.min.css'
-            'bundles/admingeneratorgenerator/bootstrap/css/bootstrap-2.3.2.css'
+        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/components/bootstrap.min.css'
+            'components/bootstrap/css/bootstrap.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
-
-        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/elusive-iconfont.min.css'
-            'bundles/admingeneratorgenerator/elusive-iconfont/css/elusive-webfont.css'
+            
+        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/components/bootstrap-responsive.min.css'
+            'components/bootstrap/css/bootstrap-responsive.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
@@ -52,7 +44,6 @@
             'bundles/admingeneratorgenerator/css/admingenerator/general.css'
             'bundles/admingeneratorgenerator/css/admingenerator/profile.css'
             'bundles/admingeneratorgenerator/css/admingenerator/nested-list.css'
-            'bundles/admingeneratorgenerator/css/admingenerator/form/datepicker.css'
             'bundles/admingeneratorgenerator/css/admingenerator/bootstrap-extended.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
@@ -103,14 +94,8 @@
     </div> <!--/.container-fluid -->
 
     {% block javascripts %}
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/bootstrap-2.3.2.min.js'
-            'bundles/admingeneratorgenerator/bootstrap/js/bootstrap-2.3.2.js'
-        %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/spin.min.js'
-            'bundles/admingeneratorgenerator/spin/spin.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/components/bootstrap.min.js'
+            'components/bootstrap/js/bootstrap.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
