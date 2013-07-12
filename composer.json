@@ -37,9 +37,8 @@
         "doctrine/dbal": ">=2.2.3,<2.5-dev"
     },
     "suggest": {
-        "cedriclombardot/admingenerator-user-bundle": "Help you to overwrite the base layout of FOSUserBundle or others giving a parameter key of the container",
-        "genemu/form-bundle": "Additional forms for Symfony",
-        "avalanche123/imagine-bundle": "Image manipulation using Imagine and Twig Filters"
+        "avocode/form-extensions-bundle": "Symfony2 form extensions for Admingenerator",
+        "cedriclombardot/admingenerator-user-bundle": "Help you to overwrite the base layout of FOSUserBundle or others giving a parameter key of the container"
     },
     "target-dir": "Admingenerator/GeneratorBundle",
     "autoload": {
