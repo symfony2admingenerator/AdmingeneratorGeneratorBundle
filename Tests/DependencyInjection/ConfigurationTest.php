@@ -37,7 +37,6 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
             'login_path' => null,
             'logout_path' => null,
             'exit_path' => null,
-            'components_dir' => 'web/components',
             'twig'         => array(
                 'use_form_resources' => true,
                 'use_localized_date' => false,
