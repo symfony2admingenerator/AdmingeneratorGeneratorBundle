@@ -8,7 +8,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Admingenerator\GeneratorBundle\ClassLoader\AdmingeneratedClassLoader;
 use Admingenerator\GeneratorBundle\DependencyInjection\Compiler\ValidatorCompilerPass;
 use Admingenerator\GeneratorBundle\DependencyInjection\Compiler\FormCompilerPass;
-use Admingenerator\GeneratorBundle\DependencyInjection\Compiler\MenuCompilerPass;
 
 class AdmingeneratorGeneratorBundle extends Bundle
 {
@@ -25,6 +24,5 @@ class AdmingeneratorGeneratorBundle extends Bundle
 
         $container->addCompilerPass(new ValidatorCompilerPass());
         $container->addCompilerPass(new FormCompilerPass());
-        $container->addCompilerPass(new MenuCompilerPass());
     }
 }

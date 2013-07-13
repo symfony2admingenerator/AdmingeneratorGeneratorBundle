@@ -3,6 +3,7 @@
 namespace Admingenerator\GeneratorBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
@@ -10,8 +11,26 @@ use Symfony\Component\Config\Definition\Processor;
 
 use Admingenerator\GeneratorBundle\Exception\ModelManagerNotSelectedException;
 
-class AdmingeneratorGeneratorExtension extends Extension
+class AdmingeneratorGeneratorExtension extends Extension implements PrependExtensionInterface
 {
+    /**
+     * Prepend KnpMenuBundle config
+     */
+    public function prepend(ContainerBuilder $container)
+    {
+        $config = array('twig' => array(
+            'template' => 'AdmingeneratorGeneratorBundle:KnpMenu:knp_menu_trans.html.twig'
+        ));
+        
+        foreach ($container->getExtensions() as $name => $extension) {
+            switch ($name) {
+                case 'knp_menu':
+                    $container->prependExtensionConfig($name, $config);
+                    break;
+            }
+        }
+    }
+    
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));

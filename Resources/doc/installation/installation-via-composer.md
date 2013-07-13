@@ -70,18 +70,6 @@ admingenerator_generator:
 #    base_admin_template: AdmingeneratorGeneratorBundle::base_admin_assetic_less.html.twig
 ```
 
-~Enable translation of KnpMenu - add following lines to~ `app/config/config.yml`:
-
-```yaml
-knp_menu:
-    twig:
-        template: AdmingeneratorGeneratorBundle:KnpMenu:knp_menu_trans.html.twig
-```
-
-> **Note**: This step is no longer required. A custom compiler pass will change this 
-setting for you, but only if `knp_menu.twig.template` is set to default value 
-`knp_menu.html.twig`. If you customize this value the compiler pass will be skipped. 
-
 ### (Optional) Configure Assetic & YUI comperssor
 
 By default, the `base_admin.html.twig` uses YUI Compressor to minify assets and combine them into one file (less HTTP requests).
