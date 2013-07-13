@@ -38,7 +38,8 @@
     },
     "suggest": {
         "avocode/form-extensions-bundle": "Symfony2 form extensions for Admingenerator",
-        "cedriclombardot/admingenerator-user-bundle": "Help you to overwrite the base layout of FOSUserBundle or others giving a parameter key of the container"
+        "cedriclombardot/admingenerator-user-bundle": "FOSUserBundle integration for Admingenerator",
+        "jms/security-extra-bundle": "Allows expressions in credential checks for generated actions"
     },
     "target-dir": "Admingenerator/GeneratorBundle",
     "autoload": {
