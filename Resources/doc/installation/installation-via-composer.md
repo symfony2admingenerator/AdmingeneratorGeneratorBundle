@@ -60,23 +60,27 @@ Choose your model manager and choose basic admingenerator template - with or wit
 
 ```yaml
 admingenerator_generator:
-    # choose only one
-    use_propel:           false
+    # choose  and enable at least one
+    use_propel:           true
     use_doctrine_orm:     true
     use_doctrine_odm:     false
     
-    # choose and uncomment ONLY one
+    # choose and uncomment only one
 #    base_admin_template: AdmingeneratorGeneratorBundle::base_admin.html.twig
 #    base_admin_template: AdmingeneratorGeneratorBundle::base_admin_assetic_less.html.twig
 ```
 
-Enable translation of KnpMenu - add following lines to `app/config/config.yml`:
+~Enable translation of KnpMenu - add following lines to `app/config/config.yml`:~
 
 ```yaml
 knp_menu:
     twig:
         template: AdmingeneratorGeneratorBundle:KnpMenu:knp_menu_trans.html.twig
 ```
+
+> **Note**: This step is no longer required. A custom compiler pass will change this 
+setting for you, but only if `knp_menu.twig.template` is set to default value 
+`knp_menu.html.twig`. If you customize this value the compiler pass will be skipped. 
 
 ### (Optional) Configure Assetic & YUI comperssor
 
