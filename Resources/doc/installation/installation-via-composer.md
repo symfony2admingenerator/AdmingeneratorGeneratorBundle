@@ -70,7 +70,7 @@ admingenerator_generator:
 #    base_admin_template: AdmingeneratorGeneratorBundle::base_admin_assetic_less.html.twig
 ```
 
-~Enable translation of KnpMenu - add following lines to `app/config/config.yml`:~
+~Enable translation of KnpMenu - add following lines to~ `app/config/config.yml`:
 
 ```yaml
 knp_menu:
