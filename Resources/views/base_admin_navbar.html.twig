@@ -12,7 +12,7 @@
       {% endblock %}
       <div class="nav-collapse collapse">
           {% block profile %}
-          <ul class="nav pull-right profile">
+          <ul id="profile-nav" class="nav pull-right profile">
               <li><p class="navbar-text">{{ 'profile.welcome'|trans({'%username%': app.user ? app.user : 'anonymous'}, 'Admingenerator')|raw }}</p></li>
           {% if app.user %}
               {% if admingenerator_config('logout_path') is not null %}

@@ -254,7 +254,7 @@ input.btn.btn-reset:hover {
 }
 
 /* Icon sizes on list view */
-#button-logout > .btn-small,
+#profile-nav .btn-small,
 .object_actions > .btn-group > .btn-mini {
     font-size: 14px;
 }
