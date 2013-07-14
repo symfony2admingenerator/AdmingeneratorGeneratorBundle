@@ -260,9 +260,7 @@ input.btn.btn-reset:hover {
 }
 
 /* Fix cursor */
-a > [class^="icon-"]:hover,
-a:hover > [class^="icon-"],
-button > [class^="icon-"]:hover,
-button:hover > [class^="icon-"] {
+a:hover > [class*=" icon-"]:before
+button:hover > [class*=" icon-"]:before {
     cursor: pointer;
 }
