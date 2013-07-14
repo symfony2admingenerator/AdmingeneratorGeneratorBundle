@@ -253,12 +253,7 @@ input.btn.btn-reset:hover {
     font-size: 12px;
 }
 
-/* Bootstrap CSS fixes */
-.btn-group > .btn + div.tooltip,
-.btn-group > .btn + div.tooltip + .btn {
-    margin-left: -1px;
-}
-
+/* Icon sizes on list view */
 .btn-mini [class^="icon-"],
 .btn-small [class^="icon-"] {
     font-size: 14px;
