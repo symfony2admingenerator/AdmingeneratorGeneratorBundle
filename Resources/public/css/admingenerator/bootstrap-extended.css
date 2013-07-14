@@ -258,3 +258,8 @@ input.btn.btn-reset:hover {
 .btn-group > .btn + div.tooltip + .btn {
     margin-left: -1px;
 }
+
+.btn-mini [class^="icon-"],
+.btn-small [class^="icon-"] {
+    font-size: 14px;
+}
