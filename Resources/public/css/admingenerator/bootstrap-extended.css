@@ -258,3 +258,11 @@ input.btn.btn-reset:hover {
 .object_actions > .btn-group > .btn-mini {
     font-size: 14px;
 }
+
+/* Fix cursor */
+a > [class^="icon-"]:hover,
+a:hover > [class^="icon-"],
+button > [class^="icon-"]:hover,
+button:hover > [class^="icon-"] {
+    cursor: pointer;
+}
