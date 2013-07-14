@@ -1,74 +1,43 @@
-# Double list form
-double_list:
-  selected:   Selecionado
-  unselected: Não selecionado
-
-# Date range form
-date_range:
-  from.label: De
-  to.label:   A
-
 # Boolean filter
 boolean:
-  yes:        Sim
-  no:         Não
-  yes_or_no:  Sim ou Não
+    yes:        Sim
+    no:         Não
+    yes_or_no:  Sim ou Não
 
 # Pager
 pagerfanta:
-  previous:       Anterior
-  next:           Próximo
-  view.perpage:   Mostrar
-  num.elements:   %number% elementos
+    previous:       Anterior
+    next:           Próximo
+    view.perpage:   Mostrar
+    num.elements:   %number% elementos
 
 # List
 list:
-  no.results: Não há resultados.
-  filters:    Filtros
+    no.results: Não há resultados.
+    filters:    Filtros
 list.button:
-  filter:     Filtro
-  reset:      Redefinir
+    filter:     Filtro
+    reset:      Redefinir
 list.display:
-  range:      Mostrando <b>%start%</b> - <b>%end%</b> de <b>%count%</b> resultados.
-  all:        Mostrando todos os <b>%count%</b> resultados.
+    range:      Mostrando <b>%start%</b> - <b>%end%</b> de <b>%count%</b> resultados.
+    all:        Mostrando todos os <b>%count%</b> resultados.
 list.header:
-  actions:    Ações
+    actions:    Ações
 
 # Nested List
 nested.list:
-  expand:     Mostrar
-  collapse:   Esconder
-  loading:    Carregamento em curso
-  success:    O elemento foi movido com sucesso.
-  error:      Não foi possível mover elemento.
+    expand:     Mostrar
+    collapse:   Esconder
+    loading:    Carregamento em curso
+    success:    O elemento foi movido com sucesso.
+    error:      Não foi possível mover elemento.
 
 # Profile
 profile:
-  welcome:  <b>Bem-vindo</b>, %username%!
-  login:    Iniciar sessão
-  logout:   Sair
-  exit:     Sair do modo de representação
-
-# EntityPicker
-entity_picker:
-  placeholder:  Pesquisar...
-
-# Collection
-collection:
-  add:          Adicionar
-
-# Upload
-upload:
-  file.add:     Adicionar arquivo...
-  error:        Erro
-  cancel:       Remover
-  delete:       Excluir
-  download:     Baixar
-upload.errors:
-  maxNumFiles:      Número máximo de arquivos excedeu.
-  typeNotAllowed:   Tipo de arquivo não permitido.
-  maxFileSize:      O arquivo é muito grande.
-  minFileSize:      O arquivo é muito pequeno.
+    welcome:  <b>Bem-vindo</b>, %username%!
+    login:    Iniciar sessão
+    logout:   Sair
+    exit:     Sair do modo de representação
 
 # Generic actions
 action.generic:
@@ -80,62 +49,48 @@ action.generic:
 
 # Object actions
 action.object.edit:
-  label:    Editar
-  success:  O objeto foi salvo com sucesso.
-  error:    |
-              O formulário não pode ser salvo. Verifique os erros e tente 
-              novamente.
-  locked:   |
-              Desculpe, mas alguém já mudou este objeto.<br />
-              <a href="%path%" target="_blank">Clique aqui</a> para ver as 
-              mudanças em uma nova aba ou enviar o formulário novamente para 
-              aplicar as alterações!
+    label:    Editar
+    success:  O objeto foi salvo com sucesso.
+    error:    |
+                O formulário não pode ser salvo. Verifique os erros e tente 
+                novamente.
+    locked:   |
+                Desculpe, mas alguém já mudou este objeto.<br />
+                <a href="%path%" target="_blank">Clique aqui</a> para ver as 
+                mudanças em uma nova aba ou enviar o formulário novamente para 
+                aplicar as alterações!
 action.object.delete:
-  label:    Excluir
-  confirm:  Tem certeza de que deseja excluir este elemento?
-  success:  Elemento foi excluído com sucesso.
-  error:    Elemento não pode ser excluído.
+    label:    Excluir
+    confirm:  Tem certeza de que deseja excluir este elemento?
+    success:  Elemento foi excluído com sucesso.
+    error:    Elemento não pode ser excluído.
 action.object.show:
-  label:    Mostrar
+    label:    Mostrar
 
 # Batch actions
 action.batch.delete:
-  label:    Excluir
-  confirm:  Você confirmar a eliminação de todos os elementos selecionados?
-  success:  Registros foram apagados com sucesso.
-  error:    Os registros não podem ser apagados.
+    label:    Excluir
+    confirm:  Você confirmar a eliminação de todos os elementos selecionados?
+    success:  Registros foram apagados com sucesso.
+    error:    Os registros não podem ser apagados.
 
 # Custom actions
 action.custom:
-  title:    Tem certeza de que deseja executar a ação %name%?
-  success:  A ação %name% foi executado com sucesso.
-  error:    Não foi possível executar a ação %name%.
-  confirm:  Confirmar
-  cancel:   Cancelar
+    title:    Tem certeza de que deseja executar a ação %name%?
+    success:  A ação %name% foi executado com sucesso.
+    error:    Não foi possível executar a ação %name%.
+    confirm:  Confirmar
+    cancel:   Cancelar
 
 # Batch list
 batch.list:
-  selected:       Selecionado
-  none.selected:  Você tem que selecionar pelo menos um elemento.
-  warning:        Não foi possível concluir a ação em lote, devido à falta de parâmetros.
-  selector:       Choose an action for selection
-  send:           Executar
+    selected:       Selecionado
+    none.selected:  Você tem que selecionar pelo menos um elemento.
+    warning:        Não foi possível concluir a ação em lote, devido à falta de parâmetros.
+    selector:       Choose an action for selection
+    send:           Executar
 
 # Layout
 dashboard:
-  homepage:   Página inicial
-  brand:      Painel de controle
-
-# Filetype icons
-filetype:
-  audio:            Áudio
-  archive:          Arquivo
-  html:             HTML
-  image:            Imagem
-  pdf-document:     Documento<br />PDF
-  plain-text:       Texto sem<br />formatação
-  presentation:     Apresentação
-  spreadsheet:      Folha<br />de cálculo
-  text-document:    Documento<br />de texto
-  unknown:          Tipo de arquivo<br />desconhecido
-  video:            Vídeo
+    homepage:   Página inicial
+    brand:      Painel de controle

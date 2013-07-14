@@ -107,10 +107,8 @@ class DoctrineORMFieldGuesser extends ContainerAware
                 return 'entity';
                 break;
              case 'array':
-                return 'collection';
-                break;
              case 'collection':
-                return 'double_list';
+                return 'collection';
                 break;
             case 'virtual':
                 throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
@@ -169,12 +167,6 @@ class DoctrineORMFieldGuesser extends ContainerAware
             $mapping = $this->getMetadatas()->getAssociationMapping($columnName);
 
             return array('em' => 'default', 'class' => $mapping['targetEntity'], 'multiple' => false, 'required' => $this->isRequired($columnName));
-        }
-
-        if ('double_list' == $formType) {
-            $mapping = $this->getMetadatas()->getAssociationMapping($columnName);
-
-            return array('em' => 'default', 'class' => $mapping['targetEntity']);
         }
 
         if ('collection' == $formType) {

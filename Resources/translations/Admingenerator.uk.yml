@@ -1,137 +1,92 @@
-# Double list form
-double_list:
-  selected:   Обрані
-  unselected: Доступні
-
-# Date range form
-date_range:
-  from.label: З
-  to.label:   По
-
 # Boolean filter
 boolean:
-  yes:        Так
-  no:         Ні
-  yes_or_no:  Так чи Ні
+    yes:        Так
+    no:         Ні
+    yes_or_no:  Так чи Ні
 
 # Pager
 pagerfanta:
-  previous:       Поп
-  next:           Наст
-  view.perpage:   Показати 
-  num.elements:   %number% елементів
+    previous:       Поп
+    next:           Наст
+    view.perpage:   Показати 
+    num.elements:   %number% елементів
 
 # List
 list:
-  no.results: Немає записів.
-  filters:    Фільтри
+    no.results: Немає записів.
+    filters:    Фільтри
 list.button:
-  filter:     Фільтрувати
-  reset:      Скинути
+    filter:     Фільтрувати
+    reset:      Скинути
 list.display:
-  range:      Відображені <b>%start%</b> - <b>%end%</b> з <b>%count%</b> записи(ів).
-  all:        Відображені всі <b>%count%</b> записи(ів).
+    range:      Відображені <b>%start%</b> - <b>%end%</b> з <b>%count%</b> записи(ів).
+    all:        Відображені всі <b>%count%</b> записи(ів).
 list.header:
-  actions:    Дії
+    actions:    Дії
 
 # Nested List
 nested.list:
-  expand:     Показати
-  collapse:   Приховати
-  loading:    Відбувається завантаження
-  success:    Елемент був успішно переміщений.
-  error:      Не вдалося перемістити елемент.
+    expand:     Показати
+    collapse:   Приховати
+    loading:    Відбувається завантаження
+    success:    Елемент був успішно переміщений.
+    error:      Не вдалося перемістити елемент.
 
 # Profile
 profile:
-  welcome:  <b>Привіт</b>, %username%!
-  login:    Увійти
-  logout:   Вийти
-  exit:     Вихід уособлення режиму
-
-# EntityPicker
-entity_picker:
-  placeholder:  Шукати...
-
-# Collection
-collection:
-  add:          Додати
-
-# Upload
-upload:
-  file.add:     Додати файл...
-  error:        Помилка
-  cancel:       Скасувати
-  delete:       Видалити
-  download:     Завантажити
-upload.errors:
-  maxNumFiles:      Перевищена максимальна кількість файлів.
-  typeNotAllowed:   Даний тип файлу не дозволений.
-  maxFileSize:      Файл занадто великий.
-  minFileSize:      Файл занадто малий.
+    welcome:  <b>Привіт</b>, %username%!
+    login:    Увійти
+    logout:   Вийти
+    exit:     Вихід уособлення режиму
 
 # Generic actions
 action.generic:
-  list:   Список
-  new:    Додати
-  save:   Зберегти
-  save-and-add:   Зберегти та додати
-  save-and-list:  Зберегти та список
+    list:   Список
+    new:    Додати
+    save:   Зберегти
+    save-and-add:   Зберегти та додати
+    save-and-list:  Зберегти та список
 
 # Object actions
 action.object.edit:
-  label:    Редагувати
-  success:  Об'єкт був успішно збережений.
-  error:    Неможливо зберегти об'єкт. Форма не збережена. Виправте помилки і спробуйте ще раз.
-  locked:   |
-              Вибачте, але хтось вже змінив цей об'єкт.<br />
-              <a href="%path%" target="_blank">Клацніть для</a> перегляду 
-              змін у новій вкладці або відправити форму ще раз для зміни зміни!
+    label:    Редагувати
+    success:  Об'єкт був успішно збережений.
+    error:    Неможливо зберегти об'єкт. Форма не збережена. Виправте помилки і спробуйте ще раз.
+    locked:   |
+                Вибачте, але хтось вже змінив цей об'єкт.<br />
+                <a href="%path%" target="_blank">Клацніть для</a> перегляду 
+                змін у новій вкладці або відправити форму ще раз для зміни зміни!
 action.object.delete:
-  label:    Видалити
-  confirm:  Ви дійсно хочете видалити цей елемент?
-  success:  Елемент успішно видалено.
-  error:    Елемент не може бути видалений.
+    label:    Видалити
+    confirm:  Ви дійсно хочете видалити цей елемент?
+    success:  Елемент успішно видалено.
+    error:    Елемент не може бути видалений.
 action.object.show:
-  label:    Переглянути
+    label:    Переглянути
 
 # Batch actions
 action.batch.delete:
-  label:    Видалити
-  confirm:  Ви підтверджуєте видалення обраних елементів?
-  success:  Записи успішно видалені.
-  error:    Неможливо видалити записи.
+    label:    Видалити
+    confirm:  Ви підтверджуєте видалення обраних елементів?
+    success:  Записи успішно видалені.
+    error:    Неможливо видалити записи.
 
 # Custom actions
 action.custom:
-  title:    Ви впевнені, що хочете виконати дію %name%?
-  success:  Дія %name% успішно виконано.
-  error:    Не вдалося виконати %name% діям.
-  confirm:  Підтверджувати
-  cancel:   Скасувати
+    title:    Ви впевнені, що хочете виконати дію %name%?
+    success:  Дія %name% успішно виконано.
+    error:    Не вдалося виконати %name% діям.
+    confirm:  Підтверджувати
+    cancel:   Скасувати
 
 # Batch list
 batch.list:
-  selected:       Оберіть дію
-  none.selected:  Необхідно вибрати не менше одного елемента.
-  warning:        Не вдалося завершити періодичної дії через відсутність параметрів.
-  send:           Виконати
+    selected:       Оберіть дію
+    none.selected:  Необхідно вибрати не менше одного елемента.
+    warning:        Не вдалося завершити періодичної дії через відсутність параметрів.
+    send:           Виконати
 
 # Layout
 dashboard:
-  homepage:   Домівка
-  brand:      Панель керування
-
-# Filetype icons
-filetype:
-  audio:            Аудіо
-  archive:          Архів
-  html:             HTML
-  image:            Зображення
-  pdf-document:     Документ<br />PDF
-  plain-text:       Звичайний<br />текст
-  presentation:     Презентація
-  spreadsheet:      Електронна<br />таблиця
-  text-document:    Текстовий<br />документ
-  unknown:          Невідомий<br />тип файлу
-  video:            Відео
+    homepage:   Домівка
+    brand:      Панель керування

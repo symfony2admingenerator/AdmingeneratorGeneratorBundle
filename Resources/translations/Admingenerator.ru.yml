@@ -1,138 +1,93 @@
-# Double list form
-double_list:
-  selected:   Выбранные
-  unselected: Доступные
-
-# Date range form
-date_range:
-  from.label: С
-  to.label:   По
-
 # Boolean filter
 boolean:
-  yes:        Да
-  no:         Нет
-  yes_or_no:  Да или Нет
+    yes:        Да
+    no:         Нет
+    yes_or_no:  Да или Нет
 
 # Pager
 pagerfanta:
-  previous:       Пред
-  next:           След
-  view.perpage:   Показать 
-  num.elements:   %number% элементов
+    previous:       Пред
+    next:           След
+    view.perpage:   Показать 
+    num.elements:   %number% элементов
   
 # List
 list:
-  no.results: Нет записей.
-  filters:    Фильтры
+    no.results: Нет записей.
+    filters:    Фильтры
 list.button:
-  filter:     Фильтровать
-  reset:      Сбросить
+    filter:     Фильтровать
+    reset:      Сбросить
 list.display:
-  range:      Показаны <b>%start%</b> - <b>%end%</b> из <b>%count%</b> записи(ей).
-  all:        Показаны все <b>%count%</b> записи(ей).
+    range:      Показаны <b>%start%</b> - <b>%end%</b> из <b>%count%</b> записи(ей).
+    all:        Показаны все <b>%count%</b> записи(ей).
 list.header:
-  actions:    Действия
+    actions:    Действия
 
 # Nested List
 nested.list:
-  expand:     Показывать
-  collapse:   Скрывать
-  loading:    Погрузка в прогрессе
-  success:    Элемент был успешно перемещен.
-  error:      Не удалось переместить элемент.
+    expand:     Показывать
+    collapse:   Скрывать
+    loading:    Погрузка в прогрессе
+    success:    Элемент был успешно перемещен.
+    error:      Не удалось переместить элемент.
 
 # Profile
 profile:
-  welcome:  <b>Здравствуйте</b>, %username%!
-  login:    Войти
-  logout:   Выйти
-  exit:     Выход олицетворение режима
-
-# EntityPicker
-entity_picker:
-  placeholder:  Искать...
-
-# Collection
-collection:
-  add:          Добавить
-
-# Upload
-upload:
-  file.add:     Добавить файл...
-  error:        Ошибка
-  cancel:       Удаление
-  delete:       Удалять
-  download:     Скачать
-upload.errors:
-  maxNumFiles:      Максимальное количество файлов превышен.
-  typeNotAllowed:   Тип файла не допускается.
-  maxFileSize:      Файл слишком большой.
-  minFileSize:      Файл слишком мал.
+    welcome:  <b>Здравствуйте</b>, %username%!
+    login:    Войти
+    logout:   Выйти
+    exit:     Выход олицетворение режима
 
 # Generic actions
 action.generic:
-  list:   Список
-  new:    Добавить
-  save:   Сохранить
-  save-and-add:   Сохранить и Добавить
-  save-and-list:  Сохранить и Список
+    list:   Список
+    new:    Добавить
+    save:   Сохранить
+    save-and-add:   Сохранить и Добавить
+    save-and-list:  Сохранить и Список
 
 # Object actions
 action.object.edit:
-  label:    Редактировать
-  success:  Материал успешно сохранен.
-  error:    Форма не сохранена. Исправьте ошибки и попробуйте еще раз.
-  locked:   |
-              Извините, но кто-то уже изменил этот объект.<br />
-              <a href="%path%" target="_blank">Щелкните здесь</a>
-              для просмотра изменений в новой вкладке или отправить форму еще 
-              раз для изменения изменения!
+    label:    Редактировать
+    success:  Материал успешно сохранен.
+    error:    Форма не сохранена. Исправьте ошибки и попробуйте еще раз.
+    locked:   |
+                Извините, но кто-то уже изменил этот объект.<br />
+                <a href="%path%" target="_blank">Щелкните здесь</a>
+                для просмотра изменений в новой вкладке или отправить форму еще 
+                раз для изменения изменения!
 action.object.delete:
-  label:    Удалять
-  confirm:  Вы действительно хотите удалить этот элемент?
-  success:  Элемент успешно удалены.
-  error:    Элемент не может быть удален.
+    label:    Удалять
+    confirm:  Вы действительно хотите удалить этот элемент?
+    success:  Элемент успешно удалены.
+    error:    Элемент не может быть удален.
 action.object.show:
-  label:    Показывать
+    label:    Показывать
 
 # Batch actions
 action.batch.delete:
-  label:    Удалять
-  confirm:  Вы подтверждаете удаление выбранных элементов?
-  success:  Материалы были успешно удалены.
-  error:    Невозможно удалить материалы.
+    label:    Удалять
+    confirm:  Вы подтверждаете удаление выбранных элементов?
+    success:  Материалы были успешно удалены.
+    error:    Невозможно удалить материалы.
 
 # Custom actions
 action.custom:
-  title:    Вы уверены, что хотите выполнить действие %name%?
-  success:  Действие %name% успешно выполнено.
-  error:    Не удалось выполнить %name% действиям.
-  confirm:  Подтверждать
-  cancel:   Отменить
+    title:    Вы уверены, что хотите выполнить действие %name%?
+    success:  Действие %name% успешно выполнено.
+    error:    Не удалось выполнить %name% действиям.
+    confirm:  Подтверждать
+    cancel:   Отменить
 
 # Batch list
 batch.list:
-  selected:       Выберите действие
-  none.selected:  Необходимо выбрать не менее одного элемента.
-  warning:        Не удалось завершить периодического действия из-за отсутствия параметров.
-  send:           Выполнять
+    selected:       Выберите действие
+    none.selected:  Необходимо выбрать не менее одного элемента.
+    warning:        Не удалось завершить периодического действия из-за отсутствия параметров.
+    send:           Выполнять
 
 # Layout
 dashboard:
-  homepage:   Главная
-  brand:      Панель мониторинга
-
-# Filetype icons
-filetype:
-  audio:            Аудио
-  archive:          Архив
-  html:             HTML
-  image:            Изображение
-  pdf-document:     Документ<br />PDF
-  plain-text:       Обычный<br />текст
-  presentation:     Презентация
-  spreadsheet:      Таблицы
-  text-document:    Текстовый<br />документ
-  unknown:          Неизвестный<br />тип
-  video:            Видео
+    homepage:   Главная
+    brand:      Панель мониторинга

@@ -1,8 +1,0 @@
-<div class="double_list_label">{% trans from "Admingenerator" %}double_list.unselected{% endtrans %}</div>
-<select name="{{ form.parent.vars.id }}[{{ form.vars.name }}][unselected]" multiple="true" id="{{ id }}_unselected" class="double_list_select-unselected">
-{% for choice in choices %}
-    {% if choice is not selectedchoice(value) %}
-        <option value="{{ choice.value }}">{{ choice.label }}</option>
-    {% endif %}
-{% endfor %}
-</select>

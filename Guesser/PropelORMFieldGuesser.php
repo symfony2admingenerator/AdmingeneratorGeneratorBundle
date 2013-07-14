@@ -106,10 +106,9 @@ class PropelORMFieldGuesser extends ContainerAware
             case 'model':
                 return 'model';
             case \PropelColumnTypes::PHP_ARRAY:
+            case 'collection':
                 return 'collection';
                 break;
-            case 'collection':
-                return 'double_list';
             default:
                 throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
         }

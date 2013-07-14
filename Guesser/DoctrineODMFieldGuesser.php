@@ -69,8 +69,6 @@ class DoctrineODMFieldGuesser extends ContainerAware
         }
 
         return 'virtual';
-
-        //return $metadata->getTypeOfField($fieldName);//Not Yet implemented by doctrine
     }
 
     public function getFormType($dbType, $columnName)
@@ -111,9 +109,7 @@ class DoctrineODMFieldGuesser extends ContainerAware
             case 'document':
                 return 'document';
                 break;
-             case 'collection':
-                return 'double_list';
-                break;
+            case 'collection':
             case 'hash':
                 return 'collection';
                 break;

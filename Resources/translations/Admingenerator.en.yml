@@ -1,143 +1,93 @@
-# Double list form
-double_list:
-  selected:   Selected
-  unselected: Unselected
-
-# Date range form
-date_range:
-  from.label: From
-  to.label:   To
-
 # Boolean filter
 boolean:
-  yes:        Yes
-  no:         No
-  yes_or_no:  Yes or No
+    yes:        Yes
+    no:         No
+    yes_or_no:  Yes or No
 
 # Pager
 pagerfanta:
-  previous:       Previous
-  next:           Next
-  view.perpage:   Display
-  num.elements:   %number% elements
+    previous:       Previous
+    next:           Next
+    view.perpage:   Display
+    num.elements:   %number% elements
 
 # List
 list:
-  no.results: There are no results.
-  filters:    Filters
+    no.results: There are no results.
+    filters:    Filters
 list.button:
-  filter:     Filter
-  reset:      Reset
+    filter:     Filter
+    reset:      Reset
 list.display:
-  range:      Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results.
-  all:        Display all <b>%count%</b> results.
+    range:      Display <b>%start%</b> - <b>%end%</b> of <b>%count%</b> results.
+    all:        Display all <b>%count%</b> results.
 list.header:
-  actions:    Actions
+    actions:    Actions
 
 # Nested List
 nested.list:
-  expand:     Show
-  collapse:   Hide
-  loading:    Loading in progress
-  success:    The element was successfully moved.
-  error:      Could not move element.
+    expand:     Show
+    collapse:   Hide
+    loading:    Loading in progress
+    success:    The element was successfully moved.
+    error:      Could not move element.
 
 # Profile
 profile:
-  welcome:  <b>Welcome</b>, %username%!
-  login:    Login
-  logout:   Log out
-  exit:     Exit impersonation mode
-
-# EntityPicker
-entity_picker:
-  placeholder:  Search...
-
-# Collection
-collection:
-  add: Add
-
-# Upload
-upload:
-  file.add:     Add file...
-  error:        Error
-  cancel:       Cancel
-  delete:       Delete
-  download:     Download
-upload.errors:
-  maxNumFiles:      Maximum number of files exceeded.
-  typeNotAllowed:   Filetype not allowed.
-  maxFileSize:      File is too big.
-  minFileSize:      File is too small.
-
-# SingleUpload
-singleupload:
-  display.name:     Displayed name
+    welcome:  <b>Welcome</b>, %username%!
+    login:    Login
+    logout:   Log out
+    exit:     Exit impersonation mode
 
 # Generic actions
 action.generic:
-  list:   List
-  new:    New
-  save:   Save
-  save-and-add:   Save and Add
-  save-and-list:  Save and List
+    list:   List
+    new:    New
+    save:   Save
+    save-and-add:   Save and Add
+    save-and-list:  Save and List
 
 # Object actions
 action.object.edit:
-  label:    Edit
-  success:  The object was successfully saved.
-  error:    The form can't be saved. Check errors and try to resubmit.
-  locked:   |
-              Sorry, but someone else has already changed this object.<br />
-              <a href="%path%" target="_blank">Click here</a> to view 
-              changes in a new tab or submit the form again to apply your 
-              changes!
+    label:    Edit
+    success:  The object was successfully saved.
+    error:    The form can't be saved. Check errors and try to resubmit.
+    locked:   |
+                Sorry, but someone else has already changed this object.<br />
+                <a href="%path%" target="_blank">Click here</a> to view 
+                changes in a new tab or submit the form again to apply your 
+                changes!
 action.object.delete:
-  label:    Delete
-  confirm:  Are you sure you want to delete this element?
-  success:  Element has been successfully deleted.
-  error:    Element can't be deleted.
+    label:    Delete
+    confirm:  Are you sure you want to delete this element?
+    success:  Element has been successfully deleted.
+    error:    Element can't be deleted.
 action.object.show:
-  label:    Show
+    label:    Show
 
 # Batch actions
 action.batch.delete:
-  label:    Delete
-  confirm:  Are you sure you want to delete all selected elements?
-  success:  Records have been successfully deleted.
-  error:    Records can't be deleted.
+    label:    Delete
+    confirm:  Are you sure you want to delete all selected elements?
+    success:  Records have been successfully deleted.
+    error:    Records can't be deleted.
 
 # Custom actions
 action.custom:
-  title:    Are you sure you want to execute %name% action?
-  success:  The %name% action was successfully executed.
-  error:    Could not execute %name% action.
-  confirm:  Confirm
-  cancel:   Cancel
+    title:    Are you sure you want to execute %name% action?
+    success:  The %name% action was successfully executed.
+    error:    Could not execute %name% action.
+    confirm:  Confirm
+    cancel:   Cancel
 
 # Batch list
 batch.list:
-  selected:       Selected
-  none.selected:  You have to select at least one element.
-  warning:        Could not complete batch action due to missing parameters
-  send:           Execute
-
+    selected:       Selected
+    none.selected:  You have to select at least one element.
+    warning:        Could not complete batch action due to missing parameters
+    send:           Execute
 
 # Layout
 dashboard:
-  homepage:   Homepage
-  brand:      Dashboard
-
-# Filetype icons
-filetype:
-  audio:            Audio
-  archive:          Archive
-  html:             HTML
-  image:            Image
-  pdf-document:     PDF<br />Document
-  plain-text:       Plain<br />Text
-  presentation:     Presentation
-  spreadsheet:      Spreadsheet
-  text-document:    Text<br />Document
-  unknown:          Unknown<br />Filetype
-  video:            Video
+    homepage:   Homepage
+    brand:      Dashboard
