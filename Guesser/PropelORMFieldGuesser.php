@@ -125,7 +125,7 @@ class PropelORMFieldGuesser extends ContainerAware
              case \PropelColumnTypes::BU_TIMESTAMP:
              case \PropelColumnTypes::DATE:
              case \PropelColumnTypes::BU_DATE:
-                return 'datepicker_range';
+                return 'date';
                 break;
              case 'collection':
                 return 'model';

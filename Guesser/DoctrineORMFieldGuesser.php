@@ -132,7 +132,7 @@ class DoctrineORMFieldGuesser extends ContainerAware
              case 'vardatetime':
              case 'datetimetz':
              case 'date':
-                return 'datepicker_range';
+                return 'date';
                 break;
              case 'collection':
                 return 'entity';
