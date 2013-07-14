@@ -249,24 +249,6 @@ input.btn.btn-reset:hover {
     cursor: text;
 }
 
-/* Fix elusive icons line-height inside buttons */
-.btn [class^="icon-"] {
-    line-height: 20px;
-}
-
-/* Fix elusive icons size inside buttons */
-.btn [class^="icon-"] {
-    font-size: 13px;
-}
-
-.btn-small [class^="icon-"] {
-    font-size: 11px;
-}
-
-.btn-mini [class^="icon-"] {
-    font-size: 10px;
-}
-
 .list_scope_group .btn [class^="icon-"] {
     font-size: 12px;
 }
