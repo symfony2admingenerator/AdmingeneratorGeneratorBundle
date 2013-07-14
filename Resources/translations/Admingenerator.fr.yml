@@ -13,7 +13,7 @@ pagerfanta:
 
 # List
 list:
-    no.results: Il n'y a pas de résultats.
+    no.results: Aucun résultat
     filters:    Filtres
 list.button:
     filter:     Filtrer
@@ -37,7 +37,7 @@ profile:
     welcome:  <b>Bienvenue</b>, %username%!
     login:    Connexion
     logout:   Déconnexion
-    exit:     Quittez le mode usurpation d'identité
+    exit:     Revenir sur mon compte
 
 # Generic actions
 action.generic:
@@ -52,13 +52,14 @@ action.object.edit:
     label:    Éditer
     success:  L'enregistrement a été effectué avec succès.
     error:    |
-                Le formulaire n'a pas pu être sauvegardé. Vérifiez les erreurs et 
-                essayez de soumettre à nouveau.
+                Une erreur est survenue. Vérifiez les données saisies, et 
+                validez à nouveau le formulaire.
     locked:   |
-                Désolé, mais quelqu'un d'autre a déjà changé cet objet.<br />
+                Désolé, quelqu'un d'autre a modifié cet objet depuis votre 
+                dernier chargement.<br />
                 <a href="%path%" target="_blank">Cliquez ici</a> pour voir les 
-                changements dans un nouvel onglet ou soumettre à nouveau le 
-                formulaire de demande vos modifications!
+                changements dans un nouvel onglet, ou validez de nouveau le 
+                formulaire pour forcer l'enregistrement de vos données.
 action.object.delete:
     label:    Effacer
     confirm:  Etes-vous sur de vouloir supprimer cet élement?
@@ -71,7 +72,7 @@ action.object.show:
 action.batch.delete:
     label:    Effacer
     confirm:  Etes-vous sur de vouloir supprimer les élements sélectionnés?
-    success:  Les enregistrements ont étés supprimés avec succès.
+    success:  Les enregistrements ont été supprimés avec succès.
     error:    Les enregistrements n'ont pu être supprimés.
 
 # Custom actions
