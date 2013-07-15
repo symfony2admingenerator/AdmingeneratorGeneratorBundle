@@ -615,12 +615,12 @@ class EchoExtensionTest extends TestCase
             $loader, 
             array_merge(
                 array(
-                    'debug' => true,
+                    'debug' => true, 
                     'cache' => false,
                     'autoescape' => false,
                 ), 
                 $options
-            ),
+            )
         );
 
         $locator = new TemplateLocator(new FileLocator(array(__DIR__.'/../Fixtures')));
