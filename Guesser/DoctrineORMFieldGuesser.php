@@ -76,15 +76,15 @@ class DoctrineORMFieldGuesser extends ContainerAware
     public function getSortType($dbType)
     {
         $alphabeticTypes = array(
-            'string', 
+            'string',
             'text',
         );
         
         $numericTypes = array(
-            'decimal', 
-            'float', 
-            'integer', 
-            'bigint', 
+            'decimal',
+            'float',
+            'integer',
+            'bigint',
             'smallint',
         );
         
@@ -101,20 +101,26 @@ class DoctrineORMFieldGuesser extends ContainerAware
 
     public function getFormType($dbType, $columnName)
     {
-        $formTypes = $this->container->getParameter('admingenerator.doctrine_form_types');  
+        $formTypes = $this->container->getParameter('admingenerator.doctrine_form_types');
         
         if (array_key_exists($dbType, $formTypes)) {
             return $formTypes[$dbType];
         } elseif ('virtual' === $dbType) {
-            throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
+            throw new NotImplementedException(
+                'The dbType "'.$dbType.'" is only for list implemented '
+                .'(column "'.$columnName.'" in "'.self::$current_class.'")'
+            );
         } else {
-            throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
+            throw new NotImplementedException(
+                'The dbType "'.$dbType.'" is not yet implemented '
+                .'(column "'.$columnName.'" in "'.self::$current_class.'")'
+            );
         }
     }
 
     public function getFilterType($dbType, $columnName)
     {
-        $filterTypes = $this->container->getParameter('admingenerator.doctrine_filter_types');  
+        $filterTypes = $this->container->getParameter('admingenerator.doctrine_filter_types');
         
         if (array_key_exists($dbType, $filterTypes)) {
             return $filterTypes[$dbType];
@@ -150,17 +156,17 @@ class DoctrineORMFieldGuesser extends ContainerAware
             $mapping = $this->getMetadatas()->getAssociationMapping($columnName);
 
             return array(
-                'multiple'  => false, 
+                'multiple'  => false,
                 'em'        => 'default', // TODO: shouldn't this be configurable?
-                'class'     => $mapping['targetEntity'], 
-                'required'  => $this->isRequired($columnName)
+                'class'     => $mapping['targetEntity'],
+                'required'  => $this->isRequired($columnName),
             );
         }
 
         if (preg_match("#^collection#i", $formType) || preg_match("#collection$#i", $formType)) {
             return array(
-                'allow_add'     => true, 
-                'allow_delete'  => true, 
+                'allow_add'     => true,
+                'allow_delete'  => true,
                 'by_reference'  => false,
             );
         }
@@ -172,8 +178,11 @@ class DoctrineORMFieldGuesser extends ContainerAware
 
     protected function isRequired($fieldName)
     {
-        if ($this->getMetadatas()->hasField($fieldName) &&
-            (!$this->getMetadatas()->hasAssociation($fieldName) || $this->getMetadatas()->isSingleValuedAssociation($fieldName))) {
+        $hasField = $this->getMetadatas()->hasField($fieldName);
+        $hasAssociation = $this->getMetadatas()->hasAssociation($fieldName);
+        $isSingleValAssoc = $this->getMetadatas()->isSingleValuedAssociation($fieldName);
+        
+        if ($hasField && (!$hasAssociation || $isSingleValAssoc)) {
             return !$this->getMetadatas()->isNullable($fieldName);
         }
 
@@ -186,18 +195,28 @@ class DoctrineORMFieldGuesser extends ContainerAware
 
         if ('boolean' == $dbType) {
             $options['choices'] = array(
-               0 => $this->container->get('translator')->trans('boolean.no', array(), 'Admingenerator'),
-               1 => $this->container->get('translator')->trans('boolean.yes', array(), 'Admingenerator')
+               0 => $this->container->get('translator')
+                        ->trans('boolean.no', array(), 'Admingenerator'),
+               1 => $this->container->get('translator')
+                        ->trans('boolean.yes', array(), 'Admingenerator')
             );
-            $options['empty_value'] = $this->container->get('translator')->trans('boolean.yes_or_no', array(), 'Admingenerator');
+            $options['empty_value'] = $this->container->get('translator')
+                ->trans('boolean.yes_or_no', array(), 'Admingenerator');
         }
 
         if (preg_match("#^entity#i", $formType) || preg_match("#entity$#i", $formType)) {
-            return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
+            return array_merge(
+                $this->getFormOptions($formType, $dbType, $ColumnName), 
+                $options
+            );
         }
 
         if (preg_match("#^collection#i", $formType) || preg_match("#collection$#i", $formType)) {
-            return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple' => false));
+            return array_merge(
+                $this->getFormOptions($formType, $dbType, $ColumnName), 
+                $options, 
+                array('multiple' => false)
+            );
         }
 
         return $options;

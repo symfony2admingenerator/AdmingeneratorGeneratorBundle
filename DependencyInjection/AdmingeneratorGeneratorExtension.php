@@ -51,22 +51,31 @@ class AdmingeneratorGeneratorExtension extends Extension implements PrependExten
         if ($config['use_doctrine_orm']) {
             $loader->load('doctrine_orm.xml');
             $container->setParameter('admingenerator.doctrine_templates_dirs', $doctrine_template_dirs);
-            $container->setParameter('admingenerator.doctrine_form_types', $config['form_types']['doctrine_orm']);
-            $container->setParameter('admingenerator.doctrine_filter_types', $config['filter_types']['doctrine_orm']);
+            
+            $formTypes = $config['form_types']['doctrine_orm'];
+            $filterTypes = $config['filter_types']['doctrine_orm'];
+            $container->setParameter('admingenerator.doctrine_form_types', $formTypes);
+            $container->setParameter('admingenerator.doctrine_filter_types', $filterTypes);
         }
         
         if ($config['use_doctrine_odm']) {
             $loader->load('doctrine_odm.xml');
             $container->setParameter('admingenerator.doctrineodm_templates_dirs', $doctrineodm_template_dirs);
-            $container->setParameter('admingenerator.doctrineodm_form_types', $config['form_types']['doctrine_odm']);
-            $container->setParameter('admingenerator.doctrineodm_filter_types', $config['filter_types']['doctrine_odm']);
+            
+            $formTypes = $config['form_types']['doctrine_odm'];
+            $filterTypes = $config['filter_types']['doctrine_odm'];
+            $container->setParameter('admingenerator.doctrineodm_form_types', $formTypes);
+            $container->setParameter('admingenerator.doctrineodm_filter_types', $filterTypes);
         }
         
         if ($config['use_propel']) {
             $loader->load('propel.xml');
             $container->setParameter('admingenerator.propel_templates_dirs', $propel_template_dirs);
-            $container->setParameter('admingenerator.propel_form_types', $config['form_types']['propel']);
-            $container->setParameter('admingenerator.propel_filter_types', $config['filter_types']['propel']);
+            
+            $formTypes = $config['form_types']['propel'];
+            $filterTypes = $config['filter_types']['propel'];
+            $container->setParameter('admingenerator.propel_form_types', $formTypes);
+            $container->setParameter('admingenerator.propel_filter_types', $filterTypes);
         }
         
         if (!($config['use_doctrine_orm'] || $config['use_doctrine_odm'] || $config['use_propel'])) {
@@ -78,7 +87,7 @@ class AdmingeneratorGeneratorExtension extends Extension implements PrependExten
         $container->setParameter('admingenerator.dashboard_welcome_path', $config['dashboard_welcome_path']);
         $container->setParameter('admingenerator.login_path', $config['login_path']);
         $container->setParameter('admingenerator.logout_path', $config['logout_path']);
-        $container->setParameter('admingenerator.exit_path', $config['exit_path']);        
+        $container->setParameter('admingenerator.exit_path', $config['exit_path']);
         $container->setParameter('admingenerator.stylesheets', $config['stylesheets']);
         $container->setParameter('admingenerator.javascripts', $config['javascripts']);
 

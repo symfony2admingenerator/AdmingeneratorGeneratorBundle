@@ -40,14 +40,22 @@ class DoctrineODMGenerator extends Generator
 
         $generator = new AdminGenerator($this->cache_dir, $this->getGeneratorYml());
         $generator->setContainer($this->container);
-        $generator->setBaseAdminTemplate($generator->getFromYaml('base_admin_template', $this->container->getParameter('admingenerator.base_admin_template')));
+        $generator->setBaseAdminTemplate(
+            $generator->getFromYaml('base_admin_template', 
+                $this->container->getParameter('admingenerator.base_admin_template')
+            )
+        );
         $generator->setFieldGuesser($this->getFieldGuesser());
         $generator->setMustOverwriteIfExists($this->needToOverwrite($generator));
-        $generator->setTemplateDirs(array_merge(
-            $this->container->getParameter('admingenerator.doctrineodm_templates_dirs'),
-            array(__DIR__.'/../Resources/templates/DoctrineODM')
-        ));
-        $generator->setBaseController('Admingenerator\GeneratorBundle\Controller\DoctrineODM\BaseController');
+        $generator->setTemplateDirs(
+            array_merge(
+                $this->container->getParameter('admingenerator.doctrineodm_templates_dirs'),
+                array(__DIR__.'/../Resources/templates/DoctrineODM')
+            )
+        );
+        $generator->setBaseController(
+            'Admingenerator\GeneratorBundle\Controller\DoctrineODM\BaseController'
+        );
         $generator->setBaseGeneratorName($this->getBaseGeneratorName());
 
         $embed_types = $generator->getFromYaml('params.embed_types', array());
@@ -56,9 +64,9 @@ class DoctrineODMGenerator extends Generator
             $this->prebuildEmbedType($yaml_path, $generator);
         }
 
-        $builders = $generator->getFromYaml('builders',array());
+        $builders = $generator->getFromYaml('builders', array());
 
-        if (array_key_exists('list',$builders)) {
+        if (array_key_exists('list', $builders)) {
             $generator->addBuilder(new ListBuilderAction());
             $generator->addBuilder(new ListBuilderTemplate());
             $generator->addBuilder(new FiltersBuilderType());
@@ -86,7 +94,12 @@ class DoctrineODMGenerator extends Generator
             $generator->addBuilder(new ActionsBuilderTemplate());
         }
 
-        $generator->writeOnDisk($this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));
+        $generator->writeOnDisk(
+            $this->getCachePath(
+                $generator->getFromYaml('params.namespace_prefix'), 
+                $generator->getFromYaml('params.bundle_name')
+            )
+        );
     }
 
     public function prebuildEmbedType($yaml_path, $generator)
@@ -112,17 +125,28 @@ class DoctrineODMGenerator extends Generator
 
         $embedGenerator = new AdminGenerator($this->cache_dir, $yaml_file);
         $embedGenerator->setContainer($this->container);
-        $embedGenerator->setBaseAdminTemplate($embedGenerator->getFromYaml('base_admin_template', $this->container->getParameter('admingenerator.base_admin_template')));
+        $embedGenerator->setBaseAdminTemplate(
+            $embedGenerator->getFromYaml('base_admin_template', 
+                $this->container->getParameter('admingenerator.base_admin_template')
+            )
+        );
         $embedGenerator->setFieldGuesser($this->getFieldGuesser());
         $embedGenerator->setMustOverwriteIfExists($this->needToOverwrite($embedGenerator));
-        $embedGenerator->setTemplateDirs(array_merge(
-            $this->container->getParameter('admingenerator.doctrineodm_templates_dirs'),
-            array(__DIR__.'/../Resources/templates/DoctrineODM')
-        ));
+        $embedGenerator->setTemplateDirs(
+            array_merge(
+                $this->container->getParameter('admingenerator.doctrineodm_templates_dirs'),
+                array(__DIR__.'/../Resources/templates/DoctrineODM')
+            )
+        );
 
         $embedGenerator->addBuilder(new EditBuilderType());
         $embedGenerator->addBuilder(new NewBuilderType());
 
-        $embedGenerator->writeOnDisk($this->getCachePath($embedGenerator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));
+        $embedGenerator->writeOnDisk(
+            $this->getCachePath(
+                $embedGenerator->getFromYaml('params.namespace_prefix'), 
+                $generator->getFromYaml('params.bundle_name')
+            )
+        );
     }
 }

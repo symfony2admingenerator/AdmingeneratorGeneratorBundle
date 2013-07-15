@@ -394,9 +394,9 @@ class BaseBuilder extends GenericBaseBuilder
         return str_replace(
             '\\',
             '_',
-            $this->getVariable('namespace_prefix').'_'
-                .$this->getVariable('bundle_name').'_'
-                .$this->getBaseGeneratorName()
+            $this->getVariable('namespace_prefix')
+            .'_'.$this->getVariable('bundle_name')
+            .'_'.$this->getBaseGeneratorName()
         );
     }
 

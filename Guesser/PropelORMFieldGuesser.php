@@ -37,11 +37,15 @@ class PropelORMFieldGuesser extends ContainerAware
 
     public function getDbType($class, $fieldName)
     {
-        if ( $relation = $this->getRelation($fieldName, $class)) {
+        $relation = $this->getRelation($fieldName, $class);
+        
+        if ($relation) {
             return \RelationMap::MANY_TO_ONE === $relation->getType() ? 'model' : 'collection';
         }
 
-        return $this->getColumn($class, $fieldName)  ? $this->getColumn($class, $fieldName)->getType() : 'virtual';
+        $column = $this->getColumn($class, $fieldName);
+        
+        return $column ? $column->getType() : 'virtual';
     }
 
     protected function getRelation($fieldName, $class = null)
@@ -70,24 +74,24 @@ class PropelORMFieldGuesser extends ContainerAware
     public function getSortType($dbType)
     {
         $alphabeticTypes = array(
-            \PropelColumnTypes::CHAR, 
-            \PropelColumnTypes::VARCHAR, 
-            \PropelColumnTypes::LONGVARCHAR, 
-            \PropelColumnTypes::BLOB, 
-            \PropelColumnTypes::CLOB, 
-            \PropelColumnTypes::CLOB_EMU, 
+            \PropelColumnTypes::CHAR,
+            \PropelColumnTypes::VARCHAR,
+            \PropelColumnTypes::LONGVARCHAR,
+            \PropelColumnTypes::BLOB,
+            \PropelColumnTypes::CLOB,
+            \PropelColumnTypes::CLOB_EMU,
         );
         
         $numericTypes = array(
-            \PropelColumnTypes::FLOAT, 
-            \PropelColumnTypes::REAL, 
-            \PropelColumnTypes::DOUBLE, 
-            \PropelColumnTypes::DECIMAL, 
-            \PropelColumnTypes::TINYINT, 
-            \PropelColumnTypes::SMALLINT, 
-            \PropelColumnTypes::INTEGER, 
-            \PropelColumnTypes::BIGINT, 
-            \PropelColumnTypes::NUMERIC, 
+            \PropelColumnTypes::FLOAT,
+            \PropelColumnTypes::REAL,
+            \PropelColumnTypes::DOUBLE,
+            \PropelColumnTypes::DECIMAL,
+            \PropelColumnTypes::TINYINT,
+            \PropelColumnTypes::SMALLINT,
+            \PropelColumnTypes::INTEGER,
+            \PropelColumnTypes::BIGINT,
+            \PropelColumnTypes::NUMERIC,
         );
         
         if (in_array($dbType, $alphabeticTypes)) {
@@ -103,7 +107,7 @@ class PropelORMFieldGuesser extends ContainerAware
 
     public function getFormType($dbType, $columnName)
     {
-        $config = $this->container->getParameter('admingenerator.propel_form_types');        
+        $config = $this->container->getParameter('admingenerator.propel_form_types');    
         $formTypes = array();
         
         foreach ($config as $key => $value) {
@@ -119,15 +123,21 @@ class PropelORMFieldGuesser extends ContainerAware
         if (array_key_exists($dbType, $formTypes)) {
             return $formTypes[$dbType];
         } elseif ('virtual' === $dbType) {
-            throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
+            throw new NotImplementedException(
+                'The dbType "'.$dbType.'" is only for list implemented '
+                .'(column "'.$columnName.'" in "'.self::$current_class.'")'
+            );
         } else {
-            throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
+            throw new NotImplementedException(
+                'The dbType "'.$dbType.'" is not yet implemented '
+                .'(column "'.$columnName.'" in "'.self::$current_class.'")'
+            );
         }
     }
 
     public function getFilterType($dbType, $columnName)
     {
-        $config = $this->container->getParameter('admingenerator.propel_filter_types');        
+        $config = $this->container->getParameter('admingenerator.propel_filter_types');
         $filterTypes = array();
         
         foreach ($config as $key => $value) {
@@ -158,12 +168,12 @@ class PropelORMFieldGuesser extends ContainerAware
             if ($relation) {
                 if (\RelationMap::MANY_TO_ONE === $relation->getType()) {
                     return array(
-                        'class'     => $relation->getForeignTable()->getClassname(), 
+                        'class'     => $relation->getForeignTable()->getClassname(),
                         'multiple'  => false,
                     );
                 } else {
                     return array(
-                        'class'     => $relation->getLocalTable()->getClassname(), 
+                        'class'     => $relation->getLocalTable()->getClassname(),
                         'multiple'  => false,
                     );
                 }
@@ -172,8 +182,8 @@ class PropelORMFieldGuesser extends ContainerAware
 
         if (preg_match("#^collection#i", $formType) || preg_match("#collection$#i", $formType)) {
             return array(
-                'allow_add'     => true, 
-                'allow_delete'  => true, 
+                'allow_add'     => true,
+                'allow_delete'  => true,
                 'by_reference'  => false,
             );
         }
@@ -192,11 +202,9 @@ class PropelORMFieldGuesser extends ContainerAware
 
     protected function isRequired($fieldName)
     {
-        if ($column = $this->getColumn(self::$current_class, $fieldName)) {
-            return $column->isNotNull();
-        }
+        $column = $this->getColumn(self::$current_class, $fieldName);
 
-        return false;
+        return $column ? $column->isNotNull() : false;
     }
 
     public function getFilterOptions($formType, $dbType, $ColumnName)
@@ -205,10 +213,13 @@ class PropelORMFieldGuesser extends ContainerAware
 
         if (\PropelColumnTypes::BOOLEAN == $dbType || \PropelColumnTypes::BOOLEAN_EMU == $dbType) {
             $options['choices'] = array(
-               0 => $this->container->get('translator')->trans('boolean.no', array(), 'Admingenerator'),
-               1 => $this->container->get('translator')->trans('boolean.yes', array(), 'Admingenerator')
+               0 => $this->container->get('translator')
+                        ->trans('boolean.no', array(), 'Admingenerator'),
+               1 => $this->container->get('translator')
+                        ->trans('boolean.yes', array(), 'Admingenerator')
             );
-            $options['empty_value'] = $this->container->get('translator')->trans('boolean.yes_or_no', array(), 'Admingenerator');
+            $options['empty_value'] = $this->container->get('translator')
+                ->trans('boolean.yes_or_no', array(), 'Admingenerator');
         }
 
         if (\PropelColumnTypes::ENUM == $dbType) {
@@ -221,11 +232,18 @@ class PropelORMFieldGuesser extends ContainerAware
         }
 
         if (preg_match("#^model#i", $formType) || preg_match("#model$#i", $formType)) {
-            return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
+            return array_merge(
+                $this->getFormOptions($formType, $dbType, $ColumnName), 
+                $options
+            );
         }
 
         if (preg_match("#^collection#i", $formType) || preg_match("#collection$#i", $formType)) {
-            return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple' => false));
+            return array_merge(
+                $this->getFormOptions($formType, $dbType, $ColumnName), 
+                $options, 
+                array('multiple' => false)
+            );
         }
 
         return $options;
@@ -272,7 +290,8 @@ class PropelORMFieldGuesser extends ContainerAware
             return $this->cache[$class.'::'.$property] = $table->getColumn($property);
         } else {
             foreach ($table->getColumns() as $column) {
-                if (Inflector::tableize($column->getPhpName()) === $property || $column->getPhpName() === ucfirst($property)) {
+                $tabelized = Inflector::tableize($column->getPhpName());
+                if ($tabelized === $property || $column->getPhpName() === ucfirst($property)) {
                     return $this->cache[$class.'::'.$property] = $column;
                 }
             }
