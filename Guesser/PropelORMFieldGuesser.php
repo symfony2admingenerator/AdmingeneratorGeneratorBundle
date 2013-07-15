@@ -69,7 +69,7 @@ class PropelORMFieldGuesser extends ContainerAware
 
     public function getFormType($dbType, $columnName)
     {
-        $config = $this->container->getParameter('admingenerator.form_types.propel');        
+        $config = $this->container->getParameter('admingenerator.propel_form_types');        
         $formTypes = array();
         
         foreach ($config as $key => $value) {

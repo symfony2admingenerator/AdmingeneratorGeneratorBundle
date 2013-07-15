@@ -73,7 +73,7 @@ class DoctrineODMFieldGuesser extends ContainerAware
 
     public function getFormType($dbType, $columnName)
     {
-        $formTypes = $this->container->getParameter('admingenerator.form_types.doctrine_odm');  
+        $formTypes = $this->container->getParameter('admingenerator.doctrineodm_form_types');  
         
         if (in_array($dbType, $formTypes)) {
             return $formTypes[$dbType];
