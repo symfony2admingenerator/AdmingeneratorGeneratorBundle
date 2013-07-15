@@ -82,7 +82,7 @@ class PropelORMFieldGuesser extends ContainerAware
             $formTypes[$key] = $value;
         }
         
-        if (in_array($dbType, $formTypes)) {
+        if (array_key_exists($dbType, $formTypes)) {
             return $formTypes[$dbType];
         } elseif ('virtual' === $dbType) {
             throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
@@ -106,7 +106,7 @@ class PropelORMFieldGuesser extends ContainerAware
             $filterTypes[$key] = $value;
         }
         
-        if (in_array($dbType, $filterTypes)) {
+        if (array_key_exists($dbType, $filterTypes)) {
             return $filterTypes[$dbType];
         }
 

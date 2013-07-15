@@ -75,7 +75,7 @@ class DoctrineODMFieldGuesser extends ContainerAware
     {
         $formTypes = $this->container->getParameter('admingenerator.doctrineodm_form_types');  
         
-        if (in_array($dbType, $formTypes)) {
+        if (array_key_exists($dbType, $formTypes)) {
             return $formTypes[$dbType];
         } elseif ('virtual' === $dbType) {
             throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
@@ -88,7 +88,7 @@ class DoctrineODMFieldGuesser extends ContainerAware
     {
         $filterTypes = $this->container->getParameter('admingenerator.doctrineodm_filter_types');  
         
-        if (in_array($dbType, $filterTypes)) {
+        if (array_key_exists($dbType, $filterTypes)) {
             return $filterTypes[$dbType];
         }
 
