@@ -63,6 +63,7 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->arrayNode('doctrine_orm')
+                            ->addDefaultsIfNotSet()
                             ->children()
                                 // datetime types
                                 ->scalarNode('datetime')->defaultValue('datetime')->end()
@@ -92,6 +93,7 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
                         ->arrayNode('doctrine_odm')
+                            ->addDefaultsIfNotSet()
                             ->children()
                                 // datetime types
                                 ->scalarNode('datetime')->defaultValue('datetime')->end()
@@ -126,6 +128,7 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
                         ->arrayNode('propel')
+                            ->addDefaultsIfNotSet()
                             ->children()
                                 // datetime types
                                 ->scalarNode('TIMESTAMP')->defaultValue('datetime')->end()
@@ -172,6 +175,7 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->arrayNode('doctrine_orm')
+                            ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('text')->defaultValue('text')->end()
                                 ->scalarNode('boolean')->defaultValue('choice')->end()
@@ -179,6 +183,7 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
                         ->arrayNode('doctrine_odm')
+                            ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('hash')->defaultValue('text')->end()
                                 ->scalarNode('text')->defaultValue('text')->end()
@@ -187,6 +192,7 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
                         ->arrayNode('propel')
+                            ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('BOOLEAN')->defaultValue('choice')->end()
                                 ->scalarNode('BOOLEAN_EMU')->defaultValue('choice')->end()
