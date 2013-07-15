@@ -7,27 +7,18 @@
 
 ### 1. Configuration
 
-First of all, enable translation of KnpMenu - add the following lines to `app/config/config.yml`:
+By default, Admingenerator sets the `knp_menu.twig.template` parameter to
+`AdmingeneratorGeneratorBundle:KnpMenu:knp_menu_trans.html.twig`.
 
-```yaml
-knp_menu:
-    twig:
-        template: AdmingeneratorGeneratorBundle:KnpMenu:knp_menu_trans.html.twig
-```
-
-This step introduces the following template features: 
+This template enables:
 
 * prepending menu items with icons
 * appending caret to dropdown menu items
 * translation of menu item labels
 
-Change the file namespace so that it will reflect the current location of the file.
-
-Your menu class extends AdmingeneratorMenuBuilder so you will also need to add the following line:
-
-```php
-use Admingenerator\GeneratorBundle\Menu\AdmingeneratorMenuBuilder;
-```
+If you change the template to a custom one, you will have to copy some lines
+from `AdmingeneratorGeneratorBundle:KnpMenu:knp_menu_trans.html.twig` to have 
+these features.
 
 ### 2. Installation
 
@@ -41,9 +32,9 @@ This is done in `Resources\base_admin_navbar.html.twig` in **menu** block:
 
 #### Create new menu builder
 
-To overwrite this, you need to [create][create-builder] a new menu builder class. To make things 
-easier Admingenerator ships a [base][extend-builder] class which you can extend (see 
-[default][default-builder] menu builder to an example).
+To overwrite this, you need to [create][create-builder] a new menu builder class. 
+To make things easier Admingenerator ships a [base][extend-builder] class which 
+you can extend (see [default][default-builder] menu builder to an example).
 
 [create-builder]: https://github.com/KnpLabs/KnpMenuBundle/blob/master/Resources/doc/index.md#method-a-the-easy-way-yay
 [extend-builder]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Menu/AdmingeneratorMenuBuilder.php
@@ -57,9 +48,9 @@ When you have your builder class ready, simply overwrite the **menu** block to r
 {% block menu %}{{ knp_menu_render('AcmeDemoBundle:MyBuilder:myMenu') }}{% endblock %}
 ```
 
-> **Note**: `Resources\base_admin_navbar.html.twig` template is included by `base_admin` and 
-`base_login` templates. To overwrite **menu** block simply create a new base template that
-extends default admingenerator base template and in there customize your **menu** block.
+> **Note**: `Resources\base_admin_navbar.html.twig` template is included by `base_admin` 
+template. To overwrite **menu** block simply create a new base template that extends 
+default admingenerator base template and in there customize your **menu** block.
 Remember to change the `admingenerator_generator.base_admin_template` parameter to use
 your custom base template!
 
