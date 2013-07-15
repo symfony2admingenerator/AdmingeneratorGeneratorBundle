@@ -26,19 +26,25 @@
                 {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "'") }}
                     {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }}
                         {% if column.sortType == 'alphabetic' %}
-                            <i class="icon-sort-by-alphabet"></i>
+                            <i class="icon-sort-by-alphabet active"></i>
+                            <i class="icon-sort-by-alphabet-alt hover"></i>
                         {% elseif column.sortType == 'numeric' %}
-                            <i class="icon-sort-by-order"></i>
+                            <i class="icon-sort-by-order active"></i>
+                            <i class="icon-sort-by-order-alt hover"></i>
                         {% else %}
-                            <i class="icon-sort-by-attributes"></i>
+                            <i class="icon-sort-by-attributes active"></i>
+                            <i class="icon-sort-by-attributes-alt hover"></i>
                         {% endif %}
                     {{ echo_else() }}
                         {% if column.sortType == 'alphabetic' %}
-                            <i class="icon-sort-by-alphabet-alt"></i>
+                            <i class="icon-sort-by-alphabet hover"></i>
+                            <i class="icon-sort-by-alphabet-alt active"></i>
                         {% elseif column.sortType == 'numeric' %}
-                            <i class="icon-sort-by-order-alt"></i>
+                            <i class="icon-sort-by-order hover"></i>
+                            <i class="icon-sort-by-order-alt active"></i>
                         {% else %}
-                            <i class="icon-sort-by-attributes-alt"></i>
+                            <i class="icon-sort-by-attributes hover"></i>
+                            <i class="icon-sort-by-attributes-alt active"></i>
                         {% endif %}
                     {{ echo_endif () }}
                 {{ echo_endif () }}
