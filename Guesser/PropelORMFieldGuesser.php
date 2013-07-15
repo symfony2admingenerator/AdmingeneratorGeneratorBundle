@@ -119,38 +119,33 @@ class PropelORMFieldGuesser extends ContainerAware
             return array('required' => false);
         }
 
-        if ('model' == $formType) {
+        if (preg_match("#^model#i", $formType) || preg_match("#model$#i", $formType)) {
             $relation = $this->getRelation($columnName);
             if ($relation) {
                 if (\RelationMap::MANY_TO_ONE === $relation->getType()) {
-                    return array('class' => $relation->getForeignTable()->getClassname(), 'multiple' => false);
-                } else { // Many to many
-
-                    return array('class' => $relation->getLocalTable()->getClassname(), 'multiple' => false);
+                    return array(
+                        'class'     => $relation->getForeignTable()->getClassname(), 
+                        'multiple'  => false,
+                    );
+                } else {
+                    return array(
+                        'class'     => $relation->getLocalTable()->getClassname(), 
+                        'multiple'  => false,
+                    );
                 }
             }
         }
 
-        if ('propel_double_list' == $formType) {
-            $relation = $this->getRelation($columnName);
-            if ($relation) {
-                if (\RelationMap::MANY_TO_ONE === $relation->getType()) {
-                    return array('class' => $relation->getForeignTable()->getClassname());
-                } else { // Many to many
-
-                    return array('class' => $relation->getLocalTable()->getClassname());
-                }
-            }
-        }
-
-        if ('collection' == $formType) {
-            return array('allow_add' => true, 'allow_delete' => true, 'by_reference' => false);
+        if (preg_match("#^collection#i", $formType) || preg_match("#collection$#i", $formType)) {
+            return array(
+                'allow_add'     => true, 
+                'allow_delete'  => true, 
+                'by_reference'  => false,
+            );
         }
 
         if (\PropelColumnTypes::ENUM == $dbType) {
-            $valueSet = $this->getMetadatas()
-                                   ->getColumn($columnName)
-                                   ->getValueSet();
+            $valueSet = $this->getMetadatas()->getColumn($columnName)->getValueSet();
 
             return array(
                 'required' => $this->isRequired($columnName),
@@ -183,9 +178,7 @@ class PropelORMFieldGuesser extends ContainerAware
         }
 
         if (\PropelColumnTypes::ENUM == $dbType) {
-            $valueSet = $this->getMetadatas()
-                                   ->getColumn($ColumnName)
-                                   ->getValueSet();
+            $valueSet = $this->getMetadatas()->getColumn($ColumnName)->getValueSet();
 
             return array(
                 'required' => false,
@@ -193,13 +186,13 @@ class PropelORMFieldGuesser extends ContainerAware
             );
         }
 
-         if ('model' == $dbType) {
-             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
-         }
+        if (preg_match("#^model#i", $formType) || preg_match("#model$#i", $formType)) {
+            return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
+        }
 
-        if ('collection' == $dbType) {
-             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
-         }
+        if (preg_match("#^collection#i", $formType) || preg_match("#collection$#i", $formType)) {
+            return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple' => false));
+        }
 
         return $options;
     }

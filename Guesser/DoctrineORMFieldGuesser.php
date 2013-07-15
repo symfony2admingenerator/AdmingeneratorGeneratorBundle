@@ -106,29 +106,42 @@ class DoctrineORMFieldGuesser extends ContainerAware
         if ('number' == $formType) {
             $mapping = $this->getMetadatas()->getFieldMapping($columnName);
 
-            if (isset($mapping['scale']))
-              $precision = $mapping['scale'];
-            if (isset($mapping['precision']))
-              $precision = $mapping['precision'];
+            if (isset($mapping['scale'])) {
+                $precision = $mapping['scale'];
+            }
+            
+            if (isset($mapping['precision'])) {
+                $precision = $mapping['precision'];
+            }
 
             return array(
-            'precision' => isset($precision) ? $precision : '',
+                'precision' => isset($precision) ? $precision : '',
+                'required'  => $this->isRequired($columnName)
+            );
+        }
+        
+        if (preg_match("#^entity#i", $formType) || preg_match("#entity$#i", $formType)) {
+            $mapping = $this->getMetadatas()->getAssociationMapping($columnName);
+
+            return array(
+                'multiple'  => false, 
+                'em'        => 'default', // TODO: shouldn't this be configurable?
+                'class'     => $mapping['targetEntity'], 
                 'required'  => $this->isRequired($columnName)
             );
         }
 
-        if ('entity' == $formType) {
-
-            $mapping = $this->getMetadatas()->getAssociationMapping($columnName);
-
-            return array('em' => 'default', 'class' => $mapping['targetEntity'], 'multiple' => false, 'required' => $this->isRequired($columnName));
+        if (preg_match("#^collection#i", $formType) || preg_match("#collection$#i", $formType)) {
+            return array(
+                'allow_add'     => true, 
+                'allow_delete'  => true, 
+                'by_reference'  => false,
+            );
         }
 
-        if ('collection' == $formType) {
-            return array('allow_add' => true, 'allow_delete' => true, 'by_reference' => true);
-        }
-
-        return array('required' => $this->isRequired($columnName));
+        return array(
+            'required' => $this->isRequired($columnName)
+        );
     }
 
     protected function isRequired($fieldName)
@@ -153,12 +166,12 @@ class DoctrineORMFieldGuesser extends ContainerAware
             $options['empty_value'] = $this->container->get('translator')->trans('boolean.yes_or_no', array(), 'Admingenerator');
         }
 
-        if ('entity' == $dbType) {
-           return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
+        if (preg_match("#^entity#i", $formType) || preg_match("#entity$#i", $formType)) {
+            return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
         }
 
-        if ('collection' == $dbType) {
-           return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
+        if (preg_match("#^collection#i", $formType) || preg_match("#collection$#i", $formType)) {
+            return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple' => false));
         }
 
         return $options;

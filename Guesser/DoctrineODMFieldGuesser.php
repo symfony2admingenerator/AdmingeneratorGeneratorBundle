@@ -101,20 +101,30 @@ class DoctrineODMFieldGuesser extends ContainerAware
             return array('required' => false);
         }
 
-        if ('document' == $dbType) {
+        if (preg_match("#^document#i", $formType) || preg_match("#document$#i", $formType)) {
             $mapping = $this->getMetadatas()->getFieldMapping($columnName);
 
-            return array( 'class' => $mapping['targetDocument'], 'multiple' => false);
+            return array(
+                'class'     => $mapping['targetDocument'], 
+                'multiple'  => false,
+            );
         }
 
+        if (preg_match("#^collection#i", $formType) || preg_match("#collection$#i", $formType)) {
+            return array(
+                'allow_add'     => true, 
+                'allow_delete'  => true, 
+                'by_reference'  => false,
+            );
+        }
+
+        // TODO: is this still needed? is this valid?
         if ('collection' == $dbType) {
             $mapping = $this->getMetadatas()->getFieldMapping($columnName);
 
-            return array('class' => isset($mapping['targetDocument']) ? $mapping['targetDocument'] : null);
-        }
-
-        if ('collection' == $formType) {
-            return array('allow_add' => true, 'allow_delete' => true);
+            return array(
+                'class' => isset($mapping['targetDocument']) ? $mapping['targetDocument'] : null
+            );
         }
 
         return array('required' => $this->isRequired($columnName));
@@ -142,16 +152,12 @@ class DoctrineODMFieldGuesser extends ContainerAware
             $options['empty_value'] = $this->container->get('translator')->trans('boolean.yes_or_no', array(), 'Admingenerator');
         }
 
-        if ('document' == $dbType) {
+        if (preg_match("#^document#i", $formType) || preg_match("#document$#i", $formType)) {
             return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
         }
 
-        if ('collection' == $formType) {
-            return array('allow_add' => true, 'allow_delete' => true, 'by_reference' => true);
-        }
-
-        if ('collection' == $dbType) {
-            return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
+        if (preg_match("#^collection#i", $formType) || preg_match("#collection$#i", $formType)) {
+            return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple' => false));
         }
 
         return $options;
