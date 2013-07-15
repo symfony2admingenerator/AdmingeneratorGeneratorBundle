@@ -71,6 +71,36 @@ class DoctrineODMFieldGuesser extends ContainerAware
         return 'virtual';
     }
 
+    public function getSortType($dbType)
+    {
+        $alphabeticTypes = array(
+            'id', 
+            'custom_id', 
+            'string', 
+            'text',
+        );
+        
+        $numericTypes = array(
+            'decimal', 
+            'float', 
+            'int', 
+            'integer', 
+            'int_id', 
+            'bigint', 
+            'smallint',
+        );
+        
+        if (in_array($dbType, $alphabeticTypes)) {
+            return 'alphabetic';
+        }
+        
+        if (in_array($dbType, $numericTypes)) {
+            return 'numeric';
+        }
+        
+        return 'default';
+    }
+
     public function getFormType($dbType, $columnName)
     {
         $formTypes = $this->container->getParameter('admingenerator.doctrineodm_form_types');  

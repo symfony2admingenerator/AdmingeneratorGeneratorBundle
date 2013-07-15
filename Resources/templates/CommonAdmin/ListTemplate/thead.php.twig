@@ -25,9 +25,21 @@
                     </a>
                 {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "'") }}
                     {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }}
-                        <i class="icon-sort-by-alphabet"></i><i class="icon-sort-by-order"></i>
+                        {% if column.sortType == 'alphabetic' %}
+                            <i class="icon-sort-by-alphabet"></i>
+                        {% elseif column.sortType == 'numeric' %}
+                            <i class="icon-sort-by-order"></i>
+                        {% else %}
+                            <i class="icon-sort-by-attributes"></i>
+                        {% endif %}
                     {{ echo_else() }}
-                        <i class="icon-sort-by-alphabet-alt"></i><i class="icon-sort-by-order-alt"></i>
+                        {% if column.sortType == 'alphabetic' %}
+                            <i class="icon-sort-by-alphabet-alt"></i>
+                        {% elseif column.sortType == 'numeric' %}
+                            <i class="icon-sort-by-order-alt"></i>
+                        {% else %}
+                            <i class="icon-sort-by-attributes-alt"></i>
+                        {% endif %}
                     {{ echo_endif () }}
                 {{ echo_endif () }}
             {% endif -%}

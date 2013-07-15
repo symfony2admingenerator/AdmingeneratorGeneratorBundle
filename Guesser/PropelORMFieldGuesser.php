@@ -67,6 +67,40 @@ class PropelORMFieldGuesser extends ContainerAware
         }
     }
 
+    public function getSortType($dbType)
+    {
+        $alphabeticTypes = array(
+            \PropelColumnTypes::CHAR, 
+            \PropelColumnTypes::VARCHAR, 
+            \PropelColumnTypes::LONGVARCHAR, 
+            \PropelColumnTypes::BLOB, 
+            \PropelColumnTypes::CLOB, 
+            \PropelColumnTypes::CLOB_EMU, 
+        );
+        
+        $numericTypes = array(
+            \PropelColumnTypes::FLOAT, 
+            \PropelColumnTypes::REAL, 
+            \PropelColumnTypes::DOUBLE, 
+            \PropelColumnTypes::DECIMAL, 
+            \PropelColumnTypes::TINYINT, 
+            \PropelColumnTypes::SMALLINT, 
+            \PropelColumnTypes::INTEGER, 
+            \PropelColumnTypes::BIGINT, 
+            \PropelColumnTypes::NUMERIC, 
+        );
+        
+        if (in_array($dbType, $alphabeticTypes)) {
+            return 'alphabetic';
+        }
+        
+        if (in_array($dbType, $numericTypes)) {
+            return 'numeric';
+        }
+        
+        return 'default';
+    }
+
     public function getFormType($dbType, $columnName)
     {
         $config = $this->container->getParameter('admingenerator.propel_form_types');        

@@ -17,6 +17,8 @@ class Column
     protected $sortable;
 
     protected $sortOn;
+    
+    protected $sortType;
 
     protected $filterOn;
 
@@ -216,5 +218,15 @@ class Column
     public function getExtras()
     {
         return $this->extras;
+    }
+
+    public function setSortType($type)
+    {
+        $this->sortType = $type;
+    }
+
+    public function getSortType()
+    {
+        return $this->sortType;
     }
 }

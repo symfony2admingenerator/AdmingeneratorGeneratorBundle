@@ -84,6 +84,10 @@ class BaseBuilder extends GenericBaseBuilder
                         )
                     )
                 );
+
+                $column->setSortType($this->getFieldGuesser()->getSortType(
+                    $this->getVariable('model')
+                ));
             }
             //Set the user parameters
             $this->setUserColumnConfiguration($column);
