@@ -137,7 +137,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                 'propel' => array(
                     'BOOLEAN'       => 'choice', 
                     'BOOLEAN_EMU'   => 'choice', 
-                    'model'         => 'model', 
+                    'collection'    => 'model', 
                 ),
             ),
             'stylesheets'   => array(),
