@@ -88,25 +88,13 @@ class DoctrineORMFieldGuesser extends ContainerAware
 
     public function getFilterType($dbType, $columnName)
     {
-         switch ($dbType) {
-             case 'text':
-                return 'text';
-                break;
-             case 'boolean':
-                return 'choice';
-                break;
-             case 'datetime':
-             case 'vardatetime':
-             case 'datetimetz':
-             case 'date':
-                return 'date';
-                break;
-             case 'collection':
-                return 'entity';
-                break;
-         }
+        $filterTypes = $this->container->getParameter('admingenerator.doctrine_filter_types');  
+        
+        if (in_array($dbType, $filterTypes)) {
+            return $filterTypes[$dbType];
+        }
 
-         return $this->getFormType($dbType, $columnName);
+        return $this->getFormType($dbType, $columnName);
     }
 
     public function getFormOptions($formType, $dbType, $columnName)

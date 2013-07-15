@@ -93,23 +93,24 @@ class PropelORMFieldGuesser extends ContainerAware
 
     public function getFilterType($dbType, $columnName)
     {
-         switch ($dbType) {
-             case \PropelColumnTypes::BOOLEAN:
-             case \PropelColumnTypes::BOOLEAN_EMU:
-                return 'choice';
-                break;
-             case \PropelColumnTypes::TIMESTAMP:
-             case \PropelColumnTypes::BU_TIMESTAMP:
-             case \PropelColumnTypes::DATE:
-             case \PropelColumnTypes::BU_DATE:
-                return 'date';
-                break;
-             case 'collection':
-                return 'model';
-                break;
-         }
+        $config = $this->container->getParameter('admingenerator.propel_filter_types');        
+        $filterTypes = array();
+        
+        foreach ($config as $key => $value) {
+            // if config is all uppercase use it to retrieve \PropelColumnTypes 
+            // constant, otherwise use it literally
+            if ($key === strtoupper($key)) {
+                $key = constant('\PropelColumnTypes::'.$key);
+            }
+            
+            $filterTypes[$key] = $value;
+        }
+        
+        if (in_array($dbType, $filterTypes)) {
+            return $filterTypes[$dbType];
+        }
 
-         return $this->getFormType($dbType, $columnName);
+        return $this->getFormType($dbType, $columnName);
     }
 
     public function getFormOptions($formType, $dbType, $columnName)
