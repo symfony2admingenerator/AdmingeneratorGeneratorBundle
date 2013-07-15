@@ -3,10 +3,10 @@
 namespace Admingenerator\GeneratorBundle\Generator;
 
 /**
- *
  * This class describe a column
+ * 
  * @author cedric Lombardot
- *
+ * @author Piotr Gołębiewski <loostro@gmail.com>
  */
 use Doctrine\Common\Util\Inflector;
 
@@ -47,6 +47,7 @@ class Column
     {
         $this->name     = $name;
         $this->sortable = true;
+        $this->sortType = 'default';
     }
 
     public function setProperty($option, $value)

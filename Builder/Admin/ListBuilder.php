@@ -93,11 +93,7 @@ class ListBuilder extends BaseBuilder
                 )
             ));
 
-            $column->setSortType($this->getFieldGuesser()->getSortType(
-                $this->getVariable('model')
-            ));
-
-            //Set the user parameters
+            // Set the user parameters
             $this->setUserColumnConfiguration($column);
             $this->addFilterColumn($column);
         }

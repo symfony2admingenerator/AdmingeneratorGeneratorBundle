@@ -60,6 +60,10 @@ class BaseBuilder extends GenericBaseBuilder
                 )
             );
 
+            $column->setSortType($this->getFieldGuesser()->getSortType(
+                $this->getVariable('model')
+            ));
+
             if ($this->getYamlKey() != 'list' && $this->getYamlKey() != 'nested_list') {
 
                 $column->setFormType(
@@ -84,10 +88,6 @@ class BaseBuilder extends GenericBaseBuilder
                         )
                     )
                 );
-
-                $column->setSortType($this->getFieldGuesser()->getSortType(
-                    $this->getVariable('model')
-                ));
             }
             //Set the user parameters
             $this->setUserColumnConfiguration($column);
