@@ -60,9 +60,7 @@ class BaseBuilder extends GenericBaseBuilder
                 )
             );
 
-            $column->setSortType($this->getFieldGuesser()->getSortType(
-                $this->getVariable('model')
-            ));
+            $column->setSortType($this->getFieldGuesser()->getSortType($column->getDbType()));
 
             if ($this->getYamlKey() != 'list' && $this->getYamlKey() != 'nested_list') {
 

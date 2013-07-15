@@ -1,12 +1,18 @@
 /* List sorting styles */
 .list_thead_column > i.active,
-.list_thead_column:hover > i.hover {
+.list_thead_column:hover > i.hover,
+.list_thead_column:hover > i.hover.placeholder {
     display: inline-block;
+    visibility: visible;
 }
 
 .list_thead_column > i.hover, 
 .list_thead_column:hover > i.active {
     display: none;
+}
+
+.list_thead_column > i.hover.placeholder {
+    visibility: hidden;
 }
 
 /* List pagination styles */

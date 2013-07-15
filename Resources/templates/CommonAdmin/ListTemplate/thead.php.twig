@@ -22,7 +22,7 @@
             {%- endif -%}
                     {{ echo_twig("'" ~ column.label|addslashes ~ "'|trans({}, '" ~ i18n_catalog|default("Admin") ~ "')") }}
             {%- if column.isSortable -%}
-                    </a>
+                    </a> {{ column.sortType }}
                 {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "'") }}
                     {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }}
                         {% if column.sortType == 'alphabetic' %}
@@ -47,6 +47,14 @@
                             <i class="icon-sort-by-attributes-alt active"></i>
                         {% endif %}
                     {{ echo_endif () }}
+                {{ echo_else() }}
+                    {% if column.sortType == 'alphabetic' %}
+                        <i class="icon-sort-by-alphabet placeholder hover"></i>
+                    {% elseif column.sortType == 'numeric' %}
+                        <i class="icon-sort-by-order placeholder hover"></i>
+                    {% else %}
+                        <i class="icon-sort-by-attributes placeholder hover"></i>
+                    {% endif %}
                 {{ echo_endif () }}
             {% endif -%}
         </th>
