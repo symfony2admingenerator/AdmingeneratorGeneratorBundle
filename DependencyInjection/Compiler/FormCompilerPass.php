@@ -20,16 +20,16 @@ class FormCompilerPass implements CompilerPassInterface
                 // Insert right after form_div_layout.html.twig if exists
                 if (($key = array_search('form_div_layout.html.twig', $resources)) !== false) {
                     array_splice(
-                        $resources, 
-                        ++$key, 
-                        0, 
+                        $resources,
+                        ++$key,
+                        0,
                         array('AdmingeneratorGeneratorBundle:Form:fields.html.twig')
                     );
                 } else {
                     // Put it in first position
                     array_unshift(
-                         $resources, 
-                         array('AdmingeneratorGeneratorBundle:Form:fields.html.twig')
+                        $resources,
+                        array('AdmingeneratorGeneratorBundle:Form:fields.html.twig')
                     );
                 }
 

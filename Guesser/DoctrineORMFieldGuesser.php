@@ -206,15 +206,15 @@ class DoctrineORMFieldGuesser extends ContainerAware
 
         if (preg_match("#^entity#i", $formType) || preg_match("#entity$#i", $formType)) {
             return array_merge(
-                $this->getFormOptions($formType, $dbType, $ColumnName), 
+                $this->getFormOptions($formType, $dbType, $ColumnName),
                 $options
             );
         }
 
         if (preg_match("#^collection#i", $formType) || preg_match("#collection$#i", $formType)) {
             return array_merge(
-                $this->getFormOptions($formType, $dbType, $ColumnName), 
-                $options, 
+                $this->getFormOptions($formType, $dbType, $ColumnName),
+                $options,
                 array('multiple' => false)
             );
         }

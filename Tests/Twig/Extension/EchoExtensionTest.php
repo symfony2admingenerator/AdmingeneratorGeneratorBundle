@@ -47,7 +47,7 @@ class EchoExtensionTest extends TestCase
             'array' => array("array(  'obj' => 'val',)", 'As php dump well the array'),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testPhpName()
@@ -102,11 +102,11 @@ class EchoExtensionTest extends TestCase
 
         $returns = array(
             'string' => array(
-                '{% trans from "Admingenerator" %}foo{% endtrans %}', 
+                '{% trans from "Admingenerator" %}foo{% endtrans %}',
                 'trans return a good trans tag with string elements'
              ),
             'variable_key' => array(
-                '{% trans from "Admingenerator" %}cedric{% endtrans %}', 
+                '{% trans from "Admingenerator" %}cedric{% endtrans %}',
                 'trans return a good trans tag with variable as key'
              ),
         );
@@ -123,11 +123,11 @@ class EchoExtensionTest extends TestCase
 
         $returns = array(
             'string' => array(
-                '{% trans with {\'%foo%\': \'foo\',\'%bar%\': \'bar\',} from "Admingenerator" %}Display all <b>%foo% %bar%</b> results{% endtrans %}', 
+                '{% trans with {\'%foo%\': \'foo\',\'%bar%\': \'bar\',} from "Admingenerator" %}Display all <b>%foo% %bar%</b> results{% endtrans %}',
                 'trans return a good trans tag with string elements'
              ),
             'variable_key' => array(
-                '{% trans with {\'%foo%\': \'foo\',\'%bar%\': \'bar\',} from "Admingenerator" %}cedric{% endtrans %}', 
+                '{% trans with {\'%foo%\': \'foo\',\'%bar%\': \'bar\',} from "Admingenerator" %}cedric{% endtrans %}',
                 'trans return a good trans tag with variable as key'
              ),
         );
@@ -147,23 +147,23 @@ class EchoExtensionTest extends TestCase
 
         $returns = array(
             'string_bc' => array(
-                '{% trans with {\'%Book.title%\': Book.title,\'%Book.author.name%\': Book.author.name,} from "Admingenerator" %}You\'re editing %Book.title% written by %Book.author.name%!{% endtrans %}', 
+                '{% trans with {\'%Book.title%\': Book.title,\'%Book.author.name%\': Book.author.name,} from "Admingenerator" %}You\'re editing %Book.title% written by %Book.author.name%!{% endtrans %}',
                 'trans return a good trans tag with string elements'
             ),
             'string_with_full_param_bag' => array(
-                '{% trans with {\'%book%\': Book.title,\'%author%\': Book.author.name,} from "Admingenerator" %}You\'re editing %book% written by %author%!{% endtrans %}', 
+                '{% trans with {\'%book%\': Book.title,\'%author%\': Book.author.name,} from "Admingenerator" %}You\'re editing %book% written by %author%!{% endtrans %}',
                 'trans return a good trans tag with string elements'
             ),
             'string_with_abbrev_param_bag' => array(
-                '{% trans with {\'%Book.title%\': Book.title,\'%Book.author.name%\': Book.author.name,} from "Admingenerator" %}You\'re editing %Book.title% written by %Book.author.name%!{% endtrans %}', 
+                '{% trans with {\'%Book.title%\': Book.title,\'%Book.author.name%\': Book.author.name,} from "Admingenerator" %}You\'re editing %Book.title% written by %Book.author.name%!{% endtrans %}',
                 'trans return a good trans tag with string elements'
             ),
             'string_with_full_param_bag_and_params' => array(
-                '{% trans with {\'%foo%\': \'foo\',\'%book%\': Book.title,} from "Admingenerator" %}You\'re editing %book% written by %foo%!{% endtrans %}', 
+                '{% trans with {\'%foo%\': \'foo\',\'%book%\': Book.title,} from "Admingenerator" %}You\'re editing %book% written by %foo%!{% endtrans %}',
                 'trans return a good trans tag with string elements'
             ),
             'string_with_abbrev_param_bag_and_params' => array(
-                '{% trans with {\'%foo%\': \'foo\',\'%Book.title%\': Book.title,} from "Admingenerator" %}You\'re editing %Book.title% written by %foo%!{% endtrans %}', 
+                '{% trans with {\'%foo%\': \'foo\',\'%Book.title%\': Book.title,} from "Admingenerator" %}You\'re editing %Book.title% written by %foo%!{% endtrans %}',
                 'trans return a good trans tag with string elements'
             ),
         );
@@ -184,27 +184,27 @@ class EchoExtensionTest extends TestCase
 
         $returns = array(
             'string' => array(
-                '{% set foo = "bar" %}', 
+                '{% set foo = "bar" %}',
                 'Set return a good set tag with string elements'
              ),
             'variable_key' => array(
-                '{% set cedric = "bar" %}', 
+                '{% set cedric = "bar" %}',
                 'Set return a good set tag with variable as key'
              ),
             'variable_value' => array(
-                '{% set foo = "cedric" %}', 
+                '{% set foo = "cedric" %}',
                 'Set return a good set tag with variable as value'
              ),
             'array_key' => array(
-                '{% set val = "bar" %}', 
+                '{% set val = "bar" %}',
                 'Set return a good set tag with array element as key'
              ),
             'array_value' => array(
-                '{% set foo = "val" %}', 
+                '{% set foo = "val" %}',
                 'Set return a good set tag with array element as value'
              ),
             'not_value_as_string' => array(
-                '{% set foo = bar %}', 
+                '{% set foo = bar %}',
                 'Set return a good set tag with false for option value_as_string'
              ),
         );
@@ -225,27 +225,27 @@ class EchoExtensionTest extends TestCase
 
         $returns = array(
             'string' => array(
-                '{{ path("foo") }}', 
+                '{{ path("foo") }}',
                 'Path return a good Path tag with string elements'
              ),
             'variable' => array(
-                '{{ path("cedric") }}', 
+                '{{ path("cedric") }}',
                 'Path return a good Path tag with variable'
              ),
             'array' => array(
-                '{{ path("val") }}', 
+                '{{ path("val") }}',
                 'Path return a good Path tag with array element'
              ),
             'string_filtered' => array(
-                '{{ path("foo")|foo|bar }}', 
+                '{{ path("foo")|foo|bar }}',
                 'Path return a good Path tag with string elements and filters'
              ),
             'variable_filtered' => array(
-                '{{ path("cedric")|foo|bar }}', 
+                '{{ path("cedric")|foo|bar }}',
                 'Path return a good Path tag with variable and filters'
              ),
             'array_filtered' => array(
-                '{{ path("val")|foo|bar }}', 
+                '{{ path("val")|foo|bar }}',
                 'Path return a good Path tag with array element and filters'
              ),
         );
@@ -265,23 +265,23 @@ class EchoExtensionTest extends TestCase
 
         $returns = array(
             'string' => array(
-                '{% if a = b %}', 
+                '{% if a = b %}',
                 'If return a good If tag with string elements'
              ),
             'variable' => array(
-                '{% if cedric = \'cedric\' %}', 
+                '{% if cedric = \'cedric\' %}',
                 'If return a good If tag with variable'
              ),
             'array' => array(
-                '{% if val %}', 
+                '{% if val %}',
                 'If return a good If tag with array element'
              ),
             'boolean_true' => array(
-                '{% if 1 %}', 
+                '{% if 1 %}',
                 'If return a good If tag with boolean true variable'
              ),
             'boolean_false' => array(
-                '{% if 0 %}', 
+                '{% if 0 %}',
                 'If return a good If tag with boolean false variable'
              ),
         );
@@ -299,14 +299,14 @@ class EchoExtensionTest extends TestCase
 
         $returns = array(
             'simple'  => array(
-                '{% if is_expr_granted(\'hasRole(\'ROLE_A\')\') %}', 
+                '{% if is_expr_granted(\'hasRole(\'ROLE_A\')\') %}',
                 'If granted work with a simple role'),
             'complex' => array(
-                '{% if is_expr_granted(\'hasRole(\'ROLE_A\')\') or (hasRole(\'ROLE_B\') and hasRole(\'ROLE_C\')\') %}', 
+                '{% if is_expr_granted(\'hasRole(\'ROLE_A\')\') or (hasRole(\'ROLE_B\') and hasRole(\'ROLE_C\')\') %}',
                 'If granted work with a complex role expression'
             ),
             'with_object' => array(
-                '{% if is_expr_granted(\'hasRole(\'ROLE_A\')\', modelName) %}', 
+                '{% if is_expr_granted(\'hasRole(\'ROLE_A\')\', modelName) %}',
                 'If granted work with an object'
             ),
         );
@@ -326,23 +326,23 @@ class EchoExtensionTest extends TestCase
 
         $returns = array(
             'string' => array(
-                '{% elseif a = b %}', 
+                '{% elseif a = b %}',
                 'Else If return a good Else If tag with string elements'
              ),
             'variable' => array(
-                '{% elseif cedric = \'cedric\' %}', 
+                '{% elseif cedric = \'cedric\' %}',
                 'Else If return a good Else If tag with variable'
              ),
             'array' => array(
-                '{% elseif val %}', 
+                '{% elseif val %}',
                 'Else If return a good Else If tag with array element'
              ),
             'boolean_true' => array(
-                '{% elseif 1 %}', 
+                '{% elseif 1 %}',
                 'Else If return a good Else If tag with boolean true variable'
              ),
             'boolean_false' => array(
-                '{% elseif 0 %}', 
+                '{% elseif 0 %}',
                 'Else If return a good Else If tag with boolean false variable'
              ),
         );
@@ -386,15 +386,15 @@ class EchoExtensionTest extends TestCase
 
         $returns = array(
             'string' => array(
-                '{{ cedric }}', 
+                '{{ cedric }}',
                 'echo return a good echo tag with string elements'
             ),
             'variable' => array(
-                '{{ cedric.cedric }}', 
+                '{{ cedric.cedric }}',
                 'echo return a good echo tag with variable'
             ),
             'array' => array(
-                '{{ val }}', 
+                '{{ val }}',
                 'echo return a good echo tag with array element'
             ),
         );
@@ -412,15 +412,15 @@ class EchoExtensionTest extends TestCase
 
         $returns = array(
             'string' => array(
-                '{% block cedric %}', 
+                '{% block cedric %}',
                 'EchoBlock return a good block tag with string elements'
             ),
             'variable' => array(
-                '{% block cedric_cedric %}', 
+                '{% block cedric_cedric %}',
                 'EchoBlock return a good block tag with variable'
             ),
             'array' => array(
-                '{% block val %}', 
+                '{% block val %}',
                 'EchoBlock return a good echo block with array element'
             ),
         );
@@ -451,15 +451,15 @@ class EchoExtensionTest extends TestCase
 
         $returns = array(
             'string' => array(
-                '{% extends "cedric" %}', 
+                '{% extends "cedric" %}',
                 'Extends return a good Extends tag with string elements'
             ),
             'variable' => array(
-                '{% extends "cedric_cedric" %}', 
+                '{% extends "cedric_cedric" %}',
                 'Extends return a good Extends tag with variable'
             ),
            'array' => array(
-                '{% extends "val" %}', 
+                '{% extends "val" %}',
                 'Extends return a good Extends with array element'
             ),
         );
@@ -554,19 +554,19 @@ class EchoExtensionTest extends TestCase
 
         $returns = array(
             'string' => array(
-                '{% include "::base.htmlm.twig" with {  } %}', 
+                '{% include "::base.htmlm.twig" with {  } %}',
                 'include return a good include tag with string elements'
             ),
             'with_params' => array(
-                '{% include "::base.htmlm.twig" with { hello: \'cedric\' } %}', 
+                '{% include "::base.htmlm.twig" with { hello: \'cedric\' } %}',
                 'include return a good include tag with string elements and params'
             ),
             'with_empty_params' => array(
-                '{% include "::base.htmlm.twig" with {  } %}', 
+                '{% include "::base.htmlm.twig" with {  } %}',
                 'include return a good include tag with string elements and empty params'
             ),
             'with_params_only' => array(
-                '{% include "::base.htmlm.twig" with { hello: \'cedric\' } only %}', 
+                '{% include "::base.htmlm.twig" with { hello: \'cedric\' } only %}',
                 'include return a good include tag with string elements and params only'
             ),
         );
@@ -583,11 +583,11 @@ class EchoExtensionTest extends TestCase
 
         $returns = array(
             'controller' => array(
-                '{{ render(controller("MyController", {  })) }}', 
+                '{{ render(controller("MyController", {  })) }}',
                 'controller return a good controller tag'
             ),
             'with_params' => array(
-                '{{ render(controller("MyController", { hello: \'cedric\' })) }}', 
+                '{{ render(controller("MyController", { hello: \'cedric\' })) }}',
                 'controller return a good controller tag'
             ),
         );
@@ -612,13 +612,13 @@ class EchoExtensionTest extends TestCase
     {
         $loader = new \Twig_Loader_Array($templates);
         $twig = new \Twig_Environment(
-            $loader, 
+            $loader,
             array_merge(
                 array(
-                    'debug' => true, 
+                    'debug' => true,
                     'cache' => false,
                     'autoescape' => false,
-                ), 
+                ),
                 $options
             )
         );

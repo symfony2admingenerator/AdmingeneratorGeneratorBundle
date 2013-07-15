@@ -44,7 +44,8 @@ class PropelGenerator extends Generator
 
         $generator->setContainer($this->container);
         $generator->setBaseAdminTemplate(
-            $generator->getFromYaml('base_admin_template', 
+            $generator->getFromYaml(
+                'base_admin_template',
                 $this->container->getParameter('admingenerator.base_admin_template')
             )
         );
@@ -104,7 +105,7 @@ class PropelGenerator extends Generator
 
         $generator->writeOnDisk(
             $this->getCachePath(
-                $generator->getFromYaml('params.namespace_prefix'), 
+                $generator->getFromYaml('params.namespace_prefix'),
                 $generator->getFromYaml('params.bundle_name')
             )
         );
@@ -128,14 +129,16 @@ class PropelGenerator extends Generator
         $yaml_file = $kernel->locateResource('@'.$namespace_prefix.$bundle_name.'/Resources/config/'.$generator_path);
 
         if (!file_exists($yaml_file)) {
-            throw new CantGenerateException("Can't generate embed type for $yaml_file, file not found.");
+            throw new CantGenerateException(
+                "Can't generate embed type for $yaml_file, file not found."
+            );
         }
 
         $embedGenerator = new AdminGenerator($this->cache_dir, $yaml_file);
         $embedGenerator->setContainer($this->container);
         $embedGenerator->setBaseAdminTemplate(
             $embedGenerator->getFromYaml(
-                'base_admin_template', 
+                'base_admin_template',
                 $this->container->getParameter('admingenerator.base_admin_template')
             )
         );
@@ -154,7 +157,7 @@ class PropelGenerator extends Generator
 
         $embedGenerator->writeOnDisk(
             $this->getCachePath(
-                $embedGenerator->getFromYaml('params.namespace_prefix'), 
+                $embedGenerator->getFromYaml('params.namespace_prefix'),
                 $generator->getFromYaml('params.bundle_name')
             )
         );

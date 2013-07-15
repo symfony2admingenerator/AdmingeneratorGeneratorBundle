@@ -193,8 +193,8 @@ class ListBuilder extends BaseBuilder
         );
 
         $globalOptions = $this->getGenerator()->getFromYaml(
-            'params.batch_actions.'.$action->getName(), 
-             array()
+            'params.batch_actions.'.$action->getName(),
+            array()
         );
 
         if (null !== $builderOptions) {

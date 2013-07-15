@@ -64,5 +64,4 @@ class FiltersBuilder extends BaseBuilder
             $this->addColumn($column);
         }
     }
-
 }
