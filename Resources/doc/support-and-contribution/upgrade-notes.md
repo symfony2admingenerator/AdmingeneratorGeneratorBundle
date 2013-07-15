@@ -9,7 +9,7 @@ This file lists B/C breaking PRs in reverse chronological order. Each PR contain
 description explaining nature of changes and upgrade notes to help you upgrade your 
 project.
 
-## PR [#564][pr575] Major bundle refactoring
+## PR [#575][pr575] Major bundle refactoring
 
 [pr575]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/pull/575
 
