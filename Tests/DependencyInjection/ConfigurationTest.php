@@ -122,7 +122,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                     'BOOLEAN_EMU'   => 'checkbox', 
                 ),
             ),
-            'form_types' => array(
+            'filter_types' => array(
                 'doctrine_orm' => array(
                     'text'          => 'text',
                     'boolean'       => 'choice', 
