@@ -1,4 +1,8 @@
 /* List sorting styles */
+.list_thead_column .sort-span {
+    min-height: 0px;
+}
+
 .list_thead_column .sort-span > i.active,
 .list_thead_column .sort-span:hover > i.hover,
 .list_thead_column .sort-span:hover > i.hover.placeholder {
@@ -12,6 +16,7 @@
 }
 
 .list_thead_column .sort-span > i.hover.placeholder {
+    display: inline-block;
     visibility: hidden;
 }
 
