@@ -73,52 +73,14 @@ class DoctrineODMFieldGuesser extends ContainerAware
 
     public function getFormType($dbType, $columnName)
     {
-        switch ($dbType) {
-            case 'boolean':
-                return 'checkbox';
-            case 'datetime':
-            case 'timestamp':
-            case 'vardatetime':
-            case 'datetimetz':
-                return 'datetime';
-            case 'date':
-                return 'datetime';
-                break;
-            case 'decimal':
-            case 'float':
-                return 'number';
-                break;
-            case 'int':
-            case 'integer':
-            case 'int_id':
-            case 'bigint':
-            case 'smallint':
-                return 'integer';
-                break;
-            case 'id':
-            case 'custom_id':
-            case 'string':
-                return 'text';
-                break;
-            case 'text':
-                return 'textarea';
-                break;
-            case 'time':
-                return 'time';
-                break;
-            case 'document':
-                return 'document';
-                break;
-            case 'collection':
-            case 'hash':
-                return 'collection';
-                break;
-            case 'virtual':
-                throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
-                break;
-            default:
-                throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
-                break;
+        $formTypes = $this->container->getParameter('admingenerator.form_types.doctrine_odm');  
+        
+        if (in_array($dbType, $formTypes)) {
+            return $formTypes[$dbType];
+        } elseif ('virtual' === $dbType) {
+            throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
+        } else {
+            throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
         }
     }
 

@@ -9,7 +9,6 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 
 class PropelORMFieldGuesser extends ContainerAware
 {
-
     private $cache = array();
 
     private $metadata = array();
@@ -70,47 +69,25 @@ class PropelORMFieldGuesser extends ContainerAware
 
     public function getFormType($dbType, $columnName)
     {
-        switch ($dbType) {
-            case \PropelColumnTypes::ENUM:
-                return 'choice';
-            case \PropelColumnTypes::BOOLEAN:
-            case \PropelColumnTypes::BOOLEAN_EMU:
-                return 'checkbox';
-            case \PropelColumnTypes::TIMESTAMP:
-            case \PropelColumnTypes::BU_TIMESTAMP:
-                return 'datetime';
-            case \PropelColumnTypes::DATE:
-            case \PropelColumnTypes::BU_DATE:
-                return 'date';
-            case \PropelColumnTypes::TIME:
-                return 'time';
-            case \PropelColumnTypes::FLOAT:
-            case \PropelColumnTypes::REAL:
-            case \PropelColumnTypes::DOUBLE:
-            case \PropelColumnTypes::DECIMAL:
-                return 'number';
-            case \PropelColumnTypes::TINYINT:
-            case \PropelColumnTypes::SMALLINT:
-            case \PropelColumnTypes::INTEGER:
-            case \PropelColumnTypes::BIGINT:
-            case \PropelColumnTypes::NUMERIC:
-                return 'integer';
-            case \PropelColumnTypes::CHAR:
-            case \PropelColumnTypes::VARCHAR:
-                return 'text';
-            case \PropelColumnTypes::LONGVARCHAR:
-            case \PropelColumnTypes::BLOB:
-            case \PropelColumnTypes::CLOB:
-            case \PropelColumnTypes::CLOB_EMU:
-                return 'textarea';
-            case 'model':
-                return 'model';
-            case \PropelColumnTypes::PHP_ARRAY:
-            case 'collection':
-                return 'collection';
-                break;
-            default:
-                throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
+        $config = $this->container->getParameter('admingenerator.form_types.propel');        
+        $formTypes = array();
+        
+        foreach ($config as $key => $value) {
+            // if config is all uppercase use it to retrieve \PropelColumnTypes 
+            // constant, otherwise use it literally
+            if ($key === strtoupper($key)) {
+                $key = constant('\PropelColumnTypes::'.$key);
+            }
+            
+            $formTypes[$key] = $value;
+        }
+        
+        if (in_array($dbType, $formTypes)) {
+            return $formTypes[$dbType];
+        } elseif ('virtual' === $dbType) {
+            throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
+        } else {
+            throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
         }
     }
 

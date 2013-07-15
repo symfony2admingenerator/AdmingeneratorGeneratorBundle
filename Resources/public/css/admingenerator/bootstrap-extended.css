@@ -266,3 +266,13 @@ button:hover > [class^="icon-"]:before,
 button:hover > [class*=" icon-"]:before {
     cursor: pointer;
 }
+
+/* Fix icons */
+[class^="icon-"],
+[class*=" icon-"],
+[class^="icon-"]:focus,
+[class*=" icon-"]:focus,
+*:focus > [class^="icon-"],
+*:focus > [class*=" icon-"] {
+    background-image: none !important;
+}
