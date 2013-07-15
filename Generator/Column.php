@@ -3,10 +3,10 @@
 namespace Admingenerator\GeneratorBundle\Generator;
 
 /**
- *
  * This class describe a column
+ * 
  * @author cedric Lombardot
- *
+ * @author Piotr Gołębiewski <loostro@gmail.com>
  */
 use Doctrine\Common\Util\Inflector;
 
@@ -17,6 +17,8 @@ class Column
     protected $sortable;
 
     protected $sortOn;
+    
+    protected $sortType;
 
     protected $filterOn;
 
@@ -45,6 +47,7 @@ class Column
     {
         $this->name     = $name;
         $this->sortable = true;
+        $this->sortType = 'default';
     }
 
     public function setProperty($option, $value)
@@ -197,8 +200,9 @@ class Column
     {
         foreach ($complementary_options as $option => $value) {
             if (is_array($value)) {
-                foreach ($value as $k=>$v) {
-                    if (preg_match('/\.(.+)/i', $k, $matches)) { //enable to call php function to build your form options
+                foreach ($value as $k => $v) {
+                    if (preg_match('/\.(.+)/i', $k, $matches)) {
+                        // enable to call php function to build your form options
                         $value = call_user_func_array($matches[1], $v);
                     }
                 }
@@ -216,5 +220,15 @@ class Column
     public function getExtras()
     {
         return $this->extras;
+    }
+
+    public function setSortType($type)
+    {
+        $this->sortType = $type;
+    }
+
+    public function getSortType()
+    {
+        return $this->sortType;
     }
 }

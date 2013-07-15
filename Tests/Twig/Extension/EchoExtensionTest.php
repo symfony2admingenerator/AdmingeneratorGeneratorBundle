@@ -3,16 +3,11 @@
 namespace Admingenerator\GeneratorBundle\Tests\Twig\Extension;
 
 use Admingenerator\GeneratorBundle\Tests\TestCase;
-
 use Admingenerator\GeneratorBundle\Twig\Extension\EchoExtension;
-
-use Symfony\Component\Templating\TemplateNameParser;
-
-use Symfony\Component\Config\FileLocator;
-
 use Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator;
-
 use Symfony\Bundle\TwigBundle\Loader\FilesystemLoader;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Templating\TemplateNameParser;
 
 /**
  * This class test the Admingenerator\GeneratorBundle\Twig\Extension\EchoExtension
@@ -37,30 +32,7 @@ class EchoExtensionTest extends TestCase
             'options_form_model' => "array( 'query' => '\\\Admingenerator\\\PropelDemoBundle\\\Model\\\ActorQuery::create()->orderById()',)",
             'options_form_choice_method' => "array( 'choices' => '\\\Admingenerator\\\PropelDemoBundle\\\Model\\\ActorQuery::getMyCustoms()',)",
             'options_form_choice_array' => "array( 'choices' => array('a' => 'b'),)",
-
         );
-    }
-
-    public function testConvertAsForm()
-    {
-
-        $tpls = array(
-            'options_form_collection_type_class' => '{{ options_form_collection_type_class|convert_as_form("collection") }}',
-            'options_form_collection_type_name' => '{{ options_form_collection_type_name|convert_as_form("collection") }}',
-            'options_form_model' => '{{ options_form_model|convert_as_form("model") }}',
-            'options_form_choice_method' => '{{ options_form_choice_method|convert_as_form("choice") }}',
-            'options_form_choice_array' => '{{ options_form_choice_array|convert_as_form("choice") }}',
-        );
-
-        $returns = array(
-            'options_form_collection_type_class' => array("array( 'allow_add' => true, 'allow_delete' => true, 'by_reference' => false, 'type' =>  new \Admingenerator\PropelDemoBundle\Form\Type\ActorType(),)", 'convert as form can convert the type option for the collection type'),
-            'options_form_collection_type_name' => array("array( 'allow_add' => true, 'allow_delete' => true, 'by_reference' => false, 'type' => 'my_formType_name',)", 'convert as form can convert the type option for the collection type'),
-            'options_form_model' => array("array( 'query' => \Admingenerator\PropelDemoBundle\Model\ActorQuery::create()->orderById(),)", 'convert as form can convert the query option for the model type'),
-            'options_form_choice_method' => array("array( 'choices' => \Admingenerator\PropelDemoBundle\Model\ActorQuery::getMyCustoms(),)", 'convert as form can convert the choices option for the choice type'),
-            'options_form_choice_array' => array("array( 'choices' => array('a' => 'b'),)", 'convert as form can convert the choices option for the choice type'),
-        );
-
-       $this->runTwigTests($tpls, $returns);
     }
 
     public function testAsPhp()
@@ -75,7 +47,7 @@ class EchoExtensionTest extends TestCase
             'array' => array("array(  'obj' => 'val',)", 'As php dump well the array'),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testPhpName()
@@ -88,7 +60,7 @@ class EchoExtensionTest extends TestCase
             'string' => array("cedricisvalid", 'Php name format well the string'),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testWrap()
@@ -103,7 +75,7 @@ class EchoExtensionTest extends TestCase
             'empty' => array("", 'Wrap format well empty string'),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testChar()
@@ -118,7 +90,7 @@ class EchoExtensionTest extends TestCase
             'multiple' => array('!##', 'Char return well for multiple arguments'),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetEchoTrans()
@@ -129,11 +101,17 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-             'string' => array('{% trans from "Admingenerator" %}foo{% endtrans %}', 'trans return a good trans tag with string elements'),
-             'variable_key' => array('{% trans from "Admingenerator" %}cedric{% endtrans %}', 'trans return a good trans tag with variable as key'),
+            'string' => array(
+                '{% trans from "Admingenerator" %}foo{% endtrans %}',
+                'trans return a good trans tag with string elements'
+             ),
+            'variable_key' => array(
+                '{% trans from "Admingenerator" %}cedric{% endtrans %}',
+                'trans return a good trans tag with variable as key'
+             ),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetEchoTransWithParameters()
@@ -144,11 +122,17 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-             'string' => array('{% trans with {\'%foo%\': \'foo\',\'%bar%\': \'bar\',} from "Admingenerator" %}Display all <b>%foo% %bar%</b> results{% endtrans %}', 'trans return a good trans tag with string elements'),
-             'variable_key' => array('{% trans with {\'%foo%\': \'foo\',\'%bar%\': \'bar\',} from "Admingenerator" %}cedric{% endtrans %}', 'trans return a good trans tag with variable as key'),
+            'string' => array(
+                '{% trans with {\'%foo%\': \'foo\',\'%bar%\': \'bar\',} from "Admingenerator" %}Display all <b>%foo% %bar%</b> results{% endtrans %}',
+                'trans return a good trans tag with string elements'
+             ),
+            'variable_key' => array(
+                '{% trans with {\'%foo%\': \'foo\',\'%bar%\': \'bar\',} from "Admingenerator" %}cedric{% endtrans %}',
+                'trans return a good trans tag with variable as key'
+             ),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetEchoTransWithParameterBag()
@@ -162,14 +146,29 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-            'string_bc' => array('{% trans with {\'%Book.title%\': Book.title,\'%Book.author.name%\': Book.author.name,} from "Admingenerator" %}You\'re editing %Book.title% written by %Book.author.name%!{% endtrans %}', 'trans return a good trans tag with string elements'),
-            'string_with_full_param_bag' => array('{% trans with {\'%book%\': Book.title,\'%author%\': Book.author.name,} from "Admingenerator" %}You\'re editing %book% written by %author%!{% endtrans %}', 'trans return a good trans tag with string elements'),
-            'string_with_abbrev_param_bag' => array('{% trans with {\'%Book.title%\': Book.title,\'%Book.author.name%\': Book.author.name,} from "Admingenerator" %}You\'re editing %Book.title% written by %Book.author.name%!{% endtrans %}', 'trans return a good trans tag with string elements'),
-            'string_with_full_param_bag_and_params' => array('{% trans with {\'%foo%\': \'foo\',\'%book%\': Book.title,} from "Admingenerator" %}You\'re editing %book% written by %foo%!{% endtrans %}', 'trans return a good trans tag with string elements'),
-            'string_with_abbrev_param_bag_and_params' => array('{% trans with {\'%foo%\': \'foo\',\'%Book.title%\': Book.title,} from "Admingenerator" %}You\'re editing %Book.title% written by %foo%!{% endtrans %}', 'trans return a good trans tag with string elements'),
+            'string_bc' => array(
+                '{% trans with {\'%Book.title%\': Book.title,\'%Book.author.name%\': Book.author.name,} from "Admingenerator" %}You\'re editing %Book.title% written by %Book.author.name%!{% endtrans %}',
+                'trans return a good trans tag with string elements'
+            ),
+            'string_with_full_param_bag' => array(
+                '{% trans with {\'%book%\': Book.title,\'%author%\': Book.author.name,} from "Admingenerator" %}You\'re editing %book% written by %author%!{% endtrans %}',
+                'trans return a good trans tag with string elements'
+            ),
+            'string_with_abbrev_param_bag' => array(
+                '{% trans with {\'%Book.title%\': Book.title,\'%Book.author.name%\': Book.author.name,} from "Admingenerator" %}You\'re editing %Book.title% written by %Book.author.name%!{% endtrans %}',
+                'trans return a good trans tag with string elements'
+            ),
+            'string_with_full_param_bag_and_params' => array(
+                '{% trans with {\'%foo%\': \'foo\',\'%book%\': Book.title,} from "Admingenerator" %}You\'re editing %book% written by %foo%!{% endtrans %}',
+                'trans return a good trans tag with string elements'
+            ),
+            'string_with_abbrev_param_bag_and_params' => array(
+                '{% trans with {\'%foo%\': \'foo\',\'%Book.title%\': Book.title,} from "Admingenerator" %}You\'re editing %Book.title% written by %foo%!{% endtrans %}',
+                'trans return a good trans tag with string elements'
+            ),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetEchoSet()
@@ -184,15 +183,33 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-             'string' => array('{% set foo = "bar" %}', 'Set return a good set tag with string elements'),
-             'variable_key' => array('{% set cedric = "bar" %}', 'Set return a good set tag with variable as key'),
-             'variable_value' => array('{% set foo = "cedric" %}', 'Set return a good set tag with variable as value'),
-             'array_key' => array('{% set val = "bar" %}', 'Set return a good set tag with array element as key'),
-             'array_value' => array('{% set foo = "val" %}', 'Set return a good set tag with array element as value'),
-             'not_value_as_string' => array('{% set foo = bar %}', 'Set return a good set tag with false for option value_as_string'),
+            'string' => array(
+                '{% set foo = "bar" %}',
+                'Set return a good set tag with string elements'
+             ),
+            'variable_key' => array(
+                '{% set cedric = "bar" %}',
+                'Set return a good set tag with variable as key'
+             ),
+            'variable_value' => array(
+                '{% set foo = "cedric" %}',
+                'Set return a good set tag with variable as value'
+             ),
+            'array_key' => array(
+                '{% set val = "bar" %}',
+                'Set return a good set tag with array element as key'
+             ),
+            'array_value' => array(
+                '{% set foo = "val" %}',
+                'Set return a good set tag with array element as value'
+             ),
+            'not_value_as_string' => array(
+                '{% set foo = bar %}',
+                'Set return a good set tag with false for option value_as_string'
+             ),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetEchoPath()
@@ -207,15 +224,33 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-             'string' => array('{{ path("foo") }}', 'Path return a good Path tag with string elements'),
-             'variable' => array('{{ path("cedric") }}', 'Path return a good Path tag with variable'),
-             'array' => array('{{ path("val") }}', 'Path return a good Path tag with array element'),
-             'string_filtered' => array('{{ path("foo")|foo|bar }}', 'Path return a good Path tag with string elements and filters'),
-             'variable_filtered' => array('{{ path("cedric")|foo|bar }}', 'Path return a good Path tag with variable and filters'),
-             'array_filtered' => array('{{ path("val")|foo|bar }}', 'Path return a good Path tag with array element and filters'),
+            'string' => array(
+                '{{ path("foo") }}',
+                'Path return a good Path tag with string elements'
+             ),
+            'variable' => array(
+                '{{ path("cedric") }}',
+                'Path return a good Path tag with variable'
+             ),
+            'array' => array(
+                '{{ path("val") }}',
+                'Path return a good Path tag with array element'
+             ),
+            'string_filtered' => array(
+                '{{ path("foo")|foo|bar }}',
+                'Path return a good Path tag with string elements and filters'
+             ),
+            'variable_filtered' => array(
+                '{{ path("cedric")|foo|bar }}',
+                'Path return a good Path tag with variable and filters'
+             ),
+            'array_filtered' => array(
+                '{{ path("val")|foo|bar }}',
+                'Path return a good Path tag with array element and filters'
+             ),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetEchoIf()
@@ -229,14 +264,29 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-             'string' => array('{% if a = b %}', 'If return a good If tag with string elements'),
-             'variable' => array('{% if cedric = \'cedric\' %}', 'If return a good If tag with variable'),
-             'array' => array('{% if val %}', 'If return a good If tag with array element'),
-             'boolean_true' => array('{% if 1 %}', 'If return a good If tag with boolean true variable'),
-             'boolean_false' => array('{% if 0 %}', 'If return a good If tag with boolean false variable'),
+            'string' => array(
+                '{% if a = b %}',
+                'If return a good If tag with string elements'
+             ),
+            'variable' => array(
+                '{% if cedric = \'cedric\' %}',
+                'If return a good If tag with variable'
+             ),
+            'array' => array(
+                '{% if val %}',
+                'If return a good If tag with array element'
+             ),
+            'boolean_true' => array(
+                '{% if 1 %}',
+                'If return a good If tag with boolean true variable'
+             ),
+            'boolean_false' => array(
+                '{% if 0 %}',
+                'If return a good If tag with boolean false variable'
+             ),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetEchoIfGranted()
@@ -248,9 +298,17 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-            'simple'  => array('{% if is_expr_granted(\'hasRole(\'ROLE_A\')\') %}', 'If granted work with a simple role'),
-            'complex' => array('{% if is_expr_granted(\'hasRole(\'ROLE_A\')\') or (hasRole(\'ROLE_B\') and hasRole(\'ROLE_C\')\') %}', 'If granted work with a complex role expression'),
-            'with_object' => array('{% if is_expr_granted(\'hasRole(\'ROLE_A\')\', modelName) %}', 'If granted work with an object'),
+            'simple'  => array(
+                '{% if is_expr_granted(\'hasRole(\'ROLE_A\')\') %}',
+                'If granted work with a simple role'),
+            'complex' => array(
+                '{% if is_expr_granted(\'hasRole(\'ROLE_A\')\') or (hasRole(\'ROLE_B\') and hasRole(\'ROLE_C\')\') %}',
+                'If granted work with a complex role expression'
+            ),
+            'with_object' => array(
+                '{% if is_expr_granted(\'hasRole(\'ROLE_A\')\', modelName) %}',
+                'If granted work with an object'
+            ),
         );
 
         $this->runTwigTests($tpls, $returns);
@@ -267,14 +325,29 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-             'string' => array('{% elseif a = b %}', 'Else If return a good Else If tag with string elements'),
-             'variable' => array('{% elseif cedric = \'cedric\' %}', 'Else If return a good Else If tag with variable'),
-             'array' => array('{% elseif val %}', 'Else If return a good Else If tag with array element'),
-             'boolean_true' => array('{% elseif 1 %}', 'Else If return a good Else If tag with boolean true variable'),
-             'boolean_false' => array('{% elseif 0 %}', 'Else If return a good Else If tag with boolean false variable'),
+            'string' => array(
+                '{% elseif a = b %}',
+                'Else If return a good Else If tag with string elements'
+             ),
+            'variable' => array(
+                '{% elseif cedric = \'cedric\' %}',
+                'Else If return a good Else If tag with variable'
+             ),
+            'array' => array(
+                '{% elseif val %}',
+                'Else If return a good Else If tag with array element'
+             ),
+            'boolean_true' => array(
+                '{% elseif 1 %}',
+                'Else If return a good Else If tag with boolean true variable'
+             ),
+            'boolean_false' => array(
+                '{% elseif 0 %}',
+                'Else If return a good Else If tag with boolean false variable'
+             ),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetEchoElse()
@@ -284,10 +357,10 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-             'empty' => array('{% else %}', 'Else return a good Else tag'),
+            'empty' => array('{% else %}', 'Else return a good Else tag'),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetEchoEndIf()
@@ -297,10 +370,10 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-             'empty' => array('{% endif %}', 'EndIf return a good EndIf tag'),
+            'empty' => array('{% endif %}', 'EndIf return a good EndIf tag'),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetEchoTwig()
@@ -312,12 +385,21 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-             'string' => array('{{ cedric }}', 'echo return a good echo tag with string elements'),
-             'variable' => array('{{ cedric.cedric }}', 'echo return a good echo tag with variable'),
-             'array' => array('{{ val }}', 'echo return a good echo tag with array element'),
+            'string' => array(
+                '{{ cedric }}',
+                'echo return a good echo tag with string elements'
+            ),
+            'variable' => array(
+                '{{ cedric.cedric }}',
+                'echo return a good echo tag with variable'
+            ),
+            'array' => array(
+                '{{ val }}',
+                'echo return a good echo tag with array element'
+            ),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetEchoBlock()
@@ -329,12 +411,21 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-             'string' => array('{% block cedric %}', 'EchoBlock return a good block tag with string elements'),
-             'variable' => array('{% block cedric_cedric %}', 'EchoBlock return a good block tag with variable'),
-             'array' => array('{% block val %}', 'EchoBlock return a good echo block with array element'),
+            'string' => array(
+                '{% block cedric %}',
+                'EchoBlock return a good block tag with string elements'
+            ),
+            'variable' => array(
+                '{% block cedric_cedric %}',
+                'EchoBlock return a good block tag with variable'
+            ),
+            'array' => array(
+                '{% block val %}',
+                'EchoBlock return a good echo block with array element'
+            ),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetEchoEndBlock()
@@ -344,10 +435,10 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-             'empty' => array('{% endblock  %}', 'endblock return a good endblock tag'),
+            'empty' => array('{% endblock  %}', 'endblock return a good endblock tag'),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetEchoExtends()
@@ -359,12 +450,21 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-             'string' => array('{% extends "cedric" %}', 'Extends return a good Extends tag with string elements'),
-             'variable' => array('{% extends "cedric_cedric" %}', 'Extends return a good Extends tag with variable'),
-             'array' => array('{% extends "val" %}', 'Extends return a good Extends with array element'),
+            'string' => array(
+                '{% extends "cedric" %}',
+                'Extends return a good Extends tag with string elements'
+            ),
+            'variable' => array(
+                '{% extends "cedric_cedric" %}',
+                'Extends return a good Extends tag with variable'
+            ),
+           'array' => array(
+                '{% extends "val" %}',
+                'Extends return a good Extends with array element'
+            ),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetEchoFor()
@@ -385,7 +485,7 @@ class EchoExtensionTest extends TestCase
              'array_value' => array('{% for foo in val %}', 'for return a good for tag with array element as value'),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetEchoEndFor()
@@ -398,7 +498,7 @@ class EchoExtensionTest extends TestCase
              'empty' => array('{% endfor %}', 'endfor return a good endfor tag'),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetTwigAssoc()
@@ -453,13 +553,25 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-            'string' => array('{% include "::base.htmlm.twig" with {  } %}', 'include return a good include tag with string elements'),
-            'with_params' => array('{% include "::base.htmlm.twig" with { hello: \'cedric\' } %}', 'include return a good include tag with string elements and params'),
-            'with_empty_params' => array('{% include "::base.htmlm.twig" with {  } %}', 'include return a good include tag with string elements and empty params'),
-            'with_params_only' => array('{% include "::base.htmlm.twig" with { hello: \'cedric\' } only %}', 'include return a good include tag with string elements and params only'),
+            'string' => array(
+                '{% include "::base.htmlm.twig" with {  } %}',
+                'include return a good include tag with string elements'
+            ),
+            'with_params' => array(
+                '{% include "::base.htmlm.twig" with { hello: \'cedric\' } %}',
+                'include return a good include tag with string elements and params'
+            ),
+            'with_empty_params' => array(
+                '{% include "::base.htmlm.twig" with {  } %}',
+                'include return a good include tag with string elements and empty params'
+            ),
+            'with_params_only' => array(
+                '{% include "::base.htmlm.twig" with { hello: \'cedric\' } only %}',
+                'include return a good include tag with string elements and params only'
+            ),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetEchoRender()
@@ -470,11 +582,17 @@ class EchoExtensionTest extends TestCase
         );
 
         $returns = array(
-            'controller' => array('{{ render(controller("MyController", {  })) }}', 'controller return a good controller tag'),
-            'with_params' => array('{{ render(controller("MyController", { hello: \'cedric\' })) }}', 'controller return a good controller tag'),
+            'controller' => array(
+                '{{ render(controller("MyController", {  })) }}',
+                'controller return a good controller tag'
+            ),
+            'with_params' => array(
+                '{{ render(controller("MyController", { hello: \'cedric\' })) }}',
+                'controller return a good controller tag'
+            ),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     protected function runTwigTests($tpls, $returns)
@@ -482,17 +600,28 @@ class EchoExtensionTest extends TestCase
         $twig = $this->getEnvironment(false, array(), $tpls);
 
         foreach ($tpls as $name => $tpl) {
-            $this->assertEquals($returns[$name][0],
-            $twig->loadTemplate($name)
-                            ->render(self::$params),
-                            $returns[$name][1]);
+            $this->assertEquals(
+                $returns[$name][0],
+                $twig->loadTemplate($name)->render(self::$params),
+                $returns[$name][1]
+            );
         }
     }
 
     protected function getEnvironment($sandboxed, $options, $templates, $tags = array(), $filters = array(), $methods = array(), $properties = array(), $functions = array())
     {
         $loader = new \Twig_Loader_Array($templates);
-        $twig = new \Twig_Environment($loader, array_merge(array('debug' => true, 'cache' => false, 'autoescape' => false), $options));
+        $twig = new \Twig_Environment(
+            $loader,
+            array_merge(
+                array(
+                    'debug' => true,
+                    'cache' => false,
+                    'autoescape' => false,
+                ),
+                $options
+            )
+        );
 
         $locator = new TemplateLocator(new FileLocator(array(__DIR__.'/../Fixtures')));
         $templateNameParser = new TemplateNameParser();
@@ -501,41 +630,5 @@ class EchoExtensionTest extends TestCase
         $twig->addExtension(new EchoExtension($loader));
 
         return $twig;
-    }
-}
-
-class Object
-{
-    public static $called = array('__toString' => 0, 'foo' => 0, 'getFooBar' => 0);
-
-    public function __construct($bar ='bar')
-    {
-
-    }
-
-    public static function reset()
-    {
-        self::$called = array('__toString' => 0, 'foo' => 0, 'getFooBar' => 0);
-    }
-
-    public function __toString()
-    {
-        ++self::$called['__toString'];
-
-        return 'foo';
-    }
-
-    public function foo()
-    {
-        ++self::$called['foo'];
-
-        return 'foo';
-    }
-
-    public function getFooBar()
-    {
-        ++self::$called['getFooBar'];
-
-        return 'foobar';
     }
 }

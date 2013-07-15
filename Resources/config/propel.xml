@@ -32,14 +32,5 @@
         <service id="admingenerator.queryfilter.propel"
             class="%admingenerator.queryfilter.propel.class%">
         </service>
-
-        <!-- Form -->
-        <service id="form.type.propel_double_list" class="Admingenerator\GeneratorBundle\Form\Type\Propel\DoubleListType">
-            <tag name="form.type" alias="double_list" />
-        </service>
-
-        <service id="form.type.propel_entitypicker" class="Admingenerator\GeneratorBundle\Form\Type\Propel\EntityPickerType">
-            <tag name="form.type" alias="entitypicker" />
-        </service>
     </services>
 </container>

@@ -1,7 +1,7 @@
-{% use '../CommonAdmin/title.php.twig' %}
+{% use '../CommonAdmin/ListTemplate/scopes.php.twig' %}
 {% use '../CommonAdmin/stylesheets.php.twig' %}
 {% use '../CommonAdmin/javascripts.php.twig' %}
-{% use '../CommonAdmin/ListTemplate/scopes.php.twig' %}
+{% use '../CommonAdmin/title.php.twig' %}
 
 {{ echo_extends( builder.getBaseAdminTemplate ) }}
 
@@ -25,6 +25,7 @@
 
             {{ echo_include(builder.namespacePrefixForTemplate ~ bundle_name ~ ':' ~ builder.BaseGeneratorName ~ 'List:results.html.twig') }}
         </div>
+        
         {{ echo_block("filters") }}
             {% if builder.filterColumns|length > 0 %}
             <div class="span3">

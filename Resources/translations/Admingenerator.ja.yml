@@ -1,137 +1,92 @@
-# Double list form
-double_list:
-  selected:   選択済み
-  unselected: 選択候補
-
-# Date range form
-date_range:
-  from.label: から
-  to.label:   へ
-
 # Boolean filter
 boolean:
-  yes:        はい
-  no:         ノー
-  yes_or_no:  諾否
+    yes:        はい
+    no:         ノー
+    yes_or_no:  諾否
 
 # Pager
 pagerfanta:
-  previous:       前へ
-  next:           次へ
-  view.perpage:   を表示する
-  num.elements:   %number%つの要素
+    previous:       前へ
+    next:           次へ
+    view.perpage:   を表示する
+    num.elements:   %number%つの要素
 
 # List
 list:
-  no.results: 結果がありません
-  filters:    絞り込み
+    no.results: 結果がありません
+    filters:    絞り込み
 list.button:
-  filter:     絞り込み
-  reset:      リセット
+    filter:     絞り込み
+    reset:      リセット
 list.display:
-  range:      <b>%count%</b> 件中 <b>%start%</b> - <b>%end%</b> 件目を表示中
-  all:        <b>%count%</b> 件の結果を表示中
+    range:      <b>%count%</b> 件中 <b>%start%</b> - <b>%end%</b> 件目を表示中
+    all:        <b>%count%</b> 件の結果を表示中
 list.header:
-  actions:    操作
+    actions:    操作
 
 # Nested List
 nested.list:
-  expand:     見せる
-  collapse:   隠す
-  loading:    読みこみ中…
-  success:    要素が正常に移動した
-  error:      要素を移動できませんでした
+    expand:     見せる
+    collapse:   隠す
+    loading:    読みこみ中…
+    success:    要素が正常に移動した
+    error:      要素を移動できませんでした
 
 # Profile
 profile:
-  welcome:  <b>ようこそ</b> %username%
-  login:    ログイン
-  logout:   ログアウト
-  exit:     偽装モードを終了
-
-# EntityPicker
-entity_picker:
-  placeholder:  検索...
-
-# Collection
-collection:
-  add:          追加
-
-# Upload
-upload:
-  file.add:     ファイルを追加...
-  error:        エラー
-  cancel:       キャンセル
-  delete:       削除
-  download:     ダウンロード
-upload.errors:
-  maxNumFiles:      ファイルの最大数を超えています
-  typeNotAllowed:   許可されていないファイルタイプです
-  maxFileSize:      ファイルが大きすぎます
-  minFileSize:      ファイルが小さすぎます
+    welcome:  <b>ようこそ</b> %username%
+    login:    ログイン
+    logout:   ログアウト
+    exit:     偽装モードを終了
 
 # Generic actions
 action.generic:
-  list:   一覧
-  new:    新規作成
-  save:   保存
-  save-and-add:   保存して追加
-  save-and-list:  保存して戻る
+    list:   一覧
+    new:    新規作成
+    save:   保存
+    save-and-add:   保存して追加
+    save-and-list:  保存して戻る
 
 # Object actions
 action.object.edit:
-  label:    編集
-  success:  データの保存が正常に完了しました。
-  error:    データの保存に失敗しました。エラーを確認して再度保存してください。
-  locked:   |
-              申し訳ありませんが、他の誰かがすでにこのオブジェクトを変更しました。<br />
-              <a href="%path%" target="_blank">ここをクリック</a>
-              新しいタブで変更を表示したり、変更を適用するには、もう一度フォームを送信します！
+    label:    編集
+    success:  データの保存が正常に完了しました。
+    error:    データの保存に失敗しました。エラーを確認して再度保存してください。
+    locked:   |
+                申し訳ありませんが、他の誰かがすでにこのオブジェクトを変更しました。<br />
+                <a href="%path%" target="_blank">ここをクリック</a>
+                新しいタブで変更を表示したり、変更を適用するには、もう一度フォームを送信します！
 action.object.delete:
-  label:    削除
-  confirm:  選択したデータを削除します。よろしいですか?
-  success:  要素が正常に削除されています。
-  error:    要素を削除することはできません。
+    label:    削除
+    confirm:  選択したデータを削除します。よろしいですか?
+    success:  要素が正常に削除されています。
+    error:    要素を削除することはできません。
 action.object.show:
-  label:    表示
+    label:    表示
 
 # Batch actions
 action.batch.delete:
-  label:    削除
-  confirm:  選択したすべてのデータを削除します。よろしいですか?
-  success:  データの削除が正常に完了しました。
-  error:    データの削除に失敗しました。
+    label:    削除
+    confirm:  選択したすべてのデータを削除します。よろしいですか?
+    success:  データの削除が正常に完了しました。
+    error:    データの削除に失敗しました。
 
 # Custom actions
 action.custom:
-  title:    あなたはの%name%のアクションを実行してもよろしいですか？
-  success:  の%name%のアクションは正常に実行されました。
-  error:    の%name%のアクションを実行できませんでした。
-  confirm:  確認する
-  cancel:   キャンセル
+    title:    あなたはの%name%のアクションを実行してもよろしいですか？
+    success:  の%name%のアクションは正常に実行されました。
+    error:    の%name%のアクションを実行できませんでした。
+    confirm:  確認する
+    cancel:   キャンセル
 
 # Batch list
 batch.list:
-  selected:       選択済み
-  none.selected:  1つ以上のデータを選択する必要があります。
-  warning:        により不足しているパラメータをバッチアクションを完了できませんでした
-  send:           成し遂げる
+    selected:       選択済み
+    none.selected:  1つ以上のデータを選択する必要があります。
+    warning:        により不足しているパラメータをバッチアクションを完了できませんでした
+    send:           成し遂げる
 
 # Layout
 dashboard:
-  homepage:   ホームへ
-  brand:      ダッシュボード
-
-# Filetype icons
-filetype:
-  audio:            オーディオ
-  archive:          圧縮ファイル
-  html:             HTML
-  image:            イメージ
-  pdf-document:     PDF
-  plain-text:       プレーンテキスト
-  presentation:     プレゼンテーション
-  spreadsheet:      スプレッドシート
-  text-document:    テキストファイル
-  unknown:          不明なファイル
-  video:            ビデオ
+    homepage:   ホームへ
+    brand:      ダッシュボード

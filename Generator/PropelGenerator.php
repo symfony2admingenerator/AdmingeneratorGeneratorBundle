@@ -43,13 +43,20 @@ class PropelGenerator extends Generator
         $generator = new AdminGenerator($this->cache_dir, $this->getGeneratorYml());
 
         $generator->setContainer($this->container);
-        $generator->setBaseAdminTemplate($generator->getFromYaml('base_admin_template', $this->container->getParameter('admingenerator.base_admin_template')));
+        $generator->setBaseAdminTemplate(
+            $generator->getFromYaml(
+                'base_admin_template',
+                $this->container->getParameter('admingenerator.base_admin_template')
+            )
+        );
         $generator->setFieldGuesser($this->getFieldGuesser());
         $generator->setMustOverwriteIfExists($this->needToOverwrite($generator));
-        $generator->setTemplateDirs(array_merge(
-            $this->container->getParameter('admingenerator.propel_templates_dirs'),
-            array(__DIR__.'/../Resources/templates/Propel')
-        ));
+        $generator->setTemplateDirs(
+            array_merge(
+                $this->container->getParameter('admingenerator.propel_templates_dirs'),
+                array(__DIR__.'/../Resources/templates/Propel')
+            )
+        );
         $generator->setBaseController('Admingenerator\GeneratorBundle\Controller\Propel\BaseController');
         $generator->setColumnClass('Admingenerator\GeneratorBundle\Generator\PropelColumn');
         $generator->setBaseGeneratorName($this->getBaseGeneratorName());
@@ -60,15 +67,15 @@ class PropelGenerator extends Generator
             $this->prebuildEmbedType($yaml_path, $generator);
         }
 
-        $builders = $generator->getFromYaml('builders',array());
+        $builders = $generator->getFromYaml('builders', array());
 
-        if (array_key_exists('list',$builders)) {
+        if (array_key_exists('list', $builders)) {
             $generator->addBuilder(new ListBuilderAction());
             $generator->addBuilder(new ListBuilderTemplate());
             $generator->addBuilder(new FiltersBuilderType());
         }
 
-        if (array_key_exists('nested_list',$builders)) {
+        if (array_key_exists('nested_list', $builders)) {
             $generator->addBuilder(new NestedListBuilderAction());
             $generator->addBuilder(new NestedListBuilderTemplate());
             $generator->addBuilder(new FiltersBuilderType());
@@ -96,7 +103,12 @@ class PropelGenerator extends Generator
             $generator->addBuilder(new ActionsBuilderTemplate());
         }
 
-        $generator->writeOnDisk($this->getCachePath($generator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));
+        $generator->writeOnDisk(
+            $this->getCachePath(
+                $generator->getFromYaml('params.namespace_prefix'),
+                $generator->getFromYaml('params.bundle_name')
+            )
+        );
     }
 
     public function prebuildEmbedType($yaml_path, $generator)
@@ -117,22 +129,37 @@ class PropelGenerator extends Generator
         $yaml_file = $kernel->locateResource('@'.$namespace_prefix.$bundle_name.'/Resources/config/'.$generator_path);
 
         if (!file_exists($yaml_file)) {
-            throw new CantGenerateException("Can't generate embed type for $yaml_file, file not found.");
+            throw new CantGenerateException(
+                "Can't generate embed type for $yaml_file, file not found."
+            );
         }
 
         $embedGenerator = new AdminGenerator($this->cache_dir, $yaml_file);
         $embedGenerator->setContainer($this->container);
-        $embedGenerator->setBaseAdminTemplate($embedGenerator->getFromYaml('base_admin_template', $this->container->getParameter('admingenerator.base_admin_template')));
+        $embedGenerator->setBaseAdminTemplate(
+            $embedGenerator->getFromYaml(
+                'base_admin_template',
+                $this->container->getParameter('admingenerator.base_admin_template')
+            )
+        );
         $embedGenerator->setFieldGuesser($this->getFieldGuesser());
         $embedGenerator->setMustOverwriteIfExists($this->needToOverwrite($embedGenerator));
-        $embedGenerator->setTemplateDirs(array_merge(
-            $this->container->getParameter('admingenerator.propel_templates_dirs'),
-            array(__DIR__.'/../Resources/templates/Propel')
-        ));
+        $embedGenerator->setTemplateDirs(
+            array_merge(
+                $this->container->getParameter('admingenerator.propel_templates_dirs'),
+                array(__DIR__.'/../Resources/templates/Propel')
+            )
+        );
          $embedGenerator->setColumnClass('Admingenerator\GeneratorBundle\Generator\PropelColumn');
 
         $embedGenerator->addBuilder(new EditBuilderType());
+        $embedGenerator->addBuilder(new NewBuilderType());
 
-        $embedGenerator->writeOnDisk($this->getCachePath($embedGenerator->getFromYaml('params.namespace_prefix'), $generator->getFromYaml('params.bundle_name')));
+        $embedGenerator->writeOnDisk(
+            $this->getCachePath(
+                $embedGenerator->getFromYaml('params.namespace_prefix'),
+                $generator->getFromYaml('params.bundle_name')
+            )
+        );
     }
 }

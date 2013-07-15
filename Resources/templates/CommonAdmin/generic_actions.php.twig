@@ -1,0 +1,63 @@
+{% block generic_actions %}
+{{ echo_block("generic_actions") }}
+    {% if builder.Actions|length > 0 %}
+        {% for action in builder.Actions %}
+            {{ echo_block("generic_action_" ~ action.twigName) }}
+            {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
+                {{ echo_if_granted(action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') ) }}
+            {% endif %}
+
+                {% if action.conditionalFunction %}
+                    {{ echo_if((action.conditionalInverse ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')') }}
+                {% endif %}
+
+                {{ block('generic_action_block') }}
+
+                {% if action.conditionalFunction %}
+                    {{ echo_endif() }}
+                {% endif %}
+
+            {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
+                {{ echo_endif() }}
+            {% endif %}
+            {{ echo_endblock() }}
+        {% endfor %}
+
+        {{ block('generic_actions_script') }}
+    {% endif %}
+{{ echo_endblock() }}
+{% endblock %}
+
+{% block generic_action_block %}
+    {% set actionRoute = action.route ? action.route : (builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_' ~ action.name) %}
+    {% set actionParams = action.params ? echo_twig_assoc(action.params) : "{}" %}
+    {% set translationDomain = action.type is sameas('custom') ? i18n_catalog|default("Admin") : 'Admingenerator' %}
+
+    {% if action.submit %}
+        <button type="submit" name="{{ action.name }}" class="btn {{ action.class|default('') }}"
+          {%- if action.confirm %} data-confirm="{{ echo_trans(action.confirm, {}, translationDomain) }}"{% endif %}>
+          {%- if action.icon %}<i class="{{ action.icon }}"></i> {% endif %}{{ echo_trans(action.label, {}, translationDomain) }}
+        </button>
+    {% else %}
+        <a class="btn {{ action.class|default('') }}" href="{{ echo_path(actionRoute, actionParams) }}"
+          {%- if action.confirm %} data-confirm="{{ echo_trans(action.confirm, {}, translationDomain) }}"{% endif %}
+          {%- if action.csrfProtected %} data-csrf-token="{{ echo_path(actionRoute, actionParams, ['csrf_token']) }}" {% endif -%}>
+          {%- if action.icon %}<i class="{{ action.icon }}"></i> {% endif %}{{ echo_trans(action.label, {}, translationDomain) }}
+        </a>
+    {% endif %}
+{% endblock %}
+    
+{% block generic_actions_script %}
+{{ echo_block("generic_actions_script") }}
+{% if builder.Actions is defined and builder.Actions|length > 0 %}
+    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/generic-actions.js")') }}"></script>
+    <script type="text/javascript">
+        ;(function(window, $, undefined) {
+            $("#generic_actions").agen$genericActions({
+                actionsSelector: 'a.btn'
+            });
+        })(this, jQuery);
+    </script>
+{% endif %}
+{{ echo_endblock() }}
+{% endblock %}

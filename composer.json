@@ -23,7 +23,13 @@
         "knplabs/knp-menu-bundle": ">1.0,<2.1",
         "white-october/pagerfanta-bundle": "1.0.*@dev",
         "twig/twig": ">= 1.9.0",
-        "twig/extensions": "1.0.*"
+        "twig/extensions": "1.0.*",
+        "robloach/component-installer": ">= 0.0.11",
+        "afarkas/html5shiv": "dev-master",
+        "components/jquery": ">= 1.9.0, < 2.0.0",
+        "components/jqueryui": ">= 1.9.0",
+        "components/bootstrap": ">= 2.3.1",
+        "components/font-awesome": ">= 3.2.0"
     },
     "require-dev": {
         "doctrine/common": ">=2.2.3,<2.5-dev",
@@ -31,9 +37,9 @@
         "doctrine/dbal": ">=2.2.3,<2.5-dev"
     },
     "suggest": {
-        "cedriclombardot/admingenerator-user-bundle": "Help you to overwrite the base layout of FOSUserBundle or others giving a parameter key of the container",
-        "genemu/form-bundle": "Additional forms for Symfony",
-        "avalanche123/imagine-bundle": "Image manipulation using Imagine and Twig Filters"
+        "avocode/form-extensions-bundle": "Symfony2 form extensions for Admingenerator",
+        "cedriclombardot/admingenerator-user-bundle": "FOSUserBundle integration for Admingenerator",
+        "jms/security-extra-bundle": "Allows expressions in credential checks for generated actions"
     },
     "target-dir": "Admingenerator/GeneratorBundle",
     "autoload": {

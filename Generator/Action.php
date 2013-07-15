@@ -77,6 +77,11 @@ class Action
         return $this->name;
     }
 
+    public function getTwigName()
+    {
+        return str_replace('-', '_', $this->name);
+    }
+
     public function getType()
     {
         return $this->type;

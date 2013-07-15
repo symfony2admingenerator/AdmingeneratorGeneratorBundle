@@ -33,16 +33,5 @@
         <service id="admingenerator.queryfilter.doctrine_odm"
             class="%admingenerator.queryfilter.doctrine_odm.class%">
         </service>
-
-        <!-- Form -->
-        <service id="form.type.doctrine_odm_double_list" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineODM\DoubleListType">
-            <tag name="form.type" alias="double_list" />
-            <argument type="service" id="doctrine_mongodb" />
-        </service>
-
-        <service id="form.type.doctrine_odm_entitypicker" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineODM\EntityPickerType">
-            <tag name="form.type" alias="entitypicker" />
-            <argument type="service" id="doctrine_mongodb" />
-        </service>
     </services>
 </container>

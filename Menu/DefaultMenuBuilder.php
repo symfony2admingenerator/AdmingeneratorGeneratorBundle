@@ -2,29 +2,34 @@
 
 namespace Admingenerator\GeneratorBundle\Menu;
 
-use Symfony\Component\HttpFoundation\Request;
+use Admingenerator\GeneratorBundle\Menu\AdmingeneratorMenuBuilder;
+use Knp\Menu\FactoryInterface;
 
 class DefaultMenuBuilder extends AdmingeneratorMenuBuilder
 {
-    /**
-     * @param Request $request
-     * @param Router  $router
-     */
-    public function createAdminMenu(Request $request)
+    protected $translation_domain = 'Admin';
+    
+    public function navbarMenu(FactoryInterface $factory, array $options)
     {
-        $menu = parent::createAdminMenu($request);
-
-        /**
-         * Translation domain is passed down to child elements
-         * in addNavLinkURI, addNavLinkRoute, addDropdownMenu methods.
-         */
-        $menu->setExtra('translation_domain', 'Admingenerator');
-
-        $help = $this->addDropdownMenu($menu, 'Overwrite this menu');
-
-        $this->addNavLinkURI($help, 'Render your menu', 'https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/menu/menu.md');
-        $this->addNavLinkURI($help, 'Configure menu cookbook', 'https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/menu.md');
-
+        $menu = $factory->createItem('root');
+        $menu->setChildrenAttributes(array('id' => 'main_navigation', 'class' => 'nav'));
+        
+        $overwrite = $this->addDropdown($menu, 'Replace this menu');
+        
+        $this->addLinkURI(
+            $overwrite,
+            'Create new menu builder',
+            'https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle'
+            .'/blob/master/Resources/doc/cookbook/menu.md'
+        )->setExtra('icon', 'icon-wrench');
+        
+        $this->addLinkURI(
+            $overwrite,
+            'Customize menu block',
+            'https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle'.
+            '/blob/master/Resources/views/base_admin_navbar.html.twig'
+        )->setExtra('icon', 'icon-fork');
+        
         return $menu;
     }
 }

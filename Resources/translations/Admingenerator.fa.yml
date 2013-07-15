@@ -1,142 +1,93 @@
-# Double list form
-double_list:
-  selected:   انتخاب شده
-  unselected: انتخاب نشده
-
-# Date range form
-date_range:
-  from.label: از
-  to.label:   تا
-
 # Boolean filter
 boolean:
-  yes:        بله
-  no:         خیر
-  yes_or_no:  بله یا خیر
+    yes:        بله
+    no:         خیر
+    yes_or_no:  بله یا خیر
 
 # Pager
 pagerfanta:
-  previous: قبلی
-  next:     بعدی
-  view.perpage:   نمایش
-  num.elements:   %number% عناصر
+    previous: قبلی
+    next:     بعدی
+    view.perpage:   نمایش
+    num.elements:   %number% عناصر
 
 # List
 list:
-  no.results: موردی پیدا نشد.
-  filters:    فیلترها
+    no.results: موردی پیدا نشد.
+    filters:    فیلترها
 list.button:
-  filter:     فیلتر
-  reset:      مجدد سازی
+    filter:     فیلتر
+    reset:      مجدد سازی
 list.display:
-  range:      نمایش <b>%start%</b> - <b>%end%</b> از <b>%count%</b> نتیجه.
-  all:        نمایش همه ی  <b>%count%</b> نتیجه.
+    range:      نمایش <b>%start%</b> - <b>%end%</b> از <b>%count%</b> نتیجه.
+    all:        نمایش همه ی  <b>%count%</b> نتیجه.
 list.header:
-  actions:    اقدام ها
+    actions:    اقدام ها
 
 # Nested List
 nested.list:
-  expand:     نمایش
-  collapse:   مخفی کردن
-  loading:    در حال بارگذاری
-  success:    عنصر مورد نظر با موفقیت جابه جا گردید
-  error:      عنصر مورد نظر جا به جا نشد
+    expand:     نمایش
+    collapse:   مخفی کردن
+    loading:    در حال بارگذاری
+    success:    عنصر مورد نظر با موفقیت جابه جا گردید
+    error:      عنصر مورد نظر جا به جا نشد
 
 # Profile
 profile:
-  welcome:  <b>خوش آمدید</b>, %username%!
-  login:    ورود
-  logout:   خروج
-  exit:     خروج از حالت جعل هویت
-
-# EntityPicker
-entity_picker:
-  placeholder:  جستجو...
-
-# Collection
-collection:
-  add: اضافه کردن
-
-# Upload
-upload:
-  file.add:     فایل جدید...
-  error:        خطا
-  cancel:       لغو کردن
-  delete:       حذف کردن
-  download:     دانلود
-upload.errors:
-  maxNumFiles:      برون روی از بیشترین تعداد فایل اجازه داده شده.
-  typeNotAllowed:   نوع فایل غیرمجاز می باشد.
-  maxFileSize:      اندازه ی فایل زیاد می باشد.
-  minFileSize:      اندازه ی فایل کم می باشد.
-
-# SingleUpload
-singleupload:
-  display.name:     نام نشان داده شده
+    welcome:  <b>خوش آمدید</b>, %username%!
+    login:    ورود
+    logout:   خروج
+    exit:     خروج از حالت جعل هویت
 
 # Generic actions
 action.generic:
-  list:   لیست
-  new:    جدید
-  save:   ذخیره
-  save-and-add:   ذخیره و اضافه
-  save-and-list:  ذخیره و لیست
+    list:   لیست
+    new:    جدید
+    save:   ذخیره
+    save-and-add:   ذخیره و اضافه
+    save-and-list:  ذخیره و لیست
 
 # Object actions
 action.object.edit:
-  label:    ویرایش
-  success:  ذخیره سازی با موفقیت انجام پذیرفت.
-  error:    فرم مورد نظر ذخیره نشد. خطاها را بررسی کرده و سپس دوباره امتحان کنید.
-  locked:   |
-              با عرض پوزش، اما شخص دیگری در حال حاضر این شیء تغییر کرده است.<br />
-              تغییرات خود را!
-              <a href="%path%" target="_blank">اینجا را کلیک کنید</a>
-              برای مشاهده تغییرات در یک تب جدید یا دوباره فرم به درخواست
+    label:    ویرایش
+    success:  ذخیره سازی با موفقیت انجام پذیرفت.
+    error:    فرم مورد نظر ذخیره نشد. خطاها را بررسی کرده و سپس دوباره امتحان کنید.
+    locked:   |
+                با عرض پوزش، اما شخص دیگری در حال حاضر این شیء تغییر کرده است.<br />
+                تغییرات خود را!
+                <a href="%path%" target="_blank">اینجا را کلیک کنید</a>
+                برای مشاهده تغییرات در یک تب جدید یا دوباره فرم به درخواست
 action.object.delete:
-  label:    حذف کردن
-  confirm:  آیا از حذف کردن این عنصر مطمئن می باشید؟
-  success:  عنصر با موفقیت حذف شده است.
-  error:    عنصر نمی تواند حذف شود.
+    label:    حذف کردن
+    confirm:  آیا از حذف کردن این عنصر مطمئن می باشید؟
+    success:  عنصر با موفقیت حذف شده است.
+    error:    عنصر نمی تواند حذف شود.
 action.object.show:
-  label:    نمایش
+    label:    نمایش
 
 # Batch actions
 action.batch.delete:
-  label:    پاک کردن
-  confirm:  آیا حذف کردن همه ی عناصر انتخاب شده را تایید می نمایید؟
-  success:  عناصر مورد نظر با موفقیت حذف شدند
-  error:    عملیات حذف عناصر مورد نظر با خطا مواجه شد
+    label:    پاک کردن
+    confirm:  آیا حذف کردن همه ی عناصر انتخاب شده را تایید می نمایید؟
+    success:  عناصر مورد نظر با موفقیت حذف شدند
+    error:    عملیات حذف عناصر مورد نظر با خطا مواجه شد
 
 # Custom actions
 action.custom:
-  title:    آیا شما مطمئن هستید که میخواهید%name% اقدام به اجرای؟
-  success:  %name% عمل با موفقیت اجرا شد.
-  error:    %name% عمل اجرا نیست.
-  confirm:  تکرار
-  cancel:   لغو کردن
+    title:    آیا شما مطمئن هستید که میخواهید%name% اقدام به اجرای؟
+    success:  %name% عمل با موفقیت اجرا شد.
+    error:    %name% عمل اجرا نیست.
+    confirm:  تکرار
+    cancel:   لغو کردن
 
 # Batch list
 batch.list:
-  selected:       انتخاب شده
-  none.selected:  شما باید حداقل یک عنصر را انتخاب کنید
-  warning:        اقدام گروه با توجه به پارامتر های از دست رفته کامل نیست
-  send:           اجرا کردن
+    selected:       انتخاب شده
+    none.selected:  شما باید حداقل یک عنصر را انتخاب کنید
+    warning:        اقدام گروه با توجه به پارامتر های از دست رفته کامل نیست
+    send:           اجرا کردن
 
 # Layout
 dashboard:
-  homepage:   خانه
-  brand:      داشبورد
-
-# Filetype icons
-filetype:
-  audio:            صوت
-  archive:          آرشیو (فایل فشرده)
-  html:             HTML
-  image:            تصویر
-  pdf-document:     متن پی دی اف
-  plain-text:       متن ساده
-  presentation:     ارائه
-  spreadsheet:      صفحه گسترده
-  text-document:    سند متنی
-  unknown:          ناشناخته
-  video:            ویدئو
+    homepage:   خانه
+    brand:      داشبورد

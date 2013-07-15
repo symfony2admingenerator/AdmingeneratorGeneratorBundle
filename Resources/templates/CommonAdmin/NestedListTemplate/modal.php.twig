@@ -5,7 +5,7 @@
             <h3>{{ echo_trans('nested.list.loading') }}</h3>
         </div>
         <div class="modal-body">
-            <p class="loader"></p>
+            <i class="icon-spinner icon-spin icon-4x"></i>
         </div>
     </div>
 
@@ -20,18 +20,5 @@
             {{ echo_trans('nested.list.error') }}
         </div>
     </div>
-
-    <script type="text/javascript">
-        ;(function(window, $, undefined) {
-        	$(function(){
-                $('#nestedset_loading .modal-body .loader').css({
-                    'width': '1px', 'height': '1px',
-                    'margin': '0 auto', 'padding': '60px'
-                }).spin({
-                    lines: 16, length: 20, width: 8, radius: 25, corners: 1
-                });
-            });
-        })(this, jQuery);
-    </script>
 {{ echo_endblock() }}
 {% endblock %}

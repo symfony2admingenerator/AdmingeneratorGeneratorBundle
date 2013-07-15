@@ -1,138 +1,93 @@
-# Double list form
-double_list:
-  selected:   Izbrano
-  unselected: Neizbrano
-
-# Date range form
-date_range:
-  from.label: Od
-  to.label:   Do
-
 # Boolean filter
 boolean:
-  yes:        Da
-  no:         Ne
-  yes_or_no:  Da ali Ne
+    yes:        Da
+    no:         Ne
+    yes_or_no:  Da ali Ne
 
 # Pager
 pagerfanta:
-  previous:       Nazaj
-  next:           Naprej
-  view.perpage:   Prikazal
-  num.elements:   %number% elementov
+    previous:       Nazaj
+    next:           Naprej
+    view.perpage:   Prikazal
+    num.elements:   %number% elementov
 
 # List
 list:
-  no.results: Ni rezultatov.
-  filters:    Filtri
+    no.results: Ni rezultatov.
+    filters:    Filtri
 list.button:
-  filter:     Filter
-  reset:      Počisti
+    filter:     Filter
+    reset:      Počisti
 list.display:
-  range:      Prikazani rezultati <b>%start%</b> - <b>%end%</b> od <b>%count%</b>.
-  all:        Prikazani vsi rezultati <b>(%count%)</b>.
+    range:      Prikazani rezultati <b>%start%</b> - <b>%end%</b> od <b>%count%</b>.
+    all:        Prikazani vsi rezultati <b>(%count%)</b>.
 list.header:
-  actions:    Akcije
+    actions:    Akcije
 
 # Nested List
 nested.list:
-  expand:     Prikaži
-  collapse:   Schovať
-  loading:    Nalaganje v teku
-  success:    Element je bil uspešno prestavljen.
-  error:      Ne morem premakniti element.
+    expand:     Prikaži
+    collapse:   Schovať
+    loading:    Nalaganje v teku
+    success:    Element je bil uspešno prestavljen.
+    error:      Ne morem premakniti element.
 
 # Profile
 profile:
-  welcome:  <b>Dobrodošli</b>, %username%!
-  login:    Prijava
-  logout:   Odjava
-  exit:     Izhod iz lažnem
-
-# EntityPicker
-entity_picker:
-  placeholder:  Iskanje...
-
-# Collection
-collection:
-  add:          Dodati
-
-# Upload
-upload:
-  file.add:     Dodaj datoteko...
-  error:        Napaka
-  cancel:       Odstrani
-  delete:       Izbriši
-  download:     Prenos
-upload.errors:
-  maxNumFiles:      Največje število datotek preseglo.
-  typeNotAllowed:   Tip ni dovoljeno.
-  maxFileSize:      Datoteka je prevelika.
-  minFileSize:      Datoteka je premajhna.
+    welcome:  <b>Dobrodošli</b>, %username%!
+    login:    Prijava
+    logout:   Odjava
+    exit:     Izhod iz lažnem
 
 # Generic actions
 action.generic:
-  list:   Seznam
-  new:    Novo
-  save:   Shrani
-  save-and-add:   Shrani in Novo
-  save-and-list:  Shrani in Seznam
+    list:   Seznam
+    new:    Novo
+    save:   Shrani
+    save-and-add:   Shrani in Novo
+    save-and-list:  Shrani in Seznam
 
 # Object actions
 action.object.edit:
-  label:    Urejanje
-  success:  Predmet je bil uspešno shranjen.
-  error:    Predmet ni bil shranjen. Preverite napake in poskusite ponovno.
-  locked:   |
-              Oprosti, ampak nekdo drug je že spremenil ta objekt.<br />
-              <a href="%path%" target="_blank">Kliknite tukaj</a>, da si 
-              ogledate spremembe v novem zavihku ali znova predložiti obrazec 
-              uporablja vaše spremembe!
+    label:    Urejanje
+    success:  Predmet je bil uspešno shranjen.
+    error:    Predmet ni bil shranjen. Preverite napake in poskusite ponovno.
+    locked:   |
+                Oprosti, ampak nekdo drug je že spremenil ta objekt.<br />
+                <a href="%path%" target="_blank">Kliknite tukaj</a>, da si 
+                ogledate spremembe v novem zavihku ali znova predložiti obrazec 
+                uporablja vaše spremembe!
 action.object.delete:
-  label:    Izbriši
-  confirm:  Ali ste prepričani, da želite izbrisati ta element?
-  success:  Element je bil uspešno izbrisan.
-  error:    Element, ki ga ni mogoče izbrisati.
+    label:    Izbriši
+    confirm:  Ali ste prepričani, da želite izbrisati ta element?
+    success:  Element je bil uspešno izbrisan.
+    error:    Element, ki ga ni mogoče izbrisati.
 action.object.show:
-  label:    Prikaži
+    label:    Prikaži
 
 # Batch actions
 action.batch.delete:
-  label:    Izbriši
-  confirm:  Ali lahko potrdite brisanje vseh izbranih elementov?
-  success:  Predmet je bil uspešno izbrisan.
-  error:    Predmet ni bil izbrisan.
+    label:    Izbriši
+    confirm:  Ali lahko potrdite brisanje vseh izbranih elementov?
+    success:  Predmet je bil uspešno izbrisan.
+    error:    Predmet ni bil izbrisan.
 
 # Custom actions
 action.custom:
-  title:    Ali ste prepričani, da želite izvršiti %name% ukrepanje?
-  success:  Akcija %name% je bila uspešno izvedena.
-  error:    Ni mogoče izvesti %name% ukrepanje.
-  confirm:  Potrdite
-  cancel:   Prekliči
+    title:    Ali ste prepričani, da želite izvršiti %name% ukrepanje?
+    success:  Akcija %name% je bila uspešno izvedena.
+    error:    Ni mogoče izvesti %name% ukrepanje.
+    confirm:  Potrdite
+    cancel:   Prekliči
 
 # Batch list
 batch.list:
-  selected:       Izbrano
-  none.selected:  Izbrati morate vsaj en element.
-  warning:        Ni mogel dokončati serije tožbo zaradi manjkajočih parametrov.
-  send:           Izvršiti
+    selected:       Izbrano
+    none.selected:  Izbrati morate vsaj en element.
+    warning:        Ni mogel dokončati serije tožbo zaradi manjkajočih parametrov.
+    send:           Izvršiti
 
 # Layout
 dashboard:
-  homepage:   Domača stran
-  brand:      Nadzorne plošče
-
-# Filetype icons
-filetype:
-  audio:            Avdio
-  archive:          Arhiv
-  html:             HTML
-  image:            Podoba
-  pdf-document:     PDF<br />Dokument
-  plain-text:       Golo<br />besedilo
-  presentation:     Predstavitev
-  spreadsheet:      Preglednica
-  text-document:    Besedilo<br />dokumenta
-  unknown:          Neznana<br />datoteka tipa
-  video:            Video
+    homepage:   Domača stran
+    brand:      Nadzorne plošče

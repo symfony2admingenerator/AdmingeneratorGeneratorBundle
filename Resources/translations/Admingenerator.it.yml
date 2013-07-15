@@ -1,74 +1,43 @@
-# Double list form
-double_list:
-  selected:   Selezionati
-  unselected: Non selezionati
-
-# Date range form
-date_range:
-  from.label: Dal
-  to.label:   Alla
-
 # Boolean filter
 boolean:
-  yes:        Sì
-  no:         No
-  yes_or_no:  Sì o No
+    yes:        Sì
+    no:         No
+    yes_or_no:  Sì o No
 
 # Pager
 pagerfanta:
-  previous:       Precedente
-  next:           Successivo
-  view.perpage:   Mostra 
-  num.elements:   %number% elementi
+    previous:       Precedente
+    next:           Successivo
+    view.perpage:   Mostra 
+    num.elements:   %number% elementi
 
 # List
 list:
-  no.results: Nessun risultato.
-  filters:    Filtri
+    no.results: Nessun risultato.
+    filters:    Filtri
 list.button:
-  filter:     Filtra
-  reset:      Pulisci
+    filter:     Filtra
+    reset:      Pulisci
 list.display:
-  range:      Mostra i risultati da <b>%start%</b> a <b>%end%</b> di <b>%count%</b>.
-  all:        Mostra tutti i <b>%count%</b> risultati.
+    range:      Mostra i risultati da <b>%start%</b> a <b>%end%</b> di <b>%count%</b>.
+    all:        Mostra tutti i <b>%count%</b> risultati.
 list.header:
-  actions:    Azioni
+    actions:    Azioni
 
 # Nested List
 nested.list:
-  expand:     Mostra
-  collapse:   Nascondere
-  loading:    Caricamento in corso
-  success:    L'elemento è stato spostato con successo.
-  error:      Impossibile spostare elemento.
+    expand:     Mostra
+    collapse:   Nascondere
+    loading:    Caricamento in corso
+    success:    L'elemento è stato spostato con successo.
+    error:      Impossibile spostare elemento.
 
 # Profile
 profile:
-  welcome:  <b>Benvenuto</b>, %username%!
-  login:    Accedi
-  logout:   Esci
-  exit:     Uscire dalla modalità di rappresentazione
-
-# EntityPicker
-entity_picker:
-  placeholder:  Cerca...
-
-# Collection
-collection:
-  add:          Aggiungi
-
-# Upload
-upload:
-  file.add:     Aggiungi file...
-  error:        Errore
-  cancel:       Rimuovere
-  delete:       Cancellare
-  download:     Scarica
-upload.errors:
-  maxNumFiles:      Numero massimo di file superato.
-  typeNotAllowed:   Tipo di file non consentito.
-  maxFileSize:      Il file è troppo grande.
-  minFileSize:      Il file è troppo piccolo.
+    welcome:  <b>Benvenuto</b>, %username%!
+    login:    Accedi
+    logout:   Esci
+    exit:     Uscire dalla modalità di rappresentazione
 
 # Generic actions
 action.generic:
@@ -80,63 +49,49 @@ action.generic:
 
 # Object actions
 action.object.edit:
-  label:    Modifica
-  success:  L'oggetto è stato salvato con successo.
-  error:    |
-              Non è stato possibile salvare il form. Controlla gli errori e 
-              reinvia il form.
-  locked:   |
-              Siamo spiacenti, ma qualcun altro ha già cambiato questo 
-              oggetto.<br />
-              <a href="%path%" target="_blank">Clicca qui</a> per 
-              visualizzare le modifiche in una nuova scheda o inviare 
-              nuovamente il form di applicare le modifiche!
+    label:    Modifica
+    success:  L'oggetto è stato salvato con successo.
+    error:    |
+                Non è stato possibile salvare il form. Controlla gli errori e 
+                reinvia il form.
+    locked:   |
+                Siamo spiacenti, ma qualcun altro ha già cambiato questo 
+                oggetto.<br />
+                <a href="%path%" target="_blank">Clicca qui</a> per 
+                visualizzare le modifiche in una nuova scheda o inviare 
+                nuovamente il form di applicare le modifiche!
 action.object.delete:
-  label:    Cancellare
-  confirm:  Sei sicuro di voler eliminare questo elemento?
-  success:  Elemento è stato eliminato con successo.
-  error:    Elemento non può essere eliminato.
+    label:    Cancellare
+    confirm:  Sei sicuro di voler eliminare questo elemento?
+    success:  Elemento è stato eliminato con successo.
+    error:    Elemento non può essere eliminato.
 action.object.show:
-  label:    Mostra
+    label:    Mostra
 
 # Batch actions
 action.batch.delete:
-  label:    Cancellare
-  confirm:  Confermi l'eliminazione di tutti gli elementi selezionati?
-  success:  I dati sono stati correttamente eliminati.
-  error:    I dati non possono essere eliminati.
+    label:    Cancellare
+    confirm:  Confermi l'eliminazione di tutti gli elementi selezionati?
+    success:  I dati sono stati correttamente eliminati.
+    error:    I dati non possono essere eliminati.
 
 # Custom actions
 action.custom:
-  title:    Sei sicuro che si desidera eseguire l'azione %name%?
-  success:  L'azione %name% è stato eseguito con successo.
-  error:    Impossibile eseguire l'azione %name%.
-  confirm:  Confermare
-  cancel:   Annullare
+    title:    Sei sicuro che si desidera eseguire l'azione %name%?
+    success:  L'azione %name% è stato eseguito con successo.
+    error:    Impossibile eseguire l'azione %name%.
+    confirm:  Confermare
+    cancel:   Annullare
 
 # Batch list
 batch.list:
-  selected:       Selezionati
-  none.selected:  È necessario selezionare alemeno uno elemento.
-  warning:        Impossibile completare l'azione partita a causa di parametri mancanti.
-  selector:       Choose an action for selection
-  send:           Eseguire
+    selected:       Selezionati
+    none.selected:  È necessario selezionare alemeno uno elemento.
+    warning:        Impossibile completare l'azione partita a causa di parametri mancanti.
+    selector:       Choose an action for selection
+    send:           Eseguire
 
 # Layout
 dashboard:
-  homepage:   Inizio pagina
-  brand:      Cruscotto
-
-# Filetype icons
-filetype:
-  audio:            Audio
-  archive:          Archivio
-  html:             HTML
-  image:            Immagine
-  pdf-document:     Documento<br />PDF
-  plain-text:       Testo<br />normale
-  presentation:     Presentazione
-  spreadsheet:      Foglio<br />di calcolo
-  text-document:    Documento<br />di testo
-  unknown:          Tipo di file<br />sconosciuto
-  video:            Video
+    homepage:   Inizio pagina
+    brand:      Cruscotto

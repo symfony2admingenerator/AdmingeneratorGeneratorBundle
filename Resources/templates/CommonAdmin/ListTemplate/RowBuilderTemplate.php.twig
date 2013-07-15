@@ -1,12 +1,12 @@
 {% use '../CommonAdmin/ListTemplate/row.php.twig' %}
-{% use '../CommonAdmin/ListTemplate/object_actions.php.twig' %}
+{% use '../CommonAdmin/object_actions.php.twig' %}
 
 {% block list_row %}
 {{ echo_block('list_row') }}
 <tr class="list_trow">
     {{- block('list_row_content') -}}
 
-    {{- block('list_object_actions') }}
+    {{- block('object_actions') }}
 </tr>
 {{ echo_endblock() }}
 {% endblock list_row %}

@@ -1,131 +1,86 @@
-# Double list form
-double_list:
-  selected:   Seçili
-  unselected: Seçili değil
-
-# Date range form
-date_range:
-  from.label: Başlangıç
-  to.label:   Bitiş
-
 # Boolean filter
 boolean:
-  yes:        Evet
-  no:         Hayır
-  yes_or_no:  Evet veya Hayır
+    yes:        Evet
+    no:         Hayır
+    yes_or_no:  Evet veya Hayır
 
 # Pager
 pagerfanta:
-  previous:       Önceki
-  next:           Sonraki
-  view.perpage:   Göster
-  num.elements:   %number% element
+    previous:       Önceki
+    next:           Sonraki
+    view.perpage:   Göster
+    num.elements:   %number% element
 
 # List
 list:
-  no.results: Hiç bir sonuç bulunamadı.
-  filters:    Filtreler
+    no.results: Hiç bir sonuç bulunamadı.
+    filters:    Filtreler
 list.button:
-  filter:     Filtrele
-  reset:      Sıfırla
+    filter:     Filtrele
+    reset:      Sıfırla
 list.display:
-  range:      Toplam <b>%count%</b> sonuçtan <b>%start%</b> - <b>%end%</b> kadarı gösteriliyor.
-  all:        Tüm <b>%count%</b> sonuçlar.
+    range:      Toplam <b>%count%</b> sonuçtan <b>%start%</b> - <b>%end%</b> kadarı gösteriliyor.
+    all:        Tüm <b>%count%</b> sonuçlar.
 list.header:
-  actions:    Eylemler
+    actions:    Eylemler
 
 # Profile
 profile:
-  welcome:  <b>Merhaba</b>, %username%!
-  login:    Giriş
-  logout:   Çıkış
-  exit:     Kimliğe bürünme modundan çıkın
-
-# EntityPicker
-entity_picker:
-  placeholder:  Ara...
-
-# Collection
-collection:
-  add:          Ekle
-
-# Upload
-upload:
-  file.add:     Dosya ekle...
-  error:        Hata
-  cancel:       İptal
-  delete:       Sil
-  download:     Indir
-upload.errors:
-  maxNumFiles:      Maksimum dosya limiti aşıldı.
-  typeNotAllowed:   İzinsiz dosya türü.
-  maxFileSize:      Dosya izin verilenden daha büyük.
-  minFileSize:      Dosya izin verilenden daha küçük.
+    welcome:  <b>Merhaba</b>, %username%!
+    login:    Giriş
+    logout:   Çıkış
+    exit:     Kimliğe bürünme modundan çıkın
 
 # Generic actions
 action.generic:
-  list:   Liste
-  new:    Yeni
-  save:   Kaydet
-  save-and-add:   Kaydet ve Yeni Oluştur
-  save-and-list:  Kaydet ve Listeye Dön
+    list:   Liste
+    new:    Yeni
+    save:   Kaydet
+    save-and-add:   Kaydet ve Yeni Oluştur
+    save-and-list:  Kaydet ve Listeye Dön
 
 # Object actions
 action.object.edit:
-  label:    Düzenle
-  success:  Nesne başarıyla kaydedildi.
-  error:    Form kaydı yapılamadı. Hataları düzeltip tekrar deneyin.
-  locked:   |
-              Üzgünüz, ama başkası zaten bu nesne değişti.<br />
-              Yeni bir sekmede değişiklikleri görüntülemek veya uygulamak için 
-              tekrar formu göndermek 
-              <a href="%path%" target="_blank">için tıklayınız</a> 
-              Yaptığınız değişiklikleri!
+    label:    Düzenle
+    success:  Nesne başarıyla kaydedildi.
+    error:    Form kaydı yapılamadı. Hataları düzeltip tekrar deneyin.
+    locked:   |
+                Üzgünüz, ama başkası zaten bu nesne değişti.<br />
+                Yeni bir sekmede değişiklikleri görüntülemek veya uygulamak için 
+                tekrar formu göndermek 
+                <a href="%path%" target="_blank">için tıklayınız</a> 
+                Yaptığınız değişiklikleri!
 action.object.delete:
-  label:    Sil
-  confirm:  Bu öğeyi silmek istediğinize emin misiniz?
-  success:  Eleman başarıyla silindi.
-  error:    Eleman silinemez.
+    label:    Sil
+    confirm:  Bu öğeyi silmek istediğinize emin misiniz?
+    success:  Eleman başarıyla silindi.
+    error:    Eleman silinemez.
 action.object.show:
-  label:    Göster
+    label:    Göster
 
 # Batch actions
 action.batch.delete:
-  label:    Sil
-  confirm:  Seçili tüm öğeleri silmek istediğinize emin misiniz?
-  success:  Öğeler başarıyla silindi.
-  error:    Öğeler silinirken bir hata oluştu.
+    label:    Sil
+    confirm:  Seçili tüm öğeleri silmek istediğinize emin misiniz?
+    success:  Öğeler başarıyla silindi.
+    error:    Öğeler silinirken bir hata oluştu.
 
 # Custom actions
 action.custom:
-  title:    Eğer %name% eylem yürütmek istediğinizden emin misiniz?
-  success:  Eylem %name% başarıyla idam edildi.
-  error:    Eylem %name% yürütmek olamazdı.
-  confirm:  Onaylamak
-  cancel:   Iptal
+    title:    Eğer %name% eylem yürütmek istediğinizden emin misiniz?
+    success:  Eylem %name% başarıyla idam edildi.
+    error:    Eylem %name% yürütmek olamazdı.
+    confirm:  Onaylamak
+    cancel:   Iptal
 
 # Batch list
 batch.list:
-  selected:       Seçili
-  none.selected:  En az bir öğe seçmek zorundasınız.
-  warning:        Nedeniyle kayıp parametreleri için toplu eylem tamamlanamadı.
-  send:           Gerçekleştirmek
+    selected:       Seçili
+    none.selected:  En az bir öğe seçmek zorundasınız.
+    warning:        Nedeniyle kayıp parametreleri için toplu eylem tamamlanamadı.
+    send:           Gerçekleştirmek
 
 # Layout
 dashboard:
-  homepage:   Anasayfa
-  brand:      Kontrol paneli
-
-# Filetype icons
-filetype:
-  audio:            Ses
-  archive:          Arşiv
-  html:             HTML
-  image:            Görüntü
-  pdf-document:     PDF<br />belgesi
-  plain-text:       Düz metin
-  presentation:     Sunu
-  spreadsheet:      Elektronik<br />tablo
-  text-document:    Metin<br />belgesi
-  unknown:          Bilinmeyen<br />dosya türü
-  video:            Video
+    homepage:   Anasayfa
+    brand:      Kontrol paneli

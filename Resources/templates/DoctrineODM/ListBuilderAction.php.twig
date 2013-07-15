@@ -56,7 +56,7 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
     {
         $query = $this->buildQuery();
 
-
+        $this->processQuery($query);
         $this->processSort($query);
         $this->processFilters($query);
         $this->processScopes($query);

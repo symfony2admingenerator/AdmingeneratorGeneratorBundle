@@ -1,8 +1,10 @@
 {% block column_money %}
+{% spaceless %}
     {% set currency   = column.formOptions.currency|default('EUR') %}
     {% set precision  = column.formOptions.precision|default(2) %}
     {% set grouping   = column.formOptions.grouping|default(true) %}
     {% set divisor    = column.formOptions.divisor|default(1) %}
 
     {{ echo_twig('localized_money('~ builder.ModelClass~'.'~column.getter ~', "'~ currency ~'", "'~ precision ~'", '~ grouping ~', '~ divisor ~')') }}
+{% endspaceless %}
 {% endblock %}
