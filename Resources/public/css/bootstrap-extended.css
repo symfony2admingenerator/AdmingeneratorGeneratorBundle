@@ -1,0 +1,196 @@
+/* List sorting styles */
+.list_thead_column .sort-span > i.active,
+.list_thead_column .sort-span:hover > i.hover,
+.list_thead_column .sort-span:hover > i.hover.placeholder {
+    display: inline-block;
+    visibility: visible;
+}
+
+.list_thead_column .sort-span > i.hover, 
+.list_thead_column .sort-span:hover > i.active {
+    display: none;
+}
+
+.list_thead_column .sort-span > i.hover.placeholder {
+    visibility: hidden;
+}
+
+/* List pagination styles */
+.pagination {
+   margin: 0px;
+   font-size: 14px;
+}
+
+.pagination .perpage {
+    min-width: 50px;
+}
+
+/* List actions bar styles */
+.form-actions.list-actions {
+    padding: 9px 20px 0px;
+}
+
+.list-actions > .btn-toolbar + .btn-toolbar {
+    margin-left: 10px;
+}
+
+.list-actions > .btn-toolbar.pull-right + .btn-toolbar {
+    margin-right: 10px;
+}
+
+/* Fieldset styles */
+.row-fluid > .form_field {
+    -moz-box-sizing: border-box;
+    display: block;
+    float: left;
+    margin-right: 2.5641%;
+    min-height: 30px;
+}
+
+.row-fluid > .form_field:last-child {
+    margin-right: 0;
+}
+
+.row-fluid > .form_field:only-child {
+    width: 100%;
+}
+
+fieldset {
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin: 0;
+}
+
+fieldset legend {
+    border: 0 none; 
+    margin: 0 0 0 -8px;
+    width: auto;
+}
+
+fieldset legend span {
+    background-color: #FFF; 
+    padding: 0 8px;
+}
+
+legend + .control-group {
+    margin-top: 0px;
+}
+
+/* Table additional styles */
+.table.table-shrinked {
+    display: inline-block;
+}
+
+/* Form error styles */
+ul.form-errors {
+    margin-left: 15px;
+}
+
+/* Remove firefox grey dotted focus outline */
+a:focus, .btn:focus {
+    outline: none;
+}
+
+input[type="checkbox"] {
+    outline: none !important;
+}
+
+button::-moz-focus-inner, select::-moz-focus-inner {
+    border: 0;
+}
+
+/* Additional text styles */
+.justify {
+    text-align: justify;
+}
+
+/* Toogle selection button */
+.btn.btn-toggle {
+    padding: 3px 6px;
+    cursor: pointer;
+}
+
+/* Actions toolbar */
+.form-actions.form-actions-condensed {
+    padding: 10px;
+    margin: 0px;
+    border: 0 none;
+}
+
+/* Select with btn caret */
+.select-caret {
+    display: inline-block;
+    overflow: hidden;
+    min-width: 60px;
+}
+
+.select-caret > select {
+    border: 0 none;
+    width: 135%;
+    outline-offset: 0 !important;
+    outline: 0 none transparent !important;
+}
+
+.select-caret:after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    height: 0;
+    width: 0;
+    top: 12px;
+    right: 6px;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #000000;
+}
+
+.select-caret.btn {
+    padding: 0px;
+    height: 28px;
+}
+
+/* Reset button styles on input element */
+.btn.btn-reset, 
+.btn.btn-reset:hover,
+input.btn.btn-reset, 
+input.btn.btn-reset:hover {
+    display: inline-block;
+    padding: 4px 6px;
+    height: 20px;
+    line-height: 20px;
+    background: #FFFFFF; 
+    box-shadow: none;
+    text-align: left;
+    font-size: 14px;
+    color: #555555;
+    cursor: text;
+}
+
+.list_scope_group .btn [class^="icon-"] {
+    font-size: 12px;
+}
+
+/* Icon sizes on list view */
+#profile-nav .btn-small,
+.object_actions > .btn-group > .btn-mini {
+    font-size: 14px;
+}
+
+/* Fix cursor */
+a:hover > [class^="icon-"]:before,
+a:hover > [class*=" icon-"]:before,
+button:hover > [class^="icon-"]:before,
+button:hover > [class*=" icon-"]:before {
+    cursor: pointer;
+}
+
+/* Fix icons */
+[class^="icon-"],
+[class*=" icon-"],
+[class^="icon-"]:focus,
+[class*=" icon-"]:focus,
+*:focus > [class^="icon-"],
+*:focus > [class*=" icon-"] {
+    background-image: none !important;
+}

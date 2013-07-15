@@ -6,62 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {% block scripts_head %}
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/jquery.min.js'
-            'bundles/admingeneratorgenerator/js/jquery-1.9.1.min.js'
-            'bundles/admingeneratorgenerator/js/jquery/jquery.browser.js'
-            'bundles/admingeneratorgenerator/js/jquery/jquery.expr.regex.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/components/jquery.min.js'
+            'components/jquery/jquery.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-
-        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+            
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/components/jquery-ui.min.js'
+            'components/jquery-ui/ui/jquery-ui.js'
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+            
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/components/html5shiv.min.js'
+            'components/html5shiv/src/html5shiv.js'
+        %}
         <!--[if lt IE 9]>
-            <script src="{{ asset('bundles/admingeneratorgenerator/js/html5shiv/html5.js') }}"></script>
+            <script type="text/javascript" src="{{ asset_url }}"></script>
         <![endif]-->
-        <!--[if lte IE 7]>
-            <script src="{{ asset('bundles/admingeneratorgenerator/js/elusive-iconfont/lte-ie7.js') }}"></script>
-        <![endif]-->
+        {% endjavascripts %}
     {% endblock %}
 
     {% block stylesheets %}
-        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/bootstrap.min.css'
-            'bundles/admingeneratorgenerator/css/bootstrap/bootstrap.css'
-            'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-extended.css'
-            'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-datepicker.css'
-            'bundles/admingeneratorgenerator/css/google/prettify.css'
+        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/components/bootstrap.min.css'
+            'components/bootstrap/css/bootstrap.css'
+        %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
+        {% endstylesheets %}            
+        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/components/bootstrap-responsive.min.css'
+            'components/bootstrap/css/bootstrap-responsive.css'
+        %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
+        {% endstylesheets %}            
+        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/components/font-awesome.min.css'
+            'components/font-awesome/css/font-awesome.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
-
-        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/bootstrap-responsive.min.css'
-            'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-responsive.css'
-            'bundles/admingeneratorgenerator/css/bootstrap/bootstrap-responsive-extended.css'
-        %}
-            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
-        {% endstylesheets %}
-
-        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/elusive-iconfont.min.css'
-            'bundles/admingeneratorgenerator/css/elusive-iconfont/elusive-webfont.css'
-        %}
-            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
-        {% endstylesheets %}
-
+        <!--[if lt IE 7]>
+        <link rel="stylesheet" href="{{ asset('components/font-awesome/css/font-awesome-ie7.min') }}" type="text/css" media="all" />
+        <![endif]-->        
         {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/admingenerator.min.css'
-            'bundles/admingeneratorgenerator/css/admingenerator/general.css'
-            'bundles/admingeneratorgenerator/css/admingenerator/profile.css'
-            'bundles/admingeneratorgenerator/css/admingenerator/nested-list.css'
-            'bundles/admingeneratorgenerator/css/admingenerator/collection.css'
-            'bundles/admingeneratorgenerator/css/admingenerator/upload.css'
-            'bundles/admingeneratorgenerator/css/admingenerator/filetypeicons.css'
-            'bundles/admingeneratorgenerator/css/admingenerator/form/datepicker.css'
-            'bundles/admingeneratorgenerator/css/admingenerator/form/single-upload.css'
+            'bundles/admingeneratorgenerator/css/general.css'
+            'bundles/admingeneratorgenerator/css/profile.css'
+            'bundles/admingeneratorgenerator/css/nested-list.css'
+            'bundles/admingeneratorgenerator/css/bootstrap-extended.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
-        
-        {% if form is defined %}
-            {{ form_stylesheet(form) }}
-        {% endif %}
     {% endblock %}
 
     {% block icons %}
@@ -108,74 +100,11 @@
     </div> <!--/.container-fluid -->
 
     {% block javascripts %}
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/bootstrap.min.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-transition.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-alert.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-modal.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-dropdown.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-scrollspy.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-tab.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-tooltip.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-popover.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-button.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-collapse.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-carousel.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-typeahead-extended.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-affix.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/bootstrap-datepicker.js'
-            'bundles/admingeneratorgenerator/js/bootstrap/locales/*'
-            'bundles/admingeneratorgenerator/js/google/prettify.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/components/bootstrap.min.js'
+            'components/bootstrap/js/bootstrap.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/jquery-ui.min.js'
-            'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.core.js'
-            'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.widget.js'
-            'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.mouse.js'
-            'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.draggable.js'
-            'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.droppable.js'
-            'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.sortable.js'
-            'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.effect.js'
-            'bundles/admingeneratorgenerator/js/jquery-ui/jquery.ui.effect-slide.js'
-
-        %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/blueimp.jquery-file-upload.min.js'
-            'bundles/admingeneratorgenerator/js/blueimp/blueimp.javascript-templates.min.js'
-            'bundles/admingeneratorgenerator/js/blueimp/blueimp.javascript-load-image.min.js'
-            'bundles/admingeneratorgenerator/js/blueimp/blueimp.canvas-to-blob.min.js'
-            'bundles/admingeneratorgenerator/js/blueimp/jquery.iframe-transport.js'
-            'bundles/admingeneratorgenerator/js/blueimp/jquery.fileupload.js'
-            'bundles/admingeneratorgenerator/js/blueimp/jquery.fileupload-fp.js'
-            'bundles/admingeneratorgenerator/js/blueimp/jquery.fileupload-ui.js'
-        %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/jquery-bbq.min.js'
-            'bundles/admingeneratorgenerator/js/jquery-bbq/jquery.deparam.js'
-        %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/jquery.spin.min.js'
-            'bundles/admingeneratorgenerator/js/spin/jquery.spin.js'
-        %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/admingenerator-forms.min.js'
-            'bundles/admingeneratorgenerator/js/admingenerator/form/collection.js'
-        %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-        
-        {% if form is defined %}
-            {{ form_javascript(form) }}
-        {% endif %}
     {% endblock %}
 
   </body>

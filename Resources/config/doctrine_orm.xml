@@ -33,26 +33,5 @@
         <service id="admingenerator.queryfilter.doctrine"
             class="%admingenerator.queryfilter.doctrine.class%">
         </service>
-
-        <!-- Form -->
-        <service id="form.type.doctrine_orm_double_list" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineORM\DoubleListType">
-            <tag name="form.type" alias="double_list" />
-            <argument type="service" id="doctrine" />
-        </service>
-
-        <service id="form.type.doctrine_orm_entitypicker" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineORM\EntityPickerType">
-            <tag name="form.type" alias="entitypicker" />
-            <argument type="service" id="doctrine" />
-        </service>
-
-        <service id="form.type.doctrine_orm_upload" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineORM\UploadType">
-            <tag name="form.type" alias="upload" />
-            <argument type="service" id="service_container" />
-        </service>
-
-        <service id="form.type.doctrine_orm_single_upload" class="Admingenerator\GeneratorBundle\Form\Type\DoctrineORM\SingleUploadType">
-            <tag name="form.type" alias="single_upload" />
-            <argument type="service" id="service_container" />
-        </service>
     </services>
 </container>

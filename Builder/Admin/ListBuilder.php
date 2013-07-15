@@ -65,35 +65,42 @@ class ListBuilder extends BaseBuilder
         foreach ($filters['display'] as $columnName) {
             $column = new Column($columnName);
 
-            $column->setDbType($this->getFieldOption(
-                $column,
-                'dbType',
-                $this->getFieldGuesser()->getDbType(
-                    $this->getVariable('model'),
-                    $columnName
+            $column->setDbType(
+                $this->getFieldOption(
+                    $column,
+                    'dbType',
+                    $this->getFieldGuesser()->getDbType(
+                        $this->getVariable('model'),
+                        $columnName
+                    )
                 )
-            ));
+            );
 
-            $column->setFormType($this->getFieldOption(
-                $column,
-                'filterType',
-                $this->getFieldGuesser()->getFilterType(
-                    $column->getDbType(),
-                    $columnName
+            $column->setFormType(
+                $this->getFieldOption(
+                    $column,
+                    'filterType',
+                    $this->getFieldGuesser()->getFilterType(
+                        $column->getDbType(),
+                        $columnName
+                    )
                 )
-            ));
+            );
+            
 
-            $column->setFormOptions($this->getFieldOption(
-                $column,
-                'filterOptions',
-                $this->getFieldGuesser()->getFilterOptions(
-                    $column->getFormType(),
-                    $column->getDbType(),
-                    $columnName
+            $column->setFormOptions(
+                $this->getFieldOption(
+                    $column,
+                    'filterOptions',
+                    $this->getFieldGuesser()->getFilterOptions(
+                        $column->getFormType(),
+                        $column->getDbType(),
+                        $columnName
+                    )
                 )
-            ));
+            );
 
-            //Set the user parameters
+            // Set the user parameters
             $this->setUserColumnConfiguration($column);
             $this->addFilterColumn($column);
         }
@@ -148,7 +155,8 @@ class ListBuilder extends BaseBuilder
 
         foreach ($objectActions as $actionName => $actionParams) {
             $action = $this->findObjectAction($actionName);
-            if(!$action) {
+            
+            if (!$action) {
                 $action = new Action($actionName);
             }
 
@@ -185,7 +193,8 @@ class ListBuilder extends BaseBuilder
         );
 
         $globalOptions = $this->getGenerator()->getFromYaml(
-            'params.batch_actions.'.$action->getName(), array()
+            'params.batch_actions.'.$action->getName(),
+            array()
         );
 
         if (null !== $builderOptions) {
@@ -210,7 +219,8 @@ class ListBuilder extends BaseBuilder
 
         foreach ($batchActions as $actionName => $actionParams) {
             $action = $this->findBatchAction($actionName);
-            if(!$action) {
+            
+            if (!$action) {
                 $action = new Action($actionName);
             }
 
@@ -224,5 +234,4 @@ class ListBuilder extends BaseBuilder
             $this->addBatchAction($action);
         }
     }
-
 }

@@ -128,6 +128,7 @@ Documentation for new form extensions and types:
 5. [Command Line][cookbook-5]
 6. [Form types][cookbook-6]
 7. [Conditional actions (deprecated)][cookbook-7]
+8. [Changeing web directory][cookbook-8]
 
 [go up][go-up]
 
@@ -138,6 +139,7 @@ Documentation for new form extensions and types:
 [cookbook-5]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/commandLine.md
 [cookbook-6]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/formTypes.md
 [cookbook-7]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/conditional-actions.md
+[cookbook-8]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/changeing-web-directory.md
 
 ## 9. Security
 

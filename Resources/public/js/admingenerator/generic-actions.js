@@ -63,9 +63,9 @@
                 return;
             }
             
-        	if ($element.data('csrf-token')) {
-        		e.preventDefault();
-        		// Transform in POST request
+            if ($element.data('csrf-token')) {
+                e.preventDefault();
+                // Transform in POST request
                 var form = $('<form />').attr({
                     method: 'POST',
                     action: $element.attr('href'),
@@ -79,7 +79,7 @@
                 }).appendTo(form);
                 // Send action
                 form.submit();
-        	}
+            }
         }
     };
 

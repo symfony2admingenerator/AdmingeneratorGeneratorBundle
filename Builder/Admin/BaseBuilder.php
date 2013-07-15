@@ -60,6 +60,8 @@ class BaseBuilder extends GenericBaseBuilder
                 )
             );
 
+            $column->setSortType($this->getFieldGuesser()->getSortType($column->getDbType()));
+
             if ($this->getYamlKey() != 'list' && $this->getYamlKey() != 'nested_list') {
 
                 $column->setFormType(
@@ -252,14 +254,23 @@ class BaseBuilder extends GenericBaseBuilder
 
     protected function setUserActionConfiguration(Action $action)
     {
-        $options = $this->getVariable(
+        $builderOptions = $this->getVariable(
             sprintf('actions[%s]', $action->getName()),
             array(),
             true
         );
 
-        if (null !== $options) {
-            foreach ($options as $option => $value) {
+        $globalOptions = $this->getGenerator()->getFromYaml(
+            'params.actions.'.$action->getName(),
+            array()
+        );
+
+        if (null !== $builderOptions) {
+            foreach ($builderOptions as $option => $value) {
+                $action->setProperty($option, $value);
+            }
+        } elseif (null !== $globalOptions) {
+            foreach ($globalOptions as $option => $value) {
                 $action->setProperty($option, $value);
             }
         }
@@ -277,6 +288,12 @@ class BaseBuilder extends GenericBaseBuilder
 
             if (!$action) {
                 $action = new Action($actionName);
+            }
+
+            if ($globalCredentials = $this->getGenerator()->getFromYaml('params.credentials')) {
+                // If generator is globally protected by credentials
+                // actions are also protected
+                $action->setCredentials($globalCredentials);
             }
 
             $this->setUserActionConfiguration($action);
@@ -377,9 +394,9 @@ class BaseBuilder extends GenericBaseBuilder
         return str_replace(
             '\\',
             '_',
-            $this->getVariable('namespace_prefix').'_'
-                .$this->getVariable('bundle_name').'_'
-                .$this->getBaseGeneratorName()
+            $this->getVariable('namespace_prefix')
+            .'_'.$this->getVariable('bundle_name')
+            .'_'.$this->getBaseGeneratorName()
         );
     }
 

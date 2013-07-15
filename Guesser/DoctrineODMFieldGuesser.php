@@ -63,91 +63,72 @@ class DoctrineODMFieldGuesser extends ContainerAware
         }
 
         if ($metadata->hasField($fieldName)) {
-          $mapping = $metadata->getFieldMapping($fieldName);
+            $mapping = $metadata->getFieldMapping($fieldName);
 
-          return $mapping['type'];
+            return $mapping['type'];
         }
 
         return 'virtual';
+    }
 
-        //return $metadata->getTypeOfField($fieldName);//Not Yet implemented by doctrine
+    public function getSortType($dbType)
+    {
+        $alphabeticTypes = array(
+            'id',
+            'custom_id',
+            'string',
+            'text',
+        );
+        
+        $numericTypes = array(
+            'decimal',
+            'float',
+            'int',
+            'integer',
+            'int_id',
+            'bigint',
+            'smallint',
+        );
+        
+        if (in_array($dbType, $alphabeticTypes)) {
+            return 'alphabetic';
+        }
+        
+        if (in_array($dbType, $numericTypes)) {
+            return 'numeric';
+        }
+        
+        return 'default';
     }
 
     public function getFormType($dbType, $columnName)
     {
-        switch ($dbType) {
-            case 'boolean':
-                return 'checkbox';
-            case 'datetime':
-            case 'timestamp':
-            case 'vardatetime':
-            case 'datetimetz':
-                return 'datetime';
-            case 'date':
-                return 'datetime';
-                break;
-            case 'decimal':
-            case 'float':
-                return 'number';
-                break;
-            case 'int':
-            case 'integer':
-            case 'int_id':
-            case 'bigint':
-            case 'smallint':
-                return 'integer';
-                break;
-            case 'id':
-            case 'custom_id':
-            case 'string':
-                return 'text';
-                break;
-            case 'text':
-                return 'textarea';
-                break;
-            case 'time':
-                return 'time';
-                break;
-            case 'document':
-                return 'document';
-                break;
-             case 'collection':
-                return 'double_list';
-                break;
-            case 'hash':
-                return 'collection';
-                break;
-            case 'virtual':
-                throw new NotImplementedException('The dbType "'.$dbType.'" is only for list implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
-                break;
-            default:
-                throw new NotImplementedException('The dbType "'.$dbType.'" is not yet implemented (column "'.$columnName.'" in "'.self::$current_class.'")');
-                break;
+        $formTypes = $this->container->getParameter('admingenerator.doctrineodm_form_types');
+        
+        if (array_key_exists($dbType, $formTypes)) {
+            return $formTypes[$dbType];
+        } elseif ('virtual' === $dbType) {
+            throw new NotImplementedException(
+                'The dbType "'.$dbType.'" is only for list implemented '
+                .'(column "'.$columnName.'" in "'.self::$current_class.'")'
+            );
+        } else {
+            throw new NotImplementedException(
+                'The dbType "'.$dbType.'" is not yet implemented '
+                .'(column "'.$columnName.'" in "'.self::$current_class.'")'
+            );
         }
     }
 
     public function getFilterType($dbType, $columnName)
     {
-         switch ($dbType) {
-             case 'hash':
-             case 'text':
-                return 'text';
-                break;
-             case 'boolean':
-                return 'choice';
-                break;
-             case 'datetime':
-             case 'vardatetime':
-             case 'datetimetz':
-             case 'date':
-                return 'datepicker_range';
-                break;
-             case 'collection':
-                return 'document';
-                break;
-         }
+        $filterTypes = $this->container->getParameter('admingenerator.doctrineodm_filter_types');
+        
+        if (array_key_exists($dbType, $filterTypes)) {
+            return $filterTypes[$dbType];
+        }
 
-         return $this->getFormType($dbType, $columnName);
+        return $this->getFormType($dbType, $columnName);
     }
 
     public function getFormOptions($formType, $dbType, $columnName)
@@ -156,20 +137,30 @@ class DoctrineODMFieldGuesser extends ContainerAware
             return array('required' => false);
         }
 
-        if ('document' == $dbType) {
+        if (preg_match("#^document#i", $formType) || preg_match("#document$#i", $formType)) {
             $mapping = $this->getMetadatas()->getFieldMapping($columnName);
 
-            return array( 'class' => $mapping['targetDocument'], 'multiple' => false);
+            return array(
+                'class'     => $mapping['targetDocument'],
+                'multiple'  => false,
+            );
         }
 
+        if (preg_match("#^collection#i", $formType) || preg_match("#collection$#i", $formType)) {
+            return array(
+                'allow_add'     => true,
+                'allow_delete'  => true,
+                'by_reference'  => false,
+            );
+        }
+
+        // TODO: is this still needed? is this valid?
         if ('collection' == $dbType) {
             $mapping = $this->getMetadatas()->getFieldMapping($columnName);
 
-            return array('class' => isset($mapping['targetDocument']) ? $mapping['targetDocument'] : null);
-        }
-
-        if ('collection' == $formType) {
-            return array('allow_add' => true, 'allow_delete' => true);
+            return array(
+                'class' => isset($mapping['targetDocument']) ? $mapping['targetDocument'] : null
+            );
         }
 
         return array('required' => $this->isRequired($columnName));
@@ -177,8 +168,11 @@ class DoctrineODMFieldGuesser extends ContainerAware
 
     protected function isRequired($fieldName)
     {
-        if ($this->getMetadatas()->hasField($fieldName) &&
-            (!$this->getMetadatas()->hasAssociation($fieldName) || $this->getMetadatas()->isSingleValuedAssociation($fieldName))) {
+        $hasField = $this->getMetadatas()->hasField($fieldName);
+        $hasAssociation = $this->getMetadatas()->hasAssociation($fieldName);
+        $isSingleValAssoc = $this->getMetadatas()->isSingleValuedAssociation($fieldName);
+        
+        if ($hasField && (!$hasAssociation || $isSingleValAssoc)) {
             return !$this->getMetadatas()->isNullable($fieldName);
         }
 
@@ -191,22 +185,29 @@ class DoctrineODMFieldGuesser extends ContainerAware
 
         if ('boolean' == $dbType) {
             $options['choices'] = array(
-               0 => $this->container->get('translator')->trans('boolean.no', array(), 'Admingenerator'),
-               1 => $this->container->get('translator')->trans('boolean.yes', array(), 'Admingenerator')
+               0 => $this->container->get('translator')
+                        ->trans('boolean.no', array(), 'Admingenerator'),
+               1 => $this->container->get('translator')
+                        ->trans('boolean.yes', array(), 'Admingenerator'),
             );
-            $options['empty_value'] = $this->container->get('translator')->trans('boolean.yes_or_no', array(), 'Admingenerator');
+            
+            $options['empty_value'] = $this->container->get('translator')
+                ->trans('boolean.yes_or_no', array(), 'Admingenerator');
         }
 
-        if ('document' == $dbType) {
-            return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options);
+        if (preg_match("#^document#i", $formType) || preg_match("#document$#i", $formType)) {
+            return array_merge(
+                $this->getFormOptions($formType, $dbType, $ColumnName),
+                $options
+            );
         }
 
-        if ('collection' == $formType) {
-            return array('allow_add' => true, 'allow_delete' => true, 'by_reference' => true);
-        }
-
-        if ('collection' == $dbType) {
-            return array_merge($this->getFormOptions($formType, $dbType, $ColumnName), $options, array('multiple'=>false));
+        if (preg_match("#^collection#i", $formType) || preg_match("#collection$#i", $formType)) {
+            return array_merge(
+                $this->getFormOptions($formType, $dbType, $ColumnName),
+                $options,
+                array('multiple' => false)
+            );
         }
 
         return $options;

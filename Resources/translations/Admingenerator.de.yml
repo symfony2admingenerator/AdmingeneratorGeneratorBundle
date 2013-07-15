@@ -1,141 +1,96 @@
-# Double list form
-double_list:
-  selected:   Ausgewählt
-  unselected: Nicht gewählt
-
-# Date range form
-date_range:
-  from.label: Von
-  to.label:   Bis
-
 # Boolean filter
 boolean:
-  yes:        Ja
-  no:         Nein
-  yes_or_no:  Ja oder Nein
+    yes:        Ja
+    no:         Nein
+    yes_or_no:  Ja oder Nein
 
 # Pager
 pagerfanta:
-  previous:       Zurück
-  next:           Vor
-  view.perpage:   Anzeige 
-  num.elements:   %number% Elemente
+    previous:       Zurück
+    next:           Vor
+    view.perpage:   Anzeige 
+    num.elements:   %number% Elemente
 
 # List
 list:
-  no.results: Keine Einträge vorhanden.
-  filters:    Filter
+    no.results: Keine Einträge vorhanden.
+    filters:    Filter
 list.button:
-  filter:     Filtern
-  reset:      Zurücksetzen
+    filter:     Filtern
+    reset:      Zurücksetzen
 list.display:
-  range:      Zeige <b>%start%</b> bis <b>%end%</b> von <b>%count%</b> Datensätzen.
-  all:        Zeige alle <b>%count%</b> Datensätze.
+    range:      Zeige <b>%start%</b> bis <b>%end%</b> von <b>%count%</b> Datensätzen.
+    all:        Zeige alle <b>%count%</b> Datensätze.
 list.header:
-  actions:    Aktionen
+    actions:    Aktionen
 
 # Nested List
 nested.list:
-  expand:     Zeigen
-  collapse:   Verbergen
-  loading:    Laden
-  success:    Das Element wurde erfolgreich bewegt.
-  error:      Konnte nicht den Element bewegen.
+    expand:     Zeigen
+    collapse:   Verbergen
+    loading:    Laden
+    success:    Das Element wurde erfolgreich bewegt.
+    error:      Konnte nicht den Element bewegen.
 
 # Profile
 profile:
-  welcome:  <b>Willkommen</b>, %username%!
-  login:    Einloggen
-  logout:   Ausloggen
-  exit:     Verlassen Identitätswechselmodus
-
-# EntityPicker
-entity_picker:
-  placeholder:  Suchen...
-
-# Collection
-collection:
-  add:          Hinzufügen
-
-# Upload
-upload:
-  file.add:     Datei hinzufügen...
-  error:        Fehler
-  cancel:       Entfernen
-  delete:       Löschen
-  download:     Herunterladen
-upload.errors:
-  maxNumFiles:      Maximale Anzahl der Dateien überschritten.
-  typeNotAllowed:   Dateityp nicht erlaubt.
-  maxFileSize:      Datei ist zu groß.
-  minFileSize:      Datei ist zu klein.
+    welcome:  <b>Willkommen</b>, %username%!
+    login:    Einloggen
+    logout:   Ausloggen
+    exit:     Verlassen Identitätswechselmodus
 
 # Generic actions
 action.generic:
-  list:   Übersicht
-  new:    Neu
-  save:   Speichern
-  save-and-add:   Speichern und Neu
-  save-and-list:  Speichern und Übersicht
+    list:   Übersicht
+    new:    Neu
+    save:   Speichern
+    save-and-add:   Speichern und Neu
+    save-and-list:  Speichern und Übersicht
 
 # Object actions
 action.object.edit:
-  label:    Bearbeiten
-  success:  Das Objekt wurde erfolgreich gespeichert.
-  error:    |
-              Das Formular konnte nicht gespeichert werden. Bitte Fehler prüfen 
-              und erneut versuchen.
-  locked:   |
-              Entschuldigung, aber jemand anderes hat bereits verändert dieser 
-              Objekt.<br />
-              <a href="%path%" target="_blank">Klicken Sie hier</a> um
-              Änderungen in einem neuen Tab zu sehen oder senden Sie das Formular 
-              erneut zu bewerben die Änderungen!
+    label:    Bearbeiten
+    success:  Das Objekt wurde erfolgreich gespeichert.
+    error:    |
+                Das Formular konnte nicht gespeichert werden. Bitte Fehler prüfen 
+                und erneut versuchen.
+    locked:   |
+                Entschuldigung, aber jemand anderes hat bereits verändert dieser 
+                Objekt.<br />
+                <a href="%path%" target="_blank">Klicken Sie hier</a> um
+                Änderungen in einem neuen Tab zu sehen oder senden Sie das Formular 
+                erneut zu bewerben die Änderungen!
 action.object.delete:
-  label:    Löschen
-  confirm:  Sind Sie sicher, dass Sie dieses Element löschen?
-  success:  Element wurde erfolgreich gelöscht.
-  error:    Element kann nicht gelöscht werden.
+    label:    Löschen
+    confirm:  Sind Sie sicher, dass Sie dieses Element löschen?
+    success:  Element wurde erfolgreich gelöscht.
+    error:    Element kann nicht gelöscht werden.
 action.object.show:
-  label:    Zeigen
+    label:    Zeigen
 
 # Batch actions
 action.batch.delete:
-  label:    Löschen
-  confirm:  Sie bestätigen das Löschen aller ausgewählten Elemente?
-  success:  Die Eintrage wurden erfolgreich gelöscht.
-  error:    Die Eintrage können nicht gelöscht werden.
+    label:    Löschen
+    confirm:  Sie bestätigen das Löschen aller ausgewählten Elemente?
+    success:  Die Eintrage wurden erfolgreich gelöscht.
+    error:    Die Eintrage können nicht gelöscht werden.
 
 # Custom actions
 action.custom:
-  title:    Sind Sie sicher, dass Sie %name% Aktion auszuführen?
-  success:  Die %name% Aktion wurde erfolgreich ausgeführt.
-  error:    Konnte nicht %name% Aktion ausgeführen.
-  confirm:  Bestätigen
-  cancel:   Stornieren
+    title:    Sind Sie sicher, dass Sie %name% Aktion auszuführen?
+    success:  Die %name% Aktion wurde erfolgreich ausgeführt.
+    error:    Konnte nicht %name% Aktion ausgeführen.
+    confirm:  Bestätigen
+    cancel:   Stornieren
 
 # Batch list
 batch.list:
-  selected:       Ausgewählte
-  none.selected:  Sie müssen mindestens ein Element auswählen.
-  warning:        Konnte nicht abgeschlossen Gruppe Aktion aufgrund fehlenden Parameter.
-  send:           Ausführen
+    selected:       Ausgewählte
+    none.selected:  Sie müssen mindestens ein Element auswählen.
+    warning:        Konnte nicht abgeschlossen Gruppe Aktion aufgrund fehlenden Parameter.
+    send:           Ausführen
 
 # Layout
 dashboard:
-  homepage:   Startseite
-  brand:      Armaturenbrett
-
-# Filetype icons
-filetype:
-  audio:            Audio
-  archive:          Archiv
-  html:             HTML
-  image:            Bild
-  pdf-document:     PDF<br />Dokument
-  plain-text:       Klartext
-  presentation:     Präsentation
-  spreadsheet:      Tabellen-<br />kalkulation
-  text-document:    Text<br />Dokument
-  unknown:          Unbekannter<br />Dateityp
-  video:            Video
+    homepage:   Startseite
+    brand:      Armaturenbrett

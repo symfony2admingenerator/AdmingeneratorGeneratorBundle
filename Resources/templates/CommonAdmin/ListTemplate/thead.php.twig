@@ -1,46 +1,75 @@
 {% block list_thead %}
 {{ echo_block("list_thead") }}
-        <thead>
-            <tr class="list_thead">
-                {% if batch_actions is defined and batch_actions|length > 0 %}
-                    <th class="list_thead_batch_action">
-                        <input type="checkbox" name="batchAll" />
-                    </th>
-                {% endif %}
-                {% for column in builder.columns -%}
-                {% if column.credentials %}
-                      {{ echo_if_granted(column.credentials) }}
-                {% endif %}
-                <th class="list_thead_column{{ echo_if (column.isSortable) }} sortable{{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }} sort_asc{{ echo_elseif ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'DESC'") }} sort_desc{{ echo_endif () }}{{ echo_endif () }}">
-                    {% if column.isSortable -%}
-                        {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }}
-                            <a href="?sort={{ column.sortOn }}&order_by=desc">
-                        {{ echo_else() }}
-                            <a href="?sort={{ column.sortOn }}&order_by=asc">
-                        {{ echo_endif () }}
-                    {%- endif -%}
+<thead>
+    <tr class="list_thead">
+        {% if batch_actions is defined and batch_actions|length > 0 %}
+            <th class="list_thead_batch_action">
+                <input type="checkbox" name="batchAll" />
+            </th>
+        {% endif %}
+    {% for column in builder.columns -%}
+        {% if column.credentials %}
+            {{ echo_if_granted(column.credentials) }}
+        {% endif %}
 
-                                {{ echo_twig("'" ~ column.label|addslashes ~ "'|trans({}, '" ~ i18n_catalog|default("Admin") ~ "')") }}
-                    {%- if column.isSortable -%}
-                              </a>
-                        {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "'") }}
-                            {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }}
-                                <span class="sorted-asc"></span>
-                            {{ echo_else() }}
-                                <span class="sorted-desc"></span>
-                            {{ echo_endif () }}
-                        {{ echo_endif () }}
-                    {% endif -%}
-              </th>
-                {% if column.credentials %}
+        <th class="list_thead_column{{ echo_if (column.isSortable) }} sortable{{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }} sort_asc{{ echo_elseif ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'DESC'") }} sort_desc{{ echo_endif () }}{{ echo_endif () }}">
+            <span class="sort-span">
+            {% if column.isSortable -%}
+                {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }}
+                    <a href="?sort={{ column.sortOn }}&order_by=desc">
+                {{ echo_else() }}
+                    <a href="?sort={{ column.sortOn }}&order_by=asc">
+                {{ echo_endif () }}
+            {%- endif -%}
+                    {{ echo_twig("'" ~ column.label|addslashes ~ "'|trans({}, '" ~ i18n_catalog|default("Admin") ~ "')") }}
+            {%- if column.isSortable -%}
+                    </a>
+                {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "'") }}
+                    {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }}
+                        {% if column.sortType == 'alphabetic' %}
+                            <i class="icon-sort-by-alphabet active"></i>
+                            <i class="icon-sort-by-alphabet-alt hover"></i>
+                        {% elseif column.sortType == 'numeric' %}
+                            <i class="icon-sort-by-order active"></i>
+                            <i class="icon-sort-by-order-alt hover"></i>
+                        {% else %}
+                            <i class="icon-sort-by-attributes active"></i>
+                            <i class="icon-sort-by-attributes-alt hover"></i>
+                        {% endif %}
+                    {{ echo_else() }}
+                        {% if column.sortType == 'alphabetic' %}
+                            <i class="icon-sort-by-alphabet hover"></i>
+                            <i class="icon-sort-by-alphabet-alt active"></i>
+                        {% elseif column.sortType == 'numeric' %}
+                            <i class="icon-sort-by-order hover"></i>
+                            <i class="icon-sort-by-order-alt active"></i>
+                        {% else %}
+                            <i class="icon-sort-by-attributes hover"></i>
+                            <i class="icon-sort-by-attributes-alt active"></i>
+                        {% endif %}
                     {{ echo_endif () }}
-                {% endif %}
-                {% endfor -%}
+                {{ echo_else() }}
+                    {% if column.sortType == 'alphabetic' %}
+                        <i class="icon-sort-by-alphabet placeholder hover"></i>
+                    {% elseif column.sortType == 'numeric' %}
+                        <i class="icon-sort-by-order placeholder hover"></i>
+                    {% else %}
+                        <i class="icon-sort-by-attributes placeholder hover"></i>
+                    {% endif %}
+                {{ echo_endif () }}
+            {% endif -%}
+            </span>
+        </th>
 
-                {%- if object_actions|length > 0 -%}
-                    <th class="actions">{{ echo_trans('list.header.actions') }}</th>
-                {% endif -%}
-            </tr>
-        </thead>
+        {% if column.credentials %}
+            {{ echo_endif () }}
+        {% endif %}
+    {% endfor -%}
+
+    {%- if object_actions|length > 0 -%}
+        <th class="actions">{{ echo_trans('list.header.actions') }}</th>
+    {% endif -%}
+    </tr>
+</thead>
 {{ echo_endblock() }}
 {% endblock %}

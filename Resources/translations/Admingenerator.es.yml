@@ -1,147 +1,98 @@
-# Double list form
-double_list:
-  selected:   Seleccionado
-  unselected: No seleccionado
-
-# Date range form
-date_range:
-  from.label: De
-  to.label:   A
-
 # Boolean filter
 boolean:
-  yes:        Sí
-  no:         No
-  yes_or_no:  Sí o No
+    yes:        Sí
+    no:         No
+    yes_or_no:  Sí o No
 
 # Pager
 pagerfanta:
-  previous:       Anterior
-  next:           Siguiente
-  view.perpage:   Mostrar
-  num.elements:   %number% elementos
+    previous:       Anterior
+    next:           Siguiente
+    view.perpage:   Mostrar
+    num.elements:   %number% elementos
 
 # List
 list:
-  no.results: No existen resultados.
-  filters:    Filtros
+    no.results: No existen resultados.
+    filters:    Filtros
 list.button:
-  filter:     Filtro
-  reset:      Reajustar
+    filter:     Filtro
+    reset:      Reajustar
 list.display:
-  range:      Mostrar <b>%start%</b> - <b>%end%</b> de <b>%count%</b> resultados.
-  all:        Mostrar todos los <b>%count%</b> resultados.
+    range:      Mostrar <b>%start%</b> - <b>%end%</b> de <b>%count%</b> resultados.
+    all:        Mostrar todos los <b>%count%</b> resultados.
 list.header:
-  actions:    Acciones
+    actions:    Acciones
 
 # Nested List
 nested.list:
-  expand:     Mostrar
-  collapse:   Ocultar
-  loading:    Carga en curso
-  success:    El elemento fue trasladado con éxito.
-  error:      No se pudo mover el elemento.
+    expand:     Mostrar
+    collapse:   Ocultar
+    loading:    Carga en curso
+    success:    El elemento fue trasladado con éxito.
+    error:      No se pudo mover el elemento.
 
 # Profile
 profile:
-  welcome:  <b>Bienvenido</b>, %username%!
-  login:    Iniciar sesión
-  logout:   Cerrar sesión
-  exit:     Salga del modo de suplantación
-
-# EntityPicker
-entity_picker:
-  placeholder:  Buscar...
-
-# Collection
-collection:
-  add:          Añadir
-
-# Upload
-upload:
-  file.add:     Añadir archivo...
-  error:        Error
-  cancel:       Eliminar
-  delete:       Borrar
-  download:     Descargar
-upload.errors:
-  maxNumFiles:      Número máximo de archivos superior.
-  typeNotAllowed:   Tipo de archivo no permitido.
-  maxFileSize:      El archivo es demasiado grande.
-  minFileSize:      El archivo es demasiado pequeño.
-
-# SingleUpload
-singleupload:
-  display.name:     Nombre Mostrado
+    welcome:  <b>Bienvenido</b>, %username%!
+    login:    Iniciar sesión
+    logout:   Cerrar sesión
+    exit:     Salga del modo de suplantación
 
 # Generic actions
 action.generic:
-  list:   Listar
-  new:    Nuevo
-  save:   Guardar
-  save-and-add:   Guardar y Nuevo
-  save-and-list:  Guardar y Listar
+    list:   Listar
+    new:    Nuevo
+    save:   Guardar
+    save-and-add:   Guardar y Nuevo
+    save-and-list:  Guardar y Listar
 
 # Object actions
 action.object.edit:
-  label:    Editar
-  success:  El objeto fue guardado satisfactoriamente.
-  error:    |
-              El formulario no pudo ser guardado. comprueba los errores y 
-              vuelve a intentarlo.
-  locked:   |
-              Lo sentimos, pero alguien ya ha cambiado este objeto.<br />
-              <a href="%path%" target="_blank">Haz clic aquí</a> para ver 
-              los cambios en una nueva pestaña o enviar el formulario de nuevo 
-              para aplicar los cambios! 
+    label:    Editar
+    success:  El objeto fue guardado satisfactoriamente.
+    error:    |
+                El formulario no pudo ser guardado. comprueba los errores y 
+                vuelve a intentarlo.
+    locked:   |
+                Lo sentimos, pero alguien ya ha cambiado este objeto.<br />
+                <a href="%path%" target="_blank">Haz clic aquí</a> para ver 
+                los cambios en una nueva pestaña o enviar el formulario de nuevo 
+                para aplicar los cambios! 
 action.object.delete:
-  label:    Borrar
-  confirm:  ¿Está seguro que desea eliminar este elemento?
-  success:  Element se ha eliminado correctamente.
-  error:    El elemento no se puede eliminar.
+    label:    Borrar
+    confirm:  ¿Está seguro que desea eliminar este elemento?
+    success:  Element se ha eliminado correctamente.
+    error:    El elemento no se puede eliminar.
 action.object.show:
-  label:    Mostrar
+    label:    Mostrar
 
 # Batch actions
 action.batch.delete:
-  label:    Borrar
-  confirm:  ¿Te confirmar la eliminación de todos los elementos seleccionados?
-  success:  El registro ha sido borrado correctamente.
-  error:    Este registro no puede ser borrado.
+    label:    Borrar
+    confirm:  ¿Te confirmar la eliminación de todos los elementos seleccionados?
+    success:  El registro ha sido borrado correctamente.
+    error:    Este registro no puede ser borrado.
 
 # Custom actions
 action.custom:
-  title:    ¿Está seguro de que desea ejecutar la acción %name%?
-  success:  La acción %name% se ejecutó con éxito.
-  error:    No se pudo ejecutar la acción %name%.
-  confirm:  Confirmar
-  cancel:   Cancelar
+    title:    ¿Está seguro de que desea ejecutar la acción %name%?
+    success:  La acción %name% se ejecutó con éxito.
+    error:    No se pudo ejecutar la acción %name%.
+    confirm:  Confirmar
+    cancel:   Cancelar
 
 # Batch list
 batch.list:
-  selected:       Seleccionado
-  none.selected:  Debe seleccionar al menos un elemento.
-  warning:        |
-                    No se pudo completar la acción de lote debido a los 
-                    parámetros que faltan.
-  selector:       Choose an action for selection
-  send:           Ejecutar
+    selected:       Seleccionado
+    none.selected:  Debe seleccionar al menos un elemento.
+    warning:        |
+                      No se pudo completar la acción de lote debido a los 
+                      parámetros que faltan.
+    selector:       Choose an action for selection
+    send:           Ejecutar
 
 # Layout
 dashboard:
-  homepage:   Página principal
-  brand:      Tablero de instrumentos
-
-# Filetype icons
-filetype:
-  audio:            Audio
-  archive:          Archivo
-  html:             HTML
-  image:            Imagen
-  pdf-document:     Documento<br />PDF
-  plain-text:       Texto<br />sin formato
-  presentation:     Presentación
-  spreadsheet:      Hoja<br />de cálculo
-  text-document:    Documento<br />de texto
-  unknown:          Tipo de archivo<br />desconocido
-  video:            Video
+    homepage:   Página principal
+    brand:      Tablero de instrumentos

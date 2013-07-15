@@ -1,78 +1,43 @@
-# Double list form
-double_list:
-  selected:   Wybrane
-  unselected: Nie wybrane
-
-# Date range form
-date_range:
-  from.label: Od
-  to.label:   Do
-
 # Boolean filter
 boolean:
-  yes:        Tak
-  no:         Nie
-  yes_or_no:  Tak lub Nie
+    yes:        Tak
+    no:         Nie
+    yes_or_no:  Tak lub Nie
 
 # Pager
 pagerfanta:
-  previous:       Poprzednia
-  next:           Następna
-  view.perpage:   Wyświetl po
-  num.elements:   %number% elementów
+    previous:       Poprzednia
+    next:           Następna
+    view.perpage:   Wyświetl po
+    num.elements:   %number% elementów
 
 # List
 list:
-  no.results: Brak wyników.
-  filters:    Filtry
+    no.results: Brak wyników.
+    filters:    Filtry
 list.button:
-  filter:     Filtruj
-  reset:      Reset
+    filter:     Filtruj
+    reset:      Reset
 list.display:
-  range:      Wyświetlanie <b>%start%</b> - <b>%end%</b> z <b>%count%</b> rezultatów.
-  all:        Wyświetlanie wszystkich <b>%count%</b> rezultatów.
+    range:      Wyświetlanie <b>%start%</b> - <b>%end%</b> z <b>%count%</b> rezultatów.
+    all:        Wyświetlanie wszystkich <b>%count%</b> rezultatów.
 list.header:
-  actions:    Akcje
+    actions:    Akcje
 
 # Nested List
 nested.list:
-  expand:     Pokaż
-  collapse:   Ukryj
-  loading:    Wczytywanie
-  success:    Element przeniesiono.
-  error:      Element nie mógł zostać przeniesiony.
+    expand:     Pokaż
+    collapse:   Ukryj
+    loading:    Wczytywanie
+    success:    Element przeniesiono.
+    error:      Element nie mógł zostać przeniesiony.
 
 # Profile
 profile:
-  welcome:  <b>Witaj</b>, %username%!
-  login:    Zaloguj
-  logout:   Wyloguj
-  exit:     Wyjście z trybu personifikacji
-
-# EntityPicker
-entity_picker:
-  placeholder:  Szukaj...
-
-# Collection
-collection:
-  add:          Dodaj
-
-# Upload
-upload:
-  file.add:     Dodaj plik...
-  error:        Błąd
-  cancel:       Anuluj
-  delete:       Usuń
-  download:     Ściągnij
-upload.errors:
-  maxNumFiles:      Maksymalna liczba plików przekroczona.
-  typeNotAllowed:   Niedozwolony typ pliku.
-  maxFileSize:      Plik jest za duży.
-  minFileSize:      Plik jest za mały.
-
-# SingleUpload
-singleupload:
-  display.name:     Wyświetlana nazwa
+    welcome:  <b>Witaj</b>, %username%!
+    login:    Zaloguj
+    logout:   Wyloguj
+    exit:     Wyjście z trybu personifikacji
 
 # Generic actions
 action.generic:
@@ -84,59 +49,45 @@ action.generic:
 
 # Object actions
 action.object.edit:
-  label:    Edytuj
-  success:  Zapisano zmiany.
-  error:    Zmiany nie mogły zostać zapisane. Sprawdź błędy i spróbuj ponownie.
-  locked:   |
-              Przepraszam, ale ktoś inny już zmienił ten obiekt.<br />
-              <a href="%path%" target="_blank">Kliknij tutaj</a>, aby 
-              zobaczyć zmiany na nowej zakładce lub wyślij formularz ponownie,
-              aby zastosować twoje zmiany!
+    label:    Edytuj
+    success:  Zapisano zmiany.
+    error:    Zmiany nie mogły zostać zapisane. Sprawdź błędy i spróbuj ponownie.
+    locked:   |
+                Przepraszam, ale ktoś inny już zmienił ten obiekt.<br />
+                <a href="%path%" target="_blank">Kliknij tutaj</a>, aby 
+                zobaczyć zmiany na nowej zakładce lub wyślij formularz ponownie,
+                aby zastosować twoje zmiany!
 action.object.delete:
-  label:    Usuń
-  confirm:  Czy potwierdzasz usunięcie elementu?
-  success:  Usunięto wskazany element.
-  error:    Element nie mógł zostać usunięty.
+    label:    Usuń
+    confirm:  Czy potwierdzasz usunięcie elementu?
+    success:  Usunięto wskazany element.
+    error:    Element nie mógł zostać usunięty.
 action.object.show:
-  label:    Pokaż
+    label:    Pokaż
 
 # Batch actions
 action.batch.delete:
-  label:    Usuń
-  confirm:  Czy potwierdzasz usunięcie wszystkich zaznaczonych elementów?
-  success:  Usunięto wskazane elementy.
-  error:    Zaznaczone elementy nie mogły zostać usunięte.
+    label:    Usuń
+    confirm:  Czy potwierdzasz usunięcie wszystkich zaznaczonych elementów?
+    success:  Usunięto wskazane elementy.
+    error:    Zaznaczone elementy nie mogły zostać usunięte.
 
 # Custom actions
 action.custom:
-  title:    Czy na pewno chcesz wykonać akcję %name%?
-  success:  Akcja %name% zakończona sukcesem.
-  error:    Nie można było ukończyć akcji %name%.
-  confirm:  Potwierdź
-  cancel:   Anuluj
+    title:    Czy na pewno chcesz wykonać akcję %name%?
+    success:  Akcja %name% zakończona sukcesem.
+    error:    Nie można było ukończyć akcji %name%.
+    confirm:  Potwierdź
+    cancel:   Anuluj
 
 # Batch list
 batch.list:
-  selected:       Zaznaczone
-  none.selected:  Musisz zaznaczyć co najmniej jeden element.
-  warning:        Nie można było ukończyć grupowej akcji ze względu na brakujące parametry.
-  send:           Wykonaj
+    selected:       Zaznaczone
+    none.selected:  Musisz zaznaczyć co najmniej jeden element.
+    warning:        Nie można było ukończyć grupowej akcji ze względu na brakujące parametry.
+    send:           Wykonaj
 
 # Layout
 dashboard:
-  homepage:   Strona Główna
-  brand:      Pulpit
-
-# Filetype icons
-filetype:
-  audio:            Audio
-  archive:          Archiwum
-  html:             HTML
-  image:            Obraz
-  pdf-document:     Dokument<br />PDF
-  plain-text:       Tekst
-  presentation:     Prezentacja
-  spreadsheet:      Arkusz<br />Kalkulacyjny
-  text-document:    Dokument<br />Tekstowy
-  unknown:          Nieznany<br />Typ Pliku
-  video:            Wideo
+    homepage:   Strona Główna
+    brand:      Pulpit
