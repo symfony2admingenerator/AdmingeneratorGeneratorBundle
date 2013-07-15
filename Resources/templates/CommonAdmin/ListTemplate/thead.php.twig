@@ -13,6 +13,7 @@
         {% endif %}
 
         <th class="list_thead_column{{ echo_if (column.isSortable) }} sortable{{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }} sort_asc{{ echo_elseif ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'DESC'") }} sort_desc{{ echo_endif () }}{{ echo_endif () }}">
+            <span class="sort-span">
             {% if column.isSortable -%}
                 {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }}
                     <a href="?sort={{ column.sortOn }}&order_by=desc">
@@ -22,7 +23,7 @@
             {%- endif -%}
                     {{ echo_twig("'" ~ column.label|addslashes ~ "'|trans({}, '" ~ i18n_catalog|default("Admin") ~ "')") }}
             {%- if column.isSortable -%}
-                    </a> {{ column.sortType }}
+                    </a>
                 {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "'") }}
                     {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }}
                         {% if column.sortType == 'alphabetic' %}
@@ -57,6 +58,7 @@
                     {% endif %}
                 {{ echo_endif () }}
             {% endif -%}
+            </span>
         </th>
 
         {% if column.credentials %}

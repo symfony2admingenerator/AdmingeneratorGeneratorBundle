@@ -1,17 +1,17 @@
 /* List sorting styles */
-.list_thead_column > i.active,
-.list_thead_column:hover > i.hover,
-.list_thead_column:hover > i.hover.placeholder {
+.list_thead_column .sort-span > i.active,
+.list_thead_column .sort-span:hover > i.hover,
+.list_thead_column .sort-span:hover > i.hover.placeholder {
     display: inline-block;
     visibility: visible;
 }
 
-.list_thead_column > i.hover, 
-.list_thead_column:hover > i.active {
+.list_thead_column .sort-span > i.hover, 
+.list_thead_column .sort-span:hover > i.active {
     display: none;
 }
 
-.list_thead_column > i.hover.placeholder {
+.list_thead_column .sort-span > i.hover.placeholder {
     visibility: hidden;
 }
 
