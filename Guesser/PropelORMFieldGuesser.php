@@ -107,11 +107,11 @@ class PropelORMFieldGuesser extends ContainerAware
 
     public function getFormType($dbType, $columnName)
     {
-        $config = $this->container->getParameter('admingenerator.propel_form_types');    
+        $config = $this->container->getParameter('admingenerator.propel_form_types');
         $formTypes = array();
         
         foreach ($config as $key => $value) {
-            // if config is all uppercase use it to retrieve \PropelColumnTypes 
+            // if config is all uppercase use it to retrieve \PropelColumnTypes
             // constant, otherwise use it literally
             if ($key === strtoupper($key)) {
                 $key = constant('\PropelColumnTypes::'.$key);
@@ -141,7 +141,7 @@ class PropelORMFieldGuesser extends ContainerAware
         $filterTypes = array();
         
         foreach ($config as $key => $value) {
-            // if config is all uppercase use it to retrieve \PropelColumnTypes 
+            // if config is all uppercase use it to retrieve \PropelColumnTypes
             // constant, otherwise use it literally
             if ($key === strtoupper($key)) {
                 $key = constant('\PropelColumnTypes::'.$key);
@@ -297,5 +297,4 @@ class PropelORMFieldGuesser extends ContainerAware
             }
         }
     }
-
 }

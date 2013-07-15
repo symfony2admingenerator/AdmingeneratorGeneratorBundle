@@ -485,7 +485,7 @@ class EchoExtensionTest extends TestCase
              'array_value' => array('{% for foo in val %}', 'for return a good for tag with array element as value'),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetEchoEndFor()
@@ -498,7 +498,7 @@ class EchoExtensionTest extends TestCase
              'empty' => array('{% endfor %}', 'endfor return a good endfor tag'),
         );
 
-       $this->runTwigTests($tpls, $returns);
+        $this->runTwigTests($tpls, $returns);
     }
 
     public function testGetTwigAssoc()
@@ -630,41 +630,5 @@ class EchoExtensionTest extends TestCase
         $twig->addExtension(new EchoExtension($loader));
 
         return $twig;
-    }
-}
-
-class Object
-{
-    public static $called = array('__toString' => 0, 'foo' => 0, 'getFooBar' => 0);
-
-    public function __construct($bar ='bar')
-    {
-
-    }
-
-    public static function reset()
-    {
-        self::$called = array('__toString' => 0, 'foo' => 0, 'getFooBar' => 0);
-    }
-
-    public function __toString()
-    {
-        ++self::$called['__toString'];
-
-        return 'foo';
-    }
-
-    public function foo()
-    {
-        ++self::$called['foo'];
-
-        return 'foo';
-    }
-
-    public function getFooBar()
-    {
-        ++self::$called['getFooBar'];
-
-        return 'foobar';
     }
 }
