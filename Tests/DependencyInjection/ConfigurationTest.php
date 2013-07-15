@@ -50,6 +50,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                         'thousand_separator' => ','
                         )
             ),
+            'templates_dirs' => array(),
             'form_types' => array(
                 'doctrine_orm' => array(
                     'datetime'      => 'datetime', 
@@ -121,7 +122,6 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                     'BOOLEAN_EMU'   => 'checkbox', 
                 ),
             ),
-            'templates_dirs' => array(),
             'stylesheets'   => array(),
             'javascripts'   => array()
         );
