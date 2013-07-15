@@ -127,6 +127,17 @@ These upgrade notes will describe in detail what changes your project requires.
 However, if you follow them and still have problems, feel free to submit an issue, 
 I'll try to answer as soon as possible.
 
+Remove these (old) bundle configurations:
+
+* `admingenerator_generator.knp_menu_class`
+* `admingenerator_generator.thumbnail_generator`
+* `admingenerator_generator.use_genemu_form_fallback`
+
+After composer update run these commands:
+
+* `php app/console cache:clear`
+* `php app/console assetic:dump`
+
 ##### 1. Upgrade menu:
 
 First read about new menu structure [in cookbook][menu-cookbook-entry]. 
