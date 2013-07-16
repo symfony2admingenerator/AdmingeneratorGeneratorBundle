@@ -231,7 +231,7 @@ your form in another variable, change the function calls too.
 Now, you'll have to modify all your generator files:
 
 [collection-upload-doc]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/collection-upload/overview.md
-[image-manipulator-doc]: https://github.com/avocode/FormExtensionsBundle/blob/master/Resources/doc/cookbook/image-manipulator.md
+[image-manipulator-doc]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/cookbook/image-manipulator.md
 
 * `collection` *table* and *fieldset* widgets have become standalone form types.
 If you used these, simply change the form type to `collection_table` or 
