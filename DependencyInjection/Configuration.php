@@ -63,6 +63,7 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->arrayNode('doctrine_orm')
+                            ->prototype('scalar')
                             ->addDefaultsIfNotSet()
                             ->children()
                                 // datetime types
@@ -93,6 +94,7 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
                         ->arrayNode('doctrine_odm')
+                            ->prototype('scalar')
                             ->addDefaultsIfNotSet()
                             ->children()
                                 // datetime types
@@ -128,6 +130,7 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
                         ->arrayNode('propel')
+                            ->prototype('scalar')
                             ->addDefaultsIfNotSet()
                             ->children()
                                 // datetime types
@@ -175,6 +178,7 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->arrayNode('doctrine_orm')
+                            ->prototype('scalar')
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('text')->defaultValue('text')->end()
@@ -183,6 +187,7 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
                         ->arrayNode('doctrine_odm')
+                            ->prototype('scalar')
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('hash')->defaultValue('text')->end()
@@ -192,6 +197,7 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
                         ->arrayNode('propel')
+                            ->prototype('scalar')
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('BOOLEAN')->defaultValue('choice')->end()
