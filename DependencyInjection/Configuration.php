@@ -177,26 +177,108 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('doctrine_orm')
                             ->addDefaultsIfNotSet()
                             ->children()
+                                // datetime types
+                                ->scalarNode('datetime')->end()
+                                ->scalarNode('vardatetime')->end()
+                                ->scalarNode('datetimetz')->end()
+                                ->scalarNode('date')->end()
+                                // time types
+                                ->scalarNode('time')->end()
+                                // number types
+                                ->scalarNode('decimal')->end()
+                                ->scalarNode('float')->end()
+                                // integer types
+                                ->scalarNode('integer')->end()
+                                ->scalarNode('bigint')->end()
+                                ->scalarNode('smallint')->end()
+                                // text types
+                                ->scalarNode('string')->end()
+                                // textarea types
                                 ->scalarNode('text')->defaultValue('text')->end()
-                                ->scalarNode('boolean')->defaultValue('choice')->end()
+                                // association types
+                                ->scalarNode('entity')->end()
                                 ->scalarNode('collection')->defaultValue('entity')->end()
+                                // array types
+                                ->scalarNode('array')->end()
+                                // boolean types
+                                ->scalarNode('boolean')->defaultValue('choice')->end()
                             ->end()
                         ->end()
                         ->arrayNode('doctrine_odm')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('hash')->defaultValue('text')->end()
+                                // datetime types
+                                ->scalarNode('datetime')->end()
+                                ->scalarNode('timestamp')->end()
+                                ->scalarNode('vardatetime')->end()
+                                ->scalarNode('datetimetz')->end()
+                                ->scalarNode('date')->end()
+                                // time types
+                                ->scalarNode('time')->end()
+                                // number types
+                                ->scalarNode('decimal')->end()
+                                ->scalarNode('float')->end()
+                                // integer types
+                                ->scalarNode('int')->end()
+                                ->scalarNode('integer')->end()
+                                ->scalarNode('int_id')->end()
+                                ->scalarNode('bigint')->end()
+                                ->scalarNode('smallint')->end()
+                                // text types
+                                ->scalarNode('id')->end()
+                                ->scalarNode('custom_id')->end()
+                                ->scalarNode('string')->end()
+                                // textarea types
                                 ->scalarNode('text')->defaultValue('text')->end()
-                                ->scalarNode('boolean')->defaultValue('choice')->end()
+                                // association types
+                                ->scalarNode('document')->end()
                                 ->scalarNode('collection')->defaultValue('document')->end()
+                                // hash types
+                                ->scalarNode('hash')->defaultValue('text')->end()
+                                // boolean types
+                                ->scalarNode('boolean')->defaultValue('choice')->end()
                             ->end()
                         ->end()
                         ->arrayNode('propel')
                             ->addDefaultsIfNotSet()
                             ->children()
+                                // datetime types
+                                ->scalarNode('TIMESTAMP')->end()
+                                ->scalarNode('BU_TIMESTAMP')->end()
+                                // date types
+                                ->scalarNode('DATE')->end()
+                                ->scalarNode('BU_DATE')->end()
+                                // time types
+                                ->scalarNode('TIME')->end()
+                                // number types
+                                ->scalarNode('FLOAT')->end()
+                                ->scalarNode('REAL')->end()
+                                ->scalarNode('DOUBLE')->end()
+                                ->scalarNode('DECIMAL')->end()
+                                // integer types
+                                ->scalarNode('TINYINT')->end()
+                                ->scalarNode('SMALLINT')->end()
+                                ->scalarNode('INTEGER')->end()
+                                ->scalarNode('BIGINT')->end()
+                                ->scalarNode('NUMERIC')->end()
+                                // text types
+                                ->scalarNode('CHAR')->end()
+                                ->scalarNode('VARCHAR')->end()
+                                // textarea types
+                                ->scalarNode('LONGVARCHAR')->defaultValue('text')->end()
+                                ->scalarNode('BLOB')->defaultValue('text')->end()
+                                ->scalarNode('CLOB')->defaultValue('text')->end()
+                                ->scalarNode('CLOB_EMU')->defaultValue('text')->end()
+                                // association types
+                                ->scalarNode('model')->end()
+                                ->scalarNode('collection')->defaultValue('model')->end()
+                                // array types
+                                ->scalarNode('PHP_ARRAY')->defaultValue('choice')->end()
+                                // choice types
+                                ->scalarNode('ENUM')->end()
+                                // boolean types
                                 ->scalarNode('BOOLEAN')->defaultValue('choice')->end()
                                 ->scalarNode('BOOLEAN_EMU')->defaultValue('choice')->end()
-                                ->scalarNode('collection')->defaultValue('model')->end()
                             ->end()
                         ->end()
                     ->end()

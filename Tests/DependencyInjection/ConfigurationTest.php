@@ -125,19 +125,24 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
             'filter_types' => array(
                 'doctrine_orm' => array(
                     'text'          => 'text',
-                    'boolean'       => 'choice',
                     'collection'    => 'entity',
+                    'boolean'       => 'choice',
                 ),
                 'doctrine_odm' => array(
-                    'hash'          => 'text',
                     'text'          => 'text',
-                    'boolean'       => 'choice',
                     'collection'    => 'document',
+                    'hash'          => 'text',
+                    'boolean'       => 'choice',
                 ),
                 'propel' => array(
+                    'LONGVARCHAR'   => 'text',
+                    'BLOB'          => 'text',
+                    'CLOB'          => 'text',
+                    'CLOB_EMU'      => 'text',
+                    'collection'    => 'model',
+                    'PHP_ARRAY'     => 'choice',
                     'BOOLEAN'       => 'choice',
                     'BOOLEAN_EMU'   => 'choice',
-                    'collection'    => 'model',
                 ),
             ),
             'stylesheets'   => array(),
