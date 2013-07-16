@@ -60,7 +60,71 @@ class EchoExtension extends \Twig_Extension
             'as_php'          => new \Twig_Filter_Method($this, 'asPhp'),
             'php_name'        => new \Twig_Filter_Method($this, 'phpName'),
             'wrap'            => new \Twig_Filter_Method($this, 'wrap'),
+            'convert_as_form' => new \Twig_Filter_Method($this, 'convertAsForm'),
         );
+    }
+
+    /**
+    * Try to convert options of form given as string from yaml to a good object
+    *
+    * eg type option for collection type
+    *
+    * @param string $options the string as php
+    * @param string $formType the form type
+    *
+    * @return string the new options
+    */
+    public function convertAsForm($options, $formType)
+    {
+        $options = preg_replace("/'__php\((.+?)\)'/i", '$1', $options, -1, $count);
+
+        if (preg_match("#^collection#i", $formType) || preg_match("#collection$#i", $formType) || $formType == 'upload') {
+            preg_match("/'type' => '(.+?)'/i", $options, $matches);
+
+            if (count($matches) > 0) {
+                $pattern_formtype = '/^\\\\+(([a-zA-Z_]\w*\\\\+)*)([a-zA-Z_]\w*)$/';
+                // Sanity check: prepend with "new" and append with "()"
+                // only if type option is a Fully qualified name
+                if (preg_match($pattern_formtype, $matches[1])) {
+                    $options = str_replace("'type' => '".$matches[1]."'", '\'type\' => new '.stripslashes($matches[1]).'()', $options);
+                }
+            }
+        }
+
+        if (preg_match("#^entity#i", $formType) || preg_match("#entity$#i", $formType) ||
+            preg_match("#^document#i", $formType) || preg_match("#document$#i", $formType)) {
+            preg_match("/'query_builder' => '(.+?)',/i", $options, $matches);
+
+            if (count($matches) > 0) {
+                $options = str_replace("'query_builder' => '".$matches[1]."'", '\'query_builder\' => '.stripslashes($matches[1]), $options);
+            }
+        }
+
+        if (preg_match("#^model#i", $formType) || preg_match("#model$#i", $formType)) {
+            preg_match("/'query' => '(.+?)',/i", $options, $matches);
+
+            if (count($matches) > 0) {
+                $options = str_replace("'query' => '".$matches[1]."'", '\'query\' => '.stripslashes($matches[1]), $options);
+            }
+        }
+
+        if ('choice' == $formType || 'double_list' == $formType) {
+            preg_match("/'choices' => '(.+?)',/i", $options, $matches);
+
+            if (count($matches) > 0) {
+                $options = str_replace("'choices' => '".$matches[1]."'", '\'choices\' => '.stripslashes($matches[1]), $options);
+            }
+        }
+
+        if ('form_widget'== $formType) { // For type wich are not strings
+            preg_match("/\'(.*)Type/", $options, $matches);
+
+            if (count($matches) > 0) {
+                return 'new '.stripslashes($matches[1]).'Type()';
+            }
+        }
+
+        return $options;
     }
     
     public function asPhp($variable)
