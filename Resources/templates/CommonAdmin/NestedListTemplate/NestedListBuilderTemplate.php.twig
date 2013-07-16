@@ -8,9 +8,7 @@
 
 {{ echo_block("javascripts") }}
     {{- block('complementary_javascripts') -}}
-
-    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/treeTable/jquery.treeTable-extended.js")') }}"></script>
-    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/general.js")') }}"></script>
+    <script type="text/javascript" src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/nestedset.js")') }}"></script>
 {{ echo_endblock() }}
 
 {{ echo_block("stylesheets") }}
