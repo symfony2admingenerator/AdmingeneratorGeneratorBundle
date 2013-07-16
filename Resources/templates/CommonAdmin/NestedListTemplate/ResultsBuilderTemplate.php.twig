@@ -30,18 +30,19 @@
     {{- block('endform_batch_actions') -}}
 </div>
 
-<script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/nestedset.js")') }}"></script>
 {% set admingeneratorNestedRoute=builder.routePrefixWithSubfolder ~ "_" ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_nested_move" %}
 <script type="text/javascript">
     ;(function(window, $, undefined){
-        $('#table-list-{{ builder.ModelClass }}').agen$nestedTree({
-            urls: {
-                move: '{{ echo_path( admingeneratorNestedRoute, "{ 'dragged': '|dragged|', 'action': '|action|', 'dropped': '|dropped|' }") }}'
-            },
-            labels: {
-                expand: '{{ echo_trans('nested.list.expand') }}',
-                collapse: '{{ echo_trans('nested.list.collapse') }}'
-            }
+        $(function(){
+            $('#table-list-{{ builder.ModelClass }}').agen$nestedTree({
+                urls: {
+                    move: '{{ echo_path( admingeneratorNestedRoute, "{ 'dragged': '|dragged|', 'action': '|action|', 'dropped': '|dropped|' }") }}'
+                },
+                labels: {
+                    expand: '{{ echo_trans('nested.list.expand') }}',
+                    collapse: '{{ echo_trans('nested.list.collapse') }}'
+                }
+            });
         });
     })(this, jQuery);
 </script>
