@@ -6,13 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {% block scripts_head %}
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/components/jquery.min.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/components.min.js'
             'components/jquery/jquery.js'
-        %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-            
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/components/jquery-ui.min.js'
             'components/jquery-ui/ui/jquery-ui.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
@@ -28,25 +23,17 @@
     {% endblock %}
 
     {% block stylesheets %}
-        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/components/bootstrap.min.css'
+        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/components.min.css'
             'components/bootstrap/css/bootstrap.css'
-        %}
-            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
-        {% endstylesheets %}            
-        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/components/bootstrap-responsive.min.css'
             'components/bootstrap/css/bootstrap-responsive.css'
-        %}
-            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
-        {% endstylesheets %}            
-        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/components/font-awesome.min.css'
             'components/font-awesome/css/font-awesome.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
-        {% endstylesheets %}
+        {% endstylesheets %}            
         <!--[if lt IE 7]>
         <link rel="stylesheet" href="{{ asset('components/font-awesome/css/font-awesome-ie7.min') }}" type="text/css" media="all" />
         <![endif]-->        
-        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator/admingenerator.min.css'
+        {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator.min.css'
             'bundles/admingeneratorgenerator/css/general.css'
             'bundles/admingeneratorgenerator/css/profile.css'
             'bundles/admingeneratorgenerator/css/nested-list.css'
@@ -100,12 +87,8 @@
     </div> <!--/.container-fluid -->
 
     {% block javascripts %}
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/components/bootstrap.min.js'
+        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator.min.js'
             'components/bootstrap/js/bootstrap.js'
-        %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-        {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator/admin.min.js'
             'bundles/admingeneratorgenerator/js/treeTable/jquery.treeTable-extended.js'
             'bundles/admingeneratorgenerator/js/admingenerator/general.js'
         %}
