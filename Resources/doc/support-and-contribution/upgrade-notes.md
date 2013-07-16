@@ -342,72 +342,72 @@ If you want to set default form types you can do that in bundle's config:
 ```yaml
 admingenerator_generator:
     form_types:
-      doctrine_orm:
-          datetime:     datetime 
-          vardatetime:  datetime 
-          datetimetz:   datetime 
-          date:         datetime 
-          time:         time 
-          decimal:      number 
-          float:        number 
-          integer:      integer 
-          bigint:       integer 
-          smallint:     integer 
-          string:       text 
-          text:         textarea
-          entity:       entity 
-          collection:   collection 
-          array:        collection 
-          boolean:      checkbox 
-      doctrine_odm:
-          datetime:     datetime 
-          timestamp:    datetime 
-          vardatetime:  datetime 
-          datetimetz:   datetime 
-          date:         datetime 
-          time:         time 
-          decimal:      number 
-          float:        number 
-          int:          integer 
-          integer:      integer 
-          int_id:       integer 
-          bigint:       integer 
-          smallint:     integer 
-          id:           text 
-          custom_id:    text 
-          string:       text 
-          text:         textarea 
-          document:     document 
-          collection:   collection 
-          hash:         collection 
-          boolean:      checkbox 
-      propel:
-          TIMESTAMP:    datetime 
-          BU_TIMESTAMP: datetime 
-          DATE:         date 
-          BU_DATE:      date 
-          TIME:         time 
-          FLOAT:        number 
-          REAL:         number 
-          DOUBLE:       number 
-          DECIMAL:      number 
-          TINYINT:      integer 
-          SMALLINT:     integer 
-          INTEGER:      integer 
-          BIGINT:       integer 
-          NUMERIC:      integer 
-          CHAR:         text 
-          VARCHAR:      text 
-          LONGVARCHAR:  textarea 
-          BLOB:         textarea 
-          CLOB:         textarea 
-          CLOB_EMU:     textarea 
-          model:        model 
-          collection:   collection 
-          PHP_ARRAY:    collection 
-          ENUM:         choice 
-          BOOLEAN:      checkbox 
-          BOOLEAN_EMU:  checkbox 
+        doctrine_orm:
+            datetime:     datetime 
+            vardatetime:  datetime 
+            datetimetz:   datetime 
+            date:         datetime 
+            time:         time 
+            decimal:      number 
+            float:        number 
+            integer:      integer 
+            bigint:       integer 
+            smallint:     integer 
+            string:       text 
+            text:         textarea
+            entity:       entity 
+            collection:   collection 
+            array:        collection 
+            boolean:      checkbox 
+        doctrine_odm:
+            datetime:     datetime 
+            timestamp:    datetime 
+            vardatetime:  datetime 
+            datetimetz:   datetime 
+            date:         datetime 
+            time:         time 
+            decimal:      number 
+            float:        number 
+            int:          integer 
+            integer:      integer 
+            int_id:       integer 
+            bigint:       integer 
+            smallint:     integer 
+            id:           text 
+            custom_id:    text 
+            string:       text 
+            text:         textarea 
+            document:     document 
+            collection:   collection 
+            hash:         collection 
+            boolean:      checkbox 
+        propel:
+            TIMESTAMP:    datetime 
+            BU_TIMESTAMP: datetime 
+            DATE:         date 
+            BU_DATE:      date 
+            TIME:         time 
+            FLOAT:        number 
+            REAL:         number 
+            DOUBLE:       number 
+            DECIMAL:      number 
+            TINYINT:      integer 
+            SMALLINT:     integer 
+            INTEGER:      integer 
+            BIGINT:       integer 
+            NUMERIC:      integer 
+            CHAR:         text 
+            VARCHAR:      text 
+            LONGVARCHAR:  textarea 
+            BLOB:         textarea 
+            CLOB:         textarea 
+            CLOB_EMU:     textarea 
+            model:        model 
+            collection:   collection 
+            PHP_ARRAY:    collection 
+            ENUM:         choice 
+            BOOLEAN:      checkbox 
+            BOOLEAN_EMU:  checkbox 
 ```
 
 > **Note:** in propel configuration if key is all uppercase (like `ENUM`) then it 
@@ -421,19 +421,19 @@ If you want to set default filter types you can do that in bundle's config:
 ```yaml
 admingenerator_generator:
     filter_types:
-      doctrine_orm:
-          text:          text
-          boolean:       choice
-          collection:    entity
-      doctrine_odm:
-          hash:          text
-          text:          text
-          boolean:       choice
-          collection:    document
-      propel:
-          BOOLEAN:       choice
-          BOOLEAN_EMU:   choice
-          collection:    model
+        doctrine_orm:
+            text:          text
+            boolean:       choice
+            collection:    entity
+        doctrine_odm:
+            hash:          text
+            text:          text
+            boolean:       choice
+            collection:    document
+        propel:
+            BOOLEAN:       choice
+            BOOLEAN_EMU:   choice
+            collection:    model
 ```
 
 If default filter is not set, then default form type will be used.
