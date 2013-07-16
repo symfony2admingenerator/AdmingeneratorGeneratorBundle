@@ -280,14 +280,18 @@ directory.
 {{ asset('components/jquery/jquery.js') }}
 ```
 
-**Note:** If you use non-standard web directory (like `/pub` instead of `/web`) 
-you have to add `component-dir` variable under `config` in your `composer.json`:
+You must specify the directory where compoments should be installed, to do that
+to add `component-dir` variable under `config` in your `composer.json`:
 
 ```json
     "config": {
-        "component-dir": "pub/components"
+        "component-dir": "web/components"
     },
 ```
+
+> **Note:** If you have non-standard web directory name, you have to modify this.
+E.g. if your web directory is `/pub` then this line should be 
+`"component-dir": "pub/components"`.
 
 ##### 4. Upgrade actions:
 
