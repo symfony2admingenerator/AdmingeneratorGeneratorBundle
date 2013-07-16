@@ -237,6 +237,7 @@ Now, you'll have to modify all your generator files:
 
 [collection-upload-doc]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/collection-upload/overview.md
 [image-manipulator-doc]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/cookbook/image-manipulator.md
+[upload-manager-doc]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/cookbook/upload-manager.md
 
 * `collection` *table* and *fieldset* widgets have become standalone form types.
 If you used these, simply change the form type to `collection_table` or 
@@ -247,12 +248,16 @@ been moved to `Avocode\FormExtensionsBundle\Form\Model\UploadCollectionFileInter
 Also, `thumbnailFilter` option was renamed to `previewFilter` and now supports 
 both `avalanche/imagine-bundle` and `liip/imagine-bundle`. Read cookbook entry 
 [How to use image manipulator with this bundle?][image-manipulator-doc] if you 
-want to use this option.
+want to use this option. If you used `vich/uploader-bundle` to handle file uploads 
+you'll have to configure the upload manager option, read the cookbook entry 
+[How to use upload manager with this bundle?][upload-manager-doc] 
 
 * `single_upload` form type was updated, but it does not require any changes 
 from your. Only `thumbnailFilter` option has been renamed to `previewFilter`. 
 Read cookbook entry [How to use image manipulator with this bundle?][image-manipulator-doc] 
-if you want to use this option.
+if you want to use this option. If you used `vich/uploader-bundle` to handle file 
+uploads you'll have to configure the upload manager option, read the cookbook entry 
+[How to use upload manager with this bundle?][upload-manager-doc] 
 
 * `entitypicker` form type was removed. Use `select2_entity`, `select2_document` 
 or `select2_model` instead.
