@@ -113,6 +113,11 @@ types. This PR allows such configuration.
 For the same reasons as form types, now you can also configure which form types 
 should be used to filter which database field types.
 
+##### 8. Minor change: unify base admin templates
+
+Since `base_admin` and `base_login` templates are now exacly the same, the latter 
+was removed to make it easier to manage updates of this file in future PRs.
+
 #### B/C breaks:
 
  - Base MenuBuilder class has changed (renamed methods)
@@ -431,6 +436,19 @@ If default filter is not set, then default form type will be used.
 > **Note:** in propel configuration if key is all uppercase (like `BOOLEAN`) then it 
 will be used to retrieve a constant from `\PropelColumnType`, eg. `\PropelColumnType::BOOLEAN`,
 if key is lowercase (or mixed) it will be used literally (eg. `collection`)
+
+##### 8. Upgrade base admin templates
+
+Since `base_login` templates have been removed, if you use AdmingeneratorUserBundle, 
+you'll have to adapt your configuration. 
+
+If you use a custom `login_template`, then instead of extending 
+`AdmingeneratorGeneratorBundle::base_login.html.twig` make it extend 
+`AdmingeneratorGeneratorBundle::base_admin.html.twig`.
+
+If you don't use custom `login_template`, then change your AdmingeneratorUserBundle 
+configuration `admingenerator_user.login_template` to point to 
+`AdmingeneratorGeneratorBundle::base_admin.html.twig`
 
 ##### Thats all! 
 
