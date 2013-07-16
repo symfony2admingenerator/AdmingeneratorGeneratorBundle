@@ -29,6 +29,14 @@ Add Admingenerator to your `composer.json`:
 },
 ```
 
+### 1.2 Checkin your composer 
+
+```json
+"config": {
+    "component-dir": "web/components" 
+},
+```
+
 Then run `php composer.phar update` command.
 
 > **Note:** If you're getting **no matching package found** error then you must also add `"minimum-stability": "dev"` to your **composer.json** file.
