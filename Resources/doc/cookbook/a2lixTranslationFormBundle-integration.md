@@ -3,7 +3,7 @@
 
 [go back to Table of contents][back-to-index]
 
-[back-to-index]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#8-cookbook
+[back-to-index]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#7-cookbook
 
  `a2lixTranslationFormBundle` allows you to easily manage translatable fields of your entity with a new form type: 'a2lix_translations'.
 

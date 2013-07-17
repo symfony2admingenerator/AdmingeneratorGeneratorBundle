@@ -1,6 +1,10 @@
 # Conditional actions
 ---------------------------------------
 
+[go back to Table of contents][back-to-index]
+
+[back-to-index]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#7-cookbook
+
 ### 0. Deprecated parameter
 
 > **Note:** deprecated method, use `Expressions` from JMSDiExtraBundle instead. You can easily migrate your conditions
@@ -20,11 +24,6 @@ using this logic:
         fields:
             credentials: !object.canDelete(user)
 ```
-
-[go back to Table of contents][back-to-index]
-
-[back-to-index]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#8-cookbook
-
 
 ### 1. Usage
 

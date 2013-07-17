@@ -15,10 +15,9 @@ and open a ticket on github.
 3. [Features][table-of-contents-3]
 4. [Generator][table-of-contents-4]
 5. [Builders][table-of-contents-5]
-6. [Form Extensions][table-of-contents-6]
-7. [Internationalization][table-of-contents-7]
-8. [Cookbook][table-of-contents-8]
-9. [Security][table-of-contents-9]
+6. [Internationalization][table-of-contents-6]
+7. [Cookbook][table-of-contents-7]
+8. [Security][table-of-contents-8]
 
 [go-up]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#table-of-contents
 [table-of-contents-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#1-installation
@@ -26,10 +25,9 @@ and open a ticket on github.
 [table-of-contents-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#3-features
 [table-of-contents-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#4-generator
 [table-of-contents-5]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#5-builders
-[table-of-contents-6]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#6-form-extensions
-[table-of-contents-7]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#7-internationalization
-[table-of-contents-8]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#8-cookbook
-[table-of-contents-9]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#9-security
+[table-of-contents-6]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#6-internationalization
+[table-of-contents-7]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#7-cookbook
+[table-of-contents-8]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#8-security
 
 ## 1. Installation
 
@@ -93,25 +91,7 @@ List of supported features for each model manager:
 
 [go up][go-up]
 
-## 6. Form Extensions
-
-Documentation for new form extensions and types:
-
-1. [Entity Picker][form-extensions-1]
-2. [Date Picker][form-extensions-2]
-3. [Upload][form-extensions-3]
-4. [SingleUpload][form-extensions-4]
-5. [Collection][form-extensions-5]
-
-[go up][go-up]
-
-[form-extensions-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/entity-picker.md
-[form-extensions-2]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/date-picker.md
-[form-extensions-3]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/upload.md
-[form-extensions-4]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/single-upload.md
-[form-extensions-5]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/form-extensions/collection.md
-
-## 7. Internationalization
+## 6. Internationalization
 
 1. [Generator translation][internationalization-1]
 
@@ -119,7 +99,7 @@ Documentation for new form extensions and types:
 
 [internationalization-1]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/internationalization/generator-translation.md
 
-## 8. Cookbook
+## 7. Cookbook
 
 1. [Controllers Tips and Tricks][cookbook-1]
 2. [Templating Tips and Tricks][cookbook-2]
@@ -141,7 +121,7 @@ Documentation for new form extensions and types:
 [cookbook-7]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/conditional-actions.md
 [cookbook-8]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/changeing-web-directory.md
 
-## 9. Security
+## 8. Security
 
 1. [Credentials][security-1]
 2. [CSRF Protection][security-2]
