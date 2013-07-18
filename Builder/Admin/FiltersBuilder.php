@@ -10,8 +10,6 @@ use Admingenerator\GeneratorBundle\Generator\Column;
  */
 class FiltersBuilder extends BaseBuilder
 {
-    protected $actions;
-
     /**
      * (non-PHPdoc)
      * @see Admingenerator\GeneratorBundle\Builder.BaseBuilder::getYamlKey()
