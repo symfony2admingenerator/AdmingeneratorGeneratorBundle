@@ -34,7 +34,7 @@ class Column
 
     protected $help;
 
-    protected $crendentials;
+    protected $credentials;
 
     protected $localizedDateFormat;
 
@@ -166,14 +166,14 @@ class Column
         return $this->formOptions;
     }
 
-    public function setCredentials($crendentials)
+    public function setCredentials($credentials)
     {
-        $this->crendentials = $crendentials;
+        $this->credentials = $credentials;
     }
 
     public function getCredentials()
     {
-        return $this->crendentials;
+        return $this->credentials;
     }
 
     public function setLocalizedDateFormat($localizedDateFormat)
