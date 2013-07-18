@@ -75,15 +75,6 @@
             <tag name="admingenerator.validator.propel" alias="propel_model_class" />
         </service>
 
-        <!-- Form types -->
-        <service id="form.type.datepicker" class="Admingenerator\GeneratorBundle\Form\Type\DatepickerType">
-            <tag name="form.type" alias="datepicker" />
-        </service>
-
-        <service id="form.type.datepicker_range" class="Admingenerator\GeneratorBundle\Form\Type\DatepickerRangeType">
-            <tag name="form.type" alias="datepicker_range" />
-        </service>
-
         <!-- Validators -->
         <service id="admingenerator.validator.model_class" class="%admingenerator.validator.model_class.class%" public="false">
             <tag name="admingenerator.validator" alias="model_class" />
