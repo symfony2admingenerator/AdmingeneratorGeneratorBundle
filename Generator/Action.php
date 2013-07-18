@@ -34,7 +34,7 @@ class Action
 
     protected $csrf_protected = false;
 
-    protected $crendentials;
+    protected $credentials;
 
     /**
      * To be removed
@@ -166,14 +166,14 @@ class Action
         return $this->csrf_protected;
     }
 
-    public function setCredentials($crendentials)
+    public function setCredentials($credentials)
     {
-        $this->crendentials = $crendentials;
+        $this->credentials = $credentials;
     }
 
     public function getCredentials()
     {
-        return $this->crendentials;
+        return $this->credentials;
     }
 
     public function getParams()
