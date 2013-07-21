@@ -13,8 +13,6 @@ use Admingenerator\GeneratorBundle\Generator\Action;
  */
 class ListBuilder extends BaseBuilder
 {
-    protected $object_actions;
-
     protected $batch_actions;
 
     protected $filter_columns;
@@ -105,70 +103,6 @@ class ListBuilder extends BaseBuilder
             $this->addFilterColumn($column);
         }
 
-    }
-
-    /**
-     * Return a list of action from list.object_actions
-     * @return array
-     */
-    public function getObjectActions()
-    {
-        if (0 === count($this->object_actions)) {
-            $this->findObjectActions();
-        }
-
-        return $this->object_actions;
-    }
-
-    protected function setUserObjectActionConfiguration(Action $action)
-    {
-        $builderOptions = $this->getVariable(
-            sprintf('object_actions[%s]', $action->getName()),
-            array(),
-            true
-        );
-
-        $globalOptions = $this->getGenerator()->getFromYaml(
-            'params.object_actions.'.$action->getName(),
-            array()
-        );
-
-        if (null !== $builderOptions) {
-            foreach ($builderOptions as $option => $value) {
-                $action->setProperty($option, $value);
-            }
-        } elseif (null !== $globalOptions) {
-            foreach ($globalOptions as $option => $value) {
-                $action->setProperty($option, $value);
-            }
-        }
-    }
-
-    protected function addObjectAction(Action $action)
-    {
-        $this->object_actions[$action->getName()] = $action;
-    }
-
-    protected function findObjectActions()
-    {
-        $objectActions = $this->getVariable('object_actions', array());
-
-        foreach ($objectActions as $actionName => $actionParams) {
-            $action = $this->findObjectAction($actionName);
-            
-            if (!$action) {
-                $action = new Action($actionName);
-            }
-
-            if ($globalCredentials = $this->getGenerator()->getFromYaml('params.credentials')) {
-                // If generator is globally protected by credentials
-                // object actions are also protected
-                $action->setCredentials($globalCredentials);
-            }
-
-            $this->setUserObjectActionConfiguration($action);
-            $this->addObjectAction($action);
-        }
     }
 
     /**
