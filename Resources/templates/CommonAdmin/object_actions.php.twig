@@ -1,32 +1,36 @@
 {% block object_actions %}
     {{ echo_block("object_actions") }}
         {% if object_actions is defined  and object_actions|length > 0 %}
-        <td class="object_actions">
-            <div class="btn-group">
-            {% for action in builder.ObjectActions %}
-                {{ echo_block('object_action_' ~ action.twigName) }}
-                    {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
-                        {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials'), builder.ModelClass ) }}
-                    {% endif -%}
-                
-                        {% if action.conditionalFunction %}
-                            {{ echo_if((action.conditionalInverse ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')') }}
-                        {% endif %}
-
-                        {{ block('object_action_block') }}
-
-                        {% if action.conditionalFunction %}
+            {% if builder.yamlKey is sameas('list') %}
+            <td class="object_actions">
+            {% endif %}
+                <div class="btn-group{% if builder.yamlKey is not sameas('list') %} pull-right{% endif %}">
+                {% for action in builder.ObjectActions %}
+                    {{ echo_block('object_action_' ~ action.twigName) }}
+                        {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
+                            {{ echo_if_granted( action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials'), builder.ModelClass ) }}
+                        {% endif -%}
+                    
+                            {% if action.conditionalFunction %}
+                                {{ echo_if((action.conditionalInverse ? 'not ' : '') ~ builder.ModelClass ~ "." ~ action.conditionalFunction ~ '(' ~ action.conditionalParameters|join(',') ~')') }}
+                            {% endif %}
+    
+                            {{ block('object_action_block') }}
+    
+                            {% if action.conditionalFunction %}
+                                {{ echo_endif () }}
+                            {% endif %}
+                    
+                        {%- if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
                             {{ echo_endif () }}
                         {% endif %}
-                
-                    {%- if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
-                        {{ echo_endif () }}
-                    {% endif %}
-                {{ echo_endblock() }}
-            {% endfor %}
-            {{ echo_block('td_list_object_actions_customActions') }}{{ echo_endblock() }}
-            </div>
-        </td>
+                    {{ echo_endblock() }}
+                {% endfor %}
+                {{ echo_block('object_actions_customActions') }}{{ echo_endblock() }}
+                </div>
+            {% if builder.yamlKey is sameas('list') %}
+            </td>
+            {% endif %}
         {% endif -%}
     {{ echo_endblock() }}
 {% endblock %}
@@ -37,7 +41,7 @@
     <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/object-actions.js")') }}"></script>
     <script type="text/javascript">
         ;(function(window, $, undefined){
-        	$("#table-list-{{ builder.ModelClass }}").agen$objectActions({
+        	$(".object-actions-{{ builder.ModelClass }}").agen$objectActions({
             	actionsSelector: '.object_actions a'
             });
         })(this, jQuery);
@@ -53,11 +57,18 @@
 
     {% spaceless %}
     {{ echo_spaceless() }}
-    <a  class="btn btn-mini {{ action.class|default('') }}" href="{{ echo_path(actionRoute, actionParams) }}"
-        data-original-title="{{ echo_trans(action.label, {}, translationDomain) }}" rel="tooltip"
+    <a  class="btn {% if builder.yamlKey is sameas('list') %}btn-mini {% endif %}{{ action.class|default('') }}" href="{{ echo_path(actionRoute, actionParams) }}"
+        data-original-title="{{ echo_trans(action.label, {}, translationDomain) }}"
+        {% if builder.yamlKey is sameas('list') %}
+        rel="tooltip"
+        {% endif %}
         {%- if action.confirm %} data-confirm="{{ echo_trans(action.confirm, {}, translationDomain) }}" {% endif -%}
         {%- if action.csrfProtected %} data-csrf-token="{{ echo_path(actionRoute, actionParams, ['csrf_token']) }}" {% endif -%}>
-            <i class="{{ action.icon|default('icon-asterisk') }}"></i>
+            <i class="{{ action.icon|default('icon-asterisk') }}">
+                {% if builder.yamlKey is not sameas('list') %}
+                {{ echo_trans(action.label, {}, translationDomain) }}
+                {% endif %}
+            </i>
     </a>
     {{ echo_endspaceless() }}
     {% endspaceless %}
