@@ -80,7 +80,7 @@ Elusive Icons have been removed from the bundle. Instead, dependencies to
 [robloach/component-installer][robloach-component-installer] and compatible 
 shim repositories have been added.
 
-Elusive icon font has been replaced by FontAwesome icon font, becouse the latter 
+Elusive icon font has been replaced by FontAwesome icon font, because the latter 
 has a shim repository compatible with *component-installer* and has many cool 
 features like:
 
