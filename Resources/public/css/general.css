@@ -88,3 +88,5 @@ body {
     background-repeat: repeat-x;
     filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff438EB9', endColorstr='#ff62A8D1', GradientType=0);
 }
+
+div[class^='object-actions-'],div[class*=' object-actions-'] {margin-bottom: 10px}
