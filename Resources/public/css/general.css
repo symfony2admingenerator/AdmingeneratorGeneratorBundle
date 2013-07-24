@@ -16,6 +16,10 @@ body {
   body {
       padding-top: 0px;
   }
+  .navbar-blue .nav-collapse .nav > li > a, 
+  .navbar-blue .nav-collapse .dropdown-menu a {
+      color: #FFFFFF;
+  }
 }
 
 /* Navbar styles */
