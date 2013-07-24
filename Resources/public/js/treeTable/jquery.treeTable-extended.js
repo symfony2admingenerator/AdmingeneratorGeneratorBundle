@@ -57,38 +57,38 @@
   // Helps to make options available to all functions
   // TODO: This gives problems when there are both expandable and non-expandable
   // trees on a page. The options shouldn't be global to all these instances!
-  var options;
-  var defaultPaddingLeft;
+  var admTTopts;
+  var admTTdefaultPaddingLeft;
   var persistStore;
 
   $.fn.treeTable = function(opts) {
-      options = $.extend({}, $.fn.treeTable.defaults, opts);
+      admTTopts = $.extend({}, $.fn.treeTable.defaults, opts);
 
-      if(options.persist) {
-          persistStore = new Persist.Store(options.persistStoreName);
+      if(admTTopts.persist) {
+          persistStore = new Persist.Store(admTTopts.persistStoreName);
       }
 
       return this.each(function() {
           $(this).addClass("treeTable").find("tbody tr").each(function() {
               // Skip initialized nodes.
               if (!$(this).hasClass('initialized')) {
-                  var isRootNode = ($(this)[0].className.search(options.childPrefix) == -1);
+                  var isRootNode = ($(this)[0].className.search(admTTopts.childPrefix) == -1);
 
                   // To optimize performance of indentation, I retrieve the padding-left
                   // value of the first root node. This way I only have to call +css+
                   // once.
-                  if (isRootNode && isNaN(defaultPaddingLeft)) {
-                      defaultPaddingLeft = options.initialIndent + parseInt($($(this).children("td")[options.treeColumn]).css('padding-left'), 10);
+                  if (isRootNode && isNaN(admTTdefaultPaddingLeft)) {
+                      admTTdefaultPaddingLeft = admTTopts.initialIndent + parseInt($($(this).children("td")[admTTopts.treeColumn]).css('padding-left'), 10);
                   }
 
                   // Set child nodes to initial state if we're in expandable mode.
-                  if (!isRootNode && options.expandable && options.initialState == "collapsed") {
+                  if (!isRootNode && admTTopts.expandable && admTTopts.initialState == "collapsed") {
                       $(this).addClass('ui-helper-hidden');
                   }
 
                   // If we're not in expandable mode, initialize all nodes.
                   // If we're in expandable mode, only initialize root nodes.
-                  if (!options.expandable || isRootNode) {
+                  if (!admTTopts.expandable || isRootNode) {
                       initialize($(this));
                   }
               }
@@ -135,7 +135,7 @@
       return this.each(function() {
           $(this).removeClass("expanded").addClass("collapsed");
 
-          if (options.persist) {
+          if (admTTopts.persist) {
               persistNodeState($(this));
           }
 
@@ -146,8 +146,8 @@
 
               $(this).addClass('ui-helper-hidden');
 
-              if($.isFunction(options.onNodeHide)) {
-                  options.onNodeHide.call(this);
+              if($.isFunction(admTTopts.onNodeHide)) {
+                  admTTopts.onNodeHide.call(this);
               }
 
           });
@@ -159,7 +159,7 @@
       return this.each(function() {
           $(this).removeClass("collapsed").addClass("expanded");
 
-          if (options.persist) {
+          if (admTTopts.persist) {
               persistNodeState($(this));
           }
 
@@ -172,8 +172,8 @@
 
               $(this).removeClass('ui-helper-hidden');
 
-              if($.isFunction(options.onNodeShow)) {
-                  options.onNodeShow.call(this);
+              if($.isFunction(admTTopts.onNodeShow)) {
+                  admTTopts.onNodeShow.call(this);
               }
           });
       });
@@ -208,11 +208,11 @@
           insert(node, 'after', target); // Move nodes to new location
           
           if (parent) { 
-              node.removeClass(options.childPrefix + parent[0].id); 
+              node.removeClass(admTTopts.childPrefix + parent[0].id); 
           }  // Remove parent
           
-          node.addClass(options.childPrefix + target[0].id); // Set new parent
-          indent(node, ancestorsOf(node).length * options.indent); // Set new indentation
+          node.addClass(admTTopts.childPrefix + target[0].id); // Set new parent
+          indent(node, ancestorsOf(node).length * admTTopts.indent); // Set new indentation
       }
 
       return this;
@@ -246,14 +246,14 @@
           insert(node, where, target); // Move nodes to new location
 
           if (parent) { 
-              node.removeClass(options.childPrefix + parent[0].id); 
+              node.removeClass(admTTopts.childPrefix + parent[0].id); 
           } // Remove parent
 
           if (targetParent) { 
-              node.addClass(options.childPrefix + targetParent[0].id); 
+              node.addClass(admTTopts.childPrefix + targetParent[0].id); 
           } // Set new parent
 
-          indent(node, ancestorsOf(node).length * options.indent); // Set new indentation
+          indent(node, ancestorsOf(node).length * admTTopts.indent); // Set new indentation
       }
 
       return this;
@@ -278,7 +278,7 @@
   // Get node's parent
   $.fn.nodeParent = function () {
       var $node = $(this);
-      var match = $node[0].className.match(new RegExp(options.childPrefix+'[^\\s]+', 'i'));
+      var match = $node[0].className.match(new RegExp(admTTopts.childPrefix+'[^\\s]+', 'i'));
       return (match) ? $('#node-'+match[0].substring(14)) : null;
   }
   
@@ -311,7 +311,7 @@
   };
 
   function childrenOf(node) {
-      return $(node).siblings("tr." + options.childPrefix + node[0].id);
+      return $(node).siblings("tr." + admTTopts.childPrefix + node[0].id);
   };
     
   // note: this function assumes that 
@@ -332,15 +332,15 @@
   };
 
   function getPaddingLeft(node) {
-      return ancestorsOf(node).length * options.indent;
+      return ancestorsOf(node).length * admTTopts.indent;
   }
 
   function indent(node, value) {
-      var cell = $(node.children("td")[options.treeColumn]);
-      cell[0].style.paddingLeft = options.initialIndent + value + 'px';
+      var cell = $(node.children("td")[admTTopts.treeColumn]);
+      cell[0].style.paddingLeft = admTTopts.initialIndent + value + 'px';
 
       childrenOf(node).each(function() {
-          indent($(this), value + options.indent);
+          indent($(this), value + admTTopts.indent);
       });
   };
 
@@ -348,7 +348,7 @@
       if (!node.hasClass("initialized")) {
           node.addClass("initialized");
 
-          var isRootNode = (node[0].className.search(options.childPrefix) == -1);
+          var isRootNode = (node[0].className.search(admTTopts.childPrefix) == -1);
           var childNodes = childrenOf(node);
           var expandable = childNodes.length > 0;
 
@@ -356,29 +356,29 @@
               node.addClass("parent");
           }
 
-          if ($.isFunction(options.onNodeInit)) {
-              options.onNodeInit.call(this, node, expandable, isRootNode);
+          if ($.isFunction(admTTopts.onNodeInit)) {
+              admTTopts.onNodeInit.call(this, node, expandable, isRootNode);
           }
 
           if (expandable) {
               indent(node, getPaddingLeft(node));
 
-              if (options.expandable) {
-                  var handle = (options.clickableElement) ? node.find(options.clickableElement) : node;
-                  handle.attr('title', options.stringExpand).addClass('expander');
+              if (admTTopts.expandable) {
+                  var handle = (admTTopts.clickableElement) ? node.find(admTTopts.clickableElement) : node;
+                  handle.attr('title', admTTopts.stringExpand).addClass('expander');
 
-                  handle.on((options.doubleclickMode) ? 'dblclick' : 'click', function(e){
+                  handle.on((admTTopts.doubleclickMode) ? 'dblclick' : 'click', function(e){
                       e.preventDefault;
                       node.toggleBranch();
                   });
 
-                  if (options.persist && getPersistedNodeState(node)) {
+                  if (admTTopts.persist && getPersistedNodeState(node)) {
                       node.addClass('expanded');
                   }
 
                   // Check for a class set explicitly by the user, otherwise set the default class
                   if (!(node.hasClass("expanded") || node.hasClass("collapsed"))) {
-                      (isRootNode) ? node.addClass(options.initialRootState) : node.addClass(options.initialState);
+                      (isRootNode) ? node.addClass(admTTopts.initialRootState) : node.addClass(admTTopts.initialState);
                   }
 
                   if(node.hasClass("expanded")) {
@@ -394,19 +394,19 @@
           node.removeClass('initialized').removeClass('parent')
               .removeClass('expanded').removeClass('collapsed');
 
-          var isRootNode = (node[0].className.search(options.childPrefix) == -1);
+          var isRootNode = (node[0].className.search(admTTopts.childPrefix) == -1);
           var childNodes = childrenOf(node);
           var expandable = childNodes.length > 0;
 
-          if (options.expandable) {
-              var handle = (options.clickableElement) ? node.find(options.clickableElement) : node;
+          if (admTTopts.expandable) {
+              var handle = (admTTopts.clickableElement) ? node.find(admTTopts.clickableElement) : node;
               handle.removeAttr('title').removeClass('expander');
 
-              handle.off((options.doubleclickMode) ? 'dblclick' : 'click');
+              handle.off((admTTopts.doubleclickMode) ? 'dblclick' : 'click');
           }
 
-          if ($.isFunction(options.onNodeReinit)) {
-              options.onNodeReinit.call(this, node, expandable, isRootNode);
+          if ($.isFunction(admTTopts.onNodeReinit)) {
+              admTTopts.onNodeReinit.call(this, node, expandable, isRootNode);
           }
 
           if (expandable) { 
@@ -439,8 +439,8 @@
     var classNames = node[0].className.split(' ');
 
     for (var key=0; key<classNames.length; key++) {
-        if (classNames[key].match(options.childPrefix)) {
-          return $(node).siblings("#" + classNames[key].substring(options.childPrefix.length));
+        if (classNames[key].match(admTTopts.childPrefix)) {
+          return $(node).siblings("#" + classNames[key].substring(admTTopts.childPrefix.length));
         }
     }
 
