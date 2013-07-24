@@ -50,4 +50,4 @@ my.yaml_code:  is here
 
 To learn how to use GFM simply click on *Github Flavored Markdown* link above issue form to see ![Cheat sheet](https://raw.github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/master/Resources/doc/support/gfm-cheat-sheet.png)
 
-[doc-gfm-image]: https://raw.github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/master/Resources/doc/support/gfm-cheat-sheet.png
+[doc-gfm-image]: https://raw.github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/master/Resources/doc/support-and-contibution/gfm-cheat-sheet.png
