@@ -1,7 +1,7 @@
 {% block object_actions %}
     {{ echo_block("object_actions") }}
         {% if object_actions is defined  and object_actions|length > 0 %}
-            {% if builder.yamlKey is sameas('list') %}
+            {% if builder.yamlKey is sameas('list') or builder.yamlKey is sameas('nested_list') %}
             <td class="object_actions">
             {% endif %}
                 <div class="btn-group{% if builder.yamlKey is not sameas('list') %} pull-right{% endif %}">
@@ -28,7 +28,7 @@
                 {% endfor %}
                 {{ echo_block('object_actions_customActions') }}{{ echo_endblock() }}
                 </div>
-            {% if builder.yamlKey is sameas('list') %}
+            {% if builder.yamlKey is sameas('list') or builder.yamlKey is sameas('nested_list') %}
             </td>
             {% endif %}
         {% endif -%}
