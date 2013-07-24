@@ -12,6 +12,12 @@ body {
     padding-bottom: 40px;
 }
 
+@media (max-width: 979px) {
+  body {
+      padding-top: 0px;
+  }
+}
+
 /* Navbar styles */
 .navbar-blue .navbar-inner {
     background-color: #438EB9;
