@@ -23,6 +23,7 @@ Currently supported languages are:
 * (fr) French
 * (it) Italian
 * (ja) Japanese
+* (nl) Dutch
 * (pl) Polish
 * (pt) Portuguese
 * (ru) Russian
