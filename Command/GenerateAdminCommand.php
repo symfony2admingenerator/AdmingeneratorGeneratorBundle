@@ -12,6 +12,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Sensio\Bundle\GeneratorBundle\Command\Validators;
+use Sensio\Bundle\GeneratorBundle\Command\Helper\DialogHelper;
 
 class GenerateAdminCommand extends GenerateBundleCommand
 {
@@ -173,7 +174,7 @@ EOT
         return new BundleGenerator($this->getContainer()->get('filesystem'), __DIR__.'/../Resources/skeleton/bundle');
     }
 
-    protected function updateRouting($dialog, InputInterface $input, OutputInterface $output, $bundle, $format)
+    protected function updateRouting(DialogHelper $dialog, InputInterface $input, OutputInterface $output, $bundle, $format)
     {
         $auto = true;
         if ($input->isInteractive()) {
