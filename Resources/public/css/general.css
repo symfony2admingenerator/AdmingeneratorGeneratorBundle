@@ -86,6 +86,14 @@ body {
     border-bottom-color: #FFFFFF;
 }
 
+.navbar-blue .nav > .active > a, 
+.navbar-blue .nav > .active > a:hover, 
+.navbar-blue .nav > .active > a:focus {
+    color: #FFFFFF;
+    background-color: #438EB9;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25) inset;
+}
+
 .navbar-blue .dropdown-menu li > a:hover,
 .navbar-blue .dropdown-menu li > a:focus,
 .navbar-blue .dropdown-submenu:hover > a {
