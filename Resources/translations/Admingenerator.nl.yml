@@ -51,7 +51,7 @@ action.generic:
 action.object.edit:
     label:    Bewerken
     success:  Het object is succesvol opgeslagen.
-    error:    Het formulier kna niet worden opgeslagen. Controleer op fouten en probeer opnieuw.
+    error:    Het formulier kan niet worden opgeslagen. Controleer op fouten en probeer opnieuw.
     locked:   |
                 Helaas heeft iemand anders dit object al gewijzigd.<br />
                 <a href="%path%" target="_blank">Klik hier</a> om de wijzigingen in een nieuwe tab te bekijken 
