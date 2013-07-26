@@ -88,7 +88,7 @@
             }
             
             // Confirm action
-            if (this.$selector.data('confirm') && !confirm(this.$selector.data('confirm'))) {
+            if ($(':selected',this.$selector).data('confirm') && !confirm($(':selected',this.$selector).data('confirm'))) {
             	this.$selector.val('none');
             	return false;
             }
