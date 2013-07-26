@@ -9,6 +9,25 @@ This file lists B/C breaking PRs in reverse chronological order. Each PR contain
 description explaining nature of changes and upgrade notes to help you upgrade your 
 project.
 
+## PR [#623][pr623] Fix localized date
+
+[pr623]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/pull/623
+[pr623doc]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/builders/common/localized-date.md
+
+#### Description:
+
+This PR fixes the way admingenerator uses localizeddate twig filter.
+
+#### B/C breaks:
+
+* `date_format` is not used anymore, instead `format` option of the field is used
+* `datetime_format` is not used anymore, instead `format` option of the field is used
+
+#### Upgrade notes
+
+If you used `date_format` or `datetime_format` to control localized date format, please 
+refer to [Resources/doc/builders/common/localized_date.md][pr623doc] and update your config.
+
 ## PR [#575][pr575] Major bundle refactoring
 
 [pr575]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/pull/575
