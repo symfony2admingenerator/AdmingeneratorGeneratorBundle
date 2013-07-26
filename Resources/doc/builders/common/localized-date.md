@@ -38,13 +38,13 @@ which uses [ISO 8601][iso-8601] formats instead of PHP date()'s formats. Make su
 If `use_localized_date` is enabled, the date field will be rendered as:
 
 ```html+django
-  {{ my_date|localizeddate(localized_date_format, "none", null, null, date_format) }}
+{{ my_date|localizeddate(localized_date_format, "none", null, null, date_format) }}
 ```
 
 Otherwise the date field will be rendered as:
 
 ```html+django
-  {{ my_date|date(date_format) }}
+{{ my_date|date(date_format) }}
 ```
 
 Where `date_format` is equal to `format` option for that field (if defined) or will 
@@ -55,13 +55,13 @@ fallback to `admingenerator_generator.twig.date_format` setting.
 If `use_localized_date` is enabled, the datetime field will be rendered as:
 
 ```html+django
-  {{ my_date|localizeddate(localized_datetime_format, localized_datetime_format, null, null, datetime_format) }}
+{{ my_date|localizeddate(localized_datetime_format, localized_datetime_format, null, null, datetime_format) }}
 ```
 
 Otherwise the date field will be rendered as:
 
 ```html+django
-  {{ my_date|date(date_format) }}
+{{ my_date|date(date_format) }}
 ```
 
 Where `datetime_format` is equal to `format` option for that field (if defined) or will 
