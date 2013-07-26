@@ -48,7 +48,7 @@ Otherwise the date field will be rendered as:
 ```
 
 Where `date_format` is equal to `format` option for that field (if defined) or will 
-fallback to `date_format` setting.
+fallback to `admingenerator_generator.twig.date_format` setting.
 
 ##### datetime fields
 
@@ -65,7 +65,7 @@ Otherwise the date field will be rendered as:
 ```
 
 Where `datetime_format` is equal to `format` option for that field (if defined) or will 
-fallback to `datetime_format` setting.
+fallback to `admingenerator_generator.twig.datetime_format` setting.
 
 ### Options
 
