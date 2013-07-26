@@ -1,0 +1,94 @@
+# Boolean filter
+boolean:
+    yes:        Da
+    no:         Nu
+    yes_or_no:  Da sau Nu
+
+# Pager
+pagerfanta:
+    previous:       Inapoi
+    next:           Urmatorul
+    view.perpage:   Arată 
+    num.elements:   %number% de elemente
+  
+# List
+list:
+    no.results: Exista intrari
+    filters:    Filtre
+list.button:
+    filter:     Filtru
+    reset:      Resetați
+list.display:
+    range:      Rezultate <b>%start%</b> - <b>%end%</b> de  <b>%count%</b> înregistrarea(e).
+    all:        Afișează toate <b>%count%</b> înregistrarea(e).
+list.header:
+    actions:    Acțiuni
+
+# Nested List
+nested.list:
+    expand:     Arata
+    collapse:   Ascundeți
+    loading:    încărcare în curs
+    success:    Elementul a fost mutat cu succes.
+    error:      A eșuat pentru a muta elementul.
+
+# Profile
+profile:
+    welcome:  <b>Bună ziua </b>, %username%!
+    login:    Intrare
+    logout:   Iesire
+    exit:     Ieșiți din personificare a regimului
+
+# Generic actions
+action.generic:
+    list:   Lista
+    new:    Adauga
+    save:   Salvați
+    save-and-add:   Adăugați și Salvare
+    save-and-list:  Lista și Salvare
+
+# Object actions
+action.object.edit:
+    label:    Editare
+    success:  Material salvat cu succes.
+    error:    Formularul nu este salvat. Corecteze erorile și încercați din nou.
+    locked:   |
+                Ne pare rau, dar cineva a schimbat deja obiectul.<br />
+                <a href="%path%" target="_blank">Click aici</a>
+                pentru a vedea modificările într-un tab nou sau trimite-o formă mai 
+                timpul pentru o schimbare schimbare!
+                
+action.object.delete:
+    label:    Eliminați
+    confirm:  Sunteți sigur că doriți să ștergeți acest articol?
+    success:  Elementul eliminat cu succes.
+    error:    Elementul nu a putut fi șterse.
+action.object.show:
+    label:    Arată
+
+# Batch actions
+action.batch.delete:
+    label:    Eliminați
+    confirm:  Sigur doriți să ștergeți elementele selectate?
+    success:  Materialele au fost eliminate cu succes.
+    error:    Nu se poate șterge materiale.
+    
+# Custom actions
+action.custom:
+    title:    Sunteți sigur că doriți să efectuați acțiunea %name%?
+    success:  Acțiune %name%  de succes.
+    error:    Nu a reușit %name% acțiuni.
+    confirm:  Confirmați
+    cancel:   Anulare
+
+# Batch list
+batch.list:
+    selected:       Selectați acțiunea
+    none.selected:  Trebuie să selectați cel puțin un punct.
+    warning:        Nu a putut finaliza lot din cauza lipsei de opțiuni.
+    send:           Efectuați
+
+# Layout
+dashboard:
+    homepage:   Acasă
+    brand:      Tabloul de bord
