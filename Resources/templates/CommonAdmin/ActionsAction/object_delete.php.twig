@@ -14,9 +14,9 @@
      */
     protected function attemptObjectDelete($pk)
     {
-        try {
-            ${{ builder.ModelClass }} = $this->getObject($pk);
+        ${{ builder.ModelClass }} = $this->getObject($pk);
 
+        try {
             {{ block('security_action_with_object') -}}
 
             if ('POST' == $this->get('request')->getMethod()) {

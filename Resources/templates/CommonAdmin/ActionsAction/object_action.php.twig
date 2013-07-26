@@ -14,9 +14,9 @@
      */
     protected function attemptObject{{ action.name|php_name|capitalize }}($pk)
     {
-        try {
-            ${{ builder.ModelClass }} = $this->getObject($pk);
+        ${{ builder.ModelClass }} = $this->getObject($pk);
 
+        try {
             {{ block('security_action_with_object') -}}
 
             {%- if action.csrfProtected %}
