@@ -28,6 +28,10 @@ class Column
 
     protected $formOptions = array();
 
+    protected $filterType;
+
+    protected $filterOptions = array();
+
     protected $getter;
 
     protected $label = null;
@@ -158,6 +162,16 @@ class Column
         return $this->formType;
     }
 
+    public function setFilterType($filterType)
+    {
+        $this->filterType = $filterType;
+    }
+
+    public function getFilterType()
+    {
+        return $this->filterType;
+    }
+
     public function setFormOptions($formOptions)
     {
         $this->formOptions = $formOptions;
@@ -166,6 +180,16 @@ class Column
     public function getFormOptions()
     {
         return $this->formOptions;
+    }
+
+    public function setFilterOptions($filterOptions)
+    {
+        $this->filterOptions = $filterOptions;
+    }
+
+    public function getFilterOptions()
+    {
+        return $this->filterOptions;
     }
 
     public function setCredentials($credentials)

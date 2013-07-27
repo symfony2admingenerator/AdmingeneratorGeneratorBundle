@@ -40,23 +40,31 @@ class FiltersBuilder extends BaseBuilder
                     )
                 )
             );
-
+            
             $column->setFormType(
-                $this->getFieldGuesser()->getFilterType(
-                    $column->getDbType(),
-                    $columnName
+                $this->getFieldOption(
+                    $column,
+                    'filterType',
+                    $this->getFieldGuesser()->getFilterType(
+                        $column->getDbType(),
+                        $columnName
+                    )
                 )
             );
 
             $column->setFormOptions(
-                $this->getFieldGuesser()->getFilterOptions(
-                    $column->getFormType(),
-                    $column->getDbType(),
-                    $columnName
+                $this->getFieldOption(
+                    $column,
+                    'filterOptions',
+                    $this->getFieldGuesser()->getFilterOptions(
+                        $column->getFormType(),
+                        $column->getDbType(),
+                        $columnName
+                    )
                 )
             );
 
-            //Set the user parameters
+            // Set the user parameters
             $this->setUserColumnConfiguration($column);
 
             $this->addColumn($column);
