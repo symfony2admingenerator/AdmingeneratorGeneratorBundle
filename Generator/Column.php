@@ -4,7 +4,7 @@ namespace Admingenerator\GeneratorBundle\Generator;
 
 /**
  * This class describe a column
- * 
+ *
  * @author cedric Lombardot
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
@@ -17,7 +17,7 @@ class Column
     protected $sortable;
 
     protected $sortOn;
-    
+
     protected $sortType;
 
     protected $filterOn;
@@ -30,7 +30,7 @@ class Column
 
     protected $getter;
 
-    protected $label;
+    protected $label = null;
 
     protected $help;
 
@@ -73,7 +73,9 @@ class Column
 
     public function getLabel()
     {
-        return $this->label ? $this->label : $this->humanize($this->getName());
+        return false !== $this->label && empty($this->label)
+            ? $this->humanize($this->getName())
+            : $this->label;
     }
 
     public function setLabel($label)
