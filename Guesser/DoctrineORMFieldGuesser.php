@@ -11,8 +11,6 @@ class DoctrineORMFieldGuesser extends ContainerAware
 {
     private $doctrine;
 
-    private $entityManager;
-
     private $metadata;
 
     private static $current_class;
@@ -20,16 +18,6 @@ class DoctrineORMFieldGuesser extends ContainerAware
     public function __construct(Registry $doctrine)
     {
         $this->doctrine = $doctrine;
-    }
-
-    public function setEntityManager($manager = null)
-    {
-        $this->entityManager = $this->doctrine->getManager($manager);
-    }
-
-    public function getEntityManager()
-    {
-        return $this->entityManager;
     }
 
     protected function getMetadatas($class = null)
@@ -42,8 +30,8 @@ class DoctrineORMFieldGuesser extends ContainerAware
             return $this->metadata[self::$current_class];
         }
 
-        if (!$this->entityManager->getConfiguration()->getMetadataDriverImpl()->isTransient($class)) {
-            $this->metadata[self::$current_class] = $this->entityManager->getClassMetadata($class);
+        if (!$this->doctrine->getManagerForClass(self::$current_class)->getConfiguration()->getMetadataDriverImpl()->isTransient($class)) {
+            $this->metadata[self::$current_class] = $this->doctrine->getManagerForClass(self::$current_class)->getClassMetadata($class);
         }
 
         return $this->metadata[self::$current_class];

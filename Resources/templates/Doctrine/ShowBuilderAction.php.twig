@@ -3,7 +3,7 @@
     protected function getObject($pk)
     {
         return $this->getDoctrine()
-                    ->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %})
+                    ->getManagerForClass('{{ model }}')
                     ->getRepository('{{ model }}')
                     ->find($pk);
     }
