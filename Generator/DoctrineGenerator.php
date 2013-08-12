@@ -49,9 +49,6 @@ class DoctrineGenerator extends Generator
             )
         );
         $generator->setFieldGuesser($this->getFieldGuesser());
-        $generator->fieldGuesser->setEntityManager(
-            $generator->getFromYaml('params.entity_manager', null)
-        );
         $generator->setMustOverwriteIfExists($this->needToOverwrite($generator));
         $generator->setTemplateDirs(
             array_merge(
@@ -146,9 +143,6 @@ class DoctrineGenerator extends Generator
             )
         );
         $embedGenerator->setFieldGuesser($this->getFieldGuesser());
-        $embedGenerator->fieldGuesser->setEntityManager(
-            $generator->getFromYaml('params.entity_manager', null)
-        );
         $embedGenerator->setMustOverwriteIfExists($this->needToOverwrite($embedGenerator));
         $embedGenerator->setTemplateDirs(
             array_merge(

@@ -5,7 +5,7 @@
     protected function getObject($pk)
     {
         ${{ builder.ModelClass }} = $this->getDoctrine()
-             ->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %})
+             ->getManagerForClass('{{ model }}')
              ->getRepository('{{ model }}')
              ->find($pk);
 
@@ -22,7 +22,7 @@
     
     protected function executeObjectDelete(\{{ model }} ${{ builder.ModelClass }})
     {
-        $em = $this->getDoctrine()->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %});
+        $em = $this->getDoctrine()->getManagerForClass('{{ model }}');
         $em->remove(${{ builder.ModelClass }});
         $em->flush();
         $em->clear();
@@ -34,7 +34,7 @@
     
     protected function executeBatchDelete(array $selected)
     {
-        $this->getDoctrine()->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %})
+        $this->getDoctrine()->getManagerForClass('{{ model }}')
             ->createQuery('DELETE {{ model }} m WHERE m.{{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} IN (:selected)')
             ->setParameter('selected', $selected)
             ->getResult();

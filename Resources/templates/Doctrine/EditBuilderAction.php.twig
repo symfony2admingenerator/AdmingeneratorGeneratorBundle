@@ -9,7 +9,7 @@ use Doctrine\ORM\OptimisticLockException;
     protected function getObject($pk)
     {
         return $this->getDoctrine()
-                    ->getManager({{ entity_manager|default('')|wrap('"') }})
+                    ->getManagerForClass('{{ model }}')
                     ->getRepository('{{ model }}')
                     ->find($pk);
     }
@@ -18,14 +18,14 @@ use Doctrine\ORM\OptimisticLockException;
 {% block saveObject -%}
     protected function saveObject(\{{ model }} ${{ builder.ModelClass }})
     {
-        $em = $this->getDoctrine()->getManager({{ entity_manager|default('')|wrap('"') }});
+        $em = $this->getDoctrine()->getManagerForClass('{{ model }}');
         $em->persist(${{ builder.ModelClass }});
         $em->flush();
     }
 {% endblock %}
 
 {% block checkVersion -%}
-    $this->getDoctrine()->getManager({{ entity_manager|default('')|wrap('"') }})->lock(${{ builder.ModelClass }}, LockMode::OPTIMISTIC, $versions[$pk]);
+    $this->getDoctrine()->getManagerForClass('{{ model }}')->lock(${{ builder.ModelClass }}, LockMode::OPTIMISTIC, $versions[$pk]);
 {% endblock %}
 
 {% block lockException %}OptimisticLockException{% endblock %}

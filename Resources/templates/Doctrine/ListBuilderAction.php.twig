@@ -38,7 +38,9 @@
             {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
 
         if (isset($filters['{{ filter }}'])) {
-                $filters['{{ filter }}'] = $this->getDoctrine()->getRepository($filters['{{ filter }}']['entityName'])->find($filters['{{ filter }}']['id']);
+                $filters['{{ filter }}'] = $this->getDoctrine()
+                ->getManagerForClass($filters['{{ filter }}']['entityName'])
+                ->getRepository($filters['{{ filter }}']['entityName'])->find($filters['{{ filter }}']['id']);
         }
 
             {%- endif %}

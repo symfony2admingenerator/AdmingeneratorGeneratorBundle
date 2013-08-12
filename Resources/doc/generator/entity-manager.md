@@ -7,28 +7,8 @@
 
 ### 1. Usage
 
-This option allows you to use another Doctrine ORM Entity Manager than the default
-by suppling the option in the generator.yml.
+When using Doctrine ORM, all Managers are auto-selected by the use of getManagerForClass of Doctrine. 
 
 ### 2. Support
 
-Multiple Entity Managers are only implemented for **Doctrine ORM**.
-
-### 3. Syntax
-
-Usage for the default Entity Manager
-```yaml
-generator:            admingenerator.generator.doctrine
-params:
-  model:              Acme\GalleryBundle\Entity\Album
-  entity_manager: ~                   # use the default Entity Manager from app/config.yml
-```
-
-Usage for an self-defined Entity Manager
-```yaml
-generator:            admingenerator.generator.doctrine
-params:
-  model:              Acme\GalleryBundle\Entity\Album
-  entity_manager:     frontend        # use the "frontend" Entity Manager
-  fields: ~
-```
+Multiple Entity Managers are only automatically implemented for **Doctrine ORM**.
