@@ -367,7 +367,7 @@ class BaseBuilder extends GenericBaseBuilder
     public function findGenericAction($actionName)
     {
         $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Generic\\'
-                .Container::camelize(str_repace('-', '_', $actionName) . 'Action');
+                .Container::camelize(str_replace('-', '_', $actionName) . 'Action');
 
         return (class_exists($class)) ? new $class($actionName, $this) : false;
     }
@@ -375,7 +375,7 @@ class BaseBuilder extends GenericBaseBuilder
     public function findObjectAction($actionName)
     {
         $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Object\\'
-                .Container::camelize(str_repace('-', '_', $actionName) . 'Action');
+                .Container::camelize(str_replace('-', '_', $actionName) . 'Action');
 
         return (class_exists($class)) ? new $class($actionName, $this) : false;
     }
@@ -383,7 +383,7 @@ class BaseBuilder extends GenericBaseBuilder
     public function findBatchAction($actionName)
     {
         $class = 'Admingenerator\\GeneratorBundle\\Generator\\Action\\Batch\\'
-                .Container::camelize(str_repace('-', '_', $actionName) . 'Action');
+                .Container::camelize(str_replace('-', '_', $actionName) . 'Action');
 
         return (class_exists($class)) ? new $class($actionName, $this) : false;
     }
