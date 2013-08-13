@@ -66,8 +66,8 @@
 
     protected function buildQuery()
     {
-        return $this->getDoctrine()
-                    ->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %})
+        return $this->getDoctrine()                    
+                    ->getManagerForClass('{{ model }}')
                     ->getRepository('{{ model }}')
                     ->createQueryBuilder('q');
     }
@@ -96,9 +96,12 @@
         {%- for filter in builder.filters.display -%}
             {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
 
-        if (isset($filters['{{ filter }}'])) {
-            $this->getDoctrine()->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %})->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array('id' => $filters['{{ filter }}']->getId()), array());
-        }
+              if (isset($filters['{{ filter }}'])) {
+                  $this->getDoctrine()
+                  ->getManagerForClass(get_class($filters['{{ filter }}']))
+                  ->getUnitOfWork()
+                  ->registerManaged($filters['{{ filter }}'], array('id' => $filters['{{ filter }}']->getId()), array());
+              }
 
             {%- endif %}
 
