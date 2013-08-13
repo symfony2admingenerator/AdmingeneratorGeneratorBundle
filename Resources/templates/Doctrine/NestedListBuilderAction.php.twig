@@ -15,7 +15,7 @@
     protected function buildQuery()
     {
         return $this->getDoctrine()
-                    ->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %})
+                    ->getManagerForClass('{{ model }}')
                     ->getRepository('{{ model }}')
                     ->getChildrenQueryBuilder()
                     ->add('orderBy', 'node.{{ builder.treeConfiguration.root }} ASC, node.{{ builder.treeConfiguration.left }} ASC')
@@ -39,7 +39,7 @@
             {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
 
         if (isset($filters['{{ filter }}'])) {
-            $this->getDoctrine()->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %})->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array('id' => $filters['{{ filter }}']->getId()), array());
+            $this->getDoctrine()->getManagerForClass('{{ model }}')->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array('id' => $filters['{{ filter }}']->getId()), array());
         }
 
             {%- endif %}
@@ -114,7 +114,7 @@
             throw new NotFoundHttpException("Unknown action");
         }
 
-        $em = $this->getDoctrine()->getManager({% if (entity_manager is defined) and (entity_manager != null) %}'{{ entity_manager }}'{% endif %});
+        $em = $this->getDoctrine()->getManagerForClass('{{ model }}');
         $repo = $em->getRepository('{{ model }}');
 
         $dragged = $repo->findOneBy{{ builder.getFieldGuesser().getModelPrimaryKeyName(model)|classify }}($dragged);

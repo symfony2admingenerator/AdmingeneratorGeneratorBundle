@@ -12,8 +12,4 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 abstract class BaseController extends Controller
 {
-    protected function getEntityManager()
-    {
-        return $this->get('admingenerator.generator.doctrine')->getFieldGuesser()->getEntityManager();
-    }
 }
