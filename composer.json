@@ -29,7 +29,7 @@
         "afarkas/html5shiv": "dev-master",
         "components/jquery": ">= 1.9.0, < 2.0.0",
         "components/jqueryui": ">= 1.9.0",
-        "components/bootstrap": ">= 2.3.1",
+        "components/bootstrap": ">= 2.3.1,<3.0.0",
         "components/font-awesome": ">= 3.2.0"
     },
     "require-dev": {
