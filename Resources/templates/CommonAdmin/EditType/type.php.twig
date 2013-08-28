@@ -22,7 +22,7 @@ class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
             'label': column.label,
             'translation_domain': i18n_catalog|default('Admin')
         })|as_php|convert_as_form(column.formType) }});
-        $builder->add('{{ column.name }}', {{ column.formType|as_php }}, $formOptions);
+        $builder->add('{{ column.name }}', {{ column.formType|as_php|convert_as_form(column.formType) }}, $formOptions);
 
     {% if column.credentials %}
         }
