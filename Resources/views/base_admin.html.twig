@@ -12,9 +12,9 @@
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-            
+
         {% javascripts filter='?yui_js' output='assetic/js/compiled/components/html5shiv.min.js'
-            'components/html5shiv/src/html5shiv.js'
+            'components/html5shiv/dist/html5shiv.js'
         %}
         <!--[if lt IE 9]>
             <script type="text/javascript" src="{{ asset_url }}"></script>
@@ -29,10 +29,10 @@
             'components/font-awesome/css/font-awesome.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
-        {% endstylesheets %}            
+        {% endstylesheets %}
         <!--[if lt IE 7]>
         <link rel="stylesheet" href="{{ asset('components/font-awesome/css/font-awesome-ie7.min') }}" type="text/css" media="all" />
-        <![endif]-->        
+        <![endif]-->
         {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/admingenerator.min.css'
             'bundles/admingeneratorgenerator/css/general.css'
             'bundles/admingeneratorgenerator/css/profile.css'
