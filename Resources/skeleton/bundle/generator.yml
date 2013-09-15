@@ -32,14 +32,14 @@ builders:
                 list: ~
     edit:
         params:
-            title: "You're editing the object \"%object%\"|{ %object%: YourModel.title }|"
+            title: "You're editing the object \"%object%\"|{ %object%: {{ model_name }}.title }|"
             display: ~
             actions:
                 save: ~
                 list: ~
     show:
         params:
-            title: "You're viewing the object \"%object%\"|{ %object%: YourModel.title }|"
+            title: "You're viewing the object \"%object%\"|{ %object%: {{ model_name }}.title }|"
             display: ~
             actions:
                 list: ~
