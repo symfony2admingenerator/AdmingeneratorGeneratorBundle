@@ -36,6 +36,8 @@ To overwrite this, you need to [create][create-builder] a new menu builder class
 To make things easier Admingenerator ships a [base][extend-builder] class which 
 you can extend (see [default][default-builder] menu builder to an example).
 
+> **Note**: To extend the base menu builder, you own menu builder has to be defined as a service.
+
 [create-builder]: https://github.com/KnpLabs/KnpMenuBundle/blob/master/Resources/doc/index.md#method-a-the-easy-way-yay
 [extend-builder]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Menu/AdmingeneratorMenuBuilder.php
 [default-builder]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Menu/DefaultMenuBuilder.php
