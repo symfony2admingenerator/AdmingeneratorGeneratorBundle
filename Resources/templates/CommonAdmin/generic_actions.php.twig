@@ -4,7 +4,7 @@
         {% for action in builder.Actions %}
             {{ echo_block("generic_action_" ~ action.twigName) }}
             {% if action.credentials or builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') %}
-                {{ echo_if_granted(action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials') ) }}
+                {{ echo_if_granted(action.credentials ? action.credentials : builder.generator.getFromYaml('builders.' ~ action.name ~ '.params.credentials'), builder.ModelClass ) }}
             {% endif %}
 
                 {% if action.conditionalFunction %}
