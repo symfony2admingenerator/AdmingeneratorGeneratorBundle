@@ -319,7 +319,7 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('path')->end()
                     ->scalarNode('route')->end()
                     ->arrayNode('routeparams')
-                        ->useAttributeAsKey(array('key'))
+                        ->useAttributeAsKey('key')
                         ->prototype('scalar')
                         ->end()
                     ->end()
