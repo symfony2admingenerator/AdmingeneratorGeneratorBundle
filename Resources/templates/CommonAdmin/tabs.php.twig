@@ -15,6 +15,15 @@
         ;(function(window, $, undefined){
             $(function() {
                 $('.form_tabs.nav.nav-tabs a:first').tab('show');
+                $('input[type=submit],button[type=submit]').on('click', function(e){
+                    $('.form_tabs.nav.nav-tabs li').each(function(i){
+                        $(this).find('a span.badge-important').remove();
+                        invalid_items = $('fieldset'+$(this).find('a:first').data('target')).find(':invalid');
+                        if(invalid_items.length>0){
+                            $(this).find('a:first').append('<span class="badge badge-important">'+invalid_items.length+'</span>');
+                        }
+                    });
+                });          
             });
         })(this, jQuery);
     </script>
