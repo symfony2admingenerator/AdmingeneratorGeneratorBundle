@@ -425,8 +425,8 @@ class BaseBuilder extends GenericBaseBuilder
 
     public function getRoutePrefixWithSubfolder()
     {
-        return str_replace('\\', '_', $this->getVariable('namespace_prefix'))
-               .($this->hasVariable('subfolder') ? '_'.$this->getVariable('subfolder') : '');
+        return str_replace('\\', '_',
+	       ($this->getVariable('namespace_prefix') . (($this->hasVariable('subfolder')) ? '_' . $this->getVariable('subfolder') : '')));
     }
 
     public function getNamespacePrefixForTemplate()
@@ -440,11 +440,12 @@ class BaseBuilder extends GenericBaseBuilder
             '\\',
             '_',
             $this->getVariable('namespace_prefix')
+            . (($this->hasVariable('subfolder')) ? '_' . $this->getVariable('subfolder') : '')
             .'_'.$this->getVariable('bundle_name')
             .'_'.$this->getBaseGeneratorName()
         );
     }
-
+    
     public function getObjectActionsRoute()
     {
         return $this->getBaseActionsRoute().'_object';
