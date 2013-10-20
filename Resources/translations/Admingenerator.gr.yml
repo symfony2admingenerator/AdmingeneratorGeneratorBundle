@@ -1,0 +1,94 @@
+# Boolean filter
+boolean:
+    yes:        Ναι
+    no:         Όχι
+    yes_or_no:  Ναι ή Όχι
+
+# Pager
+pagerfanta:
+    previous:       Προηγούμενο
+    next:           Επόμενο
+    view.perpage:   Προβολή
+    num.elements:   %number% στοιχείων
+
+# List
+list:
+    no.results: Δεν υπάρχουν αποτελέσματα
+    filters:    Φίλτρα
+list.button:
+    filter:     Φίλτρο
+    reset:      Επαναφορά
+list.display:
+    range:      Εμφανίζονται <b>%start%</b> - <b>%end%</b> από <b>%count%</b> τα αποτελέσματα.
+    all:        Εμφάνιση <b>%count%</b> αποτελεσμάτων.
+list.header:
+    actions:    Actions
+
+# Nested List
+nested.list:
+    expand:     Δείξε
+    collapse:   Κρύψη
+    loading:    Φόρτωση...
+    success:    Το στοιχείο μετακινήθηκε επιτυχώς
+    error:      Δεν είναι δυνατή η μετακίνηση του στοιχείου
+
+# Profile
+profile:
+    welcome:  <b>Καλώς ήθρθες</b>, %username%!
+    login:    Σύνδεση
+    logout:   Αποσύνδεση
+    exit:     Έξοδο απο λειτουργία εκπροσώπησης
+
+# Generic actions
+action.generic:
+    list:   Λίστα
+    new:    Νέα Εγγραφή
+    save:   Αποθήκευση
+    save-and-add:   Αποθήκευση και προσθήκη νέου
+    save-and-list:  Αποθήκευση και επιστροφή στην λίστα
+
+# Object actions
+action.object.edit:
+    label:    Επεξεργασία
+    success:  Το στοιχείο αποθηκεύτηκε επιτυχώς
+    error:    Η φόρμα δεν μπορεί να αποθηκευτεί. Παρακαλώ ελενξτε τα σφάλματα και δοκιμάστε ξανά
+    locked:   |
+              Δυστυχώς, αλλά κάποιος άλλος έχει ήδη επεξεργαστεί το αντικείμενο.
+                Sorry, but someone else has already changed this object.<br />
+                <a href="%path%" target="_blank">Κάντε κλικ εδώ</a> για να δείτε
+                τις αλλαγές σε καινούρια καρτέλα ή υποβάλετε την φόρμα ξανά για
+                να αποθηκευτούν οι αλλαγές σας.
+action.object.delete:
+    label:    Διαγραφή
+    confirm:
+    success:  Το στοιχείο διεγράφει επιτυχώς!
+    error:    Το στοιχείο δεν μπορεί να διαγραφεί.
+action.object.show:
+    label:    Εμφάνιση
+
+# Batch actions
+action.batch.delete:
+    label:    Διαγραφή
+    confirm:  Είστε σίγουρος ότι θέλετε να διαγράψετε όλα τα επιλεγμένα στοιχεία;
+    success:  Τα στοιχεία διεγράφησαν επιτυχώς!
+    error:    Τα στοιχεία δεν μπορούν να διαγραφούν.
+
+# Custom actions
+action.custom:
+    title:    Είστε σίγουρος ότι θέλετε να εκελέσετε τη 'δράση' %name%;
+    success:  Η 'δράση' %name% εκτελέστηκε επιτυχώς!
+    error:    Δεν είναι δυνατή η εκτέλεση της "δρασης" %name%.
+    confirm:  Επιβεβαίωση
+    cancel:   Ακύρωση
+
+# Batch list
+batch.list:
+    selected:       Επιλεγμένο
+    none.selected:  Πρέπει να επιλέξετε τουλάχιστον ένα στοιχείο.
+    warning:        Δεν είναι δυνατή ή εκτέλεση των 'δράσεων΄καθώς λοίπουν κάποιοι παράμετροι!
+    send:           Εκτέλεση
+
+# Layout
+dashboard:
+    homepage:   Αρχική Σελίδα
+    brand:      Ταμπλό
