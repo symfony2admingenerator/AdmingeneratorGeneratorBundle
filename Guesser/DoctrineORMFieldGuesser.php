@@ -144,7 +144,7 @@ class DoctrineORMFieldGuesser extends ContainerAware
             $mapping = $this->getMetadatas()->getAssociationMapping($columnName);
 
             return array(
-                'multiple'  => false,
+                'multiple'  => ($mapping['type'] === ClassMetadataInfo::MANY_TO_MANY),
                 'em'        => 'default', // TODO: shouldn't this be configurable?
                 'class'     => $mapping['targetEntity'],
                 'required'  => $this->isRequired($columnName),
