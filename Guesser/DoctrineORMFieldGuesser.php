@@ -5,6 +5,7 @@ namespace Admingenerator\GeneratorBundle\Guesser;
 use Admingenerator\GeneratorBundle\Exception\NotImplementedException;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
+use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 class DoctrineORMFieldGuesser extends ContainerAware
