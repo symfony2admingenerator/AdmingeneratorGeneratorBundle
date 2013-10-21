@@ -8,8 +8,8 @@ boolean:
 pagerfanta:
     previous:       Zurück
     next:           Vor
-    view.perpage:   Anzeige 
-    num.elements:   %number% Elemente
+    view.perpage:   Anzeige
+    num.elements:   %number% Einträge
 
 # List
 list:
@@ -19,7 +19,7 @@ list.button:
     filter:     Filtern
     reset:      Zurücksetzen
 list.display:
-    range:      Zeige <b>%start%</b> bis <b>%end%</b> von <b>%count%</b> Datensätzen.
+    range:      Zeige <b>%start%</b> bis <b>%end%</b> von <b>%count%</b> Datensätze.
     all:        Zeige alle <b>%count%</b> Datensätze.
 list.header:
     actions:    Aktionen
@@ -29,15 +29,15 @@ nested.list:
     expand:     Zeigen
     collapse:   Verbergen
     loading:    Laden
-    success:    Das Element wurde erfolgreich bewegt.
-    error:      Konnte nicht den Element bewegen.
+    success:    Der Eintrag wurde erfolgreich verschoben.
+    error:      Der Eintrag konnte nicht verschoben werden.
 
 # Profile
 profile:
     welcome:  <b>Willkommen</b>, %username%!
-    login:    Einloggen
-    logout:   Ausloggen
-    exit:     Verlassen Identitätswechselmodus
+    login:    Anmelden
+    logout:   Abmelden
+    exit:     Identitätswechselmodus verlassen
 
 # Generic actions
 action.generic:
@@ -50,47 +50,46 @@ action.generic:
 # Object actions
 action.object.edit:
     label:    Bearbeiten
-    success:  Das Objekt wurde erfolgreich gespeichert.
+    success:  Der Eintrag wurde erfolgreich gespeichert.
     error:    |
-                Das Formular konnte nicht gespeichert werden. Bitte Fehler prüfen 
-                und erneut versuchen.
+                Die Daten konnten nicht gespeichert werden. Bitte überprüfen Sie die Eingaben
+                und versuchen es erneut.
     locked:   |
-                Entschuldigung, aber jemand anderes hat bereits verändert dieser 
-                Objekt.<br />
-                <a href="%path%" target="_blank">Klicken Sie hier</a> um
-                Änderungen in einem neuen Tab zu sehen oder senden Sie das Formular 
-                erneut zu bewerben die Änderungen!
+                Entschuldigung, aber jemand anderes hat bereits diesen Eintrag verändert.<br />
+                <a href="%path%" target="_blank">Klicken Sie hier</a> um die
+                Änderungen in einem neuen Tab anzusehen oder senden Sie das Formular
+                erneut ab, um Ihre Änderungen zu übernehmen!
 action.object.delete:
     label:    Löschen
-    confirm:  Sind Sie sicher, dass Sie dieses Element löschen?
-    success:  Element wurde erfolgreich gelöscht.
-    error:    Element kann nicht gelöscht werden.
+    confirm:  Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?
+    success:  Der Eintrag wurde erfolgreich gelöscht.
+    error:    Der Eintrag kann nicht gelöscht werden.
 action.object.show:
     label:    Zeigen
 
 # Batch actions
 action.batch.delete:
     label:    Löschen
-    confirm:  Sie bestätigen das Löschen aller ausgewählten Elemente?
-    success:  Die Eintrage wurden erfolgreich gelöscht.
-    error:    Die Eintrage können nicht gelöscht werden.
+    confirm:  Möchten Sie wirklich alle ausgewählten Einträge löschen?
+    success:  Die Einträge wurden erfolgreich gelöscht.
+    error:    Die Einträge können nicht gelöscht werden.
 
 # Custom actions
 action.custom:
-    title:    Sind Sie sicher, dass Sie %name% Aktion auszuführen?
-    success:  Die %name% Aktion wurde erfolgreich ausgeführt.
-    error:    Konnte nicht %name% Aktion ausgeführen.
-    confirm:  Bestätigen
-    cancel:   Stornieren
+    title:    Sind Sie sicher, dass Sie die Aktion %name% ausführen möchten?
+    success:  Die Aktion %name% wurde erfolgreich ausgeführt.
+    error:    Konnte die Aktion %name% nicht ausführen.
+    confirm:  Ausführen
+    cancel:   Abbrechen
 
 # Batch list
 batch.list:
     selected:       Ausgewählte
-    none.selected:  Sie müssen mindestens ein Element auswählen.
-    warning:        Konnte nicht abgeschlossen Gruppe Aktion aufgrund fehlenden Parameter.
-    send:           Ausführen
+    none.selected:  Sie müssen mindestens einen Eintrag auswählen.
+    warning:        Konnte die Aktion aufgrund fehlender Parameter nicht ausführen.
+    send:           Senden
 
 # Layout
 dashboard:
     homepage:   Startseite
-    brand:      Armaturenbrett
+    brand:      Übersicht
