@@ -23,6 +23,8 @@ class Column
     protected $filterOn;
 
     protected $dbType;
+    
+    protected $customListView = null;
 
     protected $formType;
 
@@ -232,5 +234,15 @@ class Column
     public function getSortType()
     {
         return $this->sortType;
+    }
+    
+    public function getCustomListView()
+    {
+        return $this->customListView;
+    }
+    
+    public function setCustomListView($customListView)
+    {
+        $this->customListView = $customListView;
     }
 }

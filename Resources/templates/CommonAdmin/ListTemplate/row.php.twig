@@ -18,7 +18,10 @@
     {% endif %}
           <td class="td_{{ column.dbType }} td_{{ column.name }}">
               {{ echo_block('list_td_column_' ~ column.name) -}}
-              {%- if column.dbType|lower == "boolean" -%}
+              {%- if column.customListView != null -%}
+                  {% use '../CommonAdmin/ListTemplate/Column/customListViewColumns.php.twig' %}
+                  {{- block("column_" ~ column.customListView|lower) -}}
+              {%- elseif column.dbType|lower == "boolean" -%}
                   {{- block('column_boolean') -}}
               {%- elseif column.dbType|lower == "date" -%}
                   {{- block('column_date') -}}
