@@ -10,16 +10,16 @@ Sometimes, you might want to change the way the list view of a specific entity f
 1. Make sure you know how to overwrite the original templates of the AdminGenerator. See [Extending generator templates][cookbook-9]. 
 [cookbook-9]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/extending-generator-templates.md
 
-2. In the generator.yml of the entity of choice, add the option "customListView: <viewname>" for the wanted field 
+2. In the generator.yml of the entity of choice, add the option `customListView: %viewname%` for the wanted field 
 ```yaml
 # Example
 params: 
   fields:
     gender:
-      customListView: gender # <viewname>
+      customListView: gender # %viewname%
 ```
 
 3. Create the custom columm definition by overwriting Resources/templates/CommonAdmin/ListTemplate/Column/customListViewColumns.php.twig. This file now contains an example. 
-The blockname must be column_<viewname>
+The blockname must be `column_%viewname%`
 
 Now you can make your own templates which will be rendered only in the listview!

@@ -11,7 +11,7 @@ Sometimes, you may want to extend/overwrite some of the generator templates in t
 ```yaml
 # config.yml
 admingenerator_generator:
-  templates_dirs: [ %kernel.root_dir%/../app/Resources/AdmingeneratorGeneratorBundle/templates ]
+  templates_dirs: [ "%kernel.root_dir%/../app/Resources/AdmingeneratorGeneratorBundle/templates" ]
 ```
 
 2. Keep in mind that you will at least need **one dir** in the previous specified template directory, namely of the DBAL layer used, so one of [Doctrine, DoctrineODM, Propel]. 
