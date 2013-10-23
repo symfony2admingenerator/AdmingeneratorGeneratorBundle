@@ -49,6 +49,8 @@ class EchoExtension extends \Twig_Extension
             'echo_twig_assoc'     => new \Twig_Function_Method($this, 'getEchoTwigAssoc'),
             'echo_twig_filter'    => new \Twig_Function_Method($this, 'getEchoTwigFilter'),
             'echo_include'        => new \Twig_Function_Method($this, 'getEchoInclude'),
+            'echo_use'            => new \Twig_Function_Method($this, 'getEchoUse'),
+            'echo_print_block'    => new \Twig_Function_Method($this, 'getEchoPrintBlock'),
             'echo_render'         => new \Twig_Function_Method($this, 'getEchoRender'),
             'char'                => new \Twig_Function_Method($this, 'char'),
         );
@@ -552,6 +554,16 @@ class EchoExtension extends \Twig_Extension
         $params = $this->getEchoTwigAssoc($params);
 
         return '{{ render(controller("'.$controller.'", '.$params.')) }}';
+    }
+
+    public function getEchoUse($name)
+    {
+        return str_replace('%%name%%', $name, '{% use \'%%name%%\' %}');
+    }
+
+    public function getEchoPrintBlock($name)
+    {
+        return str_replace('%%name%%', $name, '{{ block(\'%%name%%\') }}');
     }
 
     /**
