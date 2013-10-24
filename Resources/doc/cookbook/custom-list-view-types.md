@@ -7,19 +7,43 @@
 
 Sometimes, you might want to change the way the list view of a specific entity field is rendered. This can be done with a few simple steps!
 
-1. Make sure you know how to overwrite the original templates of the AdminGenerator. See [Extending generator templates][cookbook-9]. 
-[cookbook-9]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/extending-generator-templates.md
+1. Create a twig html template with your custom view block. Your block needs to start with `column_` and a viewname of your choice. We use gender as example
+```twig
+#example custom_blocks.html.twig
+{% block column_gender %}
+  {% spaceless %}
+    {% if(field_value == 'm') %}
+      <i class="icon-male"></i>
+    {% if(field_value == 'f') %}
+      <i class="icon-female"></i>
+    {% else %}
+      <i class="icon-unknown"></i>
+    {% endif %}
+  {% endspaceless %}
+{% endblock %}
+```
 
-2. In the generator.yml of the entity of choice, add the option `customListView: %viewname%` for the wanted field 
+2. Specify the location of the custom template file in the `generator.yml` by using the `customBlocks` param in the general, edit or show builder
+```yaml
+#example for the show and list builder
+params:
+    customBlocks: AcmeDemoBundle:Form:custom_blocks.html.twig
+```
+```yaml
+#example for just the show builder
+builder:
+    show:
+        params:
+            customBlocks: Acme:Form:custom_blocks.html.twig
+```
+
+3. In the generator.yml, add the option `customListView: %viewname%` for the wanted field 
 ```yaml
 # Example
 params: 
-  fields:
-    gender:
-      customListView: gender # %viewname%
+    fields:
+        gender:
+             customListView: gender # %viewname%
 ```
 
-3. Create the custom columm definition by overwriting Resources/templates/CommonAdmin/ListTemplate/Column/customListViewColumns.php.twig. This file now contains an example. 
-The blockname must be `column_%viewname%`
-
-Now you can make your own templates which will be rendered only in the listview!
+Now you can make your own templates which will be rendered only in the specified list/show views!
