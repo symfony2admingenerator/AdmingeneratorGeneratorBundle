@@ -31,7 +31,11 @@
                     <div class="span10">
                         <div class="control-group form_field field_{{ field }}">
                         {{ echo_block('show_column_' ~ column.name) -}}
-                            {%- if column.dbType|lower == "boolean" -%}
+                            {%- if column.customListView != null and builder.variable('customBlocks') != null -%}
+                                {{- echo_use(builder.variable('customBlocks')) -}}
+                                {{- echo_set('field_value', builder.ModelClass ~ '.' ~ column.getter) -}}
+                                {{- echo_print_block('column_' ~ column.customListView|lower) -}}
+                            {%- elseif column.dbType|lower == "boolean" -%}
                                 {{- block('column_boolean') -}}
                             {%- elseif column.dbType|lower == "date" -%}
                                 {{- block('column_date') -}}
