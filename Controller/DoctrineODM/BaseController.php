@@ -15,7 +15,7 @@ abstract class BaseController extends Controller
     /**
      * @return \Doctrine\Bundle\MongoDBBundle\ManagerRegistry
      */
-    public function getDoctrineMongoDB()
+    protected function getDoctrineMongoDB()
     {
         if (!$this->container->has('doctrine_mongodb')) {
             throw new \LogicException('The DoctrineMongoDBBundle is not registered in your application.');
