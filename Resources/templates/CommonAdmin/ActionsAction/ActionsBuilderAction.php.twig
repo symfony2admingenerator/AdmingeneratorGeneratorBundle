@@ -25,8 +25,9 @@ class ActionsController extends BaseController
     {
         $methodName = 'attemptObject'.ucfirst(strtolower($this->cleanMethodName($action)));
         if (!method_exists($this, $methodName)) {
-            throw new NotFoundHttpException('Undefined action');
+            throw new NotFoundHttpException(sprintf('Undefined "%s" method. Does object action "%s" exist in your generator file?', $methodName, $action));
         }
+
         return $this->$methodName($pk);
     }
 
@@ -53,8 +54,9 @@ class ActionsController extends BaseController
 
         $methodName = 'attemptBatch'.ucfirst(strtolower($this->cleanMethodName($action)));
         if (!method_exists($this, $methodName)) {
-            throw new NotFoundHttpException('Undefined action');
+            throw new NotFoundHttpException(sprintf('Undefined "%s" method. Does batch action "%s" exist in your generator file?', $methodName, $action));
         }
+
         return $this->$methodName($selected);
     }
 
