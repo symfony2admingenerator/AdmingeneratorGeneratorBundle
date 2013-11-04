@@ -10,6 +10,7 @@ namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.gene
 
 use {{ builder.generator.baseController }} as BaseController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 {{ block('csrf_protection_use') }}
 
@@ -23,6 +24,10 @@ class ActionsController extends BaseController
     public function objectAction($pk, $action)
     {
         $methodName = 'attemptObject'.ucfirst(strtolower($this->cleanMethodName($action)));
+        if (!method_exists($this, $methodName)) {
+            throw new NotFoundHttpException(sprintf('Undefined "%s" method. Does object action "%s" exist in your generator file?', $methodName, $action));
+        }
+
         return $this->$methodName($pk);
     }
 
@@ -48,6 +53,10 @@ class ActionsController extends BaseController
         }
 
         $methodName = 'attemptBatch'.ucfirst(strtolower($this->cleanMethodName($action)));
+        if (!method_exists($this, $methodName)) {
+            throw new NotFoundHttpException(sprintf('Undefined "%s" method. Does batch action "%s" exist in your generator file?', $methodName, $action));
+        }
+
         return $this->$methodName($selected);
     }
 
