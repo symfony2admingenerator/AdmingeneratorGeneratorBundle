@@ -1,4 +1,4 @@
-# Custom List view types
+# Custom View types
 ---------------------------------------
 
 [go back to Table of contents][back-to-index]
@@ -37,13 +37,13 @@ builder:
             customBlocks: Acme:Form:custom_blocks.html.twig
 ```
 
-3. In the generator.yml, add the option `customListView: %viewname%` for the wanted field 
+3. In the generator.yml, add the option `customView: %viewname%` for the wanted field 
 ```yaml
 # Example
 params: 
     fields:
         gender:
-             customListView: gender # %viewname%
+             customView: gender # %viewname%
 ```
 
 Now you can make your own templates which will be rendered only in the specified list/show views!

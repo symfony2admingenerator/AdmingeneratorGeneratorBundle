@@ -110,7 +110,7 @@ List of supported features for each model manager:
 7. [Conditional actions (deprecated)][cookbook-7]
 8. [Changeing web directory][cookbook-8]
 9. [Extending generator templates][cookbook-9]
-10. [Creating custom List view types][cookbook-10]
+10. [Creating custom view types][cookbook-10]
 
 [go up][go-up]
 
@@ -123,7 +123,7 @@ List of supported features for each model manager:
 [cookbook-7]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/conditional-actions.md
 [cookbook-8]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/changeing-web-directory.md
 [cookbook-9]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/extending-generator-templates.md
-[cookbook-10]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/custom-list-view-types.md
+[cookbook-10]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/cookbook/custom-view-types.md
 
 ## 8. Security
 
