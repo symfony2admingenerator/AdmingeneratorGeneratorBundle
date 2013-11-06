@@ -24,7 +24,7 @@ class Column
 
     protected $dbType;
     
-    protected $customListView = null;
+    protected $customView = null;
 
     protected $formType;
 
@@ -236,13 +236,13 @@ class Column
         return $this->sortType;
     }
     
-    public function getCustomListView()
+    public function getCustomView()
     {
-        return $this->customListView;
+        return $this->customView;
     }
     
-    public function setCustomListView($customListView)
+    public function setCustomView($customView)
     {
-        $this->customListView = $customListView;
+        $this->customView = $customView;
     }
 }

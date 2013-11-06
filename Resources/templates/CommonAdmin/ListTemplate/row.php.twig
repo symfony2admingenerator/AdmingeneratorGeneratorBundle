@@ -18,10 +18,10 @@
     {% endif %}
           <td class="td_{{ column.dbType }} td_{{ column.name }}">
               {{ echo_block('list_td_column_' ~ column.name) -}}
-              {%- if column.customListView != null and builder.variable('customBlocks') != null -%}
-                  {{- echo_use(builder.variable('customBlocks')) -}}
-                  {{- echo_set('field_value', builder.ModelClass ~ '.' ~ column.getter) -}}
-                  {{- echo_print_block('column_' ~ column.customListView|lower) -}}
+              {%- if column.customView != null and builder.variable('custom_blocks') != null -%}
+                  {{- echo_use(builder.variable('custom_blocks')) -}}
+                  {{- echo_set('field_value', builder.ModelClass ~ '.' ~ column.getter, false) -}}
+                  {{- echo_print_block('column_' ~ column.customView|lower) -}}
               {%- elseif column.dbType|lower == "boolean" -%}
                   {{- block('column_boolean') -}}
               {%- elseif column.dbType|lower == "date" -%}
