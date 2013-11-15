@@ -47,7 +47,7 @@ class ListController extends BaseController
     {
         return array();
     }
-    
+
     /**
      * This function is for your convinience. Overwrite it if you need to
      * process the query.
@@ -108,4 +108,12 @@ class ListController extends BaseController
 
         return $type;
     }
+
+    {% block getQueryFilter -%}
+    protected function getQueryFilter()
+    {
+        // ORM JOB
+    }
+    {% endblock %}
+
 }
