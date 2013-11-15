@@ -57,13 +57,13 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
     {
         $filterObject = $this->getFilters();
 
-        $queryFilter = $this->get('admingenerator.queryfilter.propel');
+        $queryFilter = $this->getQueryFilter();
         $queryFilter->setQuery($query);
 
         {% for filter in builder.filterColumns %}
 
         if (isset($filterObject['{{ filter.name }}']) && null !== $filterObject['{{ filter.name }}']) {
-            $queryFilter->add{{ filter.dbType|lower|classify }}Filter("{{ filter.filterOn }}", $filterObject['{{ filter.name }}']);
+            $queryFilter->add{{ filter.dbType|lower|classify }}Filter('{{ filter.filterOn }}', $filterObject['{{ filter.name }}']);
         }
         {% endfor %}
 
@@ -94,5 +94,15 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
             {% endfor -%}
         {%- endfor %}
     {% endif %}
+    }
+{% endblock %}
+
+{% block getQueryFilter %}
+    /**
+     * @return \Admingenerator\GeneratorBundle\QueryFilter\QueryFilterInterface
+     */
+    protected function getQueryFilter()
+    {
+        return $this->get('admingenerator.queryfilter.propel');
     }
 {% endblock %}

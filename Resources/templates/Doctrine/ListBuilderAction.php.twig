@@ -66,7 +66,7 @@
 
     protected function buildQuery()
     {
-        return $this->getDoctrine()                    
+        return $this->getDoctrine()
                     ->getManagerForClass('{{ model }}')
                     ->getRepository('{{ model }}')
                     ->createQueryBuilder('q');
@@ -123,12 +123,12 @@
     {
         $filterObject = $this->getFilters();
 
-        $queryFilter = $this->get('admingenerator.queryfilter.doctrine');
+        $queryFilter = $this->getQueryFilter();
         $queryFilter->setQuery($query);
 
         {% for filter in builder.filterColumns %}
             if (isset($filterObject['{{ filter.name }}']) && null !== $filterObject['{{ filter.name }}']) {
-                $queryFilter->add{{ filter.dbType|classify }}Filter("{{ filter.filterOn }}", $filterObject['{{ filter.name }}']);
+                $queryFilter->add{{ filter.dbType|classify }}Filter('{{ filter.filterOn }}', $filterObject['{{ filter.name }}']);
             }
         {% endfor %}
 
@@ -141,7 +141,7 @@
     {% if scopes is defined %}
         $scopes = $this->getScopes();
 
-        $queryFilter = $this->get('admingenerator.queryfilter.doctrine');
+        $queryFilter = $this->getQueryFilter();
         $queryFilter->setQuery($query);
 
 
@@ -154,7 +154,7 @@
                 {%- if filter|is_numeric -%}
                 $this->scope{{ filterParams|classify }}($queryFilter);
                 {%- else -%}
-                $queryFilter->addDefaultFilter("{{ filter }}", {{ filterParams|as_php }});
+                $queryFilter->addDefaultFilter('{{ filter }}', {{ filterParams|as_php }});
                 {%- endif -%}
                 {%- endfor -%}
             {%- endif %}
@@ -172,10 +172,10 @@
             {%- for filter, filterParams in params["filters"] -%}
                 {%- if filter|is_numeric -%}
     /**
-    * Add the filters to the query for {{ groupName }} => {{ scopeName }}
-    *
-    * @param queryFilter the queryFilter
-    */
+     * Add the filters to the query for {{ groupName }} => {{ scopeName }}
+     *
+     * @param queryFilter the queryFilter
+     */
     protected function scope{{ filterParams|classify }}($query)
     {
     }
@@ -186,4 +186,14 @@
         {% endfor -%}
     {%- endfor -%}
     {%- endif %}
+{% endblock %}
+
+{% block getQueryFilter %}
+    /**
+     * @return \Admingenerator\GeneratorBundle\QueryFilter\QueryFilterInterface
+     */
+    protected function getQueryFilter()
+    {
+        return $this->get('admingenerator.queryfilter.doctrine');
+    }
 {% endblock %}
