@@ -44,6 +44,16 @@ class EditController extends BaseController
         return array();
     }
 
+    /**
+     * Get optional form options.
+     *
+     * return array
+     **/
+    protected function getFormOptions()
+    {
+        return array();
+    }
+
     {% block getObject -%}
     protected function getObject($pk)
     {
