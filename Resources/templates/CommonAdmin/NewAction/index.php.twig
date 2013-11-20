@@ -11,7 +11,7 @@ use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ bu
 
         ${{ builder.ModelClass }} = $this->getNewObject();
 
-        $form = $this->createForm($this->getNewType(), ${{ builder.ModelClass }});
+        $form = $this->createForm($this->getNewType(), ${{ builder.ModelClass }}, $this->getFormOptions());
 
         return $this->render('{{ builder.namespacePrefixForTemplate }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}New:index.html.twig', $this->getAdditionalRenderParameters(${{ builder.ModelClass }}) + array(
             "{{ builder.ModelClass }}" => ${{ builder.ModelClass }},
