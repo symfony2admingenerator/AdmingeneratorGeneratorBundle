@@ -78,21 +78,23 @@ class EchoExtension extends \Twig_Extension
     */
     public function convertAsForm($options, $formType)
     {
+        // Transforms PHP call into PHP (simple copy/paste)
         $options = preg_replace("/'__php\((.+?)\)'/i", '$1', $options, -1, $count);
 
-        if (preg_match("#^collection#i", $formType) || preg_match("#collection$#i", $formType) || $formType == 'upload') {
-            preg_match("/'type' => '(.+?)'/i", $options, $matches);
 
-            if (count($matches) > 0) {
-                $pattern_formtype = '/^\\\\+(([a-zA-Z_]\w*\\\\+)*)([a-zA-Z_]\w*)$/';
-                // Sanity check: prepend with "new" and append with "()"
-                // only if type option is a Fully qualified name
-                if (preg_match($pattern_formtype, $matches[1])) {
-                    $options = str_replace("'type' => '".$matches[1]."'", '\'type\' => new '.stripslashes($matches[1]).'()', $options);
-                }
+        // Converts 'type' => '\My\Fully\QualifiedType' into 'type' => new \My\Fully\QualifiedType()
+        // (mainly used in collections
+        preg_match("/'type' => '(.+?)'/i", $options, $matches);
+        if (count($matches) > 0) {
+            $pattern_formtype = '/^\\\\+(([a-zA-Z_]\w*\\\\+)*)([a-zA-Z_]\w*Type)$/';
+            // Sanity check: prepend with "new" and append with "()"
+            // only if type option is a Fully qualified name
+            if (preg_match($pattern_formtype, $matches[1])) {
+                $options = str_replace("'type' => '".$matches[1]."'", '\'type\' => new '.stripslashes($matches[1]).'()', $options);
             }
         }
 
+        // Query builder
         if (preg_match("#^entity#i", $formType) || preg_match("#entity$#i", $formType) ||
             preg_match("#^document#i", $formType) || preg_match("#document$#i", $formType)) {
             preg_match("/'query_builder' => '(.+?)',/i", $options, $matches);
@@ -110,6 +112,7 @@ class EchoExtension extends \Twig_Extension
             }
         }
 
+        // Choices
         if ('choice' == $formType || 'double_list' == $formType) {
             preg_match("/'choices' => '(.+?)',/i", $options, $matches);
 
@@ -128,7 +131,7 @@ class EchoExtension extends \Twig_Extension
 
         return $options;
     }
-    
+
     public function asPhp($variable)
     {
         if (!is_array($variable)) {
@@ -505,7 +508,7 @@ class EchoExtension extends \Twig_Extension
     {
         return '{% endspaceless %}';
     }
-    
+
     /**
      * Converts an assoc array to a twig array expression (string) .
      * Only in case a value contains '{{' and '}}' the value won't be
