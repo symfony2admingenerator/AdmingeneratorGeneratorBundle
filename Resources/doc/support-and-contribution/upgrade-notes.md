@@ -229,7 +229,7 @@ template, and include static and dynamic stylesheets and javascripts.
 
     {% include 'AvocodeFormExtensionsBundle::stylesheets.html.twig' %}
     {% if form is defined %}
-        {{ form_stylesheet(form) }}
+        {{ afe_form_stylesheet(form) }}
     {% endif %}
 {% endblock %}
 
@@ -238,7 +238,7 @@ template, and include static and dynamic stylesheets and javascripts.
 
     {% include 'AvocodeFormExtensionsBundle::javascripts.html.twig' %}
     {% if form is defined %}
-        {{ form_javascript(form) }}
+        {{ afe_form_javascript(form) }}
     {% endif %}
 {% endblock %}
 ```
@@ -278,20 +278,20 @@ if you want to use this option. If you used `vich/uploader-bundle` to handle fil
 uploads you'll have to configure the upload manager option, read the cookbook entry 
 [How to use upload manager with this bundle?][upload-manager-doc] 
 
-* `entitypicker` form type was removed. Use `select2_entity`, `select2_document` 
-or `select2_model` instead.
+* `entitypicker` form type was removed. Use `afe_select2_entity`, `afe_select2_document` 
+or `afe_select2_model` instead.
 
-> **Note**: other Select2 family form types you can use are: `select2_choice`, 
-`select2_language`, `select2_country`, `select2_timezone`, `select2_locale`. 
+> **Note**: other Select2 family form types you can use are: `afe_select2_choice`, 
+`afe_select2_language`, `afe_select2_country`, `afe_select2_timezone`, `afe_select2_locale`. 
 In future this widget will be documented, for now read more about 
 [Select2 options](http://ivaynberg.github.io/select2/) on its official website. 
 
-* `datepicker` form type was removed. Use `date_picker` or `datetime_picker` instead.
+* `datepicker` form type was removed. Use `afe_date_picker` or `afe_datetime_picker` instead.
 
 > **Note**: In future this form will be documented, for now read more here: 
 [Date Picker options](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/date-picker/overwiev.md)
 
-* `datepicker_range` form type was removed. Use `daterange_picker` instead.
+* `datepicker_range` form type was removed. Use `afe_daterange_picker` instead.
 
 > **Note**: In future this form will be documented, for now read more here: 
 [DateRange Picker options](https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/daterange-picker/overwiev.md)
