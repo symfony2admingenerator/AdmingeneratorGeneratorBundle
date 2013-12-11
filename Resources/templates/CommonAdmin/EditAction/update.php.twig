@@ -16,7 +16,7 @@
         }
 
         $this->preBindRequest(${{ builder.ModelClass }});
-        $form = $this->createForm($this->getEditType(), ${{ builder.ModelClass }});
+        $form = $this->createForm($this->getEditType(), ${{ builder.ModelClass }}, $this->getFormOptions(${{ builder.ModelClass }}));
         $form->bind($this->get('request'));
 
         if ($form->isValid()) {

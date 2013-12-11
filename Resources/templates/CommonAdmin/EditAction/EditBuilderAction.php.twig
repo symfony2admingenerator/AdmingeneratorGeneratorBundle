@@ -44,6 +44,17 @@ class EditController extends BaseController
         return array();
     }
 
+    /**
+     * Get optional form options.
+     *
+     * @param \{{ model }} ${{ builder.ModelClass }} your \{{ model }} object
+     * return array
+     **/
+    protected function getFormOptions(\{{ model }} ${{ builder.ModelClass }})
+    {
+        return array();
+    }
+
     {% block getObject -%}
     protected function getObject($pk)
     {

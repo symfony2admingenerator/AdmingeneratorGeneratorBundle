@@ -10,7 +10,7 @@
         ${{ builder.ModelClass }} = $this->getNewObject();
 
         $this->preBindRequest(${{ builder.ModelClass }});
-        $form = $this->createForm($this->getNewType(), ${{ builder.ModelClass }});
+        $form = $this->createForm($this->getNewType(), ${{ builder.ModelClass }}, $this->getFormOptions(${{ builder.ModelClass }}));
         $form->bind($this->get('request'));
 
         if ($form->isValid()) {
