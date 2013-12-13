@@ -35,21 +35,6 @@ class EchoExtensionTest extends TestCase
         );
     }
 
-    public function testAsPhp()
-    {
-        $tpls = array(
-            'string' => '{{ "cedric"|as_php }}',
-            'array' => '{{ arr|as_php }}',
-        );
-
-        $returns = array(
-            'string' => array("'cedric'", 'As php dump well the string'),
-            'array' => array("array(  'obj' => 'val',)", 'As php dump well the array'),
-        );
-
-        $this->runTwigTests($tpls, $returns);
-    }
-
     public function testPhpName()
     {
         $tpls = array(

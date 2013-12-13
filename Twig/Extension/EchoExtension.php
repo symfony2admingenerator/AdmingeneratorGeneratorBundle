@@ -59,7 +59,6 @@ class EchoExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'as_php'          => new \Twig_Filter_Method($this, 'asPhp'),
             'php_name'        => new \Twig_Filter_Method($this, 'phpName'),
             'wrap'            => new \Twig_Filter_Method($this, 'wrap'),
             'convert_as_form' => new \Twig_Filter_Method($this, 'convertAsForm'),
@@ -130,37 +129,6 @@ class EchoExtension extends \Twig_Extension
         }
 
         return $options;
-    }
-
-    public function asPhp($variable)
-    {
-        if (!is_array($variable)) {
-            return $this->export($variable);
-        }
-
-        $str = $this->export($variable);
-
-        preg_match_all('/[^> ]+::__set_state\(array\((.+),\'loaded/i', $str, $matches);
-
-        if (isset($matches[1][0])) {
-            $params = 'return array('.$matches[1][0].')';
-            $params = eval($params. '?>');
-
-            $str_param = '';
-            foreach ($params as $p) {
-                if ('' !== $str_param) {
-                    $str_param .= ', ';
-                }
-                $str_param .= $this->export($p);
-            }
-
-            $str = preg_replace("/([^> ]+)::__set_state\(/i", ' new \\\$0', $str);
-            $str = str_replace('::__set_state', '', $str);
-            $str = str_replace('array('.$matches[1][0].',\'loaded\' => false,  )', $str_param, $str);
-        }
-
-        return $str;
-
     }
 
     /**
