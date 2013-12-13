@@ -132,7 +132,7 @@ class BundleGenerator extends BaseBundleGenerator
         $generatorFile = $dir.'/Resources/config/'.($this->prefix ? ucfirst($this->prefix).'-' : '').'generator.yml';
         $this->copyPreviousFile($generatorFile);
         $this->renderGeneratedFile(
-            'generator.yml',
+            'generator.yml.twig',
             $generatorFile,
             $parameters
         );
