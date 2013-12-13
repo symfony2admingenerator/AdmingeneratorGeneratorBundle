@@ -4,7 +4,7 @@ boolean:
     no:         Nee
     yes_or_no:  Ja of Nee
 
-# pager
+# Pager
 pagerfanta:
     previous:       Vorige
     next:           Volgende
