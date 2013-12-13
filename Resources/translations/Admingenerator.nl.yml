@@ -4,12 +4,12 @@ boolean:
     no:         Nee
     yes_or_no:  Ja of Nee
 
-# Pager
+#pager
 pagerfanta:
     previous:       Vorige
     next:           Volgende
     view.perpage:   Weergeven
-    num.elements:   "%number% elementen"
+    num.elements:   %number% elementen
 
 # List
 list:
