@@ -1,9 +1,3 @@
-# Boolean filter
-boolean:
-    yes:        Ja
-    no:         Nee
-    yes_or_no:  Ja of Nee
-
 #pager
 pagerfanta:
     previous:       Vorige
