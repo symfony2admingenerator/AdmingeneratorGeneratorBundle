@@ -13,7 +13,7 @@ class SaveAction extends Action
 {
     public function __construct($name, BaseBuilder $builder)
     {
-        parent::__construct($name, $type = 'generic');
+        parent::__construct($name, 'generic');
 
         $this->setSubmit(true);
         $this->setClass('btn-success');

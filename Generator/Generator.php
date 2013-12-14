@@ -11,10 +11,6 @@ use Admingenerator\GeneratorBundle\Builder\Generator as AdminGenerator;
 
 abstract class Generator extends ContainerAware implements GeneratorInterface
 {
-    private $controller;
-
-    private $action;
-
     protected $root_dir;
 
     protected $cache_dir;

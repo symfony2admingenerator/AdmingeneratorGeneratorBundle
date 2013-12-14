@@ -111,7 +111,7 @@ class PropelGenerator extends Generator
         );
     }
 
-    public function prebuildEmbedType($yaml_path, $generator)
+    public function prebuildEmbedType($yaml_path, AdminGenerator $generator)
     {
         $pattern_string = '/(?<namespace_prefix>(?>.+\:)?.+)\:(?<bundle_name>.+Bundle)\:(?<generator_path>.*?)$/';
 

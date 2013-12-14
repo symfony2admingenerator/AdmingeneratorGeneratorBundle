@@ -49,9 +49,7 @@ class AdmingeneratorView implements ViewInterface
         // previous
         if ($pagerfanta->hasPreviousPage()) {
             $pages[] = array($pagerfanta->getPreviousPage(), $options['previous_message']);
-        } else {
-          //  $pages[] = sprintf('<span class="%s">%s</span>', $options['css_disabled_class'], $options['previous_message']);
-        }
+        }   
 
         // first
         if ($startPage > 1) {
@@ -88,8 +86,6 @@ class AdmingeneratorView implements ViewInterface
         // next
         if ($pagerfanta->hasNextPage()) {
             $pages[] = array($pagerfanta->getNextPage(), $options['next_message']);
-        } else {
-           // $pages[] = sprintf('<span class="%s">%s</span>', $options['css_disabled_class'], $options['next_message']);
         }
 
         // process
