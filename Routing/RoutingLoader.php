@@ -4,6 +4,7 @@ namespace Admingenerator\GeneratorBundle\Routing;
 
 use Symfony\Component\Config\Loader\FileLoader;
 use Symfony\Component\Config\Resource\FileResource;
+use Symfony\Component\Config\Exception\FileLoaderLoadException;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Finder\Finder;
@@ -78,7 +79,7 @@ class RoutingLoader extends FileLoader
                     'controller'   => 'list',
                 ),
     );
-    
+
     protected $yaml = array();
 
     public function load($resource, $type = null)
@@ -87,11 +88,11 @@ class RoutingLoader extends FileLoader
 
         $resource = str_replace('\\', '/', $resource);
         $this->yaml = Yaml::parse($this->getGeneratorFilePath($resource));
-        
+
         $namespace = $this->getNamespaceFromResource($resource);
         $fullBundleName = $this->getFullBundleNameFromResource($resource);
         $bundle_name = $this->getBundleNameFromResource($resource);
-        
+
         foreach ($this->actions as $controller => $datas) {
             $action = 'index';
 
@@ -101,7 +102,7 @@ class RoutingLoader extends FileLoader
             } else {
                 $route_name = $loweredNamespace . '_' . $bundle_name . '_' . $controller;
             }
-            
+
             if (in_array($controller, array('edit', 'update', 'object', 'show')) &&
                 null !== $pk_requirement = $this->getFromYaml('params.pk_requirement', null)) {
                 $datas['requirements'] = array_merge(
@@ -138,7 +139,11 @@ class RoutingLoader extends FileLoader
         // Import other routes from a controller directory (@Route annotation)
         if ($controller_folder) {
             $annotationRouteName = '@' . $fullBundleName . '/Controller/' . $controller_folder . '/';
-            $collection->addCollection($this->import($annotationRouteName, 'annotation'));
+            try {
+                $collection->addCollection($this->import($annotationRouteName, 'annotation'));
+            } catch (FileLoaderLoadException $e) {
+                // Don't do anything... this means FrameworkExtraBundle is not loaded
+            }
         }
 
         return $collection;
@@ -166,15 +171,15 @@ class RoutingLoader extends FileLoader
             ->getIterator();
         $finder->rewind();
         $file = $finder->current();
-        
+
         if ($file) {
             if (PHP_VERSION_ID >= 50306) {
                 return $file->getBasename('.' . $file->getExtension());
             }
-            
+
             return $file->getBasename('.' . pathinfo($file->getFilename(), PATHINFO_EXTENSION));
         }
-        
+
         return null;
     }
 
