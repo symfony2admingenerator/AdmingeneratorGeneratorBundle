@@ -11,8 +11,6 @@ class PropelORMFieldGuesser extends ContainerAware
 {
     private $cache = array();
 
-    private $metadata = array();
-
     private static $current_class;
 
     protected function getMetadatas($class = null)

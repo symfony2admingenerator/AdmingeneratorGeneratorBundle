@@ -2,8 +2,6 @@
 
 namespace Admingenerator\GeneratorBundle\Builder\Admin;
 
-use Admingenerator\GeneratorBundle\Generator\Action;
-
 /**
  * This builder generates php for new actions
  *

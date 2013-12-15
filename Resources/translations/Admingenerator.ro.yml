@@ -8,9 +8,9 @@ boolean:
 pagerfanta:
     previous:       Inapoi
     next:           Urmatorul
-    view.perpage:   Arată 
+    view.perpage:   Arată
     num.elements:   %number% de elemente
-  
+
 # List
 list:
     no.results: Exista intrari

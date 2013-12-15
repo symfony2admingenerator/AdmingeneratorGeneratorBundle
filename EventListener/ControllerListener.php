@@ -72,8 +72,6 @@ class ControllerListener
                 return '';
             }
 
-            list($firstSlash, $generatorName) = explode('\\', $matches[2], 3);
-
             return $generatorName;
         }
 

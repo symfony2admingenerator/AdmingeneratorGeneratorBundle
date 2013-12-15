@@ -14,7 +14,6 @@ use Symfony\Component\Finder\Finder;
 class GeneratorFinder
 {
     private $kernel;
-    private $rootDir;
     private $yamls;
 
     /**

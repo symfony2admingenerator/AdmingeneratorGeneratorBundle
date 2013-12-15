@@ -418,8 +418,6 @@ EOD;
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $dialog = $this->getDialogHelper();
-
         $output->writeln('<info>Bundle setuped</info>');
     }
 
