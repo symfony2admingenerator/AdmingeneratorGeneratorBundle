@@ -71,6 +71,8 @@ class ControllerListener
             if (3 != count(explode('\\', $matches[2]))) {
                 return '';
             }
+            
+            list($firstSlash, $generatorName) = explode('\\', $matches[2], 3);
 
             return $generatorName;
         }
