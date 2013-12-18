@@ -110,7 +110,7 @@ class BundleGenerator extends BaseBundleGenerator
                 $templateFile = $dir.'/Resources/views/'.ucfirst($this->prefix).$action.'/'.$templateName.'.html.twig';
                 $this->copyPreviousFile($templateFile);
                 $this->renderGeneratedFile(
-                    'default_view.html.twig.twig',
+                    'default_view.html.twig',
                     $templateFile,
                     $parameters + array('view' => $templateName)
                 );
