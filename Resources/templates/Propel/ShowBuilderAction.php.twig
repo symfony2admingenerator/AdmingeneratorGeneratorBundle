@@ -1,7 +1,15 @@
 {% extends '../CommonAdmin/ShowAction/ShowBuilderAction.php.twig' %}
+
 {% block getObject -%}
     protected function getObject($pk)
     {
-        return \{{ model }}Query::create()->findPk($pk);
+        return $this->getQuery($pk)->findPk($pk);
+    }
+{% endblock %}
+
+{% block getQuery -%}
+    protected function getQuery($pk)
+    {
+        return \{{ model }}Query::create();
     }
 {% endblock %}

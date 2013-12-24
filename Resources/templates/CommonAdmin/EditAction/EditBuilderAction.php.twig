@@ -62,6 +62,13 @@ class EditController extends BaseController
     }
     {% endblock %}
 
+    {% block getQuery -%}
+    protected function getQuery($pk)
+    {
+        //ORM do JOB
+    }
+    {% endblock %}
+
     {% block saveObject -%}
     protected function saveObject(\{{ model }} ${{ builder.ModelClass }})
     {
