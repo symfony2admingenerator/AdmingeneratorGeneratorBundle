@@ -289,6 +289,10 @@ class BaseBuilder extends GenericBaseBuilder
             $action = $this->findGenericAction($actionName);
 
             if (!$action) {
+                $action = $this->findObjectAction($actionName);
+            }
+
+            if (!$action) {
                 $action = new Action($actionName);
             }
 
@@ -445,7 +449,7 @@ class BaseBuilder extends GenericBaseBuilder
             .'_'.$this->getBaseGeneratorName()
         );
     }
-    
+
     public function getObjectActionsRoute()
     {
         return $this->getBaseActionsRoute().'_object';
