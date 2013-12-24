@@ -71,6 +71,21 @@ class DoctrineODMFieldGuesser extends ContainerAware
         return 'virtual';
     }
 
+    public function getModelType($class, $fieldName)
+    {
+        $metadata = $this->getMetadatas($class);
+
+        if ($metadata->hasAssociation($fieldName)) {
+            return $metadata->getAssociationTargetClass($fieldName);
+        }
+
+        if ($metadata->hasField($fieldName)) {
+            return $metadata->getTypeOfField($fieldName);
+        }
+
+        return 'virtual';
+    }
+
     public function getSortType($dbType)
     {
         $alphabeticTypes = array(
@@ -79,7 +94,7 @@ class DoctrineODMFieldGuesser extends ContainerAware
             'string',
             'text',
         );
-        
+
         $numericTypes = array(
             'decimal',
             'float',
@@ -89,22 +104,22 @@ class DoctrineODMFieldGuesser extends ContainerAware
             'bigint',
             'smallint',
         );
-        
+
         if (in_array($dbType, $alphabeticTypes)) {
             return 'alphabetic';
         }
-        
+
         if (in_array($dbType, $numericTypes)) {
             return 'numeric';
         }
-        
+
         return 'default';
     }
 
     public function getFormType($dbType, $columnName)
     {
         $formTypes = $this->container->getParameter('admingenerator.doctrineodm_form_types');
-        
+
         if (array_key_exists($dbType, $formTypes)) {
             return $formTypes[$dbType];
         } elseif ('virtual' === $dbType) {
@@ -123,7 +138,7 @@ class DoctrineODMFieldGuesser extends ContainerAware
     public function getFilterType($dbType, $columnName)
     {
         $filterTypes = $this->container->getParameter('admingenerator.doctrineodm_filter_types');
-        
+
         if (array_key_exists($dbType, $filterTypes)) {
             return $filterTypes[$dbType];
         }
@@ -171,7 +186,7 @@ class DoctrineODMFieldGuesser extends ContainerAware
         $hasField = $this->getMetadatas()->hasField($fieldName);
         $hasAssociation = $this->getMetadatas()->hasAssociation($fieldName);
         $isSingleValAssoc = $this->getMetadatas()->isSingleValuedAssociation($fieldName);
-        
+
         if ($hasField && (!$hasAssociation || $isSingleValAssoc)) {
             return !$this->getMetadatas()->isNullable($fieldName);
         }
@@ -190,7 +205,7 @@ class DoctrineODMFieldGuesser extends ContainerAware
                1 => $this->container->get('translator')
                         ->trans('boolean.yes', array(), 'Admingenerator'),
             );
-            
+
             $options['empty_value'] = $this->container->get('translator')
                 ->trans('boolean.yes_or_no', array(), 'Admingenerator');
         }
