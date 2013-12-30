@@ -80,6 +80,9 @@ class RoutingLoader extends FileLoader
                 ),
     );
 
+    /**
+     * @var array
+     */
     protected $yaml = array();
 
     public function load($resource, $type = null)
@@ -133,16 +136,6 @@ class RoutingLoader extends FileLoader
                 $route = new Route($datas['pattern'], $datas['defaults'], $datas['requirements']);
                 $collection->add($route_name, $route);
                 $collection->addResource(new FileResource($controllerName));
-            }
-        }
-
-        // Import other routes from a controller directory (@Route annotation)
-        if ($controller_folder) {
-            $annotationRouteName = '@' . $fullBundleName . '/Controller/' . $controller_folder . '/';
-            try {
-                $collection->addCollection($this->import($annotationRouteName, 'annotation'));
-            } catch (FileLoaderLoadException $e) {
-                // Don't do anything... this means FrameworkExtraBundle is not loaded
             }
         }
 

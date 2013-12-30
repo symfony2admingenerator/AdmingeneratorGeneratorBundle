@@ -9,6 +9,39 @@ This file lists B/C breaking PRs in reverse chronological order. Each PR contain
 description explaining nature of changes and upgrade notes to help you upgrade your 
 project.
 
+## PR [#707][pr707] Remove annotations autoloading
+
+[pr707]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/pull/707
+
+#### Description:
+
+This PR changes the Router Loader behavior from AdmingeneratorBundle. Before the PR, Admingenerator loaded
+annotations routes in the same time as the `admingenerator` route type. This implied a dependence to 
+FrameworkExtraBundle (not mentionned in composer.json file). After the PR, a `admingenerator` route type
+doesn't load annotations route anymore.
+
+#### BC Break:
+
+If you used annotations routes from Controller inside admingenerator controllers folders, you may faced
+the BC break: annotations routes are not automatically loaded anymore. You need to explicitly import your routes.
+For example if you previously add some Controllers or routes via annotations in an Admingenerated folder you should
+now import routes like that:
+
+```yaml
+## What you probably already have
+AcmeDemoBundle_admin_acme_demo_bundle_Product:
+    resource: "@AcmeDemoBundle/Controller/Product/"
+    type:     admingenerator
+    prefix:   /admin/acme_demo_bundle/Product
+
+## What you should add... if required
+AcmeDemoBundle_admin_acme_demo_bundle_Product_annotation:
+    resource: "@AcmeDemoBundle/Controller/Product/"
+    type:     annotation
+```
+
+
+
 ## PR [#623][pr623] Fix localized date
 
 [pr623]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/pull/623

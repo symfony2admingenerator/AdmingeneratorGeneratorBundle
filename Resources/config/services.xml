@@ -51,12 +51,12 @@
             <argument type="service" id="service_container" />
         </service>
 
-        <service id="routing.loader.admingenerator" class="%routing.loader.admingenerator.class%">
+        <service id="routing.loader.admingenerator" class="%routing.loader.admingenerator.class%" public="false">
             <tag name="routing.loader" />
             <argument type="service" id="file_locator" />
         </service>
 
-        <service id="routing.loader.admingenerator_nested" class="%routing.loader.admingenerator_nested.class%">
+        <service id="routing.loader.admingenerator_nested" class="%routing.loader.admingenerator_nested.class%" public="false">
             <tag name="routing.loader" />
             <argument type="service" id="file_locator" />
         </service>
