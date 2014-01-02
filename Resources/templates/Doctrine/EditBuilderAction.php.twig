@@ -6,12 +6,45 @@ use Doctrine\ORM\OptimisticLockException;
 {% endblock %}
 
 {% block getObject -%}
+    /**
+     * Get object {{ model }} with identifier $pk
+     *
+     * @param mixed $pk
+     * @return {{ model }}
+     */
     protected function getObject($pk)
     {
+        return $this->getQuery($pk)->getOneOrNullResult();
+    }
+{% endblock %}
+
+{% block getQuery -%}
+    /**
+     * Get query from query builder
+     *
+     * @param mixed $pk
+     * @return Doctrine\ORM\Query
+     */
+    protected function getQuery($pk)
+    {
+        return $this->getQueryBuilder($pk)->getQuery();
+    }
+
+    /**
+     * Creates a QueryBuilder instance filtering on {{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }}
+     * property.
+     *
+     * @param mixed $pk
+     * @return Doctrine\ORM\QueryBuilder
+     */
+    protected function getQueryBuilder($pk)
+    {
         return $this->getDoctrine()
-                    ->getManagerForClass('{{ model }}')
-                    ->getRepository('{{ model }}')
-                    ->find($pk);
+             ->getManagerForClass('{{ model }}')
+             ->getRepository('{{ model }}')
+             ->createQueryBuilder('q')
+             ->where('q.{{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} = :pk')
+             ->setParameter(':pk', $pk);
     }
 {% endblock %}
 

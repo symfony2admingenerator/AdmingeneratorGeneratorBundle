@@ -2,23 +2,57 @@
 
 {% block getObject %}
 
+    /**
+     * Get object {{ model }} with identifier $pk
+     *
+     * @param mixed $pk
+     * @return {{ model }}
+     */
     protected function getObject($pk)
     {
-        ${{ builder.ModelClass }} = $this->getDocumentManager()
-             ->getRepository('{{ model }}')
-             ->find($pk);
+        $pk = is_numeric($pk) ? intval($pk) : $pk;
+        ${{ builder.ModelClass }} = $this->getObjectQuery($pk)->getOneOrNullResult();
 
         if (!${{ builder.ModelClass }}) {
             throw new \InvalidArgumentException("No {{ model }} found on {{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} : $pk");
         }
 
-        return ${{ builder.ModelClass }} ?: null;
+        return ${{ builder.ModelClass }};
     }
-    
+
+{% endblock %}
+
+{% block getQuery -%}
+    /**
+     * Get query from query builder
+     *
+     * @param mixed $pk
+     * @return Doctrine\ODM\Query
+     */
+    protected function getObjectQuery($pk)
+    {
+        return $this->getObjectQueryBuilder($pk)->getQuery();
+    }
+
+    /**
+     * Creates a QueryBuilder instance filtering on {{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }}
+     * property.
+     *
+     * @param mixed $pk
+     * @return Doctrine\ODM\QueryBuilder
+     */
+    protected function getObjectQueryBuilder($pk)
+    {
+        return $this->getDocumentManager()
+             ->getRepository('{{ model }}')
+             ->createQueryBuilder('q')
+             ->where('q.{{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} = :pk')
+             ->setParameter(':pk', $pk);
+    }
 {% endblock %}
 
 {% block executeObjectDelete %}
-    
+
     protected function executeObjectDelete(\{{ model }} ${{ builder.ModelClass }})
     {
         $dm = $this->getDocumentManager();
@@ -26,11 +60,11 @@
         $dm->flush();
         $dm->clear();
     }
-    
+
 {% endblock %}
 
 {% block executeBatchDelete %}
-    
+
     protected function executeBatchDelete(array $selected)
     {
         $this->getDocumentManager()
@@ -40,5 +74,5 @@
              ->getQuery()
              ->execute();
     }
-    
+
 {% endblock %}

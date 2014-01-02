@@ -1,25 +1,57 @@
 {% extends '../CommonAdmin/ActionsAction/ActionsBuilderAction.php.twig' %}
 
 {% block getObject %}
-
+    /**
+     * Get object {{ model }} with identifier $pk
+     *
+     * @param mixed $pk
+     * @return {{ model }}
+     */
     protected function getObject($pk)
     {
-        ${{ builder.ModelClass }} = $this->getDoctrine()
-             ->getManagerForClass('{{ model }}')
-             ->getRepository('{{ model }}')
-             ->find($pk);
+        ${{ builder.ModelClass }} = $this->getObjectQuery($pk)->getOneOrNullResult();
 
         if (!${{ builder.ModelClass }}) {
             throw new \InvalidArgumentException("No {{ model }} found on {{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} : $pk");
         }
 
-        return ${{ builder.ModelClass }} ?: null;
+        return ${{ builder.ModelClass }};
     }
-    
+
+{% endblock %}
+
+{% block getQuery -%}
+    /**
+     * Get query from query builder
+     *
+     * @param mixed $pk
+     * @return Doctrine\ORM\Query
+     */
+    protected function getObjectQuery($pk)
+    {
+        return $this->getObjectQueryBuilder($pk)->getQuery();
+    }
+
+    /**
+     * Creates a QueryBuilder instance filtering on {{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }}
+     * property.
+     *
+     * @param mixed $pk
+     * @return Doctrine\ORM\QueryBuilder
+     */
+    protected function getObjectQueryBuilder($pk)
+    {
+        return $this->getDoctrine()
+             ->getManagerForClass('{{ model }}')
+             ->getRepository('{{ model }}')
+             ->createQueryBuilder('q')
+             ->where('q.{{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} = :pk')
+             ->setParameter(':pk', $pk);
+    }
 {% endblock %}
 
 {% block executeObjectDelete %}
-    
+
     protected function executeObjectDelete(\{{ model }} ${{ builder.ModelClass }})
     {
         $em = $this->getDoctrine()->getManagerForClass('{{ model }}');
@@ -27,11 +59,11 @@
         $em->flush();
         $em->clear();
     }
-    
+
 {% endblock %}
 
 {% block executeBatchDelete %}
-    
+
     protected function executeBatchDelete(array $selected)
     {
         $this->getDoctrine()->getManagerForClass('{{ model }}')
@@ -39,5 +71,5 @@
             ->setParameter('selected', $selected)
             ->getResult();
     }
-    
+
 {% endblock %}

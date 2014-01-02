@@ -1,11 +1,45 @@
 {% extends '../CommonAdmin/ShowAction/ShowBuilderAction.php.twig' %}
+
 {% block getObject -%}
+    /**
+     * Get object {{ model }} with identifier $pk
+     *
+     * @param mixed $pk
+     * @return {{ model }}
+     */
     protected function getObject($pk)
     {
         $pk = is_numeric($pk) ? intval($pk) : $pk;
 
+        return $this->getQuery($pk)->getOneOrNullResult();
+    }
+{% endblock %}
+
+{% block getQuery -%}
+    /**
+     * Get query from query builder
+     *
+     * @param mixed $pk
+     * @return Doctrine\ODM\Query
+     */
+    protected function getQuery($pk)
+    {
+        return $this->getQueryBuilder($pk)->getQuery();
+    }
+
+    /**
+     * Creates a QueryBuilder instance filtering on {{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }}
+     * property.
+     *
+     * @param mixed $pk
+     * @return Doctrine\ODM\QueryBuilder
+     */
+    protected function getQueryBuilder($pk)
+    {
         return $this->getDocumentManager()
-                    ->getRepository('{{ model }}')
-                    ->find($pk);
+             ->getRepository('{{ model }}')
+             ->createQueryBuilder('q')
+             ->where('q.{{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} = :pk')
+             ->setParameter(':pk', $pk);
     }
 {% endblock %}

@@ -99,6 +99,13 @@ class ActionsController extends BaseController
     }
     {% endblock %}
 
+    {% block getQuery -%}
+    protected function getObjectQuery($pk)
+    {
+        //ORM do JOB
+    }
+    {% endblock %}
+
     /**
      * Get additional parameters for rendering.
      *
