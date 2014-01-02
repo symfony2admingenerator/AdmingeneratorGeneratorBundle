@@ -17,7 +17,7 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
         if (isset($filters['{{ filter }}'])) {
                 $filters['{{ filter }}'] = array (
                     'id' => $filters['{{ filter }}']->get{{ builder.getFieldGuesser().getModelPrimaryKeyName(filterModel)|capitalize }}(),
-                    'documentName' => get_class($filters['{{ filter }}'])
+                    'documentName' => '{{ filterModel }}'
                 );
         }
 

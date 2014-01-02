@@ -14,7 +14,7 @@
         if (isset($filters['{{ filter }}'])) {
                 $filters['{{ filter }}'] = array (
                     'id' => $filters['{{ filter }}']->get{{ builder.getFieldGuesser().getModelPrimaryKeyName(filterModel)|capitalize }}(),
-                    'entityName' => {{ filterModel }})
+                    'entityName' => '{{ filterModel }}'
                 );
         }
 
