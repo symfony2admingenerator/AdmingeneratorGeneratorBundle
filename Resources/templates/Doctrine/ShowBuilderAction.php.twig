@@ -8,7 +8,7 @@
      */
     protected function getObject($pk)
     {
-        return $this->getQuery($pk)->getSingleOrNullResult();
+        return $this->getQuery($pk)->getOneOrNullResult();
     }
 {% endblock %}
 

@@ -11,7 +11,7 @@
     protected function getObject($pk)
     {
         $pk = is_numeric($pk) ? intval($pk) : $pk;
-        ${{ builder.ModelClass }} = $this->getObjectQuery($pk)->getSingleOrNullResult();
+        ${{ builder.ModelClass }} = $this->getObjectQuery($pk)->getOneOrNullResult();
 
         if (!${{ builder.ModelClass }}) {
             throw new \InvalidArgumentException("No {{ model }} found on {{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} : $pk");

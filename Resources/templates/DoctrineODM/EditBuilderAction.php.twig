@@ -16,7 +16,7 @@ use Doctrine\ODM\MongoDB\LockException;
     {
         $pk = is_numeric($pk) ? intval($pk) : $pk;
 
-        return $this->getQuery($pk)->getSingleOrNullResult();
+        return $this->getQuery($pk)->getOneOrNullResult();
     }
 {% endblock %}
 
