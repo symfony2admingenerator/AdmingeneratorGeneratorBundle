@@ -62,13 +62,28 @@ class DoctrineORMFieldGuesser extends ContainerAware
         return 'virtual';
     }
 
+    public function getModelType($class, $fieldName)
+    {
+        $metadata = $this->getMetadatas($class);
+
+        if ($metadata->hasAssociation($fieldName)) {
+            return $metadata->getAssociationTargetClass($fieldName);
+        }
+
+        if ($metadata->hasField($fieldName)) {
+            return $metadata->getTypeOfField($fieldName);
+        }
+
+        return 'virtual';
+    }
+
     public function getSortType($dbType)
     {
         $alphabeticTypes = array(
             'string',
             'text',
         );
-        
+
         $numericTypes = array(
             'decimal',
             'float',
@@ -76,22 +91,22 @@ class DoctrineORMFieldGuesser extends ContainerAware
             'bigint',
             'smallint',
         );
-        
+
         if (in_array($dbType, $alphabeticTypes)) {
             return 'alphabetic';
         }
-        
+
         if (in_array($dbType, $numericTypes)) {
             return 'numeric';
         }
-        
+
         return 'default';
     }
 
     public function getFormType($dbType, $columnName)
     {
         $formTypes = $this->container->getParameter('admingenerator.doctrine_form_types');
-        
+
         if (array_key_exists($dbType, $formTypes)) {
             return $formTypes[$dbType];
         } elseif ('virtual' === $dbType) {
@@ -110,7 +125,7 @@ class DoctrineORMFieldGuesser extends ContainerAware
     public function getFilterType($dbType, $columnName)
     {
         $filterTypes = $this->container->getParameter('admingenerator.doctrine_filter_types');
-        
+
         if (array_key_exists($dbType, $filterTypes)) {
             return $filterTypes[$dbType];
         }
@@ -130,7 +145,7 @@ class DoctrineORMFieldGuesser extends ContainerAware
             if (isset($mapping['scale'])) {
                 $precision = $mapping['scale'];
             }
-            
+
             if (isset($mapping['precision'])) {
                 $precision = $mapping['precision'];
             }
@@ -140,7 +155,7 @@ class DoctrineORMFieldGuesser extends ContainerAware
                 'required'  => $this->isRequired($columnName)
             );
         }
-        
+
         if (preg_match("#^entity#i", $formType) || preg_match("#entity$#i", $formType)) {
             $mapping = $this->getMetadatas()->getAssociationMapping($columnName);
 
@@ -170,7 +185,7 @@ class DoctrineORMFieldGuesser extends ContainerAware
         $hasField = $this->getMetadatas()->hasField($fieldName);
         $hasAssociation = $this->getMetadatas()->hasAssociation($fieldName);
         $isSingleValAssoc = $this->getMetadatas()->isSingleValuedAssociation($fieldName);
-        
+
         if ($hasField && (!$hasAssociation || $isSingleValAssoc)) {
             return !$this->getMetadatas()->isNullable($fieldName);
         }

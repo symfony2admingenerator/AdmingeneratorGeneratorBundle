@@ -10,11 +10,11 @@
 
         {%- for filter in builder.filters.display -%}
             {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
-
+            {% set filterModel = builder.getFieldGuesser().getModelType(model, filter) %}
         if (isset($filters['{{ filter }}'])) {
                 $filters['{{ filter }}'] = array (
-                    'id' => $filters['{{ filter }}']->getId(),
-                    'entityName' => get_class($filters['{{ filter }}'])
+                    'id' => $filters['{{ filter }}']->get{{ builder.getFieldGuesser().getModelPrimaryKeyName(filterModel)|capitalize }}(),
+                    'entityName' => '{{ filterModel }}'
                 );
         }
 
@@ -95,12 +95,12 @@
 
         {%- for filter in builder.filters.display -%}
             {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
-
+            {% set filterModel = builder.getFieldGuesser().getModelType(model, filter) %}
               if (isset($filters['{{ filter }}'])) {
                   $this->getDoctrine()
                   ->getManagerForClass(get_class($filters['{{ filter }}']))
                   ->getUnitOfWork()
-                  ->registerManaged($filters['{{ filter }}'], array('id' => $filters['{{ filter }}']->getId()), array());
+                  ->registerManaged($filters['{{ filter }}'], array('id' => $filters['{{ filter }}']->get{{ builder.getFieldGuesser().getModelPrimaryKeyName(filterModel)|capitalize }}()), array());
               }
 
             {%- endif %}

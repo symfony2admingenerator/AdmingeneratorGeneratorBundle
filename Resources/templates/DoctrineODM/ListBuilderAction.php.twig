@@ -13,11 +13,11 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
 
         {%- for filter in builder.filters.display -%}
             {%- if 'document' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
-
+            {% set filterModel = builder.getFieldGuesser().getModelType(model, filter) %}
         if (isset($filters['{{ filter }}'])) {
                 $filters['{{ filter }}'] = array (
-                    'id' => $filters['{{ filter }}']->getId(),
-                    'documentName' => get_class($filters['{{ filter }}'])
+                    'id' => $filters['{{ filter }}']->get{{ builder.getFieldGuesser().getModelPrimaryKeyName(filterModel)|capitalize }}(),
+                    'documentName' => '{{ filterModel }}'
                 );
         }
 
@@ -95,9 +95,9 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
 
         {%- for filter in builder.filters.display -%}
             {%- if 'document' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
-
+            {% set filterModel = builder.getFieldGuesser().getModelType(model, filter) %}
         if (isset($filters['{{ filter }}'])) {
-             $this->getDocumentManager()->getUnitOfWork()->registerManaged($filters['{{ filter }}'], $filters['{{ filter }}']->getId(), array());
+             $this->getDocumentManager()->getUnitOfWork()->registerManaged($filters['{{ filter }}'], $filters['{{ filter }}']->get{{ builder.getFieldGuesser().getModelPrimaryKeyName(filterModel)|capitalize }}(), array());
         }
 
             {%- endif %}
