@@ -31,9 +31,9 @@ class DoctrineODMQueryFilter extends BaseQueryFilter
             if ($to && $from) {
                 $this->query->field($field)->range($from, $to);
             } elseif ($from) {
-                $this->query->field($field)->lte($from);
+                $this->query->field($field)->gte($from);
             } elseif ($to) {
-                $this->query->field($field)->gte($to);
+                $this->query->field($field)->lte($to);
             }
         } else {
             if (false !== $date = $this->formatDate($value, $format)) {
