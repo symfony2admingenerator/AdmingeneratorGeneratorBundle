@@ -44,17 +44,17 @@ class PropelQueryFilter extends BaseQueryFilter
                  ->groupById();
     }
 
-    public function addDateFilter($field, $value)
+    public function addDateFilter($field, $value, $format = 'Y-m-d')
     {
         if (is_array($value)) {
             $filters = array();
 
-            if ($value['from']) {
-                $filters['min'] = $value['from']->format('Y-m-d');
+            if (array_key_exists('from', $value) && $from = $this->formatDate($value['from'], $format)) {
+                $filters['min'] = $from;
             }
 
-            if ($value['to']) {
-                $filters['max'] = $value['to']->format('Y-m-d');
+            if (array_key_exists('to', $value) && $to = $this->formatDate($value['to'], $format)) {
+                $filters['max'] = $to;
             }
 
             if (count($filters) > 0) {
@@ -62,8 +62,10 @@ class PropelQueryFilter extends BaseQueryFilter
                 $this->query->$method($filters);
             }
 
-        } elseif ($value instanceof \DateTime) {
-            $this->query->filterBy($field, $value->format('Y-m-d'));
+        } else {
+            if (false !== $date = $this->formatDate($value, $format)) {
+                $this->query->filterBy($field, $date);
+            }
         }
     }
 

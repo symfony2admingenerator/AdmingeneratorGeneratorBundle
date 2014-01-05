@@ -46,4 +46,17 @@ abstract class BaseQueryFilter implements QueryFilterInterface
             $this->addDefaultFilter($values[0], $values[1]);
         }
     }
+
+    protected function formatDate($date, $format)
+    {
+        if (!($date instanceof \DateTime)) {
+            $date = new \DateTime($date);
+        }
+
+        if (false !== $date) {
+            return $date->format($format);
+        }
+
+        return $date;
+    }
 }

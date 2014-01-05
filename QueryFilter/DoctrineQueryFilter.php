@@ -15,7 +15,7 @@ class DoctrineQueryFilter extends BaseQueryFilter
     {
         if ("" !== $value) {
             $this->query->andWhere(sprintf('q.%s = :%s',$field, $field));
-            $this->query->setParameter($field, $value);
+            $this->query->setParameter($field, !!$value);
         }
     }
 
@@ -53,24 +53,30 @@ class DoctrineQueryFilter extends BaseQueryFilter
     public function addDateFilter($field, $value, $format = 'Y-m-d')
     {
         if (is_array($value)) {
-            if ($value['from']) {
-                $this->query->andWhere(sprintf('q.%s >= :%s_from',$field, $field ));
-                $this->query->setParameter($field.'_from' , $value['from']->format($format));
+            if (array_key_exists('from', $value)) {
+                if (false !== $from = $this->formatDate($value['from'], $format)) {
+                    $this->query->andWhere(sprintf('q.%s >= :%s_from',$field, $field ));
+                    $this->query->setParameter($field.'_from' , $from);
+                }
             }
 
-            if ($value['to']) {
-                $this->query->andWhere(sprintf('q.%s <= :%s_to',$field, $field ));
-                $this->query->setParameter($field.'_to' , $value['to']->format($format));
+            if (array_key_exists('to', $value)) {
+                if (false !== $to = $this->formatDate($value['to'], $format)) {
+                    $this->query->andWhere(sprintf('q.%s <= :%s_to',$field, $field ));
+                    $this->query->setParameter($field.'_to' , $to);
+                }
             }
 
-        } elseif ($value instanceof \DateTime) {
-            $this->query->andWhere(sprintf('q.%s = :%s',$field, $field ));
-            $this->query->setParameter($field, $value->format($format));
+        } else {
+            if (false !== $date = $this->formatDate($value, $format)) {
+                $this->query->andWhere(sprintf('q.%s = :%s',$field, $field ));
+                $this->query->setParameter($field, $date);
+            }
         }
     }
 
-    public function addDatetimeFilter($field, $value)
+    public function addDatetimeFilter($field, $value, $format = 'Y-m-d H:i:s')
     {
-        $this->addDateFilter($field, $value, 'Y-m-d H:i:s');
+        $this->addDateFilter($field, $value, $format);
     }
 }

@@ -22,23 +22,23 @@ class DoctrineODMQueryFilter extends BaseQueryFilter
         }
     }
 
-    public function addDateFilter($field, $value)
+    public function addDateFilter($field, $value, $format = 'Y-m-d')
     {
         if (is_array($value)) {
-            if ($value['from'] && !$value['to']) {
-                $this->query->field($field)->lte($value['from']);
-            }
+            $from = array_key_exists('from', $value) ? $this->formatDate($value['from'], $format) : false;
+            $to   = array_key_exists('to',   $value) ? $this->formatDate($value['to'],   $format) : false;
 
-            if ($value['to'] && !$value['from']) {
-                $this->query->field($field)->gte($value['to']);
+            if ($to && $from) {
+                $this->query->field($field)->range($from, $to);
+            } elseif ($from) {
+                $this->query->field($field)->gte($from);
+            } elseif ($to) {
+                $this->query->field($field)->lte($to);
             }
-
-            if ($value['to'] && $value['from']) {
-                $this->query->field($field)->range($value['from'], $value['to']);
+        } else {
+            if (false !== $date = $this->formatDate($value, $format)) {
+                $this->query->field($field)->equals($date);
             }
-
-        } elseif ($value instanceof \DateTime) {
-            $this->query->field($field)->equals($value);
         }
     }
 
