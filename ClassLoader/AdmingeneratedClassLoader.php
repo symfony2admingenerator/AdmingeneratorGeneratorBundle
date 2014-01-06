@@ -65,6 +65,7 @@ class AdmingeneratedClassLoader
         $builder->setVariables(array(
             'controllerName' => $controllerName,
             'namespace'      => $namespace,
+            'require_pk'     => 'ListController' != $controllerName // We don't care about ActionsController and filters
         ));
 
         $generator->writeOnDisk($this->base_path);
