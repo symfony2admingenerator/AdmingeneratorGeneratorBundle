@@ -11,15 +11,16 @@ use Admingenerator\GeneratorBundle\DependencyInjection\Compiler\FormCompilerPass
 
 class AdmingeneratorGeneratorBundle extends Bundle
 {
-    public function boot()
-    {
-        $AdmingeneratedClassLoader = new AdmingeneratedClassLoader;
-        $AdmingeneratedClassLoader->setBasePath($this->container->getParameter('kernel.cache_dir'));
-        $AdmingeneratedClassLoader->register();
-    }
-
+    /**
+     * (non-PHPdoc)
+     * @see \Symfony\Component\HttpKernel\Bundle\Bundle::build()
+     */
     public function build(ContainerBuilder $container)
     {
+        $AdmingeneratedClassLoader = new AdmingeneratedClassLoader();
+        $AdmingeneratedClassLoader->setBasePath($container->getParameter('kernel.cache_dir'));
+        $AdmingeneratedClassLoader->register();
+
         parent::build($container);
 
         $container->addCompilerPass(new ValidatorCompilerPass());
