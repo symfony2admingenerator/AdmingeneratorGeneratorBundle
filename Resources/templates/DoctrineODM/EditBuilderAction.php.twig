@@ -16,7 +16,7 @@ use Doctrine\ODM\MongoDB\LockException;
     {
         $pk = is_numeric($pk) ? intval($pk) : $pk;
 
-        return $this->getQuery($pk)->getOneOrNullResult();
+        return $this->getQuery($pk)->getSingleResult();
     }
 {% endblock %}
 
@@ -43,9 +43,8 @@ use Doctrine\ODM\MongoDB\LockException;
     {
         return $this->getDocumentManager()
              ->getRepository('{{ model }}')
-             ->createQueryBuilder('q')
-             ->where('q.{{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} = :pk')
-             ->setParameter(':pk', $pk);
+             ->createQueryBuilder()
+             ->field('id')->equals($pk);
     }
 {% endblock %}
 
