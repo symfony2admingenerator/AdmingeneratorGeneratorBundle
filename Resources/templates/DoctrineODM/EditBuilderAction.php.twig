@@ -44,7 +44,7 @@ use Doctrine\ODM\MongoDB\LockException;
         return $this->getDocumentManager()
              ->getRepository('{{ model }}')
              ->createQueryBuilder()
-             ->field('id')->equals($pk);
+             ->field('{{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }}')->equals($pk);
     }
 {% endblock %}
 
