@@ -102,7 +102,7 @@ class Generator extends TwigGeneratorGenerator
                                 }
                             } else {
                                 throw new \InvalidArgumentException(
-                                        sprintf('Invalid %s "%s" builder definition', $param, $name)
+                                    sprintf('Invalid %s "%s" builder definition for %s', $param, $name, $this->getFromYaml('params.model'))
                                 );
                             }
                         }
