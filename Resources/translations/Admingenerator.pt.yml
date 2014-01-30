@@ -43,6 +43,7 @@ profile:
 action.generic:
   list:   Listar
   new:    Novo
+  excel:  Exportar a Excel
   save:   Salvar
   save-and-add:   Salvar e Novo
   save-and-list:  Salvar e Listar

@@ -35,6 +35,7 @@ profile:
 action.generic:
     list:   Liste
     new:    Yeni
+    excel:  Excel'e verme
     save:   Kaydet
     save-and-add:   Kaydet ve Yeni Oluştur
     save-and-list:  Kaydet ve Listeye Dön

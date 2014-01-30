@@ -11,6 +11,8 @@ use Admingenerator\GeneratorBundle\Builder\Propel\NestedListBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\Propel\NestedListBuilderTemplate;
 use Admingenerator\GeneratorBundle\Builder\Propel\FiltersBuilderType;
 
+use Admingenerator\GeneratorBundle\Builder\Propel\ExcelBuilderAction;
+
 use Admingenerator\GeneratorBundle\Builder\Propel\EditBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\Propel\EditBuilderTemplate;
 use Admingenerator\GeneratorBundle\Builder\Propel\EditBuilderType;
@@ -96,6 +98,10 @@ class PropelGenerator extends Generator
         if (array_key_exists('show', $builders)) {
             $generator->addBuilder(new ShowBuilderAction());
             $generator->addBuilder(new ShowBuilderTemplate());
+        }
+
+        if (array_key_exists('excel', $builders)) {
+            $generator->addBuilder(new ExcelBuilderAction());
         }
 
         if (array_key_exists('actions', $builders)) {

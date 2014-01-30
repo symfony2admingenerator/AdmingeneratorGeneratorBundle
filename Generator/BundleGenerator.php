@@ -31,6 +31,7 @@ class BundleGenerator extends BaseBundleGenerator
             'filters',
             'row'
         )),
+        'Excel' => array('views' => array()),
         'Edit' => array('views' => array(
             'index',
             'form',
