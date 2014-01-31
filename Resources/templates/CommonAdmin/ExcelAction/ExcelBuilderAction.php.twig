@@ -6,6 +6,8 @@ namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.gene
 
 {{- block('csrf_protection_use') }}
 
+use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
+
 /**
  * @author Bob van de Vijver
  */
@@ -18,7 +20,12 @@ class ExcelController extends ListController
     public function excelAction()
     {
       // Create the PHPExcel object with some standard values
-      $phpExcelObject = $this->get('phpexcel')->createPHPExcelObject();
+      try {
+        $phpexcel = $this->get('phpexcel');
+      } catch (ServiceNotFoundException $e){
+        throw new \Exception('You will need to enable the PHPExcel bundle for this function to work.', null, $e);
+      }
+      $phpExcelObject = $phpexcel->createPHPExcelObject();
       $this->createExcelObject($phpExcelObject);
       $sheet = $phpExcelObject->setActiveSheetIndex(0);
 
