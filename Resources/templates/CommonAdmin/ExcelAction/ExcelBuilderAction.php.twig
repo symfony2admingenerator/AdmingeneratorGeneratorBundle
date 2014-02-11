@@ -51,7 +51,7 @@ class ExcelController extends ListController
     /**
      * Override this method to add your own creator, title and more to the Excel spreadsheet
      */
-    public function createExcelObject(\PHPExcel $phpExcelObject){
+    protected function createExcelObject(\PHPExcel $phpExcelObject){
       $phpExcelObject->getProperties()->setCreator("AdminGeneratorBundle")
         ->setTitle('AdminGenerator Excel Export')
         ->setSubject("AdminGenerator Excel Export")
@@ -61,7 +61,7 @@ class ExcelController extends ListController
     /**
      * Fill the Excel speadsheet with the headers
      */
-    public function createExcelheader(\PhpExcel_Worksheet $sheet){
+    protected function createExcelheader(\PhpExcel_Worksheet $sheet){
       {% set column = 0 %}
       {% for builder_column in builder.columns %}
         $sheet->setCellValueByColumnAndRow({{ column }}, 1, "{{ builder_column.label }}", true);
@@ -75,7 +75,7 @@ class ExcelController extends ListController
     /**
      * Fills the Excel spreadsheet with data
      */
-    public function createExcelData(\PhpExcel_Worksheet $sheet){
+    protected function createExcelData(\PhpExcel_Worksheet $sheet){
       $row = 2;
       $results = $this->getResults();
       foreach($results as $rowData){
