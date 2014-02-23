@@ -1,0 +1,97 @@
+<?php
+
+namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.generator.GeneratedControllerFolder }};
+
+{{- block('security_use') }}
+
+{{- block('csrf_protection_use') }}
+
+use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
+
+/**
+ * @author Bob van de Vijver
+ */
+class ExcelController extends ListController
+{
+    /**
+     * Generates the Excel object and send a streamed response
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     */
+    public function excelAction()
+    {
+      // Create the PHPExcel object with some standard values
+      try {
+        $phpexcel = $this->get('phpexcel');
+      } catch (ServiceNotFoundException $e){
+        throw new \Exception('You will need to enable the PHPExcel bundle for this function to work.', null, $e);
+      }
+      $phpExcelObject = $phpexcel->createPHPExcelObject();
+      $this->createExcelObject($phpExcelObject);
+      $sheet = $phpExcelObject->setActiveSheetIndex(0);
+
+      // Create the first bold row in the Excel spreadsheet
+      $this->createExcelHeader($sheet);
+
+      // Print the data
+      $this->createExcelData($sheet);
+
+      // Create the Writer, Response and add header
+      $writer = $phpexcel->createWriter($phpExcelObject, '{{ builder.filetype }}');
+      $response = $phpexcel->createStreamedResponse($writer);
+      $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=utf-8');
+      $response->headers->set('Content-Disposition', 'attachment;filename={{ builder.filename }}.xlsx');
+
+      return $response;
+    }
+
+    /**
+     * Override this method to add your own creator, title and more to the Excel spreadsheet
+     */
+    protected function createExcelObject(\PHPExcel $phpExcelObject){
+      $phpExcelObject->getProperties()->setCreator("AdminGeneratorBundle")
+        ->setTitle('AdminGenerator Excel Export')
+        ->setSubject("AdminGenerator Excel Export")
+        ->setDescription("AdminGenerator Excel export");
+    }
+
+    /**
+     * Fill the Excel speadsheet with the headers
+     */
+    protected function createExcelheader(\PhpExcel_Worksheet $sheet){
+      {% set column = 0 %}
+      {% for builder_column in builder.columns %}
+        $sheet->setCellValueByColumnAndRow({{ column }}, 1, "{{ builder_column.label }}", true);
+        $columnLetter = \PHPExcel_Cell::stringFromColumnIndex({{ column }});
+        $sheet->getStyle($columnLetter . '1')->getFont()->setBold(true);
+        $sheet->getColumnDimension($columnLetter)->setAutoSize(true);
+        {% set column = column + 1 %}
+      {% endfor %}
+    }
+
+    /**
+     * Fills the Excel spreadsheet with data
+     */
+    protected function createExcelData(\PhpExcel_Worksheet $sheet){
+      $row = 2;
+      $results = $this->getResults();
+      foreach($results as $rowData){
+        {% set column = 0 %}
+        {% for builder_column in builder.columns %}
+          $sheet->setCellValueByColumnAndRow({{ column }}, $row, $rowData->get{{ builder_column.getter|capitalize }}());
+          {% set column = column + 1 %}
+        {% endfor %}
+        foreach($rowData as $columnData){
+          $sheet->setCellValueByColumnAndRow($column, $row, $columnData);
+          $column++;
+        }
+        $row++;
+      }
+    }
+
+    {% block getResults -%}
+      protected function getResults()
+      {
+        // ORM JOB
+      }
+    {% endblock %}
+}

@@ -39,6 +39,7 @@
     },
     "suggest": {
         "avocode/form-extensions-bundle": "Symfony2 form extensions for Admingenerator",
+        "liuggio/excelbundle": "Allows the usage of the Excel export",
         "cedriclombardot/admingenerator-user-bundle": "FOSUserBundle integration for Admingenerator",
         "jms/security-extra-bundle": "Allows expressions in credential checks for generated actions"
     },

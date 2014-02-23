@@ -20,6 +20,12 @@ class RoutingLoader extends FileLoader
                     'defaults'     => array(),
                     'requirements' => array(),
                 ),
+        'excel'=> array(
+                    'pattern'      => '/excel',
+                    'defaults'     => array(),
+                    'requirements' => array(),
+                    'controller'   => 'excel',
+                ),
         'edit' => array(
                     'pattern'      => '/{pk}/edit',
                     'defaults'     => array(),

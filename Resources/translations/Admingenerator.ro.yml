@@ -43,6 +43,7 @@ profile:
 action.generic:
     list:   Lista
     new:    Adauga
+    excel:  Export în Excel
     save:   Salvați
     save-and-add:   Adăugați și Salvare
     save-and-list:  Lista și Salvare

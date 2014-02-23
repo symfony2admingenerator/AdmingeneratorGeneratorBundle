@@ -43,6 +43,7 @@ profile:
 action.generic:
     list:   一覧
     new:    新規作成
+    excel:  Excel へのエクスポート
     save:   保存
     save-and-add:   保存して追加
     save-and-list:  保存して戻る

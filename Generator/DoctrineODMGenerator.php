@@ -9,6 +9,8 @@ use Admingenerator\GeneratorBundle\Builder\DoctrineODM\ListBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\DoctrineODM\ListBuilderTemplate;
 use Admingenerator\GeneratorBundle\Builder\DoctrineODM\FiltersBuilderType;
 
+use Admingenerator\GeneratorBundle\Builder\DoctrineODM\ExcelBuilderAction;
+
 use Admingenerator\GeneratorBundle\Builder\DoctrineODM\EditBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\DoctrineODM\EditBuilderTemplate;
 use Admingenerator\GeneratorBundle\Builder\DoctrineODM\EditBuilderType;
@@ -88,6 +90,10 @@ class DoctrineODMGenerator extends Generator
         if (array_key_exists('show', $builders)) {
             $generator->addBuilder(new ShowBuilderAction());
             $generator->addBuilder(new ShowBuilderTemplate());
+        }
+
+        if (array_key_exists('excel', $builders)) {
+            $generator->addBuilder(new ExcelBuilderAction());
         }
 
         if (array_key_exists('actions', $builders)) {

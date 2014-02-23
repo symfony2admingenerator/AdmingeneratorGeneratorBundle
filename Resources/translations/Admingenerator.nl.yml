@@ -43,6 +43,7 @@ profile:
 action.generic:
     list:   Lijst
     new:    Nieuw
+    excel:  Exporteren naar Excel
     save:   Opslaan
     save-and-add:   Opslaan en naar toevoegen
     save-and-list:  Opslaan en naar lijst

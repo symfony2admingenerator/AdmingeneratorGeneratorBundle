@@ -11,6 +11,8 @@ use Admingenerator\GeneratorBundle\Builder\Doctrine\NestedListBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\NestedListBuilderTemplate;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\FiltersBuilderType;
 
+use Admingenerator\GeneratorBundle\Builder\Doctrine\ExcelBuilderAction;
+
 use Admingenerator\GeneratorBundle\Builder\Doctrine\EditBuilderAction;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\EditBuilderTemplate;
 use Admingenerator\GeneratorBundle\Builder\Doctrine\EditBuilderType;
@@ -96,6 +98,10 @@ class DoctrineGenerator extends Generator
         if (array_key_exists('show', $builders)) {
             $generator->addBuilder(new ShowBuilderAction());
             $generator->addBuilder(new ShowBuilderTemplate());
+        }
+
+        if (array_key_exists('excel', $builders)) {
+            $generator->addBuilder(new ExcelBuilderAction());
         }
 
         if (array_key_exists('actions', $builders)) {

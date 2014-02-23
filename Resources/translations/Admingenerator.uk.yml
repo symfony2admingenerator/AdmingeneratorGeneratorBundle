@@ -43,6 +43,7 @@ profile:
 action.generic:
     list:   Список
     new:    Додати
+    excel:  Експорт в Excel
     save:   Зберегти
     save-and-add:   Зберегти та додати
     save-and-list:  Зберегти та список
