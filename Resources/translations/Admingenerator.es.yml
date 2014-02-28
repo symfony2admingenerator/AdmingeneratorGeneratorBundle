@@ -62,7 +62,7 @@ action.object.edit:
 action.object.delete:
     label:    Borrar
     confirm:  ¿Está seguro que desea eliminar este elemento?
-    success:  Element se ha eliminado correctamente.
+    success:  El elemento se ha eliminado correctamente.
     error:    El elemento no se puede eliminar.
 action.object.show:
     label:    Mostrar
