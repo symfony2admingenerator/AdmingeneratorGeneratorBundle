@@ -26,6 +26,7 @@
         {% stylesheets filter='cssrewrite,?yui_css' output='assetic/css/compiled/components.min.css'
             'components/bootstrap/css/bootstrap.css'
             'components/bootstrap/css/bootstrap-responsive.css'
+            'components/bootstrap/css/bootstrap-theme.css'
             'components/font-awesome/css/font-awesome.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
@@ -88,6 +89,8 @@
 
     {% block javascripts %}
         {% javascripts filter='?yui_js' output='assetic/js/compiled/admingenerator.min.js'
+	        'components/jquery/jquery.min.js'
+	        'components/jquery-ui/ui/minified/jquery-ui.min.js'
             'components/bootstrap/js/bootstrap.js'
             'bundles/admingeneratorgenerator/js/admingenerator/general.js'
         %}
