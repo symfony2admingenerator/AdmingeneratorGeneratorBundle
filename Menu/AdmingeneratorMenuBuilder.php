@@ -21,7 +21,7 @@ class AdmingeneratorMenuBuilder extends ContainerAware
     protected function addHeader(ItemInterface $menu, $label)
     {
         $item = $menu->addChild($label);
-        $item->setAttribute('class', 'nav-header');
+        $item->setAttribute('class', 'dropdown-header');
         $item->setExtra('translation_domain', $this->translation_domain);
 
         return $item;
