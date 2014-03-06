@@ -22,15 +22,15 @@
 {{ echo_block("body") }}
     {{- block('title') -}}
     
-    <div class="row-fluid object-actions-{{ builder.ModelClass }}">
-        <div class="span12">
+    <div class="row object-actions-{{ builder.ModelClass }}">
+        <div class="col-md-12">
             {{- block('object_actions') -}}
         </div>
     </div>
 
-    <div class="row-fluid">
+    <div class="row">
         {% if sidebar is defined and sidebar|length > 0 %}
-            <div class="span8">
+            <div class="col-md-8">
         {% endif %}
                 {{- block('tabs') }}
                 {% if tabs is defined and tabs|length > 0 %}
@@ -42,7 +42,7 @@
                 {% endif %}
         {% if sidebar is defined and sidebar|length > 0 %}
             </div>
-            <div class="span4">
+            <div class="col-md-4">
                 {{- block('show_sidebar') -}}
             </div>
         {% endif %}

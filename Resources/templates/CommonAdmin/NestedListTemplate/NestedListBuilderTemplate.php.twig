@@ -21,8 +21,8 @@
 {{ echo_block("body") }}
     {{- block('title') -}}
 
-    <div class="row-fluid">
-        <div class="{% if builder.filterColumns|length == 0 %} span12 {% else %} span9 {% endif %}">
+    <div class="row">
+        <div class="{% if builder.filterColumns|length == 0 %} col-md-12 {% else %} col-md-9 {% endif %}">
             {{ block('list_scopes') -}}
 
             {{ echo_include(builder.namespacePrefixForTemplate ~ bundle_name ~ ':' ~ builder.BaseGeneratorName ~ 'List:results.html.twig') }}
@@ -30,7 +30,7 @@
         
         {{ echo_block("filters") }}
         {% if builder.filterColumns|length > 0 %}
-            <div class="span3">
+            <div class="col-md-3">
                 {{ echo_include(builder.namespacePrefixForTemplate ~ bundle_name ~ ':' ~ builder.BaseGeneratorName ~ 'List:filters.html.twig') }}
             </div>
         {% endif %}

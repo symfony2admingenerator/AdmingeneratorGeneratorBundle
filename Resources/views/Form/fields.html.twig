@@ -26,7 +26,7 @@
 
 {% block form_row %}
 {% spaceless %}
-    <div class="control-group {{ name }}{% if errors|length > 0 %} error{% endif %}">
+    <div class="control-group {{ name }}{% if errors|length > 0 %} has-error{% endif %}">
         {{ form_label(form) }}
         <div class="controls">
         {{ form_widget(form) }}

@@ -15,20 +15,20 @@
                 {% endif %}
 
             {% for rows in builder.fieldsets[fieldset] %}
-            <div class="row-fluid">
+            <div class="row">
                 {% for field in rows %}
                     {% set column = builder.Columns[field] %}
                     {% if column.credentials %}
                           {{ echo_if_granted(column.credentials, builder.ModelClass) }}
                     {% endif %}
 
-                    <div class="span2 text-right">
+                    <div class="col-md-2 text-right">
                     {{ echo_block('show_column_label_' ~ column.name) -}}
                         <strong>{{ echo_twig("'" ~ column.label|addslashes ~ "'|trans({}, '" ~ i18n_catalog|default("Admin") ~ "')") }}</strong>
                     {{- echo_endblock() }}
                     </div>
 
-                    <div class="span10">
+                    <div class="col-md-10">
                         <div class="control-group form_field field_{{ field }}">
                         {{ echo_block('show_column_' ~ column.name) -}}
                             {%- if column.customView != null and builder.variable('custom_blocks') != null -%}

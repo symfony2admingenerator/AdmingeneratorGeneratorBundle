@@ -44,7 +44,7 @@
 }
 
 /* Fieldset styles */
-.row-fluid > .form_field {
+.row > .form_field {
     -moz-box-sizing: border-box;
     display: block;
     float: left;
@@ -52,11 +52,11 @@
     min-height: 30px;
 }
 
-.row-fluid > .form_field:last-child {
+.row > .form_field:last-child {
     margin-right: 0;
 }
 
-.row-fluid > .form_field:only-child {
+.row > .form_field:only-child {
     width: 100%;
 }
 
@@ -177,8 +177,8 @@ input.btn.btn-reset:hover {
 }
 
 /* Icon sizes on list view */
-#profile-nav .btn-small,
-.object_actions > .btn-group > .btn-mini {
+#profile-nav .btn-sm,
+.object_actions > .btn-group > .btn-xs {
     font-size: 14px;
 }
 

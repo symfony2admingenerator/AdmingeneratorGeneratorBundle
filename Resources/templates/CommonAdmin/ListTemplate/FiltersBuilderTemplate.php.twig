@@ -1,6 +1,6 @@
 {% block list_filters %}
 {{ echo_block('list_filters') }}
-<div class="row-fluid filters-list">
+<div class="row filters-list">
     <form action="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_filters" ) }}" method="post" {{ echo_twig("form_enctype(form)") }}>
         <legend>{{ echo_trans('list.filters') }}</legend>
         <fieldset class="form_block form_fieldset_NONE">
@@ -23,8 +23,8 @@
             {{ echo_twig("form_rest(form)") }}
         </fieldset>
         <div class="form-actions">
-            <button type="submit" class="btn btn-small btn-primary"><i class="icon-search icon-white"></i> {{ echo_trans('list.button.filter') }}</button>
-            <button type="submit" class="btn btn-small" name="reset" value="true"><i class="icon-refresh"></i> {{ echo_trans('list.button.reset') }}</button>
+            <button type="submit" class="btn btn-sm btn-primary"><i class="icon-search icon-white"></i> {{ echo_trans('list.button.filter') }}</button>
+            <button type="submit" class="btn btn-sm" name="reset" value="true"><i class="icon-refresh"></i> {{ echo_trans('list.button.reset') }}</button>
         </div>
     </form>
 </div>

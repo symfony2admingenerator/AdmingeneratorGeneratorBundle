@@ -20,13 +20,13 @@
 {{ echo_block("body") }}
     {{- block('title') -}}
 
-    <div class="row-fluid object-actions-{{ builder.ModelClass }}">
-        <div class="span12">
+    <div class="row object-actions-{{ builder.ModelClass }}">
+        <div class="col-md-12">
             {{- block('object_actions') -}}
         </div>
     </div>
 
-    <div class="row-fluid">
+    <div class="row">
         {{- block('tabs') }}
         {{ echo_include(builder.namespacePrefixForTemplate ~ bundle_name ~ ':' ~ builder.BaseGeneratorName ~ (builder.yamlKey | capitalize) ~ ':form.html.twig') }}
     </div>

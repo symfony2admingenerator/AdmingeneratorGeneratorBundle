@@ -4,7 +4,7 @@
         {% if widget.credentials is defined %}
             {{ echo_if_granted(widget.credentials, builder.ModelClass) }}
         {% endif %}
-        <div class="row-fluid">
+        <div class="row">
             <h2>{{ echo_trans(name,{}, i18n_catalog is defined ? i18n_catalog : "Admin" ) }}</h2>
             {% if widget.partial %}
                 {{ echo_include(widget.partial) }}

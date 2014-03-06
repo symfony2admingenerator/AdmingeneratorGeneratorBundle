@@ -13,10 +13,10 @@
   .profile li {
       display: inline-block;
   }
-  .nav-collapse.in .profile li.btn-group {
+  .navbar-collapse.in .profile li.btn-group {
       margin-top: 0px;
   }
-  .nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a {
+  .navbar-collapse .nav > li > a, .navbar-collapse .dropdown-menu a {
       color: #FFFFFF;
   }
 }
@@ -27,7 +27,7 @@
     margin-right: 10px;
 }
 
-.navbar .profile .btn-group .btn-mini {
+.navbar .profile .btn-group .btn-xs {
     margin-top: 2px;
 }
 
