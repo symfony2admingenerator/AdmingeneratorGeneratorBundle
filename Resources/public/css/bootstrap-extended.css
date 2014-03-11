@@ -1,21 +1,21 @@
 /* List sorting styles */
-.list_thead_column .sort-span {
+.list_thead_column .sort-addon {
     min-height: 0px;
 }
 
-.list_thead_column .sort-span > i.active,
-.list_thead_column .sort-span:hover > i.hover,
-.list_thead_column .sort-span:hover > i.hover.placeholder {
+.list_thead_column .sort-addon > i.active,
+.list_thead_column .sort-addon:hover > i.hover,
+.list_thead_column .sort-addon:hover > i.hover.placeholder {
     display: inline-block;
     visibility: visible;
 }
 
-.list_thead_column .sort-span > i.hover, 
-.list_thead_column .sort-span:hover > i.active {
+.list_thead_column .sort-addon > i.hover, 
+.list_thead_column .sort-addon:hover > i.active {
     display: none;
 }
 
-.list_thead_column .sort-span > i.hover.placeholder {
+.list_thead_column .sort-addon > i.hover.placeholder {
     display: inline-block;
     visibility: hidden;
 }
