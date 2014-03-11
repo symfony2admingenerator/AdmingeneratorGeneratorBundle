@@ -22,8 +22,6 @@
 
 {% block list_paginator_pages %}
     {{ echo_block('list_paginator_pages') }}
-    <div class="pagination pull-right">
-        {{ echo_twig("pagerfanta(" ~ builder.ModelClass ~ "s, 'admingenerator')") }}
-    </div>
+		{{ echo_twig("pagerfanta(" ~ builder.ModelClass ~ "s, 'admingenerator')") }}
     {{ echo_endblock() }}
 {% endblock %}

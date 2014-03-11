@@ -22,12 +22,13 @@ class AdmingeneratorView implements ViewInterface
     public function render(PagerfantaInterface $pagerfanta, $routeGenerator, array $options = array())
     {
         $options = array_merge(array(
-            'proximity'          => 2,
-            'previous_message'   => $this->translator->trans('pagerfanta.previous', array(), 'Admingenerator'),
-            'next_message'       => $this->translator->trans('pagerfanta.next', array(), 'Admingenerator'),
-            'css_disabled_class' => 'disabled',
-            'css_dots_class'     => 'dots',
-            'css_current_class'  => 'active',
+            'proximity'           => 2,
+            'previous_message'    => $this->translator->trans('pagerfanta.previous', array(), 'Admingenerator'),
+            'next_message'        => $this->translator->trans('pagerfanta.next', array(), 'Admingenerator'),
+            'css_disabled_class'  => 'disabled',
+            'css_dots_class'      => 'dots',
+            'css_current_class'   => 'active',
+			'css_alignment_class' => 'pagination-right',
         ), $options);
 
         $currentPage = $pagerfanta->getCurrentPage();
@@ -102,7 +103,7 @@ class AdmingeneratorView implements ViewInterface
             }
         }
 
-        return '<ul>'.$pagesHtml.'</ul>';
+        return sprintf('<ul class="pagination %s">%s</ul>', $options['css_current_class'], $pagesHtml);
     }
 
     /**
