@@ -1,7 +1,7 @@
 {% block list_scopes %}
 {{ echo_block("list_scopes") }}
 {% if scopes is defined %}
-<div class="list_scopes btn-toolbar">
+<div class="list_scopes btn-toolbar" role="toolbar">
     {% for groupName, group in scopes %}
     <div class="list_scope_group btn-group">
         {% for scopeName, params in group %}

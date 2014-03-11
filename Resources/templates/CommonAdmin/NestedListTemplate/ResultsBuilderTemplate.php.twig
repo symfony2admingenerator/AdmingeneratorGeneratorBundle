@@ -16,13 +16,13 @@
           
         <div class="form-actions list-actions">
         {% if batch_actions is defined and batch_actions|length > 0 %}
-            <div id="batch_actions" class="pull-left btn-toolbar">
+            <div id="batch_actions" class="pull-left btn-toolbar" role="toolbar">
                 {{ block('batch_actions') }}
             </div>
         {% endif -%}
 
         {% if actions is defined and actions|length > 0 %}
-            <div id="generic_actions" class="pull-left btn-toolbar">
+            <div id="generic_actions" class="pull-left btn-toolbar" role="toolbar">
                 {{ block('generic_actions') -}}
             </div>
         {% endif -%}
