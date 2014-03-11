@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{% block title %}Admin{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {% block scripts_head %}
         <script type="text/javascript" src="{{ asset('components/jquery/jquery.min.js') }}"></script>
@@ -16,7 +16,6 @@
 
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('components/bootstrap/css/bootstrap.min.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('components/bootstrap/css/bootstrap-responsive.min.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('components/bootstrap/css/bootstrap-theme.min.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('components/font-awesome/css/font-awesome.min.css') }}" type="text/css" media="all" />
         <!--[if lt IE 7]>
