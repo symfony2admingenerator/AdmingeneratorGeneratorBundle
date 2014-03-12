@@ -31,8 +31,13 @@
 }
 
 /* List actions bar styles */
-.form-actions.list-actions {
-    padding: 9px 20px 0px;
+.form-group.list-actions {
+    padding: 9px 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	background-color: #f5f5f5;
+	border-top: 1px solid #e5e5e5;
+	display: inline-block;
 }
 
 .list-actions > .btn-toolbar + .btn-toolbar {
@@ -78,7 +83,7 @@ fieldset legend span {
     padding: 0 8px;
 }
 
-legend + .control-group {
+legend + .form-group {
     margin-top: 0px;
 }
 
@@ -117,7 +122,7 @@ button::-moz-focus-inner, select::-moz-focus-inner {
 }
 
 /* Actions toolbar */
-.form-actions.form-actions-condensed {
+.form-group.form-group-condensed {
     padding: 10px;
     margin: 0px;
     border: 0 none;
