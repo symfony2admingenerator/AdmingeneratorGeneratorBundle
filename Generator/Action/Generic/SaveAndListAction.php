@@ -17,7 +17,7 @@ class SaveAndListAction extends Action
 
         $this->setSubmit(true);
         $this->setClass('btn-info');
-        $this->setIcon('icon-list-alt glyphicon-white');
+        $this->setIcon('glyphicon-list-alt glyphicon-white');
         $this->setLabel('action.generic.save-and-list');
     }
 }

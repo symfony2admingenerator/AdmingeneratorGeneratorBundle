@@ -35,7 +35,7 @@
 {% block batch_action_block %}
     {% set translationDomain = action.type is sameas('custom') ? i18n_catalog|default("Admin") : 'Admingenerator' %}
     <option value="{{ action.name }}" {%- if action.confirm %} data-confirm='{{ echo_trans(action.confirm, {}, translationDomain) }}' {% endif -%}>
-        {% if action.icon %}<i class="{{ action.icon }}"></i> {% endif %}{{ echo_trans(action.label, {}, translationDomain) }}
+        {% if action.icon %}<i class="{% if action.icon is defined and action.icon|length > 0 %}glyphicon {{ action.icon }}{% endif %}"></i> {% endif %}{{ echo_trans(action.label, {}, translationDomain) }}
     </option>
 {% endblock %}
 
