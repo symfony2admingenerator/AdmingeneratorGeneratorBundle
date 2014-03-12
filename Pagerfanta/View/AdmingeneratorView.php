@@ -22,14 +22,14 @@ class AdmingeneratorView implements ViewInterface
     public function render(PagerfantaInterface $pagerfanta, $routeGenerator, array $options = array())
     {
         $options = array_merge(array(
-            'proximity'             => 2,
-            'previous_message'      => $this->translator->trans('pagerfanta.previous', array(), 'Admingenerator'),
-            'next_message'          => $this->translator->trans('pagerfanta.next', array(), 'Admingenerator'),
-            'css_disabled_class'    => 'disabled',
-            'css_dots_class'        => 'dots',
-            'css_current_class'     => 'active',
-			'css_alignment_class'   => 'pagination-right',
-			'css_button_size_class' => 'btn-sm',
+            'proximity'              => 2,
+            'previous_message'       => $this->translator->trans('pagerfanta.previous', array(), 'Admingenerator'),
+            'next_message'           => $this->translator->trans('pagerfanta.next', array(), 'Admingenerator'),
+            'css_disabled_class'     => 'disabled',
+            'css_dots_class'         => 'dots',
+            'css_current_class'      => 'active',
+			'css_alignment_class'    => 'pagination-right',
+			'css_buttons_size_class' => 'pagination-sm',
         ), $options);
 
         $currentPage = $pagerfanta->getCurrentPage();
@@ -66,7 +66,7 @@ class AdmingeneratorView implements ViewInterface
         // pages
         for ($page = $startPage; $page <= $endPage; $page++) {
             if ($page == $currentPage) {
-                $pages[] = sprintf('<li class="%s"><a href="#" class="number %s">%s</a></li>', $options['css_current_class'], $options['css_button_size_class'], $page);
+                $pages[] = sprintf('<li class="%s"><a href="#" class="number">%s</a></li>', $options['css_current_class'], $page);
             } else {
                 $pages[] = array($page, $page);
             }
@@ -97,14 +97,14 @@ class AdmingeneratorView implements ViewInterface
                 $pagesHtml .= $page;
             } else {
                 if (is_string($page[1])) {
-                    $pagesHtml .= '<li><a href="'.$routeGenerator($page[0]).'" class="'.$options['css_button_size_class'].'">'.$page[1].'</a></li>';
+                    $pagesHtml .= '<li><a href="'.$routeGenerator($page[0]).'">'.$page[1].'</a></li>';
                 } else {
-                    $pagesHtml .= '<li><a href="'.$routeGenerator($page[0]).'" class="number '.$options['css_button_size_class'].'">'.$page[1].'</a></li>';
+                    $pagesHtml .= '<li><a href="'.$routeGenerator($page[0]).'" class="number">'.$page[1].'</a></li>';
                 }
             }
         }
 
-        return sprintf('<ul class="pagination %s">%s</ul>', $options['css_current_class'], $pagesHtml);
+        return sprintf('<ul class="pagination %s %s">%s</ul>', $options['css_buttons_size_class'], $options['css_current_class'], $pagesHtml);
     }
 
     /**

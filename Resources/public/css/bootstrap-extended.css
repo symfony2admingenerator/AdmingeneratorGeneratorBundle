@@ -162,7 +162,8 @@ input.btn.btn-reset,
 input.btn.btn-reset:hover {
     display: inline-block;
     padding: 4px 6px;
-    height: 20px;
+/*    height: 20px;*/
+	margin-right: 1px;
     line-height: 20px;
     background: #FFFFFF; 
     box-shadow: none;
