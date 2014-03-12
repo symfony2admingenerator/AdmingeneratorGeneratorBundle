@@ -44,13 +44,13 @@ params:
     object_actions:      
         impersonate:
             label:    Login as
-            icon:     icon-user
+            icon:     glyphicon-user
             route:    Homepage
             params:
                 _switch_user:   "{{ User.username }}"
         lock:
             label:    Lock account
-            icon:     icon-lock
+            icon:     glyphicon-lock
             route:    Acme_SecurityBundle_User_object
             csrfProtected: true
             params:
@@ -171,7 +171,7 @@ params:
     batch_actions:
         lock:
             label:    Lock account
-            icon:     icon-lock
+            icon:     glyphicon-lock
             route:    Acme_SecurityBundle_User_batch
 
 builders:

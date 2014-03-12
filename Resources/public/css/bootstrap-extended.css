@@ -172,7 +172,7 @@ input.btn.btn-reset:hover {
     cursor: text;
 }
 
-.list_scope_group .btn [class^="icon-"] {
+.list_scope_group .btn [class^="glyphicon-"] {
     font-size: 12px;
 }
 
@@ -183,19 +183,19 @@ input.btn.btn-reset:hover {
 }
 
 /* Fix cursor */
-a:hover > [class^="icon-"]:before,
-a:hover > [class*=" icon-"]:before,
-button:hover > [class^="icon-"]:before,
-button:hover > [class*=" icon-"]:before {
+a:hover > [class^="glyphicon-"]:before,
+a:hover > [class*=" glyphicon-"]:before,
+button:hover > [class^="glyphicon-"]:before,
+button:hover > [class*=" glyphicon-"]:before {
     cursor: pointer;
 }
 
 /* Fix icons */
-[class^="icon-"],
-[class*=" icon-"],
-[class^="icon-"]:focus,
-[class*=" icon-"]:focus,
-*:focus > [class^="icon-"],
-*:focus > [class*=" icon-"] {
+[class^="glyphicon-"],
+[class*=" glyphicon-"],
+[class^="glyphicon-"]:focus,
+[class*=" glyphicon-"]:focus,
+*:focus > [class^="glyphicon-"],
+*:focus > [class*=" glyphicon-"] {
     background-image: none !important;
 }

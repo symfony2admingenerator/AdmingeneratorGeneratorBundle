@@ -64,7 +64,7 @@
         {% endif %}
         {%- if action.confirm %} data-confirm="{{ echo_trans(action.confirm, {}, translationDomain) }}" {% endif -%}
         {%- if action.csrfProtected %} data-csrf-token="{{ echo_path(actionRoute, actionParams, ['csrf_token']) }}" {% endif -%}>
-            <i class="{{ action.icon|default('icon-asterisk') }}">
+            <i class="glyphicon {{ action.icon|default('glyphicon-asterisk') }}">
                 {% if builder.yamlKey is not sameas('list') %}
                 {{ echo_trans(action.label, {}, translationDomain) }}
                 {% endif %}

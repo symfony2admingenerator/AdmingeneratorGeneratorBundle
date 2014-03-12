@@ -88,7 +88,7 @@
     		(isRootNode) ? node.addClass('ui-helper-hidden') : '';
             if (expandable) {
 	            var cell = $(node).children().first();
-	            var expander = $('<i />').addClass('icon-expander');
+	            var expander = $('<i />').addClass('glyphicon glyphicon-expander');
 	            cell.append(expander);
         	}
     	},
