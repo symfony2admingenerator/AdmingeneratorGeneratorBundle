@@ -57,7 +57,7 @@
 
     {% spaceless %}
     {{ echo_spaceless() }}
-    <a  class="btn {% if builder.yamlKey is sameas('list') %}btn-xs {% endif %}{{ action.class|default('btn-default') }}" href="{{ echo_path(actionRoute, actionParams) }}"
+    <a  class="btn btn-default {% if builder.yamlKey is sameas('list') %}btn-xs {% endif %}{{ action.class|default('') }}" href="{{ echo_path(actionRoute, actionParams) }}"
         data-original-title="{{ echo_trans(action.label, {}, translationDomain) }}"
         {% if builder.yamlKey is sameas('list') %}
         rel="tooltip"
