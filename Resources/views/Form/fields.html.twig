@@ -26,14 +26,12 @@
 
 {% block form_row %}
 {% spaceless %}
-    <div class="control-group {{ name }}{% if errors|length > 0 %} has-error{% endif %}">
+    <div class="form-group {{ name }}{% if errors|length > 0 %} has-error{% endif %}">
         {{ form_label(form) }}
-        <div class="controls">
         {{ form_widget(form) }}
         {% if not compound %}
             {{ form_errors(form) }}
         {% endif %}
-        </div>
     </div>
 {% endspaceless %}
 {% endblock form_row %}
@@ -59,7 +57,7 @@
 {% block form_errors %}
 {% spaceless %}
     {% if errors|length > 0 %}
-    <span class="help-block">
+    <span class="help-block form-control-feedback">
         <ul class="form-errors">
         {% for error in errors %}
             <li>{{ error.messagePluralization is null
