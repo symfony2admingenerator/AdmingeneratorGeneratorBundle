@@ -60,11 +60,11 @@
 .row > .form_field:last-child {
     margin-right: 0;
 }
-
+/*
 .row > .form_field:only-child {
     width: 100%;
 }
-
+*/
 fieldset {
     border: 1px solid #DDDDDD;
     border-radius: 8px;
