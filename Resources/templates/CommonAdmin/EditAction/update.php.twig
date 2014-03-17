@@ -32,9 +32,9 @@
 
                 $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans("{{ messages.success|default("action.object.edit.success") }}", array(), 'Admingenerator') );
 
-                if($this->get('request')->request->has('save-and-add'))
+                if($this->get('request')->request->has('save_and_add'))
                   return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_new" ));
-                if($this->get('request')->request->has('save-and-list'))
+                if($this->get('request')->request->has('save_and_list'))
                   return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list" ));
                 else
                   return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_edit", array('pk' => $pk) ));
