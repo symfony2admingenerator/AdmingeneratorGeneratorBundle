@@ -37,6 +37,7 @@ body {
 }
 
 .navbar-blue .navbar-brand {
+	padding: 10px 20px;
     color: #FFFFFF;
     text-shadow: 0 1px 0 #777777;
     
