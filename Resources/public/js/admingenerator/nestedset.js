@@ -94,7 +94,7 @@
     	},
     	
     	_treeOnNodeReinitCallback: function(node, expandable, isRootNode) {
-    		$(node).find('.icon-expander').remove();
+    		$(node).find('.glyphicon-expander').remove();
     	},
         
         _dragNDropInit: function() {

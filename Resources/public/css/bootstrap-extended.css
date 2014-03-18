@@ -31,13 +31,14 @@
 }
 
 /* List actions bar styles */
+
 .form-group.list-actions {
     padding: 9px 20px;
 	margin-top: 20px;
 	margin-bottom: 20px;
-	background-color: #f5f5f5;
 	border-top: 1px solid #e5e5e5;
 	display: inline-block;
+	width: 100%;
 }
 
 .list-actions > .btn-toolbar + .btn-toolbar {

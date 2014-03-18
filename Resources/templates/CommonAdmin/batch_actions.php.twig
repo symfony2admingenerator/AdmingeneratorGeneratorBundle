@@ -2,7 +2,7 @@
 {{ echo_block("batch_actions") }}
 <div class="btn-group">
     <div class="btn select-caret">
-        <select id="batchActionSelector" name="action">
+        <select id="batchActionSelector" name="action" class="form-control">
             <option selected="selected" value="none">{{ echo_trans('batch.list.selected') }}</option>
             {% for action in builder.BatchActions %}
                 {{ echo_block('batch_action_' ~ action.twigName) }}

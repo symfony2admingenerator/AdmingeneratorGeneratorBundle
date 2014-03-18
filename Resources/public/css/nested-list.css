@@ -105,7 +105,7 @@
     left: 5px;
     line-height: 14px;
     vertical-align: text-top;
-    background-image: url("../img/glyphicons-halflings.png");
+    background-image: url("/components/bootstrap/img/glyphicons-halflings.png");
     background-position: 14px 14px;
     background-repeat: no-repeat;
     cursor: pointer;
@@ -143,7 +143,7 @@
 .treeTable tbody tr.droppable-in [class*=" glyphicon-"],
 .treeTable tbody tr.parent.selected td:first-child:before,
 .treeTable tbody tr.parent.droppable-in td:first-child:before {
-    background-image: url("../img/glyphicons-halflings-white.png") !important;
+    background-image: url("/components/bootstrap/img/glyphicons-halflings-white.png") !important;
 }
 
 /* Remove cell backgrounds to make row background visible */
@@ -151,6 +151,10 @@
 .treeTable tbody tr.selected th, .treeTable tbody tr.droppable-in th {
     background-color: transparent !important;
 }
+
+#nestedset_loading .modal-body {
+	text-align: center;
+}	
 
 /* jQuery UI layout helpers
  * ========================
