@@ -80,10 +80,6 @@ class ExcelController extends ListController
           $sheet->setCellValueByColumnAndRow({{ column }}, $row, $rowData->get{{ builder_column.getter|capitalize }}());
           {% set column = column + 1 %}
         {% endfor %}
-        foreach($rowData as $columnData){
-          $sheet->setCellValueByColumnAndRow($column, $row, $columnData);
-          $column++;
-        }
         $row++;
       }
     }
