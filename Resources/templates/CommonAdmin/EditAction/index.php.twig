@@ -13,13 +13,14 @@ use {{ builder.namespacePrefixWithSubfolder }}\{{ bundle_name }}\Form\Type\{{ bu
         {% if concurrency_lock -%}
         $this->saveVersion($pk, ${{ builder.ModelClass }}->getVersion());
         {%- endif %}
-        
+
         {{ block('security_action_with_object') }}
 
         if (!${{ builder.ModelClass }}) {
             throw new NotFoundHttpException("The {{ model }} with {{ builder.getFieldGuesser().getModelPrimaryKeyName(model) }} $pk can't be found");
         }
 
+        $this->preBindRequest(${{ builder.ModelClass }});
         $form = $this->createForm($this->getEditType(), ${{ builder.ModelClass }}, $this->getFormOptions(${{ builder.ModelClass }}));
 
         return $this->render('{{ builder.namespacePrefixForTemplate }}{{ bundle_name }}:{{ builder.BaseGeneratorName }}Edit:index.html.twig', $this->getAdditionalRenderParameters(${{ builder.ModelClass }}) + array(
