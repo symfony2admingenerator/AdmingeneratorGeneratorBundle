@@ -26,14 +26,12 @@
 
 {% block form_row %}
 {% spaceless %}
-    <div class="control-group {{ name }}{% if errors|length > 0 %} error{% endif %}">
+    <div class="form-group {{ name }}{% if errors|length > 0 %} has-error{% endif %}">
         {{ form_label(form) }}
-        <div class="controls">
         {{ form_widget(form) }}
         {% if not compound %}
             {{ form_errors(form) }}
         {% endif %}
-        </div>
     </div>
 {% endspaceless %}
 {% endblock form_row %}
@@ -59,7 +57,7 @@
 {% block form_errors %}
 {% spaceless %}
     {% if errors|length > 0 %}
-    <span class="help-block">
+    <span class="help-block form-control-feedback">
         <ul class="form-errors">
         {% for error in errors %}
             <li>{{ error.messagePluralization is null
@@ -72,3 +70,43 @@
     {% endif %}
 {% endspaceless %}
 {% endblock form_errors %}
+
+{% block widget_container_attributes %}
+{% spaceless %}
+    {%- if id is not empty %}id="{{ id }}"{% endif -%}
+    {%- for attrname, attrvalue in attr -%}
+        {{- " " -}}
+        {%- if attrname in ['placeholder', 'title'] -%}
+            {{- attrname }}="{{ attrvalue|trans({}, translation_domain) }}"
+        {%- elseif attrvalue is sameas(true) -%}
+            {{- attrname }}="{{ attrname }}"
+        {%- elseif attrvalue is not sameas(false) -%}
+            {{- attrname }}="{{ attrvalue }}"
+        {%- endif -%}
+    {%- endfor -%}
+{% endspaceless %}
+{% endblock widget_container_attributes %}
+
+{% block widget_attributes %}
+{% spaceless %}
+    id="{{ id }}" name="{{ full_name }}"
+    {%- if read_only %} readonly="readonly"{% endif -%}
+    {%- if disabled %} disabled="disabled"{% endif -%}
+    {%- if required %} required="required"{% endif -%}
+    {%- if max_length %} maxlength="{{ max_length }}"{% endif -%}
+    {%- if pattern %} pattern="{{ pattern }}"{% endif -%}
+	
+	{% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+	
+    {%- for attrname, attrvalue in attr -%}
+        {{- " " -}}
+        {%- if attrname in ['placeholder', 'title'] -%}
+            {{- attrname }}="{{ attrvalue|trans({}, translation_domain) }}"
+        {%- elseif attrvalue is sameas(true) -%}
+            {{- attrname }}="{{ attrname }}"
+        {%- elseif attrvalue is not sameas(false) -%}
+            {{- attrname }}="{{ attrvalue }}"
+        {%- endif -%}
+    {%- endfor -%}
+{% endspaceless %}
+{% endblock widget_attributes %}

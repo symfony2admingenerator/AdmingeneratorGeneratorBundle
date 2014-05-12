@@ -9,27 +9,27 @@
 {{ echo_block('show') }}
     {{ echo_block('object') }}
         {% for fieldset in builder.fieldsets|keys %}
-            <fieldset class="form_block form_fieldset_{{ fieldset|classify|replace({'.': '_'}) }} tab-pane">
-                {% if "NONE" != fieldset[:4] %}
-                <legend><span>{{ echo_trans(fieldset,{}, i18n_catalog is defined ? i18n_catalog : "Admin" ) }}</span></legend>
-                {% endif %}
+        <fieldset class="form_block form_fieldset_{{ fieldset|classify|replace({'.': '_'}) }} tab-pane">
+            {% if "NONE" != fieldset[:4] %}
+            <legend><span>{{ echo_trans(fieldset,{}, i18n_catalog is defined ? i18n_catalog : "Admin" ) }}</span></legend>
+            {% endif %}
 
             {% for rows in builder.fieldsets[fieldset] %}
-            <div class="row-fluid">
+            <div class="row">
                 {% for field in rows %}
                     {% set column = builder.Columns[field] %}
                     {% if column.credentials %}
                           {{ echo_if_granted(column.credentials, builder.ModelClass) }}
                     {% endif %}
 
-                    <div class="span2 text-right">
+                    <div class="col-md-2 text-right">
                     {{ echo_block('show_column_label_' ~ column.name) -}}
                         <strong>{{ echo_twig("'" ~ column.label|addslashes ~ "'|trans({}, '" ~ i18n_catalog|default("Admin") ~ "')") }}</strong>
                     {{- echo_endblock() }}
                     </div>
 
-                    <div class="span10">
-                        <div class="control-group form_field field_{{ field }}">
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_{{ field }}">
                         {{ echo_block('show_column_' ~ column.name) -}}
                             {%- if column.customView != null and builder.variable('custom_blocks') != null -%}
                                 {{- echo_use(builder.variable('custom_blocks')) -}}
@@ -57,13 +57,13 @@
                 {% endfor %}
             </div>
             {% endfor %}
-        </fieldset>
+    </fieldset>
     {% endfor %}
     {{ echo_endblock() }}
 
     {{ echo_block('form_buttons') }}
-        <div id="show-actions" class="form-actions">
-            <div class="btn-toolbar">
+        <div id="show-actions" class="form-group">
+            <div class="btn-toolbar" role="toolbar">
                 {{ block("generic_actions") }}
             </div>
         </div>

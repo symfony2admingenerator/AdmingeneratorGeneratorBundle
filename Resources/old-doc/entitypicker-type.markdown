@@ -24,7 +24,7 @@ fields:
         src:          item.thumb
       description:
         - { content: item.album, class: text-info }
-        - { content: "('ID: ' + item.pk)", class: muted }
+        - { content: "('ID: ' + item.pk)", class: text-muted }
 ```
 
 ### 3. Options
@@ -92,7 +92,7 @@ Thumbnail image height (in pixels).
 ```yaml
 description:
   - { content: item.album, class: text-info }
-  - { content: "('ID: ' + item.pk)", class: muted }
+  - { content: "('ID: ' + item.pk)", class: text-muted }
 ```
 
 This config will display two lines of additional information:

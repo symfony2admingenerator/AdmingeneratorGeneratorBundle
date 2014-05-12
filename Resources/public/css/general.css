@@ -16,14 +16,15 @@ body {
   body {
       padding-top: 0px;
   }
-  .navbar-blue .nav-collapse .nav > li > a, 
-  .navbar-blue .nav-collapse .dropdown-menu a {
+  .navbar-blue .navbar-collapse .nav > li > a, 
+  .navbar-blue .navbar-collapse .dropdown-menu a {
       color: #FFFFFF;
   }
 }
 
 /* Navbar styles */
-.navbar-blue .navbar-inner {
+/*.navbar-blue .navbar-inner {*/
+.navbar-blue {
     background-color: #438EB9;
     background-image: -moz-linear-gradient(top, #438EB9, #62A8D1);
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#438EB9), to(#62A8D1));
@@ -35,7 +36,8 @@ body {
     border-color: #0B6CBC;
 }
 
-.navbar-blue .brand {
+.navbar-blue .navbar-brand {
+	padding: 10px 20px;
     color: #FFFFFF;
     text-shadow: 0 1px 0 #777777;
     
@@ -46,7 +48,7 @@ body {
     transition: all 0.35s ease-in;
 }
 
-.navbar-blue .brand:hover {
+.navbar-blue .navbar-brand:hover {
     text-shadow: 0 1px 10px #FFFFFF, 0px 1px 15px rgb(255, 255, 255);
 }
 

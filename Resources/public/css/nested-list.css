@@ -2,7 +2,7 @@
  * ------------------------------------------------------------------------- */
 
 /* NonExpandable nodes have no icon */
-.treeTable tbody tr .icon-expander {
+.treeTable tbody tr .glyphicon-expander {
     font-family: FontAwesome;
     font-weight: normal;
     font-style: normal;
@@ -11,13 +11,13 @@
     *margin-right: .3em;
 }
 
-/* Collapsed branch: icon-caret-right */
-.treeTable tbody tr.parent.collapsed .icon-expander:before {
+/* Collapsed branch: glyphicon-caret-right */
+.treeTable tbody tr.parent.collapsed .glyphicon-expander:before {
     content: "\f054";
 }
 
-/* Expanded branch: icon-caret-down */
-.treeTable tbody tr.parent.expanded .icon-expander:before {
+/* Expanded branch: glyphicon-caret-down */
+.treeTable tbody tr.parent.expanded .glyphicon-expander:before {
     content: "\f078";
 }
 
@@ -105,19 +105,19 @@
     left: 5px;
     line-height: 14px;
     vertical-align: text-top;
-    background-image: url("../img/glyphicons-halflings.png");
+    background-image: url("/components/bootstrap/img/glyphicons-halflings.png");
     background-position: 14px 14px;
     background-repeat: no-repeat;
     cursor: pointer;
 }
 
-/* Insert before: icon-share-alt */
+/* Insert before: glyphicon-share-alt */
 .treeTable tbody tr.droppable-before > td:first-child:before {
     background-position: -336px -96px;
     top: -14px;
 }
 
-/* Insert after: flipped icon-share-alt */
+/* Insert after: flipped glyphicon-share-alt */
 .treeTable tbody tr.droppable-after > td:first-child:before {
     background-position: -336px -96px;
     bottom: -14px;
@@ -137,13 +137,13 @@
 }
 
 /* Use white icon set in selected rows */
-.treeTable tbody tr.selected [class^="icon-"],
-.treeTable tbody tr.droppable-in [class^="icon-"],
-.treeTable tbody tr.selected [class*=" icon-"],
-.treeTable tbody tr.droppable-in [class*=" icon-"],
+.treeTable tbody tr.selected [class^="glyphicon-"],
+.treeTable tbody tr.droppable-in [class^="glyphicon-"],
+.treeTable tbody tr.selected [class*=" glyphicon-"],
+.treeTable tbody tr.droppable-in [class*=" glyphicon-"],
 .treeTable tbody tr.parent.selected td:first-child:before,
 .treeTable tbody tr.parent.droppable-in td:first-child:before {
-    background-image: url("../img/glyphicons-halflings-white.png") !important;
+    background-image: url("/components/bootstrap/img/glyphicons-halflings-white.png") !important;
 }
 
 /* Remove cell backgrounds to make row background visible */
@@ -151,6 +151,10 @@
 .treeTable tbody tr.selected th, .treeTable tbody tr.droppable-in th {
     background-color: transparent !important;
 }
+
+#nestedset_loading .modal-body {
+	text-align: center;
+}	
 
 /* jQuery UI layout helpers
  * ========================

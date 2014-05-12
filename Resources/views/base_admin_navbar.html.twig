@@ -1,48 +1,52 @@
-<div class="navbar navbar-blue navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-      </a>
-      {% block logo %}
-      {% set brand_path = (admingenerator_config('dashboard_welcome_path') is not null) ? path(admingenerator_config('dashboard_welcome_path')) : '#' %}
-      <a class="brand" href="{{ brand_path }}">{% block brand_text %}{{ 'dashboard.brand'|trans({}, 'Admingenerator') }}{% endblock %}</a>
-      {% endblock %}
-      <div class="nav-collapse collapse">
-          {% block profile %}
-          <ul id="profile-nav" class="nav pull-right profile">
-              <li><p class="navbar-text">{{ 'profile.welcome'|trans({'%username%': app.user ? app.user : 'anonymous'}, 'Admingenerator')|raw }}</p></li>
-          {% if app.user %}
-              {% if admingenerator_config('logout_path') is not null %}
-              <li class="btn-group">
-                  {% if admingenerator_config('exit_path') is not null and is_granted('ROLE_PREVIOUS_ADMIN') %}
-                      <button id="button-exit" class="btn btn-small btn-success" title="{{ 'profile.exit'|trans({}, 'Admingenerator') }}">
-                          <i class="icon-level-down icon-rotate-90"></i>
-                      </button>
-                  {% endif %}
-                  <button id="button-logout" class="btn btn-small btn-profile" title="{{ 'profile.logout'|trans({}, 'Admingenerator') }}">
-                      <i class="icon-off icon-white"></i>
-                  </button>
-              </li>
-              {% endif %}
-          {% else %}
-              {% if admingenerator_config('login_path') is not null %}
-              <li class="btn-group">
-                  <button id="button-login" class="btn btn-small btn-profile" title="{{ 'profile.login'|trans({}, 'Admingenerator') }}">
-                      <i class="icon-user icon-white"></i>
-                  </button>
-              </li>
-              {% endif %}
-          {% endif %}
-          </ul>
-          {% endblock %}
-          {% block menu %}{{ knp_menu_render('AdmingeneratorGeneratorBundle:DefaultMenuBuilder:navbarMenu') }}{% endblock %}
-      </div><!--/.nav-collapse -->
-    </div><!--/.container -->
-  </div><!--/.navbar-inner -->
-</div><!--/.navbar -->
+<nav class="navbar navbar-blue navbar-fixed-top" role="navigation">
+	<div class="container">
+	    <div class="navbar-header">
+	      	<!-- <a class="btn navbar-btn" data-toggle="collapse" data-target=".navbar-collapse"> -->
+	      	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+	          	<span class="glyphicon glyphicon-bar"></span>
+	          	<span class="glyphicon glyphicon-bar"></span>
+	          	<span class="glyphicon glyphicon-bar"></span>
+	      	</button>
+	      	{% block logo %}
+	      	{% set brand_path = (admingenerator_config('dashboard_welcome_path') is not null) ? path(admingenerator_config('dashboard_welcome_path')) : '#' %}
+	      	<a class="navbar-brand" href="{{ brand_path }}">{% block brand_text %}{{ 'dashboard.brand'|trans({}, 'Admingenerator') }}{% endblock %}</a>
+	      	{% endblock %}
+	    </div><!--/.navbar-header -->
+	
+    	<div class="navbar-collapse collapse">
+    	{% block profile %}
+      		<ul id="profile-nav" class="nav navbar-nav navbar-right profile">
+        		<li><p class="navbar-text">{{ 'profile.welcome'|trans({'%username%': app.user ? app.user : 'anonymous'}, 'Admingenerator')|raw }}</p></li>
+        		{% if app.user %}
+          	  		{% if admingenerator_config('logout_path') is not null %}
+          		  	<li class="btn-group">
+          				{% if admingenerator_config('exit_path') is not null and is_granted('ROLE_PREVIOUS_ADMIN') %}
+            			<button type="button" id="button-exit" class="btn btn-sm btn-success" title="{{ 'profile.exit'|trans({}, 'Admingenerator') }}">
+              			  	<i class="glyphicon glyphicon-level-down glyphicon-rotate-90"></i>
+            			</button>
+          				{% endif %}
+						<button type="button" id="button-logout" class="btn btn-sm btn-profile" title="{{ 'profile.logout'|trans({}, 'Admingenerator') }}">
+							<i class="glyphicon glyphicon-off glyphicon-white"></i>
+                    	</button>
+					</li>
+					{% endif %}
+				{% else %}
+					{% if admingenerator_config('login_path') is not null %}
+					<li class="btn-group">
+	                  	<button id="button-login" class="btn btn-sm btn-profile" title="{{ 'profile.login'|trans({}, 'Admingenerator') }}">
+	                      	<i class="glyphicon glyphicon-user glyphicon-white"></i>
+	                  	</button>
+              	  	</li>
+					{% endif %}
+				{% endif %}
+			</ul>
+		{% endblock %}
+		{% block menu %}{{ knp_menu_render('AdmingeneratorGeneratorBundle:DefaultMenuBuilder:navbarMenu') }}{% endblock %}
+		</div><!--/.navbar-collapse -->
+
+	</div><!--/.container -->
+</nav><!--/.navbar -->
 
 {% block login_script_block %}
 <script type="text/javascript">

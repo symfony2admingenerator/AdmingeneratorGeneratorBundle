@@ -1,8 +1,8 @@
 {% block form_actions %}
     <button type="submit" class="btn btn-primary">
-        <i class="icon-ok"></i> {{ echo_trans('action.custom.confirm') }}
+        <i class="glyphicon glyphicon-ok"></i> {{ echo_trans('action.custom.confirm') }}
     </button>
-    <a class="btn" href="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_list') }}">
-        <i class="icon-remove"></i> {{ echo_trans('action.custom.cancel') }}
+    <a class="btn btn-default" href="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "") ~ '_list') }}">
+        <i class="glyphicon glyphicon-remove"></i> {{ echo_trans('action.custom.cancel') }}
     </a>
 {% endblock %}

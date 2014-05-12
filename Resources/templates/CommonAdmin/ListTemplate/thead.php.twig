@@ -13,7 +13,7 @@
         {% endif %}
 
         <th class="list_thead_column{{ echo_if (column.isSortable) }} sortable{{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }} sort_asc{{ echo_elseif ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'DESC'") }} sort_desc{{ echo_endif () }}{{ echo_endif () }}">
-            <span class="sort-span">
+            <span class="sort-addon">
             {% if column.isSortable -%}
                 {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }}
                     <a href="?sort={{ column.sortOn }}&order_by=desc">
@@ -27,34 +27,34 @@
                 {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "'") }}
                     {{ echo_if ("sortColumn == '" ~ column.sortOn ~ "' and sortOrder == 'ASC'") }}
                         {% if column.sortType == 'alphabetic' %}
-                            <i class="icon-sort-by-alphabet active"></i>
-                            <i class="icon-sort-by-alphabet-alt hover"></i>
+                            <i class="glyphicon glyphicon-sort-by-alphabet active"></i>
+                            <i class="glyphicon glyphicon-sort-by-alphabet-alt hover"></i>
                         {% elseif column.sortType == 'numeric' %}
-                            <i class="icon-sort-by-order active"></i>
-                            <i class="icon-sort-by-order-alt hover"></i>
+                            <i class="glyphicon glyphicon-sort-by-order active"></i>
+                            <i class="glyphicon glyphicon-sort-by-order-alt hover"></i>
                         {% else %}
-                            <i class="icon-sort-by-attributes active"></i>
-                            <i class="icon-sort-by-attributes-alt hover"></i>
+                            <i class="glyphicon glyphicon-sort-by-attributes active"></i>
+                            <i class="glyphicon glyphicon-sort-by-attributes-alt hover"></i>
                         {% endif %}
                     {{ echo_else() }}
                         {% if column.sortType == 'alphabetic' %}
-                            <i class="icon-sort-by-alphabet hover"></i>
-                            <i class="icon-sort-by-alphabet-alt active"></i>
+                            <i class="glyphicon glyphicon-sort-by-alphabet hover"></i>
+                            <i class="glyphicon glyphicon-sort-by-alphabet-alt active"></i>
                         {% elseif column.sortType == 'numeric' %}
-                            <i class="icon-sort-by-order hover"></i>
-                            <i class="icon-sort-by-order-alt active"></i>
+                            <i class="glyphicon glyphicon-sort-by-order hover"></i>
+                            <i class="glyphicon glyphicon-sort-by-order-alt active"></i>
                         {% else %}
-                            <i class="icon-sort-by-attributes hover"></i>
-                            <i class="icon-sort-by-attributes-alt active"></i>
+                            <i class="glyphicon glyphicon-sort-by-attributes hover"></i>
+                            <i class="glyphicon glyphicon-sort-by-attributes-alt active"></i>
                         {% endif %}
                     {{ echo_endif () }}
                 {{ echo_else() }}
                     {% if column.sortType == 'alphabetic' %}
-                        <i class="icon-sort-by-alphabet placeholder hover"></i>
+                        <i class="glyphicon glyphicon-sort-by-alphabet placeholder hover"></i>
                     {% elseif column.sortType == 'numeric' %}
-                        <i class="icon-sort-by-order placeholder hover"></i>
+                        <i class="glyphicon glyphicon-sort-by-order placeholder hover"></i>
                     {% else %}
-                        <i class="icon-sort-by-attributes placeholder hover"></i>
+                        <i class="glyphicon glyphicon-sort-by-attributes placeholder hover"></i>
                     {% endif %}
                 {{ echo_endif () }}
             {% endif -%}

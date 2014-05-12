@@ -13,11 +13,11 @@ Sometimes, you might want to change the way the list or show view of a specific 
 {% block column_gender %}
   {% spaceless %}
     {% if(field_value == 'm') %}
-      <i class="icon-male"></i>
+      <i class="glyphicon glyphicon-male"></i>
     {% elseif(field_value == 'f') %}
-      <i class="icon-female"></i>
+      <i class="glyphicon glyphicon-female"></i>
     {% else %}
-      <i class="icon-unknown"></i>
+      <i class="glyphicon glyphicon-unknown"></i>
     {% endif %}
   {% endspaceless %}
 {% endblock %}

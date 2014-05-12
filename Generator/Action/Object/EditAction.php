@@ -16,7 +16,7 @@ class EditAction extends Action
     {
         parent::__construct($name, 'object');
 
-        $this->setIcon('icon-edit');
+        $this->setIcon('glyphicon-edit');
         $this->setLabel('action.object.edit.label');
         
         $this->setRoute($builder->getBaseActionsRoute().'_edit');
