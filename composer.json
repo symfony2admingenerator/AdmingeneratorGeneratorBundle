@@ -1,7 +1,6 @@
 {
     "name": "cedriclombardot/admingenerator-generator-bundle",
-    "minimum-stability": "stable",
-    "version": "1.0.0",
+    "minimum-stability": "dev",
     "description": "Admingenerator for Symfony2 based on YAML configuration and Twig templating",
     "keywords": ["admin", "generator", "yaml"],
     "type": "symfony-bundle",
@@ -51,7 +50,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.3-dev"
+            "dev-master": "1.0-dev"
         }
     }
 }
