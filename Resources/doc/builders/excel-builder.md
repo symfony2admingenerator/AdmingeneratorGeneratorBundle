@@ -5,10 +5,12 @@
 
 [back-to-index]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#4-generator
 
+### Requirements
+
+To use the Excel export make sure you have installed the recommended dependency `liuggio/excelbundle` (version `>= 2.0`) and enabled it in your AppKernel.php (`new Liuggio\ExcelBundle\LiuggioExcelBundle()`). Without this bundle enabled the ExcelAction will not work.
+
 ### 1. Usage
 The Excel builder provides an Excel export of the list view. The export uses the data that is visible on the screen (and the next pages) and thus uses the filters and scopes selected.
-
-To use the Excel export make sure you have installes the recommended dependency `liuggio/excelbundle` and enabled it in your AppKernel.php (`new Liuggio\ExcelBundle\LiuggioExcelBundle()`). Without this bundle enabled the ExcelAction will not work.
 
 ### 2. Options
 
