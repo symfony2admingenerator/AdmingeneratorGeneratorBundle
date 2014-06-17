@@ -16,7 +16,7 @@ class ShowAction extends Action
     {
         parent::__construct($name, 'object');
 
-        $this->setIcon('glyphicon-eye-open');
+        $this->setIcon('fa-eye');
         $this->setLabel('action.object.show.label');
         
         $this->setRoute($builder->getBaseActionsRoute().'_show');
