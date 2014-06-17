@@ -2,7 +2,7 @@
 {{ echo_block("list_paginator_perpage") }}
     {{ echo_if( builder.ModelClass ~ "s.haveToPaginate or "~ builder.ModelClass ~ "s.maxPerPage is not sameas(10)") }}
     <div class="btn-group input-group">
-        <div class="btn btn-sm btn-reset">{{ echo_trans('pagerfanta.view.perpage') }}</div>
+        <div class="btn btn-sm btn-default btn-reset">{{ echo_trans('pagerfanta.view.perpage') }}</div>
         <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
             {{ echo_twig('"pagerfanta.num.elements"|trans({"%number%": '~ builder.ModelClass ~ 's.maxPerPage}, "Admingenerator")') }} <span class="caret"></span>
         </button>
