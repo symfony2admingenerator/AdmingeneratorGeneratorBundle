@@ -37,10 +37,10 @@ While writing your issue please use Github Flavored Markdown to make it more rea
 
 If you paste any code **wrap it in github's code block!** To do that start with 3 **```** characters, then name language you're useing, for example **yaml**:
 
-> **```**yaml
-
+> **```yaml**
+> 
 > my.yaml_code:  is here
-
+> 
 > **```**
 
 will resuilt in:
