@@ -168,18 +168,15 @@ input.btn.btn-reset,
 input.btn.btn-reset:hover {
     display: inline-block;
     padding: 4px 6px;
-/*    height: 20px;*/
-	margin-right: 1px;
     line-height: 20px;
     background: #FFFFFF; 
     box-shadow: none;
     text-align: left;
-    font-size: 14px;
     color: #555555;
     cursor: text;
 }
 
-.list_scope_group .btn [class^="glyphicon-"] {
+.list_scope_group .btn [class^="fa-"] {
     font-size: 12px;
 }
 
@@ -189,21 +186,26 @@ input.btn.btn-reset:hover {
     font-size: 14px;
 }
 
+/* Fix active link */
+li.active > a {
+    color: #fff;
+}
+
 /* Fix cursor */
-a:hover > [class^="glyphicon-"]:before,
-a:hover > [class*=" glyphicon-"]:before,
-button:hover > [class^="glyphicon-"]:before,
-button:hover > [class*=" glyphicon-"]:before {
+a:hover > [class^="fa-"]:before,
+a:hover > [class*=" fa-"]:before,
+button:hover > [class^="fa-"]:before,
+button:hover > [class*=" fa-"]:before {
     cursor: pointer;
 }
 
 /* Fix icons */
-[class^="glyphicon-"],
-[class*=" glyphicon-"],
-[class^="glyphicon-"]:focus,
-[class*=" glyphicon-"]:focus,
-*:focus > [class^="glyphicon-"],
-*:focus > [class*=" glyphicon-"] {
+[class^="fa-"],
+[class*=" fa-"],
+[class^="fa-"]:focus,
+[class*=" fa-"]:focus,
+*:focus > [class^="fa-"],
+*:focus > [class*=" fa-"] {
     background-image: none !important;
 }
 

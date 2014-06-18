@@ -29,7 +29,7 @@
         "components/jquery": ">= 1.9.0, < 2.0.0",
         "components/jqueryui": ">= 1.9.0",
         "components/bootstrap": "~3.0",
-        "components/font-awesome": "~3.2"
+        "components/font-awesome": "~4.0"
     },
     "require-dev": {
         "doctrine/common": ">=2.2.3,<2.5-dev",

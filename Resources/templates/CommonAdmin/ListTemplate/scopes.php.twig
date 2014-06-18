@@ -7,7 +7,7 @@
         {% for scopeName, params in group %}
             <a class="{{ 'btn ' ~ params.class|default('btn-default') }} {{ echo_twig("scopes['" ~ groupName ~ "'] == '" ~ scopeName ~ "' ? 'active': 'inactive'") }}" href="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ '_scopes',
                 "{ 'group': '" ~  groupName ~ "', 'scope': '" ~ scopeName ~ "' }") }}">
-                {%- if params.icon is defined %}<i class="{{ params.icon }}"></i> {% endif -%}
+                {%- if params.icon is defined %}<i class="fa {{ params.icon }}"></i> {% endif -%}
                 {{- echo_trans(scopeName, {}, i18n_catalog|default("Admin")) -}}
             </a>
         {% endfor %}

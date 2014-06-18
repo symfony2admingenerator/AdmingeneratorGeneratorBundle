@@ -16,7 +16,7 @@ class ListAction extends Action
     {
         parent::__construct($name, 'generic');
 
-        $this->setIcon('glyphicon-list-alt');
+        $this->setIcon('fa-list-alt');
         $this->setLabel('action.generic.list');
     }
 }

@@ -16,7 +16,7 @@ class DeleteAction extends Action
     {
         parent::__construct($name, 'batch');
 
-        $this->setIcon('glyphicon-remove');
+        $this->setIcon('fa-times');
         $this->setLabel('action.batch.delete.label');
         $this->setConfirm('action.batch.delete.confirm');
         $this->setCsrfProtected(true);

@@ -17,7 +17,7 @@ class SaveAction extends Action
 
         $this->setSubmit(true);
         $this->setClass('btn-success');
-        $this->setIcon('glyphicon-ok glyphicon-white');
+        $this->setIcon('fa-check');
         $this->setLabel('action.generic.save');
     }
 }

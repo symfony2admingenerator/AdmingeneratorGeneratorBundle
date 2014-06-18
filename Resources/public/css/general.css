@@ -36,8 +36,12 @@ body {
     border-color: #0B6CBC;
 }
 
+.navbar-blue .navbar-nav > li > .btn {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
 .navbar-blue .navbar-brand {
-	padding: 10px 20px;
     color: #FFFFFF;
     text-shadow: 0 1px 0 #777777;
     
@@ -97,6 +101,7 @@ body {
     text-shadow: 0 1px 0 #777777, 0 1px 5px rgba(255, 255, 255, 0.9);
 }
 
+.navbar-blue .dropdown-menu li.active > a,
 .navbar-blue .dropdown-menu li > a:hover,
 .navbar-blue .dropdown-menu li > a:focus,
 .navbar-blue .dropdown-submenu:hover > a {
@@ -107,7 +112,12 @@ body {
     background-image: -o-linear-gradient(top, #438EB9, #62A8D1);
     background-image: linear-gradient(to bottom, #438EB9, #62A8D1);
     background-repeat: repeat-x;
-    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff438EB9', endColorstr='#ff62A8D1', GradientType=0);
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff438EB9', endColorstr='#ff62A8D1', GradientType=0);  
+    color: white;
+}
+
+.navbar-blue .dropdown-menu li.active > a {
+    font-weight: bold;
 }
 
 div[class^='object-actions-'],div[class*=' object-actions-'] {margin-bottom: 10px}
