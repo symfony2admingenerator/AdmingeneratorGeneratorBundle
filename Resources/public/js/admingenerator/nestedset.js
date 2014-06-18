@@ -88,13 +88,13 @@
     		(isRootNode) ? node.addClass('ui-helper-hidden') : '';
             if (expandable) {
 	            var cell = $(node).children().first();
-	            var expander = $('<i />').addClass('icon-expander');
+	            var expander = $('<i />').addClass('glyphicon glyphicon-expander');
 	            cell.append(expander);
         	}
     	},
     	
     	_treeOnNodeReinitCallback: function(node, expandable, isRootNode) {
-    		$(node).find('.icon-expander').remove();
+    		$(node).find('.glyphicon-expander').remove();
     	},
         
         _dragNDropInit: function() {

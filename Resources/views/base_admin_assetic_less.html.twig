@@ -2,8 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{% block title %}Admin{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {% block scripts_head %}
         <script type="text/javascript" src="{{ asset('components/jquery/jquery.min.js') }}"></script>
@@ -15,7 +16,7 @@
 
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('components/bootstrap/css/bootstrap.min.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('components/bootstrap/css/bootstrap-responsive.min.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('components/bootstrap/css/bootstrap-theme.min.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('components/font-awesome/css/font-awesome.min.css') }}" type="text/css" media="all" />
         <!--[if lt IE 7]>
             <link rel="stylesheet" href="{{ asset('components/font-awesome/css/font-awesome-ie7.min') }}" type="text/css" media="all" />
@@ -44,21 +45,21 @@
 
     <div class="container-fluid">
       {% block flashes %}
-        <div id="flashes" class="row-fluid">
+        <div id="flashes" class="row">
           {% for type, flashMessages in app.session.flashbag.all() %}
             {% for flashMessage in flashMessages %}
               <div class="alert alert-{{ type }}">
-                <button type="button" class="close" data-dismiss="alert">×</button>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
                 {{ flashMessage|raw }}
               </div>
             {% endfor %}
           {% endfor %}
-        </div><!--/.row-fluid -->
+        </div><!--/.row -->
       {% endblock %}
 
       {% block body %}
-        <div class="row-fluid">
-        </div><!--/.row-fluid -->
+        <div class="row">
+        </div><!--/.row -->
       {% endblock %}
 
       {% block footer %}

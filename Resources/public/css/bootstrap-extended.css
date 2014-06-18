@@ -1,21 +1,21 @@
 /* List sorting styles */
-.list_thead_column .sort-span {
+.list_thead_column .sort-addon {
     min-height: 0px;
 }
 
-.list_thead_column .sort-span > i.active,
-.list_thead_column .sort-span:hover > i.hover,
-.list_thead_column .sort-span:hover > i.hover.placeholder {
+.list_thead_column .sort-addon > i.active,
+.list_thead_column .sort-addon:hover > i.hover,
+.list_thead_column .sort-addon:hover > i.hover.placeholder {
     display: inline-block;
     visibility: visible;
 }
 
-.list_thead_column .sort-span > i.hover, 
-.list_thead_column .sort-span:hover > i.active {
+.list_thead_column .sort-addon > i.hover, 
+.list_thead_column .sort-addon:hover > i.active {
     display: none;
 }
 
-.list_thead_column .sort-span > i.hover.placeholder {
+.list_thead_column .sort-addon > i.hover.placeholder {
     display: inline-block;
     visibility: hidden;
 }
@@ -31,8 +31,14 @@
 }
 
 /* List actions bar styles */
-.form-actions.list-actions {
-    padding: 9px 20px 0px;
+
+.form-group.list-actions {
+    padding: 9px 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-top: 1px solid #e5e5e5;
+	display: inline-block;
+	width: 100%;
 }
 
 .list-actions > .btn-toolbar + .btn-toolbar {
@@ -44,7 +50,7 @@
 }
 
 /* Fieldset styles */
-.row-fluid > .form_field {
+.row > .form_field {
     -moz-box-sizing: border-box;
     display: block;
     float: left;
@@ -52,14 +58,14 @@
     min-height: 30px;
 }
 
-.row-fluid > .form_field:last-child {
+.row > .form_field:last-child {
     margin-right: 0;
 }
-
-.row-fluid > .form_field:only-child {
+/*
+.row > .form_field:only-child {
     width: 100%;
 }
-
+*/
 fieldset {
     border: 1px solid #DDDDDD;
     border-radius: 8px;
@@ -78,7 +84,7 @@ fieldset legend span {
     padding: 0 8px;
 }
 
-legend + .control-group {
+legend + .form-group {
     margin-top: 0px;
 }
 
@@ -117,7 +123,7 @@ button::-moz-focus-inner, select::-moz-focus-inner {
 }
 
 /* Actions toolbar */
-.form-actions.form-actions-condensed {
+.form-group.form-group-condensed {
     padding: 10px;
     margin: 0px;
     border: 0 none;
@@ -162,7 +168,8 @@ input.btn.btn-reset,
 input.btn.btn-reset:hover {
     display: inline-block;
     padding: 4px 6px;
-    height: 20px;
+/*    height: 20px;*/
+	margin-right: 1px;
     line-height: 20px;
     background: #FFFFFF; 
     box-shadow: none;
@@ -172,30 +179,49 @@ input.btn.btn-reset:hover {
     cursor: text;
 }
 
-.list_scope_group .btn [class^="icon-"] {
+.list_scope_group .btn [class^="glyphicon-"] {
     font-size: 12px;
 }
 
 /* Icon sizes on list view */
-#profile-nav .btn-small,
-.object_actions > .btn-group > .btn-mini {
+#profile-nav .btn-sm,
+.object_actions > .btn-group > .btn-xs {
     font-size: 14px;
 }
 
 /* Fix cursor */
-a:hover > [class^="icon-"]:before,
-a:hover > [class*=" icon-"]:before,
-button:hover > [class^="icon-"]:before,
-button:hover > [class*=" icon-"]:before {
+a:hover > [class^="glyphicon-"]:before,
+a:hover > [class*=" glyphicon-"]:before,
+button:hover > [class^="glyphicon-"]:before,
+button:hover > [class*=" glyphicon-"]:before {
     cursor: pointer;
 }
 
 /* Fix icons */
-[class^="icon-"],
-[class*=" icon-"],
-[class^="icon-"]:focus,
-[class*=" icon-"]:focus,
-*:focus > [class^="icon-"],
-*:focus > [class*=" icon-"] {
+[class^="glyphicon-"],
+[class*=" glyphicon-"],
+[class^="glyphicon-"]:focus,
+[class*=" glyphicon-"]:focus,
+*:focus > [class^="glyphicon-"],
+*:focus > [class*=" glyphicon-"] {
     background-image: none !important;
+}
+
+
+/*******************************/
+/***** Bootstrap 3.1.1 *********/
+/*******************************/
+
+.btn-toolbar {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/* .form-actions replacements */
+#show-actions > .btn-toolbar {
+	padding: 19px 20px 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	background-color: #f5f5f5;
+	border-top: 1px solid #e5e5e5;
 }

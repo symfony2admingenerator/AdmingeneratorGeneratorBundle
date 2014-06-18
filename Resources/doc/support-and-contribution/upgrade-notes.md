@@ -9,6 +9,30 @@ This file lists B/C breaking PRs in reverse chronological order. Each PR contain
 description explaining nature of changes and upgrade notes to help you upgrade your 
 project.
 
+## PR [#739][pr739] Migrate to Bootstrap3
+
+[pr739]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/pull/739
+
+#### Description:
+
+This PR updated all templates to Bootstrap 3.
+
+#### BC Break:
+
+All templates have been updated. There is no easy way to migrate from previous version. To avoid outdated versions
+and keep update your dependency, Admingenerator is now using tags:
+
+ - Tags 1.0.* stay a Bootstrap 2.X implementation
+ - Tags 1.1.* is the Bootstrap 3.X one
+
+So if you come from pre-tags version and want no BC Break for your templates, you should use the following composer
+definition:
+
+```yaml
+    "cedriclombardot/admingenerator-generator-bundle": "~1.0.0"
+```
+
+
 ## PR [#707][pr707] Remove annotations autoloading
 
 [pr707]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/pull/707

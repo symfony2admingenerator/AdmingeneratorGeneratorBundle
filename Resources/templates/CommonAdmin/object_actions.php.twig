@@ -57,14 +57,14 @@
 
     {% spaceless %}
     {{ echo_spaceless() }}
-    <a  class="btn {% if builder.yamlKey is sameas('list') %}btn-mini {% endif %}{{ action.class|default('') }}" href="{{ echo_path(actionRoute, actionParams) }}"
+    <a  class="btn btn-default {% if builder.yamlKey is sameas('list') %}btn-xs {% endif %}{{ action.class|default('') }}" href="{{ echo_path(actionRoute, actionParams) }}"
         data-original-title="{{ echo_trans(action.label, {}, translationDomain) }}"
         {% if builder.yamlKey is sameas('list') %}
         rel="tooltip"
         {% endif %}
         {%- if action.confirm %} data-confirm="{{ echo_trans(action.confirm, {}, translationDomain) }}" {% endif -%}
         {%- if action.csrfProtected %} data-csrf-token="{{ echo_path(actionRoute, actionParams, ['csrf_token']) }}" {% endif -%}>
-            <i class="{{ action.icon|default('icon-asterisk') }}">
+            <i class="glyphicon {{ action.icon|default('glyphicon-asterisk') }}">
                 {% if builder.yamlKey is not sameas('list') %}
                 {{ echo_trans(action.label, {}, translationDomain) }}
                 {% endif %}

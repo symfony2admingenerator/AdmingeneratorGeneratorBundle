@@ -21,14 +21,14 @@ class DefaultMenuBuilder extends AdmingeneratorMenuBuilder
             'Create new menu builder',
             'https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle'
             .'/blob/master/Resources/doc/cookbook/menu.md'
-        )->setExtra('icon', 'icon-wrench');
+        )->setExtra('icon', 'glyphicon glyphicon-wrench');
         
         $this->addLinkURI(
             $overwrite,
             'Customize menu block',
             'https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle'.
             '/blob/master/Resources/views/base_admin_navbar.html.twig'
-        )->setExtra('icon', 'icon-fork');
+        )->setExtra('icon', 'glyphicon glyphicon-fork');
         
         return $menu;
     }

@@ -1,24 +1,25 @@
 {% block form_fieldset %}
 {{ echo_block("form_fieldset_" ~ fieldset|classify|replace({'.': '_'})) }}
-    <fieldset class="form_block form_fieldset_{{ fieldset|classify|replace({'.': '_'}) }} tab-pane">
+    <fieldset class="container-fluid form_block form_fieldset_{{ fieldset|classify|replace({'.': '_'}) }} tab-pane">
         {% if "NONE" != fieldset[:4] %}
         <legend><span>{{ echo_trans(fieldset,{}, i18n_catalog|default("Admin") ) }}</span></legend>
         {% endif %}
+			
         {% for rows in builder.fieldsets[fieldset] %}
-            <div class="row-fluid">
-                {% for field in rows %}
-                    {% if builder.Columns[field].credentials %}
-                          {{ echo_if_granted(builder.Columns[field].credentials, builder.ModelClass) }}
-                    {% endif %}
-                    <div class="control-group form_field field_{{ builder.Columns[field].formType }} field_{{ field }}">
-                        {{ echo_block("form_" ~ field) }}
-                            {{ echo_twig("form_row(form['" ~ field ~ "'])") }}
-                        {{ echo_endblock() }}
-                    </div>
-                    {% if builder.Columns[field].credentials %}
-                        {{ echo_endif () }}
-                    {% endif %}
-                {% endfor %}
+            <div class="row">
+            {% for field in rows %}
+                {% if builder.Columns[field].credentials %}
+                      {{ echo_if_granted(builder.Columns[field].credentials, builder.ModelClass) }}
+                {% endif %}
+                <div class="col-md-4 form_field field_{{ builder.Columns[field].formType }} field_{{ field }}">
+                    {{ echo_block("form_" ~ field) }}
+                        {{ echo_twig("form_row(form['" ~ field ~ "'])") }}
+                    {{ echo_endblock() }}
+                </div>
+                {% if builder.Columns[field].credentials %}
+                    {{ echo_endif () }}
+                {% endif %}
+            {% endfor %}
             </div>
         {% endfor %}
     </fieldset>

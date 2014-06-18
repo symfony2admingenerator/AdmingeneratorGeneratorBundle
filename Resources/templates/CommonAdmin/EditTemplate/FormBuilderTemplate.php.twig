@@ -9,7 +9,7 @@
         {{ echo_else() }}
             action="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_create" ) }}"
         {{ echo_endif () }}
-        method="post" {{ echo_twig("form_enctype(form)") }}>
+        method="post" {{ echo_twig("form_enctype(form)") }} role="form">
 
         {{ echo_twig("form_errors(form)") }}
         {% if tabs is defined and tabs|length > 0 %}
@@ -25,8 +25,8 @@
         {{ echo_twig("form_rest(form)") }}
 
         {{ echo_block("form_buttons") }}
-        <div id="edit-actions" class="form-actions">
-            <div class="btn-toolbar">
+        <div id="edit-actions" class="form-group">
+            <div class="btn-toolbar" role="toolbar">
                 {{ block("generic_actions") }}
             </div>
         </div>
