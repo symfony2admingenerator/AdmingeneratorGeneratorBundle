@@ -12,7 +12,7 @@ class DefaultMenuBuilder extends AdmingeneratorMenuBuilder
     public function navbarMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
-        $menu->setChildrenAttributes(array('id' => 'main_navigation', 'class' => 'nav'));
+        $menu->setChildrenAttributes(array('id' => 'main_navigation', 'class' => 'nav navbar-nav'));
         
         $overwrite = $this->addDropdown($menu, 'Replace this menu');
         
