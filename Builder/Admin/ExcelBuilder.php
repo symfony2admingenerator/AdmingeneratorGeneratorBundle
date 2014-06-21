@@ -24,16 +24,23 @@ class ExcelBuilder extends ListBuilder
   }
 
   public function getFileName(){
-    if(null === ($filename =$this->getVariable('filename'))){
+    if(null === ($filename = $this->getVariable('filename'))){
       $filename = 'admin_export_'. str_replace(' ', '_', strtolower($this->getGenerator()->getFromYaml('builders.list.params.title')));
     }
     return $filename;
   }
 
   public function getFileType(){
-    if(null === ($filetype =$this->getVariable('filetype'))){
+    if(null === ($filetype = $this->getVariable('filetype'))){
       $filetype = 'Excel2007';
     }
     return $filetype;
+  }
+
+  public function getDateTimeFormat(){
+    if(null === ($dateTimeFormat = $this->getVariable('datetime_format'))){
+      $dateTimeFormat = 'Y-m-d H:i:s';
+    }
+    return $dateTimeFormat;
   }
 }
