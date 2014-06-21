@@ -77,7 +77,23 @@ class ExcelController extends ListController
       foreach($results as $rowData){
         {% set column = 0 %}
         {% for builder_column in builder.columns %}
-          $sheet->setCellValueByColumnAndRow({{ column }}, $row, $rowData->get{{ builder_column.getter|capitalize }}());
+
+          // Retrieve relations
+          $getter = '{{ builder_column.getter }}';
+          $data = $rowData;
+          while (($pos = strpos($getter, '.')) > 0){
+            $tempGetter = 'get' . ucfirst(substr($getter, 0, $pos));
+            $getter = substr($getter, $pos + 1);
+            $data = $data->$tempGetter();
+          }
+          $getter = 'get' . ucfirst($getter);
+          $data = $data->$getter();
+
+          // Convert DateTime object to given format
+          if ($data instanceof \DateTime){
+            $data = $data->format('{{ builder.dateTimeFormat }}');
+          }
+          $sheet->setCellValueByColumnAndRow({{ column }}, $row, $data);
           {% set column = column + 1 %}
         {% endfor %}
         $row++;
