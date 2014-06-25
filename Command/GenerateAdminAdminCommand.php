@@ -90,7 +90,7 @@ EOT
         $input->setOption('bundle-name', $bundle);
 
         // target dir
-        $dir = $input->getOption('dir') ?: dirname($this->getContainer()->getParameter('kernel.root_dir')).'/src';
+        $dir = $input->getOption('dir') ?: dirname(realpath($this->getContainer()->getParameter('kernel.root_dir'))).'/src';
         $output->writeln(array(
             '',
             'The bundle can be generated anywhere. The suggested default directory uses',
