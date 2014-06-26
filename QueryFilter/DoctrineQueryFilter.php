@@ -7,8 +7,13 @@ class DoctrineQueryFilter extends BaseQueryFilter
 
     public function addDefaultFilter($field, $value)
     {
-        $this->query->andWhere(sprintf('q.%s = :%s',$field, $field));
-        $this->query->setParameter($field, $value);
+        if (is_array($value)) {
+            $this->query->andWhere(sprintf('q.%s IN (:%s)',$field, $field ));
+            $this->query->setParameter($field , $value);
+        } else {
+            $this->query->andWhere(sprintf('q.%s = :%s',$field, $field));
+            $this->query->setParameter($field, $value);
+        }
     }
 
     public function addBooleanFilter($field, $value)
