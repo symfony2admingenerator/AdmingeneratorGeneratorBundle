@@ -1,0 +1,82 @@
+{% trans_default_domain "Admingenerator" %}
+
+{% block admingenerator_filter_root_widget %}
+{% spaceless %}
+<div id="{{ id }}" class="panel panel-info">
+    <div id="{{ id ~ '_filters_header' }}" class="panel-heading" data-toggle="collapse" data-target="#{{ id ~ '_filters_body' }}">
+        <h3 class="panel-title">
+            <i class="fa fa-caret-down fa-fw"></i>
+            <i class="fa fa-caret-right fa-fw"></i>
+            {{ 'filters.header'|trans }}
+        </h3>
+    </div>
+    <div id="{{ id ~ '_filters_body' }}" class="collapse in">
+        <div class="panel-body">
+            <div class="bs-callout bs-callout-info">
+                <h3 class="fa fa-info-circle pull-left"></h3>
+                {{ 'filters.info'|trans }}
+            </div>
+            <div id="{{ id ~ '_filters_root' }}" class="panel-group" data-prototype="{{ form_widget(prototype)|e }}">
+                {% for child in form %}
+                    {{ form_widget(child) }}
+                {% endfor %}
+            </div>
+        </div>
+        <div id="{{ id ~ '_filters_footer' }}" class="panel-footer">
+            <div class="btn-toolbar">
+                <button id="{{ id ~ '_filters_submit' }}" class="btn btn-sm btn-primary" type="submit">
+                    <i class="fa fa-search"></i> {{ 'filters.submit'|trans }}
+                </button>
+                <button id="{{ id ~ '_filters_btn_reset' }}" class="btn btn-sm btn-warning" type="button">
+                    <i class="fa fa-refresh"></i> {{ 'filters.reset'|trans }}
+                </button>
+                <button id="{{ id ~ '_filters_btn_add' }}" class="btn btn-sm btn-success" type="button">
+                    <i class="fa fa-plus"></i> {{ 'filters.add.group'|trans }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    jQuery('#{{ id }}').agen$filters();
+});
+</script>
+{% endspaceless %}
+{% endblock admingenerator_filter_root_widget %}
+
+{% block admingenerator_filter_group_widget %}
+{% spaceless %}
+<div id="{{ id }}" class="panel panel-default" role="filters-group">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a data-toggle="collapse" href="#{{ id ~ '_list' }}">
+                Grupa <span role="counter">{{ name }}</span>
+            </a>
+            <button type="button" class="close" data-dismiss="filters-group">
+                <span aria-hidden="true">&times;</span><span class="sr-only">Remove</span>
+            </button>
+        </h4>
+    </div>
+    <div id="#{{ id ~ '_list' }}" class="panel-collapse collapse" role="filters-list">
+        {% for field,prototype in prototypes %}
+            <div role="prototype" data-field="{{ field }}" data-prototype="{{ form_widget(prototype)|e }}"></div>
+        {% endfor %}
+        <div class="panel-body">
+            {#% for item in form %}
+                here display item<br />
+                {{ form_widget(item) }}
+            {% endfor %#}
+            Items list :)
+        </div>
+    </div>
+</div>    
+    
+{% endspaceless %}
+{% endblock admingenerator_filter_group_widget %}
+
+{% block admingenerator_filter_form_widget %}
+{% spaceless %}
+    Filter form, yay!
+{% endspaceless %}
+{% endblock admingenerator_filter_form_widget %}

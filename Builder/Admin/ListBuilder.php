@@ -52,6 +52,7 @@ class ListBuilder extends BaseBuilder
         $this->filter_columns[$column->getName()] = $column;
     }
 
+
     protected function findFilterColumns()
     {
         $filters = $this->getFilters();
@@ -74,35 +75,49 @@ class ListBuilder extends BaseBuilder
                 )
             );
 
-            $column->setFormType(
-                $this->getFieldOption(
-                    $column,
-                    'filterType',
-                    $this->getFieldGuesser()->getFilterType(
-                        $column->getDbType(),
-                        $columnName
-                    )
-                )
-            );
+            $column->setSortType($this->getFieldGuesser()->getSortType($column->getDbType()));
             
+            if (in_array($this->getYamlKey(), array('new', 'edit', 'filters'))) {
 
-            $column->setFormOptions(
-                $this->getFieldOption(
-                    $column,
-                    'filterOptions',
-                    $this->getFieldGuesser()->getFilterOptions(
-                        $column->getFormType(),
-                        $column->getDbType(),
-                        $columnName
+                $column->setFormType(
+                    $this->getFieldOption(
+                        $column,
+                        'formType',
+                        $this->getFieldGuesser()->getFormType(
+                            $column->getDbType(),
+                            $columnName
+                        )
                     )
-                )
-            );
+                );
+                
+                $column->setFilterType(
+                    $this->getFieldOption(
+                        $column,
+                        'filterType',
+                        $this->getFieldGuesser()->getFilterType(
+                            $column->getDbType(),
+                            $columnName
+                        )
+                    )
+                );
+
+                $column->setFormOptions(
+                    $this->getFieldOption(
+                        $column,
+                        'formOptions',
+                        $this->getFieldGuesser()->getFormOptions(
+                            $column->getFormType(),
+                            $column->getDbType(),
+                            $columnName
+                        )
+                    )
+                );
+            }
 
             // Set the user parameters
             $this->setUserColumnConfiguration($column);
             $this->addFilterColumn($column);
         }
-
     }
 
     /**

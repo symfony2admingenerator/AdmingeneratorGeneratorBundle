@@ -8,6 +8,7 @@
         <parameter key="admingenerator.fieldguesser.doctrine.class">Admingenerator\GeneratorBundle\Guesser\DoctrineORMFieldGuesser</parameter>
         <parameter key="admingenerator.queryfilter.doctrine.class">Admingenerator\GeneratorBundle\QueryFilter\DoctrineQueryFilter</parameter>
     </parameters>
+    
     <services>
         <!-- Doctine -->
         <service id="admingenerator.fieldguesser.doctrine" class="%admingenerator.fieldguesser.doctrine.class%"
@@ -33,5 +34,6 @@
         <service id="admingenerator.queryfilter.doctrine"
             class="%admingenerator.queryfilter.doctrine.class%">
         </service>
+        
     </services>
 </container>

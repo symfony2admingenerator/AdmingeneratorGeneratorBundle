@@ -63,14 +63,25 @@ class BaseBuilder extends GenericBaseBuilder
             );
 
             $column->setSortType($this->getFieldGuesser()->getSortType($column->getDbType()));
-
-            if ($this->getYamlKey() != 'list' && $this->getYamlKey() != 'nested_list' && $this->getYamlKey() != 'show' && $this->getYamlKey() != 'excel') {
+            
+            if (in_array($this->getYamlKey(), array('new', 'edit', 'filters'))) {
 
                 $column->setFormType(
                     $this->getFieldOption(
                         $column,
                         'formType',
                         $this->getFieldGuesser()->getFormType(
+                            $column->getDbType(),
+                            $columnName
+                        )
+                    )
+                );
+                
+                $column->setFilterType(
+                    $this->getFieldOption(
+                        $column,
+                        'filterType',
+                        $this->getFieldGuesser()->getFilterType(
                             $column->getDbType(),
                             $columnName
                         )

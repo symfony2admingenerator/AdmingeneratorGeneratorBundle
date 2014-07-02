@@ -6,7 +6,7 @@
 {% use '../CommonAdmin/batch_actions.php.twig' %}
 
 {% block list_results %}
-<div class="results-list">
+<div class="row-fluid results-list">
     {{- block('list_nbresults') -}}
 
     {{- block('form_batch_actions') }}
@@ -16,7 +16,7 @@
             {{- block('list_tbody') }}
         </table>
 
-        <div class="form-group list-actions col-md-12">
+        <div class="list-actions actions-bar">
         {% if batch_actions is defined and batch_actions|length > 0 %}
             <div id="batch_actions" class="pull-left btn-toolbar" role="toolbar">
                 {{ block('batch_actions') }}
@@ -36,6 +36,8 @@
             <div class="pull-right btn-toolbar" role="toolbar">
                 {{- block('list_paginator_pages') -}}
             </div>
+
+            <div class="clearfix"></div>
         </div>
     {{- block('endform_batch_actions') }}
 </div>

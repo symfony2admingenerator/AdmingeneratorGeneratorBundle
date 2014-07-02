@@ -1,0 +1,70 @@
+{% block type %}
+<?php
+
+namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\Form\Base{{ builder.BaseGeneratorName }}Type;
+
+use Admingenerator\GeneratorBundle\Filter\FilterConfig;
+use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
+{
+    protected $securityContext;
+    
+    public function setSecurityContext($securityContext)
+    {
+        $this->securityContext = $securityContext;
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'prototype' => true,
+            'options' => array(
+                'filters' => $this->getFilterConfigs()
+            )
+        ));
+    }
+    
+    /**
+     * @return array An array FilterConfig instances with fieldName keys for easy access.
+     */
+    protected function getFilterConfigs()
+    {
+        return array(
+        {% for column in builder.columns %}
+            {% set optionsHash = {
+                'label': column.label,
+                'translation_domain': i18n_catalog|default('Admin')
+            } %}
+            {{ column.name|as_php }} => new FilterConfig(
+                {{ column.name|as_php }},
+                {{ column.filterType|as_php }},
+                {{ column.formType|as_php|convert_as_form(column.formType) }},
+                $this->getFormOption(
+                    {{ column.name|as_php }},
+                    {{ column.formOptions|merge(optionsHash)|as_php|convert_as_form(column.formType) }}
+                )
+            ),
+        {% endfor %}
+        );
+    }
+
+    protected function getFormOption($name, array $formOptions)
+    {
+        return $formOptions;
+    }
+    
+    public function getParent()
+    {
+        return 'admingenerator_filter_root';
+    }
+
+    public function getName()
+    {
+        return '{{ builder.YamlKey }}_{{ builder.ModelClass|lower }}';
+    }
+
+}
+{% endblock %}

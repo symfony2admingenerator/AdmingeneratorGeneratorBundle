@@ -1,93 +1,3 @@
-/* List sorting styles */
-.list_thead_column .sort-addon {
-    min-height: 0px;
-}
-
-.list_thead_column .sort-addon > i.active,
-.list_thead_column .sort-addon:hover > i.hover,
-.list_thead_column .sort-addon:hover > i.hover.placeholder {
-    display: inline-block;
-    visibility: visible;
-}
-
-.list_thead_column .sort-addon > i.hover, 
-.list_thead_column .sort-addon:hover > i.active {
-    display: none;
-}
-
-.list_thead_column .sort-addon > i.hover.placeholder {
-    display: inline-block;
-    visibility: hidden;
-}
-
-/* List pagination styles */
-.pagination {
-   margin: 0px;
-   font-size: 14px;
-}
-
-.pagination .perpage {
-    min-width: 50px;
-}
-
-/* List actions bar styles */
-
-.form-group.list-actions {
-    padding: 9px 20px;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	border-top: 1px solid #e5e5e5;
-	display: inline-block;
-	width: 100%;
-}
-
-.list-actions > .btn-toolbar + .btn-toolbar {
-    margin-left: 10px;
-}
-
-.list-actions > .btn-toolbar.pull-right + .btn-toolbar {
-    margin-right: 10px;
-}
-
-/* Fieldset styles */
-.row > .form_field {
-    -moz-box-sizing: border-box;
-    display: block;
-    float: left;
-    margin-right: 2.5641%;
-    min-height: 30px;
-}
-
-.row > .form_field:last-child {
-    margin-right: 0;
-}
-/*
-.row > .form_field:only-child {
-    width: 100%;
-}
-*/
-fieldset {
-    border: 1px solid #DDDDDD;
-    border-radius: 8px;
-    padding: 10px 20px;
-    margin: 0;
-}
-
-fieldset legend {
-    border: 0 none; 
-    margin: 0 0 0 -8px;
-    width: auto;
-}
-
-fieldset legend span {
-    background-color: #FFF; 
-    padding: 0 8px;
-}
-
-legend + .form-group {
-    margin-top: 0px;
-}
-
 /* Table additional styles */
 .table.table-shrinked {
     display: inline-block;
@@ -116,51 +26,6 @@ button::-moz-focus-inner, select::-moz-focus-inner {
     text-align: justify;
 }
 
-/* Toogle selection button */
-.btn.btn-toggle {
-    padding: 3px 6px;
-    cursor: pointer;
-}
-
-/* Actions toolbar */
-.form-group.form-group-condensed {
-    padding: 10px;
-    margin: 0px;
-    border: 0 none;
-}
-
-/* Select with btn caret */
-.select-caret {
-    display: inline-block;
-    overflow: hidden;
-    min-width: 60px;
-}
-
-.select-caret > select {
-    border: 0 none;
-    width: 135%;
-    outline-offset: 0 !important;
-    outline: 0 none transparent !important;
-}
-
-.select-caret:after {
-    content: "";
-    position: absolute;
-    display: inline-block;
-    height: 0;
-    width: 0;
-    top: 12px;
-    right: 6px;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 4px solid #000000;
-}
-
-.select-caret.btn {
-    padding: 0px;
-    height: 28px;
-}
-
 /* Reset button styles on input element */
 .btn.btn-reset, 
 .btn.btn-reset:hover,
@@ -174,16 +39,6 @@ input.btn.btn-reset:hover {
     text-align: left;
     color: #555555;
     cursor: text;
-}
-
-.list_scope_group .btn [class^="fa-"] {
-    font-size: 12px;
-}
-
-/* Icon sizes on list view */
-#profile-nav .btn-sm,
-.object_actions > .btn-group > .btn-xs {
-    font-size: 14px;
 }
 
 /* Fix active link */
@@ -209,21 +64,84 @@ button:hover > [class*=" fa-"]:before {
     background-image: none !important;
 }
 
+/* Callouts from BS docs */
+/* Side notes for calling out things
+-------------------------------------------------- */
 
-/*******************************/
-/***** Bootstrap 3.1.1 *********/
-/*******************************/
-
-.btn-toolbar {
-	margin-top: 10px;
-	margin-bottom: 10px;
+/* Base styles (regardless of theme) */
+.bs-callout {
+    margin: 20px 0;
+    padding: 15px 30px 15px 15px;
+    border-left: 5px solid #eee;
+}
+.bs-callout h1,
+.bs-callout h2,
+.bs-callout h3,
+.bs-callout h4,
+.bs-callout h5,
+.bs-callout h6 {
+    margin-top: 0;
 }
 
-/* .form-actions replacements */
-#show-actions > .btn-toolbar {
-	padding: 19px 20px 20px;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	background-color: #f5f5f5;
-	border-top: 1px solid #e5e5e5;
+.bs-callout-danger h1,
+.bs-callout-danger h2,
+.bs-callout-danger h3,
+.bs-callout-danger h4,
+.bs-callout-danger h5,
+.bs-callout-danger h6 {
+    color: #B94A48;
+}
+
+.bs-callout-warning h1,
+.bs-callout-warning h2,
+.bs-callout-warning h3,
+.bs-callout-warning h4,
+.bs-callout-warning h5,
+.bs-callout-warning h6 {
+    color: #C09853;
+}
+
+.bs-callout-info h1,
+.bs-callout-info h2,
+.bs-callout-info h3,
+.bs-callout-info h4,
+.bs-callout-info h5,
+.bs-callout-info h6 {
+    color: #3A87AD;
+}
+
+.bs-callout-success h1,
+.bs-callout-success h2,
+.bs-callout-success h3,
+.bs-callout-success h4,
+.bs-callout-success h5,
+.bs-callout-success h6 {
+    color: #3C763D;
+}
+
+.bs-callout p:last-child {
+    margin-bottom: 0;
+}
+
+.bs-callout code,
+.bs-callout .highlight {
+    background-color: #fff;
+}
+
+/* Themes for different contexts */
+.bs-callout-danger {
+    background-color: #fcf2f2;
+    border-color: #dFb5b4;
+}
+.bs-callout-warning {
+    background-color: #fefbed;
+    border-color: #f1e7bc;
+}
+.bs-callout-info {
+    background-color: #f0f7fd;
+    border-color: #d0e3f0;
+    }
+.bs-callout-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
 }

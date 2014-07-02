@@ -1,0 +1,34 @@
+/**
+ * Filters builder specific CSS
+ */
+
+[id$="_filters_header"] {
+    cursor: pointer;
+}
+
+[id$="_filters_header"] > h3 > .fa-caret-down,
+[id$="_filters_header"].collapsed > h3 > .fa-caret-right {
+	display: inline-block;
+}
+
+[id$="_filters_header"] > h3 > .fa-caret-right,
+[id$="_filters_header"].collapsed > h3 > .fa-caret-down {
+	display: none;
+}
+
+[id$="_filters_body"] > .panel-body > .bs-callout {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+[id$="_filters_root"] {
+    margin-bottom: 0 !important;
+}
+
+[id$="_filters_root"] > div:first-of-type {
+    margin-top: 20px;
+}
+
+[id$="_filters_list"] > [role="prototype"] {
+    display: none;
+}

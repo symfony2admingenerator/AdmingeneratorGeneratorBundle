@@ -1,29 +1,15 @@
-/* General styles
--------------------------------------------------- */
+/**
+ * Blue theme
+ */
 
-/* Block scrolling */
-html, body {
-    overflow-x: hidden;
-}
-
-/* Padding for top static navbar */
-body {
-    padding-top: 60px;
-    padding-bottom: 40px;
-}
-
+/* Navbar blue */
 @media (max-width: 979px) {
-  body {
-      padding-top: 0px;
-  }
   .navbar-blue .navbar-collapse .nav > li > a, 
   .navbar-blue .navbar-collapse .dropdown-menu a {
       color: #FFFFFF;
   }
 }
 
-/* Navbar styles */
-/*.navbar-blue .navbar-inner {*/
 .navbar-blue {
     background-color: #438EB9;
     background-image: -moz-linear-gradient(top, #438EB9, #62A8D1);
@@ -120,4 +106,34 @@ body {
     font-weight: bold;
 }
 
-div[class^='object-actions-'],div[class*=' object-actions-'] {margin-bottom: 10px}
+/* Button blue */
+.btn-blue {
+    color: #ffffff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color: #62A8D1;
+    background-image: -moz-linear-gradient(top, #438EB9, #62A8D1);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#438EB9), to(#62A8D1));
+    background-image: -webkit-linear-gradient(top, #438EB9, #62A8D1);
+    background-image: -o-linear-gradient(top, #438EB9, #62A8D1);
+    background-image: linear-gradient(to bottom, #438EB9, #62A8D1);
+    background-repeat: repeat-x;
+    border-color: #0B6CBC #0B6CBC #1f6377;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff438EB9', endColorstr='#ff62A8D1', GradientType=0);
+    filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+
+.btn.btn-blue:hover,
+.btn.btn-blue:focus,
+.btn.btn-blue:active,
+.btn.btn-blue.active,
+.btn.btn-blue.disabled,
+.btn.btn-blue[disabled] {
+    color: #ffffff;
+    background-color: #62A8D1;
+}
+
+.btn-blue:active,
+.btn-blue.active {
+    background-color: #3983C2 \9;
+}

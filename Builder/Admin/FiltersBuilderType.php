@@ -15,6 +15,6 @@ class FiltersBuilderType extends FiltersBuilder
 
     public function getTemplateName()
     {
-        return 'EditBuilderType' . self::TWIG_EXTENSION;
+        return 'FiltersBuilderType' . self::TWIG_EXTENSION;
     }
 }

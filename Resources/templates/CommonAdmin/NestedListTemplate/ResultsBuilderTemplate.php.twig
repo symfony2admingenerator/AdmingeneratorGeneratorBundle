@@ -5,7 +5,7 @@
 {% use '../CommonAdmin/batch_actions.php.twig' %}
 
 {% block list_results %}
-<div class="results-list">
+<div class="row-fluid results-list">
     {{- block('list_nbresults') }}
 
     {{- block('form_batch_actions') }}
@@ -14,7 +14,7 @@
             {{- block('list_tbody') }}
         </table>
           
-        <div class="form-group list-actions">
+        <div class="list-actions actions-bar">
         {% if batch_actions is defined and batch_actions|length > 0 %}
             <div id="batch_actions" class="pull-left btn-toolbar" role="toolbar">
                 {{ block('batch_actions') }}
@@ -26,24 +26,28 @@
                 {{ block('generic_actions') -}}
             </div>
         {% endif -%}
+
+            <div class="clearfix"></div>
         </div>
     {{- block('endform_batch_actions') -}}
 </div>
+    
+<script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/treeTable/jquery.treeTable-extended.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/admingenerator/nestedset.min.js') }}"></script>
 
 {% set admingeneratorNestedRoute=builder.routePrefixWithSubfolder ~ "_" ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_nested_move" %}
+
 <script type="text/javascript">
-    ;(function(window, $, undefined){
-        $(function(){
-            $('#table-list-{{ builder.ModelClass }}').agen$nestedTree({
-                urls: {
-                    move: '{{ echo_path( admingeneratorNestedRoute, "{ 'dragged': '|dragged|', 'action': '|action|', 'dropped': '|dropped|' }") }}'
-                },
-                labels: {
-                    expand: '{{ echo_trans('nested.list.expand') }}',
-                    collapse: '{{ echo_trans('nested.list.collapse') }}'
-                }
-            });
-        });
-    })(this, jQuery);
+jQuery((document).ready(function() {
+    jQuery('#table-list-{{ builder.ModelClass }}').agen$nestedTree({
+        urls: {
+            move: '{{ echo_path( admingeneratorNestedRoute, "{ 'dragged': '|dragged|', 'action': '|action|', 'dropped': '|dropped|' }") }}'
+        },
+        labels: {
+            expand: '{{ echo_trans('nested.list.expand') }}',
+            collapse: '{{ echo_trans('nested.list.collapse') }}'
+        }
+    });
+});
 </script>
 {% endblock list_results %}

@@ -8,8 +8,6 @@
 
 {{ echo_block("javascripts") }}
     {{- block('complementary_javascripts') -}}
-    <script type="text/javascript" src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/treeTable/jquery.treeTable-extended.js")') }}"></script>
-    <script type="text/javascript" src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/nestedset.js")') }}"></script>
 {{ echo_endblock() }}
 
 {{ echo_block("stylesheets") }}
@@ -21,20 +19,9 @@
 {{ echo_block("body") }}
     {{- block('title') -}}
 
-    <div class="row">
-        <div class="{% if builder.filterColumns|length == 0 %} col-md-12 {% else %} col-md-9 {% endif %}">
-            {{ block('list_scopes') -}}
+    {{ block('list_scopes') -}}
 
-            {{ echo_include(builder.namespacePrefixForTemplate ~ bundle_name ~ ':' ~ builder.BaseGeneratorName ~ 'List:results.html.twig') }}
-        </div>
-        
-        {{ echo_block("filters") }}
-        {% if builder.filterColumns|length > 0 %}
-            <div class="col-md-3">
-                {{ echo_include(builder.namespacePrefixForTemplate ~ bundle_name ~ ':' ~ builder.BaseGeneratorName ~ 'List:filters.html.twig') }}
-            </div>
-        {% endif %}
-        {{ echo_endblock() }}
-    </div>
+    {{ echo_include(builder.namespacePrefixForTemplate ~ bundle_name ~ ':' ~ builder.BaseGeneratorName ~ 'List:results.html.twig') }}
+    
     {{- block('nestedset_modal') -}}
 {{ echo_endblock() }}

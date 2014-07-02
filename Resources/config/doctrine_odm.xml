@@ -8,6 +8,7 @@
         <parameter key="admingenerator.fieldguesser.doctrine_odm.class">Admingenerator\GeneratorBundle\Guesser\DoctrineODMFieldGuesser</parameter>
         <parameter key="admingenerator.queryfilter.doctrine_odm.class">Admingenerator\GeneratorBundle\QueryFilter\DoctrineODMQueryFilter</parameter>
     </parameters>
+    
     <services>
         <!-- Doctine MongoDB -->
         <service id="admingenerator.fieldguesser.doctrine_odm" class="%admingenerator.fieldguesser.doctrine_odm.class%"
@@ -33,5 +34,6 @@
         <service id="admingenerator.queryfilter.doctrine_odm"
             class="%admingenerator.queryfilter.doctrine_odm.class%">
         </service>
+        
     </services>
 </container>

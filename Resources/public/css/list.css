@@ -1,0 +1,97 @@
+/**
+ * List builder specific CSS
+ */
+
+/* List sorting styles */
+.list_thead_column .sort-addon {
+    min-height: 0px;
+}
+
+.list_thead_column .sort-addon > i.active,
+.list_thead_column .sort-addon:hover > i.hover,
+.list_thead_column .sort-addon:hover > i.hover.placeholder {
+    display: inline-block;
+    visibility: visible;
+}
+
+.list_thead_column .sort-addon > i.hover, 
+.list_thead_column .sort-addon:hover > i.active {
+    display: none;
+}
+
+.list_thead_column .sort-addon > i.hover.placeholder {
+    display: inline-block;
+    visibility: hidden;
+}
+
+/* List scopes */
+.list_scopes {
+    margin: 10px auto;
+}
+
+.list_scope_group .btn [class^="fa-"],
+.list_scope_group .btn [class*=" fa-"] {
+    font-size: 12px;
+}
+
+/* List pagination styles */
+.pagination {
+   margin: 0px;
+   font-size: 14px;
+}
+
+.pagination .perpage {
+    min-width: 50px;
+}
+
+/* List actions bar styles */
+.list-actions > .btn-toolbar + .btn-toolbar {
+    margin-left: 10px;
+}
+
+.list-actions > .btn-toolbar.pull-right + .btn-toolbar {
+    margin-right: 10px;
+}
+
+/* Object actions styles */
+div[class^='object-actions-'],
+div[class*=' object-actions-'] {
+    margin-bottom: 10px
+}
+
+.object_actions .btn [class^="fa-"],
+.object_actions .btn [class*=" fa-"] {
+    font-size: 14px;
+}
+
+/* Select with btn caret */
+.select-caret {
+    display: inline-block;
+    overflow: hidden;
+    min-width: 60px;
+}
+
+.select-caret > select {
+    border: 0 none;
+    width: 135%;
+    outline-offset: 0 !important;
+    outline: 0 none transparent !important;
+}
+
+.select-caret:after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    height: 0;
+    width: 0;
+    top: 12px;
+    right: 6px;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #000000;
+}
+
+.select-caret.btn {
+    padding: 0px;
+    height: 28px;
+}

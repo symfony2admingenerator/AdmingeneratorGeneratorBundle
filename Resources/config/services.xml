@@ -24,17 +24,21 @@
             <tag name="twig.extension" />
             <argument type="service" id="twig.loader" />
         </service>
+        
         <service id="twig.extension.admingenerator.config" class="Admingenerator\GeneratorBundle\Twig\Extension\ConfigExtension" public="false">
             <tag name="twig.extension" />
             <argument type="service" id="service_container" />
         </service>
+        
         <service id="twig.extension.admingenerator.csrf" class="Admingenerator\GeneratorBundle\Twig\Extension\CsrfTokenExtension" public="false">
             <tag name="twig.extension" />
             <argument type="service" id="service_container" />
         </service>
+        
         <service id="twig.extension.admingenerator.localized_money" class="Admingenerator\GeneratorBundle\Twig\Extension\LocalizedMoneyExtension" public="false">
             <tag name="twig.extension" />
         </service>
+        
         <service id="twig.extension.admingenerator.extends" class="Admingenerator\GeneratorBundle\Twig\Extension\ExtendsAdmingeneratedExtension" public="false">
             <tag name="twig.extension" />
             <argument type="service" id="twig.loader.filesystem" />
@@ -65,6 +69,19 @@
             <tag name="pagerfanta.view" alias="admingenerator" />
             <argument type="service" id="translator" />
         </service>
+        
+        <!-- Filters -->
+        <service id="admingenerator.filter.root" class="Admingenerator\GeneratorBundle\Filter\Type\FilterRootType">
+            <tag name="form.type" alias="admingenerator_filter_root" />
+        </service>
+        
+        <service id="admingenerator.filter.group" class="Admingenerator\GeneratorBundle\Filter\Type\FilterGroupType">
+            <tag name="form.type" alias="admingenerator_filter_group" />
+        </service>
+        
+        <service id="admingenerator.filter.item" class="Admingenerator\GeneratorBundle\Filter\Type\FilterItemType">
+            <tag name="form.type" alias="admingenerator_filter_item" />
+        </service>
 
         <!-- Validators -->
         <service id="admingenerator.validator.model_class" class="%admingenerator.validator.model_class.class%" public="false">
@@ -94,5 +111,6 @@
             <argument type="service" id="service_container" />
             <argument type="service" id="admingenerator.finder" />
         </service>
+        
     </services>
 </container>

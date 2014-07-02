@@ -125,12 +125,23 @@ class DoctrineORMFieldGuesser extends ContainerAware
     public function getFilterType($dbType, $columnName)
     {
         $filterTypes = $this->container->getParameter('admingenerator.doctrine_filter_types');
-
+        
         if (array_key_exists($dbType, $filterTypes)) {
             return $filterTypes[$dbType];
+        } else {
+            return null;
         }
-
-        return $this->getFormType($dbType, $columnName);
+//        elseif ('virtual' === $dbType) {
+//            throw new NotImplementedException(
+//                'The dbType "'.$dbType.'" is only for list implemented '
+//                .'(column "'.$columnName.'" in "'.self::$current_class.'")'
+//            );
+//        } else {
+//            throw new NotImplementedException(
+//                'The dbType "'.$dbType.'" is not yet implemented '
+//                .'(column "'.$columnName.'" in "'.self::$current_class.'")'
+//            );
+//        }
     }
 
     public function getFormOptions($formType, $dbType, $columnName)

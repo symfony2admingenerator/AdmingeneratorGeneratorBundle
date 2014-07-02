@@ -10,7 +10,7 @@
 {{ echo_endblock() }}
 
 {{ echo_block("javascripts") }}
-    {{- block('complementary_javascripts') -}}
+    {{- block('complementary_javascripts') -}}    
 {{ echo_endblock() }}
 
 {{- block('site_title') -}}
@@ -18,19 +18,9 @@
 {{ echo_block("body") }}
     {{- block('title') -}}
 
-    <div class="row">
-        <div class="{% if builder.filterColumns|length == 0 %} col-md-12 {% else %} col-md-9 {% endif %}">
-            {{- block('list_scopes') -}}
+    {{ echo_include(builder.namespacePrefixForTemplate ~ bundle_name ~ ':' ~ builder.BaseGeneratorName ~ 'List:filters.html.twig') }}
 
-            {{ echo_include(builder.namespacePrefixForTemplate ~ bundle_name ~ ':' ~ builder.BaseGeneratorName ~ 'List:results.html.twig') }}
-        </div>
+    {{- block('list_scopes') -}}
 
-        {{ echo_block("filters") }}
-            {% if builder.filterColumns|length > 0 %}
-            <div class="col-md-3">
-                {{ echo_include(builder.namespacePrefixForTemplate ~ bundle_name ~ ':' ~ builder.BaseGeneratorName ~ 'List:filters.html.twig') }}
-            </div>
-            {% endif %}
-        {{ echo_endblock() }}
-    </div>
+    {{ echo_include(builder.namespacePrefixForTemplate ~ bundle_name ~ ':' ~ builder.BaseGeneratorName ~ 'List:results.html.twig') }}
 {{ echo_endblock() }}

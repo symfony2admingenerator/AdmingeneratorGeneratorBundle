@@ -50,13 +50,14 @@
 {% block generic_actions_script %}
 {{ echo_block("generic_actions_script") }}
 {% if builder.Actions is defined and builder.Actions|length > 0 %}
-    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/generic-actions.js")') }}"></script>
+    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/generic-actions.min.js")') }}"></script>
+
     <script type="text/javascript">
-        ;(function(window, $, undefined) {
-            $("#generic_actions").agen$genericActions({
-                actionsSelector: 'a.btn'
-            });
-        })(this, jQuery);
+    jQuery(document).ready(function() {
+        jQuery("#generic_actions").agen$genericActions({
+            actionsSelector: 'a.btn'
+        });
+    });
     </script>
 {% endif %}
 {{ echo_endblock() }}

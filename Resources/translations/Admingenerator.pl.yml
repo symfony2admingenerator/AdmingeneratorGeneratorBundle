@@ -1,3 +1,21 @@
+# Filters
+filters:
+    header:     Filtry
+    group:      Grupa kryteriów <span role="counter">%index%</span>
+    info:       |
+        Przefiltrowane wyniki będą spełniały warunki przynajmniej jednej z grup kryterów.
+    submit:     Filtruj
+    reset:      Resetuj
+    add.group:  Dodaj grupę
+    add.filter: Dodaj filter
+
+    logical_operator:
+        and:  and
+        or:   or
+    boolean:
+        equal:      Equal
+        not_equal:  Not equal
+
 # Boolean filter
 boolean:
     yes:        Tak
@@ -13,16 +31,11 @@ pagerfanta:
 
 # List
 list:
-    no.results: Brak wyników.
-    filters:    Filtry
-list.button:
-    filter:     Filtruj
-    reset:      Reset
-list.display:
-    range:      Wyświetlanie <b>%start%</b> - <b>%end%</b> z <b>%count%</b> rezultatów.
-    all:        Wyświetlanie wszystkich <b>%count%</b> rezultatów.
-list.header:
-    actions:    Akcje
+    no.results:     Brak wyników.
+    display:
+        range:      Wyświetlanie <b>%start%</b> - <b>%end%</b> z <b>%count%</b> rezultatów.
+        all:        Wyświetlanie wszystkich <b>%count%</b> rezultatów.
+    header.actions:    Akcje
 
 # Nested List
 nested.list:

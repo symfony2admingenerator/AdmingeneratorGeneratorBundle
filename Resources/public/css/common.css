@@ -1,0 +1,70 @@
+/**
+ * Builders common CSS
+ */
+
+/* Block scrolling */
+html, body {
+    overflow-x: hidden;
+}
+
+/* Padding for top static navbar */
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+@media (max-width: 979px) {
+  body {
+      padding-top: 0px;
+  }
+}
+
+/* Grey actions bar */
+.actions-bar {
+	margin: 20px auto;
+	padding: 19px 20px 20px;
+	background-color: #f5f5f5;
+	border-top: 1px solid #e5e5e5;
+}
+
+/* Array lists */
+.array_list {
+    margin-left: -15px;
+}
+
+/* Fieldset styles */
+fieldset {
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin: 0;
+}
+
+fieldset legend {
+    border: 0 none; 
+    margin: 0 0 0 -8px;
+    width: auto;
+}
+
+fieldset legend span {
+    background-color: #FFF; 
+    padding: 0 8px;
+}
+
+fieldset legend + .form-group {
+    margin-top: 0px;
+}
+
+fieldset .row > .form_field {
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+    display: block;
+    float: left;
+    margin-right: 2.5641%;
+    min-height: 30px;
+}
+
+fieldset .row > .form_field:last-child {
+    margin-right: 0;
+}

@@ -27,6 +27,8 @@ class Column
     protected $customView = null;
 
     protected $formType;
+    
+    protected $filterType;
 
     protected $formOptions = array();
 
@@ -168,6 +170,16 @@ class Column
     public function getFormOptions()
     {
         return $this->formOptions;
+    }
+
+    public function setFilterType($filterType)
+    {
+        $this->filterType = $filterType;
+    }
+
+    public function getFilterType()
+    {
+        return $this->filterType;
     }
 
     public function setCredentials($credentials)

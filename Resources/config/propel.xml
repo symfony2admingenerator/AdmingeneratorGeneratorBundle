@@ -8,6 +8,7 @@
         <parameter key="admingenerator.fieldguesser.propel.class">Admingenerator\GeneratorBundle\Guesser\PropelORMFieldGuesser</parameter>
         <parameter key="admingenerator.queryfilter.propel.class">Admingenerator\GeneratorBundle\QueryFilter\PropelQueryFilter</parameter>
     </parameters>
+    
     <services>
         <!-- Propel -->
         <service id="admingenerator.fieldguesser.propel" class="%admingenerator.fieldguesser.propel.class%"
@@ -32,5 +33,6 @@
         <service id="admingenerator.queryfilter.propel"
             class="%admingenerator.queryfilter.propel.class%">
         </service>
+        
     </services>
 </container>

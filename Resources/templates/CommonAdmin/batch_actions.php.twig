@@ -53,15 +53,16 @@
 {{ echo_block("endform_batch_actions") }}
 {% if batch_actions is defined and batch_actions|length > 0 %}
     </form>
-    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/batch-actions.js")') }}"></script>
+    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/batch-actions.min.js")') }}"></script>
+    
     <script type="text/javascript">
-        ;(function(window, $, undefined) {
-            $("#form-list-{{ builder.ModelClass }}").agen$batchActions({
-                submitSelector: 'button[name=batch]',
-                actionsSelector: '#batchActionSelector',
-                noneSelected: '{{ echo_trans("batch.list.none.selected") }}'
-            });
-        })(this, jQuery);
+    jQuery(document).ready(function() {
+        jQuery("#form-list-{{ builder.ModelClass }}").agen$batchActions({
+            submitSelector: 'button[name=batch]',
+            actionsSelector: '#batchActionSelector',
+            noneSelected: '{{ echo_trans("batch.list.none.selected") }}'
+        });
+    });
     </script>
 {% endif %}
 {{ echo_endblock() }}

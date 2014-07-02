@@ -1,32 +1,13 @@
 {% block list_filters %}
 {{ echo_block('list_filters') }}
-<div class="filters-list">
-    <form action="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_filters" ) }}" method="post" {{ echo_twig("form_enctype(form)") }} role="form">
-        <legend>{{ echo_trans('list.filters') }}</legend>
-        <fieldset class="form-group form_block form_fieldset_NONE">
-            {{ echo_twig("form_errors(form)") }}
-            {% for field in builder.filterColumns %}
-                {% if builder.filterColumns[field.name].credentials %}
-                    {{ echo_if_granted(builder.filterColumns[field.name].credentials) }}
-                {% endif %}
-                <div class="row form-group">
-                    <div class="col-xs-8">
-                    {{ echo_twig("form_label(form['" ~ field.name ~ "'], '" ~ builder.FilterColumns[field.name].label|addslashes ~ "'|trans({}, '" ~ i18n_catalog|default("Admin") ~ "'))") }}
-                    {{ echo_twig("form_widget(form['" ~ field.name ~ "'], {'attr':{'class': 'form-control input-sm'}})") }}
-                    {{ echo_twig("form_errors(form['" ~ field.name ~ "'], {'attr': {'class': 'form-control-feedback'}})") }}
-                    </div>
-                </div>
-                {% if builder.filterColumns[field.name].credentials %}
-                    {{ echo_endif () }}
-                {% endif %}
-            {% endfor %}
-            {{ echo_twig("form_rest(form)") }}
-        </fieldset>
-        <div class="form-group">
-            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-search"></i> {{ echo_trans('list.button.filter') }}</button>
-            <button type="submit" class="btn btn-sm btn-default" name="reset" value="true"><i class="fa fa-refresh"></i> {{ echo_trans('list.button.reset') }}</button>
-        </div>
-    </form>
-</div>
+{% if builder.columns|length > 0 %}
+	<script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/filters.js")') }}"></script>
+
+    <div class="row-fluid">
+        <form action="{{ echo_path(builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_filters" ) }}" method="post" {{ echo_twig("form_enctype(form)") }} role="form">
+            {{ echo_twig("form_widget(form)") }}
+        </form>
+    </div>
+{% endif %}
 {{ echo_endblock() }}
 {% endblock list_filters %}

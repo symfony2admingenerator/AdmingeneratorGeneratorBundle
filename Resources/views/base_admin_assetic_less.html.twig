@@ -20,10 +20,13 @@
         <link rel="stylesheet" href="{{ asset('components/font-awesome/css/font-awesome.min.css') }}" type="text/css" media="all" />
         <!--[if lt IE 7]>
             <link rel="stylesheet" href="{{ asset('components/font-awesome/css/font-awesome-ie7.min') }}" type="text/css" media="all" />
-        <![endif]-->        
-        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/general.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/profile.css') }}" type="text/css" media="all" />
+        <![endif]-->
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/common.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/filters.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/list.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/nested-list.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/blue-theme.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/profile.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/bootstrap-extended.css') }}" type="text/css" media="all" />
     {% endblock %}
 
@@ -45,7 +48,7 @@
 
     <div class="container-fluid">
       {% block flashes %}
-        <div id="flashes" class="row">
+        <div id="flashes" class="row-fluid">
           {% for type, flashMessages in app.session.flashbag.all() %}
             {% for flashMessage in flashMessages %}
               <div class="alert alert-{{ type }}">
@@ -58,7 +61,7 @@
       {% endblock %}
 
       {% block body %}
-        <div class="row">
+        <div class="row-fluid">
         </div><!--/.row -->
       {% endblock %}
 
