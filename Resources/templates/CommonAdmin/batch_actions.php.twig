@@ -56,8 +56,8 @@
     <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/batch-actions.js")') }}"></script>
     
     <script type="text/javascript">
-    jQuery(document).ready(function() {
-        jQuery("#form-list-{{ builder.ModelClass }}").agen$batchActions({
+    jQuery(document).ready(function($) {
+        $("#form-list-{{ builder.ModelClass }}").agen$batchActions({
             submitSelector: 'button[name=batch]',
             actionsSelector: '#batchActionSelector',
             noneSelected: '{{ echo_trans("batch.list.none.selected") }}'

@@ -38,8 +38,8 @@
 {% set admingeneratorNestedRoute=builder.routePrefixWithSubfolder ~ "_" ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_nested_move" %}
 
 <script type="text/javascript">
-jQuery((document).ready(function() {
-    jQuery('#table-list-{{ builder.ModelClass }}').agen$nestedTree({
+jQuery(document).ready(function($) {
+    $('#table-list-{{ builder.ModelClass }}').agen$nestedTree({
         urls: {
             move: '{{ echo_path( admingeneratorNestedRoute, "{ 'dragged': '|dragged|', 'action': '|action|', 'dropped': '|dropped|' }") }}'
         },

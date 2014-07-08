@@ -41,8 +41,8 @@
     <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/object-actions.js")') }}"></script>
     
     <script type="text/javascript">
-	jQuery(document).ready(function() {
-        jQuery(".object-actions-{{ builder.ModelClass }}").agen$objectActions({
+    jQuery(document).ready(function($) {
+        $(".object-actions-{{ builder.ModelClass }}").agen$objectActions({
             actionsSelector: '.object_actions a'
         });
     });

@@ -53,8 +53,8 @@
     <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/generic-actions.js")') }}"></script>
 
     <script type="text/javascript">
-    jQuery(document).ready(function() {
-        jQuery("#generic_actions").agen$genericActions({
+    jQuery(document).ready(function($) {
+        $("#generic_actions").agen$genericActions({
             actionsSelector: 'a.btn'
         });
     });
