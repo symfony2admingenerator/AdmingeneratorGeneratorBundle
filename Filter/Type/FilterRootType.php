@@ -16,11 +16,12 @@ class FilterRootType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'type'          => 'admingenerator_filter_group',
-            'allow_add'     => true,
-            'allow_delete'  => true,
-            'prototype'     => true,
-            'options'       => array(
+            'type'              => 'admingenerator_filter_group',
+            'allow_add'         => true,
+            'allow_delete'      => true,
+            'prototype'         => true,
+            'prototype_name'    => '__filter_group_name__',
+            'options'           => array(
                 'filters' => array()
             )
         ));

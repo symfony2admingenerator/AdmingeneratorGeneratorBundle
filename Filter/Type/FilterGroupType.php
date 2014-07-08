@@ -17,12 +17,13 @@ class FilterGroupType extends AbstractType implements FilterItemInterface
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'type'          => 'admingenerator_filter_form',
-            'allow_add'     => true,
-            'allow_delete'  => true,
-            'prototype'     => false,
-            'options'       => array(),
-            'filters'       => array()
+            'type'              => 'admingenerator_filter_form',
+            'allow_add'         => true,
+            'allow_delete'      => true,
+            'prototype'         => false,
+            'prototype_name'    => '__filter_form_name__',
+            'options'           => array(),
+            'filters'           => array()
         ));
         
         $resolver->setAllowedValues(array(

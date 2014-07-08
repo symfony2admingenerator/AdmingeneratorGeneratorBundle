@@ -1,26 +1,54 @@
 # Filters
 filters:
     header:     Filtry
-    group:      Grupa kryteriów <span role="counter">%index%</span>
-    info:       |
-        Przefiltrowane wyniki będą spełniały warunki przynajmniej jednej z grup kryterów.
-    submit:     Filtruj
-    reset:      Resetuj
-    add.group:  Dodaj grupę
-    add.filter: Dodaj filter
-
-    logical_operator:
-        and:  and
-        or:   or
+    label:      Grupa kryteriów
+    info:       Przefiltrowane wyniki będą spełniały warunki przynajmniej jednej z grup kryteriów.
+    ctrl:
+        submit:         Filtruj
+        reset:          Resetuj
+        add_group:      Dodaj grupę
+        add_filter:     Dodaj filtr
     boolean:
-        equal:      Equal
-        not_equal:  Not equal
-
-# Boolean filter
-boolean:
-    yes:        Tak
-    no:         Nie
-    yes_or_no:  Tak lub Nie
+        is:                     Jest
+    date:
+        equal:                  Równe
+        not_equal:              Nie równe
+        greater_than:           Większe od
+        greater_than_equal:     Większe od lub równe
+        less_than:              Mniejsze
+        less_than_equal:        Mniejsze od lub równe
+    time:
+        equal:                  Równe
+        not_equal:              Nie równe
+        greater_than:           Większe od
+        greater_than_equal:     Większe od lub równe
+        less_than:              Mniejsze
+        less_than_equal:        Mniejsze od lub równe
+    datetime:
+        equal:                  Równe
+        not_equal:              Nie równe
+        greater_than:           Większe od
+        greater_than_equal:     Większe od lub równe
+        less_than:              Mniejsze
+        less_than_equal:        Mniejsze od lub równe
+    numeric:
+        equal:                  Równe
+        not_equal:              Nie równe
+        greater_than:           Większe od
+        greater_than_equal:     Większe od lub równe
+        less_than:              Mniejsze
+        less_than_equal:        Mniejsze od lub równe
+    text:
+        equal:                  Równe
+        not_equal:              Nie równe
+        like:                   Podobne
+        not_like:               Nie podobne
+    collection:
+        contains:               Zawiera
+        not_contains:           Nie zawiera
+    model:
+        equal:                  Równe
+        not_equal:              Nie równe
 
 # Pager
 pagerfanta:

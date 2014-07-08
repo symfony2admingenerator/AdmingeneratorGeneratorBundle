@@ -32,8 +32,8 @@
     {{- block('endform_batch_actions') -}}
 </div>
     
-<script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/treeTable/jquery.treeTable-extended.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/admingenerator/nestedset.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/treeTable/jquery.treeTable-extended.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/admingenerator/nestedset.js') }}"></script>
 
 {% set admingeneratorNestedRoute=builder.routePrefixWithSubfolder ~ "_" ~ bundle_name ~ ( builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" ) ~ "_nested_move" %}
 

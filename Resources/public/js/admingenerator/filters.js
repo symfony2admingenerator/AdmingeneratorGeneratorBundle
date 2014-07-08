@@ -48,120 +48,159 @@
 
             // setup selectors and vars necessary to operate
             that.selector = {
-                group:      '[role="filters-group"]',
-                list:       '[role="filters-list"]',
-                toggle:     '[data-toggle="collapse"]',
-                dismiss:    '[data-dismiss="filters-group"]',
-                counter:    '[role="counter"]' 
+                group:              '[role="filters-group"]',
+                groupDismiss:       '[role="filters-group-dismiss"]',
+                groupToggle:        '[role="filters-group-toggle"]',
+                groupPanel:         '[role="filters-group-panel"]',
+                groupList:          '[role="filters-group-list"]',
+                filter:             '[role="filter"]',
+                filterDismiss:      '[role="filter-dismiss"]',
+                filterPrototype:    '[role="filter-prototype"]'
             };
 
-            that.$root      = that.$element.find('#'+that.element.id+'_filters_root');
-            that.$resetBtn  = that.$element.find('#'+that.element.id+'_filters_btn_reset');
-            that.$addBtn    = that.$element.find('#'+that.element.id+'_filters_btn_add');
-
-            that.vars = {
-                index:      that.$root.children(that.selector.group).length,
-                prototype:  that.$root.data('prototype')
-            };
+            that.elementId      = that.$element.attr('id');
+            that.$rootList      = that.$element.find('[role="filters-root-list"]').first();
+            that.$ctrlReset     = that.$element.find('[role="filters-ctrl-reset"]').first();
+            that.$ctrlAddGroup  = that.$element.find('[role="filters-ctrl-add-group"]').first();
 
             // init toggle and dismiss on existing groups
-            that.$root.children(that.selector.group).each(function(i, group) {
-                that._enableToggleGroup(group);
-                that._enableDismissGroup(group);
+            that.$rootList.children(that.selector.group).each(function(i, group) {
+                that._enableGroup(group);
             });
 
-            // enable reset button
-            that.$resetBtn.on('click', function(e) {
+            // enable reset groups button
+            that.$ctrlReset.on('click', function(e) {
                 e.preventDefault();
 
-                that.$root.children(that.selector.group).remove();
-                that.vars.index = 0;
+                that.$rootList.children(that.selector.group).remove();
             });
 
-            // enable add button
-            that.$addBtn.on('click', function(e) {
+            // enable add group button
+            that.$ctrlAddGroup.on('click', function(e) {
                 e.preventDefault();
 
-                var $newGroup = $(that.vars.prototype.replace(/__name__/g, that.vars.index));
-                that.vars.index++;
+                var gIndex = that.$rootList.children(that.selector.group).length;
+                var gPrototype = that.$rootList.data('prototype');
+                var $newGroup = $(gPrototype.replace(/__filter_group_name__/g, gIndex));
 
-                that.$root.append($newGroup);
-                that._enableToggleGroup($newGroup);
-                that._enableDismissGroup($newGroup);
+                that.$rootList.append($newGroup);
+                that._enableGroup($newGroup);
             });
         },
 
         /**
-         * Enables collapse functionality on given group
-         * 
-         * @param $group Element matching that.selector.group
+         * Enable group functionality
          */
-        _enableToggleGroup: function(group) {
+        _enableGroup: function(group) {
             // Plugin-scope helper
             var that = this;
 
-            var $group  = $(group);   
-            var $toggle = $group.find(that.selector.toggle);
-            var $list   = $group.find(that.selector.list);
+            var $group          = $(group);
+            var $gToggle        = $group.find(that.selector.groupToggle);
+            var $gDismiss       = $group.find(that.selector.groupDismiss);
+            var $gList          = $group.find(that.selector.groupList);
+            var $gPanel         = $group.find(that.selector.groupPanel);
+            var $ctrlAddFilter  = $group.find(that.selector.filterPrototype);
+            var gIndex          = $group.prevAll(that.selector.group).length;
 
-            $list.collapse({
-                parent: that.$root
+            // enable collapse toggle
+            $gPanel.collapse({
+                parent: that.$rootList
             });
 
-            $toggle.on('click', function(e) {
+            $gToggle.on('click', function(e) {
                 e.preventDefault();
-                $list.collapse('toggle');
+                $gPanel.collapse('toggle');
             });
-        },
 
-        /**
-         * Enables dismiss functionality on given group
-         * 
-         * @param $group Element matching that.selector.group
-         */
-        _enableDismissGroup: function(group) {
-            // Plugin-scope helper
-            var that = this;
-
-            var $group      = $(group);            
-            var $dismiss    = $group.find(that.selector.dismiss);
-            var $list       = $group.find(that.selector.list);
-
-            $dismiss.on('click', function(e) {
+            // enable dismiss group            
+            $gDismiss.on('click', function(e) {
                 e.preventDefault();
 
-                var isOpen      = $list.hasClass('in');
-                var $siblings   = $group.siblings(that.selector.group);
-                var $nextItems  = $group.nextAll(that.selector.group);
-                var $prevItem   = $group.prev(that.selector.group);
-                var $nextItem   = $group.next(that.selector.group);
+                var nIndex = $group.prevAll(that.selector.group).length;
+                var $toUpdate = $group.nextAll(that.selector.group);
 
                 $group.remove();
-                that.vars.index--;
 
-                $nextItems.each(function(i, group) {
-                    var $group  = $(group);
-                    var $toggle = $group.find(that.selector.toggle);
-                    var $list   = $group.find(that.selector.list);
-                    var index   = $siblings.index($group);
+                $toUpdate.each(function() {
+                    var pattern = $(this).attr('id');
+                    var replace = that.elementId+'_'+nIndex;
 
-                    var oldid = $list.attr('id');
-                    var newid = oldid.replace(/\d+_list$/g, index + '_list');
+                    $(this).find('[id^="'+pattern+'"]').each(function() {
+                        var oldid = $(this).attr('id');
+                        var newid = oldid.replace(
+                            new RegExp('^'+pattern+'(.*)$', 'g'),
+                            replace+"$1"
+                        );
+                        $(this).attr('id', newid);
+                    });
 
-                    $toggle.attr('href', newid);
-                    $list.attr('id', newid);
-                    $toggle.find(that.selector.counter).html(index);
+                    $(this).find('[href^="#'+pattern+'"]').each(function() {
+                        var oldhref = $(this).attr('href');
+                        var newhref = oldid.replace(
+                            new RegExp('^#'+pattern+'(.*)$', 'g'),
+                            '#'+replace+"$1"
+                        );
+                        $(this).attr('href', newhref);
+                    });
+
+                    nIndex++;
                 });
+            });
 
-                if (isOpen) {
-                    if ($nextItem.length) {
-                        $nextItem.find(that.selector.list).collapse('show');
-                    } else {
-                        $prevItem.find(that.selector.list).collapse('show');
-                    }
-                }            
+            // enable filters
+            $gList.children(that.selector.filter).each(function(i, filter) {
+                that._enableFilter(filter);
+            });
+
+            // enable add filter button
+            $ctrlAddFilter.on('click', function(e) {
+                e.preventDefault();
+
+                var fIndex     = $gList.children(that.selector.filter).length;
+                var fPrototype = $(this).data('prototype');
+
+                var $newFilter = $(fPrototype.replace(/__filter_form_name__/g, fIndex));
+
+                $gList.append($newFilter);
+                that._enableFilter($newFilter);
+            });
+        },
+
+        _enableFilter: function(filter) {
+            // Plugin-scope helper
+            var that = this;
+
+            var $filter = $(filter);
+            var $dismissFilter = $filter.find(that.selector.filterDismiss);
+
+            $dismissFilter.on('click', function(e) {
+                e.preventDefault();
+
+                var nIndex = $filter.prevAll(that.selector.filter).length;
+                var $toUpdate = $filter.nextAll(that.selector.filter);
+
+                $filter.remove();
+
+                $toUpdate.each(function() {
+                    // TODO: FIX Update script (or not fix it at all?)
+                    var pattern = $(this).attr('id');
+                    var replace = that.elementId+'_'+nIndex;
+
+                    $(this).find('[id^="'+pattern+'"]').each(function() {
+                        var oldid = $(this).attr('id');
+                        var newid = oldid.replace(
+                            new RegExp('^'+pattern+'(.*)$', 'g'),
+                            replace+"$1"
+                        );
+                        $(this).attr('id', newid);
+                    });
+
+                    nIndex++;
+                });
             });
         }
+
     };
 
     // You don't need to change something below:

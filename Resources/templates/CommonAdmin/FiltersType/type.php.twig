@@ -22,8 +22,10 @@ class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
         $resolver->setDefaults(array(
             'prototype' => true,
             'options' => array(
-                'filters' => $this->getFilterConfigs()
-            )
+                'filters' => $this->getFilterConfigs(),
+                'translation_domain' => {{ i18n_catalog|default('Admin')|as_php }}
+            ),
+            'translation_domain' => {{ i18n_catalog|default('Admin')|as_php }}
         ));
     }
     
@@ -38,8 +40,9 @@ class {{ builder.YamlKey|ucfirst }}Type extends AbstractType
                 'label': column.label,
                 'translation_domain': i18n_catalog|default('Admin')
             } %}
-            {{ column.name|as_php }} => new FilterConfig(
+            {{ column.label|as_php }} => new FilterConfig(
                 {{ column.name|as_php }},
+                {{ column.label|as_php }},
                 {{ column.filterType|as_php }},
                 {{ column.formType|as_php|convert_as_form(column.formType) }},
                 $this->getFormOption(

@@ -2,36 +2,36 @@
 
 {% block admingenerator_filter_root_widget %}
 {% spaceless %}
-<div id="{{ id }}" class="panel panel-info">
-    <div id="{{ id ~ '_filters_header' }}" class="panel-heading" data-toggle="collapse" data-target="#{{ id ~ '_filters_body' }}">
+<div id="{{ id }}" class="panel panel-info" role="filters">
+    <div class="panel-heading" data-toggle="collapse" data-target="#{{ id ~ '_panel' }}" role="filters-toggle">
         <h3 class="panel-title">
             <i class="fa fa-caret-down fa-fw"></i>
             <i class="fa fa-caret-right fa-fw"></i>
             {{ 'filters.header'|trans }}
         </h3>
     </div>
-    <div id="{{ id ~ '_filters_body' }}" class="collapse in">
+    <div id="{{ id ~ '_panel' }}" class="collapse in" role="filters-panel">
         <div class="panel-body">
             <div class="bs-callout bs-callout-info">
                 <h3 class="fa fa-info-circle pull-left"></h3>
                 {{ 'filters.info'|trans }}
             </div>
-            <div id="{{ id ~ '_filters_root' }}" class="panel-group" data-prototype="{{ form_widget(prototype)|e }}">
+            <div class="panel-group" data-prototype="{{ form_widget(prototype)|e }}" role="filters-root-list">
                 {% for child in form %}
                     {{ form_widget(child) }}
                 {% endfor %}
             </div>
         </div>
-        <div id="{{ id ~ '_filters_footer' }}" class="panel-footer">
+        <div id="{{ id ~ '_footer' }}" class="panel-footer">
             <div class="btn-toolbar">
-                <button id="{{ id ~ '_filters_submit' }}" class="btn btn-sm btn-primary" type="submit">
-                    <i class="fa fa-search"></i> {{ 'filters.submit'|trans }}
+                <button class="btn btn-sm btn-primary" type="submit" role="filters-ctrl-submit">
+                    <i class="fa fa-search"></i> {{ 'filters.ctrl.submit'|trans }}
                 </button>
-                <button id="{{ id ~ '_filters_btn_reset' }}" class="btn btn-sm btn-warning" type="button">
-                    <i class="fa fa-refresh"></i> {{ 'filters.reset'|trans }}
+                <button class="btn btn-sm btn-warning" type="button" role="filters-ctrl-reset">
+                    <i class="fa fa-refresh"></i> {{ 'filters.ctrl.reset'|trans }}
                 </button>
-                <button id="{{ id ~ '_filters_btn_add' }}" class="btn btn-sm btn-success" type="button">
-                    <i class="fa fa-plus"></i> {{ 'filters.add.group'|trans }}
+                <button class="btn btn-sm btn-success" type="button" role="filters-ctrl-add-group">
+                    <i class="fa fa-plus"></i> {{ 'filters.ctrl.add_group'|trans }}
                 </button>
             </div>
         </div>
@@ -49,25 +49,36 @@ jQuery(document).ready(function() {
 {% spaceless %}
 <div id="{{ id }}" class="panel panel-default" role="filters-group">
     <div class="panel-heading">
-        <h4 class="panel-title">
-            <a data-toggle="collapse" href="#{{ id ~ '_list' }}">
-                Grupa <span role="counter">{{ name }}</span>
-            </a>
-            <button type="button" class="close" data-dismiss="filters-group">
+        <h4 class="panel-title" data-toggle="collapse" data-target="#{{ id ~ '_group_panel' }}" role="filters-group-toggle">
+            {{ 'filters.label'|trans }}
+            <button type="button" class="close" data-dismiss="filters-group" role="filters-group-dismiss">
                 <span aria-hidden="true">&times;</span><span class="sr-only">Remove</span>
             </button>
         </h4>
     </div>
-    <div id="#{{ id ~ '_list' }}" class="panel-collapse collapse" role="filters-list">
-        {% for field,prototype in prototypes %}
-            <div role="prototype" data-field="{{ field }}" data-prototype="{{ form_widget(prototype)|e }}"></div>
-        {% endfor %}
-        <div class="panel-body">
-            {#% for item in form %}
-                here display item<br />
+    <div id="#{{ id ~ '_group_panel' }}" class="panel-collapse collapse" role="filters-group-panel">
+        <table class="table">
+            <tbody role="filters-group-list">
+            {% for item in form %}
                 {{ form_widget(item) }}
-            {% endfor %#}
-            Items list :)
+            {% endfor %}  
+            </tbody>
+        </table>
+        <div id="{{ id ~ '_group_footer' }}" class="panel-footer">
+            <div class="btn-toolbar">
+                <div class="pull-right btn-group">
+                    <button type="button" class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-plus"></i> {{ 'filters.ctrl.add_filter'|trans }} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        {% for field,prototype in prototypes %}
+                        <li data-prototype="{{ form_widget(prototype)|e }}" role="filter-prototype">
+                            <a href="#">{{ field|trans({}, translation_domain) }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>    
@@ -77,6 +88,21 @@ jQuery(document).ready(function() {
 
 {% block admingenerator_filter_form_widget %}
 {% spaceless %}
-    Filter form, yay!
+    <tr id="{{ id }}" role="filter">
+        <td class="col-sm-2">
+            {{ fieldLabel|trans({}, translation_domain) }}
+        </td>
+        <td class="col-sm-3">
+            {{ form_widget(form.comparison_operator) }}
+        </td>
+        <td>
+            {{ form_widget(form.value) }}
+        </td>
+        <td>
+            <button type="button" class="close" data-dismiss="filter" role="filter-dismiss">
+                <span aria-hidden="true">&times;</span><span class="sr-only">Remove</span>
+            </button>
+        </td>
+    </tr>
 {% endspaceless %}
 {% endblock admingenerator_filter_form_widget %}

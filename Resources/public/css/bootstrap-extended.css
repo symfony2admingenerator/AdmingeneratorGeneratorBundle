@@ -145,3 +145,11 @@ button:hover > [class*=" fa-"]:before {
     background-color: #dff0d8;
     border-color: #d6e9c6;
 }
+
+/**
+ * Fix for issue:
+ * https://github.com/twbs/bootstrap/issues/12683#issuecomment-36971570
+ */
+.panel-group .panel {
+  overflow: visible;
+}

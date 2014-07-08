@@ -2,33 +2,38 @@
  * Filters builder specific CSS
  */
 
-[id$="_filters_header"] {
+[role="filters-toggle"],
+[role="filters-group-toggle"] {
     cursor: pointer;
 }
 
-[id$="_filters_header"] > h3 > .fa-caret-down,
-[id$="_filters_header"].collapsed > h3 > .fa-caret-right {
+[role="filters-toggle"] > h3 > .fa-caret-down,
+[role="filters-toggle"].collapsed > h3 > .fa-caret-right {
 	display: inline-block;
 }
 
-[id$="_filters_header"] > h3 > .fa-caret-right,
-[id$="_filters_header"].collapsed > h3 > .fa-caret-down {
+[role="filters-toggle"] > h3 > .fa-caret-right,
+[role="filters-toggle"].collapsed > h3 > .fa-caret-down {
 	display: none;
 }
 
-[id$="_filters_body"] > .panel-body > .bs-callout {
+[role="filters-panel"] > .panel-body > .bs-callout {
 	margin-top: 0;
 	margin-bottom: 0;
 }
 
-[id$="_filters_root"] {
+[role="filters-root-list"] {
     margin-bottom: 0 !important;
 }
 
-[id$="_filters_root"] > div:first-of-type {
+[role="filters-group"]:first-of-type {
     margin-top: 20px;
 }
 
-[id$="_filters_list"] > [role="prototype"] {
-    display: none;
+[role="filters-group"] > .panel-collapse > .panel-footer {
+	border-top: 1px solid #ddd;
+}
+
+[role="filters-group-panel"] > table {
+	margin-bottom: 0px;
 }

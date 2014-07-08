@@ -50,7 +50,7 @@
 {% block generic_actions_script %}
 {{ echo_block("generic_actions_script") }}
 {% if builder.Actions is defined and builder.Actions|length > 0 %}
-    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/generic-actions.min.js")') }}"></script>
+    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/generic-actions.js")') }}"></script>
 
     <script type="text/javascript">
     jQuery(document).ready(function() {

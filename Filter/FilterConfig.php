@@ -12,6 +12,8 @@ use Symfony\Component\Form\FormTypeInterface;
 class FilterConfig
 {
     protected $fieldName;
+
+    protected $fieldLabel;
     
     protected $filterType;
     
@@ -21,13 +23,15 @@ class FilterConfig
     
     /**
      * @param string                    $fieldName      Field name
+     * @param string                    $fieldLabel     Field label
      * @param string                    $filterType     Filter type
      * @param string|FormTypeInterface  $formType       Filter form type.
      * @param array                     $formOptions    Filter form options.
      */
-    public function __construct($fieldName, $filterType, $formType, array $formOptions = array())
+    public function __construct($fieldName, $fieldLabel, $filterType, $formType, array $formOptions = array())
     {
         $this->fieldName    = $fieldName;
+        $this->fieldLabel   = $fieldLabel;
         $this->filterType   = $filterType;
         $this->formType     = $formType;
         $this->formOptions  = $formOptions;
@@ -39,6 +43,14 @@ class FilterConfig
     public function getFieldName()
     {
         return $this->fieldName;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getFieldLabel()
+    {
+        return $this->fieldLabel;
     }
     
     /**
