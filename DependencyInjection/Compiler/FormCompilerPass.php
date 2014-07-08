@@ -19,7 +19,8 @@ class FormCompilerPass implements CompilerPassInterface
             if ($twigConfiguration['use_form_resources'] && !$alreadyIn) {
                 $formTemplates = array(
                     'AdmingeneratorGeneratorBundle:Form:fields.html.twig',
-                    'AdmingeneratorGeneratorBundle:Form:filters.html.twig'
+                    'AdmingeneratorGeneratorBundle:Form:filters.html.twig',
+                    'AdmingeneratorGeneratorBundle:Form:filters_js.html.twig'
                 );
                 
                 if (($key = array_search('form_div_layout.html.twig', $resources)) !== false) {

@@ -1,0 +1,11 @@
+{% block admingenerator_filter_root_js %}
+<script type="text/javascript">
+$(document).ready(function() {
+    var $field = $('#{{ id }}');
+
+    {% block admingenerator_filter_root_js_prototype %}
+        $field.agen$filters();
+    {% endblock admingenerator_filter_root_js_prototype %}
+});
+</script>
+{% endblock admingenerator_filter_root_js %}

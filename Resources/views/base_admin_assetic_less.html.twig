@@ -28,6 +28,10 @@
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/blue-theme.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/profile.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('bundles/admingeneratorgenerator/css/bootstrap-extended.css') }}" type="text/css" media="all" />
+
+        {% if form is defined %}
+            {{ form_css(form) }}
+        {% endif %}
     {% endblock %}
 
     {% block icons %}
@@ -76,6 +80,10 @@
     {% block javascripts %}
         <script type="text/javascript" src="{{ asset('components/bootstrap/js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/admingenerator/general.js') }}"></script>
+
+      {% if form is defined %}
+          {{ form_js(form) }}
+      {% endif %}
     {% endblock %}
 
   </body>
