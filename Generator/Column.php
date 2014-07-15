@@ -42,6 +42,8 @@ class Column
 
     protected $localizedTimeFormat;
 
+    protected $options = array();
+
     /** For special columns template */
     protected $extras;
 
@@ -244,5 +246,15 @@ class Column
     public function setCustomView($customView)
     {
         $this->customView = $customView;
+    }
+
+    public function getOptions()
+    {
+        return $this->options;
+    }
+    
+    public function setOptions(array $values)
+    {
+        $this->options = $values;
     }
 }
