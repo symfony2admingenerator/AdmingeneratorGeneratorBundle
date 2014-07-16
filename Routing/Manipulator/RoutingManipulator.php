@@ -60,7 +60,7 @@ class RoutingManipulator extends Manipulator
             if (false !== strpos($current, $routing_name)) {
                 throw new \RuntimeException(sprintf('Bundle "%s" is already imported.', $bundle));
             }
-        } elseif (!is_dir($dir = dirname($this->file))) {
+        } elseif (!is_dir($dir = dirname(realpath($this->file)))) {
             mkdir($dir, 0777, true);
         }
 
