@@ -21,7 +21,11 @@
     // Create the defaults once
     var pluginName = 'agen$filters',
         document = window.document,
-        defaults = {};
+        defaults = {
+            group_prototype: "",
+            html_prototypes: {},
+            js_prototypes: {}
+        };
 
     // The actual plugin constructor
     function Plugin( element, options ) {
@@ -79,11 +83,12 @@
             that.$ctrlAddGroup.on('click', function(e) {
                 e.preventDefault();
 
-                var gIndex = that.$rootList.children(that.selector.group).length;
-                var gPrototype = that.$rootList.data('prototype');
+                var gIndex = that.$rootList.data('index');
+                var gPrototype = that._unescapeHtml(that.options.group_prototype);
                 var $newGroup = $(gPrototype.replace(/__filter_group_name__/g, gIndex));
 
                 that.$rootList.append($newGroup);
+                that.$rootList.data('index', gIndex+1);
                 that._enableGroup($newGroup);
             });
         },
@@ -102,6 +107,8 @@
             var $gPanel         = $group.find(that.selector.groupPanel);
             var $ctrlAddFilter  = $group.find(that.selector.filterPrototype);
             var gIndex          = $group.prevAll(that.selector.group).length;
+            var groupId         = $group.attr('id');
+            var groupName       = $group.attr('name');
 
             // enable collapse toggle
             $gPanel.collapse({
@@ -116,36 +123,7 @@
             // enable dismiss group            
             $gDismiss.on('click', function(e) {
                 e.preventDefault();
-
-                var nIndex = $group.prevAll(that.selector.group).length;
-                var $toUpdate = $group.nextAll(that.selector.group);
-
                 $group.remove();
-
-                $toUpdate.each(function() {
-                    var pattern = $(this).attr('id');
-                    var replace = that.elementId+'_'+nIndex;
-
-                    $(this).find('[id^="'+pattern+'"]').each(function() {
-                        var oldid = $(this).attr('id');
-                        var newid = oldid.replace(
-                            new RegExp('^'+pattern+'(.*)$', 'g'),
-                            replace+"$1"
-                        );
-                        $(this).attr('id', newid);
-                    });
-
-                    $(this).find('[href^="#'+pattern+'"]').each(function() {
-                        var oldhref = $(this).attr('href');
-                        var newhref = oldid.replace(
-                            new RegExp('^#'+pattern+'(.*)$', 'g'),
-                            '#'+replace+"$1"
-                        );
-                        $(this).attr('href', newhref);
-                    });
-
-                    nIndex++;
-                });
             });
 
             // enable filters
@@ -157,12 +135,27 @@
             $ctrlAddFilter.on('click', function(e) {
                 e.preventDefault();
 
-                var fIndex     = $gList.children(that.selector.filter).length;
-                var fPrototype = $(this).data('prototype');
+                var fIndex  = $gList.data('index');
+                var fField  = $(this).data('field');
+                var fHtmlPrototype  = that._unescapeHtml(that.options.html_prototypes[fField]);
+                var fJsPrototype    = that.options.js_prototypes[fField];
 
-                var $newFilter = $(fPrototype.replace(/__filter_form_name__/g, fIndex));
+                var idRegex = new RegExp('id="'+that.elementId, "g");
+                var nameRegex = new RegExp('name="'+that.elementId, "g");
+
+                var $newFilter = $(
+                    fHtmlPrototype
+                        .replace(idRegex, 'id="'+groupId)
+                        .replace(nameRegex, 'name="'+groupName)
+                        .replace(/__filter_form_name__/g, fIndex)
+                );
 
                 $gList.append($newFilter);
+                $gList.data('index', fIndex+1);
+
+                // run prototype js
+                fJsPrototype.call(window, $newFilter.attr('id'));
+
                 that._enableFilter($newFilter);
             });
         },
@@ -176,29 +169,12 @@
 
             $dismissFilter.on('click', function(e) {
                 e.preventDefault();
-
-                var nIndex = $filter.prevAll(that.selector.filter).length;
-                var $toUpdate = $filter.nextAll(that.selector.filter);
-
                 $filter.remove();
-
-                $toUpdate.each(function() {
-                    // TODO: FIX Update script (or not fix it at all?)
-                    var pattern = $(this).attr('id');
-                    var replace = that.elementId+'_'+nIndex;
-
-                    $(this).find('[id^="'+pattern+'"]').each(function() {
-                        var oldid = $(this).attr('id');
-                        var newid = oldid.replace(
-                            new RegExp('^'+pattern+'(.*)$', 'g'),
-                            replace+"$1"
-                        );
-                        $(this).attr('id', newid);
-                    });
-
-                    nIndex++;
-                });
             });
+        },
+
+        _unescapeHtml: function(safe) {
+            return $('<div />').html(safe).text();
         }
 
     };

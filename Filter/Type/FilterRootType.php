@@ -34,6 +34,56 @@ class FilterRootType extends AbstractType
         ));
     }
     
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $filters = $options['options']['filters'];
+        $filterPrototypeName = '__filter_form_name__';
+        $filterOptions = array('label' => $filterPrototypeName.'label__');
+
+        // build filter prototypes
+        $builder->setAttribute('prototypes', $this->getPrototypeForms(
+            $builder,
+            $filters,
+            $filterPrototypeName,
+            $filterOptions
+        ));
+    }
+    
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        // the "prototype" var holds group form prototype
+        // while the "prototypes" var is an associative array
+        // of fieldName => filterPrototype pairs
+        $view->vars['prototypes'] = array_map(
+            function($form) use ($view) {
+                return $form->createView($view);
+            }, 
+            $form->getConfig()->getAttribute('prototypes')
+        );
+    }
+
+    /**
+     * Get prototype forms. 
+     *
+     * @param FormBuilderInterface  $builder    The builder.
+     * @param FilterConfig[]        $filters    An array of FilterConfig instances.
+     * @param string                $name       Prototype name.
+     * @param array                 $options    Prototype options.
+     *
+     * @return FormInterface[]      An array of FormInterface instances.
+     */
+    private function getPrototypeForms(FormBuilderInterface $builder, array $filters, $name, $options)
+    {
+        $forms = array();
+
+        foreach ($filters as $field => $filter) {
+            $prototype = $builder->create($name, new FilterFormType($filter), $options);
+            $forms[$field] = $prototype->getForm();
+        }
+
+        return $forms;
+    }
+    
     public function getParent()
     {
         return 'collection';

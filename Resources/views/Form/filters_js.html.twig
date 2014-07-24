@@ -1,11 +1,33 @@
 {% block admingenerator_filter_root_js %}
+{% spaceless %}
 <script type="text/javascript">
 jQuery(document).ready(function($) {
     var $field = $('#{{ id }}');
 
     {% block admingenerator_filter_root_js_prototype %}
-        $field.agen$filters();
+        $field.agen$filters({
+            group_prototype: "{{ form_widget(prototype)|e }}",
+        	html_prototypes: {
+        		{% for field,prototype in prototypes %}
+                "{{ field }}": "{{ form_widget(prototype)|e }}"{% if not loop.last %},{% endif %}
+        		{% endfor %}
+        	},
+        	js_prototypes: {
+                {% for field,prototype in prototypes %}
+                "{{ field }}": function(filterId) {
+                    var $field;
+                    // enable comparison operator field js
+                    $field = $('#'+filterId+'_comparison_operator');
+                    {{ form_js(prototype.comparison_operator, true) }}
+                    // enable value field js
+                    $field = $('#'+filterId+'_value');
+                    {{ form_js(prototype.value, true) }}
+                }{% if not loop.last %},{% endif %}
+                {% endfor %}
+            }
+        });
     {% endblock admingenerator_filter_root_js_prototype %}
 });
 </script>
+{% endspaceless %}
 {% endblock admingenerator_filter_root_js %}

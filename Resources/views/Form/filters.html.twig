@@ -16,7 +16,7 @@
                 <h3 class="fa fa-info-circle pull-left"></h3>
                 {{ 'filters.info'|trans }}
             </div>
-            <div class="panel-group" data-prototype="{{ form_widget(prototype)|e }}" role="filters-root-list">
+            <div class="panel-group" role="filters-root-list" data-index="{{ form|length }}">
                 {% for child in form %}
                     {{ form_widget(child) }}
                 {% endfor %}
@@ -42,10 +42,10 @@
 
 {% block admingenerator_filter_group_widget %}
 {% spaceless %}
-<div id="{{ id }}" class="panel panel-default" role="filters-group">
+<div id="{{ id }}" name="{{ full_name }}" class="panel panel-default" role="filters-group">
     <div class="panel-heading">
         <h4 class="panel-title" data-toggle="collapse" data-target="#{{ id ~ '_group_panel' }}" role="filters-group-toggle">
-            {{ 'filters.label'|trans }}
+            {{- 'filters.label'|trans -}}
             <button type="button" class="close" data-dismiss="filters-group" role="filters-group-dismiss">
                 <span aria-hidden="true">&times;</span><span class="sr-only">Remove</span>
             </button>
@@ -53,7 +53,7 @@
     </div>
     <div id="#{{ id ~ '_group_panel' }}" class="panel-collapse collapse" role="filters-group-panel">
         <table class="table">
-            <tbody role="filters-group-list">
+            <tbody role="filters-group-list" data-index="{{ form|length }}">
             {% for item in form %}
                 {{ form_widget(item) }}
             {% endfor %}  
@@ -66,8 +66,8 @@
                         <i class="fa fa-plus"></i> {{ 'filters.ctrl.add_filter'|trans }} <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        {% for field,prototype in prototypes %}
-                        <li data-prototype="{{ form_widget(prototype)|e }}" role="filter-prototype">
+                        {% for field in fields %}
+                        <li data-field="{{ field }}" role="filter-prototype">
                             <a href="#">{{ field|trans({}, translation_domain) }}</a>
                         </li>
                         {% endfor %}
@@ -76,8 +76,7 @@
             </div>
         </div>
     </div>
-</div>    
-    
+</div>
 {% endspaceless %}
 {% endblock admingenerator_filter_group_widget %}
 
@@ -85,13 +84,13 @@
 {% spaceless %}
     <tr id="{{ id }}" role="filter">
         <td class="col-sm-2">
-            {{ fieldLabel|trans({}, translation_domain) }}
+            {{- fieldLabel|trans({}, translation_domain) -}}
         </td>
         <td class="col-sm-3">
-            {{ form_widget(form.comparison_operator) }}
+            {{- form_widget(form.comparison_operator) -}}
         </td>
         <td>
-            {{ form_widget(form.value) }}
+            {{- form_widget(form.value) -}}
         </td>
         <td>
             <button type="button" class="close" data-dismiss="filter" role="filter-dismiss">
