@@ -30,29 +30,6 @@
     }
 {% endblock %}
 
-{% block getFilterForm -%}
-    protected function getFilterForm()
-    {
-        $filters = $this->getFilters();
-
-        {%- for filter in builder.filters.display -%}
-            {%- if 'entity' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
-
-        if (isset($filters['{{ filter }}'])) {
-            $this->getDoctrine()->getManagerForClass('{{ model }}')->getUnitOfWork()->registerManaged($filters['{{ filter }}'], array('id' => $filters['{{ filter }}']->getId()), array());
-        }
-
-            {%- endif %}
-
-        {% endfor -%}
-
-        $type = new FiltersType();
-        $type->setSecurityContext($this->get('security.context'));
-
-        return $this->createForm($type, $filters);
-    }
-{% endblock %}
-
 {% block addJoinFor -%}
     protected function addJoinFor($table, $query)
     {

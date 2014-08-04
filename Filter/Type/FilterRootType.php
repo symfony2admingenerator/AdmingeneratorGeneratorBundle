@@ -2,6 +2,7 @@
 
 namespace Admingenerator\GeneratorBundle\Filter\Type;
 
+use Admingenerator\GeneratorBundle\Filter\FilterConfig;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
@@ -13,32 +14,14 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class FilterRootType extends AbstractType
 {
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'type'              => 'admingenerator_filter_group',
-            'allow_add'         => true,
-            'allow_delete'      => true,
-            'prototype'         => true,
-            'prototype_name'    => '__filter_group_name__',
-            'options'           => array(
-                'filters' => array()
-            )
-        ));
-        
-        $resolver->setAllowedValues(array(
-            'type'          => array('admingenerator_filter_group'),
-            'allow_add'     => array(true),
-            'allow_delete'  => array(true),
-            'prototype'     => array(true)
-        ));
-    }
-    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $filters = $options['options']['filters'];
+        $filters = $options['options']['options']['filters'];
         $filterPrototypeName = '__filter_form_name__';
-        $filterOptions = array('label' => $filterPrototypeName.'label__');
+        $filterOptions = array(
+            'label'     => $filterPrototypeName.'label__',
+            'filters'   => $filters
+        );
 
         // build filter prototypes
         $builder->setAttribute('prototypes', $this->getPrototypeForms(
@@ -62,22 +45,40 @@ class FilterRootType extends AbstractType
         );
     }
 
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'type'              => 'admingenerator_filter_group',
+            'allow_add'         => true,
+            'allow_delete'      => true,
+            'prototype'         => true,
+            'prototype_name'    => '__filter_group_name__',
+        ));
+        
+        $resolver->setAllowedValues(array(
+            'type'          => array('admingenerator_filter_group'),
+            'allow_add'     => array(true),
+            'allow_delete'  => array(true),
+            'prototype'     => array(true),
+        ));
+    }
+
     /**
      * Get prototype forms. 
      *
      * @param FormBuilderInterface  $builder    The builder.
-     * @param FilterConfig[]        $filters    An array of FilterConfig instances.
+     * @param array                 $configs    Filter configs.
      * @param string                $name       Prototype name.
      * @param array                 $options    Prototype options.
      *
      * @return FormInterface[]      An array of FormInterface instances.
      */
-    private function getPrototypeForms(FormBuilderInterface $builder, array $filters, $name, $options)
+    private function getPrototypeForms(FormBuilderInterface $builder, $filters, $name, $options)
     {
         $forms = array();
 
-        foreach ($filters as $field => $filter) {
-            $prototype = $builder->create($name, new FilterFormType($filter), $options);
+        foreach ($filters as $field => $config) {
+            $prototype = $builder->create($name, new FilterItemType($field), $options);
             $forms[$field] = $prototype->getForm();
         }
 

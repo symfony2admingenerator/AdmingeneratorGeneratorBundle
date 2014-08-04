@@ -48,63 +48,76 @@ class BaseBuilder extends GenericBaseBuilder
 
     protected function findColumns()
     {
-        foreach ($this->getDisplayAsColumns() as $columnName) {
-            $column = new $this->columnClass($columnName);
+        foreach ($this->getDisplayColumns() as $columnName) {
+            $column = $this->createColumn($columnName);
 
-            $column->setDbType(
+            //Set the user parameters
+            $this->setUserColumnConfiguration($column);
+            $this->addColumn($column);
+        }
+    }
+
+    /**
+     * Creates new column instance
+     * 
+     * @param  string $columnName The name of the column.
+     * @param  string $builder    The builder name for which column is created.
+     * @return Admingenerator\GeneratorBundle\Generator\Column
+     */
+    protected function createColumn($columnName)
+    {
+        $column = new $this->columnClass($columnName);
+
+        $column->setDbType(
+            $this->getFieldOption(
+                $column,
+                'dbType',
+                $this->getFieldGuesser()->getDbType(
+                    $this->getVariable('model'),
+                    $columnName
+                )
+            )
+        );
+
+        $column->setSortType($this->getFieldGuesser()->getSortType($column->getDbType()));
+        
+        if (in_array($this->getYamlKey(), array('new', 'edit', 'list', 'filters'))) {
+            $column->setFormType(
                 $this->getFieldOption(
                     $column,
-                    'dbType',
-                    $this->getFieldGuesser()->getDbType(
-                        $this->getVariable('model'),
+                    'formType',
+                    $this->getFieldGuesser()->getFormType(
+                        $column->getDbType(),
+                        $columnName
+                    )
+                )
+            );
+            
+            $column->setFilterType(
+                $this->getFieldOption(
+                    $column,
+                    'filterType',
+                    $this->getFieldGuesser()->getFilterType(
+                        $column->getDbType(),
                         $columnName
                     )
                 )
             );
 
-            $column->setSortType($this->getFieldGuesser()->getSortType($column->getDbType()));
-            
-            if (in_array($this->getYamlKey(), array('new', 'edit', 'filters'))) {
-
-                $column->setFormType(
-                    $this->getFieldOption(
-                        $column,
-                        'formType',
-                        $this->getFieldGuesser()->getFormType(
-                            $column->getDbType(),
-                            $columnName
-                        )
+            $column->setFormOptions(
+                $this->getFieldOption(
+                    $column,
+                    'formOptions',
+                    $this->getFieldGuesser()->getFormOptions(
+                        $column->getFormType(),
+                        $column->getDbType(),
+                        $columnName
                     )
-                );
-                
-                $column->setFilterType(
-                    $this->getFieldOption(
-                        $column,
-                        'filterType',
-                        $this->getFieldGuesser()->getFilterType(
-                            $column->getDbType(),
-                            $columnName
-                        )
-                    )
-                );
-
-                $column->setFormOptions(
-                    $this->getFieldOption(
-                        $column,
-                        'formOptions',
-                        $this->getFieldGuesser()->getFormOptions(
-                            $column->getFormType(),
-                            $column->getDbType(),
-                            $columnName
-                        )
-                    )
-                );
-            }
-            //Set the user parameters
-            $this->setUserColumnConfiguration($column);
-
-            $this->addColumn($column);
+                )
+            );
         }
+
+        return $column;
     }
 
     protected function getColumnClass()
@@ -146,12 +159,11 @@ class BaseBuilder extends GenericBaseBuilder
         return $this->getGenerator()->getFieldGuesser();
     }
 
+
     /**
-     * Extract from the displays arrays of fieldset to keep only columns
-     *
-     * @return array
+     * @return array Display column names
      */
-    protected function getDisplayAsColumns()
+    protected function getDisplayColumns()
     {
         $display = $this->getVariable('display');
 

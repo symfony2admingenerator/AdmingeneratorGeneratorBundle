@@ -6,6 +6,14 @@ abstract class BaseQueryFilter implements QueryFilterInterface
 {
     protected $query;
 
+    protected $prefix = 'query_filter_param_';
+
+    protected $count = 0;
+
+    protected $filtersMap = array();
+
+    protected $primaryKeysMap = array();
+
     /**
      * (non-PHPdoc)
      * @see GeneratorBundle\QueryFilter.QueryFilterInterface::setQuery()
@@ -26,27 +34,57 @@ abstract class BaseQueryFilter implements QueryFilterInterface
 
     /**
      * (non-PHPdoc)
-     * @see \GeneratorBundle\QueryFilter.QueryFilterInterface::addDefaultFilter()
+     * @see GeneratorBundle\QueryFilter.QueryFilterInterface::setPrefix()
      */
-    public function addDefaultFilter($field, $value)
+    public function setPrefix($prefix)
     {
-        throw new \LogicException('No method defined to execute this type of filters');
+        $this->prefix = $prefix;
     }
 
     /**
-     *
-     * By default we call addDefaultFilter
-     *
-     * @param $name
-     * @param $values
+     * (non-PHPdoc)
+     * @see GeneratorBundle\QueryFilter.QueryFilterInterface::setFiltersMap()
      */
-    public function __call($name, $values = array())
+    public function setFiltersMap(array $filtersMap)
     {
-        if (preg_match('/add(.+)Filter/', $name)) {
-            $this->addDefaultFilter($values[0], $values[1]);
-        }
+        $this->filtersMap = $filtersMap;
     }
 
+    /**
+     * (non-PHPdoc)
+     * @see GeneratorBundle\QueryFilter.QueryFilterInterface::setPrimaryKeysMap()
+     */
+    public function setPrimaryKeysMap(array $primaryKeysMap)
+    {
+        $this->primaryKeysMap = $primaryKeysMap;
+    }
+
+    /**
+     * (non-PHPdoc)
+     * @see GeneratorBundle\QueryFilter.QueryFilterInterface::getParamName()
+     */
+    public function getParamName()
+    {
+        return $this->prefix.$this->count++;
+    }
+
+    /**
+     * (non-PHPdoc)
+     * @see GeneratorBundle\QueryFilter.QueryFilterInterface::formatValue()
+     */
+    public function formatValue($value, $operator, $field)
+    {
+        throw new \LogicException('Not implemented.');
+    }
+
+    /**
+     * Format date.
+     * 
+     * @param  mixed    $date   The date to format.
+     * @param  string   $format The format.
+     * 
+     * @return string The formatted date.
+     */
     protected function formatDate($date, $format)
     {
         if (!($date instanceof \DateTime)) {
@@ -58,5 +96,29 @@ abstract class BaseQueryFilter implements QueryFilterInterface
         }
 
         return $date;
+    }
+
+    /**
+     * Get filter for field.
+     *
+     * @param string $field The field name.
+     *
+     * @return string The filter.
+     */
+    protected function getFilterFor($field)
+    {
+        return $this->filtersMap[$field];
+    }
+
+    /**
+     * Get primary key for field.
+     *
+     * @param string $field The field name.
+     *
+     * @return string The primary key.
+     */
+    protected function getPrimaryKeyFor($field)
+    {
+        return $this->primaryKeysMap[$field];
     }
 }

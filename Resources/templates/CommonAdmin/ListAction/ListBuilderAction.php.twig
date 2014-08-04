@@ -13,6 +13,8 @@ namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.gene
 
 {{- block('security_use') }}
 
+{{- block('filters_use') }}
+
 {{- block('csrf_protection_use') }}
 
 use {{ builder.generator.baseController }} as BaseController;
@@ -71,21 +73,14 @@ class ListController extends BaseController
     }
     {% endblock %}
 
-    {% block getFilterForm -%}
-    protected function getFilterForm()
-    {
-        // ORM JOB
-    }
-    {% endblock %}
-
     {% block addJoinFor -%}
     protected function addJoinFor($table, $query)
     {
         // ORM JOB
     }
     {% endblock %}
-
-    {% block processFilters -%}
+    
+    {% block processFilters %}
     protected function processFilters($query)
     {
         // ORM JOB
@@ -99,21 +94,13 @@ class ListController extends BaseController
     }
     {% endblock %}
 
-    {{ block('csrf_check_token') }}
-
-    protected function getFiltersType()
-    {
-        $type = new FiltersType();
-        $type->setSecurityContext($this->get('security.context'));
-
-        return $type;
-    }
-
     {% block getQueryFilter -%}
     protected function getQueryFilter()
     {
         // ORM JOB
     }
     {% endblock %}
+
+    {{ block('csrf_check_token') }}
 
 }

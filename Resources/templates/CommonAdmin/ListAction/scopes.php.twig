@@ -4,12 +4,12 @@
         if ($this->get('request')->get('reset')) {
             $this->setScopes(array());
 
-            return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
+            return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? '_' ~ builder.BaseGeneratorName : '') ~ '_list' }}"));
         }
 
         $this->setScope($this->get('request')->get('group'), $this->get('request')->get('scope'));
 
-        return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder }}_{{ bundle_name }}{{ builder.BaseGeneratorName ? "_" ~ builder.BaseGeneratorName : "" }}_list"));
+        return new RedirectResponse($this->generateUrl("{{ builder.routePrefixWithSubfolder ~ '_' ~ bundle_name ~ (builder.BaseGeneratorName ? '_' ~ builder.BaseGeneratorName : '') ~ '_list' }}"));
     }
 
     /**
@@ -45,13 +45,13 @@
         $scopes = array();
 
         {% if scopes is defined -%}
-        {%- for groupName, group in scopes %}
+        {%- for groupName, group in scopes -%}
         $scopes['{{ groupName }}'] = '';
 
         {% for scopeName, params in group -%}
-            {%- if params["default"] is defined %}
+            {%- if params["default"] is defined -%}
             $scopes['{{ groupName }}'] = '{{ scopeName }}';
-            {% endif -%}
+            {%- endif -%}
         {%- endfor -%}
         {%- endfor -%}
         {%- endif %}

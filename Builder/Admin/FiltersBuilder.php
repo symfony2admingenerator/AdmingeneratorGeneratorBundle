@@ -18,4 +18,18 @@ class FiltersBuilder extends BaseBuilder
     {
         return 'filters';
     }
+
+    /**
+     * @return array Display column names
+     */
+    protected function getDisplayColumns()
+    {
+        $display = $this->getVariable('display');
+
+        if (null === $display) {
+            $display = $this->getAllFields();
+        }
+
+        return $display;
+    }
 }

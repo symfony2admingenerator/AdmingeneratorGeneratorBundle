@@ -1,8 +1,55 @@
-# Boolean filter
-boolean:
-    yes:        Sí
-    no:         No
-    yes_or_no:  Sí o No
+# Filters
+filters:
+    header:     Filters
+    label:      Criteria group
+    info:       The filtered results will match at least one group of criteria.
+    ctrl:
+        submit:         Filter
+        reset:          Reset
+        add_group:      Add group
+        add_filter:     Add filter
+        remove:         Remove
+    boolean:
+        equal:                  Is
+    date:
+        equal:                  Equal
+        not_equal:              Not equal
+        greater_than:           Greater than
+        greater_than_equal:     Greater than or equal
+        less_than:              Less than
+        less_than_equal:        Less than or equal
+    time:
+        equal:                  Equal
+        not_equal:              Not equal
+        greater_than:           Greater than
+        greater_than_equal:     Greater than or equal
+        less_than:              Less than
+        less_than_equal:        Less than or equal
+    datetime:
+        equal:                  Equal
+        not_equal:              Not equal
+        greater_than:           Greater than
+        greater_than_equal:     Greater than or equal
+        less_than:              Less than
+        less_than_equal:        Less than or equal
+    number:
+        equal:                  Equal
+        not_equal:              Not equal
+        greater_than:           Greater than
+        greater_than_equal:     Greater than or equal
+        less_than:              Less than
+        less_than_equal:        Less than or equal
+    text:
+        equal:                  Equal
+        not_equal:              Not equal
+        like:                   Like
+        not_like:               Not like
+    collection:
+        contains:               Contains
+        not_contains:           Not contains
+    model:
+        equal:                  Equal
+        not_equal:              Not equal
 
 # Pager
 pagerfanta:

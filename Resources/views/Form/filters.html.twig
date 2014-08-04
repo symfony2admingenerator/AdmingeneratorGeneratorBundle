@@ -47,7 +47,7 @@
         <h4 class="panel-title" data-toggle="collapse" data-target="#{{ id ~ '_group_panel' }}" role="filters-group-toggle">
             {{- 'filters.label'|trans -}}
             <button type="button" class="close" data-dismiss="filters-group" role="filters-group-dismiss">
-                <span aria-hidden="true">&times;</span><span class="sr-only">Remove</span>
+                <span aria-hidden="true">&times;</span><span class="sr-only">{{ 'filters.ctrl.remove'|trans }}</span>
             </button>
         </h4>
     </div>
@@ -66,9 +66,9 @@
                         <i class="fa fa-plus"></i> {{ 'filters.ctrl.add_filter'|trans }} <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        {% for field in fields %}
+                        {% for field,label in fields %}
                         <li data-field="{{ field }}" role="filter-prototype">
-                            <a href="#">{{ field|trans({}, translation_domain) }}</a>
+                            <a href="#">{{ label|trans({}, translation_domain) }}</a>
                         </li>
                         {% endfor %}
                     </ul>
@@ -80,23 +80,24 @@
 {% endspaceless %}
 {% endblock admingenerator_filter_group_widget %}
 
-{% block admingenerator_filter_form_widget %}
+{% block admingenerator_filter_item_widget %}
 {% spaceless %}
     <tr id="{{ id }}" role="filter">
         <td class="col-sm-2">
-            {{- fieldLabel|trans({}, translation_domain) -}}
+            {{- field_label|trans({}, translation_domain) -}}
+            {{- form_widget(form.field) -}}
         </td>
         <td class="col-sm-3">
-            {{- form_widget(form.comparison_operator) -}}
+            {{- form_widget(form.operator) -}}
         </td>
         <td>
             {{- form_widget(form.value) -}}
         </td>
         <td>
             <button type="button" class="close" data-dismiss="filter" role="filter-dismiss">
-                <span aria-hidden="true">&times;</span><span class="sr-only">Remove</span>
+                <span aria-hidden="true">&times;</span><span class="sr-only">{{ 'filters.ctrl.remove'|trans }}</span>
             </button>
         </td>
     </tr>
 {% endspaceless %}
-{% endblock admingenerator_filter_form_widget %}
+{% endblock admingenerator_filter_item_widget %}

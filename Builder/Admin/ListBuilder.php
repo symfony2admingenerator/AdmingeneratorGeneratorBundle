@@ -17,6 +17,8 @@ class ListBuilder extends BaseBuilder
 
     protected $filter_columns;
 
+    protected $scope_columns;
+
     /**
      * (non-PHPdoc)
      * @see Admingenerator\GeneratorBundle\Builder.BaseBuilder::getYamlKey()
@@ -27,17 +29,13 @@ class ListBuilder extends BaseBuilder
     }
 
     /**
-     * Find filters parameters informations
+     * Find filters parameters
      */
     public function getFilters()
     {
         return $this->getGenerator()->getFromYaml('builders.filters.params');
     }
 
-    /**
-     * Return a list of action from builders.filters.params
-     * @return array
-     */
     public function getFilterColumns()
     {
         if (0 === count($this->filter_columns)) {
@@ -47,77 +45,91 @@ class ListBuilder extends BaseBuilder
         return $this->filter_columns;
     }
 
-    protected function addFilterColumn(Column $column)
-    {
-        $this->filter_columns[$column->getName()] = $column;
-    }
-
-
     protected function findFilterColumns()
     {
-        $filters = $this->getFilters();
-
-        if (!isset($filters['display']) || is_null($filters['display'])) {
-            $filters['display'] = $this->getAllFields();
-        }
-
-        foreach ($filters['display'] as $columnName) {
-            $column = new Column($columnName);
-
-            $column->setDbType(
-                $this->getFieldOption(
-                    $column,
-                    'dbType',
-                    $this->getFieldGuesser()->getDbType(
-                        $this->getVariable('model'),
-                        $columnName
-                    )
-                )
-            );
-
-            $column->setSortType($this->getFieldGuesser()->getSortType($column->getDbType()));
-            
-            if (in_array($this->getYamlKey(), array('new', 'edit', 'filters'))) {
-
-                $column->setFormType(
-                    $this->getFieldOption(
-                        $column,
-                        'formType',
-                        $this->getFieldGuesser()->getFormType(
-                            $column->getDbType(),
-                            $columnName
-                        )
-                    )
-                );
-                
-                $column->setFilterType(
-                    $this->getFieldOption(
-                        $column,
-                        'filterType',
-                        $this->getFieldGuesser()->getFilterType(
-                            $column->getDbType(),
-                            $columnName
-                        )
-                    )
-                );
-
-                $column->setFormOptions(
-                    $this->getFieldOption(
-                        $column,
-                        'formOptions',
-                        $this->getFieldGuesser()->getFormOptions(
-                            $column->getFormType(),
-                            $column->getDbType(),
-                            $columnName
-                        )
-                    )
-                );
-            }
+        foreach ($this->getFiltersDisplayColumns() as $columnName) {
+            $column = $this->createColumn($columnName);
 
             // Set the user parameters
             $this->setUserColumnConfiguration($column);
             $this->addFilterColumn($column);
         }
+    }
+
+    /**
+     * @return array Filters display column names
+     */
+    protected function getFiltersDisplayColumns()
+    {
+        $display = $this->getGenerator()->getFromYaml('builders.filters.params.display', array());
+
+        if (null === $display) {
+            $display = $this->getAllFields();
+        }
+
+        return $display;
+    }
+
+    protected function addFilterColumn(Column $column)
+    {
+        $this->filter_columns[$column->getName()] = $column;
+    }
+
+    /**
+     * Find scopes parameters
+     */
+    public function getScopes()
+    {
+        return $this->getGenerator()->getFromYaml('builders.list.params.scopes');
+    }
+
+    /**
+     * @return array
+     */
+    public function getScopeColumns()
+    {
+        if (0 === count($this->scope_columns)) {
+            $this->findScopeColumns();
+        }
+
+        return $this->scope_columns;
+    }
+
+    protected function findScopeColumns()
+    {
+        foreach ($this->getScopesDisplayColumns() as $columnName) {
+            $column = $this->createColumn($columnName);
+
+            // Set the user parameters
+            $this->setUserColumnConfiguration($column);
+            $this->addScopeColumn($column);
+        }
+    }
+
+    /**
+     * @return array Scopes display column names
+     */
+    protected function getScopesDisplayColumns()
+    {
+        $scopeGroups = $this->getGenerator()->getFromYaml('builders.list.params.scopes', array());
+        $scopeColumns = array();
+
+        foreach ($scopeGroups as $scopeGroup) {
+            foreach ($scopeGroup as $scopeFilter) {
+                if (array_key_exists('filters', $scopeFilter) && is_array($scopeFilter['filters'])) {
+                    foreach ($scopeFilter['filters'] as $field => $value) {
+                        $scopeColumns[] = $field;
+                    }
+                }
+            }
+        }
+
+        return $scopeColumns;
+    }
+
+    protected function addScopeColumn(Column $column)
+    {
+        $this->scope_columns[$column->getName()] = $column;
     }
 
     /**

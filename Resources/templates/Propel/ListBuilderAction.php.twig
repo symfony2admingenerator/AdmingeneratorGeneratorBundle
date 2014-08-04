@@ -36,15 +36,6 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
     }
 {% endblock %}
 
-{% block getFilterForm -%}
-    protected function getFilterForm()
-    {
-        $filters = $this->getFilters();
-        {# Don't we should handle "relations" for Propel too? #}
-        return $this->createForm($this->getFiltersType(), $this->getFilters());
-    }
-{% endblock %}
-
 {% block addJoinFor -%}
     protected function addJoinFor($table, $query)
     {
@@ -55,15 +46,15 @@ use Pagerfanta\Adapter\PropelAdapter as PagerAdapter;
 {% block processFilters -%}
     protected function processFilters($query)
     {
-        $filterObject = $this->getFilters();
+        $filtersData = $this->getFilters();
 
         $queryFilter = $this->getQueryFilter();
         $queryFilter->setQuery($query);
 
         {% for filter in builder.filterColumns %}
 
-        if (isset($filterObject['{{ filter.name }}']) && null !== $filterObject['{{ filter.name }}']) {
-            $queryFilter->add{{ filter.dbType|lower|classify }}Filter('{{ filter.filterOn }}', $filterObject['{{ filter.name }}']);
+        if (isset($filtersData['{{ filter.name }}']) && null !== $filtersData['{{ filter.name }}']) {
+            $queryFilter->add{{ filter.dbType|lower|classify }}Filter('{{ filter.filterOn }}', $filtersData['{{ filter.name }}']);
         }
         {% endfor %}
 

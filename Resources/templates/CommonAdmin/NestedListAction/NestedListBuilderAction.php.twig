@@ -51,13 +51,6 @@ class ListController extends BaseController
     }
     {% endblock %}
 
-    {% block getFilterForm -%}
-    protected function getFilterForm()
-    {
-        // ORM JOB
-    }
-    {% endblock %}
-
     {% block addJoinFor -%}
     protected function addJoinFor($table, $query)
     {
@@ -87,4 +80,9 @@ class ListController extends BaseController
     {% endblock %}
 
     {{ block('csrf_check_token') }}
+
+    protected function getFilterForm()
+    {
+        return $this->createForm($this->getFiltersType(), $this->getFilters());
+    }
 }

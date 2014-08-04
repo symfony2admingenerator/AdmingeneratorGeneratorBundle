@@ -204,38 +204,6 @@ class DoctrineORMFieldGuesser extends ContainerAware
         return false;
     }
 
-    public function getFilterOptions($formType, $dbType, $ColumnName)
-    {
-        $options = array('required' => false);
-
-        if ('boolean' == $dbType) {
-            $options['choices'] = array(
-               0 => $this->container->get('translator')
-                        ->trans('boolean.no', array(), 'Admingenerator'),
-               1 => $this->container->get('translator')
-                        ->trans('boolean.yes', array(), 'Admingenerator')
-            );
-            $options['empty_value'] = $this->container->get('translator')
-                ->trans('boolean.yes_or_no', array(), 'Admingenerator');
-        }
-
-        if (preg_match("#^entity#i", $formType) || preg_match("#entity$#i", $formType)) {
-            return array_merge(
-                $this->getFormOptions($formType, $dbType, $ColumnName),
-                $options
-            );
-        }
-
-        if (preg_match("#^collection#i", $formType) || preg_match("#collection$#i", $formType)) {
-            return array_merge(
-                $this->getFormOptions($formType, $dbType, $ColumnName),
-                $options
-            );
-        }
-
-        return $options;
-    }
-
     /**
      * Find the pk name
      */

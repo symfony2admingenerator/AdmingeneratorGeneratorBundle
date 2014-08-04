@@ -8,8 +8,9 @@ filters:
         reset:          Reset
         add_group:      Add group
         add_filter:     Add filter
+        remove:         Remove
     boolean:
-        is:                     Is
+        equal:                  Is
     date:
         equal:                  Equal
         not_equal:              Not equal
@@ -31,7 +32,7 @@ filters:
         greater_than_equal:     Greater than or equal
         less_than:              Less than
         less_than_equal:        Less than or equal
-    numeric:
+    number:
         equal:                  Equal
         not_equal:              Not equal
         greater_than:           Greater than

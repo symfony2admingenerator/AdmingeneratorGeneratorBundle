@@ -44,6 +44,8 @@ class Column
 
     protected $localizedTimeFormat;
 
+    protected $primaryKey;
+
     /** For special columns template */
     protected $extras;
 
@@ -256,5 +258,15 @@ class Column
     public function setCustomView($customView)
     {
         $this->customView = $customView;
+    }
+
+    public function setPrimaryKey($primaryKey)
+    {
+        $this->primaryKey = $primaryKey;
+    }
+
+    public function getPrimaryKey()
+    {
+        return $this->primaryKey;
     }
 }

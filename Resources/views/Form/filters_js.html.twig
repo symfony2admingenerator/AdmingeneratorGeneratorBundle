@@ -8,17 +8,17 @@ jQuery(document).ready(function($) {
         $field.agen$filters({
             group_prototype: "{{ form_widget(prototype)|e }}",
         	html_prototypes: {
-        		{% for field,prototype in prototypes %}
-                "{{ field }}": "{{ form_widget(prototype)|e }}"{% if not loop.last %},{% endif %}
+        		{% for fieldName,prototype in prototypes %}
+                "{{ fieldName }}": "{{ form_widget(prototype)|e }}"{% if not loop.last %},{% endif %}
         		{% endfor %}
         	},
         	js_prototypes: {
-                {% for field,prototype in prototypes %}
-                "{{ field }}": function(filterId) {
+                {% for fieldName,prototype in prototypes %}
+                "{{ fieldName }}": function(filterId) {
                     var $field;
-                    // enable comparison operator field js
-                    $field = $('#'+filterId+'_comparison_operator');
-                    {{ form_js(prototype.comparison_operator, true) }}
+                    // enable operator field js
+                    $field = $('#'+filterId+'_operator');
+                    {{ form_js(prototype.operator, true) }}
                     // enable value field js
                     $field = $('#'+filterId+'_value');
                     {{ form_js(prototype.value, true) }}

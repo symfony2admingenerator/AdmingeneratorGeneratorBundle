@@ -1,6 +1,6 @@
 {% block list_filters %}
 {{ echo_block('list_filters') }}
-{% if builder.columns|length > 0 %}
+{% if builder.filterColumns|length > 0 %}
 	<script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/filters.js")') }}"></script>
 
     <div class="row-fluid">

@@ -2,10 +2,9 @@
 
 namespace Admingenerator\GeneratorBundle\Filter\EventListener;
 
-use Admingenerator\GeneratorBundle\Filter\FilterConfig;
-use Admingenerator\GeneratorBundle\Filter\Type\FilterFormType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -13,23 +12,30 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class FilterItemSubscriber implements EventSubscriberInterface
 {
-    protected $filterConfigs;
+    protected $filters;
+
+    protected $prototypeFieldName;
     
     /**
-     * @param FilterConfig[] $filterConfigsAn array FilterConfig instances with fieldName keys for easy access.
+     * @param array         $filters            An array of filter configurations.
+     * @param string|null   $prototypeFieldName Prototype field name (optional).
      */
-    public function __construct(array $filterConfigs = array())
+    public function __construct(array $filters, $prototypeFieldName = null)
     {
-        $this->filterConfigs = $filterConfigs;
+        $this->filters              = $filters;
+        $this->prototypeFieldName   = $prototypeFieldName;
     }
     
     public static function getSubscribedEvents()
     {
-        return array(FormEvents::PRE_SET_DATA => 'preSetData');
+        return array(
+            FormEvents::PRE_SET_DATA    => 'preSetData',
+            FormEvents::POST_SET_DATA   => 'postSetData'
+        );
     }
 
     /**
-     * Parses submitted data and dynamically builds filters form.
+     * Builds form based on field name passed in constructor.
      * 
      * @param FormEvent $event
      */
@@ -37,31 +43,130 @@ class FilterItemSubscriber implements EventSubscriberInterface
     {
         $data = $event->getData();
         $form = $event->getForm();
-        
-        if ($data && array_key_exists('operator', $data)) {
-            $form->add('operator', 'admingenerator_filter_logical_operator');
+
+        if (null !== $this->prototypeFieldName) {
+            $config = $this->getConfig($this->prototypeFieldName);
+            $this->addFilterFields($form, $config);
         }
-        
-        if ($data && array_key_exists('group', $data)) {
-            $form->add('group', 'admingenerator_filter_group', array(
-                'options' => array('filterConfigs' => $this->filterConfigs)
-            ));
+    }
+
+    /**
+     * Builds form based on field name passed in post data.
+     * 
+     * @param FormEvent $event
+     */
+    public function postSetData(FormEvent $event)
+    {
+        $data = $event->getData();
+        $form = $event->getForm();
+
+        if (null === $this->prototypeFieldName) {
+            $config = $this->getConfig($data['field']);
+            $this->addFilterFields($form, $config);
         }
-        
-        if ($data && array_key_exists('field', $data) && array_key_exists('filter', $data)) {
-            $field = $data['field'];
-            $fieldNames = array_keys($this->filterConfigs);
-            
-            /**
-             * Why not throw an error here?
-             * 
-             * If the submitted field name is invalid it, no fields will be added,
-             * therefore the form will invalidate due to unexpected extra data.
-             */
-            if (in_array($field, $fieldNames)) {
-                $form->add('field', 'choice', array('choices' => $fieldNames));
-                $form->add('filter', new FilterFormType($this->filterConfigs[$field]));
-            }
+    }
+
+    /**
+     * Adds filter fields to form.
+     * 
+     * @param FormInterface $form   [description]
+     * @param array $config [description]
+     */
+    private function addFilterFields(FormInterface $form, $config)
+    {
+        $form->add('field', 'hidden', array('data' => $config['field']));
+        $form->add('operator', 'choice', array(
+            'choices'               => $this->getOperators($config['filter']),
+            'required'              => true,
+            'translation_domain'    => 'Admingenerator'
+        ));
+        $form->add('value', $config['form'], array_merge(
+            $config['options'],
+            array('required' => true)
+        ));
+    }
+
+    /**
+     * Get config for field
+     * 
+     * @param  string $name Field name
+     * @return array
+     */
+    private function getConfig($name)
+    {
+        return $this->filters[$name];
+    }
+    
+    /**
+     * Get operators.
+     * 
+     * @return array
+     */
+    private function getOperators($filter)
+    {
+        switch ($filter) {
+            case 'boolean':
+                return array(
+                    'Equal'             => 'filters.boolean.equal'
+                );
+            case 'date':
+                return array(
+                    'Equal'             => 'filters.date.equal',
+                    'NotEqual'          => 'filters.date.not_equal',
+                    'GreaterThan'       => 'filters.date.greater_than',
+                    'GreaterThanEqual'  => 'filters.date.greater_than_equal',
+                    'LessThan'          => 'filters.date.less_than',
+                    'LessThanEqual'     => 'filters.date.less_than_equal'
+                );
+            case 'time':
+                return array(
+                    'Equal'             => 'filters.time.equal',
+                    'NotEqual'          => 'filters.time.not_equal',
+                    'GreaterThan'       => 'filters.time.greater_than',
+                    'GreaterThanEqual'  => 'filters.time.greater_than_equal',
+                    'LessThan'          => 'filters.time.less_than',
+                    'LessThanEqual'     => 'filters.time.less_than_equal'
+                );
+            case 'datetime':
+                return array(
+                    'Equal'             => 'filters.datetime.equal',
+                    'NotEqual'          => 'filters.datetime.not_equal',
+                    'GreaterThan'       => 'filters.datetime.greater_than',
+                    'GreaterThanEqual'  => 'filters.datetime.greater_than_equal',
+                    'LessThan'          => 'filters.datetime.less_than',
+                    'LessThanEqual'     => 'filters.datetime.less_than_equal'
+                );
+            case 'number':
+                return array(
+                    'Equal'             => 'filters.number.equal',
+                    'NotEqual'          => 'filters.number.not_equal',
+                    'GreaterThan'       => 'filters.number.greater_than',
+                    'GreaterThanEqual'  => 'filters.number.greater_than_equal',
+                    'LessThan'          => 'filters.number.less_than',
+                    'LessThanEqual'     => 'filters.number.less_than_equal'
+                );
+            case 'text':
+                return array(
+                    'Equal'             => 'filters.text.equal',
+                    'NotEqual'          => 'filters.text.not_equal',
+                    'Like'              => 'filters.text.like',
+                    'NotLike'           => 'filters.text.not_like'
+                );
+            case 'collection':
+                return array(
+                    // ideas: collection->count
+                    // ideas: contains_with (fieldName => value)
+                    'Contains'          => 'filters.collection.contains',
+                    'NotContains'       => 'filters.collection.not_contains'
+                );
+            case 'model':
+                return array(
+                    // ideas: with  (fieldName => value)
+                    'Equal'             => 'filters.model.equal',
+                    'NotEqual'          => 'filters.model.not_equal'
+                );
+            default:
+                return array();
         }
     }
 }

@@ -88,26 +88,6 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
     }
 {% endblock %}
 
-{% block getFilterForm -%}
-    protected function getFilterForm()
-    {
-        $filters = $this->getFilters();
-
-        {%- for filter in builder.filters.display -%}
-            {%- if 'document' == builder.getFieldGuesser().getDbType(model, filter) or 'collection' == builder.getFieldGuesser().getDbType(model, filter) -%}
-            {% set filterModel = builder.getFieldGuesser().getModelType(model, filter) %}
-        if (isset($filters['{{ filter }}'])) {
-             $this->getDocumentManager()->getUnitOfWork()->registerManaged($filters['{{ filter }}'], $filters['{{ filter }}']->get{{ builder.getFieldGuesser().getModelPrimaryKeyName(filterModel)|capitalize }}(), array());
-        }
-
-            {%- endif %}
-
-        {% endfor -%}
-
-        return $this->createForm($this->getFiltersType(), $this->getFilters());
-    }
-{% endblock %}
-
 {% block addJoinFor -%}
     protected function addJoinFor($table, $query)
     {
@@ -118,15 +98,15 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
 {% block processFilters -%}
     protected function processFilters($query)
     {
-        $filterObject = $this->getFilters();
+        $filtersData = $this->getFilters();
 
         $queryFilter = $this->getQueryFilter();
         $queryFilter->setQuery($query);
 
         {% for filter in builder.filterColumns %}
 
-        if (isset($filterObject['{{ filter.name }}']) && null !== $filterObject['{{ filter.name }}']) {
-            $queryFilter->add{{ filter.dbType|classify }}Filter('{{ filter.filterOn }}', $filterObject['{{ filter.name }}']);
+        if (isset($filtersData['{{ filter.name }}']) && null !== $filtersData['{{ filter.name }}']) {
+            $queryFilter->add{{ filter.dbType|classify }}Filter('{{ filter.filterOn }}', $filtersData['{{ filter.name }}']);
         }
         {% endfor %}
 

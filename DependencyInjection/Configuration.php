@@ -178,9 +178,9 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 // datetime types
-                                ->scalarNode('datetime')->defaultValue('date')->end()
-                                ->scalarNode('vardatetime')->defaultValue('date')->end()
-                                ->scalarNode('datetimetz')->defaultValue('date')->end()
+                                ->scalarNode('datetime')->defaultValue('datetime')->end()
+                                ->scalarNode('vardatetime')->defaultValue('datetime')->end()
+                                ->scalarNode('datetimetz')->defaultValue('datetime')->end()
                                 ->scalarNode('date')->defaultValue('date')->end()
                                 // time types
                                 ->scalarNode('time')->defaultValue('time')->end()
@@ -208,10 +208,10 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 // datetime types
-                                ->scalarNode('datetime')->defaultValue('date')->end()
-                                ->scalarNode('timestamp')->defaultValue('date')->end()
-                                ->scalarNode('vardatetime')->defaultValue('date')->end()
-                                ->scalarNode('datetimetz')->defaultValue('date')->end()
+                                ->scalarNode('datetime')->defaultValue('datetime')->end()
+                                ->scalarNode('timestamp')->defaultValue('datetime')->end()
+                                ->scalarNode('vardatetime')->defaultValue('datetime')->end()
+                                ->scalarNode('datetimetz')->defaultValue('datetime')->end()
                                 ->scalarNode('date')->defaultValue('date')->end()
                                 // time types
                                 ->scalarNode('time')->defaultValue('time')->end()
@@ -243,8 +243,8 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 // datetime types
-                                ->scalarNode('TIMESTAMP')->defaultValue('date')->end()
-                                ->scalarNode('BU_TIMESTAMP')->defaultValue('datee')->end()
+                                ->scalarNode('TIMESTAMP')->defaultValue('datetime')->end()
+                                ->scalarNode('BU_TIMESTAMP')->defaultValue('datetime')->end()
                                 // date types
                                 ->scalarNode('DATE')->defaultValue('date')->end()
                                 ->scalarNode('BU_DATE')->defaultValue('date')->end()

@@ -23,18 +23,6 @@
     }
 {% endblock %}
 
-{% block getFilterForm -%}
-    protected function getFilterForm()
-    {
-        $filters = $this->getFilters();
-
-        $type = new FiltersType();
-        $type->setSecurityContext($this->get('security.context'));
-
-        return $this->createForm($type, $this->getFilters());
-    }
-{% endblock %}
-
 {% block addJoinFor -%}
     protected function addJoinFor($table, $query)
     {
