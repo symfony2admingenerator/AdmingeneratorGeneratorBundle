@@ -19,11 +19,18 @@ interface QueryFilterInterface
     public function getQuery();
 
     /**
-     * @param string $prefix Prefix used by QueryFilter for parameter name generation.
+     * @param string $aliasPrefix Prefix used by QueryFilter for unique alias generation.
      *
      * @api
      */
-    public function setPrefix($prefix);
+    public function setAliasPrefix($aliasPrefix);
+
+    /**
+     * @param string $namePrefix Prefix used by QueryFilter for unique name generation.
+     *
+     * @api
+     */
+    public function setNamePrefix($namePrefix);
 
     /**
      * @param array $filtersMap An array containing field to filter map.
@@ -40,11 +47,18 @@ interface QueryFilterInterface
     public function setPrimaryKeysMap(array $primaryKeysMap);
 
     /**
-     * @return string The unique parameter name.
+     * @return string The unique alias.
      *
      * @api
      */
-    public function getParamName();
+    public function getUniqueAlias();
+
+    /**
+     * @return string The unique name.
+     *
+     * @api
+     */
+    public function getUniqueName();
 
     /**
      * @param mixed  $value     The value to format.

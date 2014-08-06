@@ -9,6 +9,64 @@ This file lists B/C breaking PRs in reverse chronological order. Each PR contain
 description explaining nature of changes and upgrade notes to help you upgrade your 
 project.
 
+## Commit [xxx][xxx]
+
+#### Description:
+
+**Bundled assets in assetic packages**: This Commit bundled assets into assetic packages.
+
+**Changed assetic filters**: the YUI compressor is no longer used. Instead uglifycss and uglifyjs is used to minify assets.
+
+#### BC Break:
+
+##### Bundled assets in assetic packages
+
+For assetic users, the CSS and JS assets have been bundled in packages named:
+* admingenerator_css
+* admingenerator_js
+
+You have to add packages configuration, to your `config.yml`:
+
+```yaml
+framework:
+    // ...
+    templating:
+        packages:
+             admingenerator_css:
+                version: 1.0
+                version_format: "%%1$s?v%%2$s"  # use whatever format suits you
+                                                # the %%1$s represents asset output path
+                                                # the %%2$s represents version number
+                                                # this format will output 'acme/demo.css'
+                                                # as 'acme/demo.css?v1'
+             admingenerator_js:
+                version: 1.0
+                version_format: "%%1$s?v%%2$s"
+```
+
+##### Changed assetic filters
+
+For assetic users, the CSS and JS filters have been changed to:
+* uglifycss
+* uglifyjs2
+
+The cssrewrite filter is still used.
+
+You have to add filters configuration to your `config.yml`:
+
+```yaml
+assetic:
+    filters:
+        cssrewrite: ~
+        uglifycss:
+            bin: /usr/bin/uglifycss # replace this with your path to uglifycss
+        uglifyjs2:
+            bin: /usr/bin/uglifyjs  # replace this with your path to uglifyjs
+```
+
+[xxx]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/commit/xxx
+
+
 ## PR [#739][pr739] Migrate to Bootstrap3
 
 [pr739]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/pull/739

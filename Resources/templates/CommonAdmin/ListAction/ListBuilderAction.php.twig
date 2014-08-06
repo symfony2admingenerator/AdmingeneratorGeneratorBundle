@@ -13,8 +13,6 @@ namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.gene
 
 {{- block('security_use') }}
 
-{{- block('filters_use') }}
-
 {{- block('csrf_protection_use') }}
 
 use {{ builder.generator.baseController }} as BaseController;
@@ -70,13 +68,6 @@ class ListController extends BaseController
     protected function processSort($query)
     {
        // ORM JOB
-    }
-    {% endblock %}
-
-    {% block addJoinFor -%}
-    protected function addJoinFor($table, $query)
-    {
-        // ORM JOB
     }
     {% endblock %}
     

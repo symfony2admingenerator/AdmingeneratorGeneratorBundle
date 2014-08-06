@@ -1,6 +1,6 @@
  /*
  *  Project:        Symfony2Admingenerator
- *  Description:    jQuery plugin for List Object actions
+ *  Description:    jQuery plugin for List Filters
  *  Author:         loostro <loostro@gmail.com>
  *  License:        MIT
  */
@@ -112,7 +112,8 @@
 
             // enable collapse toggle
             $gPanel.collapse({
-                parent: that.$rootList
+                parent: that.$rootList,
+                toggle: false
             });
 
             $gToggle.on('click', function(e) {
@@ -138,7 +139,6 @@
                 var fIndex  = $gList.data('index');
                 var fField  = $(this).data('field');
                 var fHtmlPrototype  = that._unescapeHtml(that.options.html_prototypes[fField]);
-                var fJsPrototype    = that.options.js_prototypes[fField];
 
                 var idRegex = new RegExp('id="'+that.elementId, "g");
                 var nameRegex = new RegExp('name="'+that.elementId, "g");
@@ -153,9 +153,6 @@
                 $gList.append($newFilter);
                 $gList.data('index', fIndex+1);
 
-                // run prototype js
-                fJsPrototype.call(window, $newFilter.attr('id'));
-
                 that._enableFilter($newFilter);
             });
         },
@@ -166,6 +163,11 @@
 
             var $filter = $(filter);
             var $dismissFilter = $filter.find(that.selector.filterDismiss);
+            var fField = $('#'+$filter.attr('id')+'_field').val();
+            var fJsPrototype    = that.options.js_prototypes[fField];
+
+            // run prototype js
+            fJsPrototype.call(window, $newFilter.attr('id'));
 
             $dismissFilter.on('click', function(e) {
                 e.preventDefault();

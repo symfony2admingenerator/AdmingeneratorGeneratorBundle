@@ -44,9 +44,12 @@ filters:
         not_equal:              Nie równe
         like:                   Podobne
         not_like:               Nie podobne
+    array:
+        like:                   Podobne
+        not_like:               Nie podobne
     collection:
-        contains:               Zawiera
-        not_contains:           Nie zawiera
+        includes:               Zawiera
+        not_includes:           Not zawiera
     model:
         equal:                  Równe
         not_equal:              Nie równe

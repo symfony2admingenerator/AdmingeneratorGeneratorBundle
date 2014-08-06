@@ -76,78 +76,112 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
     protected function processSort($query)
     {
         if ($this->getSortColumn()) {
-            if (!strstr($this->getSortColumn(), '.')) { //direct column
-                $query->sort($this->getSortColumn(), $this->getSortOrder());
-            } else {
-                /* TODO FOR MONGO
-                list($table, $column) = explode('.', $this->getSortColumn(), 2);
-                $this->addJoinFor($table, $query);
-                $query->sort($this->getSortColumn(), $this->getSortOrder());*/
-            }
+            $queryFilter = $this->getQueryFilter();
+            $queryFilter->setQuery($query);
+            $queryFilter->setAliasPrefix('o_');
+            $queryFilter->setNamePrefix('order_');
+            $queryFilter->addSortBy($this->getSortColumn(), $this->getSortOrder());
         }
-    }
-{% endblock %}
-
-{% block addJoinFor -%}
-    protected function addJoinFor($table, $query)
-    {
-        $query->leftJoin('q.'.$table, $table);
     }
 {% endblock %}
 
 {% block processFilters -%}
     protected function processFilters($query)
     {
-        $filtersData = $this->getFilters();
+        $filtersFormData = $this->getFilters();
+        $filtersMap = array(
+        {% for column in builder.filterColumns %}
+            {{ column.name|as_php }} => {{ column.filterType|as_php }},
+        {% endfor %}
+        );
+
+        $primaryKeysMap = array(
+        {% for column in builder.filterColumns %}
+            {{ column.name|as_php }} => {{ column.primaryKey|as_php }},
+        {% endfor %}
+        );
 
         $queryFilter = $this->getQueryFilter();
         $queryFilter->setQuery($query);
+        $queryFilter->setAliasPrefix('f_');
+        $queryFilter->setNamePrefix('filters_');
+        $queryFilter->setFiltersMap($filtersMap);
+        $queryFilter->setPrimaryKeysMap($primaryKeysMap);
 
-        {% for filter in builder.filterColumns %}
+        $groupParts = array();
+        foreach ($filtersFormData as $groupData) {
+            $filterParts = array();
+            foreach ($groupData as $filterData) {
+                $field          = $filterData['field'];
+                $operator       = $filterData['operator'];
+                $value          = $filterData['value'];
+                $param          = $queryFilter->getParamName();
 
-        if (isset($filtersData['{{ filter.name }}']) && null !== $filtersData['{{ filter.name }}']) {
-            $queryFilter->add{{ filter.dbType|classify }}Filter('{{ filter.filterOn }}', $filtersData['{{ filter.name }}']);
+                $filterParts[] = $queryFilter->getComparison($field, $operator, $param);
+                $query->setParameter($param, $queryFilter->formatValue($value, $operator, $field));
+            }
+            // for a group to be true, all partial conditions must be true
+            $groupParts[] = $queryFilter->getConjunction($filterParts);
         }
-        {% endfor %}
 
+        if (count($filtersFormData) > 0) {
+            // the results must meet conditions of at least one group
+            $query->andWhere($queryFilter->getDisjunction($groupParts));
+        }
     }
 {% endblock %}
 
 {% block processScopes -%}
     protected function processScopes($query)
     {
-    {% if scopes is defined -%}
+
+    {% if scopes is defined %}
         $scopes = $this->getScopes();
+        
+        $filtersMap = array(
+        {% for column in builder.scopeColumns %}
+            {{ column.name|as_php }} => {{ column.filterType|as_php }},
+        {% endfor %}
+        );
+
+        $primaryKeysMap = array(
+        {% for column in builder.scopeColumns %}
+            {{ column.name|as_php }} => {{ column.primaryKey|as_php }},
+        {% endfor %}
+        );
 
         $queryFilter = $this->getQueryFilter();
         $queryFilter->setQuery($query);
-
+        $queryFilter->setAliasPrefix('s_');
+        $queryFilter->setNamePrefix('scopes_');
+        $queryFilter->setFiltersMap($filtersMap);
+        $queryFilter->setPrimaryKeysMap($primaryKeysMap);
 
         {% for groupName, group in scopes -%}
-            {%- for scopeName, params in group %}
+            {%- for scopeName, scopeParams in group %}
 
         if (isset($scopes['{{ groupName }}']) && $scopes['{{ groupName }}'] == '{{ scopeName }}') {
-            {% if params["filters"] is defined -%}
-                {%- for filter, filterParams in params["filters"] -%}
+            {% if scopeParams["filters"] is defined -%}
+                {%- for filter, filterParams in scopeParams["filters"] -%}
                 {%- if filter|is_numeric -%}
                 $this->scope{{ filterParams|classify }}($queryFilter);
                 {%- else -%}
-                $queryFilter->addDefaultFilter('{{ filter }}', {{ filterParams|as_php }});
+                $queryFilter->addEqualFilter('{{ filter }}', {{ filterParams|as_php }});
                 {%- endif -%}
                 {%- endfor -%}
             {%- endif %}
 
         }
             {% endfor -%}
-        {%- endfor -%}
+        {%- endfor %}
     {%- endif %}
     }
 
-    {% if scopes is defined -%}
+    {% if scopes is defined %}
     {% for groupName, group in scopes -%}
-        {%- for scopeName, params in group %}
-            {% if params["filters"] is defined -%}
-            {%- for filter, filterParams in params["filters"] -%}
+        {%- for scopeName, scopeParams in group %}
+            {% if scopeParams["filters"] is defined -%}
+            {%- for filter, filterParams in scopeParams["filters"] -%}
                 {%- if filter|is_numeric -%}
     /**
      * Add the filters to the query for {{ groupName }} => {{ scopeName }}
@@ -157,6 +191,7 @@ use Pagerfanta\Adapter\DoctrineODMMongoDBAdapter as PagerAdapter;
     protected function scope{{ filterParams|classify }}($query)
     {
     }
+
                 {%- endif -%}
             {%- endfor -%}
             {%- endif -%}

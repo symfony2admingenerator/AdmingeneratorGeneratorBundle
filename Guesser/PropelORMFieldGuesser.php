@@ -33,15 +33,26 @@ class PropelORMFieldGuesser extends ContainerAware
         return $return;
     }
 
-    public function getDbType($class, $fieldName)
+    /**
+     * Find out the database type for given model field path.
+     * 
+     * @param  string $model        The starting model.
+     * @param  string $fieldPath    The field path.
+     * @return string               The leaf field's primary key.
+     */
+    public function getDbType($model, $fieldPath)
     {
-        $relation = $this->getRelation($fieldName, $class);
+        $resolved = $this->resolveRelatedField($model, $fieldPath);
+        $class = $resolved['class'];
+        $field = $resolved['field'];
+
+        $relation = $this->getRelation($field, $class);
         
         if ($relation) {
             return \RelationMap::MANY_TO_ONE === $relation->getType() ? 'model' : 'collection';
         }
 
-        $column = $this->getColumn($class, $fieldName);
+        $column = $this->getColumn($class, $field);
         
         return $column ? $column->getType() : 'virtual';
     }
@@ -293,5 +304,54 @@ class PropelORMFieldGuesser extends ContainerAware
                 }
             }
         }
+    }
+
+    /**
+     * Find out the primary key for given model field path.
+     * 
+     * @param  string $model        The starting model.
+     * @param  string $fieldPath    The field path.
+     * @return string               The leaf field's primary key.
+     */
+    public function getPrimaryKeyFor($model, $fieldPath)
+    {
+        $resolved = $this->resolveRelatedField($model, $fieldPath);
+        $class = $resolved['class'];
+        $field = $resolved['field'];
+
+        if (!$relation = $this->getRelation($field, $class)) {
+            $class = $relation->getName();
+            return $this->getModelPrimaryKeyName($class);
+        } else {
+            // if the leaf node is not an association
+            return null;
+        }
+    }
+
+    /**
+     * Resolve field path for given model to class and field name.
+     * 
+     * @param  string $model        The starting model.
+     * @param  string $fieldPath    The field path.
+     * @return array                An array containing field and class information.
+     */
+    private function resolveRelatedField($model, $fieldPath)
+    {
+        $path = explode('.', $fieldPath);
+        $field = array_pop($path);
+        $class = $model;
+
+        foreach ($path as $part) {
+            if (!$relation = $this->getRelation($part, $class)) {
+                throw new \LogicException('Field "'.$part.'" for class "'.$class.'" is not an association.');
+            }
+
+            $class = $relation->getName();
+        }
+        
+        return array(
+            'field' => $field,
+            'class' => $class
+        );
     }
 }

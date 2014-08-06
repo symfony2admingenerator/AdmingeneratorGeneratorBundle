@@ -43,20 +43,29 @@ class DoctrineORMFieldGuesser extends ContainerAware
         return $this->getMetadatas($class)->getFieldNames();
     }
 
-    public function getDbType($class, $fieldName)
+    /**
+     * Find out the database type for given model field path.
+     * 
+     * @param  string $model        The starting model.
+     * @param  string $fieldPath    The field path.
+     * @return string               The leaf field's primary key.
+     */
+    public function getDbType($model, $fieldPath)
     {
-        $metadata = $this->getMetadatas($class);
+        $resolved = $this->resolveRelatedField($model, $fieldPath);
+        $class = $resolved['class'];
+        $field = $resolved['field'];
 
-        if ($metadata->hasAssociation($fieldName)) {
-            if ($metadata->isSingleValuedAssociation($fieldName)) {
+        if ($this->getMetadatas($class)->hasAssociation($field)) {
+            if ($this->getMetadatas()->isSingleValuedAssociation($field)) {
                 return 'entity';
             } else {
                 return 'collection';
             }
         }
 
-        if ($metadata->hasField($fieldName)) {
-            return $metadata->getTypeOfField($fieldName);
+        if ($this->getMetadatas()->hasField($field)) {
+            return $this->getMetadatas()->getTypeOfField($field);
         }
 
         return 'virtual';
@@ -129,19 +138,11 @@ class DoctrineORMFieldGuesser extends ContainerAware
         if (array_key_exists($dbType, $filterTypes)) {
             return $filterTypes[$dbType];
         } else {
-            return null;
-        }
-//        elseif ('virtual' === $dbType) {
-//            throw new NotImplementedException(
-//                'The dbType "'.$dbType.'" is only for list implemented '
-//                .'(column "'.$columnName.'" in "'.self::$current_class.'")'
-//            );
-//        } else {
-//            throw new NotImplementedException(
-//                'The dbType "'.$dbType.'" is not yet implemented '
-//                .'(column "'.$columnName.'" in "'.self::$current_class.'")'
-//            );
-//        }
+           throw new NotImplementedException(
+               'The dbType "'.$dbType.'" is not yet implemented '
+               .'(column "'.$columnName.'" in "'.self::$current_class.'")'
+           );
+       }
     }
 
     public function getFormOptions($formType, $dbType, $columnName)
@@ -205,10 +206,62 @@ class DoctrineORMFieldGuesser extends ContainerAware
     }
 
     /**
-     * Find the pk name
+     * Find the pk name for given class
+     * 
+     * @param  string $class The class name.
+     * @return string Primary key field name.
      */
     public function getModelPrimaryKeyName($class = null)
     {
         return $this->getMetadatas($class)->getSingleIdentifierFieldName();
+    }
+
+    /**
+     * Find out the primary key for given model field path.
+     * 
+     * @param  string $model        The starting model.
+     * @param  string $fieldPath    The field path.
+     * @return string               The leaf field's primary key.
+     */
+    public function getPrimaryKeyFor($model, $fieldPath)
+    {
+        $resolved = $this->resolveRelatedField($model, $fieldPath);
+        $class = $resolved['class'];
+        $field = $resolved['field'];
+
+        if ($this->getMetadatas($class)->hasAssociation($field)) {
+            $class = $this->getMetadatas()->getAssociationTargetClass($field);
+            return $this->getModelPrimaryKeyName($class);
+        } else {
+            // if the leaf node is not an association
+            return null;
+        }
+    }
+
+    /**
+     * Resolve field path for given model to class and field name.
+     * 
+     * @param  string $model        The starting model.
+     * @param  string $fieldPath    The field path.
+     * @return array                An array containing field and class information.
+     */
+    private function resolveRelatedField($model, $fieldPath)
+    {
+        $path = explode('.', $fieldPath);
+        $field = array_pop($path);
+        $class = $model;
+
+        foreach ($path as $part) {
+            if (!$this->getMetadatas($class)->hasAssociation($part)) {
+                throw new \LogicException('Field "'.$part.'" for class "'.$class.'" is not an association.');
+            }
+
+            $class = $this->getMetadatas()->getAssociationTargetClass($part);
+        }
+        
+        return array(
+            'field' => $field,
+            'class' => $class
+        );
     }
 }

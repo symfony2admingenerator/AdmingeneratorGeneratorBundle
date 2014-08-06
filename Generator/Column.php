@@ -44,7 +44,7 @@ class Column
 
     protected $localizedTimeFormat;
 
-    protected $primaryKey;
+    protected $primaryKey = null;
 
     /** For special columns template */
     protected $extras;

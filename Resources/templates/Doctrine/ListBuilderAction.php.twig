@@ -26,29 +26,18 @@
     protected function processSort($query)
     {
         if ($this->getSortColumn()) {
-            if (!strstr($this->getSortColumn(), '.')) { //direct column
-                $query->orderBy('q.'.$this->getSortColumn(), $this->getSortOrder());
-            } else {
-                list($table, $column) = explode('.', $this->getSortColumn(), 2);
-                $this->addJoinFor($table, $query);
-                $query->orderBy($this->getSortColumn(), $this->getSortOrder());
-            }
+            $queryFilter = $this->getQueryFilter();
+            $queryFilter->setQuery($query);
+            $queryFilter->setAliasPrefix('o_');
+            $queryFilter->setNamePrefix('order_');
+            $queryFilter->addSortBy($this->getSortColumn(), $this->getSortOrder());
         }
-    }
-{% endblock %}
-
-{% block addJoinFor -%}
-    protected function addJoinFor($table, $query)
-    {
-        $query->leftJoin('q.'.$table, $table);
     }
 {% endblock %}
 
 {% block processFilters -%}
     protected function processFilters($query)
     {
-        return; // temp disable filters
-
         $filtersFormData = $this->getFilters();
         $filtersMap = array(
         {% for column in builder.filterColumns %}
@@ -64,7 +53,8 @@
 
         $queryFilter = $this->getQueryFilter();
         $queryFilter->setQuery($query);
-        $queryFilter->setPrefix('filters_param_');
+        $queryFilter->setAliasPrefix('f_');
+        $queryFilter->setNamePrefix('filters_');
         $queryFilter->setFiltersMap($filtersMap);
         $queryFilter->setPrimaryKeysMap($primaryKeysMap);
 
@@ -84,16 +74,16 @@
             $groupParts[] = $queryFilter->getConjunction($filterParts);
         }
 
-        // the results must meet conditions of at least one group
-        $query->andWhere($queryFilter->getDisjunction($groupParts));
+        if (count($filtersFormData) > 0) {
+            // the results must meet conditions of at least one group
+            $query->andWhere($queryFilter->getDisjunction($groupParts));
+        }
     }
 {% endblock %}
 
 {% block processScopes -%}
     protected function processScopes($query)
     {
-        return; // temp disable scopes
-        // TODO: refactor and enable scopes
 
     {% if scopes is defined %}
         $scopes = $this->getScopes();
@@ -105,14 +95,15 @@
         );
 
         $primaryKeysMap = array(
-        {% for column in builder.filterColumns %}
+        {% for column in builder.scopeColumns %}
             {{ column.name|as_php }} => {{ column.primaryKey|as_php }},
         {% endfor %}
         );
 
         $queryFilter = $this->getQueryFilter();
         $queryFilter->setQuery($query);
-        $queryFilter->setPrefix('scopes_param_');
+        $queryFilter->setAliasPrefix('s_');
+        $queryFilter->setNamePrefix('scopes_');
         $queryFilter->setFiltersMap($filtersMap);
         $queryFilter->setPrimaryKeysMap($primaryKeysMap);
 

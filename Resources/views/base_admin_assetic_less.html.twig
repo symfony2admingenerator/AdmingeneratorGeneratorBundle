@@ -80,6 +80,13 @@
     {% block javascripts %}
         <script type="text/javascript" src="{{ asset('components/bootstrap/js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/admingenerator/general.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/admingenerator/tabs.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/admingenerator/filters.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/admingenerator/batch-actions.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/admingenerator/generic-actions.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/admingenerator/object-actions.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/treeTable/jquery.treeTable-extended.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorgenerator/js/admingenerator/nestedset.js') }}"></script>
 
       {% if form is defined %}
           {{ form_js(form) }}

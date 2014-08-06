@@ -2,7 +2,6 @@
 
 namespace Admingenerator\GeneratorBundle\Filter\Type;
 
-use Admingenerator\GeneratorBundle\Filter\FilterConfig;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;

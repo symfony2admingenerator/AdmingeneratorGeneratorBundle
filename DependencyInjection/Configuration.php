@@ -199,7 +199,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('entity')->defaultValue('model')->end()
                                 ->scalarNode('collection')->defaultValue('collection')->end()
                                 // array types
-                                ->scalarNode('array')->defaultValue('collection')->end()
+                                ->scalarNode('array')->defaultValue('array')->end()
                                 // boolean types
                                 ->scalarNode('boolean')->defaultValue('boolean')->end()
                             ->end()
@@ -234,7 +234,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('document')->defaultValue('model')->end()
                                 ->scalarNode('collection')->defaultValue('collection')->end()
                                 // hash types
-                                ->scalarNode('hash')->defaultValue('collection')->end()
+                                ->scalarNode('hash')->defaultValue('array')->end()
                                 // boolean types
                                 ->scalarNode('boolean')->defaultValue('boolean')->end()
                             ->end()
@@ -273,7 +273,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('model')->defaultValue('model')->end()
                                 ->scalarNode('collection')->defaultValue('collection')->end()
                                 // array types
-                                ->scalarNode('PHP_ARRAY')->defaultValue('collection')->end()
+                                ->scalarNode('PHP_ARRAY')->defaultValue('array')->end()
                                 // choice types
                                 ->scalarNode('ENUM')->defaultValue('text')->end()
                                 // boolean types

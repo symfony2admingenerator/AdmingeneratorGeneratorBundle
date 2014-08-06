@@ -4,51 +4,163 @@ namespace Admingenerator\GeneratorBundle\QueryFilter;
 
 class DoctrineODMQueryFilter extends BaseQueryFilter
 {
-
-    public function addDefaultFilter($field, $value)
+    /**
+     * Default add filter behaviour.
+     *
+     * @param $name
+     * @param $args
+     */
+    public function __call($name, $args = array())
     {
-        $this->query->field($field)->equals($value);
-    }
-
-    public function addStringFilter($field, $value)
-    {
-        $this->query->field($field)->equals(new \MongoRegex("/.*$value.*/i"));
-    }
-
-    public function addBooleanFilter($field, $value)
-    {
-        if ("" !== $value) {
-            $this->query->field($field)->equals((boolean) $value);
+        if (preg_match('/^add(?P<operator>.+)Filter$/', $name, $matches)) {
+            list($field, $value) = $args;
+            $param = $this->getUniqueName();
+            $this->query->andWhere($this->getComparison($field, $matches['operator'], $param));
+            $this->query->setParameter($param, $this->formatValue($value, $matches['operator'], $field));
         }
     }
 
-    public function addDateFilter($field, $value, $format = 'Y-m-d')
+    public function addIsNullFilter($field, $value)
     {
-        if (is_array($value)) {
-            $from = array_key_exists('from', $value) ? $this->formatDate($value['from'], $format) : false;
-            $to   = array_key_exists('to',   $value) ? $this->formatDate($value['to'],   $format) : false;
+        $this->query->andWhere($this->getComparison($field, 'IsNull'));
+    }
 
-            if ($to && $from) {
-                $this->query->field($field)->range($from, $to);
-            } elseif ($from) {
-                $this->query->field($field)->gte($from);
-            } elseif ($to) {
-                $this->query->field($field)->lte($to);
-            }
-        } else {
-            if (false !== $date = $this->formatDate($value, $format)) {
-                $this->query->field($field)->equals($date);
-            }
+    public function addIsNotNullFilter($field, $value)
+    {
+        $this->query->andWhere($this->getComparison($field, 'IsNotNull'));
+    }
+
+    /**
+     * Sort query.
+     * 
+     * @param  string $fieldPath The sort field path.
+     * @param  string $order     The sort order.
+     */
+    public function addSortBy($fieldPath, $order)
+    {
+        $field = $this->addJoinFor($fieldPath);
+        $this->query->sort($field, $order);
+    }
+
+    /**
+     * Get conjunction expression.
+     *
+     * @param array $expressions An array of expressions.
+     *
+     * @return \Doctrine\MongoDB\Query\Expr
+     */
+    public function getConjunction($expressions)
+    {
+        return $this->query->expr()->addAnd($expressions);
+    }
+
+    /**
+     * Get disjunction expression.
+     *
+     * @param array $expressions An array of expressions.
+     *
+     * @return \Doctrine\MongoDB\Query\Expr
+     */
+    public function getDisjunction($expressions)
+    {
+        return $this->query->expr()->addOr($expressions);
+    }
+
+    /**
+     * Get comparison expression.
+     * 
+     * @param string $field     The field name.
+     * @param string $operator  The comparison operator.
+     * @param string $param     The parameter name.
+     * 
+     * @return Doctrine\ORM\Query\Expr\Comparison
+     */
+    public function getComparison($field, $operator, $param = null)
+    {
+        $field = $this->addJoinFor($fieldPath);
+        $param = ':'.$param;
+
+        switch ($operator) {
+            case 'Equal':
+                return $this->query->expr()->field($field)->equals($param);
+            case 'NotEqual':
+                return $this->query->expr()->field($field)->notEqual($param);
+            case 'GreaterThan':
+                return $this->query->expr()->field($field)->gt($param);
+            case 'GreaterThanEqual':
+                return $this->query->expr()->field($field)->lt($param);
+            case 'LessThan':
+                return $this->query->expr()->field($field)->gte($param);
+            case 'LessThanEqual':
+                return $this->query->expr()->field($field)->lte($param);
+            case 'Like':
+                return $this->query->expr()->field($field)->equals(new \MongoRegex("/.*$param.*/i"));
+            case 'NotLike':
+                return $this->query->expr()->field($field)->notEqual(new \MongoRegex("/.*$param.*/i"));
+            case 'IsNull':
+                // TODO: not sure which one is correct
+                return $this->query->expr()->field($field)->equals(null);
+                //return $this->query->expr()->field($field)->type(10);
+            case 'IsNotNull':
+                // TODO: not sure which one is correct
+                return $this->query->expr()->field($field)->notEqual(null);
+                //return $this->query->expr()->not($this->query->expr()->field($field)->type(10));
+            // case 'Contains':
+            // case 'NotContains':
+            default:
+                throw new \LogicException('Comparison for operator "'.$operator.'" is not implemented.');
         }
     }
 
-    public function addDocumentFilter($field, $value)
+    /**
+     * (non-PHPdoc)
+     * @see GeneratorBundle\QueryFilter.QueryFilterInterface::formatValue()
+     */
+    public function formatValue($value, $operator, $field)
     {
-         $this->query->field($field.'.$id')->equals(new \MongoId($value->getId()));
+        switch ($this->getFilterFor($field)) {
+            case 'boolean':
+                return !!$value;
+            case 'datetime':
+                return $this->formatDate($value, 'Y-m-d H:i:s');
+            case 'date':
+                return $this->formatDate($value, 'Y-m-d');
+            case 'model':
+            case 'collection':
+                $getter = 'get'.ucfirst($this->getPrimaryKeyFor($field));
+                return new \MongoId($value->$getter());
+        }
+
+        switch ($operator) {
+            case 'Like':
+            case 'NotLike':
+                return '%'.$value.'%';
+        }
+
+        return $value;
     }
 
-    public function addCollectionFilter($field, $value)
+    /**
+     * Adds joins for path and returns the field alias and name.
+     * 
+     * @param  string $fieldPath The field path.
+     * @return string            The field alias and name.
+     */     
+    public function addJoinFor($fieldPath)
     {
-         $this->query->field($field.'.$id')->equals(new \MongoId($value->getId()));
+        $path = explode('.', $fieldPath);
+        $field = array_pop($path);
+
+        $alias = 'q';
+
+        foreach ($path as $part) {
+            $aliasName = $this->getUniqueAlias();
+            $this->query->leftJoin($alias.'.'.$part, $aliasName);
+            $alias = $aliasName;
+        }
+
+        $this->query->groupBy('q');
+
+        return $alias.'.'.$field;
     }
 }

@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {% block scripts_head %}
-        {% javascripts filter='?uglifyjs2' output='assetic/js/compiled/components.min.js'
+        {% javascripts package='admingenerator_js' filter='?uglifyjs2'
+            output='assetic/js/compiled/components.min.js'
             'components/jquery/jquery.js'
             'components/jquery-ui/jquery-ui.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
-        {% javascripts filter='?uglifyjs2' output='assetic/js/compiled/components/html5shiv.min.js'
+        {% javascripts package='admingenerator_js' filter='?uglifyjs2' 
+            output='assetic/js/compiled/components/html5shiv.min.js'
             'components/html5shiv/dist/html5shiv.js'
         %}
         <!--[if lt IE 9]>
@@ -23,7 +25,8 @@
     {% endblock %}
 
     {% block stylesheets %}
-        {% stylesheets filter='cssrewrite,?uglifycss' output='assetic/css/compiled/components.min.css'
+        {% stylesheets package='admingenerator_css' filter='cssrewrite,?uglifycss' 
+            output='assetic/css/compiled/components.min.css'
             'components/bootstrap/css/bootstrap.css'
             'components/bootstrap/css/bootstrap-theme.css'
             'components/font-awesome/css/font-awesome.css'
@@ -31,9 +34,10 @@
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
         {% endstylesheets %}
         <!--[if lt IE 7]>
-        <link rel="stylesheet" href="{{ asset('components/font-awesome/css/font-awesome-ie7.min') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('components/font-awesome/css/font-awesome-ie7.min', 'admingenerator_css') }}" type="text/css" media="all" />
         <![endif]-->
-        {% stylesheets filter='cssrewrite,?uglifycss' output='assetic/css/compiled/admingenerator.min.css'
+        {% stylesheets package='admingenerator_css' filter='cssrewrite,?uglifycss' 
+            output='assetic/css/compiled/admingenerator.min.css'
             'bundles/admingeneratorgenerator/css/common.css'
             'bundles/admingeneratorgenerator/css/filters.css'
             'bundles/admingeneratorgenerator/css/list.css'
@@ -94,9 +98,17 @@
     </div> <!--/.container-fluid -->
 
     {% block javascripts %}
-        {% javascripts filter='?uglifyjs2' output='assetic/js/compiled/admingenerator.min.js'
+        {% javascripts package='admingenerator_js' filter='?uglifyjs2' 
+            output='assetic/js/compiled/admingenerator.min.js'
             'components/bootstrap/js/bootstrap.js'
             'bundles/admingeneratorgenerator/js/admingenerator/general.js'
+            'bundles/admingeneratorgenerator/js/admingenerator/tabs.js'
+            'bundles/admingeneratorgenerator/js/admingenerator/filters.js'
+            'bundles/admingeneratorgenerator/js/admingenerator/batch-actions.js'
+            'bundles/admingeneratorgenerator/js/admingenerator/generic-actions.js'
+            'bundles/admingeneratorgenerator/js/admingenerator/object-actions.js'
+            'bundles/admingeneratorgenerator/js/treeTable/jquery.treeTable-extended.js'
+            'bundles/admingeneratorgenerator/js/admingenerator/nestedset.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}

@@ -6,9 +6,13 @@ abstract class BaseQueryFilter implements QueryFilterInterface
 {
     protected $query;
 
-    protected $prefix = 'query_filter_param_';
+    protected $aliasPrefix = 'qf_';
 
-    protected $count = 0;
+    protected $namePrefix = 'query_filter_uniq_';
+
+    protected $aliasCount = 0;
+
+    protected $nameCount = 0;
 
     protected $filtersMap = array();
 
@@ -34,11 +38,20 @@ abstract class BaseQueryFilter implements QueryFilterInterface
 
     /**
      * (non-PHPdoc)
-     * @see GeneratorBundle\QueryFilter.QueryFilterInterface::setPrefix()
+     * @see GeneratorBundle\QueryFilter.QueryFilterInterface::setAliasPrefix()
      */
-    public function setPrefix($prefix)
+    public function setAliasPrefix($aliasPrefix)
     {
-        $this->prefix = $prefix;
+        $this->aliasPrefix = $aliasPrefix;
+    }
+
+    /**
+     * (non-PHPdoc)
+     * @see GeneratorBundle\QueryFilter.QueryFilterInterface::setNamePrefix()
+     */
+    public function setNamePrefix($namePrefix)
+    {
+        $this->namePrefix = $namePrefix;
     }
 
     /**
@@ -61,11 +74,20 @@ abstract class BaseQueryFilter implements QueryFilterInterface
 
     /**
      * (non-PHPdoc)
-     * @see GeneratorBundle\QueryFilter.QueryFilterInterface::getParamName()
+     * @see GeneratorBundle\QueryFilter.QueryFilterInterface::getUniqueAlias()
      */
-    public function getParamName()
+    public function getUniqueAlias()
     {
-        return $this->prefix.$this->count++;
+        return $this->aliasPrefix.$this->aliasCount++;
+    }
+
+    /**
+     * (non-PHPdoc)
+     * @see GeneratorBundle\QueryFilter.QueryFilterInterface::getUniqueName()
+     */
+    public function getUniqueName()
+    {
+        return $this->namePrefix.$this->nameCount++;
     }
 
     /**

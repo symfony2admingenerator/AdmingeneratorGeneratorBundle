@@ -3,14 +3,14 @@
 {% block admingenerator_filter_root_widget %}
 {% spaceless %}
 <div id="{{ id }}" class="panel panel-info" role="filters">
-    <div class="panel-heading" data-toggle="collapse" data-target="#{{ id ~ '_panel' }}" role="filters-toggle">
+    <div class="panel-heading collapsed" data-toggle="collapse" data-target="#{{ id ~ '_panel' }}" role="filters-toggle">
         <h3 class="panel-title">
             <i class="fa fa-caret-down fa-fw"></i>
             <i class="fa fa-caret-right fa-fw"></i>
             {{ 'filters.header'|trans }}
         </h3>
     </div>
-    <div id="{{ id ~ '_panel' }}" class="collapse in" role="filters-panel">
+    <div id="{{ id ~ '_panel' }}" class="collapse" role="filters-panel">
         <div class="panel-body">
             <div class="bs-callout bs-callout-info">
                 <h3 class="fa fa-info-circle pull-left"></h3>
@@ -44,7 +44,7 @@
 {% spaceless %}
 <div id="{{ id }}" name="{{ full_name }}" class="panel panel-default" role="filters-group">
     <div class="panel-heading">
-        <h4 class="panel-title" data-toggle="collapse" data-target="#{{ id ~ '_group_panel' }}" role="filters-group-toggle">
+        <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#{{ id ~ '_group_panel' }}" role="filters-group-toggle">
             {{- 'filters.label'|trans -}}
             <button type="button" class="close" data-dismiss="filters-group" role="filters-group-dismiss">
                 <span aria-hidden="true">&times;</span><span class="sr-only">{{ 'filters.ctrl.remove'|trans }}</span>

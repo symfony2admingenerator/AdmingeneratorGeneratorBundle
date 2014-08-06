@@ -50,20 +50,30 @@ class DoctrineODMFieldGuesser extends ContainerAware
         return $fields;
     }
 
-    public function getDbType($class, $fieldName)
-    {
-        $metadata = $this->getMetadatas($class);
 
-        if ($metadata->hasAssociation($fieldName)) {
-            if ($metadata->isSingleValuedAssociation($fieldName)) {
+    /**
+     * Find out the database type for given model field path.
+     * 
+     * @param  string $model        The starting model.
+     * @param  string $fieldPath    The field path.
+     * @return string               The leaf field's primary key.
+     */
+    public function getDbType($model, $fieldPath)
+    {
+        $resolved = $this->resolveRelatedField($model, $fieldPath);
+        $class = $resolved['class'];
+        $field = $resolved['field'];
+
+        if ($this->getMetadatas($class)->hasAssociation($field)) {
+            if ($this->getMetadatas()->isSingleValuedAssociation($field)) {
                 return 'document';
             } else {
                 return 'collection';
             }
         }
 
-        if ($metadata->hasField($fieldName)) {
-            $mapping = $metadata->getFieldMapping($fieldName);
+        if ($this->getMetadatas()->hasField($field)) {
+            $mapping = $this->getMetadatas()->getFieldMapping($field);
 
             return $mapping['type'];
         }
@@ -233,5 +243,54 @@ class DoctrineODMFieldGuesser extends ContainerAware
     public function getModelPrimaryKeyName($class = null)
     {
         return $this->getMetadatas($class)->getIdentifier();
+    }
+
+    /**
+     * Find out the primary key for given model field path.
+     * 
+     * @param  string $model        The starting model.
+     * @param  string $fieldPath    The field path.
+     * @return string               The leaf field's primary key.
+     */
+    public function getPrimaryKeyFor($model, $fieldPath)
+    {
+        $resolved = $this->resolveRelatedField($model, $fieldPath);
+        $class = $resolved['class'];
+        $field = $resolved['field'];
+
+        if ($this->getMetadatas($class)->hasAssociation($field)) {
+            $class = $this->getMetadatas()->getAssociationTargetClass($field);
+            return $this->getModelPrimaryKeyName($class);
+        } else {
+            // if the leaf node is not an association
+            return null;
+        }
+    }
+
+    /**
+     * Resolve field path for given model to class and field name.
+     * 
+     * @param  string $model        The starting model.
+     * @param  string $fieldPath    The field path.
+     * @return array                An array containing field and class information.
+     */
+    private function resolveRelatedField($model, $fieldPath)
+    {
+        $path = explode('.', $fieldPath);
+        $field = array_pop($path);
+        $class = $model;
+
+        foreach ($path as $part) {
+            if (!$this->getMetadatas($class)->hasAssociation($part)) {
+                throw new \LogicException('Field "'.$part.'" for class "'.$class.'" is not an association.');
+            }
+
+            $class = $this->getMetadatas()->getAssociationTargetClass($part);
+        }
+        
+        return array(
+            'field' => $field,
+            'class' => $class
+        );
     }
 }

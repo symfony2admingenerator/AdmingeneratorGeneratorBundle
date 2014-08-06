@@ -14,23 +14,24 @@ class FilterItemSubscriber implements EventSubscriberInterface
 {
     protected $filters;
 
-    protected $prototypeFieldName;
+    protected $fieldName;
     
     /**
-     * @param array         $filters            An array of filter configurations.
-     * @param string|null   $prototypeFieldName Prototype field name (optional).
+     * @param array         $filters   An array of filter configurations.
+     * @param string|null   $fieldName Form field name.
      */
-    public function __construct(array $filters, $prototypeFieldName = null)
+    public function __construct(array $filters, $fieldName = null)
     {
-        $this->filters              = $filters;
-        $this->prototypeFieldName   = $prototypeFieldName;
+        $this->filters      = $filters;
+        $this->fieldName    = $fieldName;
     }
     
     public static function getSubscribedEvents()
     {
         return array(
             FormEvents::PRE_SET_DATA    => 'preSetData',
-            FormEvents::POST_SET_DATA   => 'postSetData'
+            FormEvents::POST_SET_DATA   => 'postSetData',
+            FormEvents::PRE_SUBMIT      => 'preSubmit'
         );
     }
 
@@ -44,14 +45,13 @@ class FilterItemSubscriber implements EventSubscriberInterface
         $data = $event->getData();
         $form = $event->getForm();
 
-        if (null !== $this->prototypeFieldName) {
-            $config = $this->getConfig($this->prototypeFieldName);
-            $this->addFilterFields($form, $config);
+        if (null !== $this->fieldName) {
+            $this->addFilterFields($form);
         }
     }
 
     /**
-     * Builds form based on field name passed in post data.
+     * Builds form based on field name passed in set data.
      * 
      * @param FormEvent $event
      */
@@ -60,8 +60,24 @@ class FilterItemSubscriber implements EventSubscriberInterface
         $data = $event->getData();
         $form = $event->getForm();
 
-        if (null === $this->prototypeFieldName) {
-            $config = $this->getConfig($data['field']);
+        if (null === $this->fieldName && null !== $data['field']) {
+            $this->fieldName = $data['field'];
+            $this->addFilterFields($form);
+        }
+    }
+
+    /**
+     * Builds form based on field name passed in submitted data.
+     * 
+     * @param FormEvent $event
+     */
+    public function preSubmit(FormEvent $event)
+    {
+        $data = $event->getData();
+        $form = $event->getForm();
+
+        if (null === $this->fieldName && null !== $data['field']) {
+            $this->fieldName = $data['field'];
             $this->addFilterFields($form, $config);
         }
     }
@@ -69,19 +85,33 @@ class FilterItemSubscriber implements EventSubscriberInterface
     /**
      * Adds filter fields to form.
      * 
-     * @param FormInterface $form   [description]
-     * @param array $config [description]
+     * @param FormInterface $form   The filter form.
      */
-    private function addFilterFields(FormInterface $form, $config)
+    private function addFilterFields(FormInterface $form)
     {
+        $config = $this->getConfig($this->fieldName);
+
         $form->add('field', 'hidden', array('data' => $config['field']));
         $form->add('operator', 'choice', array(
             'choices'               => $this->getOperators($config['filter']),
             'required'              => true,
             'translation_domain'    => 'Admingenerator'
         ));
-        $form->add('value', $config['form'], array_merge(
-            $config['options'],
+
+        $isCollectionType = array_key_exists('type', $config['options'])
+            && array_key_exists('options', $config['options'])
+            && array_key_exists('prototype', $config['options']);
+
+        if ($isCollectionType) {
+            $formType = $config['options']['type'];
+            $formOptions = $config['options']['options'];
+        } else {
+            $formType = $config['form'];
+            $formOptions = $config['options'];
+        }
+
+        $form->add('value', $formType, array_merge(
+            $formOptions,
             array('required' => true)
         ));
     }
@@ -152,16 +182,18 @@ class FilterItemSubscriber implements EventSubscriberInterface
                     'Like'              => 'filters.text.like',
                     'NotLike'           => 'filters.text.not_like'
                 );
+            case 'array':
+                return array(
+                    'Like'              => 'filters.array.like',
+                    'NotLike'           => 'filters.array.not_like'
+                );
             case 'collection':
                 return array(
-                    // ideas: collection->count
-                    // ideas: contains_with (fieldName => value)
                     'Contains'          => 'filters.collection.contains',
                     'NotContains'       => 'filters.collection.not_contains'
                 );
             case 'model':
                 return array(
-                    // ideas: with  (fieldName => value)
                     'Equal'             => 'filters.model.equal',
                     'NotEqual'          => 'filters.model.not_equal'
                 );

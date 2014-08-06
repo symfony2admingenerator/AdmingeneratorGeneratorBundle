@@ -44,6 +44,9 @@ filters:
         not_equal:              Not equal
         like:                   Like
         not_like:               Not like
+    array:
+        like:                   Like
+        not_like:               Not like
     collection:
         contains:               Contains
         not_contains:           Not contains

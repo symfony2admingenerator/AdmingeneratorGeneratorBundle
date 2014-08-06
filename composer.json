@@ -1,5 +1,5 @@
 {
-    "name": "cedriclombardot/admingenerator-generator-bundle",
+    "name": "symfony2admingenerator/generator-bundle",
     "minimum-stability": "dev",
     "description": "Admingenerator for Symfony2 based on YAML configuration and Twig templating",
     "keywords": ["admin", "generator", "yaml"],
@@ -38,7 +38,7 @@
         "doctrine/dbal": ">=2.2.3,<2.5-dev"
     },
     "suggest": {
-        "avocode/form-extensions-bundle": "Symfony2 form extensions for Admingenerator",
+        "symfony2admingenerator/form-extensions-bundle": "Symfony2 form extensions for Admingenerator",
         "liuggio/excelbundle": "(version >= 2.0) Allows the usage of the Excel export.",
         "cedriclombardot/admingenerator-user-bundle": "FOSUserBundle integration for Admingenerator",
         "jms/security-extra-bundle": "Allows expressions in credential checks for generated actions"
@@ -51,7 +51,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.2-dev"
+            "dev-master": "2.0-dev"
         }
     }
 }

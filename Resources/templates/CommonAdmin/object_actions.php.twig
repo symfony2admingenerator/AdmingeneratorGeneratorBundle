@@ -38,7 +38,6 @@
 {% block object_actions_script %}
     {{ echo_block("object_actions_script") }}
     {% if object_actions is defined and object_actions|length > 0 %}
-    <script src="{{ echo_twig('asset("bundles/admingeneratorgenerator/js/admingenerator/object-actions.js")') }}"></script>
     
     <script type="text/javascript">
     jQuery(document).ready(function($) {

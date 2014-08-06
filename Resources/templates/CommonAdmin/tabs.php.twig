@@ -1,7 +1,7 @@
 {% block tabs %}
 {{ echo_block("form_tabs") }}
 {% if tabs is defined and tabs|length > 0 %}
-    <ul class="form_tabs nav nav-tabs">
+    <ul id="form_tabs" class="form_tabs nav nav-tabs">
         {% for name, tab in tabs %}
             <li>
               <a data-toggle="tab" href="#"
@@ -12,20 +12,9 @@
         {% endfor %}
     </ul>
     <script type="text/javascript">
-        ;(function(window, $, undefined){
-            $(function() {
-                $('.form_tabs.nav.nav-tabs a:first').tab('show');
-                $('input[type=submit],button[type=submit]').on('click', function(e){
-                    $('.form_tabs.nav.nav-tabs li').each(function(i){
-                        $(this).find('a span.badge-important').remove();
-                        invalid_items = $('fieldset'+$(this).find('a:first').data('target')).find(':invalid');
-                        if(invalid_items.length>0){
-                            $(this).find('a:first').append('<span class="badge badge-important">'+invalid_items.length+'</span>');
-                        }
-                    });
-                });          
-            });
-        })(this, jQuery);
+        jQuery(document).ready(function($) {
+            $('#form_tabs').agen$tabs();
+        });
     </script>
 {% endif %}
 {{ echo_endblock() }}
