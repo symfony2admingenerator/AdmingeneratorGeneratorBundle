@@ -9,8 +9,12 @@ class PropelQueryFilter extends BaseQueryFilter
 
     public function addDefaultFilter($field, $value)
     {
-        $method = 'filterBy'.Inflector::classify($field);
-        $this->query->$method($value);
+        if (!is_array($value)) {
+            $method = 'filterBy'.Inflector::classify($field);
+            $this->query->$method($value);
+        } elseif (count($value) > 0) {
+            $this->query->filterBy($field, $value, \Criteria::IN);
+        }
     }
 
     public function addBooleanFilter($field, $value)
