@@ -91,7 +91,7 @@ class ExcelController extends ListController
 
         // Convert DateTime object to given format
         if ($data instanceof \DateTime) {
-            $data = $data->format('d-m-Y H:i:s');
+            $data = $data->format('{{ builder.dateTimeFormat }}');
         }
 
         return $data;
