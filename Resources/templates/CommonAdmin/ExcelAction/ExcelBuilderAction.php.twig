@@ -108,7 +108,11 @@ class ExcelController extends ListController
           {%- set column = 0 -%}
           {%- for builder_column in builder.columns %}
 
-            $data = $this->getValueForCell('{{ builder_column.getter }}', $rowData);
+            if (method_exists($this, 'format{{ (builder_column.getter|classify)|php_name }}Value')) {
+                $data = $this->format{{ (builder_column.getter|classify)|php_name }}Value($rowData);
+            } else {
+                $data = $this->getValueForCell('{{ builder_column.getter }}', $rowData);
+            }
             $sheet->setCellValueByColumnAndRow({{ column }}, $row, $data);
             {% set column = column + 1 %}
           {%- endfor %}
