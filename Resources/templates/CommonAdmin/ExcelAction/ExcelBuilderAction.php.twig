@@ -84,10 +84,10 @@ class ExcelController extends ListController
         while (($pos = strpos($getter, '.')) > 0) {
             $tempGetter = 'get'.ucfirst(substr($getter, 0, $pos));
             $getter = substr($getter, $pos + 1);
-            $data = $data->$tempGetter();
+            $data = is_object($data) ? $data->$tempGetter() : '';
         }
         $getter = 'get'.ucfirst($getter);
-        $data = $data->$getter();
+        $data = is_object($data) ? $data->$getter() : '';
 
         // Convert DateTime object to given format
         if ($data instanceof \DateTime) {
