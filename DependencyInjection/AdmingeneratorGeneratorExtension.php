@@ -8,6 +8,8 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Processor;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 
 use Admingenerator\GeneratorBundle\Exception\ModelManagerNotSelectedException;
 
@@ -37,7 +39,7 @@ class AdmingeneratorGeneratorExtension extends Extension implements PrependExten
         $loader->load('services.xml');
 
         $processor = new Processor();
-        $configuration = new Configuration();
+        $configuration = new Configuration($this->getAlias());
         $config = $processor->processConfiguration($configuration, $configs);
 
         $container->setParameter('admingenerator.overwrite_if_exists', $config['overwrite_if_exists']);
@@ -51,6 +53,7 @@ class AdmingeneratorGeneratorExtension extends Extension implements PrependExten
 
         $this->processModelManagerConfiguration($config, $container);
         $this->processTwigConfiguration($config['twig'], $container);
+        $this->processCacheConfiguration($config, $container);
     }
 
     /**
@@ -117,6 +120,57 @@ class AdmingeneratorGeneratorExtension extends Extension implements PrependExten
             // Register Intl extension for localized date
             $container->register('twig.extension.intl', 'Twig_Extensions_Extension_Intl')->addTag('twig.extension');
         }
+    }
+
+    /**
+     * @param array $config
+     * @param ContainerBuilder $container
+     */
+    private function processCacheConfiguration(array $config, ContainerBuilder $container)
+    {
+        if (empty($config['generator_cache'])) {
+            return;
+        }
+
+        $container
+            ->getDefinition('admingenerator.generator.listener')
+            ->addMethodCall('setCacheProvider', array(
+                new Reference($config['generator_cache']),
+                $container->getParameter('kernel.environment')
+            ));
+
+        if ($config['use_doctrine_orm']) {
+            $this->addCacheProvider($config['generator_cache'], $container->getDefinition('admingenerator.generator.doctrine'), $container);
+        }
+
+        if ($config['use_doctrine_odm']) {
+            $this->addCacheProvider($config['generator_cache'], $container->getDefinition('admingenerator.generator.doctrine_odm'), $container);
+        }
+
+        if ($config['use_propel']) {
+            $this->addCacheProvider($config['generator_cache'], $container->getDefinition('admingenerator.generator.propel'), $container);
+        }
+    }
+
+    /**
+     * @param string $cacheProviderServiceName
+     * @param Definition $serviceDefinition
+     */
+    protected function addCacheProvider($cacheProviderServiceName, Definition $serviceDefinition, ContainerBuilder $container)
+    {
+        if (!$interfaces = class_implements($serviceDefinition->getClass())) {
+            return;
+        }
+
+        if (!array_key_exists('Admingenerator\\GeneratorBundle\\Generator\\CachedGeneratorInterface', $interfaces)) {
+            return;
+        }
+
+        $serviceDefinition
+            ->addMethodCall('setCacheProvider', array(
+                new Reference($cacheProviderServiceName),
+                $container->getParameter('kernel.environment')
+            ));
     }
 
     public function getAlias()
