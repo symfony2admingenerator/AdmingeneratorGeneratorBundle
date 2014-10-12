@@ -11,7 +11,7 @@ _TODO_
 
 ### 2. Cache configuration
 
-`generator_cache`: *default*: `null` *type*: `string` (service name extending `Doctrine\Common\Cache\CacheProvider`)
+`generator_cache`: __default__: `null` __type__: `string` (service name extending `Doctrine\Common\Cache\CacheProvider`)
 
 By default, for each request matching an Admingenerated controller, the `ControllerListener` will iterate over
 the filesystem to find which right generator.yml and the right `Generator` have to be used to build generated
@@ -23,14 +23,14 @@ Example:
 
 ```yaml
 services:
-    global_cache.apc_driver:
+    global_cache.provider:
         class: %doctrine.orm.cache.apc.class%
         public: false
         calls:
             - [ setNamespace, [ 'my_namespace' ] ]
 
 admingenerator_generator:
-    generator_cache: global_cache.apc_driver
+    generator_cache: global_cache.provider
 
 ```
 
