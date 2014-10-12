@@ -38,7 +38,7 @@ class DoctrineGenerator extends Generator
      *   var_dump(isset($array['key'])); // false
      *   var_dump(array_key_exists('key', $array)); // true
      */
-    public function build()
+    public function doBuild()
     {
         $this->validateYaml();
 

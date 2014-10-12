@@ -158,14 +158,6 @@ class AdmingeneratorGeneratorExtension extends Extension implements PrependExten
      */
     protected function addCacheProviderToGenerator($cacheProviderServiceName, Definition $serviceDefinition, ContainerBuilder $container)
     {
-        if (!$interfaces = class_implements($serviceDefinition->getClass())) {
-            return;
-        }
-
-        if (!array_key_exists('Admingenerator\\GeneratorBundle\\Generator\\CachedGeneratorInterface', $interfaces)) {
-            return;
-        }
-
         $serviceDefinition
             ->addMethodCall('setCacheProvider', array(
                 new Reference($cacheProviderServiceName),
