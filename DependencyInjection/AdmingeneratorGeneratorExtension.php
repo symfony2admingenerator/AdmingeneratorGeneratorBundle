@@ -140,15 +140,15 @@ class AdmingeneratorGeneratorExtension extends Extension implements PrependExten
             ));
 
         if ($config['use_doctrine_orm']) {
-            $this->addCacheProvider($config['generator_cache'], $container->getDefinition('admingenerator.generator.doctrine'), $container);
+            $this->addCacheProviderToGenerator($config['generator_cache'], $container->getDefinition('admingenerator.generator.doctrine'), $container);
         }
 
         if ($config['use_doctrine_odm']) {
-            $this->addCacheProvider($config['generator_cache'], $container->getDefinition('admingenerator.generator.doctrine_odm'), $container);
+            $this->addCacheProviderToGenerator($config['generator_cache'], $container->getDefinition('admingenerator.generator.doctrine_odm'), $container);
         }
 
         if ($config['use_propel']) {
-            $this->addCacheProvider($config['generator_cache'], $container->getDefinition('admingenerator.generator.propel'), $container);
+            $this->addCacheProviderToGenerator($config['generator_cache'], $container->getDefinition('admingenerator.generator.propel'), $container);
         }
     }
 
@@ -156,7 +156,7 @@ class AdmingeneratorGeneratorExtension extends Extension implements PrependExten
      * @param string $cacheProviderServiceName
      * @param Definition $serviceDefinition
      */
-    protected function addCacheProvider($cacheProviderServiceName, Definition $serviceDefinition, ContainerBuilder $container)
+    protected function addCacheProviderToGenerator($cacheProviderServiceName, Definition $serviceDefinition, ContainerBuilder $container)
     {
         if (!$interfaces = class_implements($serviceDefinition->getClass())) {
             return;
