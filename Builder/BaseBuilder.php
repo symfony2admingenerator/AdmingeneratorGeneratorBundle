@@ -3,14 +3,11 @@
 namespace Admingenerator\GeneratorBundle\Builder;
 
 use Symfony\Component\Templating\TemplateNameParser;
-
 use Symfony\Component\Config\FileLocator;
-
 use Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator;
-
 use Symfony\Bundle\TwigBundle\Loader\FilesystemLoader;
-
 use Symfony\Component\HttpFoundation\ParameterBag;
+use Symfony\Component\HttpKernel\Kernel;
 
 use TwigGenerator\Builder\BaseBuilder as GenericBaseBuilder;
 
@@ -134,6 +131,12 @@ abstract class BaseBuilder extends GenericBaseBuilder
 
         $variables = $this->getVariables();
         $variables['builder'] = $this;
+        $variables['symfony_version'] = array(
+            'id' => Kernel::VERSION_ID,
+            'major' => Kernel::MAJOR_VERSION,
+            'minor' => Kernel::MINOR_VERSION,
+            'release' => Kernel::RELEASE_VERSION
+        );
 
         return $template->render($variables);
     }
