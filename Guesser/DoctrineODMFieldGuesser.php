@@ -232,6 +232,6 @@ class DoctrineODMFieldGuesser extends ContainerAware
      */
     public function getModelPrimaryKeyName($class = null)
     {
-        return $this->getMetadatas($class)->getIdentifier();
+        return $this->getMetadatas($class)->getIdentifier()[0];
     }
 }
