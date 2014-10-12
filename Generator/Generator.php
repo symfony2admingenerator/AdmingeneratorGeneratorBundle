@@ -88,8 +88,9 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
     }
 
     /**
+     * Process build
      */
-    protected function doBuild();
+    abstract protected function doBuild();
 
     /**
      * @return string
