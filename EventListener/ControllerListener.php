@@ -167,7 +167,7 @@ class ControllerListener
      */
     protected function getCacheKey($key)
     {
-        return sprintf('admingen_controller_%s_%s', $base, $this->cacheSuffix);
+        return sprintf('admingen_controller_%s_%s', $key, $this->cacheSuffix);
     }
 
 }
