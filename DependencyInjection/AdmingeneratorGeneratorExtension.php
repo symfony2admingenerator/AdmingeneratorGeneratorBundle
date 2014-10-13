@@ -7,7 +7,6 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 
@@ -38,9 +37,7 @@ class AdmingeneratorGeneratorExtension extends Extension implements PrependExten
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        $processor = new Processor();
-        $configuration = new Configuration($this->getAlias());
-        $config = $processor->processConfiguration($configuration, $configs);
+        $config = $this->processConfiguration($this->getConfiguration($configs, $container), $configs);
 
         $container->setParameter('admingenerator.overwrite_if_exists', $config['overwrite_if_exists']);
         $container->setParameter('admingenerator.base_admin_template', $config['base_admin_template']);
@@ -165,6 +162,17 @@ class AdmingeneratorGeneratorExtension extends Extension implements PrependExten
             ));
     }
 
+    /**
+     * @return \Admingenerator\GeneratorBundle\DependencyInjection\Configuration
+     */
+    public function getConfiguration(array $config, ContainerBuilder $container)
+    {
+        return new Configuration($this->getAlias());
+    }
+
+    /**
+     * @return string
+     */
     public function getAlias()
     {
         return 'admingenerator_generator';
