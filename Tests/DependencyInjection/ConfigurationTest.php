@@ -13,7 +13,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     public function testDefaultConfig()
     {
         $processor = new Processor();
-        $config = $processor->processConfiguration(new Configuration(), array());
+        $config = $processor->processConfiguration(new Configuration('admingen_generator'), array());
 
         $this->assertEquals($this->getBundleDefaultConfig(), $config);
     }

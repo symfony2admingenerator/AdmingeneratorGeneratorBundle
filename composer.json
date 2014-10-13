@@ -1,56 +1,58 @@
 {
-    "name": "cedriclombardot/admingenerator-generator-bundle",
-    "minimum-stability": "dev",
-    "description": "Admingenerator for Symfony2 based on YAML configuration and Twig templating",
-    "keywords": ["admin", "generator", "yaml"],
-    "type": "symfony-bundle",
-    "homepage": "http://symfony2admingenerator.org/",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Cedric LOMBARDOT",
-            "email": "cedric.lombardot@gmail.com"
-        },
-        {
-            "name": "Symfony Community",
-            "homepage": "http://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/contributors"
-        }
-    ],
-    "require": {
-        "symfony/symfony": ">= 2.2.0",
-        "sensio/generator-bundle": ">= 2.3.3",
-        "doctrine/orm": "~2.2.3",
-        "cedriclombardot/twig-generator": "1.0.*",
-        "knplabs/knp-menu-bundle": ">1.0,<2.1",
-        "white-october/pagerfanta-bundle": "1.0.*@dev",
-        "twig/twig": ">= 1.9.0",
-        "twig/extensions": "1.0.*",
-        "robloach/component-installer": ">= 0.0.11",
-        "afarkas/html5shiv": ">= 3.7.0",
-        "components/jquery": ">= 1.9.0, < 2.0.0",
-        "components/jqueryui": ">= 1.9.0",
-        "components/bootstrap": "~3.0",
-        "components/font-awesome": "~4.0"
-    },
-    "require-dev": {
-        "doctrine/common": ">=2.2.3,<2.5-dev",
-        "doctrine/dbal": ">=2.2.3,<2.5-dev"
-    },
-    "suggest": {
-        "avocode/form-extensions-bundle": "Symfony2 form extensions for Admingenerator",
-        "liuggio/excelbundle": "(version >= 2.0) Allows the usage of the Excel export.",
-        "cedriclombardot/admingenerator-user-bundle": "FOSUserBundle integration for Admingenerator",
-        "jms/security-extra-bundle": "Allows expressions in credential checks for generated actions"
-    },
-    "target-dir": "Admingenerator/GeneratorBundle",
-    "autoload": {
-        "psr-0": {
-            "Admingenerator\\GeneratorBundle": ""
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.2-dev"
-        }
-    }
+	"name" : "cedriclombardot/admingenerator-generator-bundle",
+	"minimum-stability" : "dev",
+	"description" : "Admingenerator for Symfony2 based on YAML configuration and Twig templating",
+	"keywords" : [
+		"admin",
+		"generator",
+		"yaml"
+	],
+	"type" : "symfony-bundle",
+	"homepage" : "http://symfony2admingenerator.org/",
+	"license" : "MIT",
+	"authors" : [{
+			"name" : "Cedric LOMBARDOT",
+			"email" : "cedric.lombardot@gmail.com"
+		}, {
+			"name" : "Symfony Community",
+			"homepage" : "http://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/contributors"
+		}
+	],
+	"require" : {
+		"symfony/symfony" : ">= 2.2.0",
+		"sensio/generator-bundle" : ">= 2.3.3",
+		"doctrine/common" : "~2.2.3",
+		"cedriclombardot/twig-generator" : "1.0.*",
+		"knplabs/knp-menu-bundle" : ">1.0,<2.1",
+		"white-october/pagerfanta-bundle" : "1.0.*@dev",
+		"twig/twig" : ">= 1.9.0",
+		"twig/extensions" : "1.0.*",
+		"robloach/component-installer" : ">= 0.0.11",
+		"afarkas/html5shiv" : ">= 3.7.0",
+		"components/jquery" : ">= 1.9.0, < 2.0.0",
+		"components/jqueryui" : ">= 1.9.0",
+		"components/bootstrap" : "~3.0",
+		"components/font-awesome" : "~4.0"
+	},
+	"require-dev" : {
+		"doctrine/orm" : ">=2.2.3,<2.5-dev",
+		"doctrine/dbal" : ">=2.2.3,<2.5-dev"
+	},
+	"suggest" : {
+		"avocode/form-extensions-bundle" : "Symfony2 form extensions for Admingenerator",
+		"liuggio/excelbundle" : "(version >= 2.0) Allows the usage of the Excel export.",
+		"cedriclombardot/admingenerator-user-bundle" : "FOSUserBundle integration for Admingenerator",
+		"jms/security-extra-bundle" : "Allows expressions in credential checks for generated actions"
+	},
+	"target-dir" : "Admingenerator/GeneratorBundle",
+	"autoload" : {
+		"psr-0" : {
+			"Admingenerator\\GeneratorBundle" : ""
+		}
+	},
+	"extra" : {
+		"branch-alias" : {
+			"dev-master" : "1.2-dev"
+		}
+	}
 }
