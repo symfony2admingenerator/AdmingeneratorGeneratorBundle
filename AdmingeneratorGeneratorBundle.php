@@ -40,6 +40,17 @@ class AdmingeneratorGeneratorBundle extends Bundle
     }
 
     /**
+     * (non-PHPdoc)
+     * @see \Symfony\Component\HttpKernel\Bundle\Bundle::getContainerExtension()
+     */
+    public function getContainerExtension()
+    {
+        $this->extension = new DependencyInjection\AdmingeneratorGeneratorExtension();
+
+        return $this->extension;
+    }
+
+    /**
      * Initialize Admingenerator Class loader
      *
      * @param ContainerBuilder $container

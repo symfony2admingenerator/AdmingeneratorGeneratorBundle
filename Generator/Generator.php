@@ -6,8 +6,8 @@ use Symfony\Component\Finder\Finder;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Admingenerator\GeneratorBundle\Validator\ValidatorInterface;
-
 use Admingenerator\GeneratorBundle\Builder\Generator as AdminGenerator;
+use Doctrine\Common\Cache as DoctrineCache;
 
 abstract class Generator extends ContainerAware implements GeneratorInterface
 {
@@ -23,10 +23,25 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
 
     protected $validators = array();
 
+    protected $cacheProvider;
+
+    protected $cacheSuffix = 'default';
+
     public function __construct($root_dir, $cache_dir)
     {
         $this->root_dir = $root_dir;
         $this->cache_dir = $cache_dir;
+        $this->cacheProvider = new DoctrineCache\ArrayCache();
+    }
+
+    /**
+     * @param Doctrine\Common\Cache\CacheProvider $cacheProvider
+     * @param string $cacheSuffix
+     */
+    public function setCacheProvider(DoctrineCache\CacheProvider $cacheProvider, $cacheSuffix = 'default')
+    {
+        $this->cacheProvider = $cacheProvider;
+        $this->cacheSuffix = $cacheSuffix;
     }
 
     public function setGeneratorYml($yaml_file)
@@ -64,7 +79,25 @@ abstract class Generator extends ContainerAware implements GeneratorInterface
      */
     public function build()
     {
-        throw new \LogicException('Not implemented');
+        if ($this->cacheProvider->fetch($this->getCacheKey())) {
+            return;
+        }
+
+        $this->doBuild();
+        $this->cacheProvider->save($this->getCacheKey(), true);
+    }
+
+    /**
+     * Process build
+     */
+    abstract protected function doBuild();
+
+    /**
+     * @return string
+     */
+    protected function getCacheKey()
+    {
+        return sprintf('admingen_isbuilt_%s_%s', $this->getBaseGeneratorName(), $this->cacheSuffix);
     }
 
     public function setFieldGuesser($fieldGuesser)

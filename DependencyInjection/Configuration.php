@@ -13,6 +13,19 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface
 {
     /**
+     * @var string
+     */
+    protected $alias;
+
+    /**
+     * @param string $alias
+     */
+    public function __construct($alias)
+    {
+        $this->alias = $alias;
+    }
+
+    /**
      * Generates the configuration tree builder.
      *
      *
@@ -21,7 +34,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('admingenerator_generator');
+        $rootNode    = $treeBuilder->root($this->alias);
 
         $rootNode
             ->children()
@@ -36,6 +49,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('login_path')->defaultNull()->end()
                 ->scalarNode('logout_path')->defaultNull()->end()
                 ->scalarNode('exit_path')->defaultNull()->end()
+                ->scalarNode('generator_cache')->defaultNull()->end()
                 ->arrayNode('twig')
                     ->addDefaultsIfNotSet()
                     ->children()

@@ -7,7 +7,8 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\Config\Definition\Processor;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 
 use Admingenerator\GeneratorBundle\Exception\ModelManagerNotSelectedException;
 
@@ -36,9 +37,7 @@ class AdmingeneratorGeneratorExtension extends Extension implements PrependExten
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        $processor = new Processor();
-        $configuration = new Configuration();
-        $config = $processor->processConfiguration($configuration, $configs);
+        $config = $this->processConfiguration($this->getConfiguration($configs, $container), $configs);
 
         $container->setParameter('admingenerator.overwrite_if_exists', $config['overwrite_if_exists']);
         $container->setParameter('admingenerator.base_admin_template', $config['base_admin_template']);
@@ -51,6 +50,7 @@ class AdmingeneratorGeneratorExtension extends Extension implements PrependExten
 
         $this->processModelManagerConfiguration($config, $container);
         $this->processTwigConfiguration($config['twig'], $container);
+        $this->processCacheConfiguration($config, $container);
     }
 
     /**
@@ -119,6 +119,60 @@ class AdmingeneratorGeneratorExtension extends Extension implements PrependExten
         }
     }
 
+    /**
+     * @param array $config
+     * @param ContainerBuilder $container
+     */
+    private function processCacheConfiguration(array $config, ContainerBuilder $container)
+    {
+        if (empty($config['generator_cache'])) {
+            return;
+        }
+
+        $container
+            ->getDefinition('admingenerator.generator.listener')
+            ->addMethodCall('setCacheProvider', array(
+                new Reference($config['generator_cache']),
+                $container->getParameter('kernel.environment')
+            ));
+
+        if ($config['use_doctrine_orm']) {
+            $this->addCacheProviderToGenerator($config['generator_cache'], $container->getDefinition('admingenerator.generator.doctrine'), $container);
+        }
+
+        if ($config['use_doctrine_odm']) {
+            $this->addCacheProviderToGenerator($config['generator_cache'], $container->getDefinition('admingenerator.generator.doctrine_odm'), $container);
+        }
+
+        if ($config['use_propel']) {
+            $this->addCacheProviderToGenerator($config['generator_cache'], $container->getDefinition('admingenerator.generator.propel'), $container);
+        }
+    }
+
+    /**
+     * @param string $cacheProviderServiceName
+     * @param Definition $serviceDefinition
+     */
+    protected function addCacheProviderToGenerator($cacheProviderServiceName, Definition $serviceDefinition, ContainerBuilder $container)
+    {
+        $serviceDefinition
+            ->addMethodCall('setCacheProvider', array(
+                new Reference($cacheProviderServiceName),
+                $container->getParameter('kernel.environment')
+            ));
+    }
+
+    /**
+     * @return \Admingenerator\GeneratorBundle\DependencyInjection\Configuration
+     */
+    public function getConfiguration(array $config, ContainerBuilder $container)
+    {
+        return new Configuration($this->getAlias());
+    }
+
+    /**
+     * @return string
+     */
     public function getAlias()
     {
         return 'admingenerator_generator';

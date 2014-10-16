@@ -29,14 +29,9 @@ class DoctrineODMGenerator extends Generator
 {
     /**
      * (non-PHPdoc)
-     * @see Generator/Admingenerator\GeneratorBundle\Generator.Generator::build()
-     * @see http://juliusbeckmann.de/blog/php-benchmark-isset-or-array_key_exists.html
-     *   // Key is NULL
-     *   $array['key'] = NULL;
-     *   var_dump(isset($array['key'])); // false
-     *   var_dump(array_key_exists('key', $array)); // true
+     * @see \Admingenerator\GeneratorBundle\Generator\Generator::doBuild()
      */
-    public function build()
+    protected function doBuild()
     {
         $this->validateYaml();
 
