@@ -34,6 +34,8 @@ admingenerator_generator:
 
 ```
 
+> Note: this example assumes you have added `doctrine/common` (version `2.2.3` or higher), to your project dependencies.
+
 
 ### 3. Twig section
 
