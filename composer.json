@@ -10,10 +10,12 @@
 	"type" : "symfony-bundle",
 	"homepage" : "http://symfony2admingenerator.org/",
 	"license" : "MIT",
-	"authors" : [{
+	"authors" : [
+		{
 			"name" : "Cedric LOMBARDOT",
 			"email" : "cedric.lombardot@gmail.com"
-		}, {
+		},
+		{
 			"name" : "Symfony Community",
 			"homepage" : "http://github.com/cedriclombardot/AdmingeneratorGeneratorBundle/contributors"
 		}
@@ -21,7 +23,6 @@
 	"require" : {
 		"symfony/symfony" : ">= 2.2.0",
 		"sensio/generator-bundle" : ">= 2.3.3",
-		"doctrine/common" : "~2.2.3",
 		"cedriclombardot/twig-generator" : "1.0.*",
 		"knplabs/knp-menu-bundle" : ">1.0,<2.1",
 		"white-october/pagerfanta-bundle" : "1.0.*@dev",
