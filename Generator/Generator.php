@@ -11,20 +11,41 @@ use Doctrine\Common\Cache as DoctrineCache;
 
 abstract class Generator extends ContainerAware implements GeneratorInterface
 {
+    /**
+     * @var string
+     */
     protected $root_dir;
 
+    /**
+     * @var string
+     */
     protected $cache_dir;
 
+    /**
+     * @var string
+     */
     protected $generator_yaml;
 
     protected $fieldGuesser;
 
+    /**
+     * @var string
+     */
     protected $base_generator_name;
 
+    /**
+     * @var array
+     */
     protected $validators = array();
 
+    /**
+     * @var DoctrineCache\CacheProvider
+     */
     protected $cacheProvider;
 
+    /**
+     * @var string
+     */
     protected $cacheSuffix = 'default';
 
     public function __construct($root_dir, $cache_dir)
