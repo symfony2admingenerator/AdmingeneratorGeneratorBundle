@@ -10,23 +10,17 @@
 Add Admingenerator to your `composer.json`:
 
 #### 1.1   Symfony 2.3.X
-```json
-"require": {
-    "cedriclombardot/admingenerator-generator-bundle": "2.3.*@dev"
-},
+```sh
+composer require cedriclombardot/admingenerator-generator-bundle:~2.3
 ```
 
 #### 1.1   Symfony 2.2.X
-```json
-"require": {
-    "cedriclombardot/admingenerator-generator-bundle": "2.2.*@dev"
-},
+```sh
+composer require cedriclombardot/admingenerator-generator-bundle:~2.2
 ```
 #### 1.1   Symfony 2.1.X
-```json
-"require": {
-   "cedriclombardot/admingenerator-generator-bundle": "2.1.*@dev"
-},
+```sh
+composer require cedriclombardot/admingenerator-generator-bundle:~2.1
 ```
 
 ### 1.2 Checkin your composer 
