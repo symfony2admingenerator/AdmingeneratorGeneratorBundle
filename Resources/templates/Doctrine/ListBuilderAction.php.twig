@@ -100,7 +100,7 @@
                   $this->getDoctrine()
                   ->getManagerForClass(get_class($filters['{{ filter }}']))
                   ->getUnitOfWork()
-                  ->registerManaged($filters['{{ filter }}'], array('id' => $filters['{{ filter }}']->get{{ builder.getFieldGuesser().getModelPrimaryKeyName(filterModel)|capitalize }}()), array());
+                  ->registerManaged($filters['{{ filter }}'], array('{{ builder.getFieldGuesser().getModelPrimaryKeyName(filterModel) }}' => $filters['{{ filter }}']->get{{ builder.getFieldGuesser().getModelPrimaryKeyName(filterModel)|capitalize }}()), array());
               }
 
             {%- endif %}
