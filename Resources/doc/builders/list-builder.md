@@ -11,8 +11,6 @@ List builder features:
 
 * [Title](common/title.md)
 * [Localized date](common/localized-date.md)
- 
-
 
 ### Filters
 
