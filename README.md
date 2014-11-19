@@ -1,5 +1,6 @@
 # Symfony2 Admin Generator
 ---------------------------------------
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/symfony2admingenerator/AdmingeneratorGeneratorBundle?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![KnpBundles Badge](http://knpbundles.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/badge-short)](http://knpbundles.com/symfony2admingenerator/AdmingeneratorGeneratorBundle)
 ![project status](http://stillmaintained.com/cedriclombardot/AdmingeneratorGeneratorBundle.png) 
