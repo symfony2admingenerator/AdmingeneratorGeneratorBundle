@@ -1,3 +1,4 @@
+{% use '../CommonAdmin/security_action.php.twig' %}
 <?php
 
 namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.generator.GeneratedControllerFolder }};
@@ -19,91 +20,95 @@ class ExcelController extends ListController
      */
     public function excelAction()
     {
-      // Create the PHPExcel object with some standard values
-      try {
-        $phpexcel = $this->get('phpexcel');
-      } catch (ServiceNotFoundException $e){
-        throw new \Exception('You will need to enable the PHPExcel bundle for this function to work.', null, $e);
-      }
-      $phpExcelObject = $phpexcel->createPHPExcelObject();
-      $this->createExcelObject($phpExcelObject);
-      $sheet = $phpExcelObject->setActiveSheetIndex(0);
+        {{ block('security_action') }}
+      
+        // Create the PHPExcel object with some standard values
+        try {
+            $phpexcel = $this->get('phpexcel');
+        } catch (ServiceNotFoundException $e){
+            throw new \Exception('You will need to enable the PHPExcel bundle for this function to work.', null, $e);
+        }
+        $phpExcelObject = $phpexcel->createPHPExcelObject();
+        $this->createExcelObject($phpExcelObject);
+        $sheet = $phpExcelObject->setActiveSheetIndex(0);
 
-      // Create the first bold row in the Excel spreadsheet
-      $this->createExcelHeader($sheet);
+        // Create the first bold row in the Excel spreadsheet
+        $this->createExcelHeader($sheet);
 
-      // Print the data
-      $this->createExcelData($sheet);
+        // Print the data
+        $this->createExcelData($sheet);
 
-      // Create the Writer, Response and add header
-      $writer = $phpexcel->createWriter($phpExcelObject, '{{ builder.filetype }}');
-      $response = $phpexcel->createStreamedResponse($writer);
-      $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=utf-8');
-      $response->headers->set('Content-Disposition', 'attachment;filename={{ builder.filename }}.xlsx');
+        // Create the Writer, Response and add header
+        $writer = $phpexcel->createWriter($phpExcelObject, '{{ builder.filetype }}');
+        $response = $phpexcel->createStreamedResponse($writer);
+        $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=utf-8');
+        $response->headers->set('Content-Disposition', 'attachment;filename={{ builder.filename }}.xlsx');
 
-      return $response;
+        return $response;
     }
 
     /**
      * Override this method to add your own creator, title and more to the Excel spreadsheet
      */
-    protected function createExcelObject(\PHPExcel $phpExcelObject){
-      $phpExcelObject->getProperties()->setCreator("AdminGeneratorBundle")
-        ->setTitle('AdminGenerator Excel Export')
-        ->setSubject("AdminGenerator Excel Export")
-        ->setDescription("AdminGenerator Excel export");
+    protected function createExcelObject(\PHPExcel $phpExcelObject)
+    {
+        $phpExcelObject->getProperties()->setCreator("AdminGeneratorBundle")
+            ->setTitle('AdminGenerator Excel Export')
+            ->setSubject("AdminGenerator Excel Export")
+            ->setDescription("AdminGenerator Excel export");
     }
 
     /**
      * Fill the Excel speadsheet with the headers
      */
-    protected function createExcelheader(\PhpExcel_Worksheet $sheet){
-      {% set column = 0 %}
-      {% for builder_column in builder.columns %}
-        $sheet->setCellValueByColumnAndRow({{ column }}, 1, "{{ builder_column.label }}", true);
-        $columnLetter = \PHPExcel_Cell::stringFromColumnIndex({{ column }});
+    protected function createExcelheader(\PhpExcel_Worksheet $sheet)
+    {
+    {% set colNum = 0 %}
+    {% for column in builder.columns %}
+        $sheet->setCellValueByColumnAndRow({{ colNum }}, 1, "{{ column.label }}", true);
+        $columnLetter = \PHPExcel_Cell::stringFromColumnIndex({{ colNum }});
         $sheet->getStyle($columnLetter . '1')->getFont()->setBold(true);
         $sheet->getColumnDimension($columnLetter)->setAutoSize(true);
-        {% set column = column + 1 %}
-      {% endfor %}
+    {% set colNum = colNum + 1 %}
+    {% endfor %}
     }
 
     /**
      * Fills the Excel spreadsheet with data
      */
-    protected function createExcelData(\PhpExcel_Worksheet $sheet){
-      $row = 2;
-      $results = $this->getResults();
-      foreach($results as $rowData){
-        {% set column = 0 %}
-        {% for builder_column in builder.columns %}
+    protected function createExcelData(\PhpExcel_Worksheet $sheet)
+    {
+        $row = 2;
+        $results = $this->getResults();
+        foreach($results as $rowData) {
+        {% set colNum = 0 %}
+        {% for column in builder.columns %}
+            // Retrieve relations
+            $getter = '{{ column.getter }}';
+            $data = $rowData;
+            while (($pos = strpos($getter, '.')) > 0) {
+                $tempGetter = 'get' . ucfirst(substr($getter, 0, $pos));
+                $getter = substr($getter, $pos + 1);
+                $data = $data->$tempGetter();
+            }
+            $getter = 'get' . ucfirst($getter);
+            $data = $data->$getter();
 
-          // Retrieve relations
-          $getter = '{{ builder_column.getter }}';
-          $data = $rowData;
-          while (($pos = strpos($getter, '.')) > 0){
-            $tempGetter = 'get' . ucfirst(substr($getter, 0, $pos));
-            $getter = substr($getter, $pos + 1);
-            $data = $data->$tempGetter();
-          }
-          $getter = 'get' . ucfirst($getter);
-          $data = $data->$getter();
-
-          // Convert DateTime object to given format
-          if ($data instanceof \DateTime){
-            $data = $data->format('{{ builder.dateTimeFormat }}');
-          }
-          $sheet->setCellValueByColumnAndRow({{ column }}, $row, $data);
-          {% set column = column + 1 %}
+            // Convert DateTime object to given format
+            if ($data instanceof \DateTime){
+                $data = $data->format('{{ builder.dateTimeFormat }}');
+            }
+            $sheet->setCellValueByColumnAndRow({{ colNum }}, $row, $data);
+        {% set colNum = colNum + 1 %}
         {% endfor %}
-        $row++;
-      }
+            $row++;
+        }
     }
 
     {% block getResults -%}
-      protected function getResults()
-      {
-        // ORM JOB
-      }
+        protected function getResults()
+        {
+            // ORM JOB
+        }
     {% endblock %}
 }
