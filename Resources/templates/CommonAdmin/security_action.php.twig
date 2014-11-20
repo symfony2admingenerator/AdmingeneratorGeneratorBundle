@@ -6,7 +6,6 @@ use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 {% endblock %}
 
 {% block security_check %}
-{% if credentials %}
     /**
      * Check user credentials
      *
@@ -22,7 +21,6 @@ use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
             throw new AccessDeniedException();
         }
     }
-{% endif %}
 {% endblock %}
 
 {% block security_action %}
