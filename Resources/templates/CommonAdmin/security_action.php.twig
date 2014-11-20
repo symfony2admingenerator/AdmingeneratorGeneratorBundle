@@ -1,8 +1,6 @@
 {% block security_use %}
-{% if credentials %}
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
-{% endif %}
 {% endblock %}
 
 {% block security_check %}
