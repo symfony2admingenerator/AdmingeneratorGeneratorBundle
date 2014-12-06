@@ -12,9 +12,10 @@ Add Admingenerator to your `composer.json`:
 #### 1.1   Symfony 2.3.X
 ```json
 "require": {
-    "cedriclombardot/admingenerator-generator-bundle": "2.3.*@dev"
+    "cedriclombardot/admingenerator-generator-bundle": "~1.1"
 },
 ```
+> **Note:** 1.1 uses twitter bootstrap 3 and 1.0 uses twitter bootstrap 2. You are able to use either 1.1 or 1.0
 
 #### 1.1   Symfony 2.2.X
 ```json
