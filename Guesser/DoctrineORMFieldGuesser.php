@@ -161,7 +161,7 @@ class DoctrineORMFieldGuesser extends ContainerAware
 
             return array(
                 'multiple'  => ($mapping['type'] === ClassMetadataInfo::MANY_TO_MANY || $mapping['type'] === ClassMetadataInfo::ONE_TO_MANY),
-                'em'        => 'default', // TODO: shouldn't this be configurable?
+                'em'        => $this->getObjectManagerName($mapping['targetEntity']),
                 'class'     => $mapping['targetEntity'],
                 'required'  => $this->isRequired($columnName),
             );
@@ -231,5 +231,20 @@ class DoctrineORMFieldGuesser extends ContainerAware
     public function getModelPrimaryKeyName($class = null)
     {
         return $this->getMetadatas($class)->getSingleIdentifierFieldName();
+    }
+
+    protected function getObjectManagerName($className)
+    {
+        $doctrine = $this->doctrine;
+        $om = $doctrine->getManagerForClass($className);
+        foreach ($doctrine->getManagerNames() as $emName=>$omName)
+        {
+            $instance = $doctrine->getManager($emName);
+            if ($instance == $om)
+            {
+                return $emName;
+            }
+        }
+        throw new \Exception("Entity manager for class: $className not found.");
     }
 }
