@@ -7,19 +7,23 @@
 
 ### 1. Download files
 
+### 1.1 Add dependencies
+
 Add Admingenerator to your `composer.json` by running the console command:
 
-#### 1.1   Twitter bootstrap 2.X version
+#### 1.1.1   Twitter bootstrap 2.X version
 ```sh
 composer require cedriclombardot/admingenerator-generator-bundle:~1.0
 ```
 
-#### 1.1   Twitter bootstrap 3.X version
+#### 1.1.1   Twitter bootstrap 3.X version
 ```sh
 composer require cedriclombardot/admingenerator-generator-bundle:~1.1
 ```
 
-### 1.2 Checkin your composer 
+### 1.2 Configure componets directory
+
+Edit your `composer.json` config and add:
 
 ```json
 "config": {
@@ -27,7 +31,9 @@ composer require cedriclombardot/admingenerator-generator-bundle:~1.1
 },
 ```
 
-Then run `php composer.phar update` command.
+### 1.3 Update dependencies
+
+Then run `composer update` command.
 
 > **Note:** If you're getting **no matching package found** error then you must also add `"minimum-stability": "dev"` to your **composer.json** file.
     
