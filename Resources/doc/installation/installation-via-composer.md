@@ -7,29 +7,23 @@
 
 ### 1. Download files
 
-Add Admingenerator to your `composer.json`:
+### 1.1 Add dependencies
 
-#### 1.1   Symfony 2.3.X
-```json
-"require": {
-    "cedriclombardot/admingenerator-generator-bundle": "2.3.*@dev"
-},
+Add Admingenerator to your `composer.json` by running the console command:
+
+#### 1.1.1 Use branch 1.0 for Twitter bootstrap 2.X version
+```sh
+composer require cedriclombardot/admingenerator-generator-bundle:~1.0
 ```
 
-#### 1.1   Symfony 2.2.X
-```json
-"require": {
-    "cedriclombardot/admingenerator-generator-bundle": "2.2.*@dev"
-},
-```
-#### 1.1   Symfony 2.1.X
-```json
-"require": {
-   "cedriclombardot/admingenerator-generator-bundle": "2.1.*@dev"
-},
+#### 1.1.1 Use branch 1.1 for Twitter bootstrap 3.X version
+```sh
+composer require cedriclombardot/admingenerator-generator-bundle:~1.1
 ```
 
-### 1.2 Checkin your composer 
+### 1.2 Configure componets directory
+
+Edit your `composer.json` config and add:
 
 ```json
 "config": {
@@ -37,7 +31,9 @@ Add Admingenerator to your `composer.json`:
 },
 ```
 
-Then run `php composer.phar update` command.
+### 1.3 Update dependencies
+
+Then run `composer update` command.
 
 > **Note:** If you're getting **no matching package found** error then you must also add `"minimum-stability": "dev"` to your **composer.json** file.
     
