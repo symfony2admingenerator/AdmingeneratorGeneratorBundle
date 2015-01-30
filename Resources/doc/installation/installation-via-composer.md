@@ -11,12 +11,12 @@
 
 Add Admingenerator to your `composer.json` by running the console command:
 
-#### 1.1.1   Twitter bootstrap 2.X version
+#### 1.1.1 Use branch 1.0 for Twitter bootstrap 2.X version
 ```sh
 composer require cedriclombardot/admingenerator-generator-bundle:~1.0
 ```
 
-#### 1.1.1   Twitter bootstrap 3.X version
+#### 1.1.1 Use branch 1.1 for Twitter bootstrap 3.X version
 ```sh
 composer require cedriclombardot/admingenerator-generator-bundle:~1.1
 ```
