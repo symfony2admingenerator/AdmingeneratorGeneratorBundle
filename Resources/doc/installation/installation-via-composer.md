@@ -7,7 +7,7 @@
 
 ### 1. Download files
 
-Add Admingenerator to your `composer.json`:
+Add Admingenerator to your `composer.json` by running the console command:
 
 #### 1.1   Twitter bootstrap 2.X version
 ```sh
