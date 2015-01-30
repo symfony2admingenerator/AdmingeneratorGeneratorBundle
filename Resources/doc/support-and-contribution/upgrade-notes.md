@@ -11,6 +11,8 @@ project.
 
 ## PR [#739][pr739] Migrate to Bootstrap3
 
+[pr739]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/pull/739
+
 #### Description:
 
 This PR updated all templates to Bootstrap 3.

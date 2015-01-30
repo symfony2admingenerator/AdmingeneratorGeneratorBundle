@@ -101,9 +101,6 @@ public function navbarMenu(FactoryInterface $factory, array $options)
     // set id for root item, and class for nice twitter bootstrap style
     $menu->setChildrenAttributes(array('id' => 'main_navigation', 'class' => 'nav navbar-nav'));
 
-    // add "navbar-nav" class for Twitter Bootstrap3 theme
-    //$menu->setChildrenAttributes(array('id' => 'main_navigation', 'class' => 'nav navbar-nav'));
-
     // add links $menu
     $this->addLinkURI($menu, 'Item1', 'http://www.google.com');
     $this->addLinkRoute($menu, 'Item2', 'Your_RouteName');

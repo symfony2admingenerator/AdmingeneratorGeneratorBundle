@@ -5,7 +5,36 @@
 
 [back-to-index]: https://github.com/symfony2admingenerator/AdmingeneratorGeneratorBundle/blob/master/Resources/doc/documentation.md#1-installation
 
-### 1. Twig section
+### 1. Global configurations
+
+_TODO_
+
+### 2. Cache configuration
+
+`generator_cache`: __default__: `null` __type__: `string` (service name extending `Doctrine\Common\Cache\CacheProvider`)
+
+By default, for each request matching an Admingenerated controller, the `ControllerListener` will iterate over
+the filesystem to find which right generator.yml and the right `Generator` have to be used to build generated
+files. This process could take some time. Thanks to this configuration, you can precise a cache provider to bypass
+this process once all files are generated. The service name defined here need to extend the class
+`Doctrine\Common\Cache\CacheProvider`.
+
+Example:
+
+```yaml
+services:
+    global_cache.provider:
+        class: %doctrine.orm.cache.apc.class%
+        public: false
+        calls:
+            - [ setNamespace, [ 'my_namespace' ] ]
+
+admingenerator_generator:
+    generator_cache: global_cache.provider
+
+```
+
+### 3. Twig section
 
 Default configuration is:
 
@@ -46,7 +75,7 @@ if you don't provide your own implementation.
 
 *To complete*
 
-### 2. Full configuration
+### 4. Full configuration
 
 ```yaml
 admingenerator_generator:
@@ -59,6 +88,8 @@ admingenerator_generator:
     dashboard_welcome_path: ~
     login_path: ~
     logout_path: ~
+    exit_path: ~
+    generator_cache: ~
     ## Twig and Templates
     twig:
         use_form_resources: true

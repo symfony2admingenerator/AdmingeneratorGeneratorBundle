@@ -59,7 +59,7 @@ action.object.edit:
                 να αποθηκευτούν οι αλλαγές σας.
 action.object.delete:
     label:    Διαγραφή
-    confirm:
+    confirm:  Είστε σίγουρος ότι θέλετε να γίνει διαγραφή του αντικειμένου;
     success:  Το στοιχείο διεγράφει επιτυχώς!
     error:    Το στοιχείο δεν μπορεί να διαγραφεί.
 action.object.show:

@@ -13,7 +13,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     public function testDefaultConfig()
     {
         $processor = new Processor();
-        $config = $processor->processConfiguration(new Configuration(), array());
+        $config = $processor->processConfiguration(new Configuration('admingen_generator'), array());
 
         $this->assertEquals($this->getBundleDefaultConfig(), $config);
     }
@@ -37,6 +37,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
             'login_path' => null,
             'logout_path' => null,
             'exit_path' => null,
+            'generator_cache' => null,
             'twig'         => array(
                 'use_form_resources' => true,
                 'use_localized_date' => false,

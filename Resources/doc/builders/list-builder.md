@@ -12,8 +12,6 @@ List builder features:
 * [Title](common/title.md)
 * [Localized date](common/localized-date.md)
 
-
-
 ### Filters
 
 It's now possible to filter by multiple values for a single field.

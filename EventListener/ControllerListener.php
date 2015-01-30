@@ -3,23 +3,43 @@
 namespace Admingenerator\GeneratorBundle\EventListener;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
 use Symfony\Component\Yaml\Yaml;
-
 use Symfony\Component\HttpKernel\HttpKernelInterface;
-
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-
-use Admingenerator\GeneratorBundle\Exception\NotAdminGeneratedException;
 use Symfony\Component\Finder\Finder;
+use Admingenerator\GeneratorBundle\Exception\NotAdminGeneratedException;
+use Doctrine\Common\Cache as DoctrineCache;
 
 class ControllerListener
 {
+
     protected $container;
+
+    /**
+     * @var DoctrineCache\CacheProvider
+     */
+    protected $cacheProvider;
+
+    /**
+     * @var string
+     */
+    protected $cacheSuffix;
 
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
+        $this->cacheProvider = new DoctrineCache\ArrayCache();
+        $this->cacheSuffix = 'default';
+    }
+
+    /**
+     * @param DoctrineCache\CacheProvider $cacheProvider
+     * @param string $cacheSuffix
+     */
+    public function setCacheProvider(DoctrineCache\CacheProvider $cacheProvider = null, $cacheSuffix = 'default')
+    {
+        $this->cacheProvider = $cacheProvider;
+        $this->cacheSuffix = $cacheSuffix;
     }
 
     public function onKernelRequest(GetResponseEvent $event)
@@ -57,9 +77,12 @@ class ControllerListener
 
     protected function getGenerator($generatorYaml)
     {
-        $yaml = Yaml::parse($generatorYaml);
+        if (!$generatorName = $this->cacheProvider->fetch($this->getCacheKey($generatorYaml.'_generator'))) {
+            $yamlParsed = Yaml::parse($generatorYaml);
+            $this->cacheProvider->save($this->getCacheKey($generatorYaml.'_generator'), $generatorName = $yamlParsed['generator']);
+        }
 
-        return $this->container->get($yaml['generator']);
+        return $this->container->get($generatorName);
     }
 
     protected function getBaseGeneratorName($controller)
@@ -71,7 +94,7 @@ class ControllerListener
             if (3 != count(explode('\\', $matches[2]))) {
                 return '';
             }
-            
+
             list($firstSlash, $generatorName) = explode('\\', $matches[2], 3);
 
             return $generatorName;
@@ -85,6 +108,30 @@ class ControllerListener
      */
     protected function getGeneratorYml($controller)
     {
+        if (!$generatorYml = $this->cacheProvider->fetch($this->getCacheKey($controller))) {
+            try {
+                $this->cacheProvider->save($this->getCacheKey($controller), $generatorYml = $this->findGeneratorYml($controller));
+            } catch (NotAdminGeneratedException $e) {
+                $this->cacheProvider->save($this->getCacheKey($controller), $generatorYml = 'NotAdminGeneratedException');
+
+                throw $e;
+            }
+        }
+
+        if ('NotAdminGeneratedException' == $generatorYml) {
+            throw new NotAdminGeneratedException();
+        }
+
+        return $generatorYml;
+    }
+
+    /**
+     * @TODO: Find objects in vendor dirs
+     * @param string $controller
+     * @throws NotAdminGeneratedException
+     */
+    protected function findGeneratorYml($controller)
+    {
         preg_match('/(.+)?Controller.+::.+/', $controller, $matches);
         $dir = str_replace('\\', DIRECTORY_SEPARATOR, $matches[1]);
 
@@ -93,7 +140,7 @@ class ControllerListener
 
         $finder = new Finder();
         $finder->files()
-               ->name($generatorName);
+        ->name($generatorName);
 
         if (is_dir($src = realpath($this->container->getParameter('kernel.root_dir').'/../src/'.$dir.'/Resources/config'))) {
             $namespace_directory = $src;
@@ -112,6 +159,15 @@ class ControllerListener
         }
 
         throw new NotAdminGeneratedException;
+    }
+
+    /**
+     * @param string $key
+     * @return string
+     */
+    protected function getCacheKey($key)
+    {
+        return sprintf('admingen_controller_%s_%s', $key, $this->cacheSuffix);
     }
 
 }
