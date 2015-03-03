@@ -16,6 +16,7 @@ admingenerator_generator:
 
 2. Keep in mind that you will at least need **one dir** in the previous specified template directory, namely of the DBAL layer used, so one of [Doctrine, DoctrineODM, Propel]. 
 Without this directory, the specified template directory will not be used for extending/overwriting any of the templates, even in the CommonAdmin dir. 
+Note: If you are using git and your directory is empty you will [need to add least one file to add this directory to git](https://git.wiki.kernel.org/index.php/GitFaq#Can_I_add_empty_directories.3F). It's convention to add a .gitkeep file.
 
 3. Be free to extend/overwrite any template in the Resources/templates dir of the AdminGenerator!
 
