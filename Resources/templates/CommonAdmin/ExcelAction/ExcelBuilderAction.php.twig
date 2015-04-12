@@ -8,6 +8,7 @@ namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.gene
 {{- block('csrf_protection_use') }}
 
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
  * @author Bob van de Vijver
@@ -83,16 +84,14 @@ class ExcelController extends ListController
      */
     protected function getValueForCell($field, $rowData)
     {
-        $getter = $field;
+        $accessor = PropertyAccess::createPropertyAccessor();
         $data = $rowData;
         // Retrieve relations
-        while (($pos = strpos($getter, '.')) > 0) {
-            $tempGetter = 'get'.ucfirst(substr($getter, 0, $pos));
-            $getter = substr($getter, $pos + 1);
-            $data = is_object($data) ? $data->$tempGetter() : '';
+        while (($pos = strpos($field, '.')) > 0) {
+            $field = substr($field, $pos + 1);
+            $data = $accessor->getValue($data, substr($field, 0, $pos));
         }
-        $getter = 'get'.ucfirst($getter);
-        $data = is_object($data) ? $data->$getter() : '';
+        $data = $accessor->getValue($data, $field);
 
         // Convert DateTime object to given format
         if ($data instanceof \DateTime) {
