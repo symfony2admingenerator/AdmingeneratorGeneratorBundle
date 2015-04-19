@@ -8,6 +8,7 @@ namespace Admingenerated\{{ namespace_prefix }}{{ bundle_name }}\{{ builder.gene
 {{- block('csrf_protection_use') }}
 
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
  * @author Bob van de Vijver
@@ -21,7 +22,7 @@ class ExcelController extends ListController
     public function excelAction()
     {
         {{ block('security_action') }}
-      
+
         // Create the PHPExcel object with some standard values
         try {
             $phpexcel = $this->get('phpexcel');
@@ -74,6 +75,33 @@ class ExcelController extends ListController
     }
 
     /**
+     * Gets the value from the given field that will be place at an Excel cell
+     *
+     * @param string $field   The name of the field to extract the value
+     * @param mixed  $rowData The main entity object
+     *
+     * @return $data The data to place on the respective Excel cell
+     */
+    protected function getValueForCell($field, $rowData)
+    {
+        $accessor = PropertyAccess::createPropertyAccessor();
+        $data = $rowData;
+        // Retrieve relations
+        while (($pos = strpos($field, '.')) > 0) {
+            $field = substr($field, $pos + 1);
+            $data = $accessor->getValue($data, substr($field, 0, $pos));
+        }
+        $data = $accessor->getValue($data, $field);
+
+        // Convert DateTime object to given format
+        if ($data instanceof \DateTime) {
+            $data = $data->format('{{ builder.dateTimeFormat }}');
+        }
+
+        return $data;
+    }
+
+    /**
      * Fills the Excel spreadsheet with data
      */
     protected function createExcelData(\PhpExcel_Worksheet $sheet)
@@ -81,26 +109,18 @@ class ExcelController extends ListController
         $row = 2;
         $results = $this->getResults();
         foreach($results as $rowData) {
-        {% set colNum = 0 %}
-        {% for column in builder.columns %}
-            // Retrieve relations
-            $getter = '{{ column.getter }}';
-            $data = $rowData;
-            while (($pos = strpos($getter, '.')) > 0) {
-                $tempGetter = 'get' . ucfirst(substr($getter, 0, $pos));
-                $getter = substr($getter, $pos + 1);
-                $data = $data->$tempGetter();
-            }
-            $getter = 'get' . ucfirst($getter);
-            $data = $data->$getter();
+          {%- set column = 0 -%}
+          {%- for builder_column in builder.columns %}
 
-            // Convert DateTime object to given format
-            if ($data instanceof \DateTime){
-                $data = $data->format('{{ builder.dateTimeFormat }}');
+            if (method_exists($this, 'format{{ (builder_column.getter|classify)|php_name }}Value')) {
+                $data = $this->format{{ (builder_column.getter|classify)|php_name }}Value($rowData);
+            } else {
+                $data = $this->getValueForCell('{{ builder_column.getter }}', $rowData);
             }
-            $sheet->setCellValueByColumnAndRow({{ colNum }}, $row, $data);
-        {% set colNum = colNum + 1 %}
-        {% endfor %}
+            $sheet->setCellValueByColumnAndRow({{ column }}, $row, $data);
+            {% set column = column + 1 %}
+          {%- endfor %}
+
             $row++;
         }
     }
