@@ -12,8 +12,8 @@ class LocalizedMoneyExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'localized_money' => new \Twig_Function_Method($this, 'getLocalizedMoney'),
-            'currency_sign'   => new \Twig_Function_Method($this, 'getCurrencySign'),
+            new \Twig_SimpleFunction('localized_money', array($this, 'getLocalizedMoney')),
+            new \Twig_SimpleFunction('currency_sign', array($this, 'getCurrencySign')),
         );
     }
 
