@@ -1,5 +1,11 @@
 language: php
 
+sudo: false
+
+cache:
+    directories:
+        - $HOME/.composer/cache
+
 php:
     - 5.3
     - 5.4
@@ -26,7 +32,7 @@ before_install:
     - composer self-update
     - if [ "$SYMFONY_VERSION" != "" ]; then composer require --no-update symfony/symfony:${SYMFONY_VERSION}; fi
 
-install: composer update
+install: composer update --prefer-dist
 
 notifications:
   webhooks:
