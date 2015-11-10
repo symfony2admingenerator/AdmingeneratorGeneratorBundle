@@ -21,7 +21,7 @@
 		}
 	],
 	"require" : {
-		"symfony/symfony" : "~2.2",
+		"symfony/symfony" : "~2.3",
 		"doctrine/common" : "~2.2",
 		"sensio/generator-bundle" : "^2.3.3|~3.0",
 		"cedriclombardot/twig-generator" : "1.0.*",
