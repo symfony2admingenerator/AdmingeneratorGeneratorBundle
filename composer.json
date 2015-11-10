@@ -46,10 +46,9 @@
 		"cedriclombardot/admingenerator-user-bundle" : "FOSUserBundle integration for Admingenerator",
 		"jms/security-extra-bundle" : "Allows expressions in credential checks for generated actions"
 	},
-	"target-dir" : "Admingenerator/GeneratorBundle",
 	"autoload" : {
-		"psr-0" : {
-			"Admingenerator\\GeneratorBundle" : ""
+		"psr-4" : {
+			"Admingenerator\\GeneratorBundle\\" : ""
 		}
 	},
 	"extra" : {
