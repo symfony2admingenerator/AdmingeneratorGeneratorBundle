@@ -19,15 +19,13 @@ class CsrfTokenExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'csrf_token'          => new \Twig_Filter_Method($this, 'getCsrfToken'),
+            new \Twig_SimpleFiler('csrf_token', array($this, 'getCsrfToken')),
         );
     }
 
     public function getCsrfToken($intention)
     {
-        $token = $this->container->get('form.csrf_provider')->generateCsrfToken($intention);
-
-        return $token;
+        return $this->container->get('form.csrf_provider')->generateCsrfToken($intention);
     }
 
     /**
