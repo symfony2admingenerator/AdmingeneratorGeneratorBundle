@@ -55,7 +55,7 @@ class ConnectionMock extends \Doctrine\DBAL\Connection
     /**
      * @override
      */
-    public function fetchColumn($statement, array $params = array(), $colnum = 0)
+    public function fetchColumn($statement, array $params = array(), $column = 0, array $types = array())
     {
         return $this->_fetchOneResult;
     }
