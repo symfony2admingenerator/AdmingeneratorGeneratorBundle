@@ -21,12 +21,13 @@ matrix:
         - php: 5.6
           env: SYMFONY_VERSION='2.7.*'
         - php: 5.6
-          env: SYMFONY_VERSION='2.8.*@dev' SYMFONY_DEPRECATION_HELPER=strict
+          env: SYMFONY_VERSION='2.8.*@dev' SYMFONY_DEPRECATIONS_HELPER=strict
         - php: 5.6
-          env: SYMFONY_VERSION='3.0.*@dev' SYMFONY_DEPRECATION_HELPER=strict
+          env: SYMFONY_VERSION='3.0.*@dev' SYMFONY_DEPRECATIONS_HELPER=strict
 
 env:
-    - SYMFONY_DEPRECATION_HELPER=weak
+    global:
+        - SYMFONY_DEPRECATIONS_HELPER=weak
 
 before_install:
     - composer self-update
