@@ -84,6 +84,12 @@ class RoutingLoader extends FileLoader
                     'requirements' => array(),
                     'controller'   => 'list',
                 ),
+        'nested_move' => array(
+                    'pattern' => '/nested_move/{dragged}/{action}/{dropped}',
+                    'defaults' => array(),
+                    'requirements' => array(),
+                    'controller' => 'list'
+                ),
     );
 
     /**
