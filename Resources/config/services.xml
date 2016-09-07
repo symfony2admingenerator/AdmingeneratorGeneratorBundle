@@ -84,6 +84,17 @@
             <tag name="admingenerator.validator.propel" alias="propel_model_class" />
         </service>
 
+        <service id="form.type.translatable_collection" class="Admingenerator\GeneratorBundle\Form\Type\TranslationCollectionType">
+            <tag name="form.type" alias="translatable_collection" />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <service id="form.type.translation_type" class="Admingenerator\GeneratorBundle\Form\Type\TranslationType">
+            <tag name="form.type" alias="translation_type" />
+        </service>
+
         <!-- Warmup -->
         <service id="admingenerator.finder" class="%admingenerator.finder.class%" public="false">
             <argument type="service" id="kernel" />
