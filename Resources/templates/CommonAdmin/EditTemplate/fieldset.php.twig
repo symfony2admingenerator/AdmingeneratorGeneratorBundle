@@ -11,7 +11,7 @@
                 {% if builder.Columns[field].credentials %}
                       {{ echo_if_granted(builder.Columns[field].credentials, builder.ModelClass) }}
                 {% endif %}
-                <div class="col-md-4 form_field field_{{ builder.Columns[field].formType }} field_{{ field }}">
+                <div class="col-md-12 form_field field_{{ builder.Columns[field].formType }} field_{{ field }}">
                     {{ echo_block("form_" ~ field) }}
                         {{ echo_twig("form_row(form['" ~ field ~ "'])") }}
                     {{ echo_endblock() }}
