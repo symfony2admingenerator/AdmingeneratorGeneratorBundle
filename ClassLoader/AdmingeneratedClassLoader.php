@@ -35,7 +35,7 @@ class AdmingeneratedClassLoader
     public function loadClass($class)
     {
         if (0 === strpos($class, 'Admingenerated')) {
-            $file_path = $this->base_path.DIRECTORY_SEPARATOR.str_replace('\\', DIRECTORY_SEPARATOR, $class).'.php';
+            $file_path = $this->base_path.DIRECTORY_SEPARATOR.str_replace('/', DIRECTORY_SEPARATOR, $class).'.php';
 
             if (!file_exists($file_path)) {
                 $this->generateEmptyController($class);
